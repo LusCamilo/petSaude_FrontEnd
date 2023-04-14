@@ -1,0 +1,409 @@
+.mainVet{
+
+    height: 100vh;
+    background: linear-gradient(112.87deg, rgba(9, 43, 90, 0.7) 0%, rgba(158, 209, 183, 0.7) 100%);
+
+}
+
+.img-forms{
+
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+
+}
+.conteiner-img{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.bg-image{
+    height:70%;
+}
+
+.arrow-img{
+
+    display: flex;
+
+}
+
+
+/* FORMULÁRIO DE PROFISSIONAIS */
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    padding-bottom: 1%;
+}
+
+/** Header do Form **/
+.form-header{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+}
+.form-header h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding-top: 5%;
+}
+.form-header span{
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #A9A9A9;
+}
+
+/*** Inputs das Caracteristicas do Profissional ***/
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 20px;
+}
+
+.checkbox-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/** Especialidades do profissional **/
+
+.specialties{
+    display: flex;
+    flex-direction: column;
+
+}
+.specialties span{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.inputs-specialties{
+
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+
+}
+.inputs-specialties label{
+
+    display: flex;
+    align-items: center;
+    /* width: max-content; */
+    font-size: 1.2rem;
+    gap: 5px;
+    padding-right: 15px;
+}
+
+.inputs-specialties input{
+
+    width: 20px;
+    border: none;
+    background-color: #A9A9A9;
+
+
+}
+
+/*****************************/
+
+.animals{
+
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.animals span{
+
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+.inputs-animals{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center ;
+}
+
+.inputs-animals label{
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    gap: 6px;
+    padding-right: 15px;
+}
+.inputs-animals input{
+    width: 20px;
+    border: none;
+    background-color: #A9A9A9;
+}
+label{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+label input{
+    font-size: 1.1rem;
+    height: 60px;
+    width: 80%;
+    border-bottom: 1px solid black;
+}
+
+.atuacao-container p{
+    padding-top: 16px;
+}
+
+
+/* Alinhamento de duas label*/
+.atuacao-crmv{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.area {
+    width: 100%;
+}
+
+.CRMV {
+    width: 100%;
+}
+
+/* ERROR */
+.form-group{
+    display: flex;
+    padding-top: 5%;
+    width: 100%;
+    gap: 35px;
+}
+
+/** Botão de Cadastro **/
+
+.register-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    background-color: #09738A;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 10px;
+    margin-top: 10%;
+    transition: 0.5s;
+}
+
+.register-button a{
+    width: 100%;
+}
+
+.register-button:hover{
+    background-color: #78A890;
+    transform: scale(1.03);
+}
+
+
+/* FAZER LOGIN */
+.text-login{
+    display: flex;
+    font-size: 1.1rem;
+    gap: 6px;
+}
+.text-login a{
+    font-weight: bold;
+}
+
+
+/* ANIMAÇÃO DE ABERTURA */
+@keyframes zoom{
+    0% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/**
+*
+*   RESPONSIVIDADE
+*
+**/
+
+/* DESKTOP */
+@media (max-width:1920px) {
+
+    .form-header h1{
+        font-size: 2rem;
+    }
+
+    .form-header span{
+        font-size: 1rem;
+    }
+
+    .inputs-container{
+        gap:25px
+    }
+
+    .inputs-specialties label{
+
+        font-size: 1rem;
+        gap: 3px;
+        padding-right: 20px;
+
+    }
+    .inputs-specialties label input {
+        height: 60%;
+    }
+
+    .inputs-animals label input {
+        height: 70%;
+    }
+    
+    /* input[type = "checkbox"]{
+        height: 80%;
+    } */
+
+    .atuacao-container label p{
+
+        font-size: 1rem;
+
+    }
+
+    .inputs-animals label{
+
+        font-size: 1rem;
+        gap: 3px;
+        padding-right: 20px;
+    }
+
+    .back-view i {
+        font-size: 3rem;
+    }
+
+
+    .bg-image{
+
+        height: 60%;
+    }
+
+    .register-button{
+
+        font-size: 1.1rem;
+    }
+    /* FAZER LOGIN */
+    .text-login{
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1600px) {
+    
+    .bg-image{
+
+        height: 40%;
+
+    }
+    .form-header h1{
+        font-size: 2rem;
+    }
+
+    
+}
+@media (max-width: 1130px){
+    
+    .mainVet{
+    
+        height: 100%;
+    
+    }
+    .inputs-container{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+    }
+
+    .form-header h1 {
+        font-size: 1.9rem;
+    }
+
+    .img-forms{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .arrow-img{
+    
+        display: none;
+    
+    }
+    .atuacao-container{
+        display: flex;
+        flex-direction: column;
+
+        gap: 30px;
+
+    }
+
+    .atuacao-crmv{
+        display: grid;
+        align-items: start;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .atuacao-crmv p{
+      font-size: 20px;
+      width: 180px;
+    }
+
+    .atuacao-container label input{
+
+        width: 100%;
+
+    }
+
+
+
+    .form-group{
+        flex-direction: column;
+    }
+
+ 
+
+}
+
+/* MOBILE */
+
+@media (max-width: 770px){
+
+    form{
+        width: 100%;
+        height: 100%;
+    }
+    .inputs-container{
+
+        width: 80%;
+
+    }
+
+}
