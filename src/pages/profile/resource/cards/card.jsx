@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import icon from "../img/Iconbutton.png"
 import img from "../img/Ellipse.png"
-import TextTruncate from 'react-text-truncate';
+// import TextTruncate from 'react-text-truncate';
 
 export const Card = (props) => {
 
@@ -20,11 +20,12 @@ export const Card = (props) => {
                 <img src={props.img} alt="" className='max-h-44 w-full' />
                 <span className='flex flex-col  gap-4 px-4 py-3' >
                     <p>Avaliação {props.avaliacao}/10</p>
-                    <TextTruncate
+                    <p className='truncate'>{props.description}</p>
+                    {/* <TextTruncate
                         line={2}
                         element="p"
                         text={props.description}
-                    />
+                    /> */}
                 </span>
             </div>
         );

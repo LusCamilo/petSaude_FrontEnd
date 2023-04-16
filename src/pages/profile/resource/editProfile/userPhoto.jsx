@@ -24,7 +24,7 @@ export const UserPhoto = (props) => {
             <div>
                 <input type="file" accept="image/*" name="photo" id="photoUser" className="hidden" onChange={handleFileInputChange} />
                 <div className="flex items-center gap-x-3">
-                    <label htmlFor='photoUser' onChange={handleFileInputChange} className='h-2 md:h-40 w-24 md:w-40 bg-no-repeat bg-cover flex cursor-pointer bg-slate-200 justify-center items-center rounded-full' style={{ backgroundImage: `url(${selectedFile})` }}>
+                    <label htmlFor='photoUser' onChange={handleFileInputChange} className='h-24 md:h-40 w-24 md:w-40 bg-no-repeat bg-cover flex cursor-pointer bg-slate-200 justify-center items-center rounded-full' style={{ backgroundImage: `url(${selectedFile})` }}>
                         <img src={more} className="" />
                     </label>
                     <span>

@@ -1,6 +1,6 @@
 import React from "react";
-// import styled from 'styled-components';
-// import { InputGroup, FormControl, Button, Form, Col } from 'react-bootstrap';
+import styled from 'styled-components';
+import { InputGroup, FormControl, Button, Form, Col } from 'react-bootstrap';
 // import { faSearch } from '@fortawesome/free-solid-svg-icons';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';

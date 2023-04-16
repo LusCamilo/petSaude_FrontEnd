@@ -4,6 +4,7 @@ import Dog from '../../../../assets/svg/iconDog.svg';
 import { useEffect, useState } from 'react';
 
 
+
 export const Appointment = () => {
 
     let [name, setName] = useState('Palavra');
@@ -12,10 +13,11 @@ export const Appointment = () => {
         setName(event.target.value);
     }
 
+ 
 
     return ( 
+       
         <>
-            
                 <section className='md:w-3/4 border-4 border-[#9ED1B7] rounded-lg  m-10 bg-white'>
                     <div className='p-2 md:p-20'>
                         <h1 className='flex justify-center text-3xl md:text-5xl font-semibold pt-2 md:pt-10'>Selecione o animal</h1>
@@ -65,7 +67,7 @@ export const Appointment = () => {
                     </div>
                     <div className='p-3 md:pl-20 md:pr-20'>
                         <div className='flex mt-2 md:mt-10 justify-between gap-5'>
-                            <button className='p-2 md:w-56 md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl' >
+                            <button className='p-2 md:w-56 md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center' type="button" onClick="window.close()">
                                 Cancelar
                             </button>
                             <button className='md:ml-56  p-2  w-32 md:w-56 md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'>

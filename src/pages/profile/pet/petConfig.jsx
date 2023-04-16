@@ -130,8 +130,8 @@ https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-w
                                     <DropdownMenu.Root className="w-full">
                                         <DropdownMenu.Trigger disabled={petInfosDisable.disable} className={`flex justify-start  text-2xl ${petInfosDisable.class}`} >{sexo}</DropdownMenu.Trigger>
                                         <StyledContent >
-                                        <StyledItem onSelect={() => setSexo("Feminino")}>Feminino</StyledItem>
-                                        <StyledItem onSelect={() => setSexo("Masculino")}>Masculino</StyledItem>
+                                        <StyledItem onSelect={() => setSexo("Fêmea")}>Feminino</StyledItem>
+                                        <StyledItem onSelect={() => setSexo("Macho")}>Masculino</StyledItem>
                                         <StyledItem onSelect={() => setSexo("Ginandromorfo")}>Ginandromorfo</StyledItem>
                                         <StyledArrow />
                                         </StyledContent>

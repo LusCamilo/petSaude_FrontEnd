@@ -128,8 +128,8 @@ export const PetAdd = (props) => {
                                     <DropdownMenu.Root className="w-full">
                                         <DropdownMenu.Trigger className='flex justify-start text-black text-3xl'>{sexo[0]}</DropdownMenu.Trigger>
                                         <StyledContent>
-                                            <StyledItem onSelect={() => setSexo(["Feminino",  1])}>Feminino</StyledItem>
-                                            <StyledItem onSelect={() => setSexo(["Masculino", 2])}>Masculino</StyledItem>
+                                            <StyledItem onSelect={() => setSexo(["Fêmea",  1])}>Feminino</StyledItem>
+                                            <StyledItem onSelect={() => setSexo(["Macho", 2])}>Masculino</StyledItem>
                                             <StyledItem onSelect={() => setSexo([ "Ginandromorfo", 3])}>Ginandromorfo</StyledItem>
                                         <StyledArrow />
                                         </StyledContent>

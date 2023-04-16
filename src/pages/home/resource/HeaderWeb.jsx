@@ -60,33 +60,33 @@ export const HeaderWeb = () => {
           </div>
           </button>
        <h1 className=" text-1xl sm:flex justify-start font-bold">PetSaúde</h1>
-       <nav>
-      <div className="flex justify-between items-center ">
+       <div className="flex justify-between items-center">
+          <nav>
+          <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-1000 ">
+                  <li className="mx-4 my-6 md:my-0 transition">
+                    <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full">Home</a>
+                  </li>
+                  <li className="mx-4 my-6 md:my-0">
+                    <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full">Prossionais</a>
+                  </li>
+                  <li className="mx-4 my-6 md:my-0">
+                    <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full">Blog</a>
+                  </li>
+                  <li className="mx-4 my-6 md:my-0">
+                    <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full">Sobre nós</a>
+                  </li>
+              </ul>
+            </nav>
       </div>
-            <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-1000 ">
-              <li className="mx-4 my-6 md:my-0 transition">
-                <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                hover:after:w-full">Home</a>
-              </li>
-              <li className="mx-4 my-6 md:my-0">
-                <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                hover:after:w-full">Prossionais</a>
-              </li>
-              <li className="mx-4 my-6 md:my-0">
-                <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                hover:after:w-full">Blog</a>
-              </li>
-              <li className="mx-4 my-6 md:my-0">
-                <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                hover:after:w-full">Sobre nós</a>
-              </li>
-          </ul>
-        </nav>
-       
+            
        <div className=" w-10 md:flex flex-direction " >
        <img className="pt-10 pr-1 md:pt-1 " src={Photo} />
         <Link to="../login" className=" invisible xl:visible home-btn p-1 ">

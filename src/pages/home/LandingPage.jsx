@@ -5,7 +5,6 @@ import Footprint from "../../assets/svg/petPaws.svg";
 import Dog from "../../assets/svg/dogAndCat.svg";
 import Doctor from "../../assets/svg/medico 1.svg";
 import "./css/LandingPage.css";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import { ListItem } from "./resource/searchArea";
 import { useEffect, useState } from 'react';
 import { FilterByName } from "./filterName";
@@ -71,7 +70,7 @@ export const LandingPage = () => {
 									image={vet.profilePhoto}
 									bairro={vet.Address.cep}
 									formacao={vet.formation}
-									onChange={handleClick(vet.id)}
+									
 								/>
 							)
 						})}

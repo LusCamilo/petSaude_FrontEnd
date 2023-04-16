@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import groupTalking from "../../assets/grupo_conversando.png"
 import catFoot from "../../assets/svg/Cat Footprint.svg"
 import planejamento from "../../assets/roda de conversa.png"

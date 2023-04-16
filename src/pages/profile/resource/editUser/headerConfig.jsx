@@ -19,12 +19,12 @@ export const Config = (props) => {
     <>
       <div className="flex font-normal items-center justify-between bg-white shadow pl-5
     xl:p-10 h-30 text-4xl">
-        <div className='flex flex-row justify-center align-center text-center '>
-          <button className=" py-3 md:px-4 mx-2 rounded focus:outline-none group">
+        <div className='flex flex-row justify-center align-center text-center'>
+          <button className="block d:hidden  py-3 md:px-4 mx-2 rounded focus:outline-none hover-bg-gray-200 group ">
             <div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
             <div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
             <div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
-            <div className="absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform 
+            <div className="absolute top-0 -left-full opacity-0 h-screen w-96 bg-[#ECECEC] border transform 
                 group-focus:left-0 group-focus:opacity-100 transition-all duration-300">
               <h2 className="pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl">Menu</h2>
               <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
@@ -77,8 +77,7 @@ export const Config = (props) => {
           </div>
 
         </div>
-
-
+       
         <div className=" md:flex flex-direction gap-5" >
           <img className="w-20 pl-5 pt-20 pr-1 md:pt-1 md:w-20 hidden md:flex " src={Hayley} />
           <Link to="../login" className="flex home-btn text-2xl">

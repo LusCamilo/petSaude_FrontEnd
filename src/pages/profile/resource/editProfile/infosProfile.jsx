@@ -38,17 +38,28 @@ export const InfosProfile = (props) => {
     return (
         <div className='w-full h-full flex flex-col  border rounded-lg border-black gap-10 p-8'>
             <h2 className='text-5xl font-sans'>Informações do perfil</h2>
-            <div className="flex justify-between flex-col md:flex-row gap-3 items-center">
-                <div className='flex flex-col text-xl text-[#A9A9A9]'>
-                    Nome de usuario
-                    <input disabled={userInfosDisable.disable} onChange={handleNameChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} defaultValue={form.nome} id="userInfo" />
+            <div className="flex justify-between flex-col md:flex-row gap-3 items-center ">
+               <div className='flex flex-col md:pt-20'>
+                    <div className='flex flex-col text-xl text-[#A9A9A9]'>
+                        Nome de usuario
+                        <input disabled={userInfosDisable.disable} onChange={handleNameChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} defaultValue={form.nome} id="userInfo" />
+                    </div>
+
+                    <div className='hidden md:flex justify-betwen pt-4  flex-col alight-start text-2xl md:text-xl text-[#A9A9A9] '>
+                            Senha
+                            <input type={password.type} id='password' disabled={password.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${password.class}`} defaultValue={password.password} />
+                    </div>
                 </div>
-                <div className='flex flex-col text-xl text-[#A9A9A9]'>
+               
+                <div className='flex flex-col text-xl text-[#A9A9A9] '>
                     E-mail
                     <input disabled={userInfosDisable.disable} onChange={handleEmailChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} defaultValue={form.email} />
                 </div>
-                <div className="flex justify-betwen pl-5">
-                    <div className='flex flex-col text-2xl md:text-xl text-[#A9A9A9]'>
+    
+
+                
+                <div className="flex justify-betwen md:pl-5">
+                    <div className='md:hidden flex flex-col alight-start text-2xl md:text-xl text-[#A9A9A9] '>
                         Senha
                         <input type={password.type} id='password' disabled={password.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${password.class}`} defaultValue={password.password} />
                     </div>
@@ -72,7 +83,7 @@ export const InfosProfile = (props) => {
                             Editar
                         </button>
                         <button
-                            className=' h-20 w-20 md:w-52 md:h-12 hidden md:flex flex-row justify-center items-center gap-4 bg-[#F9DEDC] rounded-full drop-shadow-lg font-bold text-[#410E0B]'
+                            className=' w-20 md:w-52 md:h-12 hidden md:flex flex-row justify-center items-center gap-4 bg-[#F9DEDC] rounded-full drop-shadow-lg font-bold text-[#410E0B]'
                             onClick={() => {
 
 
@@ -94,29 +105,30 @@ export const InfosProfile = (props) => {
                             Mudar Senha
                         </button>
                     </div>
-                    <div>
-                        <button
-                            className=' h-20 w-20 md:w-52 md:h-12 md:hidden flex flex-row justify-center items-center gap-4 bg-[#F9DEDC] rounded-full drop-shadow-lg font-bold text-[#410E0B]'
-                            onClick={() => {
-                                if (document.getElementById('password').type == 'password') {
-                                    passwordState({
-                                        type: 'text',
-                                        disabled: false,
-                                        class: ''
-                                    })
-                                    console.log();
-                                } else {
-                                    passwordState({
-                                        type: 'password',
-                                        disabled: true,
-                                        class: 'opacity-50 bg-white'
-                                    })
-                                }
-                            }}>
-                            Mudar Senha
-                        </button>
-                    </div>
+                   
                 </div>
+                <div>
+                        <button
+                            className=' ml-40 md:ml-0 h-10 w-32 md:w-52 md:h-12 md:hidden flex flex-row justify-center items-center gap-4 bg-[#F9DEDC] rounded-full drop-shadow-lg font-bold text-[#410E0B]'
+                            onClick={() => {
+                                if (document.getElementById('password').type == 'password') {
+                                    passwordState({
+                                        type: 'text',
+                                        disabled: false,
+                                        class: ''
+                                    })
+                                    console.log();
+                                } else {
+                                    passwordState({
+                                        type: 'password',
+                                        disabled: true,
+                                        class: 'opacity-50 bg-white'
+                                    })
+                                }
+                            }}>
+                            Mudar Senha
+                        </button>
+                    </div>
             </div>
             <UserPhoto nome={form.nome} completName={props.completName} />
         </div>
