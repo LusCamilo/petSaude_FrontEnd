@@ -53,7 +53,7 @@ export const Rotas = () => {
             <Route path="/profile/editSecurity" element={<SegurancaInfo />} />
             <Route path="/profile/editProfissionais" element={<ProfissonaisInfos />} />
             <Route path="/profile/appointment" element={<Appointment />} />
-            <Route path="/home/searchProfessionals" element={<SearchProfessional />} />
+            <Route path="/home/searchProfessionals" element={<SearchProfessional />} /> 1 + 1 = 1 + 1
         </Routes>
     </Router>
 
