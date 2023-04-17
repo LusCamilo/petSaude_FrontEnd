@@ -33,31 +33,41 @@ export const HomePage = () => {
       <Header />
 
       <p>home</p>
-      <Link to="/register/veterinary">Cadastro do veterinario</Link>/
-      <Link to="/login">Login do usuario</Link>/
-      <Link to="/register/address">Endereço do usuario</Link>/
-      <Link to="/register">Main Login</Link>/
-      <Link to="/home/HeaderWeb">Header das telas Web</Link>/
-      <Link to="/home">Landing Page</Link>/
-      <Link to="/profile/veterinary">profile veterinary</Link>/
-      <Link to="/home/HeaderInfo">Header with Infos</Link>/
-      <Link to="/home/Footer">Footer</Link>/
-      <Link to="/home/aboutUs">About Us</Link>/
-      <Link to="/profile/upgradeUser" onClick={() => {
-        tipoUser = "veterinario"
-        localStorage.setItem("user", tipoUser)
-      }}>Upgrade User Vets</Link>/
-      <Link to="/profile/upgradeUser" onClick={() => {
-        tipoUser = "cliente"
-        localStorage.setItem("user", tipoUser)
-      }}>Upgrade User Not vets</Link>/
-      <Link to="/profile/infosPerson">Infos Person</Link>/
-      <Link to="/profile/headerConfig">Header Config</Link>/
-      <Link to="/profile/pet/Add">Pet add</Link>/
-      <Link to="/profile/pet/Config"> Pet Config</Link>/
-      <Link to="/profile/editProfile">editProfile</Link>/
-      <Link to="/profile/appointment">Appointment</Link>/
-      <Link to="/home/searchProfessionals">Procurar profissionais</Link>/
+      <div className="flex flex-col">
+        <div  className="flex flex-col gap-5 content-center bg-green-500">
+          <p className="font-bold text-2xl">Já tá pronta</p>
+          <Link to="/login">Login do usuario</Link>
+          <Link to="/register/address">Endereço do usuario</Link>
+          <Link to="/register/veterinary">Cadastro do veterinario</Link>
+          <Link to="/home">Landing Page</Link>
+          <Link to="/profile/veterinary">profile veterinary</Link>
+          <Link to="/home/aboutUs">About Us</Link>
+        </div>
+        <div className="flex flex-col gap-5 content-center bg-purple-600">
+          <p className="font-bold text-2xl">Tela em produção</p>
+          <Link to="/profile/upgradeUser" onClick={() => {
+            tipoUser = "veterinario"
+            localStorage.setItem("user", tipoUser)
+          }}>Upgrade User Vets</Link>
+          <Link to="/profile/upgradeUser" onClick={() => {
+            tipoUser = "cliente"
+            localStorage.setItem("user", tipoUser)
+          }}>Upgrade User Not vets</Link>
+          <Link to="/profile/pet/Add">Pet add</Link>
+          <Link to="/profile/pet/Config"> Pet Config</Link>
+          <Link to="/profile/editProfile">editProfile</Link>
+          <Link to="/home/searchProfessionals">Procurar profissionais</Link>
+        </div>
+        <div className="flex flex-col gap-5 content-center bg-yellow-300">
+          <p className="font-bold text-2xl">Apenas componentes</p>
+          <Link to="/home/HeaderWeb">Header das telas Web</Link>
+          <Link to="/home/HeaderInfo">Header with Infos</Link>
+          <Link to="/home/Footer">Footer</Link>
+          <Link to="/profile/infosPerson">Infos Person</Link>
+          <Link to="/profile/headerConfig">Header Config</Link>
+          <Link to="/profile/appointment">Appointment</Link>
+        </div>
+      </div>
     </>
   );
 

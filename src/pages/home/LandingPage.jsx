@@ -16,35 +16,13 @@ export const LandingPage = () => {
 	//https://www.luiztools.com.br/post/tutorial-listagem-com-busca-em-reactjs/
 	//<ListItem Name="Yasmini" bairro="Novo Osasco" />
 
-	const { register, handleSubmit, formState: { errors } } = useForm();	
-
-	let [vets, setVets] = useState([]);
-	let json
-	const onSearch = async (data) => {
-	  console.log(data);
-	  try {
-		  if(data.search == ''){
-			setVets([])
-		  }else {
-			let response = await getUsers(data.search);
-			console.log(response);
-			let result = response.response
-			console.log(result);
-			json = result.filter(item => item.personName.toLowerCase().includes(data.search.toLowerCase()) || item.userName.toLowerCase().includes(data.search.toLowerCase()));;
-			result.map(item => console.log('marmita'))
-			console.log(json);
-			setVets(json)
-			console.log(vets);
-		  }
-		
-	  } catch (error) {
-		console.error(error);
-	  }
-	};
-
-	function handleClick(event) {
-		document.location.href = "/profile/veterinary";
-		localStorage.setItem("__Vet_Id", event);
+	function handleKeyPress(inputValue, event, whenSearch) {
+		if (event.key === 'Enter') {
+		  event.preventDefault(); // evita a renderização da tela
+		  localStorage.setItem("__Vet_Search", inputValue);
+		  localStorage.setItem("__Vet_WhenSearch", whenSearch);
+		  window.open("/home/searchProfessionals", "_self"); // abre uma nova aba
+		}
 	  }
 
 	return (
@@ -56,32 +34,17 @@ export const LandingPage = () => {
 					<div className="w-full static flex flex-col bg-white border rounded-lg border-black transition hover:border-green-200  p-5  ">
 						<div className="flex flex-row gap-10 w-full">
 							<img className="w-10" src={Doctor} />
-							<form onChange={handleSubmit(onSearch)} className="w-full">
-								<input className="xl:w-full h-10 text-2xl" placeholder="Pesquisar especialistas" {...register("search")}/>
+							<form className="w-full">
+								<input onKeyPress={event => handleKeyPress(event.target.value, event, "userName")} className="xl:w-full h-10 text-2xl" placeholder="Pesquisar especialistas" />
 							</form>
 						</div>
-						<div className="absolute w-1/5 bg-white border-2 border-black  mt-16">
-						{vets.map(vet => {
-								console.log(vet);
-								return (
-								<ListItem
-									key={vet.id}
-									Name={vet.userName}
-									image={vet.profilePhoto}
-									bairro={vet.Address.cep}
-									formacao={vet.formation}
-									
-								/>
-							)
-						})}
-					</div>
 					</div>
 				</div>
 				<div className="static flex flex-row gap-5 bg-white border rounded-lg border-black transition hover:border-green-200 p-5 pl-5 w-80 md:w-1/2 xl:w-1/4">
 					<div className="flex flex-row gap-10 w-full">
 						<img className="w-10" src={Local} />
 						<form  className="w-full">
-							<input className="xl:w-full h-10 text-2xl" placeholder="Pesquisar veterinários próximos " />
+							<input onKeyPress={event => handleKeyPress(event.target.value, event, "city")} className="xl:w-full h-10 text-2xl" placeholder="Pesquisar veterinários próximos " />
 						</form>
 					</div>
 				</div>

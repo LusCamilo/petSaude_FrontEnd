@@ -1,87 +1,127 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CardProfessionals } from "./resource/CardProfessionals";
 import { Footer } from "./resource/Footer";
 import { HeaderInfo } from "./resource/HeaderInfo";
-import { getUsers} from "../../services/integrations/filters";
-import { useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
-import search from '../../assets/svg/lupa.svg'
+import { getUsers } from "../../services/integrations/filters";
+import { useForm } from "react-hook-form";
+import search from "../../assets/svg/lupa.svg";
+import * as RadioGroup from '@radix-ui/react-radio-group';
+import './radixSearch.css'
 
 export const SearchProfessional = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [vets, setVets] = useState([]);
+  const [inputSearch, setInputSearch] = useState(
+    localStorage.getItem("__Vet_Search") || ""
+  );
 
-    let hoje = new Date()
+  const [wSearch, setwSearch] = useState("userName");
 
+  const onSearch = async (data) => {
+    try {
+      if (data.search === "") {
+        setVets([]);
+      } else {
+        let response = await getUsers(data.search, wSearch);
+        console.log(response);
+        let result = response.response;
+        console.log(result)
+        let json = result.filter(
+          (item) =>
+            item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
+            item.userName.toLowerCase().includes(data.search.toLowerCase())
+        );
+        console.log(json);
+        setVets(json);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    const { register, handleSubmit, formState: { errors } } = useForm();	
+  useEffect(() => {
+    onSearch({ search: inputSearch });
+  }, []);
 
-	let [vets, setVets] = useState([]);
-	let json
-    const onSearch = async (data) => {
-        console.log(data);
-        try {
-            if(data.search == ''){
-              setVets([])
-            }else {
-              let response = await getUsers(data.search);
-              console.log(response);
-              let result = response.response
-              console.log(result);
-              json = result.filter(item => item.personName.toLowerCase().includes(data.search.toLowerCase()) || item.userName.toLowerCase().includes(data.search.toLowerCase()));;
-              result.map(item => console.log('marmita'))
-              console.log(json);
-              setVets(json)
-              console.log(vets);
-            }
-          
-        } catch (error) {
-          console.error(error);
-        }
-      };
+  const handleRadioChange = (value) => {
+    console.log(value);
+    setwSearch(value);
+    setInputSearch(wSearch)
+    onSearch({ search: inputSearch })
+  };
+  
 
-    const veterinarios = [{
-                id: 1,
-                personName: "Deco Alves",
-                formation: "Veterinary",
-                institution: "USP",
-                Address: {
-                    "id": 1,
-                    "state": "São José",
-                    "city": "New York"
-                },
-                VeterinaryEspecialities: [
-                    {
-                        id: 1,
-                        specialitiesId: 1,
-                        veterinaryId: 1,
-                        specialities: {
-                            id: 1,
-                            name: "Vacina"
-                        }
-                    }
-                ]
-            }]
-
-    return (
-        <>
-            <HeaderInfo title="Profissionais" description="Temos os melhores e mais confiaveis profissionais em nosso site." />
-            <div className="p-20 container mx-auto px-4 flex flex-col gap-10">
-                <div className="flex flex-row gap-10 w-full border-4 border-black rounded-lg items-center content-center">
-                    <img className="w-10" src={search} />
-                    <form onChange={handleSubmit(onSearch)} className="w-full flex items-center content-center">
-                        <input className="xl:w-full h-10 text-2xl flex items-center content-center" placeholder="Pesquisar especialistas" {...register("search")}/>
-                    </form>
-				</div>
-                <div>
-                    {veterinarios.map(vet => {
-                        return (
-                            <CardProfessionals key={vet.id} nome={vet.personName} idade="24" estado={vet.Address.state} cidade={vet.Address.city} formacao={vet.formation} instituicao={vet.institution} especializacao={vet.VeterinaryEspecialities[0].specialities.name} image="https://conteudo.imguol.com.br/blogs/174/files/2018/05/iStock-648229868-1024x909.jpg"/>
-                        )    
-                    })}
+  return (
+    <>
+      <HeaderInfo
+        title="Profissionais"
+        description="Temos os melhores e mais confiaveis profissionais em nosso site."
+      />
+      <div className="p-20 container mx-auto px-4 flex flex-col gap-10">
+        <div className="flex flex-row w-full" >
+          <div className="flex flex-row gap-2 w-full border-4 border-black rounded-lg items-center align-middle  content-center">
+          <img className="w-10" src={search} />
+          <form
+            onChange={handleSubmit(onSearch)}
+            className="w-full flex pt-3 items-center content-center align-middle"
+          >
+            <input
+              className="xl:w-full h-10 text-2xl flex items-center content-center"
+              placeholder="Pesquisar especialistas"
+              defaultValue={inputSearch}
+              onChange={(e) => setInputSearch(e.target.value)}
+              {...register("search")}
+            />
+          </form>
+        </div>
+        <form className="w-3/12">
+            <RadioGroup.Root className="RadioGroupRoot" defaultValue="userName" onClick={handleRadioChange} aria-label="View density">
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setwSearch("userName")} value="userName" id="r1">
+                    <RadioGroup.Indicator className="RadioGroupIndicator" />
+                    </RadioGroup.Item>
+                    <label className="Label" htmlFor="r1">
+                    Procurar por nome
+                    </label>
                 </div>
-            </div>
-            <Footer />
-        </>
-    )
-
-
-}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setwSearch("speciality")} value="speciality" id="r2">
+                    <RadioGroup.Indicator className="RadioGroupIndicator" />
+                    </RadioGroup.Item>
+                    <label className="Label" htmlFor="r2">
+                    Procurar por especialização
+                    </label>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setwSearch("animal")} value="animal" id="r3">
+                    <RadioGroup.Indicator className="RadioGroupIndicator" />
+                    </RadioGroup.Item>
+                    <label className="Label" htmlFor="r3">
+                    Procurar por animal que atende
+                    </label>
+                </div>
+            </RadioGroup.Root>
+        </form>
+        </div>
+        <div>
+          {vets.map((vet) => {
+            return (
+              <CardProfessionals
+                key={vet.id}
+                nome={vet.personName}
+                idade="24"
+                estado={vet.Address.state}
+                cidade={vet.Address.city}
+                formacao={vet.formation}
+                instituicao={vet.institution}
+                especializacao={vet.VeterinaryEspecialities[0].specialities.name}
+                image="https://conteudo.imguol.com.br/blogs/174/files/2018/05/iStock-648229868-1024x909.jpg"
+              />
+            );
+          })}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+};
