@@ -3,8 +3,8 @@ import lapis from "../../../../assets/svg/pencil.svg"
 import { UserPhoto } from './userPhoto';
 
 
-
 export const InfosProfile = (props) => {
+    
 
     const [userInfosDisable, userInfosDisableState] = useState({
         disable: true,

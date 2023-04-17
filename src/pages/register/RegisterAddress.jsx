@@ -2,7 +2,7 @@ import React from "react";
 import {AuthHeader} from "../../components/headers/AuthHeader";
 import {useForm} from "react-hook-form";
 import {registerUser} from "../../services/integrations/user";
-import Endereco from "../../assets/address-image.png"
+// import Endereco from "../../assets/address-image.png"
 import { Link } from "react-router-dom";
 import backgroundImage from "../../assets/address-image.png"
 
