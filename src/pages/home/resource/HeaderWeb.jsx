@@ -64,24 +64,29 @@ export const HeaderWeb = () => {
           <nav>
           <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-1000 ">
                   <li className="mx-4 my-6 md:my-0 transition">
-                    <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                    <Link to="/home"  href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                     after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                    hover:after:w-full">Home</a>
+                    hover:after:w-full">Home
+                    </Link>
                   </li>
                   <li className="mx-4 my-6 md:my-0">
-                    <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                    <Link className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                     after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                    hover:after:w-full">Prossionais</a>
+                    hover:after:w-full" to="/home/searchProfessionals">Prossionais 
+                    </Link>
                   </li>
                   <li className="mx-4 my-6 md:my-0">
-                    <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                    hover:after:w-full">Blog</a>
+                    <Link>
+                      <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                      after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                      hover:after:w-full">Blog</a>
+                    </Link>
                   </li>
                   <li className="mx-4 my-6 md:my-0">
-                    <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                    hover:after:w-full">Sobre nós</a>
+                    <Link to="/home/aboutUs" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                      after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                      hover:after:w-full">Sobre nós
+                    </Link>
                   </li>
               </ul>
             </nav>

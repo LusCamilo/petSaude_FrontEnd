@@ -67,14 +67,16 @@ export const HeaderInfo = (props) => {
                         </div>
                         <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
                             <li class="mx-4 my-6 md:my-0 transition">
-                                <a href="#" class="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                                after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                                hover:after:w-full">Home</a>
+                            <Link to="/home"  href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                            after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                            hover:after:w-full">Home
+                            </Link>
                             </li>
                             <li class="mx-4 my-6 md:my-0">
-                                <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                                after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                                hover:after:w-full">Prossionais</a>
+                              <Link className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                              hover:after:w-full" to="/home/searchProfessionals">Prossionais 
+                              </Link>
                             </li>
                             <li class="mx-4 my-6 md:my-0">
                                 <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
@@ -82,9 +84,10 @@ export const HeaderInfo = (props) => {
                                 hover:after:w-full">Blog</a>
                             </li>
                             <li class="mx-4 my-6 md:my-0">
-                                <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                                after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                                hover:after:w-full">Sobre nós</a>
+                              <Link to="/home/aboutUs" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                              hover:after:w-full">Sobre nós
+                              </Link>
                             </li>
                         </ul>
                         <div class="menu">
