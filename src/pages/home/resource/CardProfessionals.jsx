@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NameEspeciality } from "./nameEspeciality";
+import axios from "axios";
 
 
 export const CardProfessionals = (props) => {
+    const [addressInfo, setAddressInfo] = useState("");
+
+    useEffect(() => {
+      const fetchAddressInfo = async () => {
+        try {
+          const response = await axios.get(
+            `https://viacep.com.br/ws/${props.cep}/json/`
+          );
+          setAddressInfo({ cidade: response.data.localidade, estado: response.data.uf });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+  
+      fetchAddressInfo();
+    }, [props.cep]);
+
+    let especialista
+
+    if (props.especializacao == null || props.especializacao == undefined || props.especializacao == "") {
+        especialista = ""
+    } else {
+        especialista = props.especializacao
+    }
 
     function handleClick(event) {
 		document.location.href = "/profile/veterinary";
@@ -26,11 +51,11 @@ export const CardProfessionals = (props) => {
                     </div>
                     <div className="flex flex-row gap-2 text-3xl">
                         <p className="font-bold">Estado: </p>
-                        <p>{props.estado}</p>
+                        <p>{addressInfo.estado}</p>
                     </div>
                     <div className="flex flex-row gap-2 text-3xl" >
                         <p className="font-bold">Cidade: </p>
-                        <p>{props.cidade}</p>
+                        <p>{addressInfo.cidade}</p>
                     </div>
                     <div className="flex flex-row gap-2 text-3xl">
                         <p className="font-bold">Formação: </p>
@@ -38,7 +63,7 @@ export const CardProfessionals = (props) => {
                     </div>
                     <div className="flex flex-row gap-2 text-3xl w-full">
                         <p className="font-bold">Especialização: </p>
-                        <p>{props.especializacao}</p>
+                        <p>{especialista}</p>
                     </div>
                 </div>
                 <div className="flex w-56 justify-end items-end">

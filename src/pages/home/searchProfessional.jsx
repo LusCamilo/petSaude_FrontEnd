@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { CardProfessionals } from "./resource/CardProfessionals";
 import { Footer } from "./resource/Footer";
 import { HeaderInfo } from "./resource/HeaderInfo";
-import { getUsers } from "../../services/integrations/filters";
+import { getUsers, getAllVets } from "../../services/integrations/filters";
 import { useForm } from "react-hook-form";
 import search from "../../assets/svg/lupa.svg";
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import './radixSearch.css'
+
 
 export const SearchProfessional = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -15,23 +16,59 @@ export const SearchProfessional = () => {
     localStorage.getItem("__Vet_Search") || ""
   );
 
+  const [whenSearch, setWhenSearch] = useState(
+    localStorage.getItem("__Vet_WhenSearch") || ""
+  );
+
   const [wSearch, setwSearch] = useState("userName");
+
+
+  const setMudarFiltro = (value) => {
+
+    setwSearch(value)
+
+    onSearchIt({ search:  inputSearch, searchIt: value})
+  };
 
   const onSearch = async (data) => {
     try {
-      if (data.search === "") {
-        setVets([]);
+      if (data.search == "") {
+        {
+          let response = await getAllVets();
+          console.log(response);
+          let result = response.response;
+          console.log(result);
+          let json = Object.values(result);
+          console.log(json);
+          setVets(json);
+        }
       } else {
         let response = await getUsers(data.search, wSearch);
-        console.log(response);
         let result = response.response;
-        console.log(result)
         let json = result.filter(
           (item) =>
             item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
             item.userName.toLowerCase().includes(data.search.toLowerCase())
         );
-        console.log(json);
+        setVets(json);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onSearchIt = async (data) => {
+    try {
+      if (data.search === "") {
+        setVets([]);
+      } else {
+        let response = await getUsers(data.search, data.searchIt);
+        let result = response.response;
+        let json = result.filter(
+          (item) =>
+            item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
+            item.userName.toLowerCase().includes(data.search.toLowerCase())
+        );
         setVets(json);
       }
     } catch (error) {
@@ -43,12 +80,12 @@ export const SearchProfessional = () => {
     onSearch({ search: inputSearch });
   }, []);
 
-  const handleRadioChange = (value) => {
-    console.log(value);
-    setwSearch(value);
-    setInputSearch(wSearch)
-    onSearch({ search: inputSearch })
+  const handleRadioChange = () => {
+
+    console.log();
+
   };
+
   
 
   return (
@@ -57,7 +94,7 @@ export const SearchProfessional = () => {
         title="Profissionais"
         description="Temos os melhores e mais confiaveis profissionais em nosso site."
       />
-      <div className="p-20 container mx-auto px-4 flex flex-col gap-10">
+      <div className={`p-20 container mx-auto px-4 flex flex-col gap-10`}>
         <div className="flex flex-row w-full" >
           <div className="flex flex-row gap-2 w-full border-4 border-black rounded-lg items-center align-middle  content-center">
           <img className="w-10" src={search} />
@@ -75,9 +112,9 @@ export const SearchProfessional = () => {
           </form>
         </div>
         <form className="w-3/12">
-            <RadioGroup.Root className="RadioGroupRoot" defaultValue="userName" onClick={handleRadioChange} aria-label="View density">
+            <RadioGroup.Root className="RadioGroupRoot" defaultValue="userName" onChange={handleRadioChange} aria-label="View density">
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setwSearch("userName")} value="userName" id="r1">
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" value="userName" id="r1">
                     <RadioGroup.Indicator className="RadioGroupIndicator" />
                     </RadioGroup.Item>
                     <label className="Label" htmlFor="r1">
@@ -85,7 +122,7 @@ export const SearchProfessional = () => {
                     </label>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setwSearch("speciality")} value="speciality" id="r2">
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("speciality")} name="speciality" value="speciality" id="r2">
                     <RadioGroup.Indicator className="RadioGroupIndicator" />
                     </RadioGroup.Item>
                     <label className="Label" htmlFor="r2">
@@ -93,7 +130,7 @@ export const SearchProfessional = () => {
                     </label>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setwSearch("animal")} value="animal" id="r3">
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("animal")} name="animal" value="animal" id="r3">
                     <RadioGroup.Indicator className="RadioGroupIndicator" />
                     </RadioGroup.Item>
                     <label className="Label" htmlFor="r3">
@@ -105,17 +142,18 @@ export const SearchProfessional = () => {
         </div>
         <div>
           {vets.map((vet) => {
+            console.log(vet);
             return (
               <CardProfessionals
                 key={vet.id}
                 nome={vet.personName}
                 idade="24"
-                estado={vet.Address.state}
-                cidade={vet.Address.city}
+                cep={vet.Address.cep}
                 formacao={vet.formation}
                 instituicao={vet.institution}
                 especializacao={vet.VeterinaryEspecialities[0].specialities.name}
-                image="https://conteudo.imguol.com.br/blogs/174/files/2018/05/iStock-648229868-1024x909.jpg"
+                image={vet.profilePhoto}
+                umCorteRapido=""
               />
             );
           })}
