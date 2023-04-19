@@ -18,6 +18,18 @@ export async function petAdd(petInfos) {
     return await response.json()
 }
 
+export async function petDelete(idPet) {
+  const url = `${BASE_URL}pet?petID=${idPet}`
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  console.log(response);
+  return await response.json()
+}
+
 /*
 	const bodyParams = z.object({
 			name: z.string(),
