@@ -70,7 +70,7 @@ export const Appointment = () => {
                 </div>
                 <div className='p-3 md:pl-20 md:pr-20'>
                     <div className='flex mt-2 md:mt-10 justify-between gap-5'>
-                        <button  className={`p-2 md:w-56 md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button"
+                        <button  className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button"
                             onClick={
                                 () => {
                                     if (document.getElementById("buttonCanceled").classList.contains("hidden")) {
@@ -82,7 +82,7 @@ export const Appointment = () => {
                             }>
                             Cancelar
                         </button>
-                        <button className='md:ml-56  p-2  w-32 md:w-56 md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'>
+                        <button className='md:ml-56  p-2  w-32 md:w-56 text-center md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'>
                             Marcar
                         </button>
                     </div>
