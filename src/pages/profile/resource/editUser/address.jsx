@@ -10,37 +10,37 @@ export const Address = (props) => {
                     <div className=''>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             CEP
-                            <input type="text" name="firstName" value={props.cep} className='bg-transparent border-none text-2xl text-[#000]' />
+                            <input type="text" name="firstName" defaultValue={props.cep} className='bg-transparent border-none text-2xl text-[#000]' />
                         </label>
                     </div>
                     <div className='flex justify-start md:ml-24'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Cidade
-                            <input type="text" name="firstName" value={props.cidade} className='bg-transparent border-none text-2xl text-[#000]' />
+                            <input type="text" name="firstName" defaultValue={props.cidade} className='bg-transparent border-none text-2xl text-[#000]' />
                         </label>
                     </div>
                     <div className=''>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Estado
-                            <input type="text" name="firstName" value={props.estado} className='bg-transparent border-none text-2xl text-[#000]' />
+                            <input type="text" name="firstName" defaultValue={props.estado} className='bg-transparent border-none text-2xl text-[#000]' />
                         </label>
                     </div>
                     <div className='flex justify-start md:ml-24'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Bairro
-                            <input type="text" name="firstName" value={props.bairro} className='bg-transparent border-none text-2xl text-[#000]' />
+                            <input type="text" name="firstName" defaultValue={props.bairro} className='bg-transparent border-none text-2xl text-[#000]' />
                         </label>
                     </div>
                     <div className=''>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Rua
-                            <input type="text" name="firstName" value={props.rua} className='bg-transparent border-none text-2xl text-[#000]' />
+                            <input type="text" name="firstName" defaultValue={props.rua} className='bg-transparent border-none text-2xl text-[#000]' />
                         </label>
                     </div>
                     <div className='flex justify-start md:ml-24'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Complemento
-                            <input type="text" name="firstName" value={props.complemento} className='bg-transparent border-none text-2xl text-[#000]' />
+                            <input type="text" name="firstName" defaultValue={props.complemento} className='bg-transparent border-none text-2xl text-[#000]' />
                         </label>
                     </div>
                 </div>

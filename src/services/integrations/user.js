@@ -25,22 +25,40 @@ export async function createVeterinaryInfosIntoExistingUser(userID, vetInfos) {
     return await response.json()
 }
 
+<<<<<<< HEAD
 export async function getUser(id, token) {
     const url = `${BASE_URL}user/?userID=${id}`
-    const response = await fetch(url, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    return fetch(url)
-    .then(response => response.json())
-    .catch(error => console.error(error));
+=======
+export async function getUser(id) {
+
+    const url = `${BASE_URL}client?userID=${id}`
+    const response = await fetch(url)//, {
+        // headers: {
+        //     'Authorization': `Bearer ${token}`
+        // }
+    //})
+    return await response.json()
     
 }
 
-export async function deleteUser(id,token) {
+export async function deleteClient(token) {
 
-    const url = `${BASE_URL}user/${id}`
+    const url = `${BASE_URL}client`
+>>>>>>> 2c1a2e86f570e1db809e64d4b5a9613668946f2c
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers:{
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    return await response.json()
+    
+}
+
+export async function deleteVeterinary(id,token) {
+
+    const url = `${BASE_URL}veterinary/${id}`
     const response = await fetch(url, {
         method: 'DELETE',
         headers:{

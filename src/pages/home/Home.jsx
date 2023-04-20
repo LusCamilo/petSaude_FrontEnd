@@ -10,10 +10,7 @@ const userId = async () => {
 
   const apiResponse = await signup(localStorage.getItem('__user_JWT'))
 
-  console.log(apiResponse);
-
   localStorage.setItem('__user_id', apiResponse.user.id)
-
 }
 
 userId()
@@ -44,14 +41,7 @@ export const HomePage = () => {
         </div>
         <div className="flex flex-col gap-5 content-center bg-purple-600">
           <p className="font-bold text-2xl">Tela em produção</p>
-          <Link to="/profile/upgradeUser" onClick={() => {
-            tipoUser = "veterinario"
-            localStorage.setItem("user", tipoUser)
-          }}>Upgrade User Vets</Link>
-          <Link to="/profile/upgradeUser" onClick={() => {
-            tipoUser = "cliente"
-            localStorage.setItem("user", tipoUser)
-          }}>Upgrade User Not vets</Link>
+          <Link to="/profile/upgradeUser">Upgrade User</Link>
           <Link to="/profile/pet/Add">Pet add</Link>
           <Link to="/profile/pet/Config"> Pet Config</Link>
           <Link to="/profile/editProfile">editProfile</Link>

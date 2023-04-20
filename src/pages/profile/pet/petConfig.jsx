@@ -105,11 +105,11 @@ https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-w
                         </div>
                         <div className='flex flex-col w-2/3 sm:w-full p-3 sm:p-10'>
                             <label>
-                                <input type="text" value={name} name="petName" className='bg-transparent border-none md:text-5xl font-medium '/>
+                                <input type="text" defaultValue={name} name="petName" className='bg-transparent border-none md:text-5xl font-medium '/>
                             </label>
                                 <img src={linha} alt="" className='invisible sm:visible'/>
                             <label>
-                                <input type="text" value={specie}  name="petSpecie" className='bg-transparent border-none text-3xl text-[#A9A9A9]'/>
+                                <input type="text" defaultValue={specie}  name="petSpecie" className='bg-transparent border-none text-3xl text-[#A9A9A9]'/>
                             </label>
                         </div>
                     </div>

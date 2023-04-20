@@ -2,8 +2,8 @@ import {BASE_URL} from "../../lib/_base_url";
 
 const token = localStorage.getItem('__user_JWT')
 
-export async function petAdd(petInfos) {
-    const url = `${BASE_URL}pet`
+export async function petAdd(petInfos, userID) {
+    const url = `${BASE_URL}pet?userID=${userID}`
     console.log(url)
     const response = await fetch(url, {
         method: 'POST',

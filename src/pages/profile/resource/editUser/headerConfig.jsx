@@ -86,14 +86,14 @@ export const Config = (props) => {
         </div>
       </div>
       <div className='flex justify-between ml-5 md:ml-20'>
-        <div className='flex justify-center md:pt-10'>
-          <img className='w-32 md:w-64 md:pt-10' src={Hayley}></img>
+        <div className='flex items-center justify-center md:pt-10'>
+          <img className='w-32 md:w-64 md:pt-10' src={props.profilePhoto}></img>
           <div className='flex flex-col pl-10 pt-5 '>
             <label>
-              <input type="text" name="firstName" value="@HayleyVet" className='bg-transparent border-none text-2xl md:text-5xl font-semibold ' />
+              <input type="text" name="firstName" value={`@${props.userName}`} className='bg-transparent border-none text-2xl md:text-5xl font-semibold ' />
             </label>
             <label>
-              <input type="text" name="firstName" value="Hayley Williams" className='bg-transparent border-none text-2xl md:text-1xl  text-[#A9A9A9]' />
+              <input type="text" name="firstName" defaultValue={props.personName} className='bg-transparent border-none text-2xl md:text-1xl  text-[#A9A9A9]' />
             </label>
           </div>
         </div>
