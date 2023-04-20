@@ -47,6 +47,7 @@ export const HomePage = () => {
           <Link to="/profile/editProfile">editProfile</Link>
           <Link to="/home/searchProfessionals">Procurar profissionais</Link>
           <Link to="/profile/veterinary">profile veterinary</Link>
+          <Link to="/home/Home-Web">Home principal</Link>
         </div>
         <div className="flex flex-col gap-5 content-center bg-yellow-300">
           <p className="font-bold text-2xl">Apenas componentes</p>

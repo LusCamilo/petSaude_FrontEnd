@@ -2,6 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/home/Home";
 import { HeaderWeb } from "./pages/home/resource/HeaderWeb";
 import { LandingPage } from "./pages/home/LandingPage";
+import { HomeWeb } from "./pages/home/Home-Web";
+import { WebFunction} from "./pages/home/WebFunction";
+import { ChatInfos} from "./pages/home/chatInfos";
+import { BlogPreview } from "./pages/home/BlogPreview";
 import { Login } from "./pages/login/Login";
 import { Register } from "./pages/register/Register";
 import { RegisterAddress } from "./pages/register/RegisterAddress";
@@ -32,6 +36,10 @@ export const Rotas = () => {
         <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/home" element={<LandingPage />}/>
+            <Route path="/home/chatInfos" element={<ChatInfos />} />
+            <Route path="/home/WebFunction" element={<WebFunction />} />
+            <Route path="/home/BlogPreview" element={<BlogPreview />} />
+            <Route path="/home/Home-Web" element={<HomeWeb />} />
             <Route path="/home/HeaderWeb" element={<HeaderWeb />}/>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />}/>
