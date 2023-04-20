@@ -1,4 +1,5 @@
 import React from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 import lapis from "../../../../assets/svg/pencil.svg"
  
 export const Pessoais = (props) => {
@@ -19,31 +20,31 @@ export const Pessoais = (props) => {
                                 <div className='flex justify-center'>
                                     <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                         Sobrenome
-                                        <input type="text" name="firstName" value={props.lastName} className='bg-transparent border-none text-2xl text-[#000]' />
+                                        <input type="text" name="firstName" defaultValue={props.lastName} className='bg-transparent border-none text-2xl text-[#000]' />
                                     </label>
                                 </div>
                                 <div className=''>
                                     <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     CPF
-                                        <input type="text" name="firstName" value={props.cpf} className='bg-transparent border-none text-2xl text-[#000]' />
+                                        <input type="text" name="firstName" defaultValue={props.cpf} className='bg-transparent border-none text-2xl text-[#000]' />
                                     </label>
                                 </div>
                                 <div className='flex justify-center'>
                                     <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                         RG
-                                        <input type="text" name="firstName" value={props.rg} className='bg-transparent border-none text-2xl text-[#000]' />
+                                        <input type="text" name="firstName" defaultValue={props.rg} className='bg-transparent border-none text-2xl text-[#000]' />
                                     </label>
                                 </div>
                                 <div className=''>
                                     <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                         Celular
-                                        <input type="text" name="firstName" value={props.celular} className='bg-transparent border-none text-2xl text-[#000]' />
+                                        <input type="text" name="firstName" defaultValue={props.celular} className='bg-transparent border-none text-2xl text-[#000]' />
                                     </label>
                                 </div>
                                 <div className='flex justify-center'>
                                     <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Telefone
-                                        <input type="text" name="firstName" value={props.telefone} className='bg-transparent border-none text-2xl text-[#000]' />
+                                        <input type="text" name="firstName" defaultValue={props.telefone} className='bg-transparent border-none text-2xl text-[#000]' />
                                     </label>
                                 </div>
                             </div>
@@ -57,9 +58,7 @@ export const Pessoais = (props) => {
                 </div>    
                 <div className='w-full sm:mr-10'>
                     <p className='flex flex-col text-xl text-[#A9A9A9] pt-3 sm:pt-20 mr-0 sm:mr-20 w-full sm:w-10/12 '> Bio
-                        <span className='text-2xl text-[#000] w-full p-2  break-words text-justify'>
-                            {props.text}
-                        </span>
+                        <TextareaAutosize id="my-textarea" defaultValue={props.text} className="block w-full p-2 rounded resize-none" />
                     </p>
                 </div>
 

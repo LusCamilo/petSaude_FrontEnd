@@ -9,8 +9,8 @@ import backgroundImage from "../../assets/address-image.png"
 export function RegisterAddress() {
     const { register, handleSubmit, formState: errors, setValue } = useForm()
     const submitForm = async (data) => {
-        const registerType = localStorage.getItem('__register_type')
-        let userInfos = JSON.parse(localStorage.getItem('__user_register_infos'))
+        const registerType = sessionStorage.getItem('__register_type')
+        let userInfos = JSON.parse(sessionStorage.getItem('__user_register_infos'))
         let allInfos;
 
 

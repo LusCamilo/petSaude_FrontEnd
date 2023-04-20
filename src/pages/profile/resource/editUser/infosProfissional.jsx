@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 {/* 
 <label className='flex flex-col text-xl text-[#A9A9A9]'>
     Celular
-    <input type="text" name="firstName" value={props.celular} className='bg-transparent border-none text-3xl text-[#000]' />
+    <input type="text" name="firstName" defaultValue={props.celular} className='bg-transparent border-none text-3xl text-[#000]' />
 </label> 
 */
 }
@@ -24,37 +24,37 @@ export const Prossionais = (props) => {
                     <div className='0'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Área de Atuação
-                            <input type="text" id='cep' name="area" value={props.area} disabled className='bg-transparent border-none text-3xl text-[#000]' />
+                            <input type="text" id='cep' name="area" defaultValue={props.area} disabled className='bg-transparent border-none text-3xl text-[#000]' />
                         </label> 
                     </div>
                     <div className='flex justify-start md:ml-24 '>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Formação
-                            <input type="text" id='cep' name="area" value={props.formacao} disabled className='bg-transparent border-none text-3xl text-[#000]' />
+                            <input type="text" id='cep' name="area" defaultValue={props.formacao} disabled className='bg-transparent border-none text-3xl text-[#000]' />
                         </label> 
                     </div>
                     <div>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Instituição
-                            <input type="text" id='cep' name="area" value={props.instituicao} disabled className='bg-transparent border-none text-3xl text-[#000]' />
+                            <input type="text" id='cep' name="area" defaultValue={props.instituicao} disabled className='bg-transparent border-none text-3xl text-[#000]' />
                         </label> 
                     </div>
                     <div className='flex justify-start md:ml-24'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             CRMV
-                            <input type="text" id='cep' name="area" value={props.crmv} disabled className='bg-transparent border-none text-3xl text-[#000]' />
+                            <input type="text" id='cep' name="area" defaultValue={props.crmv} disabled className='bg-transparent border-none text-3xl text-[#000]' />
                         </label> 
                     </div>
                  <div>
                     <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Data de Formação
-                            <input  type="text" id='cep' name="area" value={props.dataFormacao} disabled className='bg-transparent border-none text-3xl text-[#000]' />
+                            <input  type="text" id='cep' name="area" defaultValue={props.dataFormacao} disabled className='bg-transparent border-none text-3xl text-[#000]' />
                         </label> 
                     </div>
                     <div className='flex justify-start md:ml-24'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                         Início de atuação
-                            <input type="text" id='cep' name="area" value={props.dataInicioAtuacao} disabled className='bg-transparent border-none text-3xl text-[#000]' />
+                            <input type="text" id='cep' name="area" defaultValue={props.dataInicioAtuacao} disabled className='bg-transparent border-none text-3xl text-[#000]' />
                         </label> 
                     </div>
 

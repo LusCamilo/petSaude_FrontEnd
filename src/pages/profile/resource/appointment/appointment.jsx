@@ -39,11 +39,11 @@ export const Appointment = () => {
                             <img className=' w-56' src={Monkey}></img>
                             <div className='flex flex-col pl-10 md:pt-10'>
                                 <label>
-                                    <input type="text" name="firstName" value='Nome' className='bg-transparent border-none  md:text-5xl font-semibold ' />
+                                    <input type="text" name="firstName" defaultValue='Nome' className='bg-transparent border-none  md:text-5xl font-semibold ' />
                                 </label>
 
                                 <label>
-                                    <input type="text" name="firstName" value='Espécie' className='bg-transparent border-none text-1xl md:text-6xl text-[#A9A9A9]' />
+                                    <input type="text" name="firstName" defaultValue='Espécie' className='bg-transparent border-none text-1xl md:text-6xl text-[#A9A9A9]' />
                                 </label>
 
                             </div>

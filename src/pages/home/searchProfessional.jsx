@@ -116,7 +116,7 @@ export const SearchProfessional = () => {
         <form className="w-3/12">
             <RadioGroup.Root className="RadioGroupRoot" defaultValue="userName" onChange={handleRadioChange} aria-label="View density">
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" value="userName" id="r1">
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1">
                     <RadioGroup.Indicator className="RadioGroupIndicator" />
                     </RadioGroup.Item>
                     <label className="Label" htmlFor="r1">
@@ -124,7 +124,7 @@ export const SearchProfessional = () => {
                     </label>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("speciality")} name="speciality" value="speciality" id="r2">
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("speciality")} name="speciality" defaultValue="speciality" id="r2">
                     <RadioGroup.Indicator className="RadioGroupIndicator" />
                     </RadioGroup.Item>
                     <label className="Label" htmlFor="r2">
@@ -132,7 +132,7 @@ export const SearchProfessional = () => {
                     </label>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("animal")} name="animal" value="animal" id="r3">
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("animal")} name="animal" defaultValue="animal" id="r3">
                     <RadioGroup.Indicator className="RadioGroupIndicator" />
                     </RadioGroup.Item>
                     <label className="Label" htmlFor="r3">
