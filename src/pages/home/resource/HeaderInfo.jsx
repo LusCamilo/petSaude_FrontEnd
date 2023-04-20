@@ -106,7 +106,7 @@ export const HeaderInfo = (props) => {
 
                 <div className="flex flex-col justify-items-center text-center  gap-20">
                     <div className="flex flex-col justify-center w-full basis-1/4 content-center items-center gap-20 ">
-                        <h1 className="font-bold text-7xl h-3/4 rounded-lg bg-[#78A890] xl:text-9xl mt-20  hidden md:flex justify-center content-center items-center"> {props.title}</h1>
+                        <h1 className="font-bold text-7xl h-3/4 rounded-3xl bg-[#78A890] xl:text-9xl mt-20  hidden md:flex justify-center content-center items-center px-20 py-10"> {props.title}</h1>
                         <p className="md:flex justify-center xl:text-center text-4xl  w-full  hidden "> {props.description} </p>
                     </div>
                     <img className=" mr-80 pr-20 pt-0 w-full" src={FootHeader}/>

@@ -9,10 +9,11 @@ import '../../profile/pet/css/pet.css'
 
 
 export const TopContainer = (props) => {
-
     const [biografia, setBiografia] = useState("truncate")
     const [lerMais, setLerMais] = useState("")
     const [lerMenos, setLerMenos] = useState("hidden")
+
+    console.log(props);
 
     const textTruncate = () => {
 
@@ -87,7 +88,7 @@ export const TopContainer = (props) => {
                 <div className='w-full h-[1px] bg-gray-400 mt-2 '></div>
                 <h2 className='self-start text-3xl pt-5 pb-2 pl-5'>Sobre Mim</h2>
                 <div className='flex w-full p-5 text-justify'>
-                    <span className={`  md:w-11/12 ${biografia}`} id="biografia">
+                    <span className={`  md:w-11/12 ${props.biografia}`} id="biografia">
                         {props.biografia}
                         <a href="#" className={`text-sky-600 ${lerMenos}`} onClick={textTruncate} >
                             ler menos

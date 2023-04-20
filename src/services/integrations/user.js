@@ -26,8 +26,6 @@ export async function createVeterinaryInfosIntoExistingUser(userID, vetInfos) {
 }
 
 export async function getUser(id, token) {
-    console.log(id);
-    console.log(token);
     const url = `${BASE_URL}user/?userID=${id}`
     const response = await fetch(url, {
         headers: {

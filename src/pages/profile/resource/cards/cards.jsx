@@ -29,7 +29,6 @@ export const Cards = () => {
     const carrossel = useRef(null)
 
     const handleLeftClick = () => {
-        console.log(carrossel.current.offsetWidth);
         const result = 300 - carrossel.current.offsetWidth
         carrossel.current.scrollLeft += result
         // carrossel.current.scrollLeft -= carrossel.current.offsetWidth

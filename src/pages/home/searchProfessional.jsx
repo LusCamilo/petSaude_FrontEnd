@@ -20,15 +20,12 @@ export const SearchProfessional = () => {
     localStorage.getItem("__Vet_WhenSearch") || ""
   );
 
-  console.log(whenSearch);
-
   const [wSearch, setwSearch] = useState("userName");
 
 
   const setMudarFiltro = (value) => {
-
+    console.log(value);
     setwSearch(value)
-
     onSearchIt({ search:  inputSearch, searchIt: value})
   };
 
@@ -37,21 +34,26 @@ export const SearchProfessional = () => {
       if (data.search == "") {
         {
           let response = await getAllVets();
-          console.log(response);
           let result = response.response;
-          console.log(result);
           let json = Object.values(result);
-          console.log(json);
           setVets(json);
         }
       } else {
+
         let response = await getUsers(data.search, wSearch);
+        console.log(response);
         let result = response.response;
-        let json = result.filter(
-          (item) =>
-            item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
-            item.userName.toLowerCase().includes(data.search.toLowerCase())
-        );
+        let json
+        if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
+          json = []
+        } else {
+          console.log(result);
+          json = result.filter(
+            (item) =>
+              item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
+              item.userName.toLowerCase().includes(data.search.toLowerCase())
+          );
+        }
         setVets(json);
       }
     } catch (error) {
@@ -61,17 +63,29 @@ export const SearchProfessional = () => {
 
   const onSearchIt = async (data) => {
     try {
-      if (data.search === "") {
-        setVets([]);
-      } else {
-        let response = await getUsers(data.search, data.searchIt);
+      if (data.search == "") {
+        let response = await getAllVets();
         let result = response.response;
-        let json = result.filter(
-          (item) =>
-            item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
-            item.userName.toLowerCase().includes(data.search.toLowerCase())
-        );
+        let json = Object.values(result);
         setVets(json);
+      } else {
+        localStorage.setItem("__Vet_Search", data.search)
+        let response = await getUsers(data.search, data.searchIt);
+        console.log(response);
+        let result = response.response;
+        let json
+        if (result == "Nenhum veterinário atende aos filtros de pesquisa") {
+          json = []
+        } else {
+          console.log(result);
+          json = result.filter(
+            (item) =>
+              item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
+              item.userName.toLowerCase().includes(data.search.toLowerCase())
+          );
+        }
+        setVets(json);
+        console.log(vets);
       }
     } catch (error) {
       console.error(error);
@@ -83,8 +97,7 @@ export const SearchProfessional = () => {
   }, []);
 
   const handleRadioChange = () => {
-
-    console.log();
+    
 
   };
 
@@ -96,7 +109,7 @@ export const SearchProfessional = () => {
         title="Profissionais"
         description="Temos os melhores e mais confiaveis profissionais em nosso site."
       />
-      <div className={`p-20 container mx-auto px-4 flex flex-col gap-10`}>
+      <div className={`p-20 container mx-auto px-4 flex flex-col gap-10 min-h-screen`}>
         <div className="flex flex-row w-full" >
           <div className="flex flex-row gap-2 w-full border-4 border-black rounded-lg items-center align-middle  content-center">
           <img className="w-10" src={search} />
@@ -144,10 +157,14 @@ export const SearchProfessional = () => {
         </div>
         <div>
           {vets.map((vet) => {
-            console.log(vet);
+            console.log(vet.id);
+            if (vet.id != undefined) {
+
             return (
               <CardProfessionals
                 key={vet.id}
+                id={vet.id}
+                userName={vet.userName}
                 nome={vet.personName}
                 idade="24"
                 cep={vet.Address.cep}
@@ -155,9 +172,11 @@ export const SearchProfessional = () => {
                 instituicao={vet.institution}
                 especializacao={vet.VeterinaryEspecialities[0].specialities.name}
                 image={vet.profilePhoto}
+                dateStart = {vet.startActingDate}
                 umCorteRapido=""
               />
             );
+            }
           })}
         </div>
       </div>
