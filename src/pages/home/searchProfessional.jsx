@@ -20,6 +20,8 @@ export const SearchProfessional = () => {
     localStorage.getItem("__Vet_WhenSearch") || ""
   );
 
+  console.log(whenSearch);
+
   const [wSearch, setwSearch] = useState("userName");
 
 
