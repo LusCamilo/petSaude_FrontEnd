@@ -68,7 +68,7 @@ export const TopContainer = (props) => {
                         <Dialog.Root>
                         <Dialog.Trigger asChild>
                         <div className='pt-4 md:pt-0'>
-                            <button className='bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10'>
+                            <button className='bg-lime-500 rounded-md px-3 py-2 text-2xl w-80 text-center md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-14'>
                                 Agendar uma consulta
                             </button>
                         </div>
