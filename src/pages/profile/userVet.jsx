@@ -13,7 +13,7 @@ export const UserVet = () => {
 
 
     let infosVet = getUser(localStorage.getItem('__Vet_Id'), localStorage.getItem('__user_JWT'))
-
+    localStorage.setItem('__register_type', "professional")
 
     if (localStorage.getItem('__register_type') === "professional") {
         return (
