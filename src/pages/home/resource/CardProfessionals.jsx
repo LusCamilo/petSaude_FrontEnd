@@ -31,10 +31,11 @@ export const CardProfessionals = (props) => {
         especialista = props.especializacao
     }
 
-    function handleClick(event) {
+    function handleClick(event, id) {
         
 		document.location.href = "/profile/veterinary";
-		localStorage.setItem("__Vet_Id", event);
+		localStorage.setItem("__Vet_Id", event)
+        localStorage.setItem("__Vet_correctId", id);
 	}
     return (
             <div className="w-full h-96 flex flex-row gap-5 p-4 drop-shadow-2xl bg-white mb-10">
@@ -70,7 +71,7 @@ export const CardProfessionals = (props) => {
                         </div>
                     </div>
                     <div className="flex w-56 justify-end items-end">
-                        <button className="p-3 bg-[#9ED1B7] rounded-3xl"  onClick={() => handleClick(props.userName)}>
+                        <button className="p-3 bg-[#9ED1B7] rounded-3xl"  onClick={() => handleClick(props.userName, props.id)}>
                             Contate-nos
                         </button>
                     </div>

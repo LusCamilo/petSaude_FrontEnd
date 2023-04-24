@@ -4,6 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { Appointment } from './appointment/appointment';
 import '../../profile/pet/css/pet.css'
 
+
 //import TextTruncate from 'react-text-truncate';
 
 
@@ -12,8 +13,6 @@ export const TopContainer = (props) => {
     const [biografia, setBiografia] = useState("truncate")
     const [lerMais, setLerMais] = useState("")
     const [lerMenos, setLerMenos] = useState("hidden")
-
-    console.log(props);
 
     const textTruncate = () => {
 
@@ -33,7 +32,10 @@ export const TopContainer = (props) => {
 
     }
 
-    if (localStorage.getItem('__register_type') === "professional") {
+
+
+//localStorage.getItem('__register_type') === "professional"
+    if (1 == 1) {
         
         return (
             <div className='flex flex-col items-center md:px-44'>
@@ -75,10 +77,10 @@ export const TopContainer = (props) => {
                         </div>
                          
                         </Dialog.Trigger>
-                        <Dialog.Portal >
-                        <Dialog.Overlay className="DialogOverlay"/>
-                        <Dialog.Content className="DialogContent" class='cardConsulta'>
-                            <Appointment/>
+                        <Dialog.Portal class="overflow-auto">
+                        <Dialog.Overlay className="DialogOverlay overflow-auto"/>
+                        <Dialog.Content className="DialogContent" class='cardConsulta overflow-auto' >
+                            <Appointment class="overflow-auto"/>
                         </Dialog.Content>
                         </Dialog.Portal>
                     </Dialog.Root>
