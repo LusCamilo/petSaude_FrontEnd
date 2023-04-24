@@ -60,10 +60,10 @@ export const HeaderEditProfile = (props) => {
           </button>
           <h1 className=" text-1xl sm:flex md:justify-start pl-5 md:pl-1 md:pt-2 font-bold">PetSaúde</h1>
         </div>
-        <div className="flex md:flex flex-direction items-center gap-x-3" >
-          <img className="h-2/3 w-2/3 pt-2 pl-14 md:pl-2 md:pt-5 md:w-14" src={Hayley} />
-          <Link to="../login" className=" invisible xl:visible home-btn text-2xl">
-            {props.completName}
+        <div className="flex md:flex items-center gap-x-3" >
+          <img className="h-2/3 w-2/3 pt-2 md:pl-2 md:pt-5 md:w-14" src={Hayley} />
+          <Link to="../login" className="self-center invisible xl:visible home-btn text-2xl">
+            {props.name}
           </Link>
         </div>
       </div>

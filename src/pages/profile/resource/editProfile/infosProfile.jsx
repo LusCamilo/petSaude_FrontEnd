@@ -1,67 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import lapis from "../../../../assets/svg/pencil.svg"
 import { UserPhoto } from './userPhoto';
 
 
+
 export const InfosProfile = (props) => {
-    
+
 
     const [userInfosDisable, userInfosDisableState] = useState({
         disable: true,
         class: 'opacity-50 bg-white'
     })
-    const [password, passwordState] = useState({
+
+    const [passwordClass, setClassPassword] = useState({
         class: "opacity-50 bg-white",
         disabled: true,
         type: "password",
-        password: props.password
     })
 
-    const [form, formState] = useState({
-        nome: props.nome,
-        email: props.email,
+    const [password, setPassword] = useState({ password: "" })
+
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
     })
+
+    // useEffect( () => {
+    //     function fetchData() {
+
+    //         fetchData()
+    //         setForm({
+    //             name: props.userName,
+    //             email: props.email,
+    //         })
+    //         setClassPassword({
+    //             class: "opacity-50 bg-white",
+    //             disabled: true,
+    //             type: "password",
+                
+    //         })
+    //         setPassword({
+    //             password: props.password
+    //         })
+    //     }
+    //      fetchData()
+    // }, [])
 
     const handleNameChange = (event) => {
         console.log(event.target.value);
-        formState({ nome: event.target.value });
+        setForm({ nome: event.target.value });
     }
     const handleEmailChange = (event) => {
         console.log(event.target.value);
-        formState({ email: event.target.value });
+        setForm({ email: event.target.value });
     }
     const handlePasswordChange = (event) => {
         console.log(event.target.value);
-        passwordState({ password: event.target.value });
+        setClassPassword({ password: event.target.value });
     }
 
     return (
         <div className='w-full h-full flex flex-col  border rounded-lg border-black gap-10 p-8'>
             <h2 className='text-5xl font-sans'>Informações do perfil</h2>
-            <div className="flex justify-between flex-col md:flex-row gap-3 items-center ">
-               <div className='flex flex-col'>
+            <div className="flex justify-between flex-col md:flex-row gap-3 items-center">
+                <div className='flex flex-col'>
                     <div className='flex flex-col text-xl text-[#A9A9A9]'>
                         Nome de usuario
-                        <input disabled={userInfosDisable.disable} onChange={handleNameChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} defaultValue={form.nome} id="userInfo" />
+                        <input disabled={userInfosDisable.disable} onChange={handleNameChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} placeholder="nome de usuario" defaultValue={props.userName} id="userInfo" />
                     </div>
-
                     <div className='hidden md:flex justify-between pt-4  flex-col alight-start text-2xl md:text-xl text-[#A9A9A9] '>
-                            Senha
-                            <input type={password.type} id='password' disabled={password.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${password.class}`} defaultValue={password.password} />
+                        Senha
+                        <input type={passwordClass.type} id='password' disabled={passwordClass.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${passwordClass.class}`} placeholder="senha" defaultValue={password.password} />
                     </div>
                 </div>
-               <div>
+                <div>
                     <div className='flex flex-col text-xl text-[#A9A9A9] md:pb-24'>
                         E-mail
-                        <input disabled={userInfosDisable.disable} onChange={handleEmailChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} defaultValue={form.email} />
+                        <input disabled={userInfosDisable.disable} onChange={handleEmailChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} placeholder="Email" defaultValue={form.email} />
                     </div>
-                    <div className='md:hidden flex justify-between pt-4 flex-col alight-start text-2xl md:text-xl text-[#A9A9A9] '>
-                                    Senha
-                                    <input type={password.type} id='password' disabled={password.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${password.class}`} defaultValue={password.password} />
-                    </div>
-               </div>
-                
-                <div className="flex justify-betwen md:pl-5 md:pb-24">
+                </div>
+
+                <div className="flex justify-betwen">
                     <div className='flex flex-col gap-14'>
                         <button className='w-52 h-12 hidden md:flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
 
@@ -84,52 +103,29 @@ export const InfosProfile = (props) => {
                         <button
                             className=' w-20 md:w-52 md:h-12 hidden md:flex flex-row justify-center items-center gap-4 bg-[#F9DEDC] rounded-full drop-shadow-lg font-bold text-[#410E0B]'
                             onClick={() => {
-
-
                                 if (document.getElementById('password').type == 'password') {
-                                    passwordState({
+                                    setClassPassword({
                                         type: 'text',
                                         disabled: false,
                                         class: ''
                                     })
                                     console.log();
                                 } else {
-                                    passwordState({
+                                    setClassPassword({
                                         type: 'password',
                                         disabled: true,
-                                        class: 'opacity-50 bg-white'
+                                        class: 'opacity-50 bg-white',
+
                                     })
                                 }
                             }}>
                             Mudar Senha
                         </button>
                     </div>
-                   
                 </div>
-                <div>
-                        <button
-                            className=' ml-40 md:ml-0 h-10 w-32 md:w-52 md:h-12 md:hidden flex flex-row justify-center items-center gap-4 bg-[#F9DEDC] rounded-full drop-shadow-lg font-bold text-[#410E0B]'
-                            onClick={() => {
-                                if (document.getElementById('password').type == 'password') {
-                                    passwordState({
-                                        type: 'text',
-                                        disabled: false,
-                                        class: ''
-                                    })
-                                    console.log();
-                                } else {
-                                    passwordState({
-                                        type: 'password',
-                                        disabled: true,
-                                        class: 'opacity-50 bg-white'
-                                    })
-                                }
-                            }}>
-                            Mudar Senha
-                        </button>
-                    </div>
+
             </div>
-            <UserPhoto nome={form.nome} completName={props.completName} />
+            <UserPhoto nome={form.name} completName={props.completName} />
         </div>
     );
 }

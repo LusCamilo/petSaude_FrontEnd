@@ -72,12 +72,10 @@ export const PetAdd = (props) => {
             gender: sexo[1],
             specie: specie,
         }
-        
-        console.log(petInfos);
 
         const addPet = await petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
-        console.log(addPet);
 
+        document.location.href = "/profile/upgradeUser"
     }
 
     const handleFileInputChange = (event) => {
