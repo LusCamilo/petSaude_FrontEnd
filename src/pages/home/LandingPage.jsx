@@ -28,36 +28,36 @@ export const LandingPage = () => {
 	return (
 		<section className="">
 			<HeaderWeb />
-			<div className=" flex flex-col pt-20  ml-10 justify-center gap-5 pl-10
+			<div className=" flex flex-col pt-20  sm:ml-10 justify-center gap-5 pl-10
     xl:flex-row font-normal texto-2xl  md:flex-row">
 				<div className="w-80 md:w-1/2 xl:w-1/4 static">
 					<div className="w-full static flex flex-col bg-white border rounded-lg border-black transition hover:border-green-200  p-5  ">
-						<div className="flex flex-row gap-10 w-full">
+						<div className="flex flex-row gap-2 sm:gap-10 w-full">
 							<img className="w-10" src={Doctor} />
 							<form className="w-full">
-								<input onKeyPress={event => handleKeyPress(event.target.value, event, "userName")} className="xl:w-full h-10 text-2xl" placeholder="Pesquisar especialistas" />
+								<input onKeyPress={event => handleKeyPress(event.target.value, event, "userName")} className="xl:w-full h-10 text-xl sm:text-2xl" placeholder="Pesquisar especialistas" />
 							</form>
 						</div>
 					</div>
 				</div>
 				<div className="static flex flex-row gap-5 bg-white border rounded-lg border-black transition hover:border-green-200 p-5 pl-5 w-80 md:w-1/2 xl:w-1/4">
-					<div className="flex flex-row gap-10 w-full">
+					<div className="flex flex-row gap-2 sm:gap-10 w-full">
 						<img className="w-10" src={Local} />
 						<form  className="w-full">
-							<input onKeyPress={event => handleKeyPress(event.target.value, event, "city")} className="xl:w-full h-10 text-2xl" placeholder="Pesquisar veterinários próximos " />
+							<input onKeyPress={event => handleKeyPress(event.target.value, event, "city")} className="xl:w-full h-10 text-xl sm:text-2xl" placeholder="Pesquisar veterinários próximos " />
 						</form>
 					</div>
 				</div>
 			</div>
 			<div className="flex flex-row justify-between content center w-auto h-4/5 mt-10 ml-10 ">
 
-				<div className=" flex flex-col justify-center items-center w-50 ">
+				<div className=" flex flex-col justify-center items-center w-50">
 					<h1
-						className="basis-2/4 flex justify-center items-center font-bold text-3xl h-20 w-full lg:pl-60 pl-4 xl:text-7xl ">Agende
+						className="basis-2/4 flex justify-center items-center font-bold text-3xl sm:h-20 w-full lg:pl-60 pl-4 xl:text-7xl ">Agende
 						suas consultas e forneça o melhor para o seu Pet!</h1>
 					<Link 
-						className="flex text-center justify-center items-center border-2 rounded-xl border-[#9ED1B7] p-1 xl: basis-1-6 mt-10 xl:h-20 w-96 basis-1/6 text-3xl transition hover:bg-[#9ED1B7] hover:text-white hover:shadow-xl hover:scale-110"
-						to="/home/searchProfessionals">Procure um veterinário próximo!</Link>
+						className="flex text-center justify-center items-center border-2 rounded-xl border-[#9ED1B7] p-1 xl:basis-1-6 mt-10 xl:h-20 sm:w-96 w-56 h-20 basis-1/6 sm:text-3xl transition  hover:bg-[#9ED1B7] hover:text-white hover:shadow-xl hover:scale-110"
+						to="/home/searchProfessionals ">Procure um veterinário próximo!</Link>
 				</div>
 
 

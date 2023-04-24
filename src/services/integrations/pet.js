@@ -2,6 +2,14 @@ import {BASE_URL} from "../../lib/_base_url";
 
 const token = localStorage.getItem('__user_JWT')
 
+export const getAllPets = async (userId) => {
+  const url = `${BASE_URL}pet/all?userID=${userId}`
+  const response = await fetch(url)
+  const pet = await response.json()
+  const petArray = pet.message.pets
+  return petArray
+}
+
 export async function petAdd(petInfos, userID) {
     const url = `${BASE_URL}pet?userID=${userID}`
     console.log(url)
@@ -29,6 +37,8 @@ export async function petDelete(idPet) {
   console.log(response);
   return await response.json()
 }
+
+
 
 /*
 	const bodyParams = z.object({
