@@ -35,7 +35,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           setVets(json);
         }
       } else {
-        if (wSearch != "city") {
+        if (wSearch !== "city") {
           let response = await getUsers(data.search, wSearch);
           let result = response.response;
           let json
@@ -48,6 +48,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                 item.userName.toLowerCase().includes(data.search.toLowerCase())
             );
           }
+          setUmCorteRapidao('')
           setVets(json);
         } else {
           let response = await getAllVets();
@@ -136,7 +137,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                     </label>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("speciality")} name="speciality" defaultValue="speciality" id="r2">
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="speciality" id="r2">
                     <RadioGroup.Indicator className="RadioGroupIndicator" />
                     </RadioGroup.Item>
                     <label className="Label" htmlFor="r2">
@@ -144,7 +145,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                     </label>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("animal")} name="animal" defaultValue="animal" id="r3">
+                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="animal" id="r3">
                     <RadioGroup.Indicator className="RadioGroupIndicator" />
                     </RadioGroup.Item>
                     <label className="Label" htmlFor="r3">

@@ -9,15 +9,18 @@ export const CardProfessionals = (props) => {
 
 
     useEffect(() => {
-        let pesquisa = props.umCorteRapido
-        let city = addressInfo ? addressInfo.cidade : "";
-        if (pesquisa.toLowerCase() === city.toLowerCase()) {
+            let pesquisa = props.umCorteRapido
             console.log(pesquisa);
-            console.log(city);
+            let city = addressInfo ? addressInfo.cidade : "";
+        if (pesquisa != '' || pesquisa != null || pesquisa != undefined) {
             setEffects('flex')
-        } else {
-            console.log(pesquisa);
-            setEffects('hidden')
+        } else{
+            if (pesquisa.toLowerCase() === city.toLowerCase()) {
+                console.log(city);
+                setEffects('flex')
+            } else {
+                setEffects('hidden')
+            }
         }
     }, [props.umCorteRapido, addressInfo.cidade]);;
 
