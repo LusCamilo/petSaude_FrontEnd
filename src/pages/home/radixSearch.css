@@ -11,13 +11,15 @@ button {
 
 .RadioGroupItem {
   background-color: white;
-  width: 25px;
-  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
   border-radius: 100%;
   box-shadow: 0 2px 10px black;
 }
+
+
 .RadioGroupItem:hover {
-  background-color: #09738A;
+  background-color: #289f5c;
 }
 .RadioGroupItem:focus {
   box-shadow: 0 0 0 2px black;

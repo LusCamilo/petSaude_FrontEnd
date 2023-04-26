@@ -14,7 +14,7 @@ export function Login() {
         const response = await login(data)
         if (response.token) {
             localStorage.setItem('__user_JWT', response.token)
-            document.location.href = '/'
+            document.location.href = '/home'
         } else alert(response.message)
         // if (validateForm(data)) console.log(data)
         // else return false
