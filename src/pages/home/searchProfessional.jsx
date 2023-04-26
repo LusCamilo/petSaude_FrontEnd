@@ -16,11 +16,12 @@ export const SearchProfessional = () => {
     localStorage.getItem("__Vet_Search") || ""
   );
 
-  const [wSearch, setwSearch] = useState(localStorage.getItem("__Vet_WhenSearch") || " ");
-
+  const [ondeProcurar, setOndeProcurar] = useState(localStorage.getItem("__Vet_WhenSearch") || " ");
+  const [selectedOption, setSelectedOption] = useState("userName");
+  const [filtro, setFiltro] = useState("userName");
 
   const setMudarFiltro = (value) => {
-    setwSearch(value)
+    setOndeProcurar(value)
     onSearchIt({ search:  inputSearch, searchIt: value})
   };
 
@@ -35,8 +36,8 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           setVets(json);
         }
       } else {
-        if (wSearch !== "city") {
-          let response = await getUsers(data.search, wSearch);
+        if (ondeProcurar !== "city") {
+          let response = await getUsers(data.search, ondeProcurar);
           let result = response.response;
           let json
           if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
@@ -96,12 +97,10 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
     onSearch({ search: inputSearch });
   }, []);
 
-  const handleRadioChange = () => {
-    
-
+  const handleRadioChange = (value) => {
+    setSelectedOption(value);
+    setFiltro(value)
   };
-
-  
 
   return (
     <>
@@ -111,7 +110,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
       />
       <div className={`p-20 container mx-auto px-4 flex flex-col gap-10 min-h-screen`}>
         <div className="flex flex-row w-full" >
-          <div className="flex flex-row gap-2 w-full border-4 border-black rounded-lg items-center align-middle  content-center">
+          <div className="flex flex-row gap-2 w-full border-4 border-black rounded-lg items-center align-middle  content-center mr-4">
           <img className="w-10" src={search} />
           <form
             onChange={handleSubmit(onSearch)}
@@ -127,30 +126,42 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           </form>
         </div>
         <form className="w-3/12">
-            <RadioGroup.Root className="RadioGroupRoot" defaultValue="userName" onChange={handleRadioChange} aria-label="View density">
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1">
-                    <RadioGroup.Indicator className="RadioGroupIndicator" />
-                    </RadioGroup.Item>
-                    <label className="Label" htmlFor="r1">
-                    Procurar por nome
-                    </label>
+            <RadioGroup.Root className="RadioGroupRoot" value={filtro} onChange={handleRadioChange} defaultValue="userName" aria-label="View density">
+                <div className="flex flex-row">
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1">
+                      <RadioGroup.Indicator className="RadioGroupIndicator" />
+                      </RadioGroup.Item>
+                      <label className="Label" htmlFor="r1">
+                        Procurar por nome
+                      </label>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("city")} name="city" defaultValue="city" id="r2">
+                      <RadioGroup.Indicator className="RadioGroupIndicator" />
+                      </RadioGroup.Item>
+                      <label className="Label" htmlFor="r2">
+                        Procurar por cidade
+                      </label>
+                  </div>
                 </div>
+                <div className="flex flex-row">
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="speciality" id="r2">
-                    <RadioGroup.Indicator className="RadioGroupIndicator" />
-                    </RadioGroup.Item>
-                    <label className="Label" htmlFor="r2">
-                    Procurar por especialização
-                    </label>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="animal" id="r3">
-                    <RadioGroup.Indicator className="RadioGroupIndicator" />
-                    </RadioGroup.Item>
-                    <label className="Label" htmlFor="r3">
-                    Procurar por animal que atende
-                    </label>
+                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("speciality")} name="speciality" defaultValue="speciality" id="r3">
+                      <RadioGroup.Indicator className="RadioGroupIndicator" />
+                      </RadioGroup.Item>
+                      <label className="Label" htmlFor="r3">
+                        Procurar por Especialização
+                      </label>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("animal")} name="animal" defaultValue="animal" id="r4">
+                      <RadioGroup.Indicator className="RadioGroupIndicator" />
+                      </RadioGroup.Item>
+                      <label className="Label" htmlFor="r4">
+                        Procurar por animais
+                      </label>
+                  </div>
                 </div>
             </RadioGroup.Root>
         </form>
@@ -168,7 +179,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                 cep={vet.Address.cep}
                 formacao={vet.formation}
                 instituicao={vet.institution}
-                especializacao={vet.VeterinaryEspecialities[0].specialities.name}
+               // especializacao={vet.VeterinaryEspecialities[0].specialities.name}
                 image={vet.profilePhoto}
                 dateStart = {vet.startActingDate}
                 umCorteRapido={umCorteRapidao}

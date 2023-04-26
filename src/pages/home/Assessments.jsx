@@ -20,7 +20,7 @@ export const Assessments = () => {
                             </p>
                         </div>    
 
-                        <img className='pt-5' src={Star}></img>
+                        <img className='pt-0 md:pt-0 xl:pt-8' src={Star}></img>
                     </div>
                     <div className='flex flex-col items-center border-4 ml-14 md:ml-0 border-black w-3/4 md:w-1/6 h-full text-center drop-shadow-lg rounded-2xl p-5 '>
                         
@@ -32,7 +32,7 @@ export const Assessments = () => {
                             </p>
                         </div>    
 
-                        <img className='pt-10' src={Star}></img>
+                        <img className='pt-0 md:pt-40 xl:pt-14' src={Star}></img>
                     </div>
                     <div className='hidden md:flex flex-col items-center border-4 border-black sm:w-1/6 h-full text-center drop-shadow-lg rounded-2xl p-5 '>
                         

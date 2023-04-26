@@ -6,6 +6,7 @@ export async function getUsers(search, searchIt) {
     search = ' '
   }
     const url = `${BASE_URL}veterinary?${searchIt}=${search}`
+    console.log(url);
     return fetch(url)
     .then(response => response.json())
     .catch(error => console.log('Error Procurar veterinários'));
