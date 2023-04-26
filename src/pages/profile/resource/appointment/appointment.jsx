@@ -87,7 +87,9 @@ export const Appointment = () => {
         setPetName(pet.name);
         setPetEspecie(pet.especie);
         setPetId(pet.id);
-        setPetImage(pet.photo);
+        if (pet.photo == null || pet.photo == undefined) {
+            setPetImage(Dog);
+        } else  setPetImage(pet.photo);
       }
     
     return (
