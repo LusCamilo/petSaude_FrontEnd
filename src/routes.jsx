@@ -6,6 +6,9 @@ import { HomeWeb } from "./pages/home/Home-Web";
 import { WebFunction} from "./pages/home/WebFunction";
 import { ChatInfos} from "./pages/home/chatInfos";
 import { BlogPreview } from "./pages/home/BlogPreview";
+import { PraisedDoctors } from "./pages/home/PraisedDoctors";
+import { Assessments } from "./pages/home/Assessments";
+import { AppPreview } from "./pages/home/AppPreview";
 import { Login } from "./pages/login/Login";
 import { Register } from "./pages/register/Register";
 import { RegisterAddress } from "./pages/register/RegisterAddress";
@@ -39,6 +42,9 @@ export const Rotas = () => {
             <Route path="/home/chatInfos" element={<ChatInfos />} />
             <Route path="/home/WebFunction" element={<WebFunction />} />
             <Route path="/home/BlogPreview" element={<BlogPreview />} />
+            <Route path="/home/PraisedDoctors" element={<PraisedDoctors />} />
+            <Route path="/home/Assessments" element={<Assessments/>} />
+            <Route path="/home/AppPreview" element={<AppPreview/>} />
             <Route path="/home/Home-Web" element={<HomeWeb />} />
             <Route path="/home/HeaderWeb" element={<HeaderWeb />}/>
             <Route path="/login" element={<Login />} />

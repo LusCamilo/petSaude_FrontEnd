@@ -14,8 +14,6 @@ import { useForm } from 'react-hook-form';
 export const Prossionais = (props) => { 
     const { register, handleSubmit, formState: {errors} } = useForm()
 
-    console.log(localStorage.getItem('Id'));
-
     return ( 
         <div className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 pl-2 sm:pl-20 py-8'>
             <h2 className='text-5xl md:text-6xl font-bold font-sans text-center sm:text-left'>Informações Profissonais</h2>

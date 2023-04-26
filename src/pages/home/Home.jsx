@@ -11,19 +11,14 @@ const userId = async () => {
   const apiResponse = await signup(localStorage.getItem('__user_JWT'))
 
   localStorage.setItem('__user_id', apiResponse.user.id)
+  localStorage.setItem('__user_isVet', apiResponse.user.isVet)
+
 }
 
 userId()
 
 
-
-
-
-
-
 export const HomePage = () => {
-
-  let tipoUser
 
   return (
     <>

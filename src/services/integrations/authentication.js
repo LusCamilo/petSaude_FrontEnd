@@ -17,7 +17,7 @@ export const login = async (loginInfos) => {
     // })
 
     const url = `${_BASE_URL}signup`
-    const response = await fetch('http://localhost:8080/signup', {
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -25,6 +25,7 @@ export const login = async (loginInfos) => {
         body: JSON.stringify({email: loginInfos.email, password: loginInfos.password})
     })
     return await response.json()
+
 }
 
 export const signup = async (token) => {

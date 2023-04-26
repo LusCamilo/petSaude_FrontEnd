@@ -15,44 +15,97 @@ import { Config } from "./resource/editUser/headerConfig.jsx";
 import Arrow from '../../assets/svg/Arrow.svg';
 import lixeira from '../profile/resource/img/Delete.svg'
 import lapis from '../profile/resource/img/LapisColorido.svg'
-import { deleteClient, deleteVeterinary, getUser } from '../../services/integrations/user.js';
+import { deleteClient, deleteVeterinary, getUser, getVeterinary } from '../../services/integrations/user';
 
+const dataFormation = (date) => {
 
-const InfosUser = async () => {
+    const dataFormation = date.split("T")
 
-    const response = await getUser(localStorage.getItem('__user_id'))
+    let data = dataFormation[0].split("-")
 
-    const [nome, ...sobrenomes] = response.user.personName.split(' ');
+    const dataReverse = data.reverse()
 
-    const sobrenome = sobrenomes.join(' ');
+    const dataJoin = dataReverse.join('/')
 
-
-    return {
-        id: response.user.id,
-        personName: response.user.personName,
-        firstName: nome,
-        lastName: sobrenome,
-        userName: response.user.userName,
-        cpf: response.user.cpf,
-        rg: response.user.rg,
-        profilePhoto: response.user.profilePhoto,
-        profileBannerPhoto: response.user.profileBannerPhoto,
-        email: response.user.email,
-        password: response.user.password,
-        phoneNumber: response.user.phoneNumber,
-        cellphoneNumber: response.user.cellphoneNumber,
-        biography: response.user.biography,
-        addressId: response.user.addressId,
-        cep: response.user.Address.cep
-    }
+    return dataJoin
 
 }
 
 
+const InfosUser = async () => {
+
+    if (localStorage.getItem('__user_isVet') == 'false') {
+        const response = await getUser(localStorage.getItem('__user_id'))
+        
+        const [nome, ...sobrenomes] = response.user.personName.split(' ');
+
+        const sobrenome = sobrenomes.join(' ');
+        
+        return {
+            id: response.user.id,
+            personName: response.user.personName,
+            firstName: nome,
+            lastName: sobrenome,
+            userName: response.user.userName,
+            cpf: response.user.cpf,
+            rg: response.user.rg,
+            profilePhoto: response.user.profilePhoto,
+            profileBannerPhoto: response.user.profileBannerPhoto,
+            email: response.user.email,
+            password: response.user.password,
+            phoneNumber: response.user.phoneNumber,
+            cellphoneNumber: response.user.cellphoneNumber,
+            biography: response.user.biography,
+            addressId: response.user.addressId,
+            cep: response.user.Address.cep,
+        }
+
+    }else{
+
+        const response = await getVeterinary(localStorage.getItem('__user_id'))
+        
+        const [nome, ...sobrenomes] = response.personName.split(' ');
+    
+        const sobrenome = sobrenomes.join(' ');
+
+        const formation = dataFormation(response.formationDate)
+        const actingDate = dataFormation(response.startActingDate)
+    
+        return {
+            id: response.id,
+            personName: response.personName,
+            userName: response.userName,
+            firstName: nome,
+            lastName: sobrenome,
+            userName: response.Name,
+            cpf: response.cpf,
+            rg: response.rg,
+            profilePhoto: response.profilePhoto,
+            profileBannerPhoto: response.profileBannerPhoto,
+            email: response.email,
+            password: response.password,
+            phoneNumber: response.phoneNumber,
+            cellphoneNumber: response.cellphoneNumber,
+            biography: response.biography,
+            addressId: response.addressId,
+            cep: response.Address.cep,
+            institution: response.institution,
+            crmv: response.crmv,
+            formationDate: formation,
+            startActingDate: actingDate,
+            occupationArea: response.occupationArea,
+            formation: response.formation,
+        }
+
+    }
+
+
+}
+
 const getAddressFromZipCode = async (cep) => {
 
     return (await fetch(`https://viacep.com.br/ws/${cep}/json/`)).json()
-   
+
 }
 
 
@@ -68,11 +121,8 @@ export const UpgradeUser = () => {
 
             const allInfosUser = (await InfosUser())
 
-     
             const address = (await getAddressFromZipCode(allInfosUser.cep))
 
-            console.log(address);
-            
 
             setInfos(
                 {
@@ -92,7 +142,14 @@ export const UpgradeUser = () => {
                     complemento: address.complemento,
                     cidade: address.localidade,
                     profilePhoto: allInfosUser.profilePhoto,
-                    profileBannerPhoto: allInfosUser.profileBannerPhoto
+                    profileBannerPhoto: allInfosUser.profileBannerPhoto,
+                    institution: allInfosUser.institution,
+                    crmv: allInfosUser.crmv,
+                    formationDate: allInfosUser.formationDate,
+                    startActingDate: allInfosUser.startActingDate,
+                    occupationArea: allInfosUser.occupationArea,
+                    formation: allInfosUser.formation,
+
                 }
             )
 
@@ -194,7 +251,7 @@ export const UpgradeUser = () => {
 
                     {localStorage.getItem("__user_isVet") == 'true' ?
                         <>
-                            <Prossionais area="Psiquiatria de Pets" instituicao="USP" dataFormacao="19/03/2005" formacao="Zootecnia" crmv="1234" dataInicioAtuacao="13/02/2006" className='' />
+                            <Prossionais area={infos.occupationArea} instituicao={infos.institution} dataFormacao={infos.formationDate} formacao={infos.formation} crmv={infos.crmv} dataInicioAtuacao={infos.startActingDate} className='' />
                             <div className='fixed right-0 bottom-10 w-64 h-16 bg-[#1C1B1F] flex sm:hidden rounded-xl'>
                                 <button className='flex flex-row content-center justify-center items-center gap-3 text-[#A9A9A9] text-3xl h-16 rounded-xl w-64'>
                                     <img src={lapis} alt="" />
