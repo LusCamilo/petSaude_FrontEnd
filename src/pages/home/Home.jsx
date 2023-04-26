@@ -4,8 +4,6 @@ import { Header } from '../../components/headers/headerEdits'
 import { signup } from "../../services/integrations/authentication";
 import { useForm } from "react-hook-form";
 
-
-
 const userId = async () => {
 
   const apiResponse = await signup(localStorage.getItem('__user_JWT'))

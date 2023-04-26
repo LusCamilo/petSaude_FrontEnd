@@ -13,47 +13,45 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { PetAddWarn } from './cards/warn';
 import './css/pet.css';
 import lapis from '../../../assets/svg/pencil.svg';
+import { getPet } from '../../../services/integrations/pet';
+
+const InfosUser = async () => {
+
+    const response = await getPet(localStorage.getItem('__pet_id'))
+
+    return console.log(response);
+}
+
+InfosUser()
 
 export const PetConfig = (props) => {
 
-/*yarn add moment
-yarn add ms
-https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-with-react-e26cf98946d1 */
-
-    const animalJson = {
-        name: 'Anastacia',
-        gender: 'Ginandromorfo',
-        size: 'Pequeno',
-        birthDate: "2023-03-10",
-        specie: 'vespa',
-        image: ''
-    }
-
+    /*yarn add moment
+    yarn add ms
+    https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-with-react-e26cf98946d1 */
 
     const [petInfosDisable, petInfosDisableState] = useState({
         disable: true,
         class: ' text-slate-400'
     })
-    
-    const [name, setName] = useState(animalJson.name)
+
+    const [name, setName] = useState()
     function newName(event) {
         setName(event.target.value);
     }
-    const [sexo, setSexo] = useState(animalJson.gender)
+    const [sexo, setSexo] = useState()
 
-    const [tamanho, setTamanho] = useState(animalJson.size)
+    const [tamanho, setTamanho] = useState()
 
-    const [specie, setSpecie] = useState(animalJson.specie)
+    const [specie, setSpecie] = useState()
     function newSpecie(event) {
         setSpecie(event.target.value);
     }
 
-    const [dateBorn, setDateBorn] = useState(animalJson.birthDate)
+    const [dateBorn, setDateBorn] = useState()
     function newDateBorn(event) {
         setDateBorn(event.target.value);
     }
-
-    
 
     const StyledContent = styled(DropdownMenu.Content, {
         minWidth: 130,
@@ -61,43 +59,43 @@ https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-w
         borderRadius: 6,
         padding: 5,
         boxShadow: '0px 5px 15px -5px hsla(206,22%,7%,.15)',
-      });
-      
-      const StyledItem = styled(DropdownMenu.Item, {
+    });
+
+    const StyledItem = styled(DropdownMenu.Item, {
         fontSize: 13,
         padding: '5px 10px',
         borderRadius: 3,
         cursor: 'default',
-      
+
         '&:focus': {
-          outline: 'none',
-          backgroundColor: 'dodgerblue',
-          color: 'white',
+            outline: 'none',
+            backgroundColor: 'dodgerblue',
+            color: 'white',
         },
-      });
-      
-      const StyledArrow = styled(DropdownMenu.Arrow, {
+    });
+
+    const StyledArrow = styled(DropdownMenu.Arrow, {
         fill: 'white',
-      });
+    });
 
-    
-      const [selectedFile, setSelectedFile] = useState(animalJson.image);
 
-      const handleFileInputChange = (event) => {
-          console.log(event.target.files[0])
-          const file = event.target.files[0]
-          setSelectedFile(URL.createObjectURL(file));
-      }
+    const [selectedFile, setSelectedFile] = useState();
+
+    const handleFileInputChange = (event) => {
+        console.log(event.target.files[0])
+        const file = event.target.files[0]
+        setSelectedFile(URL.createObjectURL(file));
+    }
 
     return (
         <>
-            <PetHeader namePerson="Teste" personImage="https://revistapesquisa.fapesp.br/wp-content/uploads/2009/03/SITE_Darwin-4-1140.jpg"/>
+            <PetHeader namePerson="Teste" personImage="https://revistapesquisa.fapesp.br/wp-content/uploads/2009/03/SITE_Darwin-4-1140.jpg" />
             <main className='static w-full'>
                 <div>
                     <div className='flex justify-start p-3 sm:p-10 flex-row items-center content-center align-middle h-30 sm:h-80'>
                         <div className="h-20 w-1/3 sm:h-48 sm:40 md:w-80 rounded-full ">
                             <input type="file" accept="image/*" name="photo" id="photoProfile" className="hidden" onChange={handleFileInputChange} />
-                            <label htmlFor='photoProfile' style={{backgroundImage: `url(${selectedFile})`}}
+                            <label htmlFor='photoProfile' style={{ backgroundImage: `url(${selectedFile})` }}
                                 className='
                                 flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
                                 <img className src={addMais} />
@@ -105,11 +103,11 @@ https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-w
                         </div>
                         <div className='flex flex-col w-2/3 sm:w-full p-3 sm:p-10'>
                             <label>
-                                <input type="text" defaultValue={name} name="petName" className='bg-transparent border-none md:text-5xl font-medium '/>
+                                <input type="text" defaultValue={name} name="petName" className='bg-transparent border-none md:text-5xl font-medium ' />
                             </label>
-                                <img src={linha} alt="" className='invisible sm:visible'/>
+                            <img src={linha} alt="" className='invisible sm:visible' />
                             <label>
-                                <input type="text" defaultValue={specie}  name="petSpecie" className='bg-transparent border-none text-3xl text-[#A9A9A9]'/>
+                                <input type="text" defaultValue={specie} name="petSpecie" className='bg-transparent border-none text-3xl text-[#A9A9A9]' />
                             </label>
                         </div>
                     </div>
@@ -121,7 +119,7 @@ https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-w
                             <div>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Nome
-                                <input type="text" onChange={newName} disabled={petInfosDisable.disable} name="nameAnimal" placeholder='Nome' className={`bg-transparent placeholder:text-black placeholder:text-3xl border-none text-2xl ${petInfosDisable.class}`} defaultValue={name} id='petInfos'/>
+                                    <input type="text" onChange={newName} disabled={petInfosDisable.disable} name="nameAnimal" placeholder='Nome' className={`bg-transparent placeholder:text-black placeholder:text-3xl border-none text-2xl ${petInfosDisable.class}`} defaultValue={name} id='petInfos' />
                                 </label>
                             </div>
                             <div>
@@ -130,10 +128,10 @@ https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-w
                                     <DropdownMenu.Root className="w-full">
                                         <DropdownMenu.Trigger disabled={petInfosDisable.disable} className={`flex justify-start  text-2xl ${petInfosDisable.class}`} >{sexo}</DropdownMenu.Trigger>
                                         <StyledContent >
-                                        <StyledItem onSelect={() => setSexo("Fêmea")}>Feminino</StyledItem>
-                                        <StyledItem onSelect={() => setSexo("Macho")}>Masculino</StyledItem>
-                                        <StyledItem onSelect={() => setSexo("Ginandromorfo")}>Ginandromorfo</StyledItem>
-                                        <StyledArrow />
+                                            <StyledItem onSelect={() => setSexo("Fêmea")}>Feminino</StyledItem>
+                                            <StyledItem onSelect={() => setSexo("Macho")}>Masculino</StyledItem>
+                                            <StyledItem onSelect={() => setSexo("Ginandromorfo")}>Ginandromorfo</StyledItem>
+                                            <StyledArrow />
                                         </StyledContent>
                                     </DropdownMenu.Root>
                                 </label>
@@ -158,10 +156,10 @@ https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-w
                                     <DropdownMenu.Root className="w-full">
                                         <DropdownMenu.Trigger disabled={petInfosDisable.disable} className={`flex justify-start  text-2xl  ${petInfosDisable.class}`}>{tamanho}</DropdownMenu.Trigger>
                                         <StyledContent>
-                                        <StyledItem onSelect={() => setTamanho("Grande")}>Grande</StyledItem>
-                                        <StyledItem onSelect={() => setTamanho("Médio")}>Médio</StyledItem>
-                                        <StyledItem onSelect={() => setTamanho("Pequeno")}>Pequeno</StyledItem>
-                                        <StyledArrow />
+                                            <StyledItem onSelect={() => setTamanho("Grande")}>Grande</StyledItem>
+                                            <StyledItem onSelect={() => setTamanho("Médio")}>Médio</StyledItem>
+                                            <StyledItem onSelect={() => setTamanho("Pequeno")}>Pequeno</StyledItem>
+                                            <StyledArrow />
                                         </StyledContent>
                                     </DropdownMenu.Root>
                                 </label>
@@ -180,7 +178,8 @@ https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-w
                                         disable: true,
                                         class: 'opacity-50 bg-white'
                                     })
-                                }}}>
+                                }
+                            }}>
                                 <img src={lapis} />
                                 Editar
                             </button>
@@ -188,34 +187,34 @@ https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-w
                     </div>
                 </div>
                 <div className='w-full flex justify-between mb-30'>
-                <Dialog.Root>
+                    <Dialog.Root>
                         <Dialog.Trigger asChild>
-                        <button asChild>
-                            <img src={lixeira} alt=""/>
-                        </button>
+                            <button asChild>
+                                <img src={lixeira} alt="" />
+                            </button>
                         </Dialog.Trigger>
                         <Dialog.Portal >
-                        <Dialog.Overlay className="DialogOverlay"/>
-                        <Dialog.Content className="DialogContent" class='cardPet'>
-                            <PetAddWarn />
-                        </Dialog.Content>
+                            <Dialog.Overlay className="DialogOverlay" />
+                            <Dialog.Content className="DialogContent" class='cardPet'>
+                                <PetAddWarn />
+                            </Dialog.Content>
                         </Dialog.Portal>
                     </Dialog.Root>
                     <Dialog.Root>
                         <Dialog.Trigger asChild>
-                        <button asChild>
-                            <img src={certo} alt=""/>
-                        </button>
+                            <button asChild>
+                                <img src={certo} alt="" />
+                            </button>
                         </Dialog.Trigger>
                         <Dialog.Portal >
-                        <Dialog.Overlay className="DialogOverlay"/>
-                        <Dialog.Content className="DialogContent" class='cardPet'>
-                            <PetAddSucess what="Pet editado"/>
-                        </Dialog.Content>
+                            <Dialog.Overlay className="DialogOverlay" />
+                            <Dialog.Content className="DialogContent" class='cardPet'>
+                                <PetAddSucess what="Pet editado" />
+                            </Dialog.Content>
                         </Dialog.Portal>
                     </Dialog.Root>
                 </div>
-            </main> 
+            </main>
         </>
     );
 }

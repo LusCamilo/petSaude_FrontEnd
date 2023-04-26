@@ -10,6 +10,13 @@ export const getAllPets = async (userId) => {
   return petArray
 }
 
+export const getPet = async (petID) => {
+  const url = `${BASE_URL}pet?petID=${petID}`
+  const response =  await fetch(url)
+  const pet = await response.json()
+  return pet.message.pet
+}
+
 export async function petAdd(petInfos, userID) {
     const url = `${BASE_URL}pet?userID=${userID}`
     console.log(url)

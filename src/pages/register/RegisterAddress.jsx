@@ -2,17 +2,17 @@ import React from "react";
 import {AuthHeader} from "../../components/headers/AuthHeader";
 import {useForm} from "react-hook-form";
 import {registerUser} from "../../services/integrations/user";
-// import Endereco from "../../assets/address-image.png"
 import { Link } from "react-router-dom";
 import backgroundImage from "../../assets/address-image.png"
 
 export function RegisterAddress() {
     const { register, handleSubmit, formState: errors, setValue } = useForm()
     const submitForm = async (data) => {
-        const registerType = sessionStorage.getItem('__register_type')
-        let userInfos = JSON.parse(sessionStorage.getItem('__user_register_infos'))
-        let allInfos;
 
+        const registerType = localStorage.getItem('__register_type')
+        let userInfos = JSON.parse(localStorage.getItem('__user_register_infos'))
+
+        let allInfos;
 
         allInfos = {
             personName: `${userInfos.firstName} ${userInfos.lastName}`,
@@ -27,12 +27,15 @@ export function RegisterAddress() {
             }
         }
 
+   
+
         if (registerType === 'professional') {
             allInfos.isVet = 'true'
             userInfos.address = data
             localStorage.setItem('__user_register_infos', JSON.stringify(userInfos))
             document.location.href = '/register/veterinary'
         } else {
+            console.log(allInfos.address);
             const response = await registerUser(allInfos)
             localStorage.setItem('__user_id', response.id)
             document.location.href = '/home'
@@ -68,20 +71,20 @@ export function RegisterAddress() {
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
                         <label className='w-full flex flex-col'>
                             Cidade
-                            <input className={errors.city ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="city" {...register('city', { required: true })} />
+                            <input className={errors.city ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="city"  />
                         </label>
                         <label className='w-full flex flex-col'>
                             Estado
-                            <input className={errors.state ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="state" {...register('state', { required: true })} />
+                            <input className={errors.state ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="state"  />
                         </label>
                     </div>
                     <label className='w-full flex flex-col'>
                         Rua
-                        <input className={errors.street ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="street" {...register('street', { required: true })} />
+                        <input className={errors.street ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="street"/>
                     </label>
                     <label className='w-full flex flex-col'>
                         Bairro
-                        <input className={errors.neighborhood ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="neighborhood" {...register('neighborhood', { required: true })} />
+                        <input className={errors.neighborhood ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="neighborhood"  />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
                         <label className='w-full flex flex-col'>
