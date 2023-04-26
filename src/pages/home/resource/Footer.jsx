@@ -19,9 +19,17 @@ export const Footer = () => {
                     <div className="basis-1/3 md:basis-1/4 w-1/8 flex items-center flex-col content-evenly">
                         <h5 className="font-semibold text-xs md:text-2xl flex items-center justify-center"> Veja também : </h5>
                         <ul className="flex items-center justify-center flex-col gap-4 py-2 px-7 ">
-                            <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize"><Link to="/home">Profissionais</Link></li>
+                        <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize">
+                            <Link to="/home/searchProfessionals" className=" duration-500 flex flex-col-reverse relative transition-all">
+                            Profissionais
+                            </Link>
+                        </li>
                             <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize"><Link to="/home">Blog</Link></li>
-                            <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize"><Link to="/home/aboutUs">Sobre nós</Link></li>
+                            <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize">
+                            <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all">
+                                Sobre nós
+                            </Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="basis-1/3 md:basis-1/4 flex items-center flex-col">

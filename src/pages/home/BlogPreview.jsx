@@ -10,12 +10,12 @@ export const BlogPreview = () => {
         <div className='flex flex-col justify-center items-center'>
             <h2 className="text-3xl sm:text-5xl text-center font-semibold pt-20 sm:w-1/3 ">Blog PetSaúde</h2>
         <div className='md:flex md:flex-row justify-center sm:flew-col gap-32 sm:pt-20 md:p-20 w-full'>
-                <div className='hidden md:flex flex-col justify-center border-4 border-[#78A890] sm:w-1/5 h-full text-center drop-shadow-lg rounded-lg p-5 '>
+                <div className='flex flex-col ml-16 md:ml-0 justify-center border-4 border-[#78A890]  w-2/3 md:w-1/5 h-full text-center drop-shadow-lg rounded-lg p-5 mt-14 md:mt-0'>
                     
                         <img src={DogFood}></img>
                         <h3 className='text-2xl pt-5'>Alimentos que são  prejudiciais para seu animal. </h3>
                   
-                    <p className='text-xl text-left items-center pt-5'>Fizemos uma lista com alguns dos alimentos que
+                    <p className='text-xl text-left items-center pt-10'>Fizemos uma lista com alguns dos alimentos que
                     podem ser fatais na saúde de seu Pet, por exemplo: Chocolate, chá, café, Cebolas, alhos e as Uvas
                     </p>
                 </div>
