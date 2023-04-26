@@ -16,19 +16,15 @@ export const SearchProfessional = () => {
     localStorage.getItem("__Vet_Search") || ""
   );
 
-  const [whenSearch, setWhenSearch] = useState(
-    localStorage.getItem("__Vet_WhenSearch") || ""
-  );
-
-  const [wSearch, setwSearch] = useState("userName");
+  const [wSearch, setwSearch] = useState(localStorage.getItem("__Vet_WhenSearch") || " ");
 
 
   const setMudarFiltro = (value) => {
-    console.log(value);
     setwSearch(value)
     onSearchIt({ search:  inputSearch, searchIt: value})
   };
 
+const [umCorteRapidao, setUmCorteRapidao] = useState('')
   const onSearch = async (data) => {
     try {
       if (data.search == "") {
@@ -39,22 +35,27 @@ export const SearchProfessional = () => {
           setVets(json);
         }
       } else {
-
-        let response = await getUsers(data.search, wSearch);
-        console.log(response);
-        let result = response.response;
-        let json
-        if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
-          json = []
+        if (wSearch != "city") {
+          let response = await getUsers(data.search, wSearch);
+          let result = response.response;
+          let json
+          if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
+            json = []
+          } else {
+            json = result.filter(
+              (item) =>
+                item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
+                item.userName.toLowerCase().includes(data.search.toLowerCase())
+            );
+          }
+          setVets(json);
         } else {
-          console.log(result);
-          json = result.filter(
-            (item) =>
-              item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
-              item.userName.toLowerCase().includes(data.search.toLowerCase())
-          );
+          let response = await getAllVets();
+          let result = response.response;
+          let json = Object.values(result);
+          setUmCorteRapidao(inputSearch)
+          setVets(json);
         }
-        setVets(json);
       }
     } catch (error) {
       console.error(error);
@@ -71,13 +72,11 @@ export const SearchProfessional = () => {
       } else {
         localStorage.setItem("__Vet_Search", data.search)
         let response = await getUsers(data.search, data.searchIt);
-        console.log(response);
         let result = response.response;
         let json
         if (result == "Nenhum veterinário atende aos filtros de pesquisa") {
           json = []
         } else {
-          console.log(result);
           json = result.filter(
             (item) =>
               item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
@@ -85,7 +84,6 @@ export const SearchProfessional = () => {
           );
         }
         setVets(json);
-        console.log(vets);
       }
     } catch (error) {
       console.error(error);
@@ -93,6 +91,7 @@ export const SearchProfessional = () => {
   };
 
   useEffect(() => {
+
     onSearch({ search: inputSearch });
   }, []);
 
@@ -157,9 +156,7 @@ export const SearchProfessional = () => {
         </div>
         <div>
           {vets.map((vet) => {
-            console.log(vet.id);
             if (vet.id != undefined) {
-
             return (
               <CardProfessionals
                 key={vet.id}
@@ -173,7 +170,7 @@ export const SearchProfessional = () => {
                 especializacao={vet.VeterinaryEspecialities[0].specialities.name}
                 image={vet.profilePhoto}
                 dateStart = {vet.startActingDate}
-                umCorteRapido=""
+                umCorteRapido={umCorteRapidao}
               />
             );
             }

@@ -5,6 +5,21 @@ import axios from "axios";
 
 export const CardProfessionals = (props) => {
     const [addressInfo, setAddressInfo] = useState("");
+    const [effects, setEffects] = useState("flex");
+
+
+    useEffect(() => {
+        let pesquisa = props.umCorteRapido
+        let city = addressInfo ? addressInfo.cidade : "";
+        if (pesquisa.toLowerCase() === city.toLowerCase()) {
+            console.log(pesquisa);
+            console.log(city);
+            setEffects('flex')
+        } else {
+            console.log(pesquisa);
+            setEffects('hidden')
+        }
+    }, [props.umCorteRapido, addressInfo.cidade]);;
 
     let year = props.dateStart
 
@@ -38,7 +53,7 @@ export const CardProfessionals = (props) => {
         localStorage.setItem("__Vet_correctId", id);
 	}
     return (
-            <div className="w-full h-96 flex flex-row gap-5 p-4 drop-shadow-2xl bg-white mb-10">
+            <div className={`w-full h-96 ${effects} flex-row gap-5 p-4 drop-shadow-2xl bg-white mb-10`}>
                 <div className="w-1/4 h-full">
                     <img src={props.image} alt="Imagem do especialista" className="overflow-hidden h-full w-full"/>
                 </div>

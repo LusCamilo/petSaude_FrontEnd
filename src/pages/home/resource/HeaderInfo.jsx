@@ -26,11 +26,17 @@ export const HeaderInfo = (props) => {
                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                 <li className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                   <img src={Home} className="pr-3"></img>
-                  Home
+                  <Link to="/home/Home-Web"  href="#" className=" duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full"> Home
+                  </Link>
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                <img src={Work} className="pr-3"></img>
-                  Profissionais
+                  <img src={Work} className="pr-3"></img>
+                  <Link className=" duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full" to="/home/searchProfessionals"> Profissionais
+                  </Link>
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                 <img src={Blog} className="pr-3"></img>
@@ -38,7 +44,10 @@ export const HeaderInfo = (props) => {
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                 <img src={Info} className="pr-3"></img>
-                  Sobre nós
+                <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
+                      after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                      hover:after:w-full">Sobre nós
+                    </Link>
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                 <img src={Calendary} className="pr-3"></img>
@@ -67,7 +76,7 @@ export const HeaderInfo = (props) => {
                         </div>
                         <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
                             <li class="mx-4 my-6 md:my-0 transition">
-                            <Link to="/home"  href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                            <Link to="/home/Home-Web"  href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                             after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                             hover:after:w-full">Home
                             </Link>

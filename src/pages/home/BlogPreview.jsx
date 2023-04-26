@@ -40,11 +40,11 @@ export const BlogPreview = () => {
                     </p>
                 </div>
             </div>
-            <div className='flex justify-center items-center w-96 h-20 border bg-[#78A890] rounded-lg mt-10 md:mt-0'>
+            <div className='flex justify-center items-center p-5 sm:p-0 sm:w-96 h-20 border bg-[#78A890] rounded-lg mt-10 md:mt-0'>
                 <button className='flex gap-5 text-xl'>
                     
                     Visite nosso Blog
-                    <img className='w-20' src={Arrow}></img>
+                    <img className='sm:w-20' src={Arrow}></img>
                 </button>
             </div>
             </div>

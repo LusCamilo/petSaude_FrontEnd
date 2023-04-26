@@ -22,8 +22,8 @@ export const PraisedDoctors = () => {
                 <div className='flex flex-col justify-center border-4 border-black bg-white w-3/4 md:w-1/5 h-full text-center drop-shadow-lg rounded-lg p-5 sm:mt-14 md:mt-0 ml-14 md:ml-0'>
                    
                         <img className='flex w-80' src={Praised}></img>
-                        <div className='fixed mt-56 sm:mt-72 bg-white'>
-                            <h3 className='text-2xl pt-5 flex flex-row gap-5'>Avaliação
+                        <div className='fixed mt-40 xl:mt-72 bg-white'>
+                            <h3 className='text-xl md:text-2xl pt-5 flex flex-row gap-5'>Avaliação
                             <p>9,5/10</p>
                             </h3>
                     
