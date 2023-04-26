@@ -24,7 +24,7 @@ export const ChatInfos = () => {
                             </p>
                     </div>
                 </div>
-                <img src={webVet} alt="" className="w-60 md:w-1/4 ml-48 md:ml-96"/>
+                <img src={webVet} alt="" className="w-60 md:w-1/4 ml-32 sm:ml-48 md:ml-96"/>
             </div>
         </>
     );
