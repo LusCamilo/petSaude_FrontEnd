@@ -37,8 +37,7 @@ export const RegisterVeterinary = () => {
         if (validateForm(data)) {
             const createUserResponse = await registerVet(allInfos)
             console.log(createUserResponse);
-            if (createUserResponse)
-                  document.location.href = '/login'  
+              document.location.href = '/login'  
 
             // else alert('Erro na criação do usuário')
         } else alert('Formulário inválido')

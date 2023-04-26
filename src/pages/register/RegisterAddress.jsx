@@ -35,7 +35,7 @@ export function RegisterAddress() {
             localStorage.setItem('__user_register_infos', JSON.stringify(userInfos))
             document.location.href = '/register/veterinary'
         } else {
-            console.log(allInfos.address);
+            console.log(allInfos);
             const response = await registerUser(allInfos)
             localStorage.setItem('__user_id', response.id)
             document.location.href = '/home'

@@ -18,7 +18,7 @@ export const InfosProfile = (props) => {
         type: "password",
     })
 
-    const [password, setPassword] = useState({ password: "" })
+    const [password, setPassword] = useState("")
 
     const [form, setForm] = useState({
         name: "",
@@ -70,7 +70,7 @@ export const InfosProfile = (props) => {
                     </div>
                     <div className='hidden md:flex justify-between pt-4  flex-col alight-start text-2xl md:text-xl text-[#A9A9A9] '>
                         Senha
-                        <input type={passwordClass.type} id='password' disabled={passwordClass.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${passwordClass.class}`} placeholder="senha" defaultValue={password.password} />
+                        <input type={passwordClass.type} id='password' disabled={passwordClass.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${passwordClass.class}`} placeholder="senha" defaultValue={password} />
                     </div>
                 </div>
                 <div>

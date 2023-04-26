@@ -87,8 +87,7 @@ export const EditProfile = () => {
 
             <button className=' hidden md:flex  md:fixed md:end-40  self-end rounded-lg bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={() => {
 
-            }
-            }>
+            }}>
                 <img src={check} className='w-10 h-10 my-5 mx-5' />
             </button>
         </>
