@@ -53,7 +53,7 @@ export const LandingPage = () => {
 
 				<div className=" flex flex-col justify-center items-center w-50">
 					<h1
-						className="xl:basis-2/4 flex justify-center items-center font-bold text-3xl sm:h-20 w-full lg:pl-60 pl-4 md:5xl xl:text-7xl ">Agende
+						className="xl:basis-2/4 flex justify-center items-center font-bold text-3xl sm:h-20 w-full  xl:pl-60 pl-4 md:text-5xl xl:text-7xl ">Agende
 						suas consultas e forneça o melhor para o seu Pet!</h1>
 					<Link 
 						className="flex text-center justify-center items-center border-2 rounded-xl border-[#9ED1B7] p-1 xl:basis-1-6 mt-10 xl:h-20 sm:w-96 w-56 h-20 basis-1/6 text-xl sm:text-3xl transition  hover:bg-[#9ED1B7] hover:text-white hover:shadow-xl hover:scale-110"
