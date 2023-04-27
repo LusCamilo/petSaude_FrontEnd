@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { PetHeader } from './petHeader';
 import addMais from "../resource/img/AddMais.png"
 import linha from "../../../assets/svg/linha.svg"
@@ -13,27 +13,38 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { PetAddWarn } from './cards/warn';
 import './css/pet.css';
 import lapis from '../../../assets/svg/pencil.svg';
-import { getPet } from '../../../services/integrations/pet';
+import { getPet, petUpdate } from '../../../services/integrations/pet';
+
+
+const maskPetSize = (tamanho) => {
+
+    let tamanhoBr
+
+    if (tamanho == "MEDIUM" || tamanho == "Médio")
+        tamanhoBr = "Médio"
+    else if (tamanho == "BIG" || tamanho == 'Grande')
+        tamanhoBr = 'Grande'
+    else
+        tamanhoBr = "Pequeno"
+
+    return tamanhoBr
+
+
+}
+
+const dataFormation = (date) => {
+
+    let data = date.split("-")
+    const dataReverse = data.reverse()
+    const dataJoin = dataReverse.join('-')
+
+    return dataJoin
+}
 
 const InfosUser = async () => {
 
     const response = await getPet(localStorage.getItem('__pet_id'))
 
-    // {
-    //     "id": 10,
-    //     "name": "teste",
-    //     "birthDate": "2023-04-14T00:00:00.000Z",
-    //     "photo": "",
-    //     "microship": false,
-    //     "petSize": "MEDIUM",
-    //     "petGender": "M",
-    //     "petSpecieId": 5,
-    //     "ownerId": 5,
-    //     "petSpecie": {
-    //         "id": 5,
-    //         "name": "teste"
-    //     }
-    // }
 
     return {
         id: response.id,
@@ -43,67 +54,81 @@ const InfosUser = async () => {
         microship: response.microship,
         petSize: response.petSize,
         petGender: response.petGender,
-        petSpecie: {
-            idSpecie: response.petSpecie.id,
-            nameSpecie: response.petSpecie.name
-        }
+        ownerId: response.ownerId,
+        idSpecie: response.petSpecie.id,
+        nameSpecie: response.petSpecie.name
+
     }
 }
 
-
 export const PetConfig = (props) => {
 
+    const { register, handleSubmit, formState: errors, setValue } = useForm()
 
-    const [infos, setInfos] = useState({})
+    const [selectedFile, setSelectedFile] = useState('');
 
-    useEffect(() => {
-        async function fetchData() {
+    const [tamanho, setTamanho] = useState('')
 
-            const allInfosPet = (await InfosUser())
-            setInfos(
-                {
-                    id: allInfosPet.id,
-                    name: allInfosPet.name,
-                    birthDate: allInfosPet.birthDate,
-                    photo: allInfosPet.photo,
-                    microship: allInfosPet.microship,
-                    petSize: allInfosPet.petSize,
-                    petGender: allInfosPet.petGender,
-                    petSpecieId: allInfosPet.petSpecieId,
-                    ownerId: allInfosPet.ownerId,
-
-                }
-            )
-        }
-        fetchData()
-    }, [])
-
-    /*yarn add moment
-    yarn add ms
-    https://medium.com/geekculture/dynamically-set-the-max-min-date-at-input-field-with-react-e26cf98946d1 */
-
-    const [petInfosDisable, petInfosDisableState] = useState({
-        disable: true,
-        class: ' text-slate-400'
-    })
-
-    const [name, setName] = useState()
+    const [name, setName] = useState('')
     function newName(event) {
         setName(event.target.value);
     }
-    const [sexo, setSexo] = useState()
 
-    const [tamanho, setTamanho] = useState()
-
-    const [specie, setSpecie] = useState()
-    function newSpecie(event) {
-        setSpecie(event.target.value);
-    }
+    const [sexo, setSexo] = useState('')
 
     const [dateBorn, setDateBorn] = useState()
     function newDateBorn(event) {
         setDateBorn(event.target.value);
     }
+
+
+    const [specie, setSpecie] = useState('')
+    function newSpecie(event) {
+        setSpecie(event.target.value);
+    }
+
+    const [infos, setInfos] = useState({})
+
+    useEffect(() => {
+
+        setSelectedFile(infos.photo ? infos.photo : '')
+        setName(infos.name ? infos.name : '')
+        setSpecie(infos.specie ? infos.specie : '')
+        setTamanho(infos.size ? infos.size : '')
+        setSexo(infos.gender ? infos.gender : '')
+
+        async function fetchData() {
+
+            const allInfosPet = (await InfosUser())
+
+
+            const dataFormation = allInfosPet.birthDate.split("T")
+            let data = dataFormation[0].split("-")
+            const newData = new Date(data[0], data[1], data[2])
+
+            setInfos(
+                {
+                    id: allInfosPet.id,
+                    name: allInfosPet.name,
+                    birthDate: newData.toISOString().slice(0, 10),
+                    photo: allInfosPet.photo,
+                    microship: allInfosPet.microship,
+                    size: allInfosPet.petSize,
+                    gender: allInfosPet.petGender,
+                    ownerID: allInfosPet.ownerId,
+                    specie: allInfosPet.nameSpecie,
+                }
+            )
+        }
+
+
+        fetchData()
+    }, [infos.photo, infos.name, infos.specie, infos.size, infos.gender])
+
+    const [petInfosDisable, petInfosDisableState] = useState({
+        disable: true,
+        class: ' text-slate-400'
+    })
 
     const StyledContent = styled(DropdownMenu.Content, {
         minWidth: 130,
@@ -112,7 +137,6 @@ export const PetConfig = (props) => {
         padding: 5,
         boxShadow: '0px 5px 15px -5px hsla(206,22%,7%,.15)',
     });
-
     const StyledItem = styled(DropdownMenu.Item, {
         fontSize: 13,
         padding: '5px 10px',
@@ -125,16 +149,12 @@ export const PetConfig = (props) => {
             color: 'white',
         },
     });
-
     const StyledArrow = styled(DropdownMenu.Arrow, {
         fill: 'white',
     });
 
-
-    const [selectedFile, setSelectedFile] = useState();
-
     const handleFileInputChange = (event) => {
-        console.log(event.target.files[0])
+        // console.log(event.target.files[0])
         const file = event.target.files[0]
         setSelectedFile(URL.createObjectURL(file));
     }
@@ -153,15 +173,13 @@ export const PetConfig = (props) => {
                                 <img className src={addMais} />
                             </label>
                         </div>
-                        <div className='flex flex-col w-2/3 sm:w-full p-3 sm:p-10'>
-                            <label>
-                                <input type="text" defaultValue={name} name="petName" className='bg-transparent border-none md:text-5xl font-medium ' />
-                            </label>
-                            <img src={linha} alt="" className='invisible sm:visible' />
-                            <label>
-                                <input type="text" defaultValue={specie} name="petSpecie" className='bg-transparent border-none text-3xl text-[#A9A9A9]' />
-                            </label>
-                        </div>
+                        {infos.id && (
+                            <div className='flex flex-col w-2/3 sm:w-full p-3 sm:p-10'>
+                                <p className='md:text-5xl font-medium '>{name}</p>
+                                <img src={linha} alt="" className='invisible sm:visible' />
+                                <p className='md:text-5xl font-medium '>{specie}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 pl-3 sm:pl-20 py-8'>
@@ -171,18 +189,17 @@ export const PetConfig = (props) => {
                             <div>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Nome
-                                    <input type="text" onChange={newName} disabled={petInfosDisable.disable} name="nameAnimal" placeholder='Nome' className={`bg-transparent placeholder:text-black placeholder:text-3xl border-none text-2xl ${petInfosDisable.class}`} defaultValue={name} id='petInfos' />
+                                    <input type="text" onBlur={newName} disabled={petInfosDisable.disable} name="nameAnimal" placeholder='Nome' className={`bg-transparent placeholder:text-black placeholder:text-3xl border-none text-2xl ${petInfosDisable.class}`} defaultValue={infos.name} id='petInfos' />
                                 </label>
                             </div>
                             <div>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Sexo
                                     <DropdownMenu.Root className="w-full">
-                                        <DropdownMenu.Trigger disabled={petInfosDisable.disable} className={`flex justify-start  text-2xl ${petInfosDisable.class}`} >{sexo}</DropdownMenu.Trigger>
+                                        <DropdownMenu.Trigger disabled={petInfosDisable.disable} className={`flex justify-start  text-2xl ${petInfosDisable.class}`} {...register('name', { required: true })}>{sexo}</DropdownMenu.Trigger>
                                         <StyledContent >
-                                            <StyledItem onSelect={() => setSexo("Fêmea")}>Feminino</StyledItem>
-                                            <StyledItem onSelect={() => setSexo("Macho")}>Masculino</StyledItem>
-                                            <StyledItem onSelect={() => setSexo("Ginandromorfo")}>Ginandromorfo</StyledItem>
+                                            <StyledItem onSelect={() => setSexo("F")}>Feminino</StyledItem>
+                                            <StyledItem onSelect={() => setSexo("M")}>Masculino</StyledItem>
                                             <StyledArrow />
                                         </StyledContent>
                                     </DropdownMenu.Root>
@@ -191,7 +208,7 @@ export const PetConfig = (props) => {
                             <div>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Espécie
-                                    <input type="text" disabled={petInfosDisable.disable} onChange={newSpecie} defaultValue={specie} name="especieAnimal" id="specisAnimal" placeholder='Espécie' className={`bg-transparent placeholder:text-black placeholder:text-3xl border-none text-2xl  ${petInfosDisable.class}`} />
+                                    <input type="text" disabled={petInfosDisable.disable} onBlur={newSpecie} defaultValue={infos.specie} name="especieAnimal" id="specisAnimal" placeholder='Espécie' className={`bg-transparent placeholder:text-black placeholder:text-3xl border-none text-2xl  ${petInfosDisable.class}`} />
                                 </label>
                             </div>
                         </div>
@@ -199,18 +216,18 @@ export const PetConfig = (props) => {
                             <div className='w-full'>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Data de Nascimento
-                                    <input type="date" disabled={petInfosDisable.disable} onChange={newDateBorn} name="dateBorn" defaultValue={dateBorn} className={`bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`} />
+                                    <input type="date" disabled={petInfosDisable.disable} onChange={newDateBorn} name="dateBorn" defaultValue={infos.birthDate} className={`bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`} />
                                 </label>
                             </div>
                             <div>
                                 <label className='flex flex-col text-xl text-[#A9A9A9] '>
                                     Tamanho
                                     <DropdownMenu.Root className="w-full">
-                                        <DropdownMenu.Trigger disabled={petInfosDisable.disable} className={`flex justify-start  text-2xl  ${petInfosDisable.class}`}>{tamanho}</DropdownMenu.Trigger>
+                                        <DropdownMenu.Trigger disabled={petInfosDisable.disable} className={`flex justify-start  text-2xl  ${petInfosDisable.class}`} {...register('tamanho', { required: true })}>{maskPetSize(tamanho)}</DropdownMenu.Trigger>
                                         <StyledContent>
-                                            <StyledItem onSelect={() => setTamanho("Grande")}>Grande</StyledItem>
-                                            <StyledItem onSelect={() => setTamanho("Médio")}>Médio</StyledItem>
-                                            <StyledItem onSelect={() => setTamanho("Pequeno")}>Pequeno</StyledItem>
+                                            <StyledItem onSelect={() => setTamanho("Grande")} selected={tamanho === "Grande"}>Grande</StyledItem>
+                                            <StyledItem onSelect={() => setTamanho("Médio")} selected={tamanho === "Médio"}>Médio</StyledItem>
+                                            <StyledItem onSelect={() => setTamanho("Pequeno")} selected={tamanho === "Pequeno"}>Pequeno</StyledItem>
                                             <StyledArrow />
                                         </StyledContent>
                                     </DropdownMenu.Root>
@@ -254,7 +271,27 @@ export const PetConfig = (props) => {
                     </Dialog.Root>
                     <Dialog.Root>
                         <Dialog.Trigger asChild>
-                            <button asChild>
+                            <button asChild onClick={() => {
+
+                                let infosPet = {
+                                    name: name,
+                                    birthDate: dateBorn,
+                                    photo: selectedFile,
+                                    microship: infos.microship,
+                                    size: tamanho,
+                                    gender: sexo,
+                                    ownerID: infos.ownerID,
+                                    specie: specie,
+                                }
+
+                                const { id } = infos
+                                // const data = dataFormation(infosPet.birthDate)
+                                // infosPet.birthDate = data
+
+                                console.log(infosPet);
+
+                                // petUpdate(id, infosPet)
+                            }}>
                                 <img src={certo} alt="" />
                             </button>
                         </Dialog.Trigger>

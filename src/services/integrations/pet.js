@@ -45,6 +45,20 @@ export async function petDelete(idPet) {
   return await response.json()
 }
 
+export async function petUpdate(idPet, petInfos) {
+  const url = `${BASE_URL}pet?petID=${idPet}`
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(petInfos)
+  })
+  console.log(response);
+  return await response.json()
+}
+
 
 
 /*
