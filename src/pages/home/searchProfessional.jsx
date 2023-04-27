@@ -175,7 +175,6 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                 id={vet.id}
                 userName={vet.userName}
                 nome={vet.personName}
-                idade="24"
                 cep={vet.Address.cep}
                 formacao={vet.formation}
                 instituicao={vet.institution}
