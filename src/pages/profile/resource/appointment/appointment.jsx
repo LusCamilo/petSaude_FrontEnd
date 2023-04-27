@@ -5,10 +5,11 @@ import Dog from '../../../../assets/svg/iconDog.svg';
 import { getAllPets   } from '../../../../services/integrations/pet';
 import { appointmentAdd } from '../../../../services/integrations/appointment';
 import { PetSpawn } from './appointmentPets';
+import Modal from 'react-modal'
+import { propTypes } from 'react-bootstrap/esm/Image';
 
-
-export const Appointment = () => {
-
+export const Appointment = (props) => {
+    Modal.setAppElement('#topHeader');
     const [date, setDate] = useState('')
     const [startsAt, setStartAt] = useState('')
     const [description, setDescription] = useState('')
@@ -65,23 +66,21 @@ export const Appointment = () => {
       let dataFormatada = `${ano}-${mes}-${dia}`;
       console.log(dataFormatada);
 
-    const submitAppointment = async () => {
+      async function submitAppointment(event) {
+        event.preventDefault();
         const vet = localStorage.getItem("__Vet_correctId");
         const appointmentInfos = {
-            date: date,
-            startsAt: date + ' ' + startsAt,
-            endsAt: date + ' ' + startsAt,
-            description: description,
-            veterinaryId: parseInt(vet, 10),
-            petId: petId,
+          date: date,
+          startsAt: date + ' ' + startsAt,
+          endsAt: date + ' ' + startsAt,
+          description: description,
+          veterinaryId: parseInt(vet, 10),
+          petId: petId,
         }
-
-        console.log(appointmentInfos);
-
-        const addAppointment = await appointmentAdd(appointmentInfos)
+        const addAppointment = await appointmentAdd(appointmentInfos);
         console.log(addAppointment);
-
-    }
+      }
+      
 
     function handlePetSelection(pet) {
         setPetName(pet.name);
@@ -93,7 +92,7 @@ export const Appointment = () => {
       }
     
     return (
-    <section id='buttonCanceled' className={` md:w-3/4 border-4 border-[#9ED1B7] rounded-lg overflow-auto m-10 bg-white ${classButton}`}>
+    <section id='buttonCanceled' className="w-full m-10 bg-black" >
         <form onSubmit={handleSubmit(submitAppointment)} className=" flex justify-start w-full">
             <div className='p-2 md:p-20  w-full'>
                 <h1 className='flex justify-start text-3xl md:text-5xl font-semibold pt-2 md:pt-10'>Selecione o animal</h1>
@@ -162,17 +161,20 @@ export const Appointment = () => {
                     <div className='flex mt-2 md:mt-10 justify-between gap-5'>
                         <button className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button"
                             onClick={
-                                () => {
-                                    if (document.getElementById("buttonCanceled").classList.contains("hidden")) {
-                                        console.log("teste");
-                                    } else {
-                                        document.getElementById("buttonCanceled").classList.add("hidden")
-                                    }
-                                }
+                                 () => 
+                                //{
+                                //     if (document.getElementById("buttonCanceled").classList.contains("hidden")) {
+                                //         console.log("teste");
+                                //     } else {
+                                //         document.getElementById("buttonCanceled").classList.add("hidden")
+                                //     }
+                                // }
+                                props.onClick
                             }>
                             Cancelar
                         </button>
-                        <button type="submit" className='md:ml-56 p-2 w-32 md:w-56 text-center md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'>
+                        <button type="submit" className='md:ml-56 p-2 w-32 md:w-56 text-center md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'
+                            onClick={submitAppointment}>
                             Marcar
                         </button>
                     </div>

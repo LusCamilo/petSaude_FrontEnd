@@ -3,10 +3,25 @@ import iconVet from './img/iconVet.png'
 import * as Dialog from '@radix-ui/react-dialog';
 import { Appointment } from './appointment/appointment';
 import '../../profile/pet/css/pet.css'
+import { AppointmentModal } from './appointment/appointmentModal';
+import Modal from 'react-modal';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    border: '4px solid #9ED1B7',
+    borderRadius: '10px',
+    width: '75vw',
+    height: '50vh',
+  },
+};
 
-//import TextTruncate from 'react-text-truncate';
-
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 
 
 export const TopContainer = (props) => {
@@ -32,13 +47,39 @@ export const TopContainer = (props) => {
 
     }
 
+    let subtitle;
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+  
+    function openModal() {
+      setIsOpen(true);
+    }
+  
+    function closeModal() {
+        setIsOpen(false);
+    }
 
+    function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      //subtitle.style.color = '#f00';
+    }
+    const [estadoApp, setEstadoApp] = useState()
+    localStorage.setItem('OpenOrClose', false)
+    
+
+    function handleSaveAppointment() {
+        // salvar consulta
+        openModal();
+    }
+
+    function handleCancelAppointment() {
+        closeModal();
+    }
 
 //localStorage.getItem('__register_type') === "professional"
     if (1 == 1) {
         
         return (
-            <div className='flex flex-col items-center md:px-44'>
+            <div id='topHeader' className='flex flex-col items-center md:px-44'>
                 <img src={props.profilePhoto} className='w-full md:max-h-[400px] rounded-b-lg ' />
                 <div className='self-start w-full z-10  mt-[-120px] md:mt-[-80px] px-9 md:flex'>
                 <img src={props.userPhoto} className="flex relative pl-24 sm:pl-56 md:pl-0 md:border-4 h-28  md:h-48 md:border-white border-solid rounded-full" />
@@ -68,22 +109,22 @@ export const TopContainer = (props) => {
                         </div>
                       
                       
-                        <Dialog.Root>
-                        <Dialog.Trigger asChild>
-                        <div className='pt-4 md:pt-0'>
-                            <button className='bg-lime-500 rounded-md px-3 py-2 text-2xl w-80 text-center md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-14'>
-                                Agendar uma consulta
-                            </button>
-                        </div>
-                         
-                        </Dialog.Trigger>
-                        <Dialog.Portal class="overflow-auto">
-                        <Dialog.Overlay className="DialogOverlay overflow-auto"/>
-                        <Dialog.Content className="DialogContent" class='cardConsulta overflow-auto' >
-                            <Appointment class="overflow-auto"/>
-                        </Dialog.Content>
-                        </Dialog.Portal>
-                    </Dialog.Root>
+
+                <div>
+                    <button className='bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10' onClick={openModal}>Agendar uma consulta</button>
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onAfterOpen={afterOpenModal}
+                        onRequestClose={closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                        
+                    >
+                        <form className='w-full'>
+                            <Appointment onSave={handleSaveAppointment} onCancel={handleCancelAppointment} />
+                        </form>
+                    </Modal>
+                    </div>
                        
                  </div>
                 </div>
