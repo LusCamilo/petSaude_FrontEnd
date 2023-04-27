@@ -9,7 +9,7 @@ export const WebFunction = () => {
         <div className='flex flex-col justify-center items-center  bg-[#9ED1B7] pb-20 pt-14'>
             <h2 className="text-3xl sm:text-5xl font-semibold sm:pt-20 text-center md:w-1/3 ">A PetSaúde tem tudo que você precisa para manter a saúde de seu Pet em dia!</h2>
         <div className='md:flex flex-row justify-center sm:flew-col gap-32 sm:pt-20 md:p-20 w-full'>
-                <div className='hidden md:flex flex-col bg-[#78A890] sm:w-1/5 h-80 text-center drop-shadow-lg rounded-lg p-5 '>
+                <div className='hidden md:flex flex-col bg-[#78A890] md:w-1/3 h-full xl:w-96 text-center drop-shadow-lg rounded-lg p-5 '>
                     <div className='flex gap-5'>
                         <img src={chat}></img>
                         <h3 className='text-white text-2xl pt-5'>Temos um chat exclusivo!</h3>
@@ -19,7 +19,7 @@ export const WebFunction = () => {
                     e ter atualizações sobre seu pet.
                     </p>
                 </div>
-                <div className='bg-[#78A890] w-4/5 md:w-1/5 h-80 text-center drop-shadow-lg rounded-lg p-5 mt-14 md:mt-0 ml-10 md:ml-0'>
+                <div className='bg-[#78A890] w-4/5 md:w-1/3 h-full xl:w-96 text-center drop-shadow-lg rounded-lg p-5 mt-14 md:mt-0 ml-10 md:ml-0'>
                     <div className='flex gap-3'>
                         <img src={calendary}></img>
                         <h3 className='text-white md:text-2xl pt-5'>Pesquise e encontre nossas diversas opções!</h3>
@@ -29,7 +29,7 @@ export const WebFunction = () => {
                                                     o melhor atendimento perto de você.
                     </p>
                 </div>
-                <div className='hidden md:flex flex-col bg-[#78A890] sm:w-1/5 h-80 text-center drop-shadow-lg rounded-lg p-5 mt-14 md:mt-0'>
+                <div className='hidden md:flex flex-col bg-[#78A890] md:w-1/3 xl:w-96 h-full  text-center drop-shadow-lg rounded-lg p-5 mt-14 md:mt-0'>
                     <div className='flex gap-2'>
                             <img src={gps}></img>
                             <h3 className='text-white text-2xl pt-5'>Lembre-se de agendamentos e receba notificações!</h3>

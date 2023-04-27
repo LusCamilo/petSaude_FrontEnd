@@ -22,11 +22,21 @@ export const SearchProfessional = () => {
 
   const setMudarFiltro = (value) => {
     setOndeProcurar(value)
+    
     onSearchIt({ search:  inputSearch, searchIt: value})
   };
 
+  function citySearch() {
+    setFiltro("city");
+    setVets([]);
+    onSearchIt({ search:  inputSearch})
+  }
+
 const [umCorteRapidao, setUmCorteRapidao] = useState('')
+
+//const [filtro, setFiltro] = useState("userName");
   const onSearch = async (data) => {
+    localStorage.setItem("__Vet_Search", data.search)
     try {
       if (data.search == "") {
         {
@@ -64,6 +74,8 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
     }
   };
 
+
+
   const onSearchIt = async (data) => {
     try {
       if (data.search == "") {
@@ -93,7 +105,6 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
   };
 
   useEffect(() => {
-
     onSearch({ search: inputSearch });
   }, []);
 
@@ -109,7 +120,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         description="Temos os melhores e mais confiaveis profissionais em nosso site."
       />
       <div className={`p-20 container mx-auto px-4 flex flex-col gap-10 min-h-screen`}>
-        <div className="flex flex-row w-full" >
+        <div className="flex flex-col items-center md:flex-row w-full" >
           <div className="flex flex-row gap-2 w-full border-4 border-black rounded-lg items-center align-middle  content-center mr-4">
           <img className="w-10" src={search} />
           <form
@@ -137,7 +148,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                       </label>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("city")} name="city" defaultValue="city" id="r2">
+                      <RadioGroup.Item className="RadioGroupItem" onClick={citySearch} name="city" defaultValue="city" id="r2">
                       <RadioGroup.Indicator className="RadioGroupIndicator" />
                       </RadioGroup.Item>
                       <label className="Label" htmlFor="r2">
@@ -175,11 +186,10 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                 id={vet.id}
                 userName={vet.userName}
                 nome={vet.personName}
-                idade="24"
                 cep={vet.Address.cep}
                 formacao={vet.formation}
                 instituicao={vet.institution}
-               // especializacao={vet.VeterinaryEspecialities[0].specialities.name}
+                especializacao={vet.VeterinaryEspecialities[0].specialities.name}
                 image={vet.profilePhoto}
                 dateStart = {vet.startActingDate}
                 umCorteRapido={umCorteRapidao}

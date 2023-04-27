@@ -17,12 +17,13 @@ export const CardProfessionals = (props) => {
             console.log('a');
             setEffects('flex')
         } else{
-            if (pesquisa.toLowerCase() === city.toLowerCase()) {
+            if (city.toLowerCase().includes(pesquisa.toLowerCase())) {
                 console.log(city);
                 setEffects('flex')
             } else {
                 setEffects('hidden')
             }
+            
         }
     }, [props.umCorteRapido, addressInfo.cidade]);;
 
@@ -44,12 +45,15 @@ export const CardProfessionals = (props) => {
       }, [props.cep]);
 
     // let especialista
-
-    // if (props.especializacao == null || props.especializacao == undefined || props.especializacao == "") {
-    //     especialista = ""
-    // } else {
-    //     especialista = props.especializacao
-    // }
+    const [especializacao, setEspecializacao] = useState('')
+    useEffect(() => {
+        console.log(props.especializacao);
+        if (props.especializacao == null || props.especializacao == undefined || props.especializacao == "") {
+          setEspecializacao('')
+        } else {
+          setEspecializacao(props.especializacao)
+        }
+      }, [props.especializacao])
 
     function handleClick(event, id) {
         
@@ -87,7 +91,7 @@ export const CardProfessionals = (props) => {
                         </div>
                         <div className="flex flex-row gap-2 text-3xl w-full">
                             <p className="font-bold">Especialização: </p>
-                            {/* <p>{especialista}</p> */}
+                            <p>{especializacao}</p>
                         </div>
                     </div>
                     <div className="flex w-56 justify-end items-end">

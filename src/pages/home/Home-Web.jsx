@@ -21,6 +21,7 @@ export const HomeWeb = () => {
             <BlogPreview/>
             <AppPreview/>
             <Footer/>
+
         </>
     );
 }
