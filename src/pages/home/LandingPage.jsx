@@ -25,6 +25,8 @@ export const LandingPage = () => {
 		}
 	  }
 
+	  localStorage.setItem("__Vet_Search", '');
+
 	return (
 		<section className="">
 			<HeaderWeb />

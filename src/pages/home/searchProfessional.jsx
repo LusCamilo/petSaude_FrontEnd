@@ -22,11 +22,21 @@ export const SearchProfessional = () => {
 
   const setMudarFiltro = (value) => {
     setOndeProcurar(value)
+    
     onSearchIt({ search:  inputSearch, searchIt: value})
   };
 
+  function citySearch() {
+    setFiltro("city");
+    setVets([]);
+    onSearchIt({ search:  inputSearch})
+  }
+
 const [umCorteRapidao, setUmCorteRapidao] = useState('')
+
+//const [filtro, setFiltro] = useState("userName");
   const onSearch = async (data) => {
+    localStorage.setItem("__Vet_Search", data.search)
     try {
       if (data.search == "") {
         {
@@ -64,6 +74,8 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
     }
   };
 
+
+
   const onSearchIt = async (data) => {
     try {
       if (data.search == "") {
@@ -93,7 +105,6 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
   };
 
   useEffect(() => {
-
     onSearch({ search: inputSearch });
   }, []);
 
@@ -137,7 +148,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                       </label>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("city")} name="city" defaultValue="city" id="r2">
+                      <RadioGroup.Item className="RadioGroupItem" onClick={citySearch} name="city" defaultValue="city" id="r2">
                       <RadioGroup.Indicator className="RadioGroupIndicator" />
                       </RadioGroup.Item>
                       <label className="Label" htmlFor="r2">

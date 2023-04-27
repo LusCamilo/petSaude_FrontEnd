@@ -32,13 +32,13 @@ export const HomePage = () => {
           <Link to="/home">Landing Page</Link>
           <Link to="/home/aboutUs">About Us</Link>
           <Link to="/profile/pet/Add">Pet add</Link>
+          <Link to="/home/searchProfessionals">Procurar profissionais</Link>
         </div>
         <div className="flex flex-col gap-5 content-center bg-purple-600">
           <p className="font-bold text-2xl">Tela em produção</p>
           <Link to="/profile/upgradeUser">Upgrade User</Link>
           <Link to="/profile/pet/Config"> Pet Config</Link>
           <Link to="/profile/editProfile">editProfile</Link>
-          <Link to="/home/searchProfessionals">Procurar profissionais</Link>
           <Link to="/profile/veterinary">profile veterinary</Link>
           <Link to="/home/Home-Web">Home principal</Link>
         </div>
