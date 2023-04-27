@@ -18,7 +18,7 @@ export const AppPreview = () => {
                             a qualquer hora e em qualquer lugar.
                             </p>
                     </div>
-                    <div className='flex pl-5  gap-10 w-full pt-10'>
+                    <div className='flex gap-10 w-full pt-10'>
                         <img className='w-32 sm:w-56' src={Google}></img>
                         <img className='w-32 sm:w-56 border-black rounded-xl' src={Apple}></img>
                     </div>

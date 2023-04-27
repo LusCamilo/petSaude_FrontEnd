@@ -8,7 +8,7 @@ import "./css/LandingPage.css";
 import { ListItem } from "./resource/searchArea";
 import { useEffect, useState } from 'react';
 import { FilterByName } from "./filterName";
-import Local from "../../assets/svg/Gps.svg"
+import Local from "../../assets/svg/localizacao.svg";
 import { getUsers} from "../../services/integrations/filters";
 import { useForm } from 'react-hook-form';
 

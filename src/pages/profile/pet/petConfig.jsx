@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { PetHeader } from './petHeader';
 import addMais from "../resource/img/AddMais.png"
@@ -19,12 +19,64 @@ const InfosUser = async () => {
 
     const response = await getPet(localStorage.getItem('__pet_id'))
 
-    return console.log(response);
+    // {
+    //     "id": 10,
+    //     "name": "teste",
+    //     "birthDate": "2023-04-14T00:00:00.000Z",
+    //     "photo": "",
+    //     "microship": false,
+    //     "petSize": "MEDIUM",
+    //     "petGender": "M",
+    //     "petSpecieId": 5,
+    //     "ownerId": 5,
+    //     "petSpecie": {
+    //         "id": 5,
+    //         "name": "teste"
+    //     }
+    // }
+
+    return {
+        id: response.id,
+        name: response.name,
+        birthDate: response.birthDate,
+        photo: response.photo,
+        microship: response.microship,
+        petSize: response.petSize,
+        petGender: response.petGender,
+        petSpecie: {
+            idSpecie: response.petSpecie.id,
+            nameSpecie: response.petSpecie.name
+        }
+    }
 }
 
-InfosUser()
 
 export const PetConfig = (props) => {
+
+
+    const [infos, setInfos] = useState({})
+
+    useEffect(() => {
+        async function fetchData() {
+
+            const allInfosPet = (await InfosUser())
+            setInfos(
+                {
+                    id: allInfosPet.id,
+                    name: allInfosPet.name,
+                    birthDate: allInfosPet.birthDate,
+                    photo: allInfosPet.photo,
+                    microship: allInfosPet.microship,
+                    petSize: allInfosPet.petSize,
+                    petGender: allInfosPet.petGender,
+                    petSpecieId: allInfosPet.petSpecieId,
+                    ownerId: allInfosPet.ownerId,
+
+                }
+            )
+        }
+        fetchData()
+    }, [])
 
     /*yarn add moment
     yarn add ms
