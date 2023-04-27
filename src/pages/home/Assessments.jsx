@@ -10,7 +10,7 @@ export const Assessments = () => {
         <div className='flex flex-col justify-center items-center'>
             <h2 className="text-3xl xl:text-5xl text-center font-semibold pt-20 sm:w-1/3 ">Avaliações de nosso clientes</h2>
             <div className='md:flex flex-row justify-center sm:flew-col gap-32 pt-10 sm:pt-20 md:p-20 w-full'>
-                    <div className='hidden md:flex flex-col items-center border-4 border-black sm:w-1/6 h-full text-center drop-shadow-lg rounded-2xl p-5 '>
+                    <div className='hidden md:flex flex-col items-center border-4 border-black md:w-96 h-full text-center drop-shadow-lg rounded-2xl p-5 '>
                         
                         <img className='w-28 m-5' src={Girl}></img>
                         <div className='flex flex-col justify-start items-start'>
@@ -22,7 +22,7 @@ export const Assessments = () => {
 
                         <img className='pt-0 md:pt-0 xl:pt-8' src={Star}></img>
                     </div>
-                    <div className='flex flex-col items-center border-4 ml-14 md:ml-0 border-black w-3/4 md:w-1/6 h-full text-center drop-shadow-lg rounded-2xl p-5 '>
+                    <div className='flex flex-col items-center border-4 ml-14 md:ml-0 border-black w-3/4 md:w-96 h-full text-center drop-shadow-lg rounded-2xl p-5 '>
                         
                         <img className='w-28 m-5' src={Boy}></img>
                         <div className='flex flex-col justify-center items-start'>
@@ -34,7 +34,7 @@ export const Assessments = () => {
 
                         <img className='pt-0 md:pt-40 xl:pt-14' src={Star}></img>
                     </div>
-                    <div className='hidden md:flex flex-col items-center border-4 border-black sm:w-1/6 h-full text-center drop-shadow-lg rounded-2xl p-5 '>
+                    <div className='hidden md:flex flex-col items-center border-4 border-black md:w-96 h-full text-center drop-shadow-lg rounded-2xl p-5 '>
                         
                         <img className='w-28 m-5' src={Lady}></img>
                         <div className='flex flex-col justify-center items-start'>

@@ -120,7 +120,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         description="Temos os melhores e mais confiaveis profissionais em nosso site."
       />
       <div className={`p-20 container mx-auto px-4 flex flex-col gap-10 min-h-screen`}>
-        <div className="flex flex-row w-full" >
+        <div className="flex flex-col items-center md:flex-row w-full" >
           <div className="flex flex-row gap-2 w-full border-4 border-black rounded-lg items-center align-middle  content-center mr-4">
           <img className="w-10" src={search} />
           <form
