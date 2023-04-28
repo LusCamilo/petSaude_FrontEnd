@@ -6603,6 +6603,7 @@
     "array-includes" "^3.1.5"
     "object.assign" "^4.1.3"
 
+<<<<<<< HEAD
 "jwt-decode@^3.1.2":
   "integrity" "sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A=="
   "resolved" "https://registry.npmjs.org/jwt-decode/-/jwt-decode-3.1.2.tgz"
@@ -6633,6 +6634,33 @@
   "resolved" "https://registry.npmjs.org/language-subtag-registry/-/language-subtag-registry-0.3.22.tgz"
   "version" "0.3.22"
 
+=======
+"kdbush@^3.0.0":
+  "integrity" "sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew=="
+  "resolved" "https://registry.npmjs.org/kdbush/-/kdbush-3.0.0.tgz"
+  "version" "3.0.0"
+
+"kind-of@^6.0.2":
+  "integrity" "sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw=="
+  "resolved" "https://registry.npmjs.org/kind-of/-/kind-of-6.0.3.tgz"
+  "version" "6.0.3"
+
+"kleur@^3.0.3":
+  "integrity" "sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w=="
+  "resolved" "https://registry.npmjs.org/kleur/-/kleur-3.0.3.tgz"
+  "version" "3.0.3"
+
+"klona@^2.0.4", "klona@^2.0.5":
+  "integrity" "sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA=="
+  "resolved" "https://registry.npmjs.org/klona/-/klona-2.0.6.tgz"
+  "version" "2.0.6"
+
+"language-subtag-registry@~0.3.2":
+  "integrity" "sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w=="
+  "resolved" "https://registry.npmjs.org/language-subtag-registry/-/language-subtag-registry-0.3.22.tgz"
+  "version" "0.3.22"
+
+>>>>>>> c497a41 (28/04/2023)
 "language-tags@=1.0.5":
   "integrity" "sha512-qJhlO9cGXi6hBGKoxEG/sKZDAHD5Hnu9Hs4WbOY3pCWXDhw0N8x1NenNzm2EnNLkLkk7J2SdxAkDSbb6ftT+UQ=="
   "resolved" "https://registry.npmjs.org/language-tags/-/language-tags-1.0.5.tgz"
