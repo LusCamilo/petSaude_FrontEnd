@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import Monkey from '../../../../assets/svg/monkey.svg';
 import Dog from '../../../../assets/svg/iconDog.svg';
 import { appointmentAdd } from '../../../../services/integrations/appointment';
-
-
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 export const Appointment = () => {
 
