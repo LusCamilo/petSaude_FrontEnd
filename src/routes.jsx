@@ -32,9 +32,7 @@ import { Appointment } from "./pages/profile/resource/appointment/appointment";
 import { AppointmentView } from "./pages/profile/resource/appointment/appointmentView";
 import { AppointmentMenu } from "./pages/profile/resource/appointment/appointmentMenu";
 import { SearchProfessional } from "./pages/home/searchProfessional";
-
-
-
+import { AppointmentAsk } from "./pages/profile/resource/appointment/appointments/appointmentAsk";
 
 export const Rotas = () => {
   return (
@@ -72,7 +70,8 @@ export const Rotas = () => {
             <Route path="/profile/appointment" element={<Appointment />} />
             <Route path="/profile/appointmentView" element={<AppointmentView />} />
             <Route path="/profile/appointmentMenu" element={<AppointmentMenu />} />
-            <Route path="/home/searchProfessionals" element={<SearchProfessional />} /> 1 + 1 = 1 + 1
+            <Route path="/home/searchProfessionals" element={<SearchProfessional />} />
+            <Route path="/profile/AppointmentAsk" element={<AppointmentAsk />} />
         </Routes>
     </Router>
 
