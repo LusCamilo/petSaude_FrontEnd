@@ -274,7 +274,7 @@ export const UpgradeUser = () => {
                             <div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
                                 <button className='flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
                                     deleteClient(localStorage.getItem('__user_JWT'))
-                                    document.location.href = '/login'
+                                    // document.location.href = '/login'
                                 }}>
                                     <img src={lixeira} className='h-full' />
                                     Excluir perfil
@@ -282,11 +282,6 @@ export const UpgradeUser = () => {
                             </div>
                         </>
                     }
-
-
-
-
-
                 </main>
             </>
         );

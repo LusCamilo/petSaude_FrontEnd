@@ -66,15 +66,13 @@ export const PetConfig = (props) => {
     const { register, handleSubmit, formState: errors, setValue } = useForm()
 
     const [selectedFile, setSelectedFile] = useState('');
-
     const [tamanho, setTamanho] = useState('')
-
     const [name, setName] = useState('')
+    const [sexo, setSexo] = useState('')
     function newName(event) {
         setName(event.target.value);
     }
 
-    const [sexo, setSexo] = useState('')
 
     const [dateBorn, setDateBorn] = useState()
     function newDateBorn(event) {
@@ -96,11 +94,11 @@ export const PetConfig = (props) => {
         setSpecie(infos.specie ? infos.specie : '')
         setTamanho(infos.size ? infos.size : '')
         setSexo(infos.gender ? infos.gender : '')
+        setDateBorn(infos.birthDate ? infos.birthDate : '')
 
         async function fetchData() {
 
             const allInfosPet = (await InfosUser())
-
 
             const dataFormation = allInfosPet.birthDate.split("T")
             let data = dataFormation[0].split("-")
@@ -123,13 +121,12 @@ export const PetConfig = (props) => {
 
 
         fetchData()
-    }, [infos.photo, infos.name, infos.specie, infos.size, infos.gender])
+    }, [infos.photo, infos.name, infos.specie, infos.size, infos.gender, infos.birthDate])
 
     const [petInfosDisable, petInfosDisableState] = useState({
         disable: true,
         class: ' text-slate-400'
     })
-
     const StyledContent = styled(DropdownMenu.Content, {
         minWidth: 130,
         backgroundColor: 'white',
@@ -152,7 +149,6 @@ export const PetConfig = (props) => {
     const StyledArrow = styled(DropdownMenu.Arrow, {
         fill: 'white',
     });
-
     const handleFileInputChange = (event) => {
         // console.log(event.target.files[0])
         const file = event.target.files[0]
@@ -273,24 +269,30 @@ export const PetConfig = (props) => {
                         <Dialog.Trigger asChild>
                             <button asChild onClick={() => {
 
+                                const data = dataFormation(dateBorn)
+
+                                let tamanhoPut
+
+                                if (tamanho == "Grande") 
+                                    tamanhoPut = "BIG"
+                                else if (tamanho == "Médio")
+                                    tamanhoPut = "MEDIUM"
+                                else 
+                                    tamanhoPut = "SMALL"
+                                
                                 let infosPet = {
                                     name: name,
-                                    birthDate: dateBorn,
+                                    birthDate: data,
                                     photo: selectedFile,
                                     microship: infos.microship,
-                                    size: tamanho,
+                                    size: tamanhoPut,
                                     gender: sexo,
                                     ownerID: infos.ownerID,
                                     specie: specie,
                                 }
 
                                 const { id } = infos
-                                // const data = dataFormation(infosPet.birthDate)
-                                // infosPet.birthDate = data
-
-                                console.log(infosPet);
-
-                                // petUpdate(id, infosPet)
+                                petUpdate(id, infosPet)  
                             }}>
                                 <img src={certo} alt="" />
                             </button>

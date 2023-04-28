@@ -21,7 +21,7 @@ const InfosUser = async () => {
         return {
             id: response.user.id,
             userName: response.user.userName,
-            personName: response.personName,
+            personName: response.user.personName,
             profilePhoto: response.user.profilePhoto,
             profileBannerPhoto: response.user.profileBannerPhoto,
             email: response.user.email,
@@ -45,11 +45,21 @@ const InfosUser = async () => {
         }
 
     }
-
-
 }
 
 export const EditProfile = () => {
+
+    function handleChildNameChange(value) {
+        console.log("nome:", value);
+    }
+    
+    function handleChildEmailChange(value) {
+        console.log("email", value);
+    }
+
+    function handleChildPasswordChange(value) {
+        console.log("password", value);
+    }
 
     const [infos, setInfos] = useState({})
 
@@ -58,11 +68,9 @@ export const EditProfile = () => {
 
             const allInfosUser = (await InfosUser())
 
-            let userName = allInfosUser.userName
-
             setInfos(
                 {
-                    userName: userName,
+                    userName: allInfosUser.userName,
                     personName: allInfosUser.personName,
                     profilePhoto: allInfosUser.profilePhoto,
                     profileBannerPhoto: allInfosUser.profileBannerPhoto,
@@ -70,22 +78,26 @@ export const EditProfile = () => {
                     password: allInfosUser.password
                 }
             )
-
-
         }
         fetchData()
-    }, [])
+    }, [infos.userName, infos.email, infos.password, infos.personName, infos.profilePhoto, infos.profileBannerPhoto])
 
 
     return (
         <>
             <HeaderEditProfile name={infos.personName} />
             <div className="flex flex-col gap-y-3 items-center justify-center h-full pt-[80px] px-[10%] ">
-                <TopContainer />
-                <InfosProfile userName={infos.userName} completName={infos.personName} email={infos.email} password={infos.password} photoUser={infos.profilePhoto} />
+                <TopContainer profileBannerPhoto={infos.profileBannerPhoto}/>
+                <InfosProfile
+                    onNameChange={handleChildNameChange}
+                    onEmailChange={handleChildEmailChange}
+                    onPasswordChange={handleChildPasswordChange}
+                    userName={infos.userName} completName={infos.personName} email={infos.email} password={infos.password} photoUser={infos.profilePhoto} 
+                />
             </div>
-
             <button className=' hidden md:flex  md:fixed md:end-40  self-end rounded-lg bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={() => {
+
+                console.log(infos);
 
             }}>
                 <img src={check} className='w-10 h-10 my-5 mx-5' />
