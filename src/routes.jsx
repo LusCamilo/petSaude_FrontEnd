@@ -29,7 +29,10 @@ import { SegurancaInfo } from "./pages/profile/resource/editUser/responseUser/se
 import { AddressInfos } from "./pages/profile/resource/editUser/responseUser/address";
 import { EditProfile } from "./pages/profile/editProfile";
 import { Appointment } from "./pages/profile/resource/appointment/appointment";
+import { AppointmentView } from "./pages/profile/resource/appointment/appointmentView";
+import { AppointmentMenu } from "./pages/profile/resource/appointment/appointmentMenu";
 import { SearchProfessional } from "./pages/home/searchProfessional";
+
 
 
 
@@ -67,6 +70,8 @@ export const Rotas = () => {
             <Route path="/profile/editSecurity" element={<SegurancaInfo />} />
             <Route path="/profile/editProfissionais" element={<ProfissonaisInfos />} />
             <Route path="/profile/appointment" element={<Appointment />} />
+            <Route path="/profile/appointmentView" element={<AppointmentView />} />
+            <Route path="/profile/appointmentMenu" element={<AppointmentMenu />} />
             <Route path="/home/searchProfessionals" element={<SearchProfessional />} /> 1 + 1 = 1 + 1
         </Routes>
     </Router>
