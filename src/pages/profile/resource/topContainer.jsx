@@ -121,7 +121,7 @@ export const TopContainer = (props) => {
                         
                     >
                         <form className='w-full'>
-                            <Appointment onSave={handleSaveAppointment} onCancel={handleCancelAppointment} />
+                            <Appointment  onCancel={handleCancelAppointment} />
                         </form>
                     </Modal>
                     </div>

@@ -11,10 +11,15 @@ import Local from "../../assets/svg/localizacao.svg";
 import { getUsers} from "../../services/integrations/filters";
 import { useForm } from 'react-hook-form';
 import { PetHeader } from "../profile/pet/petHeader";
+import jwt_decode from "jwt-decode";
 
 export const LandingPage = () => {
 	//https://www.luiztools.com.br/post/tutorial-listagem-com-busca-em-reactjs/
 	//<ListItem Name="Yasmini" bairro="Novo Osasco" />
+
+	const token = localStorage.getItem('__user_JWT')
+	const decoded = jwt_decode(token);
+	console.log(decoded); 
 
 	function handleKeyPress(inputValue, event, whenSearch) {
 		if (event.key === 'Enter') {
