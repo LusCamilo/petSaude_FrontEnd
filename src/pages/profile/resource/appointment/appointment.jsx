@@ -140,8 +140,8 @@ export const Appointment = (props) => {
             </div>
             <div className=' w-full'>
                 <div className=' p-4'>
-                    <label htmlFor="descricao" className="block mb-2">Descrição:</label>
-                    <textarea id="descricao" name="descricao" className="block border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" rows="4" onChange={newDescription}></textarea>
+                    <label htmlFor="descricao" className=" mb-2">Descrição:</label>
+                    <textarea id="descricao" name="descricao" className=" border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" rows="4" onChange={newDescription}></textarea>
                 </div>
                 <div className=''>
                     <h2 className='hidden md:flex md:text-5xl font-semibold pl-20'>Selecione a data e a hora</h2>

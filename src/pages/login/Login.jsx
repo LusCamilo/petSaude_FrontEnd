@@ -12,9 +12,10 @@ export function Login() {
     const submitForm = async data => {
         // TODO: AUTENTICAÇÃO
         const response = await login(data)
+        console.log(response);
         if (response.token) {
             localStorage.setItem('__user_JWT', response.token)
-            document.location.href = '/home'
+            //document.location.href = '/home'
         } else alert(response.message)
         // if (validateForm(data)) console.log(data)
         // else return false

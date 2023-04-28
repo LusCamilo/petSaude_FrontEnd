@@ -29,7 +29,7 @@ export const SearchProfessional = () => {
   function citySearch() {
     setFiltro("city");
     setVets([]);
-    onSearchIt({ search:  inputSearch})
+   // onSearchIt({ search:  inputSearch})
   }
 
 const [umCorteRapidao, setUmCorteRapidao] = useState('')
