@@ -18,45 +18,37 @@ export const InfosProfile = (props) => {
         type: "password",
     })
 
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
 
-    const [form, setForm] = useState({
-        name: "",
-        email: "",
-    })
+    const [ infos, setInfos ] = useState({})
 
-    // useEffect( () => {
-    //     function fetchData() {
+    useEffect( () => {
+        function fetchData() {
+            setInfos({
+                userName: name,
+                email: email,
+                password: password
+            })
+        }
+        fetchData()
+    }, [])
 
-    //         fetchData()
-    //         setForm({
-    //             name: props.userName,
-    //             email: props.email,
-    //         })
-    //         setClassPassword({
-    //             class: "opacity-50 bg-white",
-    //             disabled: true,
-    //             type: "password",
-                
-    //         })
-    //         setPassword({
-    //             password: props.password
-    //         })
-    //     }
-    //      fetchData()
-    // }, [])
 
-    const handleNameChange = (event) => {
-        console.log(event.target.value);
-        setForm({ nome: event.target.value });
+    function handleNameChange(event){
+        const value = event.target.value;
+        props.onNameChange(value);
     }
-    const handleEmailChange = (event) => {
+    function handlePasswordChange (event){
         console.log(event.target.value);
-        setForm({ email: event.target.value });
+        const value = event.target.value;
+        props.onPasswordChange(value);
     }
-    const handlePasswordChange = (event) => {
+    function handleEmailChange(event){
         console.log(event.target.value);
-        setClassPassword({ password: event.target.value });
+        const value = event.target.value;
+        props.onEmailChange(value);
     }
 
     return (
@@ -64,19 +56,19 @@ export const InfosProfile = (props) => {
             <h2 className='text-5xl font-sans'>Informações do perfil</h2>
             <div className="flex justify-between flex-col md:flex-row gap-3 items-center">
                 <div className='flex flex-col'>
-                    <div className='flex flex-col text-xl text-[#A9A9A9]'>
+                    <div className='flex flex-col text-xl text-[#A9A9A9]'> 
                         Nome de usuario
-                        <input disabled={userInfosDisable.disable} onChange={handleNameChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} placeholder="nome de usuario" defaultValue={props.userName} id="userInfo" />
+                        <input disabled={userInfosDisable.disable} onChange={handleNameChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} placeholder="Seu Nome" defaultValue={props.userName} id="userInfo" />
                     </div>
                     <div className='hidden md:flex justify-between pt-4  flex-col alight-start text-2xl md:text-xl text-[#A9A9A9] '>
                         Senha
-                        <input type={passwordClass.type} id='password' disabled={passwordClass.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${passwordClass.class}`} placeholder="senha" defaultValue={password} />
+                        <input type={passwordClass.type} id='password' disabled={passwordClass.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${passwordClass.class}`} placeholder="Senha" defaultValue={props.password} />
                     </div>
                 </div>
                 <div>
                     <div className='flex flex-col text-xl text-[#A9A9A9] md:pb-24'>
                         E-mail
-                        <input disabled={userInfosDisable.disable} onChange={handleEmailChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} placeholder="Email" defaultValue={form.email} />
+                        <input disabled={userInfosDisable.disable} onChange={handleEmailChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} placeholder="Email" defaultValue={props.email} />
                     </div>
                 </div>
 
@@ -95,7 +87,6 @@ export const InfosProfile = (props) => {
                                     class: 'opacity-50 bg-white'
                                 })
                             }
-
                         }}>
                             <img src={lapis} />
                             Editar
@@ -125,8 +116,10 @@ export const InfosProfile = (props) => {
                 </div>
 
             </div>
-            <UserPhoto nome={form.name} completName={props.completName} />
+            <UserPhoto nome={infos.userName} completName={props.completName} userPhoto={props.photoUser} />
         </div>
     );
 }
+
+
 
