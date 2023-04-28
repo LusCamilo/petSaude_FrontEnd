@@ -62,6 +62,7 @@ export const AppointmentAsk = () => {
                                         <div>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                                 Tamanho
+                                                <input type="text" disabled placeholder={pedido.tamanho} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>
                                     </div>
@@ -69,11 +70,13 @@ export const AppointmentAsk = () => {
                                         <div className='w-full'>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                                 Sexo
+                                                <input type="text" disabled placeholder={pedido.sexo} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>   
                                         <div className='w-full'>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                             Idade
+                                            <input type="text" disabled placeholder={pedido.idade} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>                        
                                     </div>
@@ -81,6 +84,7 @@ export const AppointmentAsk = () => {
                                         <div className='w-full'>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                                 Espécie
+                                                <input type="text" disabled placeholder={pedido.especie} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>                   
                                     </div>
@@ -91,14 +95,14 @@ export const AppointmentAsk = () => {
                                         <div>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                             Data
-                                            
+                                            <input type="text" disabled placeholder={pedido.dataConsulta} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>
                                         
                                         <div>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                                 Descrição
-                                                {/* Limitar descrição para no máximo duas linhas  */}
+                                                <input type="text" disabled placeholder={pedido.descricao} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>
                                     </div>
@@ -106,7 +110,7 @@ export const AppointmentAsk = () => {
                                         <div className='w-full'>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                                 Horário
-                                                
+                                                <input type="text" disabled placeholder={pedido.horario} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>                        
                                     </div>
