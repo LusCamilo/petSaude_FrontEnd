@@ -12,6 +12,7 @@ export function Login() {
     const submitForm = async data => {
         // TODO: AUTENTICAÇÃO
         const response = await login(data)
+        console.log(response);
         if (response.token) {
             localStorage.setItem('__user_JWT', response.token)
             document.location.href = '/home'
