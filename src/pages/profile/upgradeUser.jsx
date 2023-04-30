@@ -31,7 +31,6 @@ const dataFormation = (date) => {
 
 }
 
-
 const InfosUser = async () => {
 
     if (localStorage.getItem('__user_isVet') == 'false') {
@@ -112,9 +111,6 @@ const getAddressFromZipCode = async (cep) => {
 export const UpgradeUser = () => {
 
     const [infos, setInfos] = useState({})
-
-
-
     
     useEffect(() => {
         async function fetchData() {

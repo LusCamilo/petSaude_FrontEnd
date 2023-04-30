@@ -4,12 +4,18 @@ import more from "../img/more.png"
 
 export const TopContainer = (props) => {
 
-    const [selectedFile, setSelectedFile] = useState(props.profilePhoto);
+    const [selectedFile, setSelectedFile] = useState(props.profileBannerPhoto);
 
     const handleFileInputChange = (event) => {
         console.log(event.target.files[0])
         const file = event.target.files[0]
-        setSelectedFile(URL.createObjectURL(file));
+        if (file) {
+            props.onProfileBannerPhotoChange(URL.createObjectURL(file));
+            setSelectedFile(URL.createObjectURL(file));
+        } else {
+            props.onProfileBannerPhotoChange(props.profileBannerPhoto);
+            setSelectedFile(props.profileBannerPhoto);
+        }
     }
 
     return (

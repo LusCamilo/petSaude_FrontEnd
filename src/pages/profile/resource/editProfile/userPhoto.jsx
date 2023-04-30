@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import more from "../img/more.png"
 
 
@@ -9,14 +9,14 @@ export const UserPhoto = (props) => {
     const handleFileInputChange = (event) => {
         console.log(event.target.files[0])
         const file = event.target.files[0]
-        setSelectedFile(URL.createObjectURL(file));
-    }
+        if (file) {
+            props.callBackProfilePhoto(URL.createObjectURL(file));
+            setSelectedFile(URL.createObjectURL(file));
+        } else {
+            props.callBackProfilePhoto(props.photoUser);
+            setSelectedFile(props.photoUser);
+        }
 
-    let formAll = {
-        userName: props.nome,
-        email: props.email,
-        password: props.password,
-        profilePhoto: props.profilePhoto
     }
 
     return (

@@ -1,5 +1,7 @@
 import {BASE_URL} from "../../lib/_base_url";
 
+const token = localStorage.getItem('__user_JWT')
+
 export async function registerUser(userInfos) {
     try {
         const url = `${BASE_URL}client`
@@ -93,6 +95,24 @@ export async function deleteVeterinary(id,token) {
     })
 
     return await response.json()
+    
+}
+
+export async function updateProfileInfosClient(infosProfile) {
+    try {
+        const url = `${BASE_URL}client/profile-infos`
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(infosProfile)
+        })
+        return await response.json()    
+    } catch (err) {
+        console.log(err.message);
+    }
     
 }
 

@@ -1,20 +1,7 @@
 //import axios from 'axios'
-const _BASE_URL = 'http://localhost:8080/'
+const _BASE_URL = 'https://pet-saude-api-tcc.azurewebsites.net/'
 
 export const login = async (loginInfos) => {
-
-    // const api = axios.create({
-    //     baseURL: _BASE_URL
-    // })
-
-    // api.post(
-    //  "signup", {
-    //     email: loginInfos.email, 
-    //     password: loginInfos.password
-    //  }
-    // ).then((response)=>{
-    //     console.log(response)
-    // })
 
     const url = `${_BASE_URL}signup`
     const response = await fetch(url, {

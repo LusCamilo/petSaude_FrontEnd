@@ -18,35 +18,31 @@ export const InfosProfile = (props) => {
         type: "password",
     })
 
-    const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-
-    const [ infos, setInfos ] = useState({})
-
-    useEffect( () => {
-        function fetchData() {
-            setInfos({
-                userName: name,
-                email: email,
-                password: password
-            })
-        }
-        fetchData()
-    }, [])
+    const [name, setName] = useState(props.userName)
 
 
-    function handleNameChange(event){
+    useEffect(() => {
+        setName(props.userName)
+        props.onNameChange(props.userName);
+        props.onPasswordChange(props.password);
+        props.onEmailChange(props.email);
+    }, [props.userName])
+
+
+
+
+    function handleNameChange(event) {
         const value = event.target.value;
+        setName(value)
         props.onNameChange(value);
     }
-    function handlePasswordChange (event){
-        console.log(event.target.value);
+
+    function handlePasswordChange(event) {
         const value = event.target.value;
         props.onPasswordChange(value);
     }
-    function handleEmailChange(event){
-        console.log(event.target.value);
+
+    function handleEmailChange(event) {
         const value = event.target.value;
         props.onEmailChange(value);
     }
@@ -56,7 +52,7 @@ export const InfosProfile = (props) => {
             <h2 className='text-5xl font-sans'>Informações do perfil</h2>
             <div className="flex justify-between flex-col md:flex-row gap-3 items-center">
                 <div className='flex flex-col'>
-                    <div className='flex flex-col text-xl text-[#A9A9A9]'> 
+                    <div className='flex flex-col text-xl text-[#A9A9A9]'>
                         Nome de usuario
                         <input disabled={userInfosDisable.disable} onChange={handleNameChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} placeholder="Seu Nome" defaultValue={props.userName} id="userInfo" />
                     </div>
@@ -116,7 +112,7 @@ export const InfosProfile = (props) => {
                 </div>
 
             </div>
-            <UserPhoto nome={infos.userName} completName={props.completName} userPhoto={props.photoUser} />
+            <UserPhoto nome={name} completName={props.completName} callBackProfilePhoto={props.onProfilePhotoChange} userPhoto={props.photoUser} />
         </div>
     );
 }
