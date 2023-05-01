@@ -10,9 +10,7 @@ export const CardProfessionals = (props) => {
 
     useEffect(() => {
         let pesquisa = props.umCorteRapido
-        console.log(pesquisa);
         let city = addressInfo ? addressInfo.cidade : "";
-        console.log(pesquisa);
         if (pesquisa == '' || pesquisa == null || pesquisa == undefined) {
             console.log('a');
             setEffects('flex')

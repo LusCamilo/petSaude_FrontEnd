@@ -6,12 +6,14 @@ import { getUsers, getAllVets } from "../../services/integrations/filters";
 import { useForm } from "react-hook-form";
 import search from "../../assets/svg/lupa.svg";
 import * as RadioGroup from '@radix-ui/react-radio-group';
+import axios from "axios";
 import './radixSearch.css'
 
 
 export const SearchProfessional = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [vets, setVets] = useState([]);
+  const [cidadeProcurar, setCidadeProcurar] = useState("");
   const [inputSearch, setInputSearch] = useState(
     localStorage.getItem("__Vet_Search") || ""
   );
@@ -37,6 +39,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
 //const [filtro, setFiltro] = useState("userName");
   const onSearch = async (data) => {
     localStorage.setItem("__Vet_Search", data.search)
+    console.log(ondeProcurar);
     try {
       if (data.search == "") {
         {
@@ -46,6 +49,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           setVets(json);
         }
       } else {
+        console.log(ondeProcurar);
         if (ondeProcurar !== "city") {
           let response = await getUsers(data.search, ondeProcurar);
           let result = response.response;
@@ -62,11 +66,22 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           setUmCorteRapidao('')
           setVets(json);
         } else {
+          console.log("abecedario");
           let response = await getAllVets();
+          const responseCity = await axios.get(
+            `https://viacep.com.br/ws/${data.search}/json/`
+          );
+          console.log(responseCity);
+          setCidadeProcurar(responseCity.data.localidade);
+          console.log(cidadeProcurar);
           let result = response.response;
           let json = Object.values(result);
           setUmCorteRapidao(inputSearch)
-          setVets(json);
+          let jsonFinal = json.filter(
+            (item) =>
+              item.city.toLowerCase().includes(cidadeProcurar.toLowerCase()) 
+          );
+          setVets(jsonFinal);
         }
       }
     } catch (error) {
@@ -84,20 +99,40 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         let json = Object.values(result);
         setVets(json);
       } else {
-        localStorage.setItem("__Vet_Search", data.search)
-        let response = await getUsers(data.search, data.searchIt);
-        let result = response.response;
-        let json
-        if (result == "Nenhum veterinário atende aos filtros de pesquisa") {
-          json = []
+        console.log(ondeProcurar);
+        if (ondeProcurar !== "city") {
+          let response = await getUsers(data.search, ondeProcurar);
+          let result = response.response;
+          let json
+          if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
+            json = []
+          } else {
+            json = result.filter(
+              (item) =>
+                item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
+                item.userName.toLowerCase().includes(data.search.toLowerCase())
+            );
+          }
+          setUmCorteRapidao('')
+          setVets(json);
         } else {
-          json = result.filter(
-            (item) =>
-              item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
-              item.userName.toLowerCase().includes(data.search.toLowerCase())
+          console.log("abecedario");
+          let response = await getAllVets();
+          const responseCity = await axios.get(
+            `https://viacep.com.br/ws/${data.search}/json/`
           );
+          console.log(responseCity);
+          setCidadeProcurar(responseCity.data.localidade);
+          console.log(cidadeProcurar);
+          let result = response.response;
+          let json = Object.values(result);
+          setUmCorteRapidao(inputSearch)
+          let jsonFinal = json.filter(
+            (item) =>
+              item.city.toLowerCase().includes(cidadeProcurar.toLowerCase()) 
+          );
+          setVets(jsonFinal);
         }
-        setVets(json);
       }
     } catch (error) {
       console.error(error);
@@ -189,7 +224,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                 cep={vet.Address.cep}
                 formacao={vet.formation}
                 instituicao={vet.institution}
-                especializacao={vet.VeterinaryEspecialities[0].specialities.name}
+                especializacao={""}
                 image={vet.profilePhoto}
                 dateStart = {vet.startActingDate}
                 umCorteRapido={umCorteRapidao}

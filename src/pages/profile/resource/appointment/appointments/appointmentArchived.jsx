@@ -1,10 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import './styleAppointment.css'
+import Modal from 'react-modal';
 
 export const AppointmentArchived = (props) => {
     
+    const customStyles = {
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '20px',
+        height: '60px',
+        backgroundColor: '#9ED1B7',
+        borderRadius: '10px',
+        };
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
     const [pedidos, setPedido] = useState([])
     const [quant, setQuant] = useState({Finalizado: 0, Cancelado: 0})
+    const [showModal, setShowModal] = useState(false);
+  
+    function openModal() {
+      setIsOpen(true);
+    }
+  
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      //subtitle.style.color = '#f00';
+    }
+
+
 
     useEffect(() => {
         setPedido([
@@ -47,6 +76,14 @@ export const AppointmentArchived = (props) => {
         ]);
 
       }, []);
+
+      const handleOpenModal = () => {
+        setShowModal(true);
+      };
+      
+      const handleCloseModal = () => {
+        setShowModal(false);
+      };      
 
       useEffect(() => {
         let cancelada = 0;
@@ -152,6 +189,64 @@ export const AppointmentArchived = (props) => {
                                     <h2 className='font-normal  flex justify-center sm:justify-start font-sans'>Status:</h2>
                                     <div className='text-[#49454F] font-normal text-lg font-sans'>{pedido.estado}</div>
                                 </div>
+                                <button 
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded"
+                                onClick={openModal}
+                                >
+                                Avaliar consulta
+                                </button>
+                                <Modal
+                                    isOpen={modalIsOpen}
+                                    onAfterOpen={afterOpenModal}
+                                    onRequestClose={closeModal}
+                                    style={customStyles}
+                                    contentLabel="Example Modal"
+                                >
+                                    <div className="bg-white p-4 ">
+                                        <h2 className="text-lg font-bold mb-2">Comentário</h2>
+                                        <form>
+                                        <div className="mb-3">
+                                            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+                                            Título do comentário
+                                            </label>
+                                            <input
+                                            id="email"
+                                            type="email"
+                                            placeholder="Amei"
+                                            autoFocus
+                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="comment" className="block text-gray-700 font-bold mb-2">
+                                            Assunto do comentário
+                                            </label>
+                                            <textarea
+                                            id="comment"
+                                            rows={3}
+                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            />
+                                        </div>
+                                        <div className="flex justify-end">
+                                            <button
+                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                            type="button"
+                                            onClick={closeModal}
+                                            >
+                                            Fechar
+                                            </button>
+                                            <button
+                                            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
+                                            type="submit"
+                                            onClick={closeModal}
+                                            >
+                                            Enviar
+                                            </button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    </Modal>
+
                             </div>
                         )})}
                 </div>   

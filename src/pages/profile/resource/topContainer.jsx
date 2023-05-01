@@ -64,12 +64,6 @@ export const TopContainer = (props) => {
     }
     const [estadoApp, setEstadoApp] = useState()
     localStorage.setItem('OpenOrClose', false)
-    
-
-    function handleSaveAppointment() {
-        // salvar consulta
-        openModal();
-    }
 
     function handleCancelAppointment() {
         closeModal();
