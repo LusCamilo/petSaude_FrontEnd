@@ -17,9 +17,9 @@ export const LandingPage = () => {
 	//https://www.luiztools.com.br/post/tutorial-listagem-com-busca-em-reactjs/
 	//<ListItem Name="Yasmini" bairro="Novo Osasco" />
 
-	const token = localStorage.getItem('__user_JWT')
-	const decoded = jwt_decode(token);
-	console.log(decoded); 
+	//const token = localStorage.getItem('__user_JWT')
+	//const decoded = jwt_decode(token);
+	//console.log(decoded); 
 
 	function handleKeyPress(inputValue, event, whenSearch) {
 		if (event.key === 'Enter') {
