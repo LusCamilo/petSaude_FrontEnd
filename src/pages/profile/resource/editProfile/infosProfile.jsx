@@ -26,10 +26,7 @@ export const InfosProfile = (props) => {
         props.onNameChange(props.userName);
         props.onPasswordChange(props.password);
         props.onEmailChange(props.email);
-    }, [props.userName])
-
-
-
+    }, [props.userName, props.profilePhoto])
 
     function handleNameChange(event) {
         const value = event.target.value;
@@ -112,7 +109,7 @@ export const InfosProfile = (props) => {
                 </div>
 
             </div>
-            <UserPhoto nome={name} completName={props.completName} callBackProfilePhoto={props.onProfilePhotoChange} userPhoto={props.photoUser} />
+            <UserPhoto nome={name} completName={props.completName} callBackProfilePhoto={props.onProfilePhotoChange} profilePhoto={props.profilePhoto} />
         </div>
     );
 }

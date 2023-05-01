@@ -4,7 +4,11 @@ import more from "../img/more.png"
 
 export const UserPhoto = (props) => {
 
-    const [selectedFile, setSelectedFile] = useState(props.photoUser);
+    const [selectedFile, setSelectedFile] = useState('');
+
+    useEffect(() => {
+        setSelectedFile(props.profilePhoto)
+    }, [props.profilePhoto])
 
     const handleFileInputChange = (event) => {
         console.log(event.target.files[0])
@@ -13,8 +17,8 @@ export const UserPhoto = (props) => {
             props.callBackProfilePhoto(URL.createObjectURL(file));
             setSelectedFile(URL.createObjectURL(file));
         } else {
-            props.callBackProfilePhoto(props.photoUser);
-            setSelectedFile(props.photoUser);
+            props.callBackProfilePhoto(props.props.profilePhoto);
+            setSelectedFile(props.props.profilePhoto);
         }
 
     }

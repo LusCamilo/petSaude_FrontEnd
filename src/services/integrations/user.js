@@ -116,5 +116,25 @@ export async function updateProfileInfosClient(infosProfile) {
     
 }
 
+export async function updatePersonalInfosClient(infosProfile) {
+    try {
+        const url = `${BASE_URL}client/personal-infos`
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(infosProfile)
+        })
+        return await response.json()    
+    } catch (err) {
+        console.log(err.message);
+    }
+    
+}
+
+
+
 
 

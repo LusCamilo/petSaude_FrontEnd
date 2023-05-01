@@ -155,8 +155,6 @@ export const UpgradeUser = () => {
 
     var largura = window.innerWidth
 
-
-
     if (largura <= 8) {
         return (
             <>
@@ -236,7 +234,6 @@ export const UpgradeUser = () => {
         )
 
     } else {
-
         return (
             <>
                 <Config personName={infos.personName} userName={infos.userName} profilePhoto={infos.profilePhoto} profileBannerPhoto={infos.profileBannerPhoto} className='hidden' />
@@ -269,8 +266,10 @@ export const UpgradeUser = () => {
                             <Pets personImage="http://s2.glbimg.com/wbweywCFLC0nCUeg67UbQZWhL7Eu36oRp_QAFsTkIqCqLLlE9GfCYsNrnTRPpEUO/i.glbimg.com/og/ig/f/original/2012/12/14/fabiana1.jpg" />
                             <div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
                                 <button className='flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
-                                    deleteClient(localStorage.getItem('__user_JWT'))
-                                    // document.location.href = '/login'
+                                    if (window.confirm('tem certeza que deseja excluir sua conta?')) {
+                                        deleteClient(localStorage.getItem('__user_JWT'))
+                                        document.location.href = '/login'
+                                    }
                                 }}>
                                     <img src={lixeira} className='h-full' />
                                     Excluir perfil
