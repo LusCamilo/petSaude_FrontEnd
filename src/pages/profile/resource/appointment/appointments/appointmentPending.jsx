@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './styleAppointment.css'
-import * as Dialog from '@radix-ui/react-dialog';
 
-export const AppointmentAsk = () => {
+export const AppointmentPeding = (props) => {
 
     const [pedidos, setPedido] = useState([])
     const [tutorStatus, setTutorStatus] = useState('hidden')
@@ -114,27 +112,6 @@ export const AppointmentAsk = () => {
                                         </div>                   
                                     </div>
                                 </div>
-                                <div className={`${tutorStatus} flex-row items-center content-center text-center text-6xl gap-4`}>
-                                    <img src={pedido.donoImg} alt="Imagem do pet" />
-                                    <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.dono}</h2>
-                                </div>
-                                <div className='flex flex-col sm:flex-row justify-between pr-20'>
-                                    <div className={`${tutorStatus} flex-row justify-start w-full`}>
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]' >
-                                                Nome
-                                                <input type="text" disabled placeholder={pedido.dono} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-                                            </label>
-                                        </div>
-                                        
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                                Telefone
-                                                <input type="text" disabled placeholder={pedido.telefone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
                                 <h2 className='font-normal  flex justify-center sm:justify-start font-sans'>Informações de consulta </h2>
                                 <div className='flex flex-col justify-between pr-20'>
                                     <div className='flex flex-row justify-start w-full sm:w-full '>
@@ -160,31 +137,12 @@ export const AppointmentAsk = () => {
                                         </div>                 
                                     </div>
                                 </div>
-                                <div className={`${tutorStatus} flex-col justify-center items-center content-center mb-2` }>
-                                    <h2>Confirmar consulta</h2>
-                                    <div className='w-1/3 flex justify-center'>
-                                        <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
-                                            Duracação
-                                            <input type="time" id="duracao" name="duracao" min="00:01" max="03:00" className='w-full' />
-                                        </label>
-                                    </div> 
-                                </div>
                                 <div className='flex flex-row justify-between'>
                                     <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center w-56 h-14 border rounded-full text-xl font-normal mr-20`}>
-                                        Recusar
+                                        Cancelar consulta
                                     </button>
-                                    <button className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-56 h-14 border rounded-full text-xl font-normal mr-20`}
-                                        onClick={handleClickAgain}
-                                    >
-                                        Cancelar
-                                    </button>
-                                    <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-72 h-14 border rounded-full text-xl font-normal mr-20`} 
-                                        onClick={handleClick}
-                                    >
-                                        Ver mais informações
-                                    </button>
-                                    <button className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-72 h-14 border rounded-full text-xl font-normal mr-20`} >
-                                        Marcar
+                                    <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-72 h-14 border rounded-full text-xl font-normal mr-20`} >
+                                        Concluir consulta
                                     </button>
                                 </div>
                             </div>

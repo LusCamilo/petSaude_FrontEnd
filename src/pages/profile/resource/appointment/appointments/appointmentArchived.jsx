@@ -1,30 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './styleAppointment.css'
-import * as Dialog from '@radix-ui/react-dialog';
 
-export const AppointmentAsk = () => {
-
-    const [pedidos, setPedido] = useState([])
-    const [tutorStatus, setTutorStatus] = useState('hidden')
-    const [buttonStatus, setButtonStatus] = useState('flex')
-
-    const handleClick = () => {
-        setTutorStatus('flex');
-        setButtonStatus('hidden');
-      };
+export const AppointmentArchived = (props) => {
     
-      const handleClickAgain = () => {
-        setTutorStatus('hidden');
-        setButtonStatus('flex');
-      };
+    const [pedidos, setPedido] = useState([])
+    const [quant, setQuant] = useState({Finalizado: 0, Cancelado: 0})
 
     useEffect(() => {
         setPedido([
           {
             imagemPet: "https://i.pinimg.com/564x/d6/f8/50/d6f850459ccd0a00dd65ca3309cb3d7c.jpg",
-            donoImg: "https://www.portaldoanimal.org/wp-content/uploads/2019/02/gatinha-pastor-alemao2-6.jpg",
-            dono: "algebra",
-            telefone: "0114002-8922",
+            estado: "Cancelado",
             nomePet: "Rex",
             sexo: "Masculino",
             especie: "Cachorro",
@@ -36,9 +22,7 @@ export const AppointmentAsk = () => {
           },
           {
             imagemPet: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVYPUnLOG9LqCBw0kA_tkN4iQqA1NQTh9Lr8hQuKh0LogsMDExaCImrwdhjcDNQoLp5UE&usqp=CAU",
-            donoImg: "https://i.pinimg.com/564x/d6/f8/50/d6f850459ccd0a00dd65ca3309cb3d7c.jpg",
-            dono: "metemática",
-            telefone: "0134002-8923",
+            estado: "Cancelado",
             nomePet: "Pixie",
             sexo: "Feminino",
             especie: "Gato",
@@ -50,9 +34,7 @@ export const AppointmentAsk = () => {
           },
           {
             imagemPet: "https://www.portaldoanimal.org/wp-content/uploads/2019/02/gatinha-pastor-alemao2-6.jpg",
-            donoImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVYPUnLOG9LqCBw0kA_tkN4iQqA1NQTh9Lr8hQuKh0LogsMDExaCImrwdhjcDNQoLp5UE&usqp=CAU",
-            dono: "surpresa",
-            telefone: "Festa",
+            estado: "Finalizado",
             nomePet: "Randell",
             sexo: "Masculino",
             especie: "Guaxinim",
@@ -63,14 +45,41 @@ export const AppointmentAsk = () => {
             descricao: "Exame imunológico",
           },
         ]);
+
       }, []);
+
+      useEffect(() => {
+        let cancelada = 0;
+        let finalizar = 0;
+      
+        pedidos.forEach(pedir => {
+          if (pedir.estado == "Cancelado") {
+            cancelada += 1;
+          } else if (pedir.estado == "Finalizado") {
+            finalizar += 1;
+          }
+        });
+      
+        setQuant(prevQuant => ({ ...prevQuant, Finalizado: finalizar, Cancelado: cancelada }));
+      }, [pedidos]);
 
     return(
         <section>
-               <div className='w-full flex flex-col gap-3 mr-2'>
+            <div className='flex flex-row gap-3 justify-between'>
+                <div className='flex flex-col'>
+                    <div className='flex flex-row gap-2'><h2>Consultas Finalizadas</h2> <div class="w-10 h-10 rounded-md bg-[#09738A]"></div></div>
+                    <div className='flex flex-row gap-2'><div className='text-[#A9A9A9] text-base'>Quantidade:</div> <div>{quant.Finalizado}</div></div>
+                </div>
+                <div className='flex flex-col'>
+                    <div className='flex flex-row gap-2'><h2>Consultas Canceladas</h2> <div class="w-10 h-10 rounded-md bg-[#F1EAC6]"></div></div>
+                    <div className='flex flex-row gap-2'><div className='text-[#A9A9A9] text-base'>Quantidade:</div> <div>{quant.Cancelado}</div></div>
+                </div>
+            </div>
+            <div className='w-full flex flex-col gap-3 mr-2'>
                     {pedidos.map(pedido =>{
+                         const cor = pedido.estado == 'Cancelado' ? 'bg-[#F1EAC6]' : 'bg-[#09738A]'
                         return(
-                            <div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 sm:pl-20 py-8'>
+                            <div className={`${cor} border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 sm:pl-20 py-8`}>
                                 <div className='flex flex-row items-center content-center text-center text-6xl gap-4'>
                                     <img src={pedido.imagemPet} alt="Imagem do pet" />
                                     <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
@@ -114,27 +123,6 @@ export const AppointmentAsk = () => {
                                         </div>                   
                                     </div>
                                 </div>
-                                <div className={`${tutorStatus} flex-row items-center content-center text-center text-6xl gap-4`}>
-                                    <img src={pedido.donoImg} alt="Imagem do pet" />
-                                    <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.dono}</h2>
-                                </div>
-                                <div className='flex flex-col sm:flex-row justify-between pr-20'>
-                                    <div className={`${tutorStatus} flex-row justify-start w-full`}>
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]' >
-                                                Nome
-                                                <input type="text" disabled placeholder={pedido.dono} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-                                            </label>
-                                        </div>
-                                        
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                                Telefone
-                                                <input type="text" disabled placeholder={pedido.telefone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
                                 <h2 className='font-normal  flex justify-center sm:justify-start font-sans'>Informações de consulta </h2>
                                 <div className='flex flex-col justify-between pr-20'>
                                     <div className='flex flex-row justify-start w-full sm:w-full '>
@@ -160,36 +148,14 @@ export const AppointmentAsk = () => {
                                         </div>                 
                                     </div>
                                 </div>
-                                <div className={`${tutorStatus} flex-col justify-center items-center content-center mb-2` }>
-                                    <h2>Confirmar consulta</h2>
-                                    <div className='w-1/3 flex justify-center'>
-                                        <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
-                                            Duracação
-                                            <input type="time" id="duracao" name="duracao" min="00:01" max="03:00" className='w-full' />
-                                        </label>
-                                    </div> 
-                                </div>
-                                <div className='flex flex-row justify-between'>
-                                    <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center w-56 h-14 border rounded-full text-xl font-normal mr-20`}>
-                                        Recusar
-                                    </button>
-                                    <button className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-56 h-14 border rounded-full text-xl font-normal mr-20`}
-                                        onClick={handleClickAgain}
-                                    >
-                                        Cancelar
-                                    </button>
-                                    <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-72 h-14 border rounded-full text-xl font-normal mr-20`} 
-                                        onClick={handleClick}
-                                    >
-                                        Ver mais informações
-                                    </button>
-                                    <button className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-72 h-14 border rounded-full text-xl font-normal mr-20`} >
-                                        Marcar
-                                    </button>
+                                <div className='flex flex-row items-center content-center text-bottom gap-2'>
+                                    <h2 className='font-normal  flex justify-center sm:justify-start font-sans'>Status:</h2>
+                                    <div className='text-[#49454F] font-normal text-lg font-sans'>{pedido.estado}</div>
                                 </div>
                             </div>
                         )})}
-                </div>    
+                </div>   
+          
         </section>
     )
 }

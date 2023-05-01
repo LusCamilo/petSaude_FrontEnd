@@ -3,9 +3,36 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { AppointmentMenu } from './appointmentMenu';
 import { AppointmentAsk } from './appointments/appointmentAsk';
 import { PetHeader } from '../../pet/petHeader';
+import { AppointmentPeding } from './appointments/appointmentPending';
+import { AppointmentArchived } from './appointments/appointmentArchived';
 
 export const AppointmentView = (props) => {
-    const [petsAll, setPetsAll] = useState([]);
+
+    const [tela1, setTela1] = useState({estado: 'flex', cor: '#092B5A'})
+    const [tela2, setTela2] = useState({estado: 'hidden', cor: '#E3EFF0'})
+    const [tela3, setTela3] = useState({estado: 'hidden', cor: '#E3EFF0'})
+    
+    useEffect(() => {
+        handleClickPedidos();
+      }, []);
+
+    const handleClickPedidos = () => {
+        setTela1({estado: 'flex', cor: 'bg-[#092B5A]'})
+        setTela2({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
+        setTela3({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
+      };
+
+    const handleClickPendentes = () => {
+        setTela1({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
+        setTela2({estado: 'flex', cor: 'bg-[#092B5A]'})
+        setTela3({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
+      };
+    
+      const handleClickArquivadas = () => {
+        setTela1({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
+        setTela2({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
+        setTela3({estado: 'flex', cor: 'bg-[#092B5A]'})
+      };
 
     const handlePetSelection = (pet) => {
         console.log(`Selected pet: ${pet.name}`);
@@ -27,17 +54,10 @@ export const AppointmentView = (props) => {
     const [infos, setInfos] = useState({})
 
     useEffect(() => {
-
-       
         setName(infos.name ? infos.name : '')
         setSpecie(infos.specie ? infos.specie : '')
         setTamanho(infos.size ? infos.size : '')
         setSexo(infos.gender ? infos.gender : '')
-
-        
-
-
-  
     }, [infos.photo, infos.name, infos.specie, infos.size, infos.gender])
 
     const [petInfosDisable, petInfosDisableState] = useState({
@@ -52,171 +72,41 @@ export const AppointmentView = (props) => {
             <PetHeader />
             <section>
                     <div className='flex flex-row gap-5'>
-                       <AppointmentMenu/>
-                        <div className="flex flex-col w-full h-full">
-                            <div className='w-5/6 border-none sm:border-solid border h-1/4 rounded-lg border-black flex flex-col gap-10 pl-3 sm:pl-20 py-8'>
-                                <div>
-                                    {/* {petsAll.map(pet => { */}
-                                
-                                    <h2 className='font-normal text-3xl flex justify-center sm:justify-start sm:text-6xl font-sans'>Pet (Nome do pet)</h2>
-
-                                </div>
-                                
-                                <div className='flex flex-col sm:flex-row justify-between pr-20'>
-                                    <div className='flex flex-col gap-3 sm:gap-5 justify-start w-full sm:w-1/3 mb-2'>
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                                Nome
-                                            </label>
-                                        </div>
-                                        
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                                Tamanho
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div className='flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3'>
-                                        <div className='w-full'>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                                Sexo
-                                            </label>
-                                        </div>   
-                                        <div className='w-full'>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                            Idade
-                                            </label>
-                                        </div>                        
-                                    </div>
-                                    <div className='flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3'>
-                                        <div className='w-full'>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                                Espécie
-                                            </label>
-                                        </div>                   
-                                    </div>
-                                </div>
-                                <h2 className='font-normal text-3xl flex justify-center sm:justify-start sm:text-6xl font-sans'>Informações de consulta </h2>
-                                <div className='flex flex-col sm:flex-row justify-between pr-20'>
-                                    <div className='flex flex-col gap-3 sm:gap-5 justify-start w-full sm:w-1/3 mb-2'>
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                            Data
-                                            
-                                            </label>
-                                        </div>
-                                        
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                                Descrição
-                                                {/* Limitar descrição para no máximo duas linhas  */}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div className='flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3'>
-                                        <div className='w-full'>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                                Horário
-                                                
-                                            </label>
-                                        </div>                        
-                                    </div>
-                                </div>
-                                <div className='flex flex-row justify-between'>
-                                    <button className='bg-[#F9DEDC] text-[#410E0B] text-center w-56 h-14 border rounded-full text-xl font-normal mr-20'>
-                                        Recusar
+                    <section>  
+                        <div className='flex flex-row gap-5 h-screen'>
+                            <div className='flex flex-col w-96 bg-[#91B0B2] rounded-lg pb-96 h-screen'>
+                                <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+                                    <button type="button" className={`flex ${tela1.cor} items-center border border-black py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full`}
+                                        onClick={handleClickPedidos}
+                                    >       
+                                        Pedidos de consultas
                                     </button>
-                                    <button className='bg-[#9ED1B7] text-[#41564B] text-center w-72 h-14 border rounded-full text-xl font-normal mr-20' >
-                                    Ver mais informações
+                                    <button type="button" className={`flex ${tela2.cor} items-center border border-black py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full`}
+                                        onClick={handleClickPendentes}
+                                    >
+                                        Consultas pendentes
                                     </button>
-                                </div>
-                            </div>    
-                            <AppointmentAsk />
+                                    <button type="button" className={`flex ${tela3.cor} items-center border border-black py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full`}
+                                        onClick={handleClickArquivadas}
+                                    >
+                                        Consultas arquivadas
+                                    </button>
+                                    <button type="button" className="flex items-center border border-black py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">      
+                                        Configurações de consulta
+                                    </button>
+                                </ul>                
+                            </div>
                         </div>
-                        <AppointmentMenu />
-                        <div className='w-5/6 border-none sm:border-solid border rounded-lg border-black flex flex-col gap-10 pl-3 sm:pl-20 py-8'>
-                            <div>
-                                {petsAll.map(pet => {
-                                    return (
-                                        <div
-                                            key={pet.id}
-                                            className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
-                                            id={pet.id}
-                                            onClick={() => handlePetSelection(pet)}
-                                        >
-                                            <img className='w-32' src={pet.photo} alt={pet.name} />
-                                            <input className='text-2xl shadow-none w-full' placeholder={pet.name} disabled />
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            <h2 className='font-normal text-3xl flex justify-center sm:justify-start sm:text-6xl font-sans'>
-                                    Pet (Nome do pet)
-                                    </h2>
-                            <div className='flex flex-col sm:flex-row justify-between pr-20'>
-                                <div className='flex flex-col gap-3 sm:gap-5 justify-start w-full sm:w-1/3 mb-2'>
-                                
-                                    <div>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                            Nome
-                                        
-                                        </label>
-                                    </div>
-
-                                    <div>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                            Tamanho
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className='flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3'>
-                                    <div className='w-full'>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                            Sexo
-                                        </label>
-                                    </div>
-                                    <div className='w-full'>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                            Idade
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className='flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3'>
-                                    <div className='w-full'>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                            Espécie
-                                            
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2 className='font-normal text-3xl flex justify-center sm:justify-start sm:text-6xl font-sans'>
-                                Informações de consulta{' '}
-                            </h2>
-                            <div className='flex flex-col sm:flex-row justify-between pr-20'>
-                                <div className='flex flex-col gap-3 sm:gap-5 justify-start w-full sm:w-1/3 mb-2'>
-                                    <div>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>Data</label>
-                                    </div>
-
-                                    <div>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9
-    '>
-                                                Horário
-                                                
-                                            </label>
-                                        </div>                        
-                                    </div>
-                                </div>
-                                <div className='flex flex-row justify-between'>
-                                    <button className='bg-[#F9DEDC] text-[#410E0B] text-center w-56 h-14 border rounded-full text-xl font-normal mr-20'>
-                                        Recusar
-                                    </button>
-                                    <button className='bg-[#9ED1B7] text-[#41564B] text-center w-72 h-14 border rounded-full text-xl font-normal mr-20' >
-                                    Ver mais informações
-                                    </button>
-                                </div>
-                        </div>     
+                    </section>
+                        <div className={`${tela2.estado}`}>
+                            <AppointmentPeding  />
+                        </div>
+                        <div className={`${tela1.estado}`}>
+                            <AppointmentAsk /> 
+                        </div>
+                        <div className={`${tela3.estado}`}>
+                            <AppointmentArchived />
+                        </div>
                     </div>
                 </section>
         </>
