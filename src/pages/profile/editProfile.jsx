@@ -111,14 +111,9 @@ export const EditProfile = () => {
                     onEmailChange={handleChildEmailChange}
                     onPasswordChange={handleChildPasswordChange}
                     onProfilePhotoChange={handleChildProfilePhotoChange}
-                    userName={infos.userName} completName={infos.personName} email={infos.email} password={infos.password} photoUser={infos.profilePhoto}
+                    userName={infos.userName} completName={infos.personName} email={infos.email} password={infos.password} profilePhoto={infos.profilePhoto}
                 />
                 <button className='md:flex md:end-40  self-end rounded-lg bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={() => {
-                    // console.log(name);
-                    // console.log(email)
-                    // console.log(password);
-                    // console.log(profileBannerPhoto);
-                    // console.log(profilePhoto);
 
                     let profileInfos = {
                         userName: name,
@@ -130,6 +125,8 @@ export const EditProfile = () => {
 
 
                     updateProfileInfosClient(profileInfos)
+
+                    document.location.href = '/profile/upgradeUser'
 
 
 

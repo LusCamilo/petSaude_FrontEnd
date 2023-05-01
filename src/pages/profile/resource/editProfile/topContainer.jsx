@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import more from "../img/more.png"
 
 
 export const TopContainer = (props) => {
 
-    const [selectedFile, setSelectedFile] = useState(props.profileBannerPhoto);
+    const [selectedFile, setSelectedFile] = useState('');
+
+    useEffect(() => {
+        setSelectedFile(props.profileBannerPhoto)
+    }, [props.profileBannerPhoto])
 
     const handleFileInputChange = (event) => {
         console.log(event.target.files[0])
