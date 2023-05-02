@@ -30,9 +30,7 @@ const dataFormation = (date) => {
     return dataJoin
 
 }
-
 const InfosUser = async () => {
-
     if (localStorage.getItem('__user_isVet') == 'false') {
         const response = await getUser(localStorage.getItem('__user_id'))
         
@@ -57,6 +55,8 @@ const InfosUser = async () => {
             biography: response.user.biography,
             addressId: response.user.addressId,
             cep: response.user.Address.cep,
+            number: response.user.Address.number,
+            complement: response.user.Address.complement,
         }
 
     }else{
@@ -88,6 +88,8 @@ const InfosUser = async () => {
             biography: response.biography,
             addressId: response.addressId,
             cep: response.Address.cep,
+            number: response.Address.number,
+            complement: response.Address.complement,
             institution: response.institution,
             crmv: response.crmv,
             formationDate: formation,
@@ -97,10 +99,7 @@ const InfosUser = async () => {
         }
 
     }
-
-
 }
-
 const getAddressFromZipCode = async (cep) => {
 
     return (await fetch(`https://viacep.com.br/ws/${cep}/json/`)).json()
@@ -111,6 +110,10 @@ const getAddressFromZipCode = async (cep) => {
 export const UpgradeUser = () => {
 
     const [infos, setInfos] = useState({})
+
+    const [address, setAddress] = useState(true)
+
+    
     
     useEffect(() => {
         async function fetchData() {
@@ -118,7 +121,6 @@ export const UpgradeUser = () => {
             const allInfosUser = (await InfosUser())
 
             const address = (await getAddressFromZipCode(allInfosUser.cep))
-
 
             setInfos(
                 {
@@ -132,10 +134,11 @@ export const UpgradeUser = () => {
                     telefone: allInfosUser.phoneNumber,
                     text: allInfosUser.biography,
                     cep: allInfosUser.cep,
+                    addressId: allInfosUser.addressId,
                     rua: address.logradouro,
                     bairro: address.bairro,
                     estado: address.uf,
-                    complemento: address.complemento,
+                    complemento: allInfosUser.complement,
                     cidade: address.localidade,
                     profilePhoto: allInfosUser.profilePhoto,
                     profileBannerPhoto: allInfosUser.profileBannerPhoto,
@@ -240,7 +243,7 @@ export const UpgradeUser = () => {
 
                 <main className='flex flex-col gap-10'>
                     <Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular} telefone={infos.telefone} text={infos.text} className='' />
-                    <Address cep={infos.cep} bairro={infos.bairro} rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento} className='' />
+                    <Address id={infos.addressId} cep={infos.cep} bairro={infos.bairro} rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento} className='' />
 
                     {localStorage.getItem("__user_isVet") == 'true' ?
                         <>

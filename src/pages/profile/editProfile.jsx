@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { set, useForm } from 'react-hook-form';
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { HeaderEditProfile } from './resource/headerEdit';
 import { TopContainer } from './resource/editProfile/topContainer';
 import { InfosProfile } from './resource/editProfile/infosProfile';
@@ -7,6 +8,17 @@ import profilePhoto from './resource/img/profilePhoto.png'
 import userPhoto from './resource/img/userPhoto.png'
 import check from './resource/img/saveProfile.png'
 import { deleteClient, deleteVeterinary, getUser, getVeterinary, updateProfileInfosClient } from '../../services/integrations/user';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
+    authDomain: "petsaude-6ba51.firebaseapp.com",
+    projectId: "petsaude-6ba51",
+    storageBucket: "petsaude-6ba51.appspot.com",
+    messagingSenderId: "965774218063",
+    appId: "1:965774218063:web:51d112960710c8481ceb3a"
+};
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
 
 const InfosUser = async () => {
@@ -94,11 +106,25 @@ export const EditProfile = () => {
     }
 
     function handleChildProfilePhotoChange(value) {
-        setProfilePhoto(value)
+        const storageRef = ref(storage, `Cliente/${value.name}`);
+        uploadBytes(storageRef, value).then(() => {
+            console.log('Arquivo enviado com sucesso!');
+            return getDownloadURL(storageRef)
+        }) .then((url) => {
+            setProfilePhoto(url)
+        });
+
     }
 
     function handleChildProfileBannerPhotoChange(value) {
-        setProfileBannerPhoto(value)
+        const storageRef = ref(storage, `Cliente/${value.name}`);
+        uploadBytes(storageRef, value).then(() => {
+            console.log('Arquivo enviado com sucesso!');
+            return getDownloadURL(storageRef)
+        }) .then((url) => {
+            setProfileBannerPhoto(url)
+        });
+
     }
 
     return (
@@ -123,12 +149,15 @@ export const EditProfile = () => {
                         profilePhoto: profilePhoto
                     }
 
+                    if (Boolean(localStorage.getItem('__user_isVet'))) {
+                        updateProfileInfosClient(profileInfos)
+                        
+                    } else {
+                        updateProfileInfosClient(profileInfos)
+                    }
 
-                    updateProfileInfosClient(profileInfos)
 
                     document.location.href = '/profile/upgradeUser'
-
-
 
                 }}>
                     <img src={check} className='w-10 h-10 my-5 mx-5' />
