@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Link } from "react-router-dom";
 import { PetHeader } from './petHeader';
 import "../css/UpgradeUser.css"
@@ -12,6 +14,17 @@ import { PetAddSucess } from './cards/sucess';
 import * as Dialog from '@radix-ui/react-dialog';
 import { petAdd } from "../../../services/integrations/pet.js";
 import './css/pet.css'
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
+    authDomain: "petsaude-6ba51.firebaseapp.com",
+    projectId: "petsaude-6ba51",
+    storageBucket: "petsaude-6ba51.appspot.com",
+    messagingSenderId: "965774218063",
+    appId: "1:965774218063:web:51d112960710c8481ceb3a"
+};
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
 
 export const PetAdd = (props) => {
@@ -62,7 +75,7 @@ export const PetAdd = (props) => {
 
         let date = bornDate.split("-").reverse().join("-")
 
-        
+
         const petInfos = {
             name: name,
             birthDate: date,
@@ -73,17 +86,23 @@ export const PetAdd = (props) => {
             specie: specie,
         }
 
-        const addPet = await petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
+        petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
 
         document.location.href = "/profile/upgradeUser"
     }
 
     const handleFileInputChange = (event) => {
         const file = event.target.files[0]
-        setSelectedFile(URL.createObjectURL(file));
+        const storageRef = ref(storage, `Pet/${file.name}`);
+        uploadBytes(storageRef, file).then(() => {
+            console.log('Arquivo enviado com sucesso!');
+            return getDownloadURL(storageRef)
+        }).then((url) => {
+            setSelectedFile(url);
+        });
     }
 
-    const [selectedFile, setSelectedFile] = useState(String);
+    const [selectedFile, setSelectedFile] = useState();
 
 
     return (
