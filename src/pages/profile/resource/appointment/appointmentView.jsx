@@ -17,21 +17,21 @@ export const AppointmentView = (props) => {
       }, []);
 
     const handleClickPedidos = () => {
-        setTela1({estado: 'flex', cor: 'bg-[#092B5A]'})
+        setTela1({estado: 'flex', cor: 'bg-[#09738A]'})
         setTela2({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
         setTela3({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
       };
 
     const handleClickPendentes = () => {
         setTela1({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
-        setTela2({estado: 'flex', cor: 'bg-[#092B5A]'})
+        setTela2({estado: 'flex', cor: 'bg-[#09738A]'})
         setTela3({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
       };
     
       const handleClickArquivadas = () => {
         setTela1({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
         setTela2({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
-        setTela3({estado: 'flex', cor: 'bg-[#092B5A]'})
+        setTela3({estado: 'flex', cor: 'bg-[#09738A]'})
       };
 
     const handlePetSelection = (pet) => {
@@ -73,7 +73,7 @@ export const AppointmentView = (props) => {
             <section>
                     <div className='flex flex-row gap-5'>
                     <section>  
-                        <div className='flex flex-row gap-5 h-screen'>
+                        <div className='flex flex-row gap-5 min-h-screen'>
                             <div className='flex flex-col w-96 bg-[#91B0B2] rounded-lg pb-96 h-screen'>
                                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                                     <button type="button" className={`flex ${tela1.cor} items-center border border-black py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full`}
@@ -96,17 +96,18 @@ export const AppointmentView = (props) => {
                                     </button>
                                 </ul>                
                             </div>
-                        </div>
+                                <div className={`${tela2.estado}`}>
+                                    <AppointmentPeding  />
+                                </div>
+                                <div className={`${tela1.estado}`}>
+                                    <AppointmentAsk /> 
+                                </div>
+                                <div className={`${tela3.estado}`}>
+                                    <AppointmentArchived />
+                                </div>
+                            </div>
                     </section>
-                        <div className={`${tela2.estado}`}>
-                            <AppointmentPeding  />
-                        </div>
-                        <div className={`${tela1.estado}`}>
-                            <AppointmentAsk /> 
-                        </div>
-                        <div className={`${tela3.estado}`}>
-                            <AppointmentArchived />
-                        </div>
+
                     </div>
                 </section>
         </>

@@ -1,5 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
+const customStyles = {
+    content: {
+     top: '50%',
+     left: '50%',
+     right: 'auto',
+     bottom: 'auto',
+     marginRight: '-50%',
+     transform: 'translate(-50%, -50%)',
+     borderRadius: '10px',
+     width: '100px',
+     height: '100px',
+     display: "flex",
+     justifyContent: "center",
+     backgroundColor: "red"
+    }
+ };
+
 export const AppointmentPeding = (props) => {
 
     const [pedidos, setPedido] = useState([])
@@ -16,6 +33,19 @@ export const AppointmentPeding = (props) => {
         setButtonStatus('flex');
       };
 
+      function openModal() {
+        setIsOpen(true);
+      }
+    
+      function closeModal() {
+          setIsOpen(false);
+      }
+  
+      function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        //subtitle.style.color = '#f00';
+      }
+      
     useEffect(() => {
         setPedido([
           {
@@ -138,9 +168,20 @@ export const AppointmentPeding = (props) => {
                                     </div>
                                 </div>
                                 <div className='flex flex-row justify-between'>
-                                    <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center w-56 h-14 border rounded-full text-xl font-normal mr-20`}>
+                                    <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center w-56 h-14 border rounded-full text-xl font-normal mr-20`}
+                                        onClick={openModal}
+                                    >
                                         Cancelar consulta
                                     </button>
+                                    <Modal
+                                    isOpen={modalIsOpen}
+                                    onAfterOpen={afterOpenModal}
+                                    onRequestClose={closeModal}
+                                    style={customStyles}
+                                    contentLabel="Example Modal"
+                                >
+
+                                </Modal>
                                     <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-72 h-14 border rounded-full text-xl font-normal mr-20`} >
                                         Concluir consulta
                                     </button>

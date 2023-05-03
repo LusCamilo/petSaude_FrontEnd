@@ -26,40 +26,42 @@ export const PetHeader = (props) => {
                             <div className="absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300">
                                 <h2 className="pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl">Menu</h2>
                                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
-                                    <li className="flex items-center hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                                    <Link  to="/home" className="flex items-center hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Home} className="pr-3  w-14"></img>
-                                        <Link to="../home/Home-Web"> Home
-                                        </Link>
-                                    </li>
-                                    <li className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                                         Home
+                                       
+                                    </Link>
+                                    <Link to="/home/searchProfessionals" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Work} className="pr-3  w-14"></img>
-                                        <Link to="../home/searchProfessionals"> Profissionais
-                                        </Link>
-                                    </li>
-                                    <li className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                                         Profissionais
+                                        
+                                    </Link>
+                                    <Link className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Blog} className="pr-3 w-14"></img>
                                         Blog
-                                    </li>
-                                    <li className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                                    </Link>
+                                    <Link to="/home/aboutUs" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Info} className="pr-3 w-14"></img>
-                                        <Link to="/home/aboutUs"> Sobre nós
-                                        </Link>
-                                    </li>
-                                    <li className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                                         Sobre nós
+                                        
+                                    </Link>
+                                    <Link to="/profile/appointmentView" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Calendary} className="pr-3  w-14"></img>
-                                        Consultas
-                                    </li>
+                                         Consultas
+                                        
+                                    </Link>
                                 </ul>
                                 <h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">Configurações</h3>
                                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
-                                    <li className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                                    <Link to="/profile/infosPerson" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Person} className="pr-3 w-14"></img>
-                                            Perfil
-                                    </li>
-                                    <li className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full ">
+                                             Perfil
+                                            
+                                    </Link>
+                                    {/*<li className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full ">
                                         <img src={Lock} className="pr-3 w-14"></img>
                                             Segurança
-                                    </li>
+                                    </Link>*/}
                                 </ul>
                             </div>
                         </button>

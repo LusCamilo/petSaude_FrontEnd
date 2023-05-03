@@ -68,19 +68,15 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         } else {
           console.log("abecedario");
           let response = await getAllVets();
-          const responseCity = await axios.get(
-            `https://viacep.com.br/ws/${data.search}/json/`
-          );
-          console.log(responseCity);
-          setCidadeProcurar(responseCity.data.localidade);
-          console.log(cidadeProcurar);
+
           let result = response.response;
           let json = Object.values(result);
           setUmCorteRapidao(inputSearch)
-          let jsonFinal = json.filter(
-            (item) =>
-              item.city.toLowerCase().includes(cidadeProcurar.toLowerCase()) 
-          );
+          let jsonFinal = await Promise.all(json.filter(async (item) => 
+            item.city.toLowerCase().includes((await axios.get(
+              `https://viacep.com.br/ws/${data.search}/json/`
+            )).data.toLowerCase())
+          ));
           setVets(jsonFinal);
         }
       }
@@ -118,19 +114,15 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         } else {
           console.log("abecedario");
           let response = await getAllVets();
-          const responseCity = await axios.get(
-            `https://viacep.com.br/ws/${data.search}/json/`
-          );
-          console.log(responseCity);
-          setCidadeProcurar(responseCity.data.localidade);
-          console.log(cidadeProcurar);
+
           let result = response.response;
           let json = Object.values(result);
           setUmCorteRapidao(inputSearch)
-          let jsonFinal = json.filter(
-            (item) =>
-              item.city.toLowerCase().includes(cidadeProcurar.toLowerCase()) 
-          );
+          let jsonFinal = await Promise.all(json.filter(async (item) => 
+            item.city.toLowerCase().includes((await axios.get(
+              `https://viacep.com.br/ws/${data.search}/json/`
+            )).data.toLowerCase())
+          ));
           setVets(jsonFinal);
         }
       }

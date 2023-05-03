@@ -2,24 +2,32 @@ import React, { useState, useEffect } from 'react';
 import './styleAppointment.css'
 import Modal from 'react-modal';
 
+const customStyles = {
+    content: {
+     top: '50%',
+     left: '50%',
+     right: 'auto',
+     bottom: 'auto',
+     marginRight: '-50%',
+     transform: 'translate(-50%, -50%)',
+     border: '4px solid #9ED1B7',
+     borderRadius: '10px',
+     width: '40vw',
+     height: '75vh',
+     display: "flex",
+     justifyContent: "center"
+
+    }
+ };
+
 export const AppointmentArchived = (props) => {
     
-    const customStyles = {
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '20px',
-        height: '60px',
-        backgroundColor: '#9ED1B7',
-        borderRadius: '10px',
-        };
-
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [pedidos, setPedido] = useState([])
     const [quant, setQuant] = useState({Finalizado: 0, Cancelado: 0})
     const [showModal, setShowModal] = useState(false);
   
+
     function openModal() {
       setIsOpen(true);
     }
@@ -99,6 +107,12 @@ export const AppointmentArchived = (props) => {
       
         setQuant(prevQuant => ({ ...prevQuant, Finalizado: finalizar, Cancelado: cancelada }));
       }, [pedidos]);
+
+      const [rating, setRating] = useState(0);
+
+      const handleRatingChange = (event) => {
+        setRating(event.target.value);
+      };
 
     return(
         <section>
@@ -189,6 +203,7 @@ export const AppointmentArchived = (props) => {
                                     <h2 className='font-normal  flex justify-center sm:justify-start font-sans'>Status:</h2>
                                     <div className='text-[#49454F] font-normal text-lg font-sans'>{pedido.estado}</div>
                                 </div>
+                                <div>
                                 <button 
                                 class="bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded"
                                 onClick={openModal}
@@ -202,9 +217,8 @@ export const AppointmentArchived = (props) => {
                                     style={customStyles}
                                     contentLabel="Example Modal"
                                 >
-                                    <div className="bg-white p-4 ">
-                                        <h2 className="text-lg font-bold mb-2">Comentário</h2>
-                                        <form>
+                                    <form>
+                                        <div className="bg-white w-full ">
                                         <div className="mb-3">
                                             <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
                                             Título do comentário
@@ -212,7 +226,7 @@ export const AppointmentArchived = (props) => {
                                             <input
                                             id="email"
                                             type="email"
-                                            placeholder="Amei"
+                                            placeholder=""
                                             autoFocus
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             />
@@ -227,25 +241,93 @@ export const AppointmentArchived = (props) => {
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             />
                                         </div>
-                                        <div className="flex justify-end">
-                                            <button
-                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                            type="button"
-                                            onClick={closeModal}
-                                            >
-                                            Fechar
-                                            </button>
-                                            <button
-                                            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
-                                            type="submit"
-                                            onClick={closeModal}
-                                            >
-                                            Enviar
-                                            </button>
+                                        <div>
+                                        <label htmlFor="comment" className="block text-gray-700 font-bold mb-2">
+                                            De 1 a 5, quão bom foi o atendimento?
+                                            <div className="p-4 flex justify-center flex-row ">    
+                                                <div className="flex items-center mb-4">
+                                                    <input
+                                                    type="radio"
+                                                    id="rating1"
+                                                    name="rating"
+                                                    value="1"
+                                                    checked={rating === '1'}
+                                                    onChange={handleRatingChange}
+                                                    className="mr-2 w-2 h-2"
+                                                    />
+                                                    <label htmlFor="rating1">1</label>
+                                                </div>
+                                                <div className="flex items-center mb-4">
+                                                    <input
+                                                    type="radio"
+                                                    id="rating2"
+                                                    name="rating"
+                                                    value="2"
+                                                    checked={rating === '2'}
+                                                    onChange={handleRatingChange}
+                                                    className="mr-2 w-2 h-2"
+                                                    />
+                                                    <label htmlFor="rating2">2</label>
+                                                </div>
+                                                <div className="flex items-center mb-4">
+                                                    <input
+                                                    type="radio"
+                                                    id="rating3"
+                                                    name="rating"
+                                                    value="3"
+                                                    checked={rating === '3'}
+                                                    onChange={handleRatingChange}
+                                                    className="mr-2 w-2 h-2"
+                                                    />
+                                                    <label htmlFor="rating3">3</label>
+                                                </div>
+                                                <div className="flex items-center mb-4">
+                                                    <input
+                                                    type="radio"
+                                                    id="rating4"
+                                                    name="rating"
+                                                    value="4"
+                                                    checked={rating === '4'}
+                                                    onChange={handleRatingChange}
+                                                    className="mr-2 w-2 h-2"
+                                                    />
+                                                    <label htmlFor="rating4">4</label>
+                                                </div>
+                                                <div className="flex items-center mb-4">
+                                                    <input
+                                                    type="radio"
+                                                    id="rating5"
+                                                    name="rating"
+                                                    value="5"
+                                                    checked={rating === '5'}
+                                                    onChange={handleRatingChange}
+                                                    className="mr-2 w-2 h-2"
+                                                    />
+                                                    <label htmlFor="rating5">5</label>
+                                                </div>
+                                            </div>
+                                        </label>
                                         </div>
-                                        </form>
-                                    </div>
+                                            <div className="flex justify-between">
+                                                <button
+                                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                                type="button"
+                                                onClick={closeModal}
+                                                >
+                                                Fechar
+                                                </button>
+                                                <button
+                                                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
+                                                type="submit"
+                                                onClick={closeModal}
+                                                >
+                                                Enviar
+                                                </button>
+                                            </div>    
+                                        </div>
+                                    </form>
                                     </Modal>
+                                </div>
 
                             </div>
                         )})}

@@ -16,6 +16,7 @@ import Arrow from '../../assets/svg/Arrow.svg';
 import lixeira from '../profile/resource/img/Delete.svg'
 import lapis from '../profile/resource/img/LapisColorido.svg'
 import { deleteClient, deleteVeterinary, getUser, getVeterinary } from '../../services/integrations/user';
+import { PetHeader } from './pet/petHeader';
 
 const dataFormation = (date) => {
 
@@ -236,7 +237,7 @@ export const UpgradeUser = () => {
     } else {
         return (
             <>
-                <Config personName={infos.personName} userName={infos.userName} profilePhoto={infos.profilePhoto} profileBannerPhoto={infos.profileBannerPhoto} className='hidden' />
+                <PetHeader />
 
                 <main className='flex flex-col gap-10'>
                     <Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular} telefone={infos.telefone} text={infos.text} className='' />
