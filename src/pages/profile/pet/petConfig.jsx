@@ -56,9 +56,10 @@ const dataFormation = (date) => {
 
 const InfosUser = async () => {
 
-    const response = await getPet(localStorage.getItem('__pet_id'))
-
-
+    const response = await getPet(3)
+    
+    console.log(localStorage.getItem("__pet_id"));
+    console.log(response);
     return {
         id: response.id,
         name: response.name,
@@ -110,8 +111,11 @@ export const PetConfig = (props) => {
         setDateBorn(infos.birthDate ? infos.birthDate : '')
 
         async function fetchData() {
+            console.log("Me");
 
-            const allInfosPet = (await InfosUser())
+            const allInfosPet = await InfosUser()
+
+            console.log(allInfosPet);
 
             const dataFormation = allInfosPet.birthDate.split("T")
             let data = dataFormation[0].split("-")
@@ -175,7 +179,7 @@ export const PetConfig = (props) => {
 
     return (
         <>
-            <PetHeader namePerson="Teste" personImage="https://revistapesquisa.fapesp.br/wp-content/uploads/2009/03/SITE_Darwin-4-1140.jpg" />
+            <PetHeader />
             <main className='static w-full'>
                 <div>
                     <div className='flex justify-start p-3 sm:p-10 flex-row items-center content-center align-middle h-30 sm:h-80'>

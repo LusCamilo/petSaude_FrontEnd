@@ -8,7 +8,7 @@ import { AppointmentArchived } from './appointments/appointmentArchived';
 
 export const AppointmentView = (props) => {
 
-    const [tela1, setTela1] = useState({estado: 'flex', cor: '#092B5A'})
+    const [tela1, setTela1] = useState({estado: 'flex', cor: '#092B5A', text: 'text-white'})
     const [tela2, setTela2] = useState({estado: 'hidden', cor: '#E3EFF0'})
     const [tela3, setTela3] = useState({estado: 'hidden', cor: '#E3EFF0'})
     
@@ -18,7 +18,7 @@ export const AppointmentView = (props) => {
 
     const handleClickPedidos = () => {
         setTela1({estado: 'flex', cor: 'bg-[#09738A]'})
-        setTela2({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
+        setTela2({estado: 'hidden', cor: 'bg-[#09738A]'})
         setTela3({estado: 'hidden', cor: 'bg-[#E3EFF0]'})
       };
 
@@ -74,38 +74,40 @@ export const AppointmentView = (props) => {
                     <div className='flex flex-row gap-5'>
                     <section>  
                         <div className='flex flex-row gap-5 min-h-screen'>
-                            <div className='flex flex-col w-96 bg-[#91B0B2] rounded-lg pb-96 h-screen'>
+                            <div className='flex flex-col w-96 bg-[#E3EFF0] rounded-lg pb-96 h-screen'>
                                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
-                                    <button type="button" className={`flex ${tela1.cor} items-center border border-black py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full`}
+                                    <button type="button" className={`flex ${tela1.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0]  h-30  w-2/3 md:w-5/6 text-left ${tela1.text} rounded-full`}
                                         onClick={handleClickPedidos}
                                     >       
                                         Pedidos de consultas
                                     </button>
-                                    <button type="button" className={`flex ${tela2.cor} items-center border border-black py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full`}
+                                    <button type="button" className={`flex ${tela2.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30  w-2/3 md:w-5/6 text-left  rounded-full`}
                                         onClick={handleClickPendentes}
                                     >
                                         Consultas pendentes
                                     </button>
-                                    <button type="button" className={`flex ${tela3.cor} items-center border border-black py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full`}
+                                    <button type="button" className={`flex ${tela3.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30 w-2/3 md:w-5/6 text-left rounded-full`}
                                         onClick={handleClickArquivadas}
                                     >
                                         Consultas arquivadas
                                     </button>
-                                    <button type="button" className="flex items-center border border-black py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">      
+                                    <button type="button" className="flex items-center border-2 border-[#A68D0B] py-2 px-6 bg-[#F1EAC6] h-30 w-2/3 md:w-5/6 text-left text-[#A68D0B] rounded-full ">      
                                         Configurações de consulta
                                     </button>
                                 </ul>                
                             </div>
-                                <div className={`${tela2.estado}`}>
+                            <div>
+                                <div className={`${tela2.estado} w-full`}>
                                     <AppointmentPeding  />
                                 </div>
-                                <div className={`${tela1.estado}`}>
+                                <div className={`${tela1.estado} w-full`}>
                                     <AppointmentAsk /> 
                                 </div>
-                                <div className={`${tela3.estado}`}>
+                                <div className={`${tela3.estado} w-full`}>
                                     <AppointmentArchived />
                                 </div>
                             </div>
+                        </div>
                     </section>
 
                     </div>

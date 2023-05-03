@@ -8,6 +8,8 @@ import profilePhoto from './resource/img/profilePhoto.png'
 import userPhoto from './resource/img/userPhoto.png'
 import check from './resource/img/saveProfile.png'
 import { deleteClient, deleteVeterinary, getUser, getVeterinary, updateProfileInfosClient } from '../../services/integrations/user';
+import { PetHeader } from './pet/petHeader';
+import jwt_decode from "jwt-decode";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -23,8 +25,13 @@ const storage = getStorage(app);
 
 const InfosUser = async () => {
 
-    if (localStorage.getItem('__user_isVet') == 'false') {
-        const response = await getUser(localStorage.getItem('__user_id'))
+    const token = localStorage.getItem('__user_JWT')
+    const decoded = jwt_decode(token);
+    console.log(decoded ? decoded : '');
+
+    if (decoded.isVet == false) {
+        const response = await getUser(decoded.id)
+
 
         return {
             id: response.response.user.id,
@@ -38,8 +45,7 @@ const InfosUser = async () => {
 
     } else {
 
-        const response = await getVeterinary(localStorage.getItem('__user_id'))
-
+        const response = await getVeterinary(decoded.id)
 
         return {
             id: response.id,
@@ -56,6 +62,9 @@ const InfosUser = async () => {
 }
 
 export const EditProfile = () => {
+    const token = localStorage.getItem('__user_JWT')
+    const decoded = jwt_decode(token);
+    console.log(decoded ? decoded : '');
 
     const [infos, setInfos] = useState({})
 
@@ -129,7 +138,7 @@ export const EditProfile = () => {
 
     return (
         <div>
-            <HeaderEditProfile name={infos.personName} />
+            <PetHeader name={infos.personName} />
             <div className="flex flex-col gap-y-3 items-center justify-center h-full pt-[80px] px-[10%] ">
                 <TopContainer onProfileBannerPhotoChange={handleChildProfileBannerPhotoChange} profileBannerPhoto={infos.profileBannerPhoto} />
                 <InfosProfile
@@ -149,7 +158,7 @@ export const EditProfile = () => {
                         profilePhoto: profilePhoto
                     }
 
-                    if (Boolean(localStorage.getItem('__user_isVet'))) {
+                    if (Boolean(decoded.isVet)) {
                         updateProfileInfosClient(profileInfos)
                         
                     } else {
@@ -157,7 +166,7 @@ export const EditProfile = () => {
                     }
 
 
-                    document.location.href = '/profile/upgradeUser'
+                    document.location.href = '/profile/editProfile'
 
                 }}>
                     <img src={check} className='w-10 h-10 my-5 mx-5' />

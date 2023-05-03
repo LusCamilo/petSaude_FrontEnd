@@ -17,6 +17,9 @@ const customStyles = {
      display: "flex",
      justifyContent: "center"
 
+    },
+    overlay : {
+        backgroundColor: '#0000'
     }
  };
 
@@ -117,8 +120,8 @@ export const AppointmentArchived = (props) => {
     return(
         <section>
             <div className='flex flex-row gap-3 justify-between'>
-                <div className='flex flex-col'>
-                    <div className='flex flex-row gap-2'><h2>Consultas Finalizadas</h2> <div class="w-10 h-10 rounded-md bg-[#09738A]"></div></div>
+                <div className='flex flex-col items-center'>
+                    <div className='flex flex-row gap-2'><h2>Consultas Finalizadas</h2> <div class=" w-10 h-10 rounded-md bg-[#09738A]"></div></div>
                     <div className='flex flex-row gap-2'><div className='text-[#A9A9A9] text-base'>Quantidade:</div> <div>{quant.Finalizado}</div></div>
                 </div>
                 <div className='flex flex-col'>

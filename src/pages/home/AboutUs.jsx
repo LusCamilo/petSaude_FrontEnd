@@ -33,7 +33,7 @@ export const AboutUs = () => {
                 </div>
             </div>
             <div className="flex h-full flex-col w-full md:flex-row md:items-center break-words pt-10">
-                <img src={planejamento} alt="" className="w-60 md:w-1/3"/>
+                <img src={planejamento} alt="" className="w-60  md:w-1/3"/>
                 <div className="flex h-full w-full justify-end md:justify-start items-end md:items-center mx-1 flex-col gap-5 p-5">
                     <h2 className="text-5xl font-semibold">PetSaúde</h2>
                     <div >

@@ -11,7 +11,7 @@ export const getAllPets = async (userId) => {
     }
   })
   const pet = await response.json()
-  const petArray = pet.message.pets
+  const petArray = pet.response
   return petArray
 }
 
@@ -24,7 +24,7 @@ export const getPet = async (petID) => {
     }
   })
   const pet = await response.json()
-  return pet.message.pet
+  return pet.resposne.pet
 }
 
 export async function petAdd(petInfos, userID) {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
 
 const customStyles = {
     content: {
@@ -32,6 +33,8 @@ export const AppointmentPeding = (props) => {
         setTutorStatus('hidden');
         setButtonStatus('flex');
       };
+
+      const [modalIsOpen, setIsOpen] = React.useState(false);
 
       function openModal() {
         setIsOpen(true);

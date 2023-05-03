@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import Photo from '../../../assets/svg/userAnonimo.svg';
 import FootHeader from "../../../assets/svg/FootHeader.svg";
@@ -9,9 +9,25 @@ import Info from '../../../assets/svg/InfoOutline.svg';
 import Calendary from '../../../assets/svg/Calendar today.svg';
 import Person from '../../../assets/svg/Person.svg';
 import Lock from '../../../assets/svg/Lock.svg';
-
+import jwt_decode from "jwt-decode";
 
 export const HeaderInfo = (props) => {
+
+  const [userNome, setUserNome] = useState('Entrar')
+  const [userFoto, setUserFoto] = useState('Entrar')
+
+    useEffect(() => {
+        const token = localStorage.getItem('__user_JWT')
+        const decoded = jwt_decode(token);
+        console.log(decoded ? decoded : '');
+        setUserNome(
+            decoded.userName ? decoded.userName : 'Entrar'
+        )
+        setUserFoto(
+            decoded.profilePhoto ? decoded.profilePhoto : 'Entrar'
+        )
+    }, []);
+
     return (
         <>
             <div className=" bg-[#9ED1B7] w-full h-full ">
@@ -106,9 +122,9 @@ export const HeaderInfo = (props) => {
                         </div>
                     </nav>
                     <div className=" w-10 md:flex flex-direction " >
-                        <img className="pt-10 pr-1 md:pt-1 " src={Photo} />
+                        <img className="pt-10 pr-1 md:pt-1 " src={userFoto} />
                         <Link to="../login" class=" invisible xl:visible home-btn p-1 ">
-                            Entrar
+                            {userNome}
                         </Link>
                     </div>
                 </div>
