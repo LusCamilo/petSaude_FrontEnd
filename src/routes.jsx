@@ -69,7 +69,7 @@ export const Rotas = () => {
             <Route path="/profile/editProfissionais" element={<ProfissonaisInfos />} />
             <Route path="/profile/appointment" element={<Appointment />} />
             <Route path="/profile/appointmentView" element={<AppointmentView />} />
-            <Route path="/profile/appointmentMenu" element={<AppointmentMenu />} />
+            <Route path="/profile/appointmentMenu" element={<AppointmentMenu/>} />
             <Route path="/home/searchProfessionals" element={<SearchProfessional />} />
             <Route path="/profile/AppointmentAsk" element={<AppointmentAsk />} />
         </Routes>
