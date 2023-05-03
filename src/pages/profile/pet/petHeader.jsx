@@ -14,8 +14,6 @@ import Logout from '../../../assets/svg/Logout.svg'
 
 export const PetHeader = (props) => {
 
-<<<<<<< HEAD
-=======
     const [userNome, setUserNome] = useState('')
     const [userFoto, setUserFoto] = useState('')
 
@@ -31,7 +29,6 @@ export const PetHeader = (props) => {
         )
     }, []);
 
->>>>>>> d028746e918ade7355341589c7a70238cdccc926
     return (
         <>
             <header>
