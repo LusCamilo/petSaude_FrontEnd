@@ -5,6 +5,8 @@ import { updatePersonalInfosClient } from '../../../../services/integrations/use
 
 export const Pessoais = (props) => {
 
+
+    const [personalInfos, setPersonalInfos] = useState({ disabled: true, textColor: 'opacity-50' })
     const [name, setName] = useState('')
     const [lastName, setLastName] = useState('')
     const [cpf, setCpf] = useState('')
@@ -68,53 +70,66 @@ export const Pessoais = (props) => {
                             <div className=''>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Primeiro nome
-                                    <input type="text" name="firstName" onChange={handleNameChange} defaultValue={name} className='bg-transparent border-none text-2xl text-[#000]' />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleNameChange} defaultValue={name} className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className='flex justify-center'>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Sobrenome
-                                    <input type="text" name="firstName" onChange={handleLastNameChange} defaultValue={lastName} className='bg-transparent border-none text-2xl text-[#000]' />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleLastNameChange} defaultValue={lastName} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className=''>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     CPF
-                                    <input type="text" name="firstName" onChange={handleCpfChange} defaultValue={cpf} className='bg-transparent border-none text-2xl text-[#000]' />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleCpfChange} defaultValue={cpf} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className='flex justify-center'>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     RG
-                                    <input type="text" name="firstName" onChange={handleRgChange} defaultValue={rg} className='bg-transparent border-none text-2xl text-[#000]' />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleRgChange} defaultValue={rg} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className=''>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Celular
-                                    <input type="text" name="firstName" onChange={handleCelularChange} defaultValue={celular} className='bg-transparent border-none text-2xl text-[#000]' />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleCelularChange} defaultValue={celular} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className='flex justify-center'>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Telefone
-                                    <input type="text" name="firstName" onChange={handleTelefoneChange} defaultValue={telefone} className='bg-transparent border-none text-2xl text-[#000]' />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleTelefoneChange} defaultValue={telefone} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div className='hidden sm:flex flex-row w-1/5 justify-end pr-10 '>
                         <button className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
-                            const infos = {
-                                personName: `${name} ${lastName}`,
-                                cpf: cpf,
-                                rg: rg,
-                                cellphoneNumber: celular,
-                                phoneNumber: telefone,
-                                bio: text
-                            }
 
-                            updatePersonalInfosClient(infos)
+
+                            if (personalInfos.disabled == true) {
+                                setPersonalInfos({ disabled: false, textColor: '' })
+                            } else {
+                                setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
+                                if (text == null) {
+                                    setText("")              
+                                }
+                                
+                                const infos = {
+                                    personName: `${name} ${lastName}`,
+                                    cpf: cpf,
+                                    rg: rg,
+                                    cellphoneNumber: celular,
+                                    phoneNumber: telefone,
+                                    bio: text
+                                    
+                                }
+                                console.log(updatePersonalInfosClient(infos))  
+                                window.alert('dados atualizados com sucesso')
+                                
+                            }
 
                         }}>
                             <img src={lapis} alt="" />

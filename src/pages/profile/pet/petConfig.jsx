@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useForm } from "react-hook-form";
 import { PetHeader } from './petHeader';
 import addMais from "../resource/img/AddMais.png"
@@ -14,6 +16,17 @@ import { PetAddWarn } from './cards/warn';
 import './css/pet.css';
 import lapis from '../../../assets/svg/pencil.svg';
 import { getPet, petUpdate } from '../../../services/integrations/pet';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
+    authDomain: "petsaude-6ba51.firebaseapp.com",
+    projectId: "petsaude-6ba51",
+    storageBucket: "petsaude-6ba51.appspot.com",
+    messagingSenderId: "965774218063",
+    appId: "1:965774218063:web:51d112960710c8481ceb3a"
+};
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
 
 const maskPetSize = (tamanho) => {
@@ -150,9 +163,14 @@ export const PetConfig = (props) => {
         fill: 'white',
     });
     const handleFileInputChange = (event) => {
-        // console.log(event.target.files[0])
         const file = event.target.files[0]
-        setSelectedFile(URL.createObjectURL(file));
+        const storageRef = ref(storage, `Pet/${file.name}`);
+        uploadBytes(storageRef, file).then(() => {
+            console.log('Arquivo enviado com sucesso!');
+            return getDownloadURL(storageRef)
+        }).then((url) => {
+            setSelectedFile(url);
+        });
     }
 
     return (
