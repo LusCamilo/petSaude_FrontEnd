@@ -27,13 +27,13 @@ const InfosUser = async () => {
         const response = await getUser(localStorage.getItem('__user_id'))
 
         return {
-            id: response.user.id,
-            userName: response.user.userName,
-            personName: response.user.personName,
-            profilePhoto: response.user.profilePhoto,
-            profileBannerPhoto: response.user.profileBannerPhoto,
-            email: response.user.email,
-            password: response.user.password,
+            id: response.response.user.id,
+            userName: response.response.user.userName,
+            personName: response.response.user.personName,
+            profilePhoto: response.response.user.profilePhoto,
+            profileBannerPhoto: response.response.user.profileBannerPhoto,
+            email: response.response.user.email,
+            password: response.response.user.password,
         }
 
     } else {

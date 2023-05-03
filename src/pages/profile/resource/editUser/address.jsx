@@ -10,10 +10,10 @@ export const Address = (props) => {
     const [complement, setComplement] = useState('')
 
     function handleCepChange(event) {
-        setComplement(event.target.value);
+        setCep(event.target.value);
     }
     function handleComplementChange(event) {
-        setCep(event.target.value);
+        setComplement(event.target.value);
     }
 
     useEffect(() => {
@@ -76,9 +76,7 @@ export const Address = (props) => {
                             setaddress({ disabled: false, textColor: '' })
                         } else {
                             setaddress({ disabled: true, textColor: 'opacity-50' })
-                            console.log(
-                                updateAddress({zipCode: cep, number: `${props.number}`, complement: complement}, props.id)
-                            );
+                            updateAddress({zipCode: cep, number: `${props.number}`, complement: complement}, props.id)
                             window.alert('dados atualizados com sucesso')
                         }
                     }}>

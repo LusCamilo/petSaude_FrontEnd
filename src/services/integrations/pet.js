@@ -4,7 +4,12 @@ const token = localStorage.getItem('__user_JWT')
 
 export const getAllPets = async (userId) => {
   const url = `${BASE_URL}pet/all?userID=${userId}`
-  const response = await fetch(url)
+  const response = await fetch(url,{
+    method: 'GET',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+  })
   const pet = await response.json()
   const petArray = pet.message.pets
   return petArray
@@ -12,7 +17,12 @@ export const getAllPets = async (userId) => {
 
 export const getPet = async (petID) => {
   const url = `${BASE_URL}pet?petID=${petID}`
-  const response =  await fetch(url)
+  const response = await fetch(url,{
+    method: 'GET',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+  })
   const pet = await response.json()
   return pet.message.pet
 }
@@ -23,6 +33,7 @@ export async function petAdd(petInfos, userID) {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
+          'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
 
@@ -38,6 +49,7 @@ export async function petDelete(idPet) {
   const response = await fetch(url, {
     method: 'DELETE',
     headers: {
+      'Access-Control-Allow-Origin': '*',
       'Authorization': `Bearer ${token}`
     }
   })
@@ -50,6 +62,7 @@ export async function petUpdate(idPet, petInfos) {
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     },

@@ -8,6 +8,7 @@ export async function updateAddress(address, addressID) {
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },

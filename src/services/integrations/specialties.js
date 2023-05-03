@@ -7,6 +7,7 @@ export async function updateSpecialties(body,token) {
         method: 'PUT',
         body: body,
         headers:{
+            'Access-Control-Allow-Origin': '*',
             'Authorization': `Bearer ${token}`
         }
     })
@@ -20,6 +21,7 @@ export async function deleteSpecialties(id,token) {
     const response = await fetch(url, {
         method: 'DELETE',
         headers:{
+            'Access-Control-Allow-Origin': '*',
             'Authorization': `Bearer ${token}`
         }
     })

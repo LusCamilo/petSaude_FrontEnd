@@ -12,8 +12,6 @@ import { HomeWeb } from '../../home/Home-Web';
 
 export const PetHeader = (props) => {
 
-    
-
     return (
         <>
             <header>
@@ -56,7 +54,6 @@ export const PetHeader = (props) => {
                                     <Link to="/profile/infosPerson" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Person} className="pr-3 w-14"></img>
                                              Perfil
-                                            
                                     </Link>
                                     {/*<li className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full ">
                                         <img src={Lock} className="pr-3 w-14"></img>
@@ -75,8 +72,6 @@ export const PetHeader = (props) => {
                     </div>
                 </div>
             </header>
-            
-
         </>
     );
 }

@@ -8,7 +8,7 @@ const infosPet = async () => {
 
     const response = await getUser(localStorage.getItem('__user_id'))
 
-    return response.user.Pet
+    return response.response.user.Pet
 
 }
 

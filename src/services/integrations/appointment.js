@@ -9,6 +9,7 @@ export async function appointmentAdd(appointmentInfos) {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
+          'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
 

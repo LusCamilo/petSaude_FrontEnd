@@ -28,75 +28,78 @@ const dataFormation = (date) => {
 
     const dataJoin = dataReverse.join('/')
 
-    return dataJoin
+    return dataFormation[0]
 
 }
 const InfosUser = async () => {
+
     if (localStorage.getItem('__user_isVet') == 'false') {
         const response = await getUser(localStorage.getItem('__user_id'))
-        
-        const [nome, ...sobrenomes] = response.user.personName.split(' ');
+
+        console.log(response);
+
+        const [nome, ...sobrenomes] = response.response.user.personName.split(' ');
 
         const sobrenome = sobrenomes.join(' ');
-        
+
         return {
-            id: response.user.id,
-            personName: response.user.personName,
+            id: response.response.user.id,
+            personName: response.response.user.personName,
             firstName: nome,
             lastName: sobrenome,
-            userName: response.user.userName,
-            cpf: response.user.cpf,
-            rg: response.user.rg,
-            profilePhoto: response.user.profilePhoto,
-            profileBannerPhoto: response.user.profileBannerPhoto,
-            email: response.user.email,
-            password: response.user.password,
-            phoneNumber: response.user.phoneNumber,
-            cellphoneNumber: response.user.cellphoneNumber,
-            biography: response.user.biography,
-            addressId: response.user.addressId,
-            cep: response.user.Address.cep,
-            number: response.user.Address.number,
-            complement: response.user.Address.complement,
+            userName: response.response.user.userName,
+            cpf: response.response.user.cpf,
+            rg: response.response.user.rg,
+            profilePhoto: response.response.user.profilePhoto,
+            profileBannerPhoto: response.response.user.profileBannerPhoto,
+            email: response.response.user.email,
+            password: response.response.user.password,
+            phoneNumber: response.response.user.phoneNumber,
+            cellphoneNumber: response.response.user.cellphoneNumber,
+            biography: response.response.user.biography,
+            addressId: response.response.user.addressId,
+            cep: response.response.user.Address.cep,
+            number: response.response.user.Address.number,
+            complement: response.response.user.Address.complement,
         }
 
-    }else{
+    } else {
 
         const response = await getVeterinary(localStorage.getItem('__user_id'))
-        
-        const [nome, ...sobrenomes] = response.personName.split(' ');
-    
+
+
+        const [nome, ...sobrenomes] = response.response.user.userName.split(' ');
+
         const sobrenome = sobrenomes.join(' ');
 
-        const formation = dataFormation(response.formationDate)
-        const actingDate = dataFormation(response.startActingDate)
-    
+        const formation = dataFormation(response.response.user.formationDate)
+        const actingDate = dataFormation(response.response.user.startActingDate)
+
         return {
-            id: response.id,
-            personName: response.personName,
-            userName: response.userName,
+            id: response.response.user.id,
+            personName: response.response.user.personName,
             firstName: nome,
             lastName: sobrenome,
-            userName: response.Name,
-            cpf: response.cpf,
-            rg: response.rg,
-            profilePhoto: response.profilePhoto,
-            profileBannerPhoto: response.profileBannerPhoto,
-            email: response.email,
-            password: response.password,
-            phoneNumber: response.phoneNumber,
-            cellphoneNumber: response.cellphoneNumber,
-            biography: response.biography,
-            addressId: response.addressId,
-            cep: response.Address.cep,
-            number: response.Address.number,
-            complement: response.Address.complement,
-            institution: response.institution,
-            crmv: response.crmv,
+            userName: response.response.user.userName,
+            cpf: response.response.user.cpf,
+            rg: response.response.user.rg,
+            profilePhoto: response.response.user.profilePhoto,
+            profileBannerPhoto: response.response.user.profileBannerPhoto,
+            email: response.response.user.email,
+            password: response.response.user.password,
+            phoneNumber: response.response.user.phoneNumber,
+            cellphoneNumber: response.response.user.cellphoneNumber,
+            biography: response.response.user.biography,
+            addressId: response.response.user.addressId,
+            cep: response.response.user.Address.cep,
+            number: response.response.user.Address.number,
+            complement: response.response.user.Address.complement,
+            institution: response.response.user.institution,
+            crmv: response.response.user.crmv,
             formationDate: formation,
             startActingDate: actingDate,
-            occupationArea: response.occupationArea,
-            formation: response.formation,
+            occupationArea: response.response.user.occupationArea,
+            formation: response.response.user.formation,
         }
 
     }
@@ -114,8 +117,8 @@ export const UpgradeUser = () => {
 
     const [address, setAddress] = useState(true)
 
-    
-    
+
+
     useEffect(() => {
         async function fetchData() {
 
@@ -149,7 +152,6 @@ export const UpgradeUser = () => {
                     startActingDate: allInfosUser.startActingDate,
                     occupationArea: allInfosUser.occupationArea,
                     formation: allInfosUser.formation,
-
                 }
             )
 
@@ -240,8 +242,7 @@ export const UpgradeUser = () => {
     } else {
         return (
             <>
-                <PetHeader />
-
+                <Config userName={infos.personName} personName={infos.personName} profilePhoto={infos.profilePhoto} />                
                 <main className='flex flex-col gap-10'>
                     <Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular} telefone={infos.telefone} text={infos.text} className='' />
                     <Address id={infos.addressId} cep={infos.cep} bairro={infos.bairro} rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento} className='' />
@@ -267,7 +268,7 @@ export const UpgradeUser = () => {
                         </>
                         :
                         <>
-                            <Pets personImage="http://s2.glbimg.com/wbweywCFLC0nCUeg67UbQZWhL7Eu36oRp_QAFsTkIqCqLLlE9GfCYsNrnTRPpEUO/i.glbimg.com/og/ig/f/original/2012/12/14/fabiana1.jpg" />
+                            <Pets personImage={infos.profilePhoto} />
                             <div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
                                 <button className='flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
                                     if (window.confirm('tem certeza que deseja excluir sua conta?')) {

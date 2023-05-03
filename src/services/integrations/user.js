@@ -1,4 +1,4 @@
-import {BASE_URL} from "../../lib/_base_url";
+import { BASE_URL } from "../../lib/_base_url";
 
 const token = localStorage.getItem('__user_JWT')
 
@@ -8,11 +8,12 @@ export async function registerUser(userInfos) {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(userInfos)
         })
-        return await response.json()    
+        return await response.json()
     } catch (err) {
         console.log(err.message);
     }
@@ -24,6 +25,7 @@ export async function registerVet(vetInfos) {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(vetInfos)
@@ -39,7 +41,8 @@ export async function createVeterinaryInfosIntoExistingUser(userID, vetInfos) {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(vetInfos)
     })
@@ -50,24 +53,28 @@ export async function createVeterinaryInfosIntoExistingUser(userID, vetInfos) {
 export async function getUser(id) {
 
     const url = `${BASE_URL}client?userID=${id}`
-    const response = await fetch(url)//, {
-        // headers: {
-        //     'Authorization': `Bearer ${token}`
-        // }
-    //})
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': `Bearer ${token}`
+        }
+    })
     return await response.json()
-    
+
 }
 export async function getVeterinary(id) {
 
-    const url = `${BASE_URL}veterinary/${id}`
-    const response = await fetch(url)//, {
-        // headers: {
-        //     'Authorization': `Bearer ${token}`
-        // }
-    //})
+    const url = `${BASE_URL}id/veterinary?userID=${id}`
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': `Bearer ${token}`
+        }
+    })
     return await response.json()
-    
+
 }
 
 export async function deleteClient(token) {
@@ -75,27 +82,29 @@ export async function deleteClient(token) {
     const url = `${BASE_URL}client`
     const response = await fetch(url, {
         method: 'DELETE',
-        headers:{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
             'Authorization': `Bearer ${token}`
         }
     })
 
     return await response.json()
-    
+
 }
 
-export async function deleteVeterinary(id,token) {
+export async function deleteVeterinary(id, token) {
 
-    const url = `${BASE_URL}veterinary/${id}`
+    const url = `${BASE_URL}id/veterinary/${id}`
     const response = await fetch(url, {
         method: 'DELETE',
-        headers:{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
             'Authorization': `Bearer ${token}`
         }
     })
 
     return await response.json()
-    
+
 }
 
 export async function updateProfileInfosClient(infosProfile) {
@@ -104,16 +113,17 @@ export async function updateProfileInfosClient(infosProfile) {
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(infosProfile)
         })
-        return await response.json()    
+        return await response.json()
     } catch (err) {
         console.log(err.message);
     }
-    
+
 }
 
 export async function updatePersonalInfosClient(infosProfile) {
@@ -122,16 +132,34 @@ export async function updatePersonalInfosClient(infosProfile) {
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(infosProfile)
         })
-        return await response.json()    
+        return await response.json()
     } catch (err) {
         console.log(err.message);
     }
-    
+}
+
+export async function updateProfessionalInfos(id, body) {
+    try {
+        const url = `${BASE_URL}veterinary/professional/${id}`
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(body)
+        })
+        return await response.json()
+    } catch (err) {
+        console.log(err.message);
+    }
 }
 
 

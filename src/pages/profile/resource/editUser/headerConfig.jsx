@@ -76,7 +76,7 @@ export const Config = (props) => {
 
         </div>
         <div className=" md:flex items-center gap-5" >
-          <img className="w-20 pl-5 pt-20 pr-1 md:pt-1 md:w-20 hidden md:flex " src={Hayley} />
+          <img className="w-20 pl-5 pt-20 pr-1 md:pt-1 md:w-20 hidden md:flex " src={props.profilePhoto} />
           <Link to="../login" className="flex home-btn text-2xl">
             {props.personName}
           </Link>
