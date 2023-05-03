@@ -27,9 +27,7 @@ const dataFormation = (date) => {
 
     const dataReverse = data.reverse()
 
-    const dataJoin = dataReverse.join('/')
-
-    return dataFormation[0]
+    return data
 
 }
 const InfosUser = async () => {
@@ -79,31 +77,56 @@ const InfosUser = async () => {
         const actingDate = dataFormation(vetResponse[0].startActingDate)
     
         return {
-            id: response[0].id,
-            personName: response[0].personName,
-            userName: response[0].userName,
+
+            id: response.response.user.id,
+            personName: response.response.user.personName,
             firstName: nome,
             lastName: sobrenome,
-            userName: response[0].Name,
-            cpf: response[0].cpf,
-            rg: response[0].rg,
-            profilePhoto: response[0].profilePhoto,
-            profileBannerPhoto: response[0].profileBannerPhoto,
-            email: response[0].email,
-            password: response[0].password,
-            phoneNumber: response[0].phoneNumber,
-            cellphoneNumber: response[0].cellphoneNumber,
-            biography: response[0].biography,
-            addressId: response[0].addressId,
-            cep: response[0].Address.cep,
-            number: response[0].Address.number,
-            complement: response[0].Address.complement,
-            institution: response[0].institution,
-            crmv: response[0].crmv,
+            userName: response.response.user.userName,
+            cpf: response.response.user.cpf,
+            rg: response.response.user.rg,
+            profilePhoto: response.response.user.profilePhoto,
+            profileBannerPhoto: response.response.user.profileBannerPhoto,
+            email: response.response.user.email,
+            password: response.response.user.password,
+            phoneNumber: response.response.user.phoneNumber,
+            cellphoneNumber: response.response.user.cellphoneNumber,
+            biography: response.response.user.biography,
+            addressId: response.response.user.addressId,
+            cep: response.response.user.Address.cep,
+            number: response.response.user.Address.number,
+            complement: response.response.user.Address.complement,
+            crmv: response.response.user.crmv,
             formationDate: formation,
             startActingDate: actingDate,
-            occupationArea: response[0].occupationArea,
-            formation: response[0].formation,
+            occupationArea: response.response.user.occupationArea,
+            formation: response.response.user.formation,
+
+            // id: response[0].id,
+            // personName: response[0].personName,
+            // userName: response[0].userName,
+            // firstName: nome,
+            // lastName: sobrenome,
+            // userName: response[0].Name,
+            // cpf: response[0].cpf,
+            // rg: response[0].rg,
+            // profilePhoto: response[0].profilePhoto,
+            // profileBannerPhoto: response[0].profileBannerPhoto,
+            // email: response[0].email,
+            // password: response[0].password,
+            // phoneNumber: response[0].phoneNumber,
+            // cellphoneNumber: response[0].cellphoneNumber,
+            // biography: response[0].biography,
+            // addressId: response[0].addressId,
+            // cep: response[0].Address.cep,
+            // number: response[0].Address.number,
+            // complement: response[0].Address.complement,
+            // institution: response[0].institution,
+            // crmv: response[0].crmv,
+            // formationDate: formation,
+            // startActingDate: actingDate,
+            // occupationArea: response[0].occupationArea,
+            // formation: response[0].formation,
         }
 
     }

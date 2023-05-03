@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import lapis from "../../../../assets/svg/pencil.svg"
-import { updatePersonalInfosClient } from '../../../../services/integrations/user';
+import { updatePersonalInfosClient, updatePersonalInfosVeterinary } from '../../../../services/integrations/user';
 
 export const Pessoais = (props) => {
 
@@ -113,6 +113,7 @@ export const Pessoais = (props) => {
                                 setPersonalInfos({ disabled: false, textColor: '' })
                             } else {
                                 setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
+
                                 if (text == null) {
                                     setText("")              
                                 }
@@ -126,7 +127,13 @@ export const Pessoais = (props) => {
                                     bio: text
                                     
                                 }
-                                console.log(updatePersonalInfosClient(infos))  
+
+                                if (Boolean(localStorage.getItem('__user_isVet'))) 
+                                    updatePersonalInfosClient(infos)
+                                else
+                                    updatePersonalInfosVeterinary(infos)
+
+
                                 window.alert('dados atualizados com sucesso')
                                 
                             }
