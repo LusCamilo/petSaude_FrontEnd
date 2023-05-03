@@ -7,11 +7,7 @@ export const login = async (loginInfos) => {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
-<<<<<<< HEAD
-            'Access-Control-Allow-Origin': '*',
-=======
             'access-allow-control-origin': '*',
->>>>>>> d028746e918ade7355341589c7a70238cdccc926
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({email: loginInfos.email, password: loginInfos.password})
