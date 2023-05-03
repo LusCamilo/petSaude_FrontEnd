@@ -67,15 +67,9 @@ export const PetHeader = (props) => {
                                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                                     <button onClick={ () => document.location.href = '/profile/editPerson'} to="" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Person} className="pr-3 w-14"></img>
-<<<<<<< HEAD
-                                             Perfil
-                                    </Link>
-                                    {/*<li className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full ">
-=======
                                             Perfil
                                     </button>
                                     <button onClick={ () => document.location.href = '/profile/editProfile'} className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full ">
->>>>>>> d028746e918ade7355341589c7a70238cdccc926
                                         <img src={Lock} className="pr-3 w-14"></img>
                                             Segurança
                                     </button>
