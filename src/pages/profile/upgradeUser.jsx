@@ -17,6 +17,7 @@ import lixeira from '../profile/resource/img/Delete.svg'
 import lapis from '../profile/resource/img/LapisColorido.svg'
 import { deleteClient, deleteVeterinary, getUser, getVeterinary } from '../../services/integrations/user';
 import { PetHeader } from './pet/petHeader';
+import jwt_decode from "jwt-decode";
 
 const dataFormation = (date) => {
 
@@ -32,71 +33,77 @@ const dataFormation = (date) => {
 
 }
 const InfosUser = async () => {
-    if (localStorage.getItem('__user_isVet') == 'false') {
-        const response = await getUser(localStorage.getItem('__user_id'))
+    const token = localStorage.getItem('__user_JWT')
+    const decoded = jwt_decode(token);
+    if (decoded.isVet == false) {
+        const response = await getUser(decoded.id)
         
-        const [nome, ...sobrenomes] = response.user.personName.split(' ');
+
+        const [nome, ...sobrenomes] = response.response.user.personName.split(' ');
 
         const sobrenome = sobrenomes.join(' ');
-        
         return {
-            id: response.user.id,
-            personName: response.user.personName,
+            id: response.response.user.id,
+            personName: response.response.user.personName,
             firstName: nome,
             lastName: sobrenome,
-            userName: response.user.userName,
-            cpf: response.user.cpf,
-            rg: response.user.rg,
-            profilePhoto: response.user.profilePhoto,
-            profileBannerPhoto: response.user.profileBannerPhoto,
-            email: response.user.email,
-            password: response.user.password,
-            phoneNumber: response.user.phoneNumber,
-            cellphoneNumber: response.user.cellphoneNumber,
-            biography: response.user.biography,
-            addressId: response.user.addressId,
-            cep: response.user.Address.cep,
-            number: response.user.Address.number,
-            complement: response.user.Address.complement,
+            userName: response.response.user.userName,
+            cpf: response.response.user.cpf,
+            rg: response.response.user.rg,
+            profilePhoto: response.response.user.profilePhoto,
+            profileBannerPhoto: response.response.user.profileBannerPhoto,
+            email: response.response.user.email,
+            password: response.response.user.password,
+            phoneNumber: response.response.user.phoneNumber,
+            cellphoneNumber: response.response.user.cellphoneNumber,
+            biography: response.response.user.biography,
+            addressId: response.response.user.addressId,
+            cep: response.response.user.Address.cep,
+            number: response.response.user.Address.number,
+            complement: response.response.user.Address.complement,
         }
+
+        
 
     }else{
 
-        const response = await getVeterinary(localStorage.getItem('__user_id'))
-        
-        const [nome, ...sobrenomes] = response.personName.split(' ');
+        const response = await getVeterinary(decoded.id)
+        console.log(response);
+        const vetResponse = response.response.filter(vet => vet.id === decoded.id);
+        console.log(vetResponse[0].personName);
+        const [nome, ...sobrenomes] = vetResponse[0].personName.split(' ');
     
         const sobrenome = sobrenomes.join(' ');
 
-        const formation = dataFormation(response.formationDate)
-        const actingDate = dataFormation(response.startActingDate)
+        const formation = dataFormation(vetResponse[0].formationDate)
+        const actingDate = dataFormation(vetResponse[0].startActingDate)
     
         return {
-            id: response.id,
-            personName: response.personName,
-            userName: response.userName,
+            id: response[0].id,
+            personName: response[0].personName,
+            userName: response[0].userName,
             firstName: nome,
             lastName: sobrenome,
-            userName: response.Name,
-            cpf: response.cpf,
-            rg: response.rg,
-            profilePhoto: response.profilePhoto,
-            profileBannerPhoto: response.profileBannerPhoto,
-            email: response.email,
-            password: response.password,
-            phoneNumber: response.phoneNumber,
-            cellphoneNumber: response.cellphoneNumber,
-            biography: response.biography,
-            addressId: response.addressId,
-            cep: response.Address.cep,
-            number: response.Address.number,
-            complement: response.Address.complement,
-            institution: response.institution,
-            crmv: response.crmv,
+            userName: response[0].Name,
+            cpf: response[0].cpf,
+            rg: response[0].rg,
+            profilePhoto: response[0].profilePhoto,
+            profileBannerPhoto: response[0].profileBannerPhoto,
+            email: response[0].email,
+            password: response[0].password,
+            phoneNumber: response[0].phoneNumber,
+            cellphoneNumber: response[0].cellphoneNumber,
+            biography: response[0].biography,
+            addressId: response[0].addressId,
+            cep: response[0].Address.cep,
+            number: response[0].Address.number,
+            complement: response[0].Address.complement,
+            institution: response[0].institution,
+            crmv: response[0].crmv,
             formationDate: formation,
             startActingDate: actingDate,
-            occupationArea: response.occupationArea,
-            formation: response.formation,
+            occupationArea: response[0].occupationArea,
+            formation: response[0].formation,
         }
 
     }
@@ -118,11 +125,9 @@ export const UpgradeUser = () => {
     
     useEffect(() => {
         async function fetchData() {
-
             const allInfosUser = (await InfosUser())
-
             const address = (await getAddressFromZipCode(allInfosUser.cep))
-
+            console.log(allInfosUser);
             setInfos(
                 {
                     userName: allInfosUser.userName,
@@ -210,28 +215,23 @@ export const UpgradeUser = () => {
                                 <Link to="/profile/Consultas">
                                     <img className='pl-36' src={Arrow} alt="" />
                                 </Link>
-
                             </div>
-
                         </div>
                         <div className='border-2 border-[#CAC4D0] rounded-full py-5 px-5 flex flex-row mt-2 '>
                             <div className='flex flex-row  gap-5'>
                                 <img src={Work} alt="" />
                                 Informações Profissionais
-
                                 <Link to="/profile/editProfissionais">
                                     <img className='pl-10' src={Arrow} alt="" />
                                 </Link>
-
                             </div>
                         </div>
+                        <div className='border-2 border-[#B3261E] rounded-full py-5 px-5 flex flex-row  mt-10 text-[#B3261E] font-semibold'>
+                            <div className='flex flex-row  gap-5'>
+                                <img src={Logout} alt="" />
+                                Sair
+                            </div>
                     </div>
-                    <div className='border-2 border-[#B3261E] rounded-full py-5 px-5 flex flex-row  mt-10 text-[#B3261E] font-semibold'>
-                        <div className='flex flex-row  gap-5'>
-                            <img src={Logout} alt="" />
-
-                            Sair
-                        </div>
                     </div>
                 </main>
             </>
@@ -267,7 +267,7 @@ export const UpgradeUser = () => {
                         </>
                         :
                         <>
-                            <Pets personImage="http://s2.glbimg.com/wbweywCFLC0nCUeg67UbQZWhL7Eu36oRp_QAFsTkIqCqLLlE9GfCYsNrnTRPpEUO/i.glbimg.com/og/ig/f/original/2012/12/14/fabiana1.jpg" />
+                            <Pets personImage={`${infos.profilePhoto}`} />
                             <div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
                                 <button className='flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
                                     if (window.confirm('tem certeza que deseja excluir sua conta?')) {

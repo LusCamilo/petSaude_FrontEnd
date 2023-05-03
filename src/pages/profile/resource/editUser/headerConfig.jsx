@@ -10,11 +10,13 @@ import Person from '../../../../assets/svg/Person.svg';
 import Lock from '../../../../assets/svg/Lock.svg';
 import lapis from "../../../../assets/svg/pencil.svg";
 import configIcon from "../../../../assets/svg/Icon button.svg";
-
+import jwt_decode from "jwt-decode";
 
 
 export const Config = (props) => {
 
+
+  
   return (
     <>
       <div className="flex font-normal items-center justify-between bg-white shadow pl-5

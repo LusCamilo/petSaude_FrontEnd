@@ -50,7 +50,7 @@ export async function createVeterinaryInfosIntoExistingUser(userID, vetInfos) {
 export async function getUser(id) {
 
     const url = `${BASE_URL}client?userID=${id}`
-    const response = await fetch(url)//, {
+    const response = await fetch(url)//, { 
         // headers: {
         //     'Authorization': `Bearer ${token}`
         // }
@@ -60,12 +60,13 @@ export async function getUser(id) {
 }
 export async function getVeterinary(id) {
 
-    const url = `${BASE_URL}veterinary/${id}`
+    const url = `${BASE_URL}veterinary?veterinaryID=${id}`
     const response = await fetch(url)//, {
         // headers: {
         //     'Authorization': `Bearer ${token}`
         // }
     //})
+    console.log(url);
     return await response.json()
     
 }

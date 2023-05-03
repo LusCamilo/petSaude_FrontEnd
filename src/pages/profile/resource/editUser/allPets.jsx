@@ -2,13 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { getUser } from '../../../../services/integrations/user';
 import arrow from '../img/arrow.png';
 import { CardPets } from './cardPets';
-
+import jwt_decode from "jwt-decode";
 
 const infosPet = async () => {
 
-    const response = await getUser(localStorage.getItem('__user_id'))
-
-    return response.user.Pet
+    const token = localStorage.getItem('__user_JWT')
+    const decoded = jwt_decode(token);
+    const response = await getUser(decoded.id)
+    return response.response.user.Pet
 
 }
 
@@ -17,7 +18,6 @@ const infosPet = async () => {
 export const Pets = (props) => {
 
     const [pet, setPet] = useState([]);
-
     useEffect(() => {
         async function fetchData() {
            

@@ -96,16 +96,18 @@ export const AppointmentView = (props) => {
                                     </button>
                                 </ul>                
                             </div>
-                                <div className={`${tela2.estado}`}>
+                            <div>
+                                <div className={`${tela2.estado} w-full`}>
                                     <AppointmentPeding  />
                                 </div>
-                                <div className={`${tela1.estado}`}>
+                                <div className={`${tela1.estado} w-full`}>
                                     <AppointmentAsk /> 
                                 </div>
-                                <div className={`${tela3.estado}`}>
+                                <div className={`${tela3.estado} w-full`}>
                                     <AppointmentArchived />
                                 </div>
                             </div>
+                        </div>
                     </section>
 
                     </div>

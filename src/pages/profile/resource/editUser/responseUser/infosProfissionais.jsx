@@ -1,6 +1,7 @@
 import React from 'react';
 import { Config } from '../headerConfig';
 import {UpgradeUser} from '../../../upgradeUser'
+import { PetHeader } from '../../../pet/petHeader';
 
 export const ProfissonaisInfos = () => {
     var largura = window.innerWidth
@@ -11,7 +12,7 @@ export const ProfissonaisInfos = () => {
     } else{
         return (
             <>
-                <Config/>
+                <PetHeader/>
                 <main className='p-2 h-screen flex justify-center'>
                     <form className='w-screen'>
                         <fieldset class="border border-solid border-black p-3 rounded-lg w-11/12">

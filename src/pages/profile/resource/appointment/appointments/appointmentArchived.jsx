@@ -17,6 +17,9 @@ const customStyles = {
      display: "flex",
      justifyContent: "center"
 
+    },
+    overlay : {
+        backgroundColor: '#0000'
     }
  };
 

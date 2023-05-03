@@ -13,7 +13,8 @@ export function Login() {
         // TODO: AUTENTICAÇÃO
         const response = await login(data)
         console.log(response);
-        if (response.token) {
+        document.location.href = '/home'
+        if (localStorage.getItem('__user_JWT') != false || localStorage.getItem('__user_JWT') != undefined || localStorage.getItem('__user_JWT') != null) {
             localStorage.setItem('__user_JWT', response.token)
             document.location.href = '/home'
         } else alert(response.message)

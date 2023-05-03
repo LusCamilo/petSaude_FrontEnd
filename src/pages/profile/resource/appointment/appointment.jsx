@@ -26,11 +26,14 @@ export const Appointment = (props) => {
         const token = localStorage.getItem('__user_JWT')
         const decoded = jwt_decode(token);
         console.log(decoded.id);
+        console.log("Appointment");
           if (decoded.id) {
+            console.log("If");
             const pets = await getAllPets(decoded.id);
+            console.log(pets);
             if (pets == null || pets == undefined || pets == []) {
                 setPetAll([{ name: "Não foram encontrados pets" }]);
-            } else setPetAll(pets )
+            } else setPetAll(pets)
           } else {
             setPetAll([{ name: "Não foram encontrados pets" }]);
           }
