@@ -1,5 +1,5 @@
 //import axios from 'axios'
-const _BASE_URL = 'http://localhost:3000/'
+const _BASE_URL = 'http://localhost:8080/'
 
 export const login = async (loginInfos) => {
 
@@ -12,11 +12,13 @@ export const login = async (loginInfos) => {
         },
         body: JSON.stringify({email: loginInfos.email, password: loginInfos.password})
     })
-        .then(response => response.json())
-        .then(data => data.token)
-        .then(token => localStorage.setItem('__user_JWT', token))
-        .then(token => token)
-        .catch(err => alert(err))
+
+    return response.json()
+        // .then(response => response.json())
+        // .then(data => data.token)
+        // .then(token => localStorage.setItem('__user_JWT', token))
+        // .then(token => token)
+        // .catch(err => alert(err))
 }
 
 export const signup = async (token) => {

@@ -31,6 +31,7 @@ const dataFormation = (date) => {
 
 }
 const InfosUser = async () => {
+    
     const token = localStorage.getItem('__user_JWT')
     const decoded = jwt_decode(token);
     if (decoded.isVet == false) {
@@ -67,14 +68,14 @@ const InfosUser = async () => {
 
         const response = await getVeterinary(decoded.id)
         console.log(response);
-        const vetResponse = response.response.filter(vet => vet.id === decoded.id);
-        console.log(vetResponse[0].personName);
-        const [nome, ...sobrenomes] = vetResponse[0].personName.split(' ');
+        // const vetResponse = response.response.filter(vet => vet.id === decoded.id);
+        // console.log(vetResponse[0].personName);
+        const [nome, ...sobrenomes] = response.response.user.personName.split(' ');
     
         const sobrenome = sobrenomes.join(' ');
 
-        const formation = dataFormation(vetResponse[0].formationDate)
-        const actingDate = dataFormation(vetResponse[0].startActingDate)
+        const formation = dataFormation(response.response.user.formationDate)
+        const actingDate = dataFormation(response.response.user.startActingDate)
     
         return {
 
