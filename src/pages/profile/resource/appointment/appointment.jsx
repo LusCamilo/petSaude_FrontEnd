@@ -102,7 +102,7 @@ export const Appointment = (props) => {
       }
     
     return (
-    <section id='buttonCanceled' className="w-full mt-60 bg-black" >
+    <section id='buttonCanceled' className=" w-full mt-60 bg-black" >
         <form onSubmit={handleSubmit(submitAppointment)} className=" flex justify-start w-full">
             <div className='p-2 md:p-20  w-full'>
                 <h1 className='flex justify-start text-3xl md:text-5xl font-semibold pt-2 md:pt-10'>Selecione o animal</h1>
