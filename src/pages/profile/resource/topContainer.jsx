@@ -3,25 +3,26 @@ import iconVet from './img/iconVet.png'
 import * as Dialog from '@radix-ui/react-dialog';
 import { Appointment } from './appointment/appointment';
 import '../../profile/pet/css/pet.css'
-import Modal from 'react-bootstrap/Modal'
 //import TextTruncate from 'react-text-truncate';
 import { AppointmentModal } from './appointment/appointmentModal';
-//import Modal from 'react-modal';
+import Modal from 'react-modal';
 
-// const customStyles = {
-//   content: {
-//     top: '50%',
-//     left: '50%',
-//     right: 'auto',
-//     bottom: 'auto',
-//     marginRight: '-50%',
-//     transform: 'translate(-50%, -50%)',
-//     border: '4px solid #9ED1B7',
-//     borderRadius: '10px',
-//     width: '75vw',
-//     height: '50vh',
-//   },
-// };
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    transform: 'translate(-50%, -50%)',
+    border: '4px solid #9ED1B7',
+    borderRadius: '10px',
+    width: '75vw',
+    height: '50vh',
+  },
+  overlay : {
+      backgroundColor: '#0000'
+  }
+};
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 
@@ -108,7 +109,7 @@ export const TopContainer = (props) => {
                                 isOpen={modalIsOpen}
                                 onAfterOpen={afterOpenModal}
                                 onRequestClose={closeModal}
-                                // style={customStyles}
+                                style={customStyles}
                                 contentLabel="Example Modal"
                             >
                                 <form className='w-full'>

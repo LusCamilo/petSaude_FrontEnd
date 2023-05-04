@@ -18,7 +18,7 @@ export const PetAddWarn = () => {
                     <button className='text-[#F9DEDC] text-xl p-5 bg-[#B3261E] rounded-full' onClick={
                         () => {
                             petDelete(localStorage.getItem('__pet_id'))
-                            document.location.href = "/profile/upgrade"
+                            document.location.href = "/profile/upgradeUser"
                         }
                     }>
                         Sim

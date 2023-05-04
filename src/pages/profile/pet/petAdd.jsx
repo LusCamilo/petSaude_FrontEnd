@@ -14,6 +14,8 @@ import { PetAddSucess } from './cards/sucess';
 import * as Dialog from '@radix-ui/react-dialog';
 import { petAdd } from "../../../services/integrations/pet.js";
 import './css/pet.css'
+import Modal from 'react-modal'
+import { Appointment } from '../resource/appointment/appointment';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -25,6 +27,29 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        border: '4px solid transparent',
+        borderRadius: '10px',
+        backgroundColor: '#E3EFF0',
+        width: '510px',
+        height: '360px',
+        padding: '0',
+        display: "flex",
+        justifyContent: "center"
+    },
+    overlay : {
+        backgroundColor: '#0000'
+    }
+ };
+
 
 
 export const PetAdd = (props) => {
@@ -88,7 +113,9 @@ export const PetAdd = (props) => {
 
         petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
 
-        document.location.href = "/profile/upgradeUser"
+        setTimeout(function() {
+            document.location.href = "/profile/upgradeUser";
+        }, 5000); 
     }
 
     const handleFileInputChange = (event) => {
@@ -104,6 +131,25 @@ export const PetAdd = (props) => {
 
     const [selectedFile, setSelectedFile] = useState();
 
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+        submitPet()
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        //subtitle.style.color = '#f00';
+    }
+
+    function cancelClose() {
+        closeModal();
+    }
 
     return (
         <>
@@ -177,19 +223,19 @@ export const PetAdd = (props) => {
                     </div>
                 </div>
                 <div className='w-full flex justify-end mb-30'>
-                    <Dialog.Root>
-                        <Dialog.Trigger asChild>
-                            <button asChild onClick={submitPet}>
-                                <img src={certo} alt="" />
-                            </button>
-                        </Dialog.Trigger>
-                        <Dialog.Portal >
-                            <Dialog.Overlay className="DialogOverlay" />
-                            <Dialog.Content className="DialogContent">
-                                <PetAddSucess className='cardPet' what='Novo pet adicionado' />
-                            </Dialog.Content>
-                        </Dialog.Portal>
-                    </Dialog.Root>
+                <button asChild onClick={openModal}>
+                    <img src={certo} alt="" />
+                </button>
+                {/*  submitPet*/}
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <PetAddSucess className='cardPet' what='Novo pet adicionado' onCancel={cancelClose} />
+                </Modal>
                 </div>
             </main>
 
