@@ -114,28 +114,36 @@ export const Pessoais = (props) => {
                             } else {
                                 setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
 
-                                if (text == null) {
-                                    setText("")              
-                                }
-                                
-                                const infos = {
-                                    personName: `${name} ${lastName}`,
-                                    cpf: cpf,
-                                    rg: rg,
-                                    cellphoneNumber: celular,
-                                    phoneNumber: telefone,
-                                    bio: text
-                                    
-                                }
+                                let infos
 
-                                if (Boolean(localStorage.getItem('__user_isVet'))) 
-                                    updatePersonalInfosClient(infos)
+                                if (text == null)
+                                    infos = {
+                                        personName: `${name} ${lastName}`,
+                                        cpf: cpf,
+                                        rg: rg,
+                                        cellphoneNumber: celular,
+                                        phoneNumber: telefone,
+                                        bio: ""
+                                    }
                                 else
-                                    updatePersonalInfosVeterinary(infos)
+                                    infos = {
+                                        personName: `${name} ${lastName}`,
+                                        cpf: cpf,
+                                        rg: rg,
+                                        cellphoneNumber: celular,
+                                        phoneNumber: telefone,
+                                        bio: text
+                                    }
 
 
-                                window.alert('dados atualizados com sucesso')
-                                
+
+                                if (Boolean(localStorage.getItem('__user_isVet')))
+                                    console.log(
+                                        updatePersonalInfosVeterinary(infos)
+                                    );
+                                else
+                                    updatePersonalInfosClient(infos)
+
                             }
 
                         }}>

@@ -56,9 +56,8 @@ const dataFormation = (date) => {
 
 const InfosUser = async () => {
 
-    const response = await getPet(3)
+    const response = await getPet(localStorage.getItem("__pet_id"))
     
-    console.log(localStorage.getItem("__pet_id"));
     console.log(response);
     return {
         id: response.id,

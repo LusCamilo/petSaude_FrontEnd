@@ -29,3 +29,15 @@ export async function deleteSpecialties(id,token) {
     return await response.json()
     
 }
+
+export async function getSpecialties() {
+    const url = `${BASE_URL}specialities`
+    const response = await fetch(url, {
+        method:'GET',
+        headers:{
+            'Access-Control-Allow-Origin': '*',
+        }
+    })
+
+    return await response.json()
+}

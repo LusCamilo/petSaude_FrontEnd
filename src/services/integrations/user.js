@@ -183,6 +183,7 @@ export async function updatePersonalInfosVeterinary(infosProfile) {
 
 export async function updateProfessionalInfos(id, body) {
     try {
+        
         const url = `${BASE_URL}veterinary/professional/${id}`
         const response = await fetch(url, {
             method: 'PUT',
@@ -195,7 +196,7 @@ export async function updateProfessionalInfos(id, body) {
         })
         return await response.json()
     } catch (err) {
-        console.log(err.message);
+        console.log(err);
     }
 }
 
