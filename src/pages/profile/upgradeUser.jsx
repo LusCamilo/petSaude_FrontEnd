@@ -27,7 +27,7 @@ const dataFormation = (date) => {
 
     const dataReverse = data.reverse()
 
-    return data
+    return dataReverse
 
 }
 const InfosUser = async () => {

@@ -11,6 +11,8 @@ const userId = async () => {
   localStorage.setItem('__user_id', apiResponse.user.id)
   localStorage.setItem('__user_isVet', apiResponse.user.isVet)
 
+
+
 }
 
 

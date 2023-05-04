@@ -5,18 +5,26 @@ import {useForm} from "react-hook-form";
 import {AuthHeader} from "../../components/headers/AuthHeader";
 import {IoEye, IoEyeOff} from "react-icons/io5";
 import {login, signup} from "../../services/integrations/authentication";
+import jwt_decode from "jwt-decode";
 
 export function Login() {
+
+
+
 
     const {register, handleSubmit, formState: {errors}} = useForm()
     const submitForm = async data => {
         // TODO: AUTENTICAÇÃO
         const response = await login(data)
+
+
+
+        if (response.token) {
         console.log(response);
         document.location.href = '/home'
         if (localStorage.getItem('__user_JWT') != false || localStorage.getItem('__user_JWT') != undefined || localStorage.getItem('__user_JWT') != null) {
             localStorage.setItem('__user_JWT', response.token)
-            document.location.href = '/'
+            document.location.href = '/home'
         } else alert(response.message)
         // if (validateForm(data)) console.log(data)
         // else return false
@@ -87,4 +95,5 @@ export function Login() {
             </div>
         </section>
     );
+    }
 }
