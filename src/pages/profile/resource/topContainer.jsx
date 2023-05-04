@@ -3,14 +3,10 @@ import iconVet from './img/iconVet.png'
 import * as Dialog from '@radix-ui/react-dialog';
 import { Appointment } from './appointment/appointment';
 import '../../profile/pet/css/pet.css'
-// import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal'
 //import TextTruncate from 'react-text-truncate';
 import { AppointmentModal } from './appointment/appointmentModal';
-<<<<<<< HEAD
 //import Modal from 'react-modal';
-=======
-// import Modal from 'react-modal';
->>>>>>> 04c7665 (04/05/2023)
 
 // const customStyles = {
 //   content: {
