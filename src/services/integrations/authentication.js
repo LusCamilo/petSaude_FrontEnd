@@ -1,9 +1,10 @@
 //import axios from 'axios'
-const _BASE_URL = 'http://localhost:3000/'
+const _BASE_URL = 'http://localhost:8080/'
 
 export const login = async (loginInfos) => {
 
     const url = `${_BASE_URL}signup`
+
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -11,12 +12,15 @@ export const login = async (loginInfos) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({email: loginInfos.email, password: loginInfos.password})
+        
     })
-        .then(response => response.json())
-        .then(data => data.token)
-        .then(token => localStorage.setItem('__user_JWT', token))
-        .then(token => token)
-        .catch(err => alert(err))
+    
+    return await response.json()
+        // .then(response => response.json())
+        // .then(data => data.token)
+        // .then(token => localStorage.setItem('__user_JWT', token))
+        // .then(token => token)
+        // .catch(err => alert(err))
 }
 
 export const signup = async (token) => {

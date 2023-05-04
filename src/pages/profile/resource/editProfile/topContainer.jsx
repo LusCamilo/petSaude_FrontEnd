@@ -12,7 +12,6 @@ export const TopContainer = (props) => {
     }, [props.profileBannerPhoto])
     
     const handleFileInputChange = (event) => {
-        console.log(event.target.files[0])
         const file = event.target.files[0]
         
         if (file) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import lapis from "../../../../assets/svg/pencil.svg"
-import { updatePersonalInfosClient } from '../../../../services/integrations/user';
+import { updatePersonalInfosClient, updatePersonalInfosVeterinary } from '../../../../services/integrations/user';
 
 export const Pessoais = (props) => {
 
@@ -113,22 +113,37 @@ export const Pessoais = (props) => {
                                 setPersonalInfos({ disabled: false, textColor: '' })
                             } else {
                                 setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
-                                if (text == null) {
-                                    setText("")              
-                                }
-                                
-                                const infos = {
-                                    personName: `${name} ${lastName}`,
-                                    cpf: cpf,
-                                    rg: rg,
-                                    cellphoneNumber: celular,
-                                    phoneNumber: telefone,
-                                    bio: text
-                                    
-                                }
-                                console.log(updatePersonalInfosClient(infos))  
-                                window.alert('dados atualizados com sucesso')
-                                
+
+                                let infos
+
+                                if (text == null)
+                                    infos = {
+                                        personName: `${name} ${lastName}`,
+                                        cpf: cpf,
+                                        rg: rg,
+                                        cellphoneNumber: celular,
+                                        phoneNumber: telefone,
+                                        bio: ""
+                                    }
+                                else
+                                    infos = {
+                                        personName: `${name} ${lastName}`,
+                                        cpf: cpf,
+                                        rg: rg,
+                                        cellphoneNumber: celular,
+                                        phoneNumber: telefone,
+                                        bio: text
+                                    }
+
+
+
+                                if (Boolean(localStorage.getItem('__user_isVet')))
+                                    console.log(
+                                        updatePersonalInfosVeterinary(infos)
+                                    );
+                                else
+                                    updatePersonalInfosClient(infos)
+
                             }
 
                         }}>

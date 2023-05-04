@@ -6,14 +6,12 @@ import { getUsers, getAllVets } from "../../services/integrations/filters";
 import { useForm } from "react-hook-form";
 import search from "../../assets/svg/lupa.svg";
 import * as RadioGroup from '@radix-ui/react-radio-group';
-import axios from "axios";
 import './radixSearch.css'
 
 
 export const SearchProfessional = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [vets, setVets] = useState([]);
-  const [cidadeProcurar, setCidadeProcurar] = useState("");
   const [inputSearch, setInputSearch] = useState(
     localStorage.getItem("__Vet_Search") || ""
   );
@@ -24,14 +22,13 @@ export const SearchProfessional = () => {
 
   const setMudarFiltro = (value) => {
     setOndeProcurar(value)
-    
     onSearchIt({ search:  inputSearch, searchIt: value})
   };
 
   function citySearch() {
     setFiltro("city");
-    setVets([]);
-   // onSearchIt({ search:  inputSearch})
+    setOndeProcurar("value")
+    onSearchIt({ search:  inputSearch})
   }
 
 const [umCorteRapidao, setUmCorteRapidao] = useState('')
@@ -39,7 +36,6 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
 //const [filtro, setFiltro] = useState("userName");
   const onSearch = async (data) => {
     localStorage.setItem("__Vet_Search", data.search)
-    console.log(ondeProcurar);
     try {
       if (data.search == "") {
         {
@@ -49,7 +45,6 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           setVets(json);
         }
       } else {
-        console.log(ondeProcurar);
         if (ondeProcurar !== "city") {
           let response = await getUsers(data.search, ondeProcurar);
           let result = response.response;
@@ -66,18 +61,11 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           setUmCorteRapidao('')
           setVets(json);
         } else {
-          console.log("abecedario");
           let response = await getAllVets();
-
           let result = response.response;
           let json = Object.values(result);
           setUmCorteRapidao(inputSearch)
-          let jsonFinal = await Promise.all(json.filter(async (item) => 
-            item.city.toLowerCase().includes((await axios.get(
-              `https://viacep.com.br/ws/${data.search}/json/`
-            )).data.toLowerCase())
-          ));
-          setVets(jsonFinal);
+          setVets(json);
         }
       }
     } catch (error) {
@@ -95,36 +83,20 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         let json = Object.values(result);
         setVets(json);
       } else {
-        console.log(ondeProcurar);
-        if (ondeProcurar !== "city") {
-          let response = await getUsers(data.search, ondeProcurar);
-          let result = response.response;
-          let json
-          if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
-            json = []
-          } else {
-            json = result.filter(
-              (item) =>
-                item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
-                item.userName.toLowerCase().includes(data.search.toLowerCase())
-            );
-          }
-          setUmCorteRapidao('')
-          setVets(json);
+        localStorage.setItem("__Vet_Search", data.search)
+        let response = await getUsers(data.search, data.searchIt);
+        let result = response.response;
+        let json
+        if (result == "Nenhum veterinário atende aos filtros de pesquisa") {
+          json = []
         } else {
-          console.log("abecedario");
-          let response = await getAllVets();
-
-          let result = response.response;
-          let json = Object.values(result);
-          setUmCorteRapidao(inputSearch)
-          let jsonFinal = await Promise.all(json.filter(async (item) => 
-            item.city.toLowerCase().includes((await axios.get(
-              `https://viacep.com.br/ws/${data.search}/json/`
-            )).data.toLowerCase())
-          ));
-          setVets(jsonFinal);
+          json = result.filter(
+            (item) =>
+              item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
+              item.userName.toLowerCase().includes(data.search.toLowerCase())
+          );
         }
+        setVets(json);
       }
     } catch (error) {
       console.error(error);
@@ -147,7 +119,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         description="Temos os melhores e mais confiaveis profissionais em nosso site."
       />
       <div className={`p-20 container mx-auto px-4 flex flex-col gap-10 min-h-screen`}>
-        <div className="flex flex-col items-center md:flex-row w-full" >
+        <div className="flex flex-row w-full" >
           <div className="flex flex-row gap-2 w-full border-4 border-black rounded-lg items-center align-middle  content-center mr-4">
           <img className="w-10" src={search} />
           <form
@@ -175,7 +147,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                       </label>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <RadioGroup.Item className="RadioGroupItem" onClick={citySearch} name="city" defaultValue="city" id="r2">
+                      <RadioGroup.Item className="RadioGroupItem" onClick={() => citySearch()} name="city" defaultValue="city" id="r2">
                       <RadioGroup.Indicator className="RadioGroupIndicator" />
                       </RadioGroup.Item>
                       <label className="Label" htmlFor="r2">
@@ -216,7 +188,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                 cep={vet.Address.cep}
                 formacao={vet.formation}
                 instituicao={vet.institution}
-                especializacao={""}
+                especializacao={vet.VeterinaryEspecialities[0].specialities.name}
                 image={vet.profilePhoto}
                 dateStart = {vet.startActingDate}
                 umCorteRapido={umCorteRapidao}

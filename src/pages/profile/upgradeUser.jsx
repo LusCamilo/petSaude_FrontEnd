@@ -23,21 +23,18 @@ const dataFormation = (date) => {
 
     const dataFormation = date.split("T")
 
-    let data = dataFormation[0].split("-")
+    let data = dataFormation[0]
 
-    const dataReverse = data.reverse()
-
-    const dataJoin = dataReverse.join('/')
-
-    return dataFormation[0]
+    return data
 
 }
 const InfosUser = async () => {
+
     const token = localStorage.getItem('__user_JWT')
     const decoded = jwt_decode(token);
     if (decoded.isVet == false) {
         const response = await getUser(decoded.id)
-        
+
 
         const [nome, ...sobrenomes] = response.response.user.personName.split(' ');
 
@@ -63,47 +60,48 @@ const InfosUser = async () => {
             complement: response.response.user.Address.complement,
         }
 
-        
 
-    }else{
+
+    } else {
 
         const response = await getVeterinary(decoded.id)
-        console.log(response);
-        const vetResponse = response.response.filter(vet => vet.id === decoded.id);
-        console.log(vetResponse[0].personName);
-        const [nome, ...sobrenomes] = vetResponse[0].personName.split(' ');
-    
+
+        const [nome, ...sobrenomes] = response.response.user.personName.split(' ');
+
         const sobrenome = sobrenomes.join(' ');
 
-        const formation = dataFormation(vetResponse[0].formationDate)
-        const actingDate = dataFormation(vetResponse[0].startActingDate)
-    
+        const formation = dataFormation(response.response.user.formationDate)
+        const actingDate = dataFormation(response.response.user.startActingDate)
+
         return {
-            id: response[0].id,
-            personName: response[0].personName,
-            userName: response[0].userName,
+
+            id: response.response.user.id,
+            personName: response.response.user.personName,
             firstName: nome,
             lastName: sobrenome,
-            userName: response[0].Name,
-            cpf: response[0].cpf,
-            rg: response[0].rg,
-            profilePhoto: response[0].profilePhoto,
-            profileBannerPhoto: response[0].profileBannerPhoto,
-            email: response[0].email,
-            password: response[0].password,
-            phoneNumber: response[0].phoneNumber,
-            cellphoneNumber: response[0].cellphoneNumber,
-            biography: response[0].biography,
-            addressId: response[0].addressId,
-            cep: response[0].Address.cep,
-            number: response[0].Address.number,
-            complement: response[0].Address.complement,
-            institution: response[0].institution,
-            crmv: response[0].crmv,
+            userName: response.response.user.userName,
+            cpf: response.response.user.cpf,
+            rg: response.response.user.rg,
+            profilePhoto: response.response.user.profilePhoto,
+            profileBannerPhoto: response.response.user.profileBannerPhoto,
+            email: response.response.user.email,
+            password: response.response.user.password,
+            phoneNumber: response.response.user.phoneNumber,
+            cellphoneNumber: response.response.user.cellphoneNumber,
+            biography: response.response.user.biography,
+            addressId: response.response.user.addressId,
+            cep: response.response.user.Address.cep,
+            number: response.response.user.Address.number,
+            complement: response.response.user.Address.complement,
+            crmv: response.response.user.crmv,
             formationDate: formation,
             startActingDate: actingDate,
-            occupationArea: response[0].occupationArea,
-            formation: response[0].formation,
+            occupationArea: response.response.user.occupationArea,
+            formation: response.response.user.formation,
+            institution: response.response.user.institution,
+            PetSpecieVeterinary: response.response.user.PetSpecieVeterinary,
+            VeterinaryEspecialities: response.response.user.VeterinaryEspecialities
+
         }
 
     }
@@ -127,7 +125,6 @@ export const UpgradeUser = () => {
         async function fetchData() {
             const allInfosUser = (await InfosUser())
             const address = (await getAddressFromZipCode(allInfosUser.cep))
-            console.log(allInfosUser);
             setInfos(
                 {
                     userName: allInfosUser.userName,
@@ -154,12 +151,18 @@ export const UpgradeUser = () => {
                     startActingDate: allInfosUser.startActingDate,
                     occupationArea: allInfosUser.occupationArea,
                     formation: allInfosUser.formation,
+                    PetSpecieVeterinary: allInfosUser.PetSpecieVeterinary,
+                    VeterinaryEspecialities: allInfosUser.VeterinaryEspecialities
+
                 }
             )
 
         }
         fetchData()
     }, [])
+
+    console.log(infos.PetSpecieVeterinary);
+    console.log(infos.VeterinaryEspecialities);
 
     var largura = window.innerWidth
 
@@ -230,7 +233,7 @@ export const UpgradeUser = () => {
                                 <img src={Logout} alt="" />
                                 Sair
                             </div>
-                    </div>
+                        </div>
                     </div>
                 </main>
             </>
@@ -239,7 +242,7 @@ export const UpgradeUser = () => {
     } else {
         return (
             <>
-                <Config userName={infos.personName} personName={infos.personName} profilePhoto={infos.profilePhoto} />                
+                <Config userName={infos.userName} personName={infos.personName} profilePhoto={infos.profilePhoto} />
                 <main className='flex flex-col gap-10'>
                     <Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular} telefone={infos.telefone} text={infos.text} className='' />
                     <Address id={infos.addressId} cep={infos.cep} bairro={infos.bairro} rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento} className='' />

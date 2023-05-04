@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import { Link } from 'react-router-dom';
 import { Header } from '../../components/headers/headerEdits'
 import { signup } from "../../services/integrations/authentication";
@@ -11,12 +11,19 @@ const userId = async () => {
   localStorage.setItem('__user_id', apiResponse.user.id)
   localStorage.setItem('__user_isVet', apiResponse.user.isVet)
 
+
+
 }
 
-userId()
+
+
 
 
 export const HomePage = () => {
+  
+  useEffect(() => {
+    userId()
+  }, [])
 
   return (
     <>

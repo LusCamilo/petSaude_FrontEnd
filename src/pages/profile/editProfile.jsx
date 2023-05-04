@@ -7,7 +7,7 @@ import { InfosProfile } from './resource/editProfile/infosProfile';
 import profilePhoto from './resource/img/profilePhoto.png'
 import userPhoto from './resource/img/userPhoto.png'
 import check from './resource/img/saveProfile.png'
-import { deleteClient, deleteVeterinary, getUser, getVeterinary, updateProfileInfosClient } from '../../services/integrations/user';
+import { deleteClient, deleteVeterinary, getUser, getVeterinary, updateProfileInfosClient, updateProfileInfosVeterinary } from '../../services/integrations/user';
 import { PetHeader } from './pet/petHeader';
 import jwt_decode from "jwt-decode";
 
@@ -27,7 +27,6 @@ const InfosUser = async () => {
 
     const token = localStorage.getItem('__user_JWT')
     const decoded = jwt_decode(token);
-    console.log(decoded ? decoded : '');
 
     if (decoded.isVet == false) {
         const response = await getUser(decoded.id)
@@ -48,13 +47,13 @@ const InfosUser = async () => {
         const response = await getVeterinary(decoded.id)
 
         return {
-            id: response.id,
-            userName: response.userName,
-            personName: response.personName,
-            profilePhoto: response.profilePhoto,
-            profileBannerPhoto: response.profileBannerPhoto,
-            email: response.email,
-            password: response.password,
+            id: response.response.user.id,
+            userName: response.response.user.userName,
+            personName: response.response.user.personName,
+            profilePhoto: response.response.user.profilePhoto,
+            profileBannerPhoto: response.response.user.profileBannerPhoto,
+            email: response.response.user.email,
+            password: response.response.user.password,
 
         }
 
@@ -64,7 +63,7 @@ const InfosUser = async () => {
 export const EditProfile = () => {
     const token = localStorage.getItem('__user_JWT')
     const decoded = jwt_decode(token);
-    console.log(decoded ? decoded : '');
+
 
     const [infos, setInfos] = useState({})
 
@@ -115,22 +114,28 @@ export const EditProfile = () => {
     }
 
     function handleChildProfilePhotoChange(value) {
-        const storageRef = ref(storage, `Cliente/${value.name}`);
+        let storageRef = ref(storage, `Client/${value.name}`);
+        if (Boolean(localStorage.getItem('__user_isVet'))) {
+            const storageRef = ref(storage, `Veterinario/${value.name}`);
+        }
         uploadBytes(storageRef, value).then(() => {
             console.log('Arquivo enviado com sucesso!');
             return getDownloadURL(storageRef)
-        }) .then((url) => {
+        }).then((url) => {
             setProfilePhoto(url)
         });
 
     }
 
     function handleChildProfileBannerPhotoChange(value) {
-        const storageRef = ref(storage, `Cliente/${value.name}`);
+        let storageRef = ref(storage, `Client/${value.name}`);
+        if (Boolean(localStorage.getItem('__user_isVet'))) {
+            storageRef = ref(storage, `Veterinario/${value.name}`);
+        }
         uploadBytes(storageRef, value).then(() => {
             console.log('Arquivo enviado com sucesso!');
             return getDownloadURL(storageRef)
-        }) .then((url) => {
+        }).then((url) => {
             setProfileBannerPhoto(url)
         });
 
@@ -158,12 +163,10 @@ export const EditProfile = () => {
                         profilePhoto: profilePhoto
                     }
 
-                    if (Boolean(decoded.isVet)) {
+                    if (Boolean(decoded.isVet))
+                        updateProfileInfosVeterinary(profileInfos)
+                    else
                         updateProfileInfosClient(profileInfos)
-                        
-                    } else {
-                        updateProfileInfosClient(profileInfos)
-                    }
 
 
                     document.location.href = '/profile/editProfile'

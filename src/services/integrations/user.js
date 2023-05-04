@@ -144,8 +144,46 @@ export async function updatePersonalInfosClient(infosProfile) {
     }
 }
 
+export async function updateProfileInfosVeterinary(infosProfile) {
+    try {
+        const url = `${BASE_URL}veterinary/profile-infos`
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(infosProfile)
+        })
+        return await response.json()
+    } catch (err) {
+        console.log(err.message);
+    }
+
+}
+
+export async function updatePersonalInfosVeterinary(infosProfile) {
+    try {
+        const url = `${BASE_URL}veterinary/personal-infos`
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(infosProfile)
+        })
+        return await response.json()
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
 export async function updateProfessionalInfos(id, body) {
     try {
+        
         const url = `${BASE_URL}veterinary/professional/${id}`
         const response = await fetch(url, {
             method: 'PUT',
@@ -158,7 +196,7 @@ export async function updateProfessionalInfos(id, body) {
         })
         return await response.json()
     } catch (err) {
-        console.log(err.message);
+        console.log(err);
     }
 }
 
