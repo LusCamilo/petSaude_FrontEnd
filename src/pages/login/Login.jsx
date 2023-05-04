@@ -20,6 +20,9 @@ export function Login() {
 
 
         if (response.token) {
+        console.log(response);
+        document.location.href = '/home'
+        if (localStorage.getItem('__user_JWT') != false || localStorage.getItem('__user_JWT') != undefined || localStorage.getItem('__user_JWT') != null) {
             localStorage.setItem('__user_JWT', response.token)
             document.location.href = '/home'
         } else alert(response.message)
@@ -92,4 +95,5 @@ export function Login() {
             </div>
         </section>
     );
+    }
 }

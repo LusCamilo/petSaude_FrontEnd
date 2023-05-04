@@ -20,16 +20,16 @@ export const HeaderProfile = () => {
                 </div>
                 <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
                     <li className="mx-4 my-6 md:my-0">
-                        <a href="../home" className="text-2xl hover:text-green-300 duration-500">Home</a>
+                        <Link href="../home" className="text-2xl hover:text-green-300 duration-500">Home</Link>
                     </li>
                     <li className="mx-4 my-6 md:my-0">
-                        <a href="#" className="text-2xl hover:text-green-300 duration-500">Profissionais</a>
+                        <Link href="#" className="text-2xl hover:text-green-300 duration-500">Profissionais</Link>
                     </li>
                     <li className="mx-4 my-6 md:my-0">
-                        <a href="#" className="text-2xl hover:text-green-300 duration-500">Blog</a>
+                        <Link href="#" className="text-2xl hover:text-green-300 duration-500">Blog</Link>
                     </li>
                     <li className="mx-4 my-6 md:my-0">
-                        <a href="#" className="text-2xl hover:text-green-300 duration-500 flex-row justify-center ">Sobre nós</a>
+                        <Link href="#" className="text-2xl hover:text-green-300 duration-500 flex-row justify-center ">Sobre nós</Link>
                     </li>
                 </ul>
                 <div className="menu">
@@ -40,7 +40,7 @@ export const HeaderProfile = () => {
             </nav>
             <div className="flex items-center gap-x-3 pt-6 justify-center p-5 md:pt-2" >
                 <img className='flex border justify-center rounded-full p-3' src={configIcon} />
-                <Link to="../" className=" hidden md:flex xl:flex home-btn text-1xl  ">
+                <Link to="/profile/upgradeUser" className=" hidden md:flex xl:flex home-btn text-1xl  ">
                    <p className='text-3xl'>Configurações</p> 
                 </Link>
             </div>

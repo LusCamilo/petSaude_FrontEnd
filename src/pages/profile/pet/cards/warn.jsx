@@ -1,4 +1,5 @@
 import React from 'react';
+import { petDelete } from '../../../../services/integrations/pet';
 import cuidado from '../../resource/img/Cuidado.png'
 
 export const PetAddWarn = () => {
@@ -14,7 +15,12 @@ export const PetAddWarn = () => {
                     <button className='text-[#F9DEDC] text-xl p-5 bg-[#B3261E] rounded-full'>
                         Não
                     </button>
-                    <button className='text-[#F9DEDC] text-xl p-5 bg-[#B3261E] rounded-full'>
+                    <button className='text-[#F9DEDC] text-xl p-5 bg-[#B3261E] rounded-full' onClick={
+                        () => {
+                            petDelete(localStorage.getItem('__pet_id'))
+                            document.location.href = "/profile/upgrade"
+                        }
+                    }>
                         Sim
                     </button>
                 </div>

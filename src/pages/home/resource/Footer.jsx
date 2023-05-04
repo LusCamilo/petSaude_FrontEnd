@@ -19,9 +19,17 @@ export const Footer = () => {
                     <div className="basis-1/3 md:basis-1/4 w-1/8 flex items-center flex-col content-evenly">
                         <h5 className="font-semibold text-xs md:text-2xl flex items-center justify-center"> Veja também : </h5>
                         <ul className="flex items-center justify-center flex-col gap-4 py-2 px-7 ">
-                            <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize"><Link to="/home">Profissionais</Link></li>
+                        <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize">
+                            <Link to="/home/searchProfessionals" className=" duration-500 flex flex-col-reverse relative transition-all">
+                            Profissionais
+                            </Link>
+                        </li>
                             <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize"><Link to="/home">Blog</Link></li>
-                            <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize"><Link to="/home/aboutUs">Sobre nós</Link></li>
+                            <li className="w-full text-xs md:text-xl font-montserrat font-normal miniSize">
+                            <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all">
+                                Sobre nós
+                            </Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="basis-1/3 md:basis-1/4 flex items-center flex-col">
@@ -34,8 +42,16 @@ export const Footer = () => {
                     <div className="basis-1/4 hidden md:flex flex-col items-center">
                         <h5 className="flex text-xs md:text-2xl w-1/8 font-semibold font-montserrat items-center justify-center flex-row gap-4"><img src={Lupa} alt="Icone de uma lupa" className="w-7 y-7" /> Pesquise :</h5>
                         <ul className="flex items-center justify-center flex-col gap-4 py-2 px-7 pt-3.5">
-                            <li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full"><img src={Doctor} alt="Icone de um médico" className="w-7 y-7" /> Especialistas da área</li>
-                            <li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full"><img src={Local} alt="Icone de um pino" className="w-7 y-7" /> Veterinários próximos</li>
+                            <li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full xl:h-14 xl:w-72 xl:items-center"><img className="w-10" src={Doctor} alt="Icone de um médico" />
+                                <Link className=" duration-500 flex flex-col-reverse relative transition-all
+                                hover:after:w-full" to="/home/searchProfessionals"> Especialistas da área
+                                </Link> 
+                            </li>
+                            <li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full xl:h-14 xl:w-72 xl:items-center"><img className="w-10" src={Local} alt="Icone de um pino"  />
+                                <Link className=" duration-500 flex flex-col-reverse relative transition-all
+                                hover:after:w-full" to="/home/searchProfessionals"> Veterinários próximos
+                                </Link> 
+                            </li>
                         </ul>
                     </div>
                 </div>
