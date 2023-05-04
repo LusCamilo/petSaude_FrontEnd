@@ -13,7 +13,7 @@ const biografia = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vest
 
 
 
-    let infosVet = getUser(localStorage.getItem('__Vet_Id'), localStorage.getItem('__user_JWT'))
+    //let infosVet = getUser(localStorage.getItem('__Vet_Id'), localStorage.getItem('__user_JWT'))
     localStorage.setItem('__register_type', "professional")
 export const UserVet = () => {
 

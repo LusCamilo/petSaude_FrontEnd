@@ -7,10 +7,10 @@ import { IoEye, IoEyeOff } from "react-icons/io5";
 import { login, signup } from "../../services/integrations/authentication";
 import jwt_decode from "jwt-decode";
 
-export function Login() {
+function useSubmitForm() {
+    const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
-
-
+<<<<<<< HEAD
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [isPasswordVisible, setPasswordVisibility] = useState(false)
@@ -27,6 +27,12 @@ export function Login() {
         // TODO: AUTENTICAÇÃO
         const response = await login(data)
 
+=======
+    const submitForm = async data => {
+        // TODO: AUTENTICAÇÃO
+        const response = await login(data)
+
+>>>>>>> 557430f (_)
         if (response.token) {
             console.log(response);
             document.location.href = '/home'
@@ -34,7 +40,14 @@ export function Login() {
                 localStorage.setItem('__user_JWT', response.token)
                 document.location.href = '/home'
             } else alert(response.message)
+<<<<<<< HEAD
         }
+=======
+            // if (validateForm(data)) console.log(data)
+            // else return false
+        }
+    }
+>>>>>>> 557430f (_)
 
         const validateForm = async (data) => {
             const {
@@ -50,9 +63,30 @@ export function Login() {
         }
 
 
+<<<<<<< HEAD
 
     }
 
+=======
+    const togglePasswordVisibility = () => {
+        if (isPasswordVisible === false)
+            setPasswordVisibility(true)
+        else
+            setPasswordVisibility(false)
+    }
+
+    return {
+        submitForm,
+        isPasswordVisible,
+        togglePasswordVisibility,
+        validateForm,
+    }
+}
+
+export function Login() {
+    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {submitForm, isPasswordVisible, togglePasswordVisibility, validateForm} = useSubmitForm();
+>>>>>>> 557430f (_)
 
     return (
         <section className='flex flex-row w-screen h-screen bg-gradient-to-br from-[#092b5a] to-[#9ed1b7] opacity-90 overflow-x-hidden'>
@@ -93,5 +127,8 @@ export function Login() {
             </div>
         </section>
     );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 557430f (_)
 }

@@ -6,7 +6,7 @@ import '../../profile/pet/css/pet.css'
 // import Modal from 'react-bootstrap/Modal'
 //import TextTruncate from 'react-text-truncate';
 import { AppointmentModal } from './appointment/appointmentModal';
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
 
 // const customStyles = {
 //   content: {
