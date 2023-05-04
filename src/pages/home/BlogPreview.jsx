@@ -2,7 +2,7 @@ import React from 'react'
 import WalkDog from "../../assets/svg/walk the dog.svg"
 import DogFood from "../../assets/svg/DogFood.svg"
 import Vaccine from "../../assets/svg/vaccine.svg"
-import Arrow from "../../assets/svg/Arrow 1.svg"
+import Arrow from "../../assets/svg/Arrow 1.svg" 
 
 export const BlogPreview = () => {
     return (

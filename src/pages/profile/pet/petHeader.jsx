@@ -19,7 +19,8 @@ export const PetHeader = (props) => {
 
     useEffect(() => {
         const token = localStorage.getItem('__user_JWT')
-        const decoded = jwt_decode(token);
+        if (token) {
+            const decoded = jwt_decode(token);
         console.log(decoded ? decoded : '');
         setUserNome(
             decoded.userName ? decoded.userName : ''
@@ -27,6 +28,7 @@ export const PetHeader = (props) => {
         setUserFoto(
             decoded.profilePhoto ? decoded.profilePhoto : ''
         )
+        }
     }, []);
 
     return (

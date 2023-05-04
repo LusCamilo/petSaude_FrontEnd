@@ -91,12 +91,6 @@ export const HeaderInfo = (props) => {
                             </span>
                         </div>
                         <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
-                            <li class="mx-4 my-6 md:my-0 transition">
-                            <Link to="/home/Home-Web"  href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                            after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                            hover:after:w-full">Home
-                            </Link>
-                            </li>
                             <li class="mx-4 my-6 md:my-0">
                               <Link className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                               after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
@@ -104,9 +98,10 @@ export const HeaderInfo = (props) => {
                               </Link>
                             </li>
                             <li class="mx-4 my-6 md:my-0">
-                                <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                                after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                                hover:after:w-full">Blog</a>
+                              <Link to="/profile/blogProfile" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                              hover:after:w-full">Blog
+                              </Link>
                             </li>
                             <li class="mx-4 my-6 md:my-0">
                               <Link to="/home/aboutUs" className="text-2xl duration-500 flex flex-col-reverse relative transition-all

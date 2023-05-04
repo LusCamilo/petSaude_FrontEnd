@@ -33,6 +33,7 @@ import { AppointmentView } from "./pages/profile/resource/appointment/appointmen
 import { AppointmentMenu } from "./pages/profile/resource/appointment/appointmentMenu";
 import { SearchProfessional } from "./pages/home/searchProfessional";
 import { AppointmentAsk } from "./pages/profile/resource/appointment/appointments/appointmentAsk";
+import { BlogProfile } from "./pages/home/BlogProfile";
 
 export const Rotas = () => {
   return (
@@ -72,6 +73,7 @@ export const Rotas = () => {
             <Route path="/profile/appointmentMenu" element={<AppointmentMenu/>} />
             <Route path="/home/searchProfessionals" element={<SearchProfessional />} />
             <Route path="/profile/AppointmentAsk" element={<AppointmentAsk />} />
+            <Route path="/profile/blogProfile" element={<BlogProfile />} />
         </Routes>
     </Router>
 
