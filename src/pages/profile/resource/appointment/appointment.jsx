@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import Monkey from '../../../../assets/svg/monkey.svg';
 import Dog from '../../../../assets/svg/iconDog.svg';
@@ -9,15 +10,18 @@ import Modal from 'react-modal'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import jwt_decode from "jwt-decode";
 
+
+
 export const Appointment = (props) => {
-    Modal.setAppElement('#topHeader');
+    //console.log("Tô de boa");
+    // Modal.setAppElement('#topHeader');
     const [date, setDate] = useState('')
     const [startsAt, setStartAt] = useState('')
     const [description, setDescription] = useState('')
     const [petId, setPetId] = useState(0)
     const [petsAll, setPetAll] = useState([]);
     const [petsName, setPetName] = useState('Nome');
-    const [petsEspecie, setPetEspecie] = useState('Espécie');
+    const [petsEspecie, setPetEspecie] = useState('Tamanho');
     const [petImage, setPetImage] = useState(Monkey)
     const { register, handleSubmit, formState: errors, setValue } = useForm()
 
@@ -93,16 +97,21 @@ export const Appointment = (props) => {
       
 
     function handlePetSelection(pet) {
+        let today = new Date();
         setPetName(pet.name);
-        setPetEspecie(pet.especie);
+        let idade = today - pet.birthDate
+        console.log("alsdfkj");
+        console.log(idade);
+        setPetEspecie(pet.petSize);
         setPetId(pet.id);
         if (pet.photo == null || pet.photo == undefined) {
             setPetImage(Dog);
         } else  setPetImage(pet.photo);
       }
-    
+
+
     return (
-    <section id='buttonCanceled' className=" w-full mt-60 bg-black" >
+    <section id='buttonCanceled' className=" w-full h-full -mt-60 bg-black" >
         <form onSubmit={handleSubmit(submitAppointment)} className=" flex justify-start w-full">
             <div className='p-2 md:p-20  w-full'>
                 <h1 className='flex justify-start text-3xl md:text-5xl font-semibold pt-2 md:pt-10'>Selecione o animal</h1>
@@ -170,8 +179,7 @@ export const Appointment = (props) => {
                 </div>
                 <div className='p-3 md:pl-20 md:pr-20'>
                     <div className='flex mt-2 md:mt-10 justify-between gap-5'>
-                        <button className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button"
-                            onClick={props.onCancel}>
+                        <button className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button" onClick={() =>  props.onCancel()}>
                             Cancelar
                         </button>
                         <button type="submit" className='md:ml-56 p-2 w-32 md:w-56 text-center md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'
@@ -186,5 +194,8 @@ export const Appointment = (props) => {
             </div>
         </form>
     </section>
-    );      
+    );   
+
 };
+
+
