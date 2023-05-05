@@ -26,11 +26,10 @@ export const Login = () => {
         const response = await login(data)
         if (response.token != '' || response.token != null || response.token != undefined) {
             console.log(response);
-            //  document.location.href = '/home'
+            document.location.href = '/home'
             //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqb2huZG9lQGdtYWlsLmNvbSIsImlzVmV0IjpmYWxzZSwicHJvZmlsZUJhbm5lclBob3RvIjoiaHR0cHM6Ly9lbmNyeXB0ZWQtdGJuMC5nc3RhdGljLmNvbS9pbWFnZXM_cT10Ym46QU5kOUdjUy04azZEZmFIQVB2Y0RaZndmc2xHRWxVekRzTUprWXFLTjI1M042VEY3SkVDOXl2NEVaQk53c1dyX1RKU3QzMW93R1EmdXNxcD1DQVUiLCJwcm9maWxlUGhvdG8iOiJnaXRodWIuY29tL21hbHZ6bWsxLnBuZyIsInVzZXJOYW1lIjoiam9oaG55RG9lIiwiY3JlYXRlZEF0IjoiMjAyMy0wNS0wM1QxMTo0MToxNi40NjFaIiwiaWF0IjoxNjgzMTE0MDc2LCJleHAiOjE2ODM3MTg4NzZ9.HKAqSahiaqHtet9BSBOCsSSEmuwwQMDdm-Xssz50chk
             localStorage.setItem('__user_JWT', response.token)
             if (localStorage.getItem('__user_JWT') != false || localStorage.getItem('__user_JWT') != undefined || localStorage.getItem('__user_JWT') != null) {
-                
                 document.location.href = '/home'
             } else alert(response.message)
         }

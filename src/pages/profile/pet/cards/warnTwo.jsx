@@ -1,10 +1,11 @@
 import React from 'react';
 import { petDelete } from '../../../../services/integrations/pet';
 import cuidado from '../../resource/img/Cuidado.png'
+import './cssPadrao.css'
 
 export const WarnRequest = (props) => {
     return(
-        <div className='w-screen h-screen flex justify-center content-start '>
+        <div className='mae w-full h-40 flex justify-center content-start'>
             <div className='w-1/3 h-96 bg-[#F9DEDC] rounded-3xl drop-shadow-lg flex justify-center content-center flex-col'>
                 <h2 className='text-[#B3261E] text-6xl flex content-center justify-center mt-10'>Sucesso</h2>
                 <div className='w-full flex justify-center'>
