@@ -67,12 +67,12 @@ export const AppointmentAsk = () => {
 
     return(
         <section>
-               <div className='w-full flex flex-col gap-3 mr-2'>
+               <div className=' w-full flex flex-col gap-3 mr-2'>
                     {pedidos.map(pedido =>{
                         return(
-                            <div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 md:pl-20 py-8'>
-                                <div className='flex flex-col xl:flex-row md:items-center md:content-center md:text-center text-6xl gap-4'>
-                                    <img src={pedido.imagemPet} alt="Imagem do pet" />
+                            <div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 md:pl-20 py-8 sm:pl-20'>
+                                <div className='flex flex-row items-center md:content-center md:text-center text-6xl gap-4'>
+                                    <img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
                                     <h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
                                 </div>
                                 <div className='flex md:justify-between pr-20'>
@@ -115,7 +115,7 @@ export const AppointmentAsk = () => {
                                     </div>
                                 </div>
                                 <div className={`${tutorStatus} flex-row items-center content-center text-center text-6xl gap-4`}>
-                                    <img src={pedido.donoImg} alt="Imagem do pet" />
+                                    <img className='PetImage' src={pedido.donoImg} alt="Imagem do pet" />
                                     <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.dono}</h2>
                                 </div>
                                 <div className='flex flex-col sm:flex-row justify-between pr-20'>
@@ -160,16 +160,16 @@ export const AppointmentAsk = () => {
                                         </div>                 
                                     </div>
                                 </div>
-                                <div className={`${tutorStatus} flex-col justify-center items-center content-center mb-2` }>
+                                <div className={`${tutorStatus} flex-col justify-center items-start md:items-center content-center mb-2 ` }>
                                     <h2>Confirmar consulta</h2>
-                                    <div className='w-1/3 flex justify-center'>
+                                    <div className='w-1/3 flex justify-center gap-5 flex-col'>
                                         <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
                                             Duracação
                                             <input type="time" id="duracao" name="duracao" min="00:01" max="03:00" className='w-full' />
                                         </label>
-                                        <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
+                                        <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full '>
                                             Valor
-                                            <div>R$<input type="number" id="duracao" name="duracao" className='w-full' /></div>
+                                            <div className='flex flex-row'>R$<input type="number" id="duracao" name="duracao" className='w-full' /></div>
                                         </label>
                                     </div> 
                                 </div>

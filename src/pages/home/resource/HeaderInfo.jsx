@@ -94,7 +94,7 @@ export const HeaderInfo = (props) => {
                             <li class="mx-4 my-6 md:my-0">
                               <Link className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                               after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                              hover:after:w-full" to="/home/searchProfessionals">Prossionais 
+                              hover:after:w-full" to="/home/searchProfessionals">Profissionais
                               </Link>
                             </li>
                             <li class="mx-4 my-6 md:my-0">

@@ -72,31 +72,30 @@ export const AppointmentView = (props) => {
         <>
             <PetHeader />
             <section>
-                    <div className='flex flex-row gap-5'>
-                    <section>  
-                        <div className='flex flex-row gap-5 min-h-screen'>
-                            <div className='flex flex-col w-96 bg-[#E3EFF0] rounded-lg pb-96 h-screen'>
-                                <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
-                                    <button type="button" className={`flex ${tela1.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0]  h-30  w-2/3 md:w-5/6 text-left ${tela1.text} rounded-full`}
-                                        onClick={handleClickPedidos}
-                                    >       
-                                        Pedidos de consultas
-                                    </button>
-                                    <button type="button" className={`flex ${tela2.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30  w-2/3 md:w-5/6 text-left  rounded-full`}
-                                        onClick={handleClickPendentes}
-                                    >
-                                        Consultas pendentes
-                                    </button>
-                                    <button type="button" className={`flex ${tela3.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30 w-2/3 md:w-5/6 text-left rounded-full`}
-                                        onClick={handleClickArquivadas}
-                                    >
-                                        Consultas arquivadas
-                                    </button>
-                                    <button type="button" className="flex items-center border-2 border-[#A68D0B] py-2 px-6 bg-[#F1EAC6] h-30 w-2/3 md:w-5/6 text-left text-[#A68D0B] rounded-full ">      
-                                        Configurações de consulta
-                                    </button>
+                    <div className='w-full flex flex-row gap-5'>
+                    <section >  
+                    <div className='flex flex-col md:flex-row gap-5'>
+                    
+                        <div className='flex flex-col w-5/6 md:w-full bg-[#E3EFF0] rounded-lg pb-96 md:h-screen'>
+                            <ul className="flex flex-col items-center w-full cursor-pointer pt-5 space-y-3 text-xl">
+                                <button type="button" className={`flex ${tela1.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30 w-56 md:w-5/6 text-left ${tela1.text} rounded-full`}
+                                    onClick={handleClickPedidos}
+                                >       
+                                    Pedidos de consultas
+                                </button>
+                                <button type="button" className={`flex ${tela2.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30 w-56 md:w-5/6 text-left rounded-full`}
+                                    onClick={handleClickPendentes}
+                                >
+                                    Consultas pendentes
+                                </button>
+                                <button type="button" className={`flex ${tela3.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30 w-56 md:w-5/6 text-left rounded-full`}
+                                    onClick={handleClickArquivadas}
+                                >
+                                    Consultas arquivadas
+                                </button>
                                 </ul>                
                             </div>
+                    
                             <div>
                                 <div className={`${tela2.estado} w-full`}>
                                     <AppointmentPeding  />

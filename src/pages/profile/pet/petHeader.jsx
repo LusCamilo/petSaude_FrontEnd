@@ -45,7 +45,7 @@ export const PetHeader = (props) => {
                             <div className="absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300">
                                 <h2 className="pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl">Menu</h2>
                                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
-                                    <button onClick={ () => document.location.href = '/home'} to="" className="flex items-center hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                                    <button onClick={ () => document.location.href = '/home'} to="/home" className="flex items-center hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Home} className="pr-3  w-14"></img>
                                          Home
                                     </button>
@@ -53,11 +53,11 @@ export const PetHeader = (props) => {
                                         <img src={Work} className="pr-3  w-14"></img>
                                          Profissionais
                                     </button>
-                                    <button onClick={ () =>  document.location.href = '/profile/appointmentView'} className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                                    <button onClick={ () =>  document.location.href = '/profile/appointmentView'} to="/profile/appointmentView" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Blog} className="pr-3 w-14"></img>
                                         Blog
                                     </button>
-                                    <button onClick={ () => document.location.href = '/home/aboutUs'} to="" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                                    <button onClick={ () => document.location.href = '/home/aboutUs'} to="/home/aboutUs" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                                         <img src={Info} className="pr-3 w-14"></img>
                                          Sobre nós
                                         
