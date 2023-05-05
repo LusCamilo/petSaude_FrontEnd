@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import { WarnRequest } from '../../../pet/cards/warnTwo';
 
 const customStyles = {
     content: {
@@ -183,7 +184,7 @@ export const AppointmentPeding = (props) => {
                                     style={customStyles}
                                     contentLabel="Example Modal"
                                 >
-
+                                    <WarnRequest onClose={closeModal} description="Tem certeza que deseja cancelar essa consulta?" onSave={closeModal} href="/profile/upgradeUser"/>
                                 </Modal>
                                     <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-72 h-14 border rounded-full text-xl font-normal mr-20`} >
                                         Concluir consulta

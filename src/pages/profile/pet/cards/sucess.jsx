@@ -13,7 +13,7 @@ export const PetAddSucess = (props) => {
     return(
         <div className='mae flex justify-center content-start p-4'>
             <div className='bg-[#E3EFF0] rounded-3xl flex justify-center content-center flex-col'>
-                <h2 className='text-[#78A890] text-6xl flex content-center justify-center'>Sucesso</h2>
+                <h2 className='text-[#78A890] text-6xl flex content-center justify-center'>{props.title}</h2>
                 <div className='w-full flex justify-center'>
                     <img src={sucesso} alt="" className='w-40 h-40'/>
                 </div>
@@ -23,9 +23,13 @@ export const PetAddSucess = (props) => {
                 <button className='rounded-xl bg-[#78A890] h-8'>
                     Não
                 </button>
-                <button className='rounded-xl bg-[#78A890] h-8'>
+                <button className='rounded-xl bg-[#78A890] h-8' 
+                onClick={() => { 
+                props.onSave()
+                if(props.href != undefined || props.href != null) document.location.href = props.href
+                }}>
                     Sim
-                </button>
+                </button> 
             </div>
         </div>
     );

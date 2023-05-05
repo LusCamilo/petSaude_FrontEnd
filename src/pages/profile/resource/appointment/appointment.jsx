@@ -187,7 +187,7 @@ export const Appointment = (props) => {
                                 submitAppointment(event);
                               }}
                             >
-                            Marcar
+                            Marcar 
                         </button>
                     </div>
                 </div>

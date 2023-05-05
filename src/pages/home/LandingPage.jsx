@@ -19,9 +19,10 @@ export const LandingPage = () => {
 
 // null
 
-	const token = localStorage.getItem('__user_JWT')
-	const decoded = jwt_decode(token);
-	console.log(decoded);
+	//const token = localStorage.getItem('__user_JWT')
+	//const decoded = jwt_decode(token);
+	//const decoded = [{}]
+	//console.log(decoded);
 
 	//const token = localStorage.getItem('__user_JWT')
 	//const decoded = jwt_decode(token);

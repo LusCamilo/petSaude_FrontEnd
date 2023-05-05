@@ -19,14 +19,10 @@ export const PetHeader = (props) => {
 
     useEffect(() => {
         const token = localStorage.getItem('__user_JWT')
-<<<<<<< HEAD
         if (token) {
-            const decoded = jwt_decode(token);
-=======
         console.log(token);
         const decoded = jwt_decode(token);
         console.log(decoded);
->>>>>>> 7646e48d1518640b35443ad229209778544c8df1
         console.log(decoded ? decoded : '');
         setUserNome(
             decoded.userName ? decoded.userName : ''

@@ -234,7 +234,7 @@ export const PetAdd = (props) => {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <PetAddSucess className='cardPet' what='Novo pet adicionado' onCancel={cancelClose} />
+                    <PetAddSucess className='cardPet' title="Sucesso" what='Novo pet adicionado' onCancel={cancelClose} />
                 </Modal>
                 </div>
             </main>

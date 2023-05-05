@@ -18,6 +18,25 @@ import lapis from '../profile/resource/img/LapisColorido.svg'
 import { deleteClient, deleteVeterinary, getUser, getVeterinary } from '../../services/integrations/user';
 import { PetHeader } from './pet/petHeader';
 import jwt_decode from "jwt-decode";
+import Modal from 'react-modal';
+import { WarnRequest } from './pet/cards/warnTwo';
+
+const customStyles = {
+    content: {
+     top: '50%',
+     left: '50%',
+     right: 'auto',
+     bottom: 'auto',
+     marginRight: '-50%',
+     transform: 'translate(-50%, -50%)',
+     borderRadius: '10px',
+     width: '100px',
+     height: '100px',
+     display: "flex",
+     justifyContent: "center",
+     backgroundColor: "red"
+    }
+ };
 
 const dataFormation = (date) => {
 
@@ -119,7 +138,7 @@ export const UpgradeUser = () => {
 
     const [address, setAddress] = useState(true)
 
-
+    
 
     useEffect(() => {
         async function fetchData() {
@@ -160,6 +179,26 @@ export const UpgradeUser = () => {
         }
         fetchData()
     }, [])
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+      setIsOpen(true);
+    }
+  
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      //subtitle.style.color = '#f00';
+    }
+
+    const deletePetzinho = () =>{
+        deleteClient(localStorage.getItem('__user_JWT'))
+        closeModal()
+    }
 
     console.log(infos.PetSpecieVeterinary);
     console.log(infos.VeterinaryEspecialities);
@@ -271,7 +310,8 @@ export const UpgradeUser = () => {
                             <Pets personImage={infos.profilePhoto} />
                             <div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
                                 <button className='flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
-                                    if (window.confirm('tem certeza que deseja excluir sua conta?')) {
+                                   
+                                   if (window.confirm('tem certeza que deseja excluir sua conta?')) {
                                         deleteClient(localStorage.getItem('__user_JWT'))
                                         document.location.href = '/login'
                                     }
@@ -279,10 +319,19 @@ export const UpgradeUser = () => {
                                     <img src={lixeira} className='h-full' />
                                     Excluir perfil
                                 </button>
+                                <Modal
+                                    isOpen={modalIsOpen}
+                                    onAfterOpen={afterOpenModal}
+                                    onRequestClose={closeModal}
+                                    style={customStyles}
+                                    contentLabel="Example Modal"
+                                >
+                                    <WarnRequest onClose={closeModal} description="Tem certeza que deseja cancelar essa consulta?" onSave={deletePetzinho} href="/login"/>
+                                </Modal>
                             </div>
                         </>
                     }
-                </main>
+                </main> 
             </>
         );
     }

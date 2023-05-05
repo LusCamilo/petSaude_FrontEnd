@@ -167,6 +167,10 @@ export const AppointmentAsk = () => {
                                             Duracação
                                             <input type="time" id="duracao" name="duracao" min="00:01" max="03:00" className='w-full' />
                                         </label>
+                                        <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
+                                            Valor
+                                            <div>R$<input type="number" id="duracao" name="duracao" className='w-full' /></div>
+                                        </label>
                                     </div> 
                                 </div>
                                 <div className='flex flex-row justify-around md:justify-between'>
