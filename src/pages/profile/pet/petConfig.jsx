@@ -110,7 +110,6 @@ export const PetConfig = (props) => {
         setDateBorn(infos.birthDate ? infos.birthDate : '')
 
         async function fetchData() {
-            console.log("Me");
 
             const allInfosPet = await InfosUser()
 

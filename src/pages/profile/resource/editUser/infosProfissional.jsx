@@ -2,14 +2,20 @@ import React, { useState, useEffect } from 'react';
 import lapis from "../../../../assets/svg/pencil.svg"
 import { set, useForm } from 'react-hook-form';
 import { updateProfessionalInfos } from '../../../../services/integrations/user';
-import { getSpecialties } from '../../../../services/integrations/specialties';
-import { Specialities } from './specialties';
+import { getSpecialties, getSpecialtiesById } from '../../../../services/integrations/specialties';
+
 
 const checkbox = async () => {
+
+    const responseVet = await getSpecialtiesById(localStorage.getItem('__user_id'))
+
     const response = await getSpecialties()
 
-    return response.response
-    
+    return {
+        allSpecialities: response.response,
+        VetSpecialities: responseVet.response
+    }
+
 }
 
 export const Prossionais = (props) => {
@@ -25,6 +31,8 @@ export const Prossionais = (props) => {
     const [dataFormacao, setDataFormacao] = useState(props.dataFormacao)
     const [dataInicioAtuacao, setDataInicioAtuacao] = useState(props.dataInicioAtuacao)
     const [especialidades, setEspecialidades] = useState([])
+    const [especialidadesVet, setEspecialidadesVet] = useState([])
+
 
     useEffect(() => {
 
@@ -34,14 +42,29 @@ export const Prossionais = (props) => {
         setCRMV(props.crmv)
         setDataFormacao(props.dataFormacao)
         setDataInicioAtuacao(props.dataInicioAtuacao)
-
-        async function fetchData() {
+        
+        async function fetchDataAll() {
             const dados = await checkbox()
 
-            setEspecialidades(dados)
+            setEspecialidades(dados.allSpecialities)
+        }
+        async function fetchDataVet() {
+            const dados = await checkbox()
+            setEspecialidadesVet(dados.especialidadesVet)
         }
 
-        fetchData()
+
+        fetchDataAll()
+        fetchDataVet()
+
+        async function checkSpecialities(){
+            console.log(especialidadesVet);
+            if (especialidades.includes(especialidadesVet.specialitiesId)) {
+                console.log('teste');
+            } 
+        }
+
+        checkSpecialities()
 
     }, [props.area, props.formacao, props.instituicao, props.crmv, props.dataFormacao, props.dataInicioAtuacao])
 
@@ -124,7 +147,14 @@ export const Prossionais = (props) => {
                             <span className='font-normal text-xl text-[#A9A9A9]'>Especialidades</span>
                             <div className='flex flex-wrap pt-2 md:grid md:grid-rows-2 grid-flow-col w-full  gap-5'>
                                 {especialidades.map((item) => {
-                                    return <Specialities id={item.id} nome={item.name}/>
+                                    return (
+                                        <div>
+                                            <label id={item.id} className='flex gap-2 items-center text-2xl'>
+                                                <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" />
+                                                {item.name}
+                                            </label>
+                                        </div>
+                                    )
                                 })}
                             </div>
                         </div>

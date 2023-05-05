@@ -200,8 +200,8 @@ export const UpgradeUser = () => {
         closeModal()
     }
 
-    console.log(infos.PetSpecieVeterinary);
-    console.log(infos.VeterinaryEspecialities);
+    // console.log(infos.PetSpecieVeterinary);
+    // console.log(infos.VeterinaryEspecialities);
 
     var largura = window.innerWidth
 
@@ -216,7 +216,6 @@ export const UpgradeUser = () => {
                             <div className='flex flex-row  gap-5'>
                                 <img src={Person} alt="" />
                                 Informações pessoais
-
                                 <Link to="/profile/editPerson">
                                     <img className='pl-16' src={Arrow} alt="" />
                                 </Link>
@@ -227,7 +226,6 @@ export const UpgradeUser = () => {
                             <div className='flex flex-row  gap-5'>
                                 <img src={Cadeado} alt="" />
                                 Segurança
-
                                 <Link to="/profile/editSecurity">
                                     <img className='pl-36' src={Arrow} alt="" />
                                 </Link>
@@ -238,7 +236,6 @@ export const UpgradeUser = () => {
                             <div className='flex flex-row  gap-5'>
                                 <img src={Local} alt="" />
                                 Localização
-
                                 <Link to="/profile/editAdress">
                                     <img className='pl-36' src={Arrow} alt="" />
                                 </Link>
@@ -252,7 +249,6 @@ export const UpgradeUser = () => {
                             <div className='flex flex-row  gap-5'>
                                 <img src={Calendary} alt="" />
                                 Consultas
-
                                 <Link to="/profile/Consultas">
                                     <img className='pl-36' src={Arrow} alt="" />
                                 </Link>

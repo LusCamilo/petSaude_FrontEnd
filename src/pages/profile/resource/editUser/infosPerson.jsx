@@ -138,12 +138,9 @@ export const Pessoais = (props) => {
 
 
                                 if (Boolean(localStorage.getItem('__user_isVet')))
-                                    console.log(
-                                        updatePersonalInfosVeterinary(infos)
-                                    );
+                                     updatePersonalInfosVeterinary(infos)
                                 else
                                     updatePersonalInfosClient(infos)
-
                             }
 
                         }}>
