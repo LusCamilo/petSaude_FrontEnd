@@ -73,12 +73,12 @@ export const LandingPage = () => {
 						Procure um veterinário próximo!
 					</Link>
 				</div>
-				<div className="flex justify-end content-center md:w-1/2 xl:w-1/2 xl:bg-none">
+				<div className="flex justify-end content-center basis-1/2 lg:bg-none">
 					<img className="mt-20 w-full md:w-5/6 xl:w-full" src={Dog} />
 				</div>
 			</div>
 			<div>
-				<img className="w-full mt-5 xl:w-2/4" src={Footprint} />
+				<img className="  w-full mt-5 xl:w-2/4" src={Footprint} />
 			</div>
 		</section>
 

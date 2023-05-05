@@ -30,11 +30,11 @@ const customStyles = {
      marginRight: '-50%',
      transform: 'translate(-50%, -50%)',
      borderRadius: '10px',
-     width: '100px',
-     height: '100px',
+     width: '40vw',
+     height: '40vh',
      display: "flex",
      justifyContent: "center",
-     backgroundColor: "red"
+     backgroundColor: "#F9DEDC"
     }
  };
 
@@ -306,11 +306,11 @@ export const UpgradeUser = () => {
                             <Pets personImage={infos.profilePhoto} />
                             <div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
                                 <button className='flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
-                                   
-                                   if (window.confirm('tem certeza que deseja excluir sua conta?')) {
-                                        deleteClient(localStorage.getItem('__user_JWT'))
-                                        document.location.href = '/login'
-                                    }
+                                openModal()
+                                //    if (window.confirm('tem certeza que deseja excluir sua conta?')) {
+                                //         deleteClient(localStorage.getItem('__user_JWT'))
+                                //         document.location.href = '/login'
+                                //     }
                                 }}>
                                     <img src={lixeira} className='h-full' />
                                     Excluir perfil

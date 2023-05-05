@@ -104,10 +104,10 @@ export const AppointmentPeding = (props) => {
                         return(
                             <div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 sm:pl-20 py-8'>
                                 <div className='flex flex-row items-center content-center text-center text-6xl gap-4'>
-                                    <img src={pedido.imagemPet} alt="Imagem do pet" />
+                                    <img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
                                     <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
                                 </div>
-                                <div className='flex flex-col sm:flex-row justify-between pr-20'>
+                                <div className='flex fsm:flex-wrap md:flex-row justify-between pr-20'>
                                     <div className='flex flex-col justify-start w-full sm:w-1/3 '>
                                         <div>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
@@ -146,7 +146,7 @@ export const AppointmentPeding = (props) => {
                                         </div>                   
                                     </div>
                                 </div>
-                                <h2 className='font-normal  flex justify-center sm:justify-start font-sans'>Informações de consulta </h2>
+                                <h2 className='font-normal  flex md:justify-center sm:justify-start font-sans'>Informações de consulta </h2>
                                 <div className='flex flex-col justify-between pr-20'>
                                     <div className='flex flex-row justify-start w-full sm:w-full '>
                                         <div>
@@ -171,7 +171,7 @@ export const AppointmentPeding = (props) => {
                                         </div>                 
                                     </div>
                                 </div>
-                                <div className='flex flex-row justify-between'>
+                                <div className='flex flex-row justify-between w-2/3 md:w-full'>
                                     <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center w-56 h-14 border rounded-full text-xl font-normal mr-20`}
                                         onClick={openModal}
                                     >

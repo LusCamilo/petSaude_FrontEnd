@@ -135,8 +135,8 @@ export const AppointmentArchived = (props) => {
                         return(
                             <div className={`${cor} border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 sm:pl-20 py-8`}>
                                 <div className='flex flex-row items-center content-center text-center text-6xl gap-4'>
-                                    <img src={pedido.imagemPet} alt="Imagem do pet" />
-                                    <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
+                                    <img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
+                                    <h2 className='font-normal flexjustify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
                                 </div>
                                 <div className='flex flex-col sm:flex-row justify-between pr-20'>
                                     <div className='flex flex-col justify-start w-full sm:w-1/3 '>

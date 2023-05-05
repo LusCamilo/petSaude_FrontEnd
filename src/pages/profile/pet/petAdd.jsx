@@ -115,7 +115,7 @@ export const PetAdd = (props) => {
 
         setTimeout(function() {
             document.location.href = "/profile/upgradeUser";
-        }, 5000); 
+        }, 2000); 
     }
 
     const handleFileInputChange = (event) => {

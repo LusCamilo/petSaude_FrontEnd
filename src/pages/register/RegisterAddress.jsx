@@ -44,6 +44,7 @@ export function RegisterAddress() {
 
     const getAddressFromZipCode = async (event) => {
         const zipCode = event.target.value
+        console.log(zipCode);
         fetch(`https://viacep.com.br/ws/${zipCode}/json/`)
             .then(response => response.json())
             .then(data => setFormValues(data))
@@ -66,7 +67,13 @@ export function RegisterAddress() {
                 <form onSubmit={handleSubmit(submitForm)} className='h-fit lg:w-3/4 w-full gap-2 p-0 lg:mt-12 md:mt-6' >
                     <label className='w-full flex flex-col'>
                         CEP
-                        <input onBlurCapture={getAddressFromZipCode} className={errors.zipCode ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="zipCode" {...register('zipCode', { required: true })} />
+                        <input 
+                        className={errors.zipCode ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="zipCode" {...register('zipCode', { required: true })} 
+                        onKeyPress={(event) => {
+                            if (event.key === 'Enter') {
+                              getAddressFromZipCode();
+                            }}}
+                        />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
                         <label className='w-full flex flex-col'>

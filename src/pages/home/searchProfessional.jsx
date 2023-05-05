@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import search from "../../assets/svg/lupa.svg";
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import './radixSearch.css'
-
+import axios from 'axios';
 
 export const SearchProfessional = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -45,7 +45,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           setVets(json);
         }
       } else {
-        if (ondeProcurar !== "city") {
+        if (filtro !== "city") {
           let response = await getUsers(data.search, ondeProcurar);
           let result = response.response;
           let json
@@ -60,12 +60,24 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           }
           setUmCorteRapidao('')
           setVets(json);
-        } else {
+        } else { //Pedir ajuda ajuda pro Rafael
           let response = await getAllVets();
+          let procurarCidade = data.search
           let result = response.response;
           let json = Object.values(result);
-          setUmCorteRapidao(inputSearch)
-          setVets(json);
+          if (procurarCidade == "") {
+            setVets(response);
+          } else {
+            let jsonFinal = json.filter(async (item) => {
+              const response = await axios.get(`https://viacep.com.br/ws/${item.Address.cep}/json/`);
+              let pessoa = response.data.localidade
+              console.log(pessoa.toLowerCase().includes(procurarCidade.toLowerCase()));
+              return pessoa.toLowerCase().includes(procurarCidade.toLowerCase());
+            });
+            console.log(jsonFinal);
+            setVets(jsonFinal);
+          }
+
         }
       }
     } catch (error) {
@@ -83,20 +95,35 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         let json = Object.values(result);
         setVets(json);
       } else {
-        localStorage.setItem("__Vet_Search", data.search)
-        let response = await getUsers(data.search, data.searchIt);
-        let result = response.response;
         let json
-        if (result == "Nenhum veterinário atende aos filtros de pesquisa") {
-          json = []
+        if (filtro !== "city"){
+          localStorage.setItem("__Vet_Search", data.search)
+          let response = await getUsers(data.search, data.searchIt);
+          let result = response.response;
+          
+          if (result == "Nenhum veterinário atende aos filtros de pesquisa") {
+            json = []
+          } else {
+            json = result.filter(
+              (item) =>
+                item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
+                item.userName.toLowerCase().includes(data.search.toLowerCase())
+            );
+          } 
+          setVets(json);
         } else {
+          let response = await getAllVets();
+          let result = response.response;
+          let json = Object.values(result);
           json = result.filter(
             (item) =>
               item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
               item.userName.toLowerCase().includes(data.search.toLowerCase())
           );
+          setUmCorteRapidao(inputSearch)
+          setVets(json);
         }
-        setVets(json);
+        
       }
     } catch (error) {
       console.error(error);
