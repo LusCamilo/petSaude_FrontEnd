@@ -17,7 +17,6 @@ import lixeira from '../profile/resource/img/Delete.svg'
 import lapis from '../profile/resource/img/LapisColorido.svg'
 import { deleteClient, deleteVeterinary, getUser, getVeterinary } from '../../services/integrations/user';
 import { PetHeader } from './pet/petHeader';
-import jwt_decode from "jwt-decode";
 import Modal from 'react-modal';
 import { WarnRequest } from './pet/cards/warnTwo';
 
@@ -50,9 +49,9 @@ const dataFormation = (date) => {
 const InfosUser = async () => {
 
     const token = localStorage.getItem('__user_JWT')
-    const decoded = jwt_decode(token);
-    if (decoded.isVet == false) {
-        const response = await getUser(decoded.id)
+
+    if (localStorage.getItem('__user_isVet') == 'false') {
+        const response = await getUser(localStorage.getItem('__user_id'))
 
 
         const [nome, ...sobrenomes] = response.response.user.personName.split(' ');
@@ -83,7 +82,7 @@ const InfosUser = async () => {
 
     } else {
 
-        const response = await getVeterinary(decoded.id)
+        const response = await getVeterinary(localStorage.getItem('__user_id'))
 
         const [nome, ...sobrenomes] = response.response.user.personName.split(' ');
 
@@ -125,9 +124,9 @@ const InfosUser = async () => {
 
     }
 }
-const getAddressFromZipCode = async (cep) => {
+const getAddressFromZipCode = (cep) => {
 
-    return (await fetch(`https://viacep.com.br/ws/${cep}/json/`)).json()
+    return fetch(`https://viacep.com.br/ws/${cep}/json/`).json()
 
 }
 
@@ -280,7 +279,7 @@ export const UpgradeUser = () => {
                 <Config userName={infos.userName} personName={infos.personName} profilePhoto={infos.profilePhoto} />
                 <main className='flex flex-col gap-10'>
                     <Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular} telefone={infos.telefone} text={infos.text} className='' />
-                    <Address id={infos.addressId} cep={infos.cep} bairro={infos.bairro} rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento} className='' />
+                    <Address id={infos.addressId} viaCep={getAddressFromZipCode} cep={infos.cep} bairro={infos.bairro} rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento} className='' />
 
                     {localStorage.getItem("__user_isVet") == 'true' ?
                         <>

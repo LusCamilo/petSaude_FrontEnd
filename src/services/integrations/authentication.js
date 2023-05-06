@@ -1,9 +1,8 @@
-//import axios from 'axios'
-const _BASE_URL = 'http://localhost:3333/'
+import { BASE_URL } from "../../lib/_base_url";
 
 export const login = async (loginInfos) => {
 
-    const url = `${_BASE_URL}signup`
+    const url = `${BASE_URL}signup`
 
     const response = await fetch(url, {
         method: 'POST',
@@ -24,7 +23,7 @@ export const login = async (loginInfos) => {
 }
 
 export const signup = async (token) => {
-    const url = `${_BASE_URL}auth`
+    const url = `${BASE_URL}auth`
     const response = await fetch(url, {
         headers: {
             'Access-Control-Allow-Origin': '*',

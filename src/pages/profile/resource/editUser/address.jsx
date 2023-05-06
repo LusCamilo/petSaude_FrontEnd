@@ -42,25 +42,25 @@ export const Address = (props) => {
                     <div className='flex justify-start md:ml-24'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Cidade
-                            <input disabled={address.disabled} type="text" name="firstName" defaultValue={props.cidade} className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
+                            <input disable="true" type="text" name="firstName" defaultValue={props.cidade} className={`bg-transparent border-none text-2xl text-[#000] opacity-50`} />
                         </label>
                     </div>
                     <div className=''>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Estado
-                            <input disabled={address.disabled} type="text" name="firstName" defaultValue={props.estado} className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
+                            <input disabled="true" type="text" name="firstName" defaultValue={props.estado} className={`bg-transparent border-none text-2xl text-[#000] opacity-50`} />
                         </label>
                     </div>
                     <div className='flex justify-start md:ml-24'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Bairro
-                            <input disabled={address.disabled} type="text" name="firstName" defaultValue={props.bairro} className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
+                            <input disabled="true" type="text" name="firstName" defaultValue={props.bairro} className={`bg-transparent border-none text-2xl text-[#000] opacity-50`} />
                         </label>
                     </div>
                     <div className=''>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Rua
-                            <input disabled={address.disabled} type="text" name="firstName" defaultValue={props.rua} className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
+                            <input disabled="true" type="text" name="firstName" defaultValue={props.rua} className={`bg-transparent border-none text-2xl text-[#000] opacity-50`} />
                         </label>
                     </div>
                     <div className='flex justify-start md:ml-24'>
@@ -76,8 +76,15 @@ export const Address = (props) => {
                             setaddress({ disabled: false, textColor: '' })
                         } else {
                             setaddress({ disabled: true, textColor: 'opacity-50' })
-                            updateAddress({zipCode: cep, number: `${props.number}`, complement: complement}, props.id)
-                            window.alert('dados atualizados com sucesso')
+
+                            props.viaCep(cep).then((response) => {
+                                if (response != {'erro': 'true'} && response != Error)
+                                    updateAddress({zipCode: cep, number: `${props.number}`, complement: complement}, props.id).then((response) => window.alert(response.response))
+                                else
+                                    window.alert(response)
+                            })
+
+                            
                         }
                     }}>
                         <img src={lapis} alt="" />
