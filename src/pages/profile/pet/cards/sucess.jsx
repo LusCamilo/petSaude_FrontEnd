@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import sucesso from '../../resource/img/Sucesso.png'
-import './cssPadrao.css'
+import './cssPadraoCards.css'
 
 export const PetAddSucess = (props) => {
 

@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import {AuthHeader} from "../../components/headers/AuthHeader";
 import {useForm} from "react-hook-form";
 import {registerUser} from "../../services/integrations/user";
 import { Link } from "react-router-dom";
 import backgroundImage from "../../assets/address-image.png"
+import { ServerError } from "../profile/pet/cards/erro500";
+import Modal from 'react-modal'
+import { WarnRequest } from "../profile/pet/cards/warnTwo";
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        border: '4px solid transparent',
+        borderRadius: '12px 12px',
+        backgroundColor: '#FFFFFF00',
+        display: "flex",
+        justifyContent: "center"
+    },
+    overlay : {
+        backgroundColor: '#0000'
+    }
+ };
 
 export function RegisterAddress() {
     const { register, handleSubmit, formState: errors, setValue } = useForm()
+    const [city, setCity] = useState('')
+    const [neight, setNeight] = useState('')
+    const [street, setStreet] = useState('')
+    const [uf, setUf] = useState('')
     const submitForm = async (data) => {
 
         const registerType = localStorage.getItem('__register_type')
@@ -42,19 +68,53 @@ export function RegisterAddress() {
         }
     }
 
+
     const getAddressFromZipCode = async (event) => {
-        const zipCode = event.target.value
-        console.log(zipCode);
-        fetch(`https://viacep.com.br/ws/${zipCode}/json/`)
+        const zipCode = event
+        await fetch(`https://viacep.com.br/ws/${zipCode}/json/`)
             .then(response => response.json())
             .then(data => setFormValues(data))
+            .catch(erro => setFormValues(erro))
     }
 
+    const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
+
+    function openModalServer() {
+       setIsOpenSever(true)
+    }
+
+    function closeModalServer() {
+       setIsOpenSever(false);
+    }
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+   
+
     const setFormValues = data => {
-        setValue('street', data.logradouro)
-        setValue('neighborhood', data.bairro)
-        setValue('city', data.localidade)
-        setValue('state', data.uf)
+        if(data.uf == ''|| data.uf == null|| data.uf == undefined){
+            openModal()
+            setTimeout(function() {
+                closeModal()
+            }, 2000); 
+        } else {
+            setCity(data.localidade)
+            setNeight(data.bairro)
+            setStreet(data.logradouro)
+            setUf(data.uf)
+            setValue('street', data.logradouro)
+            setValue('neighborhood', data.bairro)
+            setValue('city', data.localidade)
+            setValue('state', data.uf)
+        }
+  
     }
 
     return (
@@ -71,27 +131,28 @@ export function RegisterAddress() {
                         className={errors.zipCode ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="zipCode" {...register('zipCode', { required: true })} 
                         onKeyPress={(event) => {
                             if (event.key === 'Enter') {
-                              getAddressFromZipCode();
+                                console.log(event.target.value);
+                              getAddressFromZipCode(event.target.value);
                             }}}
                         />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
                         <label className='w-full flex flex-col'>
                             Cidade
-                            <input className={errors.city ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="city"  />
+                            <input value={city}  className={errors.city ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="city"  />
                         </label>
                         <label className='w-full flex flex-col'>
                             Estado
-                            <input className={errors.state ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="state"  />
+                            <input value={uf}  className={errors.state ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="state"  />
                         </label>
                     </div>
                     <label className='w-full flex flex-col'>
                         Rua
-                        <input className={errors.street ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="street"/>
+                        <input value={street} className={errors.street ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="street"/>
                     </label>
                     <label className='w-full flex flex-col'>
                         Bairro
-                        <input className={errors.neighborhood ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="neighborhood"  />
+                        <input value={neight}  className={errors.neighborhood ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="neighborhood"  />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
                         <label className='w-full flex flex-col'>
@@ -110,6 +171,24 @@ export function RegisterAddress() {
                 </form>
                 <p className='mt-8 mb-4'>Já tem uma conta?<Link to='/login' className='pl-1 font-bold'>Faça login</Link></p>
             </div>
+                <Modal
+                    isOpen={modalIsOpenServer}
+                    onAfterOpen={''}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <ServerError/>
+                </Modal>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={''}
+                    onRequestClose={closeModalServer}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <WarnRequest boolBotoes={'hidden'} description="Informe um CEP valido"/>
+                </Modal>
         </section>
         // <div className='flex flex-row w-screen h-screen'>
         //     <div className='flex justify-center content-center basis-1/2 w-1/2 bg-gradient-to-br from-[#092B5A] to-[#9ED1B7]'>

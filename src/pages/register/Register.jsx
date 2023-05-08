@@ -6,10 +6,34 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import React from "react";
+import { ServerError } from "../profile/pet/cards/erro500";
+import Modal from 'react-modal'
+import { WarnRequest } from "../profile/pet/cards/warnTwo";
+
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        border: '4px solid transparent',
+        borderRadius: '12px 12px',
+        backgroundColor: '#FFFFFF00',
+        display: "flex",
+        justifyContent: "center"
+    },
+    overlay : {
+        backgroundColor: '#0000'
+    }
+ };
 
 export function Register() {
     const { register, handleSubmit, formState: {errors} } = useForm()
     const submitForm = data => {
+        console.log(errors.firstName);
         if (validateForm(data)) {
             localStorage.setItem('__user_register_infos', JSON.stringify(data))
             document.location.href = '/register/address'
@@ -33,7 +57,29 @@ export function Register() {
             setConfirmPasswordVisibility(false)
     }
 
+    const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
+
+    function openModalServer() {
+       setIsOpenSever(true)
+    }
+
+    function closeModalServer() {
+       setIsOpenSever(false);
+    }
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
     const validateForm = (data) => {
+        console.log(errors.confirmPassword);
+        console.log(data);
         let error = {
             status: false,
             message: '',
@@ -45,8 +91,13 @@ export function Register() {
                 confirmPassword,
             } = data
 
-            if (password !== confirmPassword) error = {status: true, message: 'Password needs to be the same'}
-
+            if (password !== confirmPassword) {
+                error = {status: true, message: 'Password needs to be the same'}
+                openModal()
+                setTimeout(function() {
+                    closeModal()
+                }, 2000); 
+            }
             if (error.status)
                 throw new Error(error.message)
             else return true
@@ -62,7 +113,7 @@ export function Register() {
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
                         <label className='w-full flex flex-col'>
                             Primeiro nome
-                            <input className={errors.firstName ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="firstName" {...register('firstName', {required: true})}/>
+                            <input className={errors.firstName ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="firstName"  {...register('firstName', {required: true})}/>
                         </label>
                         <label className='w-full flex flex-col'>
                             Sobrenome
@@ -109,6 +160,24 @@ export function Register() {
                     </div>
                     <button type="submit" className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-2xl rounded lg:mt-12 mt-6 transition py-3 hover:bg-[#78A890]'>Continuar</button>
                 </form>
+                <Modal
+                    isOpen={modalIsOpenServer}
+                    onAfterOpen={''}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <ServerError/>
+                </Modal>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={''}
+                    onRequestClose={closeModalServer}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <WarnRequest boolBotoes={'hidden'} description="As senhas devem ser as mesmas"/>
+                </Modal>
                 <p className='mt-8 mb-4'>Já tem uma conta?<Link to='/login' className='pl-1 font-bold'>Faça login</Link></p>
             </div>
             <div className='absolute w-full h-full overflow-hidden flex items-center justify-end'>

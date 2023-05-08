@@ -18,9 +18,12 @@ const customStyles = {
     borderRadius: '10px',
     width: '75vw',
     height: '50vh',
-  },
-  overlay : {
-      backgroundColor: '#0000'
+    zIndex: 99,
+},
+overlay : {
+      backgroundColor : '#0000',
+      position : 'fixed'
+      
   }
 };
 
@@ -78,13 +81,14 @@ export const TopContainer = (props) => {
         return (
             <div id='topHeader' className='flex flex-col items-center md:px-44'>
                 <img src={props.profilePhoto} className='w-full md:max-h-[400px] rounded-b-lg ' />
-                <div className='self-start w-full z-10  mt-[-120px] md:mt-[-80px] px-9 md:flex'>
+                <div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex'>
                     <img src={props.userPhoto} className="flex relative pl-24 sm:pl-56 md:pl-0 md:border-4 h-28  md:h-48 md:border-white border-solid rounded-full" />
                     <div className='flex flex-col md:flex-row justify-between w-full md:mt-16'>
                         <div className='flex flex-col md:flex-row items-center gap-1 pt-4'>
                             <div className='flex'>
                                 <p className='text-3xl md:text-4xl'>{props.name}</p>
                                 <img className='pl-2' src={iconVet} />
+                                
                             </div>
 
                             <div className='flex md:hidden'>
@@ -104,18 +108,8 @@ export const TopContainer = (props) => {
                             </div>
                         </div>
                         <div>
-                            <button className='bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10' onClick={openModal}>Agendar uma consulta</button>
-                            <Modal
-                                isOpen={modalIsOpen}
-                                onAfterOpen={afterOpenModal}
-                                onRequestClose={closeModal}
-                                style={customStyles}
-                                contentLabel="Example Modal"
-                            >
-                                <form className='w-full'>
-                                    <Appointment onCancel={handleCancelAppointment} />
-                                </form>
-                            </Modal>
+                            <button className='botaoAppont bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10 z-10' onClick={openModal}>Agendar uma consulta</button>
+
                         </div>
 
                     </div>
@@ -133,6 +127,17 @@ export const TopContainer = (props) => {
                         ler mais
                     </a>
                 </div>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <form className='w-full'>
+                        <Appointment onCancel={handleCancelAppointment} />
+                    </form>
+                </Modal>
             </div >
         );
     } else {
