@@ -5,10 +5,89 @@ import { useForm } from 'react-hook-form';
 import backgroundImage from "../../assets/svg/imgVetCadastro.svg";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import { createVeterinaryInfosIntoExistingUser, registerUser, registerVet } from "../../services/integrations/user";
+import { ServerError } from "../profile/pet/cards/erro500";
+import Modal from 'react-modal'
+import { WarnRequest } from "../profile/pet/cards/warnTwo";
+import { PetAddSucess } from "../profile/pet/cards/sucess";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        border: '4px solid transparent',
+        borderRadius: '12px 12px',
+        backgroundColor: '#FFFFFF00',
+        display: "flex",
+        justifyContent: "center"
+    },
+    overlay : {
+        backgroundColor: '#0000'
+    }
+ };
 
 export const RegisterVeterinary = () => {
 
+    const showToastMessage = () => {
+        toast('Criando usuário', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    };
+
     const { register, handleSubmit, formState: { errors } } = useForm()
+
+    const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
+
+    function openModalServer() {
+       setIsOpenSever(true)
+    }
+
+    function closeModalServer() {
+       setIsOpenSever(false);
+    }
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    const [emailModal, setEmailModal] = React.useState(false);
+    const [wordUsed, setWordUsed] = React.useState(false);
+    function openModalEmail(word) {
+        setWordUsed(word)
+        setEmailModal(true)
+    }
+
+    function closeModalEmail() {
+        setEmailModal(false);
+    }
+
+    const [sucess, setSucess] = React.useState(false);
+
+    function openModalSucess() {
+        setSucess(true)
+    }
+
+    function closeModalSucess() {
+        setSucess(false);
+    }
 
     const submitForm = async data => {
 
@@ -36,11 +115,50 @@ export const RegisterVeterinary = () => {
 
         if (validateForm(data)) {
             const createUserResponse = await registerVet(allInfos)
+            console.log( createUserResponse.response);
             console.log(createUserResponse);
-              document.location.href = '/login'  
+            let error1 = createUserResponse.response ? createUserResponse.response : ""
+            let error = createUserResponse.response.error ? createUserResponse.response.error : ""
+            console.log(createUserResponse[0]);
+            if (createUserResponse.id) {
+                showToastMessage()
+                setTimeout(function() {
+                    openModalSucess()
+                    setTimeout(function() {
+                        closeModalSucess()
+                        // document.location.href = '/login' 
+                    }, 5000); 
+                }, 2000); 
+            } else {
+                if(error1.includes('já está em uso') || error.includes('já está em uso')){
+                    if (error1.includes('já está em uso')) {
+                        let firstWord = error1.split(" ")[0]
+                        openModalEmail(firstWord)
+                        setTimeout(function() {
+                            closeModalEmail()
+                        }, 2000); 
+                    } else {
+                        let firstWord = error.split(" ")[0]
+                        openModalEmail(firstWord)
+                        setTimeout(function() {
+                            closeModalEmail()
+                        }, 2000); 
+                    }
+                }else{
+                    openModal()
+                        setTimeout(function() {
+                            closeModal()
+                        }, 2000); 
+                }
+            }
 
             // else alert('Erro na criação do usuário')
-        } else alert('Formulário inválido')
+        } else {
+            openModal()
+            setTimeout(function() {
+                closeModal()
+            }, 2000); 
+        }
         // TODO: INTEGRAÇÃO
     }
 
@@ -148,128 +266,56 @@ export const RegisterVeterinary = () => {
                     <button type="submit" className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-2xl rounded transition drop-shadow-xl py-3 hover:bg-[#78A890] mt-4'>Cadastrar-se</button>
                 </form>
                 <p className='mt-8 mb-4'>Já tem uma conta?<Link to='/login' className='pl-1 font-bold'>Faça login</Link></p>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
+                <Modal
+                    isOpen={modalIsOpenServer}
+                    onAfterOpen={''}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <ServerError/>
+                </Modal>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={''}
+                    onRequestClose={closeModalServer}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <WarnRequest boolBotoes={'hidden'} description="Erro ao cadastrar, veja se todas as informações estão corretas"/>
+                </Modal>
+                <Modal
+                    isOpen={emailModal}
+                    onAfterOpen={''}
+                    onRequestClose={closeModalEmail}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <WarnRequest boolBotoes={'hidden'} description={`${wordUsed} já utilizado, escolha outro`}/>
+                </Modal>
+                <Modal
+                    isOpen={sucess}
+                    onAfterOpen={''}
+                    onRequestClose={closeModalSucess}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <PetAddSucess aparecer='hidden' title="Sucesso" what="Novo usuário criado com sucesso!"/>
+                </Modal>
+
             </div>
         </section>
-        // <main className="mainVet">
-        //   <div className="img-forms">
-        //     <div className="arrow-img p-10">
-        //       <Link to="/">
-        //         <img src={arrow} alt="" />
-        //       </Link>
-        //       <div className="conteiner-img">
-        //         <img className="bg-image" src={image} alt="location-image" />
-        //       </div>
-        //     </div>
-        //     <form>
-        //       <div className="form-header">
-        //         <h1>Cadastro de Profissionais</h1>
-        //         <span>
-        //           Por favor, insira as informações abaixo e aproveite a plataforma!
-        //         </span>
-        //       </div>
-        //       <div className="inputs-container">
-        //         <div className="checkbox-container">
-        //           <div className="specialties">
-        //             <span>Especialidades</span>
-        //             <div className="inputs-specialties">
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Cirurgião
-        //               </label>
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Clínica
-        //               </label>
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Laboritorial
-        //               </label>
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Pesquisa
-        //               </label>
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Anestesia
-        //               </label>
-        //               <label className="FV">
-        //                 <input type="checkbox" name="" id="" />
-        //                 <p>Fármacia Veterinária</p>
-        //               </label>
-        //               <label className="FV">
-        //                 <input type="checkbox" name="" id="" />
-        //                 <p>Técnico em Zoo</p>
-        //               </label>
-        //             </div>
-        //           </div>
-        //           <div className="animals">
-        //             <span>Animais que atende</span>
-        //             <div className="inputs-animals">
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Cachorro
-        //               </label>
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Gato
-        //               </label>
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Aves
-        //               </label>
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Répteis
-        //               </label>
-        //               <label>
-        //                 <input type="checkbox" name="" id="" />
-        //                 Exóticos
-        //               </label>
-        //             </div>
-        //           </div>
-        //         </div>
-        //         <div className="atuacao-container">
-        //           <div className="atuacao-crmv">
-        //             <label>
-        //               <p>Área de atuação</p>
-        //               <input type="text" name="" className="area" {...register('areaAtuacao', {minLenght: 6, required: true})} />
-        //             </label>
-        //
-        //             <label>
-        //               <p>CRMV</p>
-        //               <input type="text" name="" className="CRMV" />
-        //             </label>
-        //           </div>
-        //
-        //           <label>
-        //             <p>Formação</p>
-        //             <input type="text" name="" id="" />
-        //           </label>
-        //           <label>
-        //             <p>Instituição</p>
-        //             <input type="text" name="" id="" />
-        //           </label>
-        //
-        //           <div className="form-group">
-        //             <label>
-        //               <p>Data de Formação</p>
-        //               <input type="date" name="" id="" />
-        //             </label>
-        //             <label>
-        //               <p>Início de Atuação</p>
-        //               <input type="date" name="" id="" />
-        //             </label>
-        //           </div>
-        //         </div>
-        //         <div className="user">
-        //           <button className="register-button">Cadastrar</button>
-        //         </div>
-        //       </div>
-        //       <p className="text-login">
-        //         Já tem uma conta?<a href="../html/login.html">Faça login</a>
-        //       </p>
-        //     </form>
-        //   </div>
-        // </main>
     );
 };
