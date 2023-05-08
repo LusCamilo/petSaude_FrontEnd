@@ -116,7 +116,7 @@ export const EditProfile = () => {
     function handleChildProfilePhotoChange(value) {
         let storageRef = ref(storage, `Client/${value.name}`);
         if (Boolean(localStorage.getItem('__user_isVet'))) {
-            const storageRef = ref(storage, `Veterinario/${value.name}`);
+            storageRef = ref(storage, `Veterinario/${value.name}`);
         }
         uploadBytes(storageRef, value).then(() => {
             console.log('Arquivo enviado com sucesso!');
@@ -169,7 +169,7 @@ export const EditProfile = () => {
                         updateProfileInfosClient(profileInfos)
 
 
-                    document.location.href = '/profile/editProfile'
+                    document.location.href = '/profile/upgradeUser'
 
                 }}>
                     <img src={check} className='w-10 h-10 my-5 mx-5' />

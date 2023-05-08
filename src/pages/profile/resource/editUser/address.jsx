@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import lapis from "../../../../assets/svg/pencil.svg"
 import { updateAddress } from "../../../../services/integrations/address.js";
 
 export const Address = (props) => {
 
-    
+
     const [address, setaddress] = useState({ disabled: true, textColor: 'opacity-50' })
     const [cep, setCep] = useState('')
     const [complement, setComplement] = useState('')
@@ -28,7 +28,7 @@ export const Address = (props) => {
     ])
 
 
-    return (  
+    return (
         <div className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 pl-2 sm:pl-20 py-8'>
             <h2 className='text-5xl md:text-6xl font-bold text-center sm:text-left'>Endereço</h2>
             <div className='flex flex-row justify-between '>
@@ -42,25 +42,25 @@ export const Address = (props) => {
                     <div className='flex justify-start md:ml-24'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Cidade
-                            <input disable="true" type="text" name="firstName" defaultValue={props.cidade} className={`bg-transparent border-none text-2xl text-[#000] opacity-50`} />
+                            <input disabled="true" type="text" name="firstName" defaultValue={props.cidade} className={`bg-transparent border-none text-2xl opacity-50`} />
                         </label>
                     </div>
                     <div className=''>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Estado
-                            <input disabled="true" type="text" name="firstName" defaultValue={props.estado} className={`bg-transparent border-none text-2xl text-[#000] opacity-50`} />
+                            <input disabled="true" type="text" name="firstName" defaultValue={props.estado} className={`bg-transparent border-none text-2xl opacity-50`} />
                         </label>
                     </div>
                     <div className='flex justify-start md:ml-24'>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Bairro
-                            <input disabled="true" type="text" name="firstName" defaultValue={props.bairro} className={`bg-transparent border-none text-2xl text-[#000] opacity-50`} />
+                            <input disabled="true" type="text" name="firstName" defaultValue={props.bairro} className={`bg-transparent border-none text-2xl opacity-50`} />
                         </label>
                     </div>
                     <div className=''>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             Rua
-                            <input disabled="true" type="text" name="firstName" defaultValue={props.rua} className={`bg-transparent border-none text-2xl text-[#000] opacity-50`} />
+                            <input disabled="true" type="text" name="firstName" defaultValue={props.rua} className={`bg-transparent border-none text-2xl opacity-50`} />
                         </label>
                     </div>
                     <div className='flex justify-start md:ml-24'>
@@ -72,19 +72,19 @@ export const Address = (props) => {
                 </div>
                 <div className='hidden sm:flex flex-col content-end aling-end pr-10 '>
                     <button className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
-                         if (address.disabled == true) {
+                        if (address.disabled == true) {
                             setaddress({ disabled: false, textColor: '' })
                         } else {
                             setaddress({ disabled: true, textColor: 'opacity-50' })
 
-                            props.viaCep(cep).then((response) => {
-                                if (response != {'erro': 'true'} && response != Error)
-                                    updateAddress({zipCode: cep, number: `${props.number}`, complement: complement}, props.id).then((response) => window.alert(response.response))
-                                else
-                                    window.alert(response)
-                            })
-
-                            
+                            if (window.confirm('deseja atualizar os seus dados pessoais?')) {
+                                props.viaCep(cep).then(response => {
+                                    if (response != { 'erro': 'true' } && response != Error)
+                                        updateAddress({ zipCode: cep, number: `${props.number}`, complement: complement }, props.id)
+                                        .then((response) => window.alert(response.response))
+                                        .then(window.location.reload())
+                                })
+                            }
                         }
                     }}>
                         <img src={lapis} alt="" />
@@ -95,4 +95,3 @@ export const Address = (props) => {
         </div>
     );
 }
- 

@@ -22,20 +22,20 @@ import { WarnRequest } from './pet/cards/warnTwo';
 
 const customStyles = {
     content: {
-     top: '50%',
-     left: '50%',
-     right: 'auto',
-     bottom: 'auto',
-     marginRight: '-50%',
-     transform: 'translate(-50%, -50%)',
-     borderRadius: '10px',
-     width: '40vw',
-     height: '40vh',
-     display: "flex",
-     justifyContent: "center",
-     backgroundColor: "#F9DEDC"
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        borderRadius: '10px',
+        width: '40vw',
+        height: '40vh',
+        display: "flex",
+        justifyContent: "center",
+        backgroundColor: "#F9DEDC"
     }
- };
+};
 
 const dataFormation = (date) => {
 
@@ -124,9 +124,9 @@ const InfosUser = async () => {
 
     }
 }
-const getAddressFromZipCode = (cep) => {
+const getAddressFromZipCode = async (cep) => {
 
-    return fetch(`https://viacep.com.br/ws/${cep}/json/`).json()
+    return (await fetch(`https://viacep.com.br/ws/${cep}/json/`)).json()
 
 }
 
@@ -137,12 +137,15 @@ export const UpgradeUser = () => {
 
     const [address, setAddress] = useState(true)
 
-    
+
 
     useEffect(() => {
         async function fetchData() {
             const allInfosUser = (await InfosUser())
+
+            // console.log(getAddressFromZipCode(allInfosUser.cep));
             const address = (await getAddressFromZipCode(allInfosUser.cep))
+
             setInfos(
                 {
                     userName: allInfosUser.userName,
@@ -159,8 +162,8 @@ export const UpgradeUser = () => {
                     rua: address.logradouro,
                     bairro: address.bairro,
                     estado: address.uf,
-                    complemento: allInfosUser.complement,
                     cidade: address.localidade,
+                    complemento: allInfosUser.complement,
                     profilePhoto: allInfosUser.profilePhoto,
                     profileBannerPhoto: allInfosUser.profileBannerPhoto,
                     institution: allInfosUser.institution,
@@ -182,19 +185,19 @@ export const UpgradeUser = () => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
     function openModal() {
-      setIsOpen(true);
+        setIsOpen(true);
     }
-  
+
     function closeModal() {
         setIsOpen(false);
     }
 
     function afterOpenModal() {
-      // references are now sync'd and can be accessed.
-      //subtitle.style.color = '#f00';
+        // references are now sync'd and can be accessed.
+        //subtitle.style.color = '#f00';
     }
 
-    const deletePetzinho = () =>{
+    const deletePetzinho = () => {
         deleteClient(localStorage.getItem('__user_JWT'))
         closeModal()
     }
@@ -305,11 +308,7 @@ export const UpgradeUser = () => {
                             <Pets personImage={infos.profilePhoto} />
                             <div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
                                 <button className='flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
-                                openModal()
-                                //    if (window.confirm('tem certeza que deseja excluir sua conta?')) {
-                                //         deleteClient(localStorage.getItem('__user_JWT'))
-                                //         document.location.href = '/login'
-                                //     }
+                                    openModal()
                                 }}>
                                     <img src={lixeira} className='h-full' />
                                     Excluir perfil
@@ -321,12 +320,12 @@ export const UpgradeUser = () => {
                                     style={customStyles}
                                     contentLabel="Example Modal"
                                 >
-                                    <WarnRequest onClose={closeModal} description="Tem certeza que deseja cancelar essa consulta?" onSave={deletePetzinho} href="/login"/>
+                                    <WarnRequest onClose={closeModal} description="Tem certeza que deseja excluir seu perfil?" onSave={deletePetzinho} href="/login" />
                                 </Modal>
                             </div>
                         </>
                     }
-                </main> 
+                </main>
             </>
         );
     }

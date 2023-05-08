@@ -3,9 +3,10 @@ import lapis from "../../../../assets/svg/pencil.svg"
 import { set, useForm } from 'react-hook-form';
 import { updateProfessionalInfos } from '../../../../services/integrations/user';
 import { getSpecialties, getSpecialtiesById } from '../../../../services/integrations/specialties';
+import { getSpecialtiesPet, getSpecialtiesPetById } from '../../../../services/integrations/specialtiesPet';
 
 
-const checkbox = async () => {
+const checkboxSpecialities = async () => {
 
     const responseVet = await getSpecialtiesById(localStorage.getItem('__user_id'))
 
@@ -14,6 +15,18 @@ const checkbox = async () => {
     return {
         allSpecialities: response.response,
         VetSpecialities: responseVet.response
+    }
+
+}
+const checkboxSpecialitiesPet = async () => {
+
+    const responseVet = await getSpecialtiesPetById(localStorage.getItem('__user_id'))
+
+    const response = await getSpecialtiesPet()
+
+    return {
+        allSpecialitiesPet: response.response,
+        VetSpecialitiesPet: responseVet.response
     }
 
 }
@@ -30,8 +43,16 @@ export const Prossionais = (props) => {
     const [crmv, setCRMV] = useState(props.crmv)
     const [dataFormacao, setDataFormacao] = useState(props.dataFormacao)
     const [dataInicioAtuacao, setDataInicioAtuacao] = useState(props.dataInicioAtuacao)
+
     const [especialidades, setEspecialidades] = useState([])
     const [especialidadesVet, setEspecialidadesVet] = useState([])
+
+    const [especialidadesPet, setEspecialidadesPet] = useState([])
+    const [especialidadesPetVet, setEspecialidadesPetVet] = useState([])
+
+    const [checkedBoxes, setCheckedBoxes] = useState([]);
+    const [checkedBoxesPet, setCheckedBoxesPet] = useState([]);
+
 
 
     useEffect(() => {
@@ -42,32 +63,40 @@ export const Prossionais = (props) => {
         setCRMV(props.crmv)
         setDataFormacao(props.dataFormacao)
         setDataInicioAtuacao(props.dataInicioAtuacao)
-        
+
         async function fetchDataAll() {
-            const dados = await checkbox()
 
+            const dados = await checkboxSpecialities()
+            const dadosPet = await checkboxSpecialitiesPet()
+
+            setEspecialidadesVet(dados.VetSpecialities)
             setEspecialidades(dados.allSpecialities)
-        }
-        async function fetchDataVet() {
-            const dados = await checkbox()
-            setEspecialidadesVet(dados.especialidadesVet)
-        }
 
+            setEspecialidadesPetVet(dadosPet.VetSpecialitiesPet)
+            setEspecialidadesPet(dadosPet.allSpecialitiesPet)
+        }
 
         fetchDataAll()
-        fetchDataVet()
 
-        async function checkSpecialities(){
-            console.log(especialidadesVet);
-            if (especialidades.includes(especialidadesVet.specialitiesId)) {
-                console.log('teste');
-            } 
-        }
-
-        checkSpecialities()
 
     }, [props.area, props.formacao, props.instituicao, props.crmv, props.dataFormacao, props.dataInicioAtuacao])
 
+    const handleInputChange = (event) => {
+        const { id } = event.target;
+        const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
+
+        if (event.target.checked) {
+            if (index === -1) {
+                setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+            }
+        } else {
+            if (index !== -1) {
+                setCheckedBoxes(
+                    checkedBoxes.filter((item) => item.id !== parseInt(id))
+                );
+            }
+        }
+    };
     const handleAreaAtuacaoChange = (e) => {
         setAreaAtuacao(
             e.target.value
@@ -147,13 +176,12 @@ export const Prossionais = (props) => {
                             <span className='font-normal text-xl text-[#A9A9A9]'>Especialidades</span>
                             <div className='flex flex-wrap pt-2 md:grid md:grid-rows-2 grid-flow-col w-full  gap-5'>
                                 {especialidades.map((item) => {
+                                    const isChecked = especialidadesVet.findIndex(vetItem => vetItem.id === item.id) !== -1;
                                     return (
-                                        <div>
-                                            <label id={item.id} className='flex gap-2 items-center text-2xl'>
-                                                <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" />
-                                                {item.name}
-                                            </label>
-                                        </div>
+                                        <label id={item.id} className='flex gap-2 items-center text-2xl'>
+                                            <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} onClick={handleInputChange} />
+                                            {item.name}
+                                        </label>
                                     )
                                 })}
                             </div>
@@ -162,26 +190,15 @@ export const Prossionais = (props) => {
                         <div className='w-full flex flex-col items-start'>
                             <span className='font-normal text-xl text-[#A9A9A9]'>Animais que atende</span>
                             <div className='flex flex-wrap gap-5'>
-                                <label className='flex gap-2 items-center text-2xl '>
-                                    <input className='w-5 h-5 rounded' type="checkbox" {...register('dog')} />
-                                    Cachorro
-                                </label>
-                                <label className='flex gap-2 items-center text-2xl '>
-                                    <input className='w-5 h-5 rounded' type="checkbox" {...register('cat')} />
-                                    Gato
-                                </label>
-                                <label className='flex gap-2 items-center text-2xl '>
-                                    <input className='w-5 h-5 rounded' type="checkbox" {...register('birds')} />
-                                    Aves
-                                </label>
-                                <label className='flex gap-2 items-center text-2xl '>
-                                    <input className='w-5 h-5 rounded' type="checkbox" {...register('reptiles')} />
-                                    Répteis
-                                </label>
-                                <label className='flex gap-2 items-center text-2xl '>
-                                    <input className='w-5 h-5 rounded' type="checkbox" {...register('exoctics')} />
-                                    Exóticos
-                                </label>
+                                {especialidadesPet.map((item) => {
+                                    const isChecked = especialidadesPetVet.findIndex(vetItem => vetItem.petSpecieId === item.id) !== -1;
+                                    return (
+                                        <label id={item.specialtiesPet} className='flex gap-2 items-center text-2xl'>
+                                            <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} onClick={handleInputChange} />
+                                            {item.name}
+                                        </label>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>
@@ -193,16 +210,7 @@ export const Prossionais = (props) => {
                         } else {
                             setProfessionalInfos({ disabled: true, textColor: 'opacity-50' })
 
-                            const infos = {
-                                occupationArea: areaAtuacao,
-                                formation: formacao,
-                                institution: instituicao,
-                                crmv: crmv,
-                                startActingDate: dataInicioAtuacao,
-                                formationDate: dataFormacao,
-                            }
-
-                            {
+                            if (window.confirm('deseja atualizar os seus dados profissionais?')) {
                                 updateProfessionalInfos(localStorage.getItem('__user_id'),
                                     {
                                         occupationArea: areaAtuacao,
@@ -211,11 +219,8 @@ export const Prossionais = (props) => {
                                         crmv: crmv,
                                         startActingDate: `${dataInicioAtuacao}T00:00:00.000Z`,
                                         formationDate: `${dataFormacao}T00:00:00.000Z`,
-                                    })
+                                    }).then(window.location.reload())
                             }
-
-
-                            // window.alert('dados atualizados com sucesso')
                         }
                     }}>
                         <img src={lapis} alt="" />
