@@ -1,29 +1,20 @@
-import React, {useEffect} from "react";
-import { Link } from 'react-router-dom';
-import { Header } from '../../components/headers/headerEdits'
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Header } from "../../components/headers/headerEdits";
 import { signup } from "../../services/integrations/authentication";
 import { useForm } from "react-hook-form";
 
 const userId = async () => {
+  const apiResponse = await signup(localStorage.getItem("__user_JWT"));
 
-  const apiResponse = await signup(localStorage.getItem('__user_JWT'))
-
-  localStorage.setItem('__user_id', apiResponse.user.id)
-  localStorage.setItem('__user_isVet', apiResponse.user.isVet)
-
-
-
-}
-
-
-
-
+  localStorage.setItem("__user_id", apiResponse.user.id);
+  localStorage.setItem("__user_isVet", apiResponse.user.isVet);
+};
 
 export const HomePage = () => {
-  
   useEffect(() => {
-    userId()
-  }, [])
+    userId();
+  }, []);
 
   return (
     <>
@@ -31,7 +22,7 @@ export const HomePage = () => {
 
       <p>home</p>
       <div className="flex flex-col">
-        <div  className="flex flex-col gap-5 content-center bg-green-500">
+        <div className="flex flex-col gap-5 content-center bg-green-500">
           <p className="font-bold text-2xl">Já tá pronta</p>
           <Link to="/login">Login do usuario</Link>
           <Link to="/register/address">Endereço do usuario</Link>
@@ -59,10 +50,8 @@ export const HomePage = () => {
           <Link to="/profile/infosPerson">Infos Person</Link>
           <Link to="/profile/headerConfig">Header Config</Link>
           <Link to="/profile/appointment">Appointment</Link>
-         
         </div>
       </div>
     </>
   );
-
 };
