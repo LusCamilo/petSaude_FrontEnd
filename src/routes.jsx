@@ -2,6 +2,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/home/Home";
 import { HeaderWeb } from "./pages/home/resource/HeaderWeb";
 import { LandingPage } from "./pages/home/LandingPage";
+import { HomeWeb } from "./pages/home/Home-Web";
+import { WebFunction} from "./pages/home/WebFunction";
+import { ChatInfos} from "./pages/home/chatInfos";
+import { BlogPreview } from "./pages/home/BlogPreview";
+import { PraisedDoctors } from "./pages/home/PraisedDoctors";
+import { Assessments } from "./pages/home/Assessments";
+import { AppPreview } from "./pages/home/AppPreview";
 import { Login } from "./pages/login/Login";
 import { Register } from "./pages/register/Register";
 import { RegisterAddress } from "./pages/register/RegisterAddress";
@@ -22,9 +29,11 @@ import { SegurancaInfo } from "./pages/profile/resource/editUser/responseUser/se
 import { AddressInfos } from "./pages/profile/resource/editUser/responseUser/address";
 import { EditProfile } from "./pages/profile/editProfile";
 import { Appointment } from "./pages/profile/resource/appointment/appointment";
+import { AppointmentView } from "./pages/profile/resource/appointment/appointmentView";
+import { AppointmentMenu } from "./pages/profile/resource/appointment/appointmentMenu";
 import { SearchProfessional } from "./pages/home/searchProfessional";
-
-
+import { AppointmentAsk } from "./pages/profile/resource/appointment/appointments/appointmentAsk";
+import { BlogProfile } from "./pages/home/BlogProfile";
 
 export const Rotas = () => {
   return (
@@ -32,6 +41,13 @@ export const Rotas = () => {
         <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/home" element={<LandingPage />}/>
+            <Route path="/home/chatInfos" element={<ChatInfos />} />
+            <Route path="/home/WebFunction" element={<WebFunction />} />
+            <Route path="/home/BlogPreview" element={<BlogPreview />} />
+            <Route path="/home/PraisedDoctors" element={<PraisedDoctors />} />
+            <Route path="/home/Assessments" element={<Assessments/>} />
+            <Route path="/home/AppPreview" element={<AppPreview/>} />
+            <Route path="/home/Home-Web" element={<HomeWeb />} />
             <Route path="/home/HeaderWeb" element={<HeaderWeb />}/>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />}/>
@@ -53,7 +69,11 @@ export const Rotas = () => {
             <Route path="/profile/editSecurity" element={<SegurancaInfo />} />
             <Route path="/profile/editProfissionais" element={<ProfissonaisInfos />} />
             <Route path="/profile/appointment" element={<Appointment />} />
-            <Route path="/home/searchProfessionals" element={<SearchProfessional />} /> 1 + 1 = 1 + 1
+            <Route path="/profile/appointmentView" element={<AppointmentView />} />
+            <Route path="/profile/appointmentMenu" element={<AppointmentMenu/>} />
+            <Route path="/home/searchProfessionals" element={<SearchProfessional />} />
+            <Route path="/profile/AppointmentAsk" element={<AppointmentAsk />} />
+            <Route path="/profile/blogProfile" element={<BlogProfile />} />
         </Routes>
     </Router>
 

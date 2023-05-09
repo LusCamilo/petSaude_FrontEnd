@@ -1,32 +1,29 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import { Link } from 'react-router-dom';
 import { Header } from '../../components/headers/headerEdits'
 import { signup } from "../../services/integrations/authentication";
 import { useForm } from "react-hook-form";
 
-
-
 const userId = async () => {
 
   const apiResponse = await signup(localStorage.getItem('__user_JWT'))
 
-  console.log(apiResponse);
-
   localStorage.setItem('__user_id', apiResponse.user.id)
+  localStorage.setItem('__user_isVet', apiResponse.user.isVet)
+
+
 
 }
-
-userId()
-
-
 
 
 
 
 
 export const HomePage = () => {
-
-  let tipoUser
+  
+  useEffect(() => {
+    userId()
+  }, [])
 
   return (
     <>
@@ -40,23 +37,19 @@ export const HomePage = () => {
           <Link to="/register/address">Endereço do usuario</Link>
           <Link to="/register/veterinary">Cadastro do veterinario</Link>
           <Link to="/home">Landing Page</Link>
-          <Link to="/profile/veterinary">profile veterinary</Link>
           <Link to="/home/aboutUs">About Us</Link>
+          <Link to="/profile/pet/Add">Pet add</Link>
+          <Link to="/home/searchProfessionals">Procurar profissionais</Link>
         </div>
         <div className="flex flex-col gap-5 content-center bg-purple-600">
           <p className="font-bold text-2xl">Tela em produção</p>
-          <Link to="/profile/upgradeUser" onClick={() => {
-            tipoUser = "veterinario"
-            localStorage.setItem("user", tipoUser)
-          }}>Upgrade User Vets</Link>
-          <Link to="/profile/upgradeUser" onClick={() => {
-            tipoUser = "cliente"
-            localStorage.setItem("user", tipoUser)
-          }}>Upgrade User Not vets</Link>
-          <Link to="/profile/pet/Add">Pet add</Link>
+          <Link to="/profile/upgradeUser">Upgrade User</Link>
           <Link to="/profile/pet/Config"> Pet Config</Link>
           <Link to="/profile/editProfile">editProfile</Link>
-          <Link to="/home/searchProfessionals">Procurar profissionais</Link>
+          <Link to="/profile/veterinary">profile veterinary</Link>
+          <Link to="/home/Home-Web">Home principal</Link>
+          <Link to="/profile/appointmentView">AppointmentView</Link>
+          <Link to="/profile/blogProfile">Blog Profile</Link>
         </div>
         <div className="flex flex-col gap-5 content-center bg-yellow-300">
           <p className="font-bold text-2xl">Apenas componentes</p>
@@ -66,6 +59,7 @@ export const HomePage = () => {
           <Link to="/profile/infosPerson">Infos Person</Link>
           <Link to="/profile/headerConfig">Header Config</Link>
           <Link to="/profile/appointment">Appointment</Link>
+         
         </div>
       </div>
     </>

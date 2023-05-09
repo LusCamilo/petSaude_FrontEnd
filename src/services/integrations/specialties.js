@@ -1,29 +1,25 @@
 import {BASE_URL} from "../../lib/_base_url";
 
-export async function updateSpecialties(body,token) {
-
-    const url = `${BASE_URL}/veterinarian/user/`
+export async function getSpecialties() {
+    const url = `${BASE_URL}specialities`
     const response = await fetch(url, {
-        method: 'PUT',
-        body: body,
+        method:'GET',
         headers:{
-            'Authorization': `Bearer ${token}`
+            'Access-Control-Allow-Origin': '*',
         }
     })
 
     return await response.json()
-    
 }
-export async function deleteSpecialties(id,token) {
 
-    const url = `${BASE_URL}veterinary/user/${id}`
+export async function getSpecialtiesById(id) {
+    const url = `${BASE_URL}specialities/${id}`
     const response = await fetch(url, {
-        method: 'DELETE',
+        method:'GET',
         headers:{
-            'Authorization': `Bearer ${token}`
+            'Access-Control-Allow-Origin': '*',
         }
     })
 
     return await response.json()
-    
 }

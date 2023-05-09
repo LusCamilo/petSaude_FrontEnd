@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import Photo from '../../../assets/svg/userAnonimo.svg';
 import FootHeader from "../../../assets/svg/FootHeader.svg";
@@ -9,9 +9,25 @@ import Info from '../../../assets/svg/InfoOutline.svg';
 import Calendary from '../../../assets/svg/Calendar today.svg';
 import Person from '../../../assets/svg/Person.svg';
 import Lock from '../../../assets/svg/Lock.svg';
-
+import jwt_decode from "jwt-decode";
 
 export const HeaderInfo = (props) => {
+
+  const [userNome, setUserNome] = useState('Entrar')
+  const [userFoto, setUserFoto] = useState('Entrar')
+
+    useEffect(() => {
+        const token = localStorage.getItem('__user_JWT')
+        const decoded = jwt_decode(token);
+        console.log(decoded ? decoded : '');
+        setUserNome(
+            decoded.userName ? decoded.userName : 'Entrar'
+        )
+        setUserFoto(
+            decoded.profilePhoto ? decoded.profilePhoto : 'Entrar'
+        )
+    }, []);
+
     return (
         <>
             <div className=" bg-[#9ED1B7] w-full h-full ">
@@ -26,11 +42,17 @@ export const HeaderInfo = (props) => {
                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                 <li className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                   <img src={Home} className="pr-3"></img>
-                  Home
+                  <Link to="/home/Home-Web"  href="#" className=" duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full"> Home
+                  </Link>
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                <img src={Work} className="pr-3"></img>
-                  Profissionais
+                  <img src={Work} className="pr-3"></img>
+                  <Link className=" duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full" to="/home/searchProfessionals"> Profissionais
+                  </Link>
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                 <img src={Blog} className="pr-3"></img>
@@ -38,7 +60,10 @@ export const HeaderInfo = (props) => {
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                 <img src={Info} className="pr-3"></img>
-                  Sobre nós
+                <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
+                      after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                      hover:after:w-full">Sobre nós
+                    </Link>
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                 <img src={Calendary} className="pr-3"></img>
@@ -66,22 +91,17 @@ export const HeaderInfo = (props) => {
                             </span>
                         </div>
                         <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
-                            <li class="mx-4 my-6 md:my-0 transition">
-                            <Link to="/home"  href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                            after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                            hover:after:w-full">Home
-                            </Link>
-                            </li>
                             <li class="mx-4 my-6 md:my-0">
                               <Link className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                               after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                              hover:after:w-full" to="/home/searchProfessionals">Prossionais 
+                              hover:after:w-full" to="/home/searchProfessionals">Profissionais
                               </Link>
                             </li>
                             <li class="mx-4 my-6 md:my-0">
-                                <a href="#" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
-                                after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                                hover:after:w-full">Blog</a>
+                              <Link to="/profile/blogProfile" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                              hover:after:w-full">Blog
+                              </Link>
                             </li>
                             <li class="mx-4 my-6 md:my-0">
                               <Link to="/home/aboutUs" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
@@ -97,16 +117,16 @@ export const HeaderInfo = (props) => {
                         </div>
                     </nav>
                     <div className=" w-10 md:flex flex-direction " >
-                        <img className="pt-10 pr-1 md:pt-1 " src={Photo} />
+                        <img className="pt-10 pr-1 md:pt-1 " src={userFoto} />
                         <Link to="../login" class=" invisible xl:visible home-btn p-1 ">
-                            Entrar
+                            {userNome}
                         </Link>
                     </div>
                 </div>
 
                 <div className="flex flex-col justify-items-center text-center  gap-20">
                     <div className="flex flex-col justify-center w-full basis-1/4 content-center items-center gap-20 ">
-                        <h1 className="font-bold text-7xl h-3/4 rounded-lg bg-[#78A890] xl:text-9xl mt-20  hidden md:flex justify-center content-center items-center"> {props.title}</h1>
+                        <h1 className="font-bold text-7xl h-3/4 rounded-3xl bg-[#78A890] xl:text-9xl mt-20  hidden md:flex justify-center content-center items-center px-20 py-10"> {props.title}</h1>
                         <p className="md:flex justify-center xl:text-center text-4xl  w-full  hidden "> {props.description} </p>
                     </div>
                     <img className=" mr-80 pr-20 pt-0 w-full" src={FootHeader}/>
