@@ -7,3 +7,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px #333;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #7cbb9a;
+    box-shadow: 0 0 4px #3339;
+    border-radius: 10px;
+}
