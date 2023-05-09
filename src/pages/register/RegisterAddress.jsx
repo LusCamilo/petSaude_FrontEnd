@@ -7,6 +7,9 @@ import backgroundImage from "../../assets/address-image.png"
 import { ServerError } from "../profile/pet/cards/erro500";
 import Modal from 'react-modal'
 import { WarnRequest } from "../profile/pet/cards/warnTwo";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { PetAddSucess } from "../profile/pet/cards/sucess";
 
 const customStyles = {
     content: {
@@ -27,12 +30,55 @@ const customStyles = {
     }
  };
 
+
 export function RegisterAddress() {
     const { register, handleSubmit, formState: errors, setValue } = useForm()
     const [city, setCity] = useState('')
     const [neight, setNeight] = useState('')
     const [street, setStreet] = useState('')
     const [uf, setUf] = useState('')
+
+    const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
+
+    function openModalServer() {
+       setIsOpenSever(true)
+    }
+
+    function closeModalServer() {
+       setIsOpenSever(false);
+    }
+
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    const [emailModal, setEmailModal] = React.useState(false);
+    const [wordUsed, setWordUsed] = React.useState(false);
+    function openModalEmail(word) {
+        setWordUsed(word)
+        setEmailModal(true)
+    }
+
+    function closeModalEmail() {
+        setEmailModal(false);
+    }
+
+    const [sucess, setSucess] = React.useState(false);
+
+    function openModalSucess() {
+        setSucess(true)
+    }
+
+    function closeModalSucess() {
+        setSucess(false);
+    }
+
+
     const submitForm = async (data) => {
 
         const registerType = localStorage.getItem('__register_type')
@@ -63,10 +109,58 @@ export function RegisterAddress() {
         } else {
             console.log(allInfos);
             const response = await registerUser(allInfos)
+            console.log( response.response);
+            let error1 = response.response ? response.response : ""
+            let error = response.response.error ? response.response.error : ""
+            if (response.response.id) {
+                console.log(response.response.id);
+                showToastMessage()
+                setTimeout(function() {
+                    openModalSucess()
+                    setTimeout(function() {
+                        closeModalSucess()
+                        document.location.href = '/login'
+                    }, 5000); 
+                }, 4000); 
+            } else {
+                console.log(error1)
+                console.log(error);
+                console.log(error.includes('já está em uso'))
+                if(error1 == "Email já está em uso" || error1 == "CPF já está em uso"){
+                    console.log("aqui");
+                    let firstWord = error1.split(" ")[0]
+                    openModalEmail(firstWord)
+                    setTimeout(function() {
+                        closeModalEmail()
+                        document.location.href = '/register' 
+                    }, 2000); 
+                }else{
+                    openModal()
+                    setTimeout(function() {
+                        closeModal()
+                        document.location.href = '/register' 
+                    }, 2000); 
+                }
+            }
             localStorage.setItem('__user_id', response.id)
-            document.location.href = '/home'
+            //
         }
     }
+
+    const showToastMessage = () => {
+        toast('Criando usuário', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    };
+
+
 
 
     const getAddressFromZipCode = async (event) => {
@@ -75,16 +169,6 @@ export function RegisterAddress() {
             .then(response => response.json())
             .then(data => setFormValues(data))
             .catch(erro => setFormValues(erro))
-    }
-
-    const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
-
-    function openModalServer() {
-       setIsOpenSever(true)
-    }
-
-    function closeModalServer() {
-       setIsOpenSever(false);
     }
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -116,6 +200,8 @@ export function RegisterAddress() {
         }
   
     }
+
+
 
     return (
         <section className='flex flex-row-reverse w-screen h-screen bg-gradient-to-br from-[#092b5a] to-[#9ed1b7] opacity-90 overflow-x-hidden'>
@@ -171,6 +257,18 @@ export function RegisterAddress() {
                 </form>
                 <p className='mt-8 mb-4'>Já tem uma conta?<Link to='/login' className='pl-1 font-bold'>Faça login</Link></p>
             </div>
+            <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <Modal
                     isOpen={modalIsOpenServer}
                     onAfterOpen={''}
@@ -188,6 +286,15 @@ export function RegisterAddress() {
                     contentLabel="Example Modal"
                 >
                     <WarnRequest boolBotoes={'hidden'} description="Informe um CEP valido"/>
+                </Modal>
+                <Modal
+                    isOpen={sucess}
+                    onAfterOpen={''}
+                    onRequestClose={closeModalSucess}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <PetAddSucess aparecer='hidden' title="Sucesso" what="Novo usuário criado com sucesso!"/>
                 </Modal>
         </section>
         // <div className='flex flex-row w-screen h-screen'>

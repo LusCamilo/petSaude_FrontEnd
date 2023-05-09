@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { NameEspeciality } from "./nameEspeciality";
 import axios from "axios";
+import { getVet } from "../../../services/integrations/filters";
 
 
 export const CardProfessionals = (props) => {
     const [addressInfo, setAddressInfo] = useState("");
-    const [effects, setEffects] = useState("flex");
-
+    const [effects, setEffects] = useState("flex"); 
+    const [veterinariosEspecialdades, setVeterinariosEspecialdades] = useState([]); 
+    const [showEspecialidade, setShowEspecialidade] = useState('flex'); 
+    const [firstName, setFirstName] = useState(''); 
 
     useEffect(() => {
         let pesquisa = props.umCorteRapido
         let city = addressInfo ? addressInfo.cidade : "";
         if (pesquisa == '' || pesquisa == null || pesquisa == undefined) {
-            console.log('a');
             setEffects('flex')
         } else{
             if (city.toLowerCase().includes(pesquisa.toLowerCase())) {
-                console.log(city);
                 setEffects('flex')
             } else {
                 setEffects('hidden')
             }
             
         }
-    }, [props.umCorteRapido, addressInfo.cidade]);;
+    }, [props.umCorteRapido, addressInfo.cidade]);
+
+    useEffect(() => {
+        let specialidades = getVet(props.id)
+    })
 
     let year = props.dateStart
 
@@ -35,17 +40,27 @@ export const CardProfessionals = (props) => {
             );
             setAddressInfo({ cidade: response.data.localidade, estado: response.data.uf });
           } catch (error) {
-            console.log(error);
           }
         };
     
         fetchAddressInfo();
       }, [props.cep]);
 
+      useEffect(() => {
+        async function fetchData() {
+          const specialidades = await getVet(props.id)
+          setVeterinariosEspecialdades(specialidades.response.user.VeterinaryEspecialities)
+          if (veterinariosEspecialdades > 0) {
+            setShowEspecialidade('hidden')
+          }
+          setFirstName(veterinariosEspecialdades[0])
+        }
+        fetchData();
+      }, [props.id]); 
+
     // let especialista
     const [especializacao, setEspecializacao] = useState('')
     useEffect(() => {
-        console.log(props.especializacao);
         if (props.especializacao == null || props.especializacao == undefined || props.especializacao == "") {
           setEspecializacao('')
         } else {
@@ -89,6 +104,16 @@ export const CardProfessionals = (props) => {
                         </div>
                         <div className="flex flex-row gap-2 text-3xl w-full">
                             <p className="font-bold">Especialização: </p>
+                            <p className={`${showEspecialidade}`}>
+                                {veterinariosEspecialdades.map(esp =>{
+                                return(
+                                    <p>
+                                            {esp.specialities.name}
+                                    </p>
+                                ) 
+                                })}
+                            </p>
+                            
                             <p>{especializacao}</p>
                         </div>
                     </div>

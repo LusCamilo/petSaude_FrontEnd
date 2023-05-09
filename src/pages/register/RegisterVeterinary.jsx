@@ -36,7 +36,7 @@ export const RegisterVeterinary = () => {
     const showToastMessage = () => {
         toast('Criando usuário', {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -116,38 +116,43 @@ export const RegisterVeterinary = () => {
         if (validateForm(data)) {
             const createUserResponse = await registerVet(allInfos)
             console.log( createUserResponse.response);
-            console.log(createUserResponse);
             let error1 = createUserResponse.response ? createUserResponse.response : ""
             let error = createUserResponse.response.error ? createUserResponse.response.error : ""
-            console.log(createUserResponse[0]);
-            if (createUserResponse.id) {
+            if (createUserResponse.response.id) {
                 showToastMessage()
                 setTimeout(function() {
                     openModalSucess()
                     setTimeout(function() {
                         closeModalSucess()
-                        // document.location.href = '/login' 
+                        document.location.href = '/login' 
                     }, 5000); 
-                }, 2000); 
+                }, 4000); 
             } else {
-                if(error1.includes('já está em uso') || error.includes('já está em uso')){
-                    if (error1.includes('já está em uso')) {
+                console.log(error1)
+                console.log(error);
+                console.log(error.includes('já está em uso'))
+                if(error1 == "Email já está em uso" || error == "CRMV já está em uso"){
+                    console.log("aqui");
+                    if (error1 == 'Email já está em uso') {
                         let firstWord = error1.split(" ")[0]
                         openModalEmail(firstWord)
                         setTimeout(function() {
                             closeModalEmail()
+                            document.location.href = '/register' 
                         }, 2000); 
                     } else {
                         let firstWord = error.split(" ")[0]
                         openModalEmail(firstWord)
                         setTimeout(function() {
                             closeModalEmail()
+                            document.location.href = '/register' 
                         }, 2000); 
                     }
                 }else{
                     openModal()
                         setTimeout(function() {
                             closeModal()
+                            document.location.href = '/register' 
                         }, 2000); 
                 }
             }

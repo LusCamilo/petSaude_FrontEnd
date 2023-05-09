@@ -12,6 +12,7 @@ import { HomeWeb } from '../../home/Home-Web';
 import jwt_decode from "jwt-decode";
 import Logout from '../../../assets/svg/Logout.svg'
 
+
 export const PetHeader = (props) => {
 
     const [userNome, setUserNome] = useState('')
@@ -21,6 +22,7 @@ export const PetHeader = (props) => {
         const token = localStorage.getItem('__user_JWT')
         if (token) {
             const decoded = jwt_decode(token);
+            console.log(decoded);
             setUserNome(
                 decoded.userName ? decoded.userName : ''
             )
@@ -73,19 +75,19 @@ export const PetHeader = (props) => {
                                     <img src={Lock} className="pr-3 w-14"></img>
                                     Segurança
                                 </button>
-                                <div className='border-2 border-[#B3261E] rounded-full py-5 px-5 flex flex-row  mt-10 text-[#B3261E] font-semibold'>
+                                <button onClick={() => { document.location.href = '/login' }} className='border-2 border-[#B3261E] rounded-full py-5 px-5 flex flex-row  mt-10 text-[#B3261E] font-semibold'>
                                     <div className='flex flex-row  gap-5'>
                                         <img src={Logout} alt="" />
                                         Sair
                                     </div>
-                                </div>
+                                </button>
                             </ul>
                         </div>
                     </button>
                     <h1 className=" md:pt-1 text-1xl sm:flex justify-start font-bold">PetSaúde</h1>
                     <div className=" md:flex flex-row gap-2" >
                         <img className="w-20 h-20 rounded-full md:h-10 md:w-10" src={userFoto} />
-                        <Link to="../login" className=" hidden md:flex home-btn text-2xl mr-3 text-black">
+                        <Link to="/profile/editProfile" className=" hidden md:flex home-btn text-2xl mr-3 text-black">
                             {userNome}
                         </Link>
                     </div>

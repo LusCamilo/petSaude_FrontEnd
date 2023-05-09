@@ -8,6 +8,31 @@ import search from "../../assets/svg/lupa.svg";
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import './radixSearch.css'
 import axios from 'axios';
+import { ServerError } from "../profile/pet/cards/erro500";
+import Modal from 'react-modal'
+import { WarnRequest } from "../profile/pet/cards/warnTwo";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const customStyles = {
+  content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      border: '4px solid transparent',
+      borderRadius: '12px 12px',
+      backgroundColor: '#FFFFFF00',
+      display: "flex",
+      justifyContent: "center"
+  },
+  overlay : {
+      backgroundColor: '#0000'
+  }
+};
+
 
 export const SearchProfessional = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -35,6 +60,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
 
 //const [filtro, setFiltro] = useState("userName");
   const onSearch = async (data) => {
+    console.log("Neste");
     localStorage.setItem("__Vet_Search", data.search)
     try {
       if (data.search == "") {
@@ -49,8 +75,10 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           let response = await getUsers(data.search, ondeProcurar);
           let result = response.response;
           let json
+          console.log(result);
           if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
             json = []
+            showToastMessage()
           } else {
             json = result.filter(
               (item) =>
@@ -75,6 +103,10 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
               return pessoa.toLowerCase().includes(procurarCidade.toLowerCase());
             });
             console.log(jsonFinal);
+            if (jsonFinal == []) {
+              showToastMessage()
+              console.log("Resultado");
+            }
             setVets(jsonFinal);
           }
 
@@ -86,9 +118,25 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
   };
 
 
+    const showToastMessage = () => {
+      
+    toast.error('Nenhum Veterinário encontrado', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      //progress: undefined,
+      theme: "light",
+      });
+  };
+
+
 
   const onSearchIt = async (data) => {
     try {
+      console.log("nesse");
       if (data.search == "") {
         let response = await getAllVets();
         let result = response.response;
@@ -100,9 +148,10 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           localStorage.setItem("__Vet_Search", data.search)
           let response = await getUsers(data.search, data.searchIt);
           let result = response.response;
-          
           if (result == "Nenhum veterinário atende aos filtros de pesquisa") {
+            showToastMessage()
             json = []
+            console.log("Result");
           } else {
             json = result.filter(
               (item) =>
@@ -121,6 +170,9 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
               item.userName.toLowerCase().includes(data.search.toLowerCase())
           );
           setUmCorteRapidao(inputSearch)
+          if (json == []) {
+            showToastMessage()
+          }
           setVets(json);
         }
         
@@ -215,7 +267,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                 cep={vet.Address.cep}
                 formacao={vet.formation}
                 instituicao={vet.institution}
-                especializacao={vet.VeterinaryEspecialities[0].specialities.name}
+                //especializacao={vet.VeterinaryEspecialities[0].specialities.name}
                 image={vet.profilePhoto}
                 dateStart = {vet.startActingDate}
                 umCorteRapido={umCorteRapidao}
@@ -223,6 +275,18 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
             );
             }
           })}
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
         </div>
       </div>
       <Footer />

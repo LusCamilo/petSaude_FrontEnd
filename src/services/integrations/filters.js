@@ -24,4 +24,12 @@ export async function getAllVets() {
     .then(response => response.json())
     .catch(error => console.error(error));
 }
+
+export async function getVet(idVet) {
+
+  const url = `${BASE_URL}id/veterinary?userID=${idVet}`
+  return fetch(url)
+    .then(response => response.json())
+    .catch(error => console.error(error));
+}
   // Exemplo de uso da função

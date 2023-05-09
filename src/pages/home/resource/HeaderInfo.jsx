@@ -16,16 +16,21 @@ export const HeaderInfo = (props) => {
   const [userNome, setUserNome] = useState('Entrar')
   const [userFoto, setUserFoto] = useState('Entrar')
 
+
     useEffect(() => {
         const token = localStorage.getItem('__user_JWT')
+        console.log(token);
         const decoded = jwt_decode(token);
         console.log(decoded ? decoded : '');
+        console.log(decoded.profilePhoto);
+      if(token){
         setUserNome(
-            decoded.userName ? decoded.userName : 'Entrar'
-        )
-        setUserFoto(
-            decoded.profilePhoto ? decoded.profilePhoto : 'Entrar'
-        )
+          decoded.userName ? decoded.userName : 'Adicionar userName'
+      )
+      setUserFoto(
+          decoded.profilePhoto ? decoded.profilePhoto : 'AdicionarFoto'
+      )
+      }
     }, []);
 
     return (
@@ -67,6 +72,7 @@ export const HeaderInfo = (props) => {
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                 <img src={Calendary} className="pr-3"></img>
+                <Link to="/home/appointmentMenu"></Link>
                   Consultas
                 </li>
               </ul>
@@ -74,11 +80,13 @@ export const HeaderInfo = (props) => {
             <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
               <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
               <img src={Person} className="pr-3"></img>
-                Perfil
+              <Link to="/profile/editPerson">Perfil</Link>
+                
               </li>
               <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
               <img src={Lock} className="pr-3"></img>
-                Segurança
+                <Link to="/profile/editProfile">Segurança</Link>
+                
               </li>
             </ul>
           </div>
@@ -118,7 +126,7 @@ export const HeaderInfo = (props) => {
                     </nav>
                     <div className=" w-10 md:flex flex-direction " >
                         <img className="pt-10 pr-1 md:pt-1 " src={userFoto} />
-                        <Link to="../login" class=" invisible xl:visible home-btn p-1 ">
+                        <Link to="/profile/editProfile" class=" invisible xl:visible home-btn p-1 ">
                             {userNome}
                         </Link>
                     </div>
