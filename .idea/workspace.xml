@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/global.style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/notifications.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/_base_url.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/_base_url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/integrations/authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/authentication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/userVet.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/userVet.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,11 +92,23 @@
       <workItem from="1683289768621" duration="438000" />
       <workItem from="1683715186475" duration="683000" />
       <workItem from="1683719559850" duration="48000" />
-      <workItem from="1683719640863" duration="3868000" />
+      <workItem from="1683719640863" duration="6767000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx</url>
+          <line>129</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

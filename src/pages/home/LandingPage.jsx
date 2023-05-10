@@ -10,20 +10,6 @@ import { FaUserNurse } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
 
 export const LandingPage = () => {
-  //https://www.luiztools.com.br/post/tutorial-listagem-com-busca-em-reactjs/
-  //<ListItem Name="Yasmini" bairro="Novo Osasco" /
-
-  // null
-
-  //const token = localStorage.getItem('__user_JWT')
-  //const decoded = jwt_decode(token);
-  //const decoded = [{}]
-  //console.log(decoded);
-
-  //const token = localStorage.getItem('__user_JWT')
-  //const decoded = jwt_decode(token);
-  //console.log(decoded);
-
   function handleKeyPress(inputValue, event, whenSearch) {
     if (event.key === "Enter") {
       event.preventDefault(); // evita a renderização da tela

@@ -1,5 +1,4 @@
 import React from "react";
-import { AuthHeader } from "../../components/headers/AuthHeader";
 import { LandingPage } from "./LandingPage";
 import { WebFunction } from "./WebFunction";
 import { ChatInfos } from "./chatInfos";
@@ -12,7 +11,6 @@ import { AppPreview } from "./AppPreview";
 export const HomeWeb = () => {
   return (
     <>
-      <AuthHeader />
       <LandingPage />
       <WebFunction />
       <ChatInfos />

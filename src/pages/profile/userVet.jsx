@@ -24,9 +24,7 @@ export const UserVet = () => {
         const decoded = jwt_decode(token);
         console.log(decoded ? decoded : '');
         console.log(decoded.profilePhoto);
-        if (decoded.isVet == false) {
-            SetIsVet(true)
-        }
+        SetIsVet(decoded.isVet)
       }, []);
 
     const [vets, setVets] = useState([]);
@@ -37,13 +35,13 @@ export const UserVet = () => {
             let response = await getUsers(vetJson, "userName");
             let result = response.response;
             let json
-            if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
+            if (result === "Nenhum veterinário atende aos filtros de pesquisa" ) {
               json = []
             } else {
               json = result
             }
             setVets(json[0])
-            if (vets.isVet == true) {
+            if (vets.isVet === true) {
                 localStorage.setItem('__register_type', "professional")
             }
         } catch (error) {
@@ -56,7 +54,7 @@ export const UserVet = () => {
         }, []);
     
 
-    if (localStorage.getItem('__register_type') === "professional") {
+    if (isVet) {
         return (
             <div>
                 <HeaderProfile />
