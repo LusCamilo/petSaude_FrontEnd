@@ -17,7 +17,7 @@ export const HomeWeb = () => {
       <PraisedDoctors />
       <Assessments />
       <BlogPreview />
-      <AppPreview />
+      {/* <AppPreview /> */}
       <Footer />
     </>
   );

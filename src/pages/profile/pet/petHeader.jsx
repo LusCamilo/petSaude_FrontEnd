@@ -34,7 +34,7 @@ export const PetHeader = (props) => {
   return (
     <>
       <header>
-        <div className="flex font-normal items-center justify-between bg-white shadowxl:p-10 h-30 text-4xl md:p-5 relative">
+        <div className="flex font-normal items-center justify-between bg-transparent shadowxl:p-10 h-30 text-4xl md:p-5">
           <button className=" py-3 px-4 mx-2 rounded focus:outline-none group">
             <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
             <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
@@ -62,7 +62,7 @@ export const PetHeader = (props) => {
                   <img src={Work} className="pr-3  w-14"></img>
                   Profissionais
                 </button>
-                <button
+                {/* <button
                   onClick={() => {
                     document.location.href = "/profile/appointmentView";
                   }}
@@ -70,7 +70,7 @@ export const PetHeader = (props) => {
                 >
                   <img src={Blog} className="pr-3 w-14"></img>
                   Blog
-                </button>
+                </button> */}
                 <button
                   onClick={<Link to="/home/aboutUs"></Link>}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
@@ -124,16 +124,37 @@ export const PetHeader = (props) => {
           </Link>
           <Link to={linkTo} className=" md:flex flex-row gap-2">
             <img
-              className="w-20 h-20 rounded-full md:h-10 md:w-10"
+              className="w-14 h-14 p-2 md:p-0 rounded-full"
               src={userFoto}
             />
-            <p className=" hidden md:flex home-btn text-2xl mr-3 text-black">
+            <Link
+              to="../login"
+              className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
+            >
               {userNome}
             </p>
           </Link>
         </div>
       </header>
+{/* 
+      <h1 className=" md:pt-1 text-1xl sm:flex justify-start font-bold">
+        PetSaúde
+      </h1>
 
+      <div className=" md:flex flex-row gap-2">
+        <img
+          className="w-20 h-20 rounded-full md:h-10 md:w-10"
+          src={userFoto}
+        />
+        <Link
+          to="../login"
+          className=" hidden md:flex home-btn text-2xl mr-3 text-black"
+        >
+          {userNome}
+        </Link>
+      </div> */}
+
+      {/* </div> */}
     </>
   );
 };

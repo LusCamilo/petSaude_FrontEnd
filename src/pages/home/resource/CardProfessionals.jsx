@@ -75,34 +75,34 @@ export const CardProfessionals = (props) => {
         localStorage.setItem("__Vet_correctId", id);
 	}
     return (
-            <div className={`w-full h-96 ${effects} flex-row gap-5 p-4 drop-shadow-2xl bg-white mb-10`}>
+            <div className={`w-full h-96 ${effects} flex-col md:flex-row gap-5 p-4 drop-shadow-2xl bg-white mb-10`}>
                 <div className="w-1/4 h-full">
                     <img src={props.image} alt="Imagem do especialista" className="overflow-hidden h-full w-full"/>
                 </div>
                 
                 <div className="w-3/4 h-full flex flex-row">
                     <div className="w-full h-full flex justify-start flex-col gap-3">
-                        <div className="flex flex-row gap-2 text-3xl">
+                        <div className="flex flex-row text-xl md:text-3xl gap-2 ">
                             <p className="font-bold">Nome: </p>
                             <p>{props.nome}</p> 
                         </div>
-                        <div className="flex flex-row gap-2 text-3xl">
+                        <div className="flex flex-row text-xl md:text-3xl gap-2 ">
                             <p className="font-bold">Início de atuação: </p>
                             <p>{year.split("-")[0]}</p>
                         </div>
-                        <div className="flex flex-row gap-2 text-3xl">
+                        <div className="flex flex-row text-xl md:text-3xl gap-2 ">
                             <p className="font-bold">Estado: </p>
                             <p>{addressInfo.estado}</p>
                         </div>
-                        <div className="flex flex-row gap-2 text-3xl" >
+                        <div className="flex flex-row text-xl md:text-3xl gap-2 " >
                             <p className="font-bold">Cidade: </p>
                             <p>{addressInfo.cidade}</p>
                         </div>
-                        <div className="flex flex-row gap-2 text-3xl">
+                        <div className="flex flex-row text-xl md:text-3xl gap-2 ">
                             <p className="font-bold">Formação: </p>
                             <p>{props.formacao} - {props.instituicao}</p>
                         </div>
-                        <div className="flex flex-row gap-2 text-3xl w-full">
+                        <div className="flex flex-row text-xl md:text-3xl gap-2  w-full">
                             <p className="font-bold">Especialização: </p>
                             <p className={`${showEspecialidade}`}>
                                 {veterinariosEspecialdades.map(esp =>{
