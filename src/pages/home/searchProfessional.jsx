@@ -216,7 +216,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         </div>
         <form className="w-3/12">
             <RadioGroup.Root className="RadioGroupRoot" value={filtro} onChange={handleRadioChange} defaultValue="userName" aria-label="View density">
-                <div className="flex flex-row">
+                <div className="flex flex-col md:flex-row">
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                       <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1">
                       <RadioGroup.Indicator className="RadioGroupIndicator" />

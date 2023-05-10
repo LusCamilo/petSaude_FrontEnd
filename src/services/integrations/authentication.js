@@ -15,11 +15,6 @@ export const login = async (loginInfos) => {
     })
     
     return await response.json()
-        // .then(response => response.json())
-        // .then(data => data.token)
-        // .then(token => localStorage.setItem('__user_JWT', token))
-        // .then(token => token)
-        // .catch(err => alert(err))
 }
 
 export const signup = async (token) => {
