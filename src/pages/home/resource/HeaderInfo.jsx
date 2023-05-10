@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import Photo from '../../../assets/svg/userAnonimo.svg';
 import FootHeader from "../../../assets/svg/FootHeader.svg";
 import Home from '../../../assets/svg/Home.svg';
 import Work from '../../../assets/svg/Work.svg';
-import Blog from '../../../assets/svg/Blog.svg';
 import Info from '../../../assets/svg/InfoOutline.svg';
 import Calendary from '../../../assets/svg/Calendar today.svg';
 import Person from '../../../assets/svg/Person.svg';
@@ -17,23 +15,17 @@ export const HeaderInfo = (props) => {
 
   const [userNome, setUserNome] = useState('Entrar')
   const [userFoto, setUserFoto] = useState('Entrar')
+  const [linkTo, setLinkTo] = useState('../login')
+  const token = localStorage.getItem('__user_JWT')
+  const decoded = jwt_decode(token);
 
-
-    useEffect(() => {
-        const token = localStorage.getItem('__user_JWT')
-        console.log(token);
-        const decoded = jwt_decode(token);
-        console.log(decoded ? decoded : '');
-        console.log(decoded.profilePhoto);
-      if(token){
-        setUserNome(
-          decoded.userName ? decoded.userName : 'Adicionar userName'
-      )
-      setUserFoto(
-          decoded.profilePhoto ? decoded.profilePhoto : 'AdicionarFoto'
-      )
+  useEffect(() => {
+      if (decoded) {
+        setUserNome(decoded.userName);
+        setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
+        setLinkTo('../profile/veterinary')
       }
-    }, []);
+    }, [decoded, token]);
 
     return (
         <>
@@ -128,21 +120,18 @@ export const HeaderInfo = (props) => {
                   </ul>
                 </div>
               </button>
-              <h1 className=" md:pt-1 text-1xl sm:flex justify-start font-bold">
+              <Link to='../home' className=" md:pt-1 text-1xl sm:flex justify-start font-bold">
                 PetSaúde
-              </h1>
-              <div className=" md:flex flex-row gap-2">
+              </Link>
+              <Link to={linkTo} className=" md:flex flex-row gap-2">
                 <img
                   className="w-14 h-14 p-2 md:p-0 rounded-full"
                   src={userFoto}
                 />
-                <Link
-                  to="../login"
-                  className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
-                >
+                <p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
                   {userNome}
-                </Link>
-              </div>
+                </p>
+              </Link>
             </div>
           </header>
                 <div className="flex flex-col justify-items-center text-center  gap-20 bg-[#9ED1B7]  ">

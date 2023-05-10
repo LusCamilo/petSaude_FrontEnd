@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./css/cadastroVet.css";
 import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import backgroundImage from "../../assets/svg/imgVetCadastro.svg";
 import { AuthHeader } from "../../components/headers/AuthHeader";
-import { createVeterinaryInfosIntoExistingUser, registerUser, registerVet } from "../../services/integrations/user";
+import { registerVet } from "../../services/integrations/user";
 import { ServerError } from "../profile/pet/cards/erro500";
 import Modal from 'react-modal'
 import { WarnRequest } from "../profile/pet/cards/warnTwo";
