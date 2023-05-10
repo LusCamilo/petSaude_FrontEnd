@@ -183,8 +183,8 @@ export const RegisterVeterinary = () => {
                 <AuthHeader title='Cadastro de profissionais' subtitle='Por favor, insira as informações abaixo e aproveite a plataforma! ' firebaseFeature={false} />
                 <form className='h-fit lg:w-3/4 w-full gap-2 p-0 lg:mt-12 md:mt-6' onSubmit={handleSubmit(submitForm)}>
                     <div className='w-full flex flex-col items-start'>
-                        <span className='font-normal text-xl'>Especialidades</span>
-                        <div className='flex flex-wrap gap-2'>
+                        <span className='font-normal text-2xl'>Especialidades</span>
+                        <div className='flex flex-wrap gap-2 m-1'>
                             <label className='flex gap-1 items-center'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('surgeon')} />
                                 Cirurgião
@@ -216,8 +216,8 @@ export const RegisterVeterinary = () => {
                         </div>
                     </div>
                     <div className='w-full flex flex-col items-start'>
-                        <span className='font-normal text-xl'>Animais que atende</span>
-                        <div className='flex flex-wrap gap-2'>
+                        <span className='font-normal text-2xl'>Animais que atende</span>
+                        <div className='flex flex-wrap gap-2 m-1'>
                             <label className='flex gap-1 items-center'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('dog')} />
                                 Cachorro
@@ -241,29 +241,29 @@ export const RegisterVeterinary = () => {
                         </div>
                     </div>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
-                        <label className='w-full flex flex-col'>
+                        <label className='w-full flex flex-col text-black'>
                             Área de atuação
                             <input className={errors.occupationArea ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="occupationArea" {...register('occupationArea', { required: true })} />
                         </label>
-                        <label className='w-full flex flex-col'>
+                        <label className='w-full flex flex-col text-black'>
                             CRMV
                             <input className={errors.crmv ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="crmv" {...register('crmv', { required: true })} />
                         </label>
                     </div>
-                    <label className='w-full flex flex-col'>
+                    <label className='w-full flex flex-col text-black'>
                         Formação
                         <input className={errors.formation ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="formation" {...register('formation', { required: true })} />
                     </label>
-                    <label className='w-full flex flex-col'>
+                    <label className='w-full flex flex-col text-black'>
                         Instituição
                         <input className={errors.institution ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="institution" {...register('institution', { required: true })} />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
-                        <label className='w-full flex flex-col'>
+                        <label className='w-full flex flex-col text-black'>
                             Data de formação
                             <input className={errors.formationDate ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="date" name="formationDate" {...register('formationDate', { required: true })} />
                         </label>
-                        <label className='w-full flex flex-col'>
+                        <label className='w-full flex flex-col text-black'>
                             Início de atuação
                             <input className={errors.startActingDate ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="date" name="startActingDate" {...register('startActingDate', { required: true })} />
                         </label>

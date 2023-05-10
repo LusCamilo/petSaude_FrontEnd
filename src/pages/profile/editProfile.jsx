@@ -163,10 +163,10 @@ export const EditProfile = () => {
                         profilePhoto: profilePhoto
                     }
 
-                    if (Boolean(decoded.isVet))
+                    if (localStorage.getItem('__user_isVet') == 'true')
                         updateProfileInfosVeterinary(profileInfos)
                     else
-                        updateProfileInfosClient(profileInfos)
+                        console.log(updateProfileInfosClient(profileInfos))
 
 
                     document.location.href = '/profile/upgradeUser'
