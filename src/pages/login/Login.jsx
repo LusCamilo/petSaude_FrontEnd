@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { login, signup } from "../../services/integrations/authentication";
-import jwt_decode from "jwt-decode";
 import { ServerError } from "../profile/pet/cards/erro500";
 import Modal from 'react-modal'
 import { WarnRequest } from "../profile/pet/cards/warnTwo";
+import Notifications from "../../utils/notifications";
 
 const userId = async () => {
 
@@ -30,66 +30,24 @@ export const Login = () => {
         else
             setPasswordVisibility(false)
     }
-
-    const customStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            border: '4px solid transparent',
-            borderRadius: '12px 12px',
-            backgroundColor: '#FFFFFF00',
-            display: "flex",
-            justifyContent: "center"
-        },
-        overlay : {
-            backgroundColor: '#0000'
-        }
-     };
-
-     const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
-
-     function openModalServer() {
-        setIsOpenSever(true)
-     }
- 
-     function closeModalServer() {
-        setIsOpenSever(false);
-     }
-
-     const [modalIsOpen, setIsOpen] = React.useState(false);
-     const [errorLogin, setErrorLogin] = useState('bg-red-200');
-
-     function openModal() {
-         setIsOpen(true)
-     }
- 
-     function closeModal() {
-         setIsOpen(false);
-     }
+    const [errorLogin, setErrorLogin] = useState('bg-red-200');
     
     const SubmitForm = async data => {
-
-        // TODO: AUTENTICAÇÃO
         const response = await login(data)
         console.log(response['response']);
-        if (response['response'] == 'Nenhum registro encontrado no banco') {
-            openModal()
-            setErrorLogin('bg-red-200')
-            setTimeout(function() {
-                closeModal()
-                setErrorLogin('bg-[#B3261E]')
-            }, 2000); 
+        if (response['response'] === 'Nenhum registro encontrado no banco') {
+          await Notifications.error("Usuario nao existe")
+          setErrorLogin('bg-red-200')
+          setTimeout(function() {
+            setErrorLogin('bg-[#B3261E]')
+          }, 2000);
         } else {
-            if (response.token != '' && response.token != null && response.token != undefined) {
+            if (response.token !== '' && response.token !== null) {
                 localStorage.setItem('__user_JWT', response.token)
-                userId()
+                await userId()
                 document.location.href = '/home'
             } else {
-                window.alert(response.response)
+                await Notifications.error(response.response)
             }
         }
 
@@ -153,24 +111,24 @@ export const Login = () => {
             <div className='absolute w-full h-full overflow-hidden flex items-center justify-end'>
                 <img src={backgroundImage} alt="" className='w-2/3 h-fit opacity-50' />
             </div>
-            <Modal
-                    isOpen={modalIsOpenServer}
-                    onAfterOpen={''}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <ServerError/>
-                </Modal>
-                <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={''}
-                    onRequestClose={closeModalServer}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <WarnRequest boolBotoes={'hidden'} description="Email ou senha inválidos"/>
-                </Modal>
+            {/*<Modal*/}
+            {/*        isOpen={modalIsOpenServer}*/}
+            {/*        onAfterOpen={''}*/}
+            {/*        onRequestClose={closeModal}*/}
+            {/*        style={customStyles}*/}
+            {/*        contentLabel="Example Modal"*/}
+            {/*    >*/}
+            {/*    <ServerError/>*/}
+            {/*</Modal>*/}
+            {/*<Modal*/}
+            {/*        isOpen={modalIsOpen}*/}
+            {/*        onAfterOpen={''}*/}
+            {/*        onRequestClose={closeModalServer}*/}
+            {/*        style={customStyles}*/}
+            {/*        contentLabel="Example Modal"*/}
+            {/*>*/}
+            {/*    <WarnRequest boolBotoes={'hidden'} description="Email ou senha inválidos"/>*/}
+            {/*</Modal>*/}
         </section>
     );
 }
