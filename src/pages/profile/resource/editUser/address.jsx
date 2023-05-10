@@ -79,10 +79,19 @@ export const Address = (props) => {
 
                             if (window.confirm('deseja atualizar os seus dados pessoais?')) {
                                 props.viaCep(cep).then(response => {
-                                    if (response != { 'erro': 'true' } && response != Error)
-                                        updateAddress({ zipCode: cep, number: `${props.number}`, complement: complement }, props.id)
-                                        .then((response) => window.alert(response.response))
-                                        .then(window.location.reload())
+                                    if (response != { 'erro': 'true' } && response != Error) {
+
+                                        let zipCode  = { zipCode: cep, number: `${props.number}`, complement: complement }
+
+                                        if (complement == null) {
+                                            zipCode = { zipCode: cep, number: `${props.number}`, complement: '' }
+                                        }
+
+                                        updateAddress(zipCode, props.id)
+                                            .then((response) => console.log(response.response))
+                                            .then(window.location.reload())
+
+                                    }
                                 })
                             }
                         }

@@ -17,7 +17,8 @@ import jwt_decode from "jwt-decode";
     // let infosVet = getUser(localStorage.getItem('__Vet_Id'), localStorage.getItem('__user_JWT'))localStorage.setItem('__register_type', "professional")
 export const UserVet = () => {
 
-    const [isVet, SetIsVet] = useState(false)    
+    const [isVet, SetIsVet] = useState(false)  
+
     useEffect(() => {
         const token = localStorage.getItem('__user_JWT')
         console.log(token);
@@ -56,7 +57,7 @@ export const UserVet = () => {
         }, []);
     
 
-    if (localStorage.getItem('__register_type') === "professional") {
+    if (isVet) {
         return (
             <div>
                 <HeaderProfile />

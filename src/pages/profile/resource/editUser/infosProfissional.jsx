@@ -3,7 +3,7 @@ import lapis from "../../../../assets/svg/pencil.svg"
 import { set, useForm } from 'react-hook-form';
 import { updateProfessionalInfos } from '../../../../services/integrations/user';
 import { getSpecialties, getSpecialtiesById } from '../../../../services/integrations/specialties';
-import { getSpecialtiesPet, getSpecialtiesPetById } from '../../../../services/integrations/specialtiesPet';
+import { getSpecialtiesPet, getSpecialtiesPetById, updateSpecialities } from '../../../../services/integrations/specialtiesPet';
 
 
 const checkboxSpecialities = async () => {
@@ -81,12 +81,43 @@ export const Prossionais = (props) => {
 
     }, [props.area, props.formacao, props.instituicao, props.crmv, props.dataFormacao, props.dataInicioAtuacao])
 
-    const handleInputChange = (event) => {
+    const handleCheckBoxEspecialidadesChange = (event) => {
         const { id } = event.target;
         const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
 
         if (event.target.checked) {
             if (index === -1) {
+                setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+            }
+        } else {
+            if (index !== -1) {
+                setCheckedBoxes(
+                    checkedBoxes.filter((item) => item.id !== parseInt(id))
+                );
+            }
+        }
+    };
+    const handleCheckBoxPetChange = (event) => {
+        const { id } = event.target;
+        const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
+
+        if (event.target.checked) {
+            if (index === -1) {
+
+                const storage = localStorage.getItem('__user_id')
+
+                let json = {
+                    AnimalTypesVetInfos: [
+                        {
+                            veterinaryId: id,
+                            animalTypesId: storage
+                        }   
+                    ]
+                }
+                
+                const teste = updateSpecialities(json)
+                console.log(json);
+
                 setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
             }
         } else {
@@ -179,7 +210,7 @@ export const Prossionais = (props) => {
                                     const isChecked = especialidadesVet.findIndex(vetItem => vetItem.specialitiesId === item.id) !== -1;
                                     return (
                                         <label id={item.id} className='flex gap-2 items-center text-2xl'>
-                                            <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} onClick={handleInputChange} />
+                                            <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} onClick={handleCheckBoxEspecialidadesChange} />
                                             {item.name}
                                         </label>
                                     )
@@ -194,7 +225,7 @@ export const Prossionais = (props) => {
                                     const isChecked = especialidadesPetVet.findIndex(vetItem => vetItem.petSpecieId === item.id) !== -1;
                                     return (
                                         <label id={item.specialtiesPet} className='flex gap-2 items-center text-2xl'>
-                                            <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} onClick={handleInputChange} />
+                                            <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} onClick={handleCheckBoxPetChange} />
                                             {item.name}
                                         </label>
                                     )
