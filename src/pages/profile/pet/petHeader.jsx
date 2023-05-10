@@ -12,7 +12,6 @@ import { HomeWeb } from "../../home/HomeWeb";
 import jwt_decode from "jwt-decode";
 import Logout from "../../../assets/svg/Logout.svg";
 
-
 export const PetHeader = (props) => {
   const [userNome, setUserNome] = useState("");
   const [userFoto, setUserFoto] = useState("");
@@ -21,6 +20,18 @@ export const PetHeader = (props) => {
     const token = localStorage.getItem("__user_JWT");
     if (token) {
       const decoded = jwt_decode(token);
+      setUserNome(decoded.userName ? decoded.userName : "");
+      setUserFoto(decoded.profilePhoto ? decoded.profilePhoto : "");
+    }
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("__user_JWT");
+    if (token) {
+      console.log(token);
+      const decoded = jwt_decode(token);
+      console.log(decoded);
+      console.log(decoded ? decoded : "");
       setUserNome(decoded.userName ? decoded.userName : "");
       setUserFoto(decoded.profilePhoto ? decoded.profilePhoto : "");
     }
@@ -46,6 +57,8 @@ export const PetHeader = (props) => {
                   className="flex items-center hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
                   <img src={Home} className="pr-3  w-14"></img>
+                  {/* () => { document.location.href = '/home' } */}
+                  {/* <Link to={HomeWeb}></Link> */}
                   Home
                 </button>
                 <button
@@ -55,6 +68,7 @@ export const PetHeader = (props) => {
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
                   <img src={Work} className="pr-3  w-14"></img>
+                  {/* <Link to='/home/searchProfessionals'></Link> */}
                   Profissionais
                 </button>
                 <button
@@ -67,12 +81,12 @@ export const PetHeader = (props) => {
                   Blog
                 </button>
                 <button
-                  onClick={() => {
-                    document.location.href = "/home/aboutUs";
-                  }}
+                  onClick={<Link to="/home/aboutUs"></Link>}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
                   <img src={Info} className="pr-3 w-14"></img>
+                  {/* () => { document.location.href = '/home/aboutUs' } */}
+                  {/* <Link to='/home'></Link> */}
                   Sobre nós
                 </button>
                 <button
@@ -133,6 +147,25 @@ export const PetHeader = (props) => {
           </div>
         </div>
       </header>
+
+      <h1 className=" md:pt-1 text-1xl sm:flex justify-start font-bold">
+        PetSaúde
+      </h1>
+
+      <div className=" md:flex flex-row gap-2">
+        <img
+          className="w-20 h-20 rounded-full md:h-10 md:w-10"
+          src={userFoto}
+        />
+        <Link
+          to="../login"
+          className=" hidden md:flex home-btn text-2xl mr-3 text-black"
+        >
+          {userNome}
+        </Link>
+      </div>
+
+      {/* </div> */}
     </>
   );
 };
