@@ -176,7 +176,7 @@ export const Prossionais = (props) => {
                             <span className='font-normal text-xl text-[#A9A9A9]'>Especialidades</span>
                             <div className='flex flex-wrap pt-2 md:grid md:grid-rows-2 grid-flow-col w-full  gap-5'>
                                 {especialidades.map((item) => {
-                                    const isChecked = especialidadesVet.findIndex(vetItem => vetItem.id === item.id) !== -1;
+                                    const isChecked = especialidadesVet.findIndex(vetItem => vetItem.specialitiesId === item.id) !== -1;
                                     return (
                                         <label id={item.id} className='flex gap-2 items-center text-2xl'>
                                             <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} onClick={handleInputChange} />

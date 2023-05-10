@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import {AuthHeader} from "../../components/headers/AuthHeader";
-import {useForm} from "react-hook-form";
-import {registerUser} from "../../services/integrations/user";
+import { AuthHeader } from "../../components/headers/AuthHeader";
+import { get, useForm } from "react-hook-form";
+import { registerUser } from "../../services/integrations/user";
 import { Link } from "react-router-dom";
 import backgroundImage from "../../assets/address-image.png"
 import { ServerError } from "../profile/pet/cards/erro500";
@@ -25,10 +25,10 @@ const customStyles = {
         display: "flex",
         justifyContent: "center"
     },
-    overlay : {
+    overlay: {
         backgroundColor: '#0000'
     }
- };
+};
 
 
 export function RegisterAddress() {
@@ -41,11 +41,11 @@ export function RegisterAddress() {
     const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
 
     function openModalServer() {
-       setIsOpenSever(true)
+        setIsOpenSever(true)
     }
 
     function closeModalServer() {
-       setIsOpenSever(false);
+        setIsOpenSever(false);
     }
 
 
@@ -99,7 +99,7 @@ export function RegisterAddress() {
             }
         }
 
-   
+
 
         if (registerType === 'professional') {
             allInfos.isVet = 'true'
@@ -109,37 +109,37 @@ export function RegisterAddress() {
         } else {
             console.log(allInfos);
             const response = await registerUser(allInfos)
-            console.log( response.response);
+            console.log(response.response);
             let error1 = response.response ? response.response : ""
             let error = response.response.error ? response.response.error : ""
             if (response.response.id) {
                 console.log(response.response.id);
                 showToastMessage()
-                setTimeout(function() {
+                setTimeout(function () {
                     openModalSucess()
-                    setTimeout(function() {
+                    setTimeout(function () {
                         closeModalSucess()
                         document.location.href = '/login'
-                    }, 5000); 
-                }, 4000); 
+                    }, 5000);
+                }, 4000);
             } else {
                 console.log(error1)
                 console.log(error);
                 console.log(error.includes('já está em uso'))
-                if(error1 == "Email já está em uso" || error1 == "CPF já está em uso"){
+                if (error1 == "Email já está em uso" || error1 == "CPF já está em uso") {
                     console.log("aqui");
                     let firstWord = error1.split(" ")[0]
                     openModalEmail(firstWord)
-                    setTimeout(function() {
+                    setTimeout(function () {
                         closeModalEmail()
-                        document.location.href = '/register' 
-                    }, 2000); 
-                }else{
+                        document.location.href = '/register'
+                    }, 2000);
+                } else {
                     openModal()
-                    setTimeout(function() {
+                    setTimeout(function () {
                         closeModal()
-                        document.location.href = '/register' 
-                    }, 2000); 
+                        document.location.href = '/register'
+                    }, 2000);
                 }
             }
             localStorage.setItem('__user_id', response.id)
@@ -157,7 +157,7 @@ export function RegisterAddress() {
             draggable: true,
             progress: undefined,
             theme: "light",
-            });
+        });
     };
 
 
@@ -180,14 +180,14 @@ export function RegisterAddress() {
     function closeModal() {
         setIsOpen(false);
     }
-   
+
 
     const setFormValues = data => {
-        if(data.uf == ''|| data.uf == null|| data.uf == undefined){
+        if (data.uf == '' || data.uf == null || data.uf == undefined) {
             openModal()
-            setTimeout(function() {
+            setTimeout(function () {
                 closeModal()
-            }, 2000); 
+            }, 2000);
         } else {
             setCity(data.localidade)
             setNeight(data.bairro)
@@ -198,7 +198,7 @@ export function RegisterAddress() {
             setValue('city', data.localidade)
             setValue('state', data.uf)
         }
-  
+
     }
 
 
@@ -213,32 +213,37 @@ export function RegisterAddress() {
                 <form onSubmit={handleSubmit(submitForm)} className='h-fit lg:w-3/4 w-full gap-2 p-0 lg:mt-12 md:mt-6' >
                     <label className='w-full flex flex-col'>
                         CEP
-                        <input 
-                        className={errors.zipCode ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="zipCode" {...register('zipCode', { required: true })} 
-                        onKeyPress={(event) => {
-                            if (event.key === 'Enter') {
-                                console.log(event.target.value);
-                              getAddressFromZipCode(event.target.value);
-                            }}}
+                        <input
+                            onBlurCapture={(e) => {
+                                console.log(e);
+                                getAddressFromZipCode(e.target.value)
+                            }}
+                            className={errors.zipCode ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="zipCode" {...register('zipCode', { required: true })}
+                            // onKeyPress={(event) => {
+                            //     if (event.key === 'Enter') {
+                            //         console.log(event.target.value);
+                            //         getAddressFromZipCode(event.target.value);
+                            //     }
+                            // }}
                         />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
                         <label className='w-full flex flex-col'>
                             Cidade
-                            <input value={city}  className={errors.city ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="city"  />
+                            <input value={city} className={errors.city ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="city" />
                         </label>
                         <label className='w-full flex flex-col'>
                             Estado
-                            <input value={uf}  className={errors.state ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="state"  />
+                            <input value={uf} className={errors.state ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="state" />
                         </label>
                     </div>
                     <label className='w-full flex flex-col'>
                         Rua
-                        <input value={street} className={errors.street ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="street"/>
+                        <input value={street} className={errors.street ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="street" />
                     </label>
                     <label className='w-full flex flex-col'>
                         Bairro
-                        <input value={neight}  className={errors.neighborhood ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="neighborhood"  />
+                        <input value={neight} className={errors.neighborhood ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="neighborhood" />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
                         <label className='w-full flex flex-col'>
@@ -258,44 +263,44 @@ export function RegisterAddress() {
                 <p className='mt-8 mb-4'>Já tem uma conta?<Link to='/login' className='pl-1 font-bold'>Faça login</Link></p>
             </div>
             <ToastContainer
-                    position="top-center"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                />
-                <Modal
-                    isOpen={modalIsOpenServer}
-                    onAfterOpen={''}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <ServerError/>
-                </Modal>
-                <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={''}
-                    onRequestClose={closeModalServer}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <WarnRequest boolBotoes={'hidden'} description="Informe um CEP valido"/>
-                </Modal>
-                <Modal
-                    isOpen={sucess}
-                    onAfterOpen={''}
-                    onRequestClose={closeModalSucess}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <PetAddSucess aparecer='hidden' title="Sucesso" what="Novo usuário criado com sucesso!"/>
-                </Modal>
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+            <Modal
+                isOpen={modalIsOpenServer}
+                onAfterOpen={''}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <ServerError />
+            </Modal>
+            <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={''}
+                onRequestClose={closeModalServer}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <WarnRequest boolBotoes={'hidden'} description="Informe um CEP valido" />
+            </Modal>
+            <Modal
+                isOpen={sucess}
+                onAfterOpen={''}
+                onRequestClose={closeModalSucess}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <PetAddSucess aparecer='hidden' title="Sucesso" what="Novo usuário criado com sucesso!" />
+            </Modal>
         </section>
         // <div className='flex flex-row w-screen h-screen'>
         //     <div className='flex justify-center content-center basis-1/2 w-1/2 bg-gradient-to-br from-[#092B5A] to-[#9ED1B7]'>
