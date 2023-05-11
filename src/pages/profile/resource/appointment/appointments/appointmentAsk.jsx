@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import './styleAppointment.css'
 import * as Dialog from '@radix-ui/react-dialog';
+import jwt_decode from "jwt-decode";
+import { getAppointments } from '../../../../../services/integrations/appointment';
+import { async } from 'q';
 
 export const AppointmentAsk = () => {
 
     const [pedidos, setPedido] = useState([])
     const [tutorStatus, setTutorStatus] = useState('hidden')
     const [buttonStatus, setButtonStatus] = useState('flex')
+    const [buttonAceitar, setButtonAceitar] = useState('flex')
+  
+    useEffect(() => {
+        const token = localStorage.getItem('__user_JWT')
+        console.log(token);
+        const decoded = jwt_decode(token);
+        console.log(decoded.isVet);
+        if (decoded.isVet == false) {
+            setButtonAceitar('hidden')
+        }
+      }, []);
 
     const handleClick = () => {
         setTutorStatus('flex');
@@ -18,7 +32,10 @@ export const AppointmentAsk = () => {
         setButtonStatus('flex');
       };
 
-    useEffect(() => {
+    useEffect(async ()  => {
+        const token = localStorage.getItem('__user_JWT')
+        console.log(token);
+        const decoded = jwt_decode(token);
         setPedido([
           {
             imagemPet: "https://i.pinimg.com/564x/d6/f8/50/d6f850459ccd0a00dd65ca3309cb3d7c.jpg",
@@ -160,19 +177,21 @@ export const AppointmentAsk = () => {
                                         </div>                 
                                     </div>
                                 </div>
-                                <div className={`${tutorStatus} flex-col justify-center items-start md:items-center content-center mb-2 ` }>
-                                    <h2>Confirmar consulta</h2>
-                                    <div className='w-1/3 flex justify-center gap-5 flex-col'>
-                                        <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
-                                            Duracação
-                                            <input type="time" id="duracao" name="duracao" min="00:01" max="03:00" className='w-full' />
-                                        </label>
-                                        <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full '>
-                                            Valor
-                                            <div className='flex flex-row'>R$<input type="number" id="duracao" name="duracao" className='w-full' /></div>
-                                        </label>
-                                    </div> 
-                                </div>
+                                <span className={`${buttonAceitar}`}>
+                                    <div className={`${tutorStatus} flex-col justify-center items-start md:items-center content-center mb-2 ` }>
+                                        <h2>Confirmar consulta</h2>
+                                        <div className='w-1/3 flex justify-center gap-5 flex-col'>
+                                            <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
+                                                Duracação
+                                                <input type="time" id="duracao" name="duracao" min="00:01" max="03:00" className='w-full' />
+                                            </label>
+                                            <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full '>
+                                                Valor
+                                                <div className='flex flex-row'>R$<input type="number" id="duracao" name="duracao" className='w-full' /></div>
+                                            </label>
+                                        </div> 
+                                    </div>
+                                </span>
                                 <div className='flex flex-row justify-around md:justify-between'>
                                     <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}>
                                         Recusar
@@ -187,9 +206,11 @@ export const AppointmentAsk = () => {
                                     >
                                         Ver mais informações
                                     </button>
-                                    <button className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-72 h-14 mt-10 border rounded-full text-xl font-normal mr-20`} >
-                                        Marcar
-                                    </button>
+                                    <span className={`${buttonAceitar}`}>
+                                        <button className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-72 h-14 mt-10 border rounded-full text-xl font-normal mr-20`} >
+                                            Marcar
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                         )})}

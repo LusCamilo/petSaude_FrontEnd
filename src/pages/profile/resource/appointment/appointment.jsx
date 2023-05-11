@@ -9,12 +9,11 @@ import { PetSpawn } from './appointmentPets';
 import Modal from 'react-modal'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import jwt_decode from "jwt-decode";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const Appointment = (props) => {
-    //console.log("Tô de boa");
-    // Modal.setAppElement('#topHeader');
     const [date, setDate] = useState('')
     const [startsAt, setStartAt] = useState('')
     const [description, setDescription] = useState('')
@@ -25,16 +24,25 @@ export const Appointment = (props) => {
     const [petImage, setPetImage] = useState(Monkey)
     const { register, handleSubmit, formState: errors, setValue } = useForm()
 
+    const showToastMessage = (message) => {
+        toast(`${message}`, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
       useEffect(() => {
         const fetchData = async () => {
         const token = localStorage.getItem('__user_JWT')
         const decoded = jwt_decode(token);
-        console.log(decoded.id);
-        console.log("Appointment");
           if (decoded.id) {
-            console.log("If");
             const pets = await getAllPets(decoded.id);
-            console.log(pets);
             if (pets == null || pets == undefined || pets == []) {
                 setPetAll([{ name: "Não foram encontrados pets" }]);
             } else setPetAll(pets)
@@ -77,7 +85,6 @@ export const Appointment = (props) => {
       if (mes < 10)  mes = '0' + mes 
       if (dia < 10)  dia = '0' + dia 
       let dataFormatada = `${ano}-${mes}-${dia}`;
-      console.log(dataFormatada);
 
       async function submitAppointment(event) {
         event.preventDefault();
@@ -91,8 +98,22 @@ export const Appointment = (props) => {
           petId: petId,
         }
         const addAppointment = await appointmentAdd(appointmentInfos);
-        console.log(addAppointment);
-        props.onCancel()
+        console.log("aqui");
+        console.log(addAppointment.response.message);
+        if(addAppointment.response.message == 'Consulta criada com sucesso'){
+            showToastMessage("Consulta criada com sucesso")
+            setTimeout(function () {
+                props.onCancel()
+            }, 2000);
+        } else {
+            showToastMessage("Erro ao criar a consulta, tente novamente")
+            setTimeout(function () {
+                props.onCancel()
+            }, 2000);
+        }
+        setTimeout(function () {
+            props.onCancel()
+        }, 2000);
       }
       
 
@@ -100,8 +121,6 @@ export const Appointment = (props) => {
         let today = new Date();
         setPetName(pet.name);
         let idade = today - pet.birthDate
-        console.log("alsdfkj");
-        console.log(idade);
         setPetEspecie(pet.petSize);
         setPetId(pet.id);
         if (pet.photo == null || pet.photo == undefined) {
@@ -118,7 +137,6 @@ export const Appointment = (props) => {
                 <div className='flex justify-between md:pt-10 w-full  '>
                 <div className='flex flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400'>
                     {petsAll.map(pet => {
-                        console.log(pet);
                         if (pet.photo == null || pet.photo == undefined || pet.photo == '') {
                             return(<button
                                 className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
@@ -192,6 +210,7 @@ export const Appointment = (props) => {
                     </div>
                 </div>
             </div>
+
         </form>
     </section>
     );   

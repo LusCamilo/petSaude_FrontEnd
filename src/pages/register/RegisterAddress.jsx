@@ -109,7 +109,7 @@ export function RegisterAddress() {
         } else {
             console.log(allInfos);
             const response = await registerUser(allInfos)
-            console.log(response.response);
+            console.log(response);
             let error1 = response.response ? response.response : ""
             let error = response.response.error ? response.response.error : ""
             if (response.response.id) {

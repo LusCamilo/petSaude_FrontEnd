@@ -127,10 +127,11 @@ export const PetHeader = (props) => {
               className="w-14 h-14 p-2 md:p-0 rounded-full"
               src={userFoto}
             />
+            </Link>
             <Link
               to="../login"
               className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
-            >
+            ><p>
               {userNome}
             </p>
           </Link>
