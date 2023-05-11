@@ -23,13 +23,13 @@ export const HeaderProfile = () => {
                         <Link href="../home" className="text-2xl hover:text-green-300 duration-500">Home</Link>
                     </li>
                     <li className="mx-4 my-6 md:my-0">
-                        <Link href="#" className="text-2xl hover:text-green-300 duration-500">Profissionais</Link>
+                        <Link href="../home/search-professionals" className="text-2xl hover:text-green-300 duration-500">Profissionais</Link>
                     </li>
                     <li className="mx-4 my-6 md:my-0">
                         <Link href="#" className="text-2xl hover:text-green-300 duration-500">Blog</Link>
                     </li>
                     <li className="mx-4 my-6 md:my-0">
-                        <Link href="#" className="text-2xl hover:text-green-300 duration-500 flex-row justify-center ">Sobre nós</Link>
+                        <Link href="../home/about-us" className="text-2xl hover:text-green-300 duration-500 flex-row justify-center ">Sobre nós</Link>
                     </li>
                 </ul>
                 <div className="menu">
@@ -38,12 +38,10 @@ export const HeaderProfile = () => {
                     <span className="bar"></span>
                 </div>
             </nav>
-            <div className="flex items-center gap-x-3 pt-6 justify-center p-5 md:pt-2" >
-                <img className='flex border justify-center rounded-full p-3' src={configIcon} />
-                <Link to="/profile/upgradeUser" className=" hidden md:flex xl:flex home-btn text-1xl  ">
-                   <p className='text-3xl'>Configurações</p> 
-                </Link>
-            </div>
+            <Link to='/profile/configuration' className="flex items-center gap-x-3 pt-6 justify-center p-5 md:pt-2" >
+              <img className='flex border justify-center rounded-full p-3' src={configIcon} />
+              <p className='hidden md:flex xl:flex home-btn text-3xl'>Configurações</p>
+            </Link>
 
 
         </header>
