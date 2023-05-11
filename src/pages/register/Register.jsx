@@ -9,7 +9,6 @@ import { ServerError } from "../profile/pet/cards/erro500";
 import Modal from 'react-modal'
 import { WarnRequest } from "../profile/pet/cards/warnTwo";
 
-
 const customStyles = {
     content: {
         top: '50%',

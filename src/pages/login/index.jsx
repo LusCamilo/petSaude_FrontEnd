@@ -47,23 +47,6 @@ export const Login = () => {
                 await Notifications.error(response.response)
             }
         }
-<<<<<<< HEAD:src/pages/login/Login.jsx
-
-        const validateForm = async (data) => {
-            const {
-                email,
-                password
-            } = data
-
-            const apiResponse = await signup(localStorage.getItem('__user_JWT'))
-
-            console.log(apiResponse);
-
-            return true
-        }
-=======
->>>>>>> 10edbe5b9810994cde525a43f20a63d717fa502d:src/pages/login/index.jsx
-        return true
     }
 
 
