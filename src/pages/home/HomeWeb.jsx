@@ -12,11 +12,19 @@ export const HomeWeb = () => {
   return (
     <>
       <LandingPage />
+<<<<<<< HEAD
       {/*<WebFunction />*/}
       {/*<ChatInfos />*/}
       {/*<PraisedDoctors />*/}
       {/*<Assessments />*/}
       {/*<BlogPreview />*/}
+=======
+      <WebFunction />
+      {/* <ChatInfos />
+      <PraisedDoctors /> */}
+      {/* <Assessments /> */}
+      {/* <BlogPreview /> */}
+>>>>>>> 2bd73f7 (responsive search)
       {/* <AppPreview /> */}
       <Footer />
     </>

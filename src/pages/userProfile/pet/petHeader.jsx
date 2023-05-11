@@ -126,7 +126,14 @@ export const PetHeader = () => {
               className="w-14 h-14 p-2 md:p-0 rounded-full"
               src={userFoto}
             />
+<<<<<<< HEAD:src/pages/userProfile/pet/petHeader.jsx
             <p
+=======
+            </Link>
+            <Link
+              to="../login"
+            ><Link
+>>>>>>> 2bd73f7 (responsive search):src/pages/profile/pet/petHeader.jsx
               className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
             >
               {userNome}
