@@ -133,7 +133,7 @@ export const PetHeader = (props) => {
               className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
             >
               {userNome}
-            </p>
+            </Link>
           </Link>
         </div>
       </header>
