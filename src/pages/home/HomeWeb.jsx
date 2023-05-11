@@ -26,7 +26,7 @@ export const HomeWeb = () => {
       {/* <BlogPreview /> */}
 >>>>>>> 2bd73f7 (responsive search)
       {/* <AppPreview /> */}
-      <Footer />
+      <Footer/>
     </>
   );
 };

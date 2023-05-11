@@ -75,8 +75,8 @@ export const CardProfessionals = (props) => {
         localStorage.setItem("__Vet_correctId", id);
 	}
     return (
-            <div className={`w-full h-96 ${effects} flex-col md:flex-row gap-5 p-4 drop-shadow-2xl bg-white mb-10`}>
-                <div className="w-1/4 h-full">
+            <div className={`w-full h-3/6 md:h-96 ${effects} flex-col md:flex-row gap-5 p-4 drop-shadow-2xl bg-white mb-10`}>
+                <div className="w-72 md:w-1/4 h-full">
                     <img src={props.image} alt="Imagem do especialista" className="overflow-hidden h-full w-full"/>
                 </div>
                 
@@ -98,11 +98,11 @@ export const CardProfessionals = (props) => {
                             <p className="font-bold">Cidade: </p>
                             <p>{addressInfo.cidade}</p>
                         </div>
-                        <div className="flex flex-row text-xl md:text-3xl gap-2 ">
+                        <div className="flex flex-row text-xl md:text-3xl gap-2 w-96">
                             <p className="font-bold">Formação: </p>
                             <p>{props.formacao} - {props.instituicao}</p>
                         </div>
-                            <div className="flex flex-row text-xl md:text-3xl gap-2  w-full">
+                            <div className="flex flex-row text-xl md:text-3xl gap-2 w-80 md:w-full">
                                 <p className="font-bold">Especialização: </p>
                                 <p className={`${showEspecialidade}`}>
                                     {veterinariosEspecialdades.map(esp =>{
@@ -117,8 +117,8 @@ export const CardProfessionals = (props) => {
                                 <p>{especializacao}</p>
                             </div>
                         </div>
-                        <div className="flex w-96 md:w-56 justify-end items-end">
-                            <button className="p-3 bg-[#9ED1B7] rounded-3xl"  onClick={() => handleClick(props.userName, props.id)}>
+                        <div className="flex w-56 justify-end items-end">
+                            <button className="w-24 h-5 md:h-10 md:w-40 p-3 bg-[#9ED1B7] rounded-3xl text-center"  onClick={() => handleClick(props.userName, props.id)}>
                                 Contate-nos
                             </button>
                         </div>

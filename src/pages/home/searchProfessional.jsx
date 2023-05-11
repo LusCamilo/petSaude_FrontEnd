@@ -193,6 +193,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         <form className="m-2 md:m-10 items-center flex flex-row">
             <RadioGroup.Root className="RadioGroupRoot" value={filtro} onChange={handleRadioChange} defaultValue="userName" aria-label="View density">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div className="flex flex-row">
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                       <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1">
@@ -203,6 +204,9 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                       </label>
 =======
               <div className="flex flex-col md:flex-row">
+=======
+              <div className="flex flex-col md:flex-row w-full">
+>>>>>>> 82eecfb (responsive search)
                 <div className="flex flex-row gap-2">
                     <div className="border-2 w-full p-5 rounded-lg items-center"  style={{ display: 'flex', alignItems: 'center' }}>
                         <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1" >
