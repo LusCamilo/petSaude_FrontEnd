@@ -56,13 +56,13 @@ export const Login = () => {
                 <AuthHeader title='Bem vindo de volta!' subtitle='Por favor, insira suas informações abaixo' firebaseFeature={true} />
                 <form className='h-fit lg:w-3/4 xl:w-2/3 w-full gap-2 p-0 lg:mt-12 mt-6'
                     onSubmit={handleSubmit(SubmitForm)}>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         E-mail
                         <input
                             className={errors.firstName ? `h-12 px-2 border-b-2 border-b-red-700 ${errorLogin} w-full` : 'h-12 px-2 w-full'}
                             type="email" name="email" {...register('email', { required: true })} />
                     </label>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         Senha
                         <div className='relative'>
                             <input
