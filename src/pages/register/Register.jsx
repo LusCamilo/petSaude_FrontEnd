@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import React from "react";
-import { ServerError } from "../profile/pet/cards/erro500";
+import { ServerError } from "../userProfile/pet/cards/erro500";
 import Modal from 'react-modal'
-import { WarnRequest } from "../profile/pet/cards/warnTwo";
+import { WarnRequest } from "../userProfile/pet/cards/warnTwo";
 
 const customStyles = {
     content: {

@@ -13,7 +13,7 @@ import jwt_decode from "jwt-decode";
 import Logout from "../../../assets/svg/Logout.svg";
 import Notifications from "../../../utils/notifications";
 
-export const PetHeader = (props) => {
+export const PetHeader = () => {
   const [userNome, setUserNome] = useState("");
   const [userFoto, setUserFoto] = useState("");
   const [linkTo, setLinkTo] = useState("../login");
@@ -22,16 +22,16 @@ export const PetHeader = (props) => {
 
   useEffect(() => {
     if (decoded) {
+      console.log(decoded)
       setUserNome(decoded.userName);
       setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
       if (decoded.userName === '')
-        setLinkTo('../profile/editprofile')
-      setLinkTo('../profile/veterinary')
+        setLinkTo('../profile/edit-profile')
+      setLinkTo('../profile')
     }
   }, [decoded, token]);
 
   return (
-    <>
       <header>
         <div className="flex font-normal items-center justify-between bg-transparent shadowxl:p-10 h-30 text-4xl md:p-5">
           <button className=" py-3 px-4 mx-2 rounded focus:outline-none group">
@@ -54,7 +54,7 @@ export const PetHeader = (props) => {
                 </button>
                 <button
                   onClick={() => {
-                    document.location.href = "/home/searchProfessionals";
+                    document.location.href = "/home/search-professionals";
                   }}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
@@ -63,7 +63,7 @@ export const PetHeader = (props) => {
                 </button>
                 {/* <button
                   onClick={() => {
-                    document.location.href = "/profile/appointmentView";
+                    document.location.href = "/userProfile/appointmentView";
                   }}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
@@ -71,7 +71,7 @@ export const PetHeader = (props) => {
                   Blog
                 </button> */}
                 <button
-                  onClick={<Link to="/home/aboutUs"></Link>}
+                  onClick={<Link to="/home/about-us"></Link>}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
                   <img src={Info} className="pr-3 w-14"></img>
@@ -79,7 +79,7 @@ export const PetHeader = (props) => {
                 </button>
                 <button
                   onClick={() => {
-                    document.location.href = "/profile/appointmentView";
+                    document.location.href = "/profile/appointment-view";
                   }}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
@@ -93,7 +93,7 @@ export const PetHeader = (props) => {
               <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                 <button
                   onClick={() => {
-                    document.location.href = "/profile/editPerson";
+                    document.location.href = "/profile/configuration";
                   }}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
@@ -102,7 +102,7 @@ export const PetHeader = (props) => {
                 </button>
                 <button
                   onClick={() => {
-                    document.location.href = "/profile/editProfile";
+                    document.location.href = "/profile/edit-profile";
                   }}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full "
                 >
@@ -126,36 +126,13 @@ export const PetHeader = (props) => {
               className="w-14 h-14 p-2 md:p-0 rounded-full"
               src={userFoto}
             />
-            </Link>
-            <Link
-              to="../login"
-            ><p
+            <p
               className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
             >
               {userNome}
-            </Link>
+            </p>
           </Link>
         </div>
       </header>
-{/* 
-      <h1 className=" md:pt-1 text-1xl sm:flex justify-start font-bold">
-        PetSaúde
-      </h1>
-
-      <div className=" md:flex flex-row gap-2">
-        <img
-          className="w-20 h-20 rounded-full md:h-10 md:w-10"
-          src={userFoto}
-        />
-        <Link
-          to="../login"
-          className=" hidden md:flex home-btn text-2xl mr-3 text-black"
-        >
-          {userNome}
-        </Link>
-      </div> */}
-
-      {/* </div> */}
-    </>
   );
 };

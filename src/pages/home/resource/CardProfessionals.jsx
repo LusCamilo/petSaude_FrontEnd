@@ -70,7 +70,7 @@ export const CardProfessionals = (props) => {
 
     function handleClick(event, id) {
         
-		document.location.href = "/profile/veterinary";
+		document.location.href = "/userProfile/veterinary";
 		localStorage.setItem("__Vet_Id", event)
         localStorage.setItem("__Vet_correctId", id);
 	}

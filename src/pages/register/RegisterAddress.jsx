@@ -4,12 +4,12 @@ import { get, useForm } from "react-hook-form";
 import { registerUser } from "../../services/integrations/user";
 import { Link } from "react-router-dom";
 import backgroundImage from "../../assets/image/address-image.png"
-import { ServerError } from "../profile/pet/cards/erro500";
+import { ServerError } from "../userProfile/pet/cards/erro500";
 import Modal from 'react-modal'
-import { WarnRequest } from "../profile/pet/cards/warnTwo";
+import { WarnRequest } from "../userProfile/pet/cards/warnTwo";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { PetAddSucess } from "../profile/pet/cards/sucess";
+import { PetAddSucess } from "../userProfile/pet/cards/sucess";
 
 const customStyles = {
     content: {

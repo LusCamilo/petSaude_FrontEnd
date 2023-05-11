@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { getUsers, getAllVets } from "../../services/integrations/filters";
-import { HeaderProfile } from "./resource/header.jsx";
-import { Cards } from "./resource/cards/cards.jsx"
-import { TopContainer } from './resource/topContainer.jsx';
-import { AcademicInfos } from './resource/academicInfo.jsx';
-import profilePhoto from "./resource/img/profilePhoto.png" 
-import userPhoto from "./resource/img/userPhoto.png";
-import { Maps } from './resource/maps.jsx';
-import { getAllPets } from "../../services/integrations/pet";
-import { getUser } from "../../services/integrations/user";
+import { getUsers, getAllVets } from "../../../services/integrations/filters";
+import { HeaderProfile } from "../resource/header.jsx";
+import { Cards } from "../resource/cards/cards.jsx"
+import { TopContainer } from '../resource/topContainer.jsx';
+import { AcademicInfos } from '../resource/academicInfo.jsx';
+import profilePhoto from "../resource/img/profilePhoto.png"
+import userPhoto from "../resource/img/userPhoto.png";
+import { Maps } from '../resource/maps.jsx';
+import { getAllPets } from "../../../services/integrations/pet";
+import { getUser } from "../../../services/integrations/user";
 import jwt_decode from "jwt-decode";
-//const biografia = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum finibus consectetur ipsum, in fermentum dui pharetra vitae. Pellentesque placerat ex felis, at ullamcorper quam sagittis nec. Quisque id sem purus. Ut augue lorem, elementum volutpat orci eget, tincidunt pharetra lorem. Fusce finibus lorem sit amet consequat imperdiet. Nullam ac consectetur enim. Cras aliquam tincidunt dui, a tristique enim pulvinar vel. Nullam rutrum felis eu urna blandit blandit. Donec tincidunt mauris ornare, hendrerit enim et, scelerisque odio.Morbi a ex dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris nulla augue, eleifend tempus venenatis varius, suscipit eu sapien. Suspendisse suscipit id orci ac tempus. Nullam odio elit, cursus ut mauris sed, sagittis auctor arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed mi tortor."
 
-
-
-    // let infosVet = getUser(localStorage.getItem('__Vet_Id'), localStorage.getItem('__user_JWT'))localStorage.setItem('__register_type', "professional")
-export const UserVet = () => {
+export const VeterinaryProfile = () => {
 
     const [isVet, SetIsVet] = useState(false)  
 

@@ -23,7 +23,7 @@ export const HeaderInfo = (props) => {
       if (decoded) {
         setUserNome(decoded.userName);
         setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
-        setLinkTo('../profile/veterinary')
+        setLinkTo('../userProfile/veterinary')
       }
     }, [decoded, token]);
 

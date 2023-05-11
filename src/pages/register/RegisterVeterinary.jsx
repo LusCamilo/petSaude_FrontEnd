@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import backgroundImage from "../../assets/svg/imgVetCadastro.svg";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import { registerVet } from "../../services/integrations/user";
-import { ServerError } from "../profile/pet/cards/erro500";
+import { ServerError } from "../userProfile/pet/cards/erro500";
 import Modal from 'react-modal'
-import { WarnRequest } from "../profile/pet/cards/warnTwo";
-import { PetAddSucess } from "../profile/pet/cards/sucess";
+import { WarnRequest } from "../userProfile/pet/cards/warnTwo";
+import { PetAddSucess } from "../userProfile/pet/cards/sucess";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
