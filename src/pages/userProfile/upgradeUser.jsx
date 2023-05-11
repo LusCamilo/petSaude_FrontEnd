@@ -13,8 +13,8 @@ import Local from '../../assets/svg/Gps.svg';
 import Logout from '../../assets/svg/Logout.svg';
 import { Config } from "./resource/editUser/headerConfig.jsx";
 import Arrow from '../../assets/svg/Arrow.svg';
-import lixeira from '../profile/resource/img/Delete.svg'
-import lapis from '../profile/resource/img/LapisColorido.svg'
+import lixeira from './/resource/img/Delete.svg'
+import lapis from './/resource/img/LapisColorido.svg'
 import { deleteClient, deleteVeterinary, getUser, getVeterinary } from '../../services/integrations/user';
 import { PetHeader } from './pet/petHeader';
 import Modal from 'react-modal';

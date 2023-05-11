@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import backgroundImage from "../../assets/svg/imgVetCadastro.svg";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import { registerVet } from "../../services/integrations/user";
-import { ServerError } from "../profile/pet/cards/erro500";
+import { ServerError } from "../userProfile/pet/cards/erro500";
 import Modal from 'react-modal'
-import { WarnRequest } from "../profile/pet/cards/warnTwo";
-import { PetAddSucess } from "../profile/pet/cards/sucess";
+import { WarnRequest } from "../userProfile/pet/cards/warnTwo";
+import { PetAddSucess } from "../userProfile/pet/cards/sucess";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -181,89 +181,89 @@ export const RegisterVeterinary = () => {
             </div>
             <div className='lg:w-1/2 md:w-full w-full min-h-screen h-fit bg-white flex flex-col md:justify-center justify-between items-center lg:gap-6 md:gap-4 sm:gap-2 z-10 p-4'>
                 <AuthHeader title='Cadastro de profissionais' subtitle='Por favor, insira as informações abaixo e aproveite a plataforma! ' firebaseFeature={false} />
-                <form className='h-fit lg:w-3/4 w-full gap-2 p-0 lg:mt-12 md:mt-6' onSubmit={handleSubmit(submitForm)}>
-                    <div className='w-full flex flex-col items-start'>
-                        <span className='font-normal text-2xl'>Especialidades</span>
+                <form className='h-fit lg:w-3/4 w-full gap-2 p-0 lg:mt-10 md:mt-6' onSubmit={handleSubmit(submitForm)}>
+                    <div className='w-full flex flex-col items-start m-1'>
+                        <span className='font-normal md:text-xl text-lg'>Especialidades</span>
                         <div className='flex flex-wrap gap-2 m-1'>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('surgeon')} />
                                 Cirurgião
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('clinic')} />
                                 Clínica
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('laboratory')} />
                                 Laboratorial
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('research')} />
                                 Pesquisa
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('anesthetist')} />
                                 Anestesista
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('anesthetist')} />
                                 Farmácia Veterinária
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('anesthetist')} />
                                 Técnico em Zoo
                             </label>
                         </div>
                     </div>
-                    <div className='w-full flex flex-col items-start'>
-                        <span className='font-normal text-2xl'>Animais que atende</span>
+                    <div className='w-full flex flex-col items-start m-1'>
+                        <span className='font-normal md:text-xl text-lg'>Animais que atende</span>
                         <div className='flex flex-wrap gap-2 m-1'>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('dog')} />
                                 Cachorro
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('cat')} />
                                 Gato
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('birds')} />
                                 Aves
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('reptiles')} />
                                 Répteis
                             </label>
-                            <label className='flex gap-1 items-center'>
+                            <label className='flex gap-1 items-center md:text-xl text-lg'>
                                 <input className='w-5 h-5 rounded' type="checkbox" {...register('exoctics')} />
                                 Exóticos
                             </label>
                         </div>
                     </div>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
-                        <label className='w-full flex flex-col text-black'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             Área de atuação
                             <input className={errors.occupationArea ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="occupationArea" {...register('occupationArea', { required: true })} />
                         </label>
-                        <label className='w-full flex flex-col text-black'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             CRMV
                             <input className={errors.crmv ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="crmv" {...register('crmv', { required: true })} />
                         </label>
                     </div>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         Formação
                         <input className={errors.formation ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="formation" {...register('formation', { required: true })} />
                     </label>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         Instituição
                         <input className={errors.institution ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="institution" {...register('institution', { required: true })} />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
-                        <label className='w-full flex flex-col text-black'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             Data de formação
                             <input className={errors.formationDate ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="date" name="formationDate" {...register('formationDate', { required: true })} />
                         </label>
-                        <label className='w-full flex flex-col text-black'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             Início de atuação
                             <input className={errors.startActingDate ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="date" name="startActingDate" {...register('startActingDate', { required: true })} />
                         </label>

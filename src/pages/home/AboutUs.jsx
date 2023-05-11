@@ -1,7 +1,7 @@
 import React from 'react'
-import groupTalking from "../../assets/image/grupo_conversando.png"
+import groupTalking from "../../assets/image/briefing-1.png"
 import catFoot from "../../assets/svg/Cat Footprint.svg"
-import planejamento from "../../assets/image/roda de conversa.png"
+import planejamento from "../../assets/image/briefing-2.png"
 import { HeaderInfo } from "./resource/HeaderInfo";
 import { Footer } from "./resource/Footer";
 
