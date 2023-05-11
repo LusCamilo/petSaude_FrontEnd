@@ -8,34 +8,10 @@ import search from "../../assets/svg/lupa.svg";
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import './radixSearch.css'
 import axios from 'axios';
-import { ServerError } from "../profile/pet/cards/erro500";
-import Modal from 'react-modal'
-import { WarnRequest } from "../profile/pet/cards/warnTwo";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const customStyles = {
-  content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      border: '4px solid transparent',
-      borderRadius: '12px 12px',
-      backgroundColor: '#FFFFFF00',
-      display: "flex",
-      justifyContent: "center"
-  },
-  overlay : {
-      backgroundColor: '#0000'
-  }
-};
-
-
 export const SearchProfessional = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit} = useForm();
   const [vets, setVets] = useState([]);
   const [inputSearch, setInputSearch] = useState(
     localStorage.getItem("__Vet_Search") || ""
@@ -216,9 +192,9 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         </div>
         <form className="w-3/12">
             <RadioGroup.Root className="RadioGroupRoot" value={filtro} onChange={handleRadioChange} defaultValue="userName" aria-label="View density">
-                <div className="flex flex-col md:flex-row">
+                <div className="flex flex-row">
                   <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1" >
+                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1">
                       <RadioGroup.Indicator className="RadioGroupIndicator" />
                       </RadioGroup.Item>
                       <label className="Label" htmlFor="r1">
@@ -257,7 +233,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         </div>
         <div>
           {vets.map((vet) => {
-            if (vet.id !== undefined) {
+            if (vet.id != undefined) {
             return (
               <CardProfessionals
                 key={vet.id}
