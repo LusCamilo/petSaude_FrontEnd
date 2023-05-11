@@ -63,20 +63,20 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
     console.log("Neste");
     localStorage.setItem("__Vet_Search", data.search)
     try {
-      if (data.search == "") {
-        {
+      if (data.search === "") {
+
           let response = await getAllVets();
           let result = response.response;
           let json = Object.values(result);
           setVets(json);
-        }
+
       } else {
         if (filtro !== "city") {
           let response = await getUsers(data.search, ondeProcurar);
           let result = response.response;
           let json
           console.log(result);
-          if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
+          if (result === "Nenhum veterinário atende aos filtros de pesquisa" ) {
             json = []
             showToastMessage()
           } else {
@@ -93,7 +93,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           let procurarCidade = data.search
           let result = response.response;
           let json = Object.values(result);
-          if (procurarCidade == "") {
+          if (procurarCidade === "") {
             setVets(response);
           } else {
             let jsonFinal = json.filter(async (item) => {
@@ -103,7 +103,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
               return pessoa.toLowerCase().includes(procurarCidade.toLowerCase());
             });
             console.log(jsonFinal);
-            if (jsonFinal == []) {
+            if (jsonFinal === []) {
               showToastMessage()
               console.log("Resultado");
             }
@@ -137,7 +137,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
   const onSearchIt = async (data) => {
     try {
       console.log("nesse");
-      if (data.search == "") {
+      if (data.search === "") {
         let response = await getAllVets();
         let result = response.response;
         let json = Object.values(result);
@@ -148,7 +148,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
           localStorage.setItem("__Vet_Search", data.search)
           let response = await getUsers(data.search, data.searchIt);
           let result = response.response;
-          if (result == "Nenhum veterinário atende aos filtros de pesquisa") {
+          if (result === "Nenhum veterinário atende aos filtros de pesquisa") {
             showToastMessage()
             json = []
             console.log("Result");
@@ -170,7 +170,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
               item.userName.toLowerCase().includes(data.search.toLowerCase())
           );
           setUmCorteRapidao(inputSearch)
-          if (json == []) {
+          if (json === []) {
             showToastMessage()
           }
           setVets(json);
@@ -216,9 +216,9 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         </div>
         <form className="w-3/12">
             <RadioGroup.Root className="RadioGroupRoot" value={filtro} onChange={handleRadioChange} defaultValue="userName" aria-label="View density">
-                <div className="flex flex-row">
+                <div className="flex flex-col md:flex-row">
                   <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1">
+                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1" >
                       <RadioGroup.Indicator className="RadioGroupIndicator" />
                       </RadioGroup.Item>
                       <label className="Label" htmlFor="r1">
@@ -257,7 +257,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
         </div>
         <div>
           {vets.map((vet) => {
-            if (vet.id != undefined) {
+            if (vet.id !== undefined) {
             return (
               <CardProfessionals
                 key={vet.id}

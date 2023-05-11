@@ -11,41 +11,34 @@ import Lock from "../../../assets/svg/Lock.svg";
 import { HomeWeb } from "../../home/HomeWeb";
 import jwt_decode from "jwt-decode";
 import Logout from "../../../assets/svg/Logout.svg";
+import Notifications from "../../../utils/notifications";
 
 export const PetHeader = (props) => {
   const [userNome, setUserNome] = useState("");
   const [userFoto, setUserFoto] = useState("");
+  const [linkTo, setLinkTo] = useState("../login");
+  const token = localStorage.getItem("__user_JWT");
+  const decoded = jwt_decode(token);
 
   useEffect(() => {
-    const token = localStorage.getItem("__user_JWT");
-    if (token) {
-      const decoded = jwt_decode(token);
-      setUserNome(decoded.userName ? decoded.userName : "");
-      setUserFoto(decoded.profilePhoto ? decoded.profilePhoto : "");
+    if (decoded) {
+      setUserNome(decoded.userName);
+      setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
+      if (decoded.userName === '')
+        setLinkTo('../profile/editprofile')
+      setLinkTo('../profile/veterinary')
     }
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("__user_JWT");
-    if (token) {
-      console.log(token);
-      const decoded = jwt_decode(token);
-      console.log(decoded);
-      console.log(decoded ? decoded : "");
-      setUserNome(decoded.userName ? decoded.userName : "");
-      setUserFoto(decoded.profilePhoto ? decoded.profilePhoto : "");
-    }
-  }, []);
+  }, [decoded, token]);
 
   return (
     <>
       <header>
-        <div className="flex font-normal items-center justify-between bg-white shadowxl:p-10 h-30 text-4xl md:p-5">
+        <div className="flex font-normal items-center justify-between bg-transparent shadowxl:p-10 h-30 text-4xl md:p-5">
           <button className=" py-3 px-4 mx-2 rounded focus:outline-none group">
             <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
             <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
             <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
-            <div className="absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300">
+            <div className="absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300 z-1">
               <h2 className="pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl">
                 Menu
               </h2>
@@ -57,8 +50,6 @@ export const PetHeader = (props) => {
                   className="flex items-center hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
                   <img src={Home} className="pr-3  w-14"></img>
-                  {/* () => { document.location.href = '/home' } */}
-                  {/* <Link to={HomeWeb}></Link> */}
                   Home
                 </button>
                 <button
@@ -68,10 +59,9 @@ export const PetHeader = (props) => {
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
                   <img src={Work} className="pr-3  w-14"></img>
-                  {/* <Link to='/home/searchProfessionals'></Link> */}
                   Profissionais
                 </button>
-                <button
+                {/* <button
                   onClick={() => {
                     document.location.href = "/profile/appointmentView";
                   }}
@@ -79,14 +69,12 @@ export const PetHeader = (props) => {
                 >
                   <img src={Blog} className="pr-3 w-14"></img>
                   Blog
-                </button>
+                </button> */}
                 <button
                   onClick={<Link to="/home/aboutUs"></Link>}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
                   <img src={Info} className="pr-3 w-14"></img>
-                  {/* () => { document.location.href = '/home/aboutUs' } */}
-                  {/* <Link to='/home'></Link> */}
                   Sobre nós
                 </button>
                 <button
@@ -130,24 +118,26 @@ export const PetHeader = (props) => {
               </ul>
             </div>
           </button>
-          <h1 className=" md:pt-1 text-1xl sm:flex justify-start font-bold">
+          <Link to='../home' className=" md:pt-1 text-1xl sm:flex justify-start font-bold my-0 mx-auto">
             PetSaúde
-          </h1>
-          <div className=" md:flex flex-row gap-2">
+          </Link>
+          <Link to={linkTo} className=" md:flex flex-row gap-2">
             <img
-              className="w-20 h-20 rounded-full md:h-10 md:w-10"
+              className="w-14 h-14 p-2 md:p-0 rounded-full"
               src={userFoto}
             />
+            </Link>
             <Link
               to="../login"
-              className=" hidden md:flex home-btn text-2xl mr-3 text-black"
+            ><p
+              className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
             >
               {userNome}
             </Link>
-          </div>
+          </Link>
         </div>
       </header>
-
+{/* 
       <h1 className=" md:pt-1 text-1xl sm:flex justify-start font-bold">
         PetSaúde
       </h1>
@@ -163,7 +153,7 @@ export const PetHeader = (props) => {
         >
           {userNome}
         </Link>
-      </div>
+      </div> */}
 
       {/* </div> */}
     </>

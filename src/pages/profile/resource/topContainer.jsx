@@ -7,6 +7,8 @@ import '../../profile/pet/css/pet.css'
 import { AppointmentModal } from './appointment/appointmentModal';
 import Modal from 'react-modal';
 import jwt_decode from "jwt-decode";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const customStyles = {
   content: {
@@ -36,7 +38,18 @@ export const TopContainer = (props) => {
     const [lerMais, setLerMais] = useState("")
     const [lerMenos, setLerMenos] = useState("hidden")
 
-
+    const showToastMessage = (message) => {
+        toast(`${message}`, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
     
     const [isVet, SetIsVet] = useState(false)    
     useEffect(() => {
@@ -68,6 +81,8 @@ export const TopContainer = (props) => {
         }
 
     }
+
+
 
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -151,9 +166,21 @@ export const TopContainer = (props) => {
                     contentLabel="Example Modal"
                 >
                     <form className='w-full'>
-                        <Appointment onCancel={handleCancelAppointment} />
+                        <Appointment onCancel={handleCancelAppointment} onToast={showToastMessage}/>
                     </form>
                 </Modal>
+                <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             </div >
         );
     } else {

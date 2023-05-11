@@ -3,7 +3,7 @@ import { AuthHeader } from "../../components/headers/AuthHeader";
 import { get, useForm } from "react-hook-form";
 import { registerUser } from "../../services/integrations/user";
 import { Link } from "react-router-dom";
-import backgroundImage from "../../assets/address-image.png"
+import backgroundImage from "../../assets/image/address-image.png"
 import { ServerError } from "../profile/pet/cards/erro500";
 import Modal from 'react-modal'
 import { WarnRequest } from "../profile/pet/cards/warnTwo";
@@ -109,7 +109,7 @@ export function RegisterAddress() {
         } else {
             console.log(allInfos);
             const response = await registerUser(allInfos)
-            console.log(response.response);
+            console.log(response);
             let error1 = response.response ? response.response : ""
             let error = response.response.error ? response.response.error : ""
             if (response.response.id) {

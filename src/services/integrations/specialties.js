@@ -23,3 +23,7 @@ export async function getSpecialtiesById(id) {
 
     return await response.json()
 }
+
+export async function updateSpecialities(specialities) {
+    
+}

@@ -19,3 +19,17 @@ export async function appointmentAdd(appointmentInfos) {
     console.log(response);
     return await response.json()
 }
+
+export async function getAppointments(idPeople, isVet) {
+
+  const url = `${BASE_URL}/appointment/all`
+  console.log(url);
+  return await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+  })
+    .then(response => response.json())
+    .catch(error => console.log('Error Procurar veterinários'));
+}
