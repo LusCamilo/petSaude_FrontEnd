@@ -5,84 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/_base_url.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/_base_url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/CardBlog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/CardBlog.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/CardProfessionals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/CardProfessionals.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/css/UpgradeUser.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/css/UpgradeUser.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/editProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/editProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/cards/cssPadraoCards.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/cssPadraoCards.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/cards/erro500.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/erro500.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/cards/sucess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/sucess.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/cards/warn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warn.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/cards/warnTwo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warnTwo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/css/pet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/css/pet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/petAdd.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petAdd.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/petConfig.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/academicInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/academicInfo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointmentMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointmentModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointmentPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentPets.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointmentView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointments/appointmentArchived.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/appointmentArchived.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointments/appointmentAsk.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/appointmentAsk.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointments/appointmentPending.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/appointmentPending.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointments/avaliacao.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/avaliacao.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/appointment/appointments/styleAppointment.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/styleAppointment.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/cards/card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/card.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/cards/cards.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/cards.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editProfile/infosProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/infosProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editProfile/topContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/topContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editProfile/userPhoto.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/userPhoto.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/address.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/address.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/allPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/allPets.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/cardPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/cardPets.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/headerConfig.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/headerConfig.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/infosPerson.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosPerson.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/infosProfissional.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/responseUser/address.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/address.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/responseUser/consults.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/consults.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/responseUser/infosPerson.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosPerson.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/responseUser/infosProfissionais.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosProfissionais.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/editUser/responseUser/security.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/security.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/headerEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/headerEdit.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/AddMais.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/AddMais.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/Certo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/Certo.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/Cuidado.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/Cuidado.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/Delete.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/Delete.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/Ellipse.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/Ellipse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/Excluir.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/Excluir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/Iconbutton.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/Iconbutton.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/LapisColorido.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/LapisColorido.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/NeedAdd.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/NeedAdd.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/Sucesso.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/Sucesso.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/arrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/arrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/carreira.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/carreira.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/configIcon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/configIcon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/formacao.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/formacao.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/formacaoDate.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/formacaoDate.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/iconVet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/iconVet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/imagePreview.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/imagePreview.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/instituicao.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/instituicao.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/mais com cor.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/mais com cor.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/more.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/more.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/profilePhoto.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/profilePhoto.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/profiletestePhoto.webp" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/profiletestePhoto.webp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/saveProfile.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/saveProfile.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/img/userPhoto.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/img/userPhoto.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/maps.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/maps.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/resource/topContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/upgradeUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/userVet.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/Register.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

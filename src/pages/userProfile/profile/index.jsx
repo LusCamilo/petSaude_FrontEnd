@@ -17,12 +17,14 @@ export const Profile = () => {
         SetIsVet(decoded.isVet)
     }, []);
 
+    console.log(userInfos)
+
     if (isVet) {
         return (
             <div>
                 <HeaderProfile />
                 <div>
-                    <TopContainer name={userInfos.personName} profilePhoto={userInfos.profileBannerPhoto} userPhoto={userInfos.profilePhoto} biografia={userInfos.biography} />
+                    <TopContainer name={userInfos.userName} profilePhoto={userInfos.profileBannerPhoto} userPhoto={userInfos.profilePhoto} biografia={userInfos.biography} />
                     <Cards />
                     <div className='flex flex-col md:flex-row justify-between gap-[10%] px-10 md:px-44 mb-16'>
                         <AcademicInfos formacao={userInfos.formation} dataFormacao={userInfos.formationDate} instituicao={userInfos.institution} carreiraInicio={userInfos.startActingDate} />
@@ -36,7 +38,7 @@ export const Profile = () => {
             <div>
                 <HeaderProfile />
                 <div>
-                    <TopContainer name={userInfos.personName} profilePhoto={userInfos.profileBannerPhoto} userPhoto={userInfos.profilePhoto} biografia={userInfos.biography} />
+                    <TopContainer name={userInfos.userName} profilePhoto={userInfos.profileBannerPhoto} userPhoto={userInfos.profilePhoto} biografia={userInfos.biography} />
                     <Cards id={userInfos.id} />
                     <div className='flex justify-center gap-[10%] px-44 mb-16'>
                         <Maps/>

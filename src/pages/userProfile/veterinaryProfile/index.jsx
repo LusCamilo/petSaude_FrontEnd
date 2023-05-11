@@ -12,18 +12,6 @@ import { getUser } from "../../../services/integrations/user";
 import jwt_decode from "jwt-decode";
 
 export const VeterinaryProfile = () => {
-
-    const [isVet, SetIsVet] = useState(false)  
-
-    useEffect(() => {
-        const token = localStorage.getItem('__user_JWT')
-        console.log(token);
-        const decoded = jwt_decode(token);
-        console.log(decoded ? decoded : '');
-        console.log(decoded.profilePhoto);
-        SetIsVet(decoded.isVet)
-      }, []);
-
     const [vets, setVets] = useState([]);
 
     const onSearch = async () => {
@@ -51,7 +39,6 @@ export const VeterinaryProfile = () => {
         }, []);
     
 
-    if (isVet) {
         return (
             <div>
                 <HeaderProfile />
@@ -64,20 +51,5 @@ export const VeterinaryProfile = () => {
                     </div>
                 </div>
             </div>
-        );                  
-    } else {
-        return (
-            <div>
-                <HeaderProfile />
-                <div>
-                    <TopContainer name={vets.personName} profilePhoto={vets.profileBannerPhoto} userPhoto={vets.profilePhoto} biografia={vets.biography} />
-                    <Cards id={vets.id} />
-                    <div className='flex justify-center gap-[10%] px-44 mb-16'>
-                        <Maps/>
-                    </div>
-                </div>
-            </div>
-            
-        );                  
-    }
+        );
 }
