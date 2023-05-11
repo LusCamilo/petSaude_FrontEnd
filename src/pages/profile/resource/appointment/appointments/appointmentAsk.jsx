@@ -3,7 +3,9 @@ import './styleAppointment.css'
 import * as Dialog from '@radix-ui/react-dialog';
 import jwt_decode from "jwt-decode";
 import { getAppointments } from '../../../../../services/integrations/appointment';
-import { async } from 'q';
+import { getUser, getVeterinary } from '../../../../../services/integrations/user'
+
+
 
 export const AppointmentAsk = () => {
 
@@ -11,16 +13,138 @@ export const AppointmentAsk = () => {
     const [tutorStatus, setTutorStatus] = useState('hidden')
     const [buttonStatus, setButtonStatus] = useState('flex')
     const [buttonAceitar, setButtonAceitar] = useState('flex')
-  
+    const [showVet, setShowVet] = useState('hidden')
+    const [showClient, setShowClient] = useState('flex')
+    const [divNothing, setDivNothing] = useState('hidden')
+
     useEffect(() => {
-        const token = localStorage.getItem('__user_JWT')
-        console.log(token);
-        const decoded = jwt_decode(token);
-        console.log(decoded.isVet);
-        if (decoded.isVet == false) {
-            setButtonAceitar('hidden')
+        const fetchData = async () => {
+            try {
+                const token = localStorage.getItem('__user_JWT')
+                console.log(token);
+                const decoded = jwt_decode(token);
+                console.log(decoded.id);
+                let appoint = await getappo(decoded.id)
+                console.log("appoint");
+                console.log(appoint);
+               
+                if (appoint != undefined && appoint != null) {
+                    let appoints = await Promise.all(appoint.map(async (app) => {
+                        let client = await getclient(app.clientId);
+                        let arrayPet = await getPet(app.petId, client.Pet)
+                        let vet = await getvet(app.veterinaryId)
+                        console.log(appoint);
+                        console.log(client);
+                        console.log(arrayPet);
+                        console.log(vet);
+                        const consultaDataSplit = app.date.split('T');
+                        const consultaDataPrimeiraMetade = consultaDataSplit[0];
+                        const consultaDataFormatada = consultaDataPrimeiraMetade.split('-').reverse().join('/');
+    
+    
+                        const horarioSplit = app.startsAt.split('T');
+                        const horarioSegundaMetade = horarioSplit[1];
+                        const horarioSplit2 = horarioSegundaMetade.split(':00.000Z');
+                        const horario = horarioSplit2[0];
+    
+                        const dataDeNascimento = new Date(arrayPet.birthDate);
+                        const dataAtual = new Date();
+    
+                        const diferencaEmMilissegundos = dataAtual - dataDeNascimento;
+                        const idadeEmAnos = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24 * 365));
+    
+                        let idadeString;
+    
+                        if (typeof idadeEmAnos === "number" && Number.isInteger(idadeEmAnos)) {
+                            idadeString = idadeEmAnos.toString() + " anos";
+                        } else {
+                            const idadeEmMeses = idadeEmAnos * 12;
+                            idadeString = idadeEmMeses.toString() + " meses";
+                        }
+    
+                        console.log(idadeEmAnos); // Saída: 23
+    
+    
+                        const finalArray = {
+                          imagemPet: arrayPet.photo,
+                          donoImg: client.profilePhoto,
+                          dono: client.personName,
+                          telefone: client.cellphoneNumber,
+                          nomePet: arrayPet.name,
+                          sexo: arrayPet.petGender,
+                          especie: arrayPet.petSpecie.name,
+                          tamanho: arrayPet.petSize,
+                          idade: idadeString,
+                          dataConsulta: consultaDataFormatada,
+                          horario: horario,
+                          descricao: app.description,
+                          vetName: vet.personName,
+                          vetPhone: vet.cellphoneNumber,
+                          vetPhoto: vet.profilePhoto
+                        };
+                      
+                        return finalArray;
+                      }));
+                      setDivNothing('hidden')
+                      setPedido(appoints)   
+                } else {
+                    setDivNothing('flex')
+                    setPedido([])
+                    
+                }
+                    
+                  
+                console.log();
+                if (decoded.isVet == false) {
+                    setButtonAceitar('hidden')
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
-      }, []);
+        fetchData();
+    }, []);
+
+      
+    const getPet = async (idPet, arrayPet) => {
+        const filteredPets = arrayPet.filter(pet => pet.id === idPet);
+        return filteredPets[0];
+      }
+
+    const getappo = async (idPerson) => {
+        let allAboutIt = await getAppointments(idPerson)
+        
+        if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
+            return []
+        } else {
+            return allAboutIt.response.user.Appointments
+        }
+
+    };
+
+    const getclient = async (idPerson) => {
+        let allAboutIt = await getUser(idPerson)
+        console.log("entrou");
+        console.log(allAboutIt);
+        if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
+            return []
+        } else {
+            return  allAboutIt.response.user
+        }
+
+    };
+
+    const getvet = async (idPerson) => {
+        let allAboutIt = await getVeterinary(idPerson)
+        console.log("vet");
+        console.log(allAboutIt);
+        if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
+            return []
+        } else {
+            return  allAboutIt.response.user
+        }
+
+    };
 
     const handleClick = () => {
         setTutorStatus('flex');
@@ -32,62 +156,45 @@ export const AppointmentAsk = () => {
         setButtonStatus('flex');
       };
 
-    useEffect(async ()  => {
+    useEffect( ()  => {
         const token = localStorage.getItem('__user_JWT')
         console.log(token);
         const decoded = jwt_decode(token);
-        setPedido([
-          {
-            imagemPet: "https://i.pinimg.com/564x/d6/f8/50/d6f850459ccd0a00dd65ca3309cb3d7c.jpg",
-            donoImg: "https://www.portaldoanimal.org/wp-content/uploads/2019/02/gatinha-pastor-alemao2-6.jpg",
-            dono: "algebra",
-            telefone: "0114002-8922",
-            nomePet: "Rex",
-            sexo: "Masculino",
-            especie: "Cachorro",
-            tamanho: "Médio",
-            idade: "4 anos",
-            dataConsulta: "2023-05-10",
-            horario: "14:00",
-            descricao: "Exame de rotina",
-          },
-          {
-            imagemPet: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVYPUnLOG9LqCBw0kA_tkN4iQqA1NQTh9Lr8hQuKh0LogsMDExaCImrwdhjcDNQoLp5UE&usqp=CAU",
-            donoImg: "https://i.pinimg.com/564x/d6/f8/50/d6f850459ccd0a00dd65ca3309cb3d7c.jpg",
-            dono: "metemática",
-            telefone: "0134002-8923",
-            nomePet: "Pixie",
-            sexo: "Feminino",
-            especie: "Gato",
-            tamanho: "Pequeno",
-            idade: "1 ano",
-            dataConsulta: "25/05/2023",
-            horario: "13:00",
-            descricao: "Exame cardiaco",
-          },
-          {
-            imagemPet: "https://www.portaldoanimal.org/wp-content/uploads/2019/02/gatinha-pastor-alemao2-6.jpg",
-            donoImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVYPUnLOG9LqCBw0kA_tkN4iQqA1NQTh9Lr8hQuKh0LogsMDExaCImrwdhjcDNQoLp5UE&usqp=CAU",
-            dono: "surpresa",
-            telefone: "Festa",
-            nomePet: "Randell",
-            sexo: "Masculino",
-            especie: "Guaxinim",
-            tamanho: "Médio",
-            idade: "3 anos",
-            dataConsulta: "24/08/2023",
-            horario: "21:00",
-            descricao: "Exame imunológico",
-          },
-        ]);
+
+        if (decoded.isVet) {
+            setShowVet('hidden')
+            setShowClient('flex')
+        } else {
+            setShowVet('flex')
+            setShowClient('hidden')
+        }
+        // setPedido([
+        //     {
+        //       imagemPet: "https://i.pinimg.com/564x/d6/f8/50/d6f850459ccd0a00dd65ca3309cb3d7c.jpg",
+        //       donoImg: "https://www.portaldoanimal.org/wp-content/uploads/2019/02/gatinha-pastor-alemao2-6.jpg",
+        //       dono: "algebra",
+        //       telefone: "0114002-8922",
+        //       nomePet: "Rex",
+        //       sexo: "Masculino",
+        //       especie: "Cachorro",
+        //       tamanho: "Médio",
+        //       idade: "4 anos",
+        //       dataConsulta: "2023-05-10",
+        //       horario: "14:00",
+        //       descricao: "Exame de rotina",
+        //     }
+        //   ]);
       }, []);
 
     return(
-        <section>
+        <section className=''>
                <div className=' w-full flex flex-col gap-3 mr-2'>
+                    <div className={`${divNothing}`}>
+                        Nenhuma consulta a ser aceita
+                    </div>
                     {pedidos.map(pedido =>{
                         return(
-                            <div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 md:pl-20 py-8 sm:pl-20'>
+                            <div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
                                 <div className='flex flex-row items-center md:content-center md:text-center text-6xl gap-4'>
                                     <img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
                                     <h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
@@ -131,24 +238,49 @@ export const AppointmentAsk = () => {
                                         </div>                   
                                     </div>
                                 </div>
-                                <div className={`${tutorStatus} flex-row items-center content-center text-center text-6xl gap-4`}>
-                                    <img className='PetImage' src={pedido.donoImg} alt="Imagem do pet" />
-                                    <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.dono}</h2>
-                                </div>
-                                <div className='flex flex-col sm:flex-row justify-between pr-20'>
-                                    <div className={`${tutorStatus} flex-row justify-start w-full`}>
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]' >
-                                                Nome
-                                                <input type="text" disabled placeholder={pedido.dono} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-                                            </label>
+                                <div  className={`${showClient} flex-col`}>
+                                    <div className={`${tutorStatus} flex-row items-center content-center text-center text-6xl gap-4`}>
+                                        <img className='PetImage' src={pedido.donoImg} alt="Imagem do pet" />
+                                        <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.dono}</h2>
+                                    </div>
+                                    <div className='flex flex-col sm:flex-row justify-between pr-20'>
+                                        <div className={`${tutorStatus} flex-row justify-start w-full`}>
+                                            <div>
+                                                <label className='flex flex-col text-xl text-[#A9A9A9]' >
+                                                    Nome
+                                                    <input type="text" disabled placeholder={pedido.dono} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
+                                                </label>
+                                            </div>
+                                            
+                                            <div>
+                                                <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                                    Telefone
+                                                    <input type="text" disabled placeholder={pedido.telefone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
+                                                </label>
+                                            </div>
                                         </div>
-                                        
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                                Telefone
-                                                <input type="text" disabled placeholder={pedido.telefone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-                                            </label>
+                                    </div>
+                                </div>
+                                <div className={`${showVet} flex-col`}>
+                                    <div className={`${tutorStatus} flex-row items-center content-center text-center text-6xl gap-4`}>
+                                        <img className='PetImage' src={pedido.vetPhoto} alt="Imagem do pet" />
+                                        <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.vetName}</h2>
+                                    </div>
+                                    <div className='flex flex-col sm:flex-row justify-between pr-20'>
+                                        <div className={`${tutorStatus} flex-row justify-start w-full`}>
+                                            <div>
+                                                <label className='flex flex-col text-xl text-[#A9A9A9]' >
+                                                    Nome
+                                                    <input type="text" disabled placeholder={pedido.vetName} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
+                                                </label>
+                                            </div>
+                                            
+                                            <div>
+                                                <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                                    Telefone
+                                                    <input type="text" disabled placeholder={pedido.vetPhone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -170,11 +302,14 @@ export const AppointmentAsk = () => {
                                     </div>
                                     <div className='flex flex-row sm:flex-col justify-start content-center w-full '>
                                         <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                            <label class='flex flex-col text-xl text-[#A9A9A9]'>
                                                 Descrição
-                                                <input type="text" disabled placeholder={pedido.descricao} className='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl '/>
+                                                <p>
+                                                    {pedido.descricao} 
+                                                </p>
+                                                {/* <input type="text" disabled placeholder={pedido.descricao} class='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl'/> */}
                                             </label>
-                                        </div>                 
+                                        </div>      
                                     </div>
                                 </div>
                                 <span className={`${buttonAceitar}`}>

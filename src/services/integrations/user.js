@@ -35,7 +35,7 @@ export async function registerVet(vetInfos) {
         console.log(err.message);
     }
 }
-
+ 
 export async function createVeterinaryInfosIntoExistingUser(userID, vetInfos) {
     const url = `${BASE_URL}veterinarian/user?userId=${userID}`
     const response = await fetch(url, {

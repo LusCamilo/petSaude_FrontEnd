@@ -24,9 +24,9 @@ export const PetHeader = (props) => {
     if (decoded) {
       setUserNome(decoded.userName);
       setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
-      if (decoded.userName === '')
+      if (decoded.userName == '')
         setLinkTo('../profile/editprofile')
-      setLinkTo('../profile/veterinary')
+      setLinkTo('../profile/editprofile')
     }
   }, [decoded, token]);
 
@@ -34,7 +34,7 @@ export const PetHeader = (props) => {
     <>
       <header>
         <div className="flex font-normal items-center justify-between bg-transparent shadowxl:p-10 h-30 text-4xl md:p-5">
-          <button className=" py-3 px-4 mx-2 rounded focus:outline-none group">
+          <button type="button" className=" py-3 px-4 mx-2 rounded focus:outline-none group">
             <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
             <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
             <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
@@ -109,12 +109,12 @@ export const PetHeader = (props) => {
                   <img src={Lock} className="pr-3 w-14"></img>
                   Segurança
                 </button>
-                <div className="border-2 border-[#B3261E] rounded-full py-5 px-5 flex flex-row  mt-10 text-[#B3261E] font-semibold">
+                <button className="border-2 border-[#B3261E] rounded-full py-5 px-5 flex flex-row  mt-10 text-[#B3261E] font-semibold">
                   <div className="flex flex-row  gap-5">
                     <img src={Logout} alt="" />
                     Sair
                   </div>
-                </div>
+                </button>
               </ul>
             </div>
           </button>
@@ -133,7 +133,7 @@ export const PetHeader = (props) => {
               className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
             >
               {userNome}
-            </Link>
+              </p>
           </Link>
         </div>
       </header>

@@ -99,13 +99,15 @@ export const Appointment = (props) => {
         }
         const addAppointment = await appointmentAdd(appointmentInfos);
         console.log("aqui");
-        console.log(addAppointment.response.message);
-        if(addAppointment.response.message == 'Consulta criada com sucesso'){
+        console.log( addAppointment.statusText);
+        if(addAppointment.statusText == 'Created'){
             showToastMessage("Consulta criada com sucesso")
             setTimeout(function () {
                 props.onCancel()
             }, 2000);
-        } else {
+        } else if(addAppointment.response == "A data não pode ser anterior a atual"){
+            
+        }else {
             showToastMessage("Erro ao criar a consulta, tente novamente")
             setTimeout(function () {
                 props.onCancel()

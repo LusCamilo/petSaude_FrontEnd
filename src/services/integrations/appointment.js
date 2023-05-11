@@ -1,4 +1,5 @@
 import {BASE_URL} from "../../lib/_base_url";
+import {HELP_URL} from "../../lib/_base_url";
 
 const token = localStorage.getItem('__user_JWT')
 
@@ -16,13 +17,13 @@ export async function appointmentAdd(appointmentInfos) {
         },
         body: JSON.stringify(appointmentInfos)
     })
-    console.log(response);
-    return await response.json()
+    console.log(await response.json());
+    return await response
 }
 
-export async function getAppointments(idPeople, isVet) {
+export async function getAppointments(idPeople) {
 
-  const url = `${BASE_URL}/appointment/all`
+  const url = `${HELP_URL}getAppointments?userID=${idPeople}`
   console.log(url);
   return await fetch(url, {
     method: 'GET',
@@ -33,3 +34,5 @@ export async function getAppointments(idPeople, isVet) {
     .then(response => response.json())
     .catch(error => console.log('Error Procurar veterinários'));
 }
+
+
