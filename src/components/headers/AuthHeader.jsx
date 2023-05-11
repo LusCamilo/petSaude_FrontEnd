@@ -7,13 +7,12 @@ function handleGoogleButtonClick(e) {
 
 export function AuthHeader(props) {
     return (
-        <div className='flex flex-col items-center lg:w-3/4 xl:w-2/3 w-full h-fit lg:gap-8 gap-4'>
-            <span className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col items-center lg:w-3/4 xl:w-2/3 w-full h-fit lg:gap-8 gap-5'>
+            <span className='flex flex-col w-96 xl:w-5/6 justify-center items-center gap-1'>
                 <h1 className='xl:text-4xl text-3xl font-bold text-center'>{props.title}</h1>
-                <h3 className='xl:text-2xl text-xl lg:mt-0 mt-[-6px] font-normal text-[#A9A9A9] text-center'>{props.subtitle}</h3>
+                <h3 className='xl:text-2xl lg:text-xl text-lg lg:mt-0 mt-[-6px] font-normal text-[#A9A9A9] text-center'>{props.subtitle}</h3>
             </span>
-            {props.firebaseFeature ? firebaseFeature() : <></>
-            }
+            {props.firebaseFeature ? firebaseFeature() : <></>}
         </div>
     )
 }
