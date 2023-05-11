@@ -126,36 +126,14 @@ export const PetHeader = (props) => {
               className="w-14 h-14 p-2 md:p-0 rounded-full"
               src={userFoto}
             />
-            </Link>
-            <Link
-              to="../login"
-            ><p
-              className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
-            >
+          </Link>
+          <Link to="../login">
+          <p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
               {userNome}
-            </Link>
+          </p>
           </Link>
         </div>
       </header>
-{/* 
-      <h1 className=" md:pt-1 text-1xl sm:flex justify-start font-bold">
-        PetSaúde
-      </h1>
-
-      <div className=" md:flex flex-row gap-2">
-        <img
-          className="w-20 h-20 rounded-full md:h-10 md:w-10"
-          src={userFoto}
-        />
-        <Link
-          to="../login"
-          className=" hidden md:flex home-btn text-2xl mr-3 text-black"
-        >
-          {userNome}
-        </Link>
-      </div> */}
-
-      {/* </div> */}
     </>
   );
 };

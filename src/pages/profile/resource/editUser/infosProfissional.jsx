@@ -3,7 +3,8 @@ import lapis from "../../../../assets/svg/pencil.svg"
 import { set, useForm } from 'react-hook-form';
 import { updateProfessionalInfos } from '../../../../services/integrations/user';
 import { getSpecialties, getSpecialtiesById } from '../../../../services/integrations/specialties';
-import { getSpecialtiesPet, getSpecialtiesPetById, updateSpecialities } from '../../../../services/integrations/specialtiesPet';
+import { deleteSpecialtiesPet, getSpecialtiesPet, getSpecialtiesPetById, updateSpecialitiesPet } from '../../../../services/integrations/specialtiesPet';
+import { logDOM } from '@testing-library/react';
 
 
 const checkboxSpecialities = async () => {
@@ -53,8 +54,6 @@ export const Prossionais = (props) => {
     const [checkedBoxes, setCheckedBoxes] = useState([]);
     const [checkedBoxesPet, setCheckedBoxesPet] = useState([]);
 
-
-
     useEffect(() => {
 
         setAreaAtuacao(props.area)
@@ -74,6 +73,8 @@ export const Prossionais = (props) => {
 
             setEspecialidadesPetVet(dadosPet.VetSpecialitiesPet)
             setEspecialidadesPet(dadosPet.allSpecialitiesPet)
+
+
         }
 
         fetchDataAll()
@@ -97,37 +98,39 @@ export const Prossionais = (props) => {
             }
         }
     };
-    const handleCheckBoxPetChange = (event) => {
+
+    const handleCheckBoxPetChange = async (event) => {
         const { id } = event.target;
         const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
+        const storage = localStorage.getItem('__user_id');
+
+        let json = {
+            AnimalTypesVetInfos: [
+                {
+                    veterinaryId: parseInt(storage),
+                    animalTypesId: parseInt(id),
+                },
+            ],
+        };
+
+        const body = JSON.stringify(json);
 
         if (event.target.checked) {
             if (index === -1) {
-
-                const storage = localStorage.getItem('__user_id')
-
-                let json = {
-                    AnimalTypesVetInfos: [
-                        {
-                            veterinaryId: id,
-                            animalTypesId: storage
-                        }   
-                    ]
-                }
-                
-                const teste = updateSpecialities(json)
-                console.log(json);
-
+                await updateSpecialitiesPet(body);
                 setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
             }
         } else {
+            await deleteSpecialtiesPet(body);
             if (index !== -1) {
-                setCheckedBoxes(
-                    checkedBoxes.filter((item) => item.id !== parseInt(id))
+                setCheckedBoxes((prevState) =>
+                    prevState.filter((item) => item.id !== parseInt(id))
                 );
             }
         }
     };
+
+
     const handleAreaAtuacaoChange = (e) => {
         setAreaAtuacao(
             e.target.value
@@ -220,12 +223,12 @@ export const Prossionais = (props) => {
 
                         <div className='w-full flex flex-col items-start'>
                             <span className='font-normal text-xl text-[#A9A9A9]'>Animais que atende</span>
-                            <div className='flex flex-wrap gap-5'>
+                            <div className='flex flex-wrap gap-5' onClick={handleCheckBoxPetChange}>
                                 {especialidadesPet.map((item) => {
                                     const isChecked = especialidadesPetVet.findIndex(vetItem => vetItem.petSpecieId === item.id) !== -1;
                                     return (
-                                        <label id={item.specialtiesPet} className='flex gap-2 items-center text-2xl'>
-                                            <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} onClick={handleCheckBoxPetChange} />
+                                        <label className='flex gap-2 items-center text-2xl'>
+                                            <input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} />
                                             {item.name}
                                         </label>
                                     )

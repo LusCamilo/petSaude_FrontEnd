@@ -25,6 +25,9 @@ export const Pessoais = (props) => {
     }
     function handleRgChange(event) {
         setRg(event.target.value);
+        console.log(
+            event.target.value
+        );
     }
     function handleCelularChange(event) {
         setCelular(event.target.value);
@@ -72,11 +75,11 @@ export const Pessoais = (props) => {
 
         let response
 
-        if (text == null) {
+        if (text == null || text == null) {
             infos = {
                 personName: `${name} ${lastName}`,
                 cpf: cpf,
-                rg: rg,
+                rg: "",
                 cellphoneNumber: celular,
                 phoneNumber: telefone,
                 bio: ""
@@ -84,12 +87,18 @@ export const Pessoais = (props) => {
         }
 
         if ((localStorage.getItem('__user_isVet')) == 'true')
-            response = await updatePersonalInfosVeterinary(infos)
+            console.log(
+
+                response = await updatePersonalInfosVeterinary(infos)
+            );
         else
-            response = await updatePersonalInfosClient(infos)
+            console.log(
+                response = await updatePersonalInfosClient(infos)
+
+            );
 
         if (response.response != 'Item atualizado com sucesso no Banco de Dados')
-            window.alert('existem campos que devem ser preenchidos')
+            window.alert('ops, algo deu errado ao atualizar os dados')
         else window.alert('Item atualizado com sucesso no Banco de Dados')
 
 
@@ -154,7 +163,7 @@ export const Pessoais = (props) => {
 
                                     setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
                                     handleSubmit().then(
-                                        window.location.reload()
+                                        // window.location.reload()
                                     )
                                 }
                             }
