@@ -1,15 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/home/Home";
-import { HeaderWeb } from "./pages/home/resource/HeaderWeb";
-import { LandingPage } from "./pages/home/LandingPage";
 import { HomeWeb } from "./pages/home/HomeWeb";
-import { WebFunction } from "./pages/home/WebFunction";
-import { ChatInfos } from "./pages/home/chatInfos";
-import { BlogPreview } from "./pages/home/BlogPreview";
-import { PraisedDoctors } from "./pages/home/PraisedDoctors";
-import { Assessments } from "./pages/home/Assessments";
-import { AppPreview } from "./pages/home/AppPreview";
-import { Login } from "./pages/login/Login";
+import { Login } from "./pages/login";
 import { Register } from "./pages/register/Register";
 import { RegisterAddress } from "./pages/register/RegisterAddress";
 import { RegisterVeterinary } from "./pages/register/RegisterVeterinary";

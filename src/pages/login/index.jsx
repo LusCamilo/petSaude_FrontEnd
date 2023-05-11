@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHref } from "react-router-dom";
-import backgroundImage from '../../assets/login-register-background.png'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import backgroundImage from '../../assets/image/login-register-background.png'
 import { useForm } from "react-hook-form";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { login, signup } from "../../services/integrations/authentication";
-import { ServerError } from "../profile/pet/cards/erro500";
-import Modal from 'react-modal'
-import { WarnRequest } from "../profile/pet/cards/warnTwo";
 import Notifications from "../../utils/notifications";
 
 const userId = async () => {
@@ -50,26 +47,6 @@ export const Login = () => {
                 await Notifications.error(response.response)
             }
         }
-
-        const validateForm = async (data) => {
-            const {
-                email,
-                password
-            } = data
-
-            const apiResponse = await signup(localStorage.getItem('__user_JWT'))
-
-            console.log(apiResponse);
-
-            return true
-        }
-
-
-
-        // console.log(apiRepsonse.body)
-        // if (apiRepsonse)
-        //     console.log(apiRepsonse)
-        // TODO: VALIDAR FORMULÁRIO
         return true
     }
 

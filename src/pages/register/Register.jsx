@@ -1,5 +1,4 @@
-import backgroundImage from '../../assets/login-register-background.png'
-// import {type} from "@testing-library/user-event/dist/type";
+import backgroundImage from '../../assets/image/login-register-background.png'
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import { useForm } from 'react-hook-form';
 import { Link } from "react-router-dom";
