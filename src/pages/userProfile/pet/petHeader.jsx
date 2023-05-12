@@ -38,15 +38,12 @@ export const PetHeader = () => {
           <div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
           <div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
           <div className="w-8 h-1.5 bg-[#000] md:w-10 md:h-1.5"></div>
-          <div className="absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300 z-1">
+          <div className="absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300 z-10">
             <h2 className="pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl">
               Menu
             </h2>
             <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
-              <button
-                onClick={() => {
-                  document.location.href = "/home";
-                }}
+              <button onClick={() => { document.location.href = "/home"; }}
                 className="flex items-center hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
               >
                 <img src={Home} className="pr-3  w-14"></img>
@@ -109,10 +106,9 @@ export const PetHeader = () => {
                 <img src={Lock} className="pr-3 w-14"></img>
                 Segurança
               </button>
-              <div className="border-2 border-[#B3261E] rounded-full py-5 px-5 flex flex-row  mt-10 text-[#B3261E] font-semibold">
-                <div className="flex flex-row  gap-5">
-                  <img src={Logout} alt="" />
-                  Sair
+              <div className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6  flex flex-row h-30 text-[#B3261E] font-semibold">
+                <div className="flex flex-row gap-3 items-center">
+                  <img src={Logout} alt="" /> Sair
                 </div>
               </div>
             </ul>
