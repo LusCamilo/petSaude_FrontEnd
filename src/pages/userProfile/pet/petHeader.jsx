@@ -127,7 +127,11 @@ export const PetHeader = () => {
             src={userFoto}
           />
         </Link>
+<<<<<<< HEAD
         {/* <Link to="../login">
+=======
+        <Link to="../../login">
+>>>>>>> 6550f53 (adjusts routes)
           <p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
             {userNome}
           </p>
