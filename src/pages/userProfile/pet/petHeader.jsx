@@ -33,11 +33,11 @@ export const PetHeader = () => {
 
   return (
     <header>
-      <div className="flex font-normal items-center justify-between bg-transparent shadowxl:p-10 h-30 text-4xl md:p-5">
-        <button className=" py-3 px-4 mx-2 rounded focus:outline-none group">
-          <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
-          <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
-          <div className="w-4 h-1 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
+      <div className="flex font-normal items-center justify-between bg-transparent shadowxl:p-10 p-4 h-30 text-4xl md:p-5">
+        <button className=" mx-2 rounded focus:outline-none group">
+          <div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
+          <div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
+          <div className="w-8 h-1.5 bg-[#000] md:w-10 md:h-1.5"></div>
           <div className="absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300 z-1">
             <h2 className="pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl">
               Menu
@@ -123,15 +123,15 @@ export const PetHeader = () => {
         </Link>
         <Link to={linkTo} className=" md:flex flex-row gap-2">
           <img
-            className="w-14 h-14 p-2 md:p-0 rounded-full"
+            className="w-14 h-14 p-1 md:p-0 rounded-full"
             src={userFoto}
           />
         </Link>
-        <Link to="../login">
+        {/* <Link to="../login">
           <p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
             {userNome}
           </p>
-        </Link>
+        </Link> */}
       </div>
     </header>
   //   </>
