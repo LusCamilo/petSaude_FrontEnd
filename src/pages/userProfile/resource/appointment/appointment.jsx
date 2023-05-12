@@ -47,7 +47,7 @@ export const Appointment = (props) => {
                 setPetAll([{ name: "Não foram encontrados pets" }]);
             } else setPetAll(pets)
           } else {
-            setPetAll([{ name: "Não foram encontrados pets" }]);
+            setPetAll([ "Não foram encontrados pets" ]);
           }
         };
         fetchData();

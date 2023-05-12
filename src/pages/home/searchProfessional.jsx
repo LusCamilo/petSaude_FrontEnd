@@ -10,41 +10,44 @@ import './radixSearch.css'
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-export const SearchProfessional = () => {
-  const { register, handleSubmit} = useForm();
-  const [vets, setVets] = useState([]);
-  const [inputSearch, setInputSearch] = useState(
-    localStorage.getItem("__Vet_Search") || ""
-  );
 
-  const [ondeProcurar, setOndeProcurar] = useState(localStorage.getItem("__Vet_WhenSearch") || " ");
-  const [selectedOption, setSelectedOption] = useState("userName");
-  const [filtro, setFiltro] = useState("userName");
 
-  const setMudarFiltro = (value) => {
-    setOndeProcurar(value)
-    onSearchIt({ search:  inputSearch, searchIt: value})
-  };
 
-  function citySearch() {
-    setFiltro("city");
-    setOndeProcurar("value")
-    onSearchIt({ search:  inputSearch})
-  }
+    export const SearchProfessional = () => {
+      const { register, handleSubmit} = useForm();
+      const [vets, setVets] = useState([]);
+      const [inputSearch, setInputSearch] = useState(
+        localStorage.getItem("__Vet_Search") || ""
+      );
 
-const [umCorteRapidao, setUmCorteRapidao] = useState('')
+      const [ondeProcurar, setOndeProcurar] = useState(localStorage.getItem("__Vet_WhenSearch") || " ");
+      const [selectedOption, setSelectedOption] = useState("userName");
+      const [filtro, setFiltro] = useState("userName");
 
-//const [filtro, setFiltro] = useState("userName");
-  const onSearch = async (data) => {
-    console.log("Neste");
-    localStorage.setItem("__Vet_Search", data.search)
-    try {
-      if (data.search === "") {
+      const setMudarFiltro = (value) => {
+        setOndeProcurar(value)
+        onSearchIt({ search:  inputSearch, searchIt: value})
+      };
 
-          let response = await getAllVets();
-          let result = response.response;
-          let json = Object.values(result);
-          setVets(json);
+      function citySearch() {
+        setFiltro("city");
+        setOndeProcurar("value")
+        onSearchIt({ search:  inputSearch})
+      }
+
+    const [umCorteRapidao, setUmCorteRapidao] = useState('')
+
+    //const [filtro, setFiltro] = useState("userName");
+      const onSearch = async (data) => {
+        console.log("Neste");
+        localStorage.setItem("__Vet_Search", data.search)
+        try {
+          if (data.search === "") {
+
+              let response = await getAllVets();
+              let result = response.response;
+              let json = Object.values(result);
+              setVets(json);
 
       } else {
         if (filtro !== "city") {
@@ -210,6 +213,7 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
                           Procurar por cidade
                         </label>
                     </div>
+
                   </div>
                   <div className="flex flex-row gap-2">
                   <div className="border-2 w-full p-5 rounded-lg" style={{ display: 'flex', alignItems: 'center' }}>

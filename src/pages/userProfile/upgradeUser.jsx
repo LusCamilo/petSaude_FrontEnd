@@ -218,7 +218,7 @@ export const UpgradeUser = () => {
                             <div className='flex flex-row  gap-5'>
                                 <img src={Person} alt="" />
                                 Informações pessoais
-                                <Link to="/profile/editPerson">
+                                <Link to="/profile/edit-profile">
                                     <img className='pl-16' src={Arrow} alt="" />
                                 </Link>
 

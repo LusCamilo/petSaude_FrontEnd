@@ -3,9 +3,10 @@ import './styleAppointment.css'
 import * as Dialog from '@radix-ui/react-dialog';
 import jwt_decode from "jwt-decode";
 import { getAppointments } from '../../../../../services/integrations/appointment';
-import { getUser, getVeterinary } from '../../../../../services/integrations/user'
-
-
+import { getUser, getVeterinary} from '../../../../../services/integrations/user'
+import {  recusarAppointments, aceitadoAppointments } from '../../../../../services/integrations/appointment'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AppointmentAsk = () => {
 
@@ -15,7 +16,9 @@ export const AppointmentAsk = () => {
     const [buttonAceitar, setButtonAceitar] = useState('flex')
     const [showVet, setShowVet] = useState('hidden')
     const [showClient, setShowClient] = useState('flex')
-    const [divNothing, setDivNothing] = useState('hidden')
+    const [divNothing, setDivNothing] = useState('hidden') 
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +32,10 @@ export const AppointmentAsk = () => {
                 console.log(appoint);
                
                 if (appoint != undefined && appoint != null) {
-                    let appoints = await Promise.all(appoint.map(async (app) => {
+                    
+                    let filteredAppointments = appoint.filter(appointment => appointment.status == 'WAITING_CONFIRMATION');
+                    
+                    let appoints = await Promise.all(filteredAppointments.map(async (app) => {
                         let client = await getclient(app.clientId);
                         let arrayPet = await getPet(app.petId, client.Pet)
                         let vet = await getvet(app.veterinaryId)
@@ -66,6 +72,7 @@ export const AppointmentAsk = () => {
     
     
                         const finalArray = {
+                          idAppoint: app.id,
                           imagemPet: arrayPet.photo,
                           donoImg: client.profilePhoto,
                           dono: client.personName,
@@ -82,6 +89,8 @@ export const AppointmentAsk = () => {
                           vetPhone: vet.cellphoneNumber,
                           vetPhoto: vet.profilePhoto
                         };
+
+                        console.log(finalArray);
                       
                         return finalArray;
                       }));
@@ -105,11 +114,80 @@ export const AppointmentAsk = () => {
         fetchData();
     }, []);
 
+
+    
       
     const getPet = async (idPet, arrayPet) => {
         const filteredPets = arrayPet.filter(pet => pet.id === idPet);
         return filteredPets[0];
       }
+
+      const showToastMessageSucess = (message) => {
+        toast.success(`${message}`, {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
+
+    const showToastMessageFailed = (message) => {
+        toast.error('Erro no sistema, tente mais tarde', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
+      const recusarAppointment = async (idAppointment) => {
+        const recusar = await recusarAppointments(idAppointment);
+        if (recusar.response.message == "Consulta recusada") {
+            showToastMessageSucess("Consulta recusada com sucesso!")
+            setTimeout(() => {
+                window.location.reload();
+              }, 2000); // Refresh after 5 seconds
+              
+          }
+          else {
+            showToastMessageFailed()
+            setTimeout(() => {
+                window.location.reload();
+              }, 2000); // Refresh after 5 seconds
+              
+        }
+        return recusar
+      }
+
+      const marcarAppointment = async (idAppointment) => {
+        const aceitar = await aceitadoAppointments(idAppointment);
+        if (aceitar.response.message == "Consulta recusada") {
+            showToastMessageSucess("Consulta aceita com sucesso!")
+
+            setTimeout(() => {
+                window.location.reload();
+              }, 2000); // Refresh after 5 seconds
+              
+          }
+          else {
+            showToastMessageFailed()
+            setTimeout(() => {
+                window.location.reload();
+              }, 2000); // Refresh after 5 seconds
+              
+        }
+        return aceitar
+      }
+
 
     const getappo = async (idPerson) => {
         let allAboutIt = await getAppointments(idPerson)
@@ -328,7 +406,9 @@ export const AppointmentAsk = () => {
                                     </div>
                                 </span>
                                 <div className='flex flex-row justify-around md:justify-between'>
-                                    <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}>
+                                    <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
+                                    onClick={() => recusarAppointment(pedido.idAppoint)}
+                                    >
                                         Recusar
                                     </button>
                                     <button className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal mr-20`}
@@ -342,11 +422,24 @@ export const AppointmentAsk = () => {
                                         Ver mais informações
                                     </button>
                                     <span className={`${buttonAceitar}`}>
-                                        <button className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-72 h-14 mt-10 border rounded-full text-xl font-normal mr-20`} >
+                                        <button className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-72 h-14 mt-10 border rounded-full text-xl font-normal mr-20`} 
+                                        onClick={() => marcarAppointment(pedido.idAppoint)}>
                                             Marcar
                                         </button>
                                     </span>
                                 </div>
+                                <ToastContainer
+                                    position="top-right"
+                                    autoClose={1500}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                    theme="light"
+                                />
                             </div>
                         )})}
                 </div>    

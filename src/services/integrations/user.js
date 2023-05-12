@@ -13,6 +13,7 @@ export async function registerUser(userInfos) {
             },
             body: JSON.stringify(userInfos)
         })
+        console.log(userInfos);
         return await response.json()
     } catch (err) {
         console.log(err.message);
