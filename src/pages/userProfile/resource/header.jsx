@@ -25,9 +25,9 @@ export const HeaderProfile = () => {
                     <li className="mx-4 my-6 md:my-0">
                         <Link href="../home/search-professionals" className="text-2xl hover:text-green-300 duration-500">Profissionais</Link>
                     </li>
-                    <li className="mx-4 my-6 md:my-0">
+                    {/* <li className="mx-4 my-6 md:my-0">
                         <Link href="#" className="text-2xl hover:text-green-300 duration-500">Blog</Link>
-                    </li>
+                    </li> */}
                     <li className="mx-4 my-6 md:my-0">
                         <Link href="../home/about-us" className="text-2xl hover:text-green-300 duration-500 flex-row justify-center ">Sobre nós</Link>
                     </li>
