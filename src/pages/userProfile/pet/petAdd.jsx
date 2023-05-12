@@ -52,7 +52,7 @@ const customStyles = {
 
 
 
-export const PetAdd = (props) => {
+export const PetAdd = () => {
 
     const [name, setName] = useState("Nome")
     function newName(event) {
@@ -114,7 +114,7 @@ export const PetAdd = (props) => {
         petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
 
         setTimeout(function() {
-            document.location.href = "/userProfile/upgradeUser";
+            document.location.href = "/profile/configuration";
         }, 2000); 
     }
 

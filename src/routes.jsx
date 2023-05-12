@@ -31,12 +31,10 @@ export const Rotas = () => {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/home" element={<HomeWeb />} />
         <Route path="/home/about-us" element={<AboutUs />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/register/address" element={<RegisterAddress />} />
         <Route path="/register/veterinary" element={<RegisterVeterinary />} />
-
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/veterinary" element={<VeterinaryProfile />} />
         <Route path="/profile/configuration" element={<UpgradeUser />} />

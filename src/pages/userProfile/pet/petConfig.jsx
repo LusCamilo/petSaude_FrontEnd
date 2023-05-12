@@ -70,7 +70,6 @@ const InfosUser = async () => {
         ownerId: response.ownerId,
         idSpecie: response.petSpecie.id,
         nameSpecie: response.petSpecie.name
-
     }
 }
 
@@ -168,7 +167,6 @@ export const PetConfig = (props) => {
         const file = event.target.files[0]
         const storageRef = ref(storage, `Pet/${file.name}`);
         uploadBytes(storageRef, file).then(() => {
-            console.log('Arquivo enviado com sucesso!');
             return getDownloadURL(storageRef)
         }).then((url) => {
             setSelectedFile(url);

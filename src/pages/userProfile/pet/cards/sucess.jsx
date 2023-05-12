@@ -26,7 +26,7 @@ export const PetAddSucess = (props) => {
                 <button className='rounded-xl bg-[#78A890] h-8' 
                 onClick={() => { 
                 props.onSave()
-                if(props.href != undefined || props.href != null) document.location.href = props.href
+                if(props.href != undefined || props.href != null) document.location.href = "/profile/configuration"
                 }}>
                     Sim
                 </button> 

@@ -181,7 +181,7 @@ export const EditProfile = () => {
                         console.log(updateProfileInfosClient(profileInfos))
 
 
-                    document.location.href = '/profile/upgradeUser'
+                    document.location.href = '/profile/configuration'
 
                 }}>
                     <img src={check} className='w-10 h-10 my-5 mx-5' />

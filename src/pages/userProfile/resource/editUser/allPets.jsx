@@ -43,7 +43,7 @@ export const Pets = (props) => {
                 <h2 className='text-6xl font-bold'>Pets</h2>
                 <button className='cursor-pointer text-[#09738A] p-3 rounded-full border border-[#91B0B2]'
                     onClick={() => {
-                        document.location.href = '/userProfile/pet/Add'
+                        document.location.href = '/profile/pet/add'
                     }
                     }>
                     + Adicionar
