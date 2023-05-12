@@ -54,10 +54,10 @@ export const HeaderInfo = (props) => {
                         hover:after:w-full" to="/home/searchProfessionals"> Profissionais
                       </Link>
                     </li>
-                    <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                    {/* <img src={Blog} className="pr-3"></img> */}
+                    {/* <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                    <img src={Blog} className="pr-3"></img>
                       Blog
-                    </li>
+                    </li> */}
                     <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                     <img src={Info} className="pr-3"></img>
                     <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
@@ -144,13 +144,13 @@ export const HeaderInfo = (props) => {
                               hover:after:w-full" to="/home/searchProfessionals">Profissionais
                               </Link>
                             </li>
-                            <li className="mx-4 my-6 md:my-0">
+                            {/* <li class="mx-4 my-6 md:my-0">
                               <Link to="/profile/blogProfile" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                               after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                               hover:after:w-full">Blog
                               </Link>
-                            </li>
-                            <li className="mx-4 my-6 md:my-0">
+                            </li> */}
+                            <li class="mx-4 my-6 md:my-0">
                               <Link to="/home/aboutUs" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                               after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                               hover:after:w-full">Sobre nós
@@ -163,12 +163,15 @@ export const HeaderInfo = (props) => {
                             <span className="bar"></span>
                         </div>
                     </nav>
-                    <div className=" w-10 md:flex flex-direction " >
+                    <button className=" w-10 md:flex flex-direction " 
+                      onClick={() => {
+                        document.location.href = "/profile/editProfile";
+                      }}>
                         <img className="pt-10 pr-1 md:pt-1 " src={userFoto} />
                         <Link to="/profile/editProfile" className=" invisible xl:visible home-btn p-1 ">
                             {userNome}
                         </Link>
-                    </div>
+                    </button>
                 </div>
 
                 <div className="flex flex-col justify-items-center text-center  gap-20">

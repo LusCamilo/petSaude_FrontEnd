@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
-import { AppointmentMenu } from './appointmentMenu';
 import { AppointmentAsk } from './appointments/appointmentAsk';
 import { PetHeader } from '../../pet/petHeader';
 import { AppointmentPeding } from './appointments/appointmentPending';
@@ -72,8 +70,8 @@ export const AppointmentView = (props) => {
         <>
             <PetHeader />
             <section>
-                    <div className='w-full flex flex-row gap-5'>
-                    <section >  
+                <div className='w-full flex flex-row gap-5'>
+                    <section className='w-1/2'>  
                     <div className='flex flex-col md:flex-row gap-5'>
                     
                         <div className='flex flex-col w-5/6 md:w-full bg-[#E3EFF0] rounded-lg pb-96 md:h-screen'>
@@ -95,23 +93,23 @@ export const AppointmentView = (props) => {
                                 </button>
                                 </ul>                
                             </div>
-                    
-                            <div>
-                                <div className={`${tela2.estado} w-full`}>
-                                    <AppointmentPeding  />
-                                </div>
-                                <div className={`${tela1.estado} w-full`}>
-                                    <AppointmentAsk /> 
-                                </div>
-                                <div className={`${tela3.estado} w-full`}>
-                                    <AppointmentArchived />
-                                </div>
-                            </div>
                         </div>
                     </section>
-
-                    </div>
-                </section>
+                    <section className='w-full'>
+                        <div className='w-full'> 
+                            <div className={`${tela2.estado} w-full`}>
+                                <AppointmentPeding  />
+                            </div>
+                            <div className={`${tela1.estado} w-full`}>
+                                <AppointmentAsk /> 
+                            </div>
+                            <div className={`${tela3.estado} w-full`}>
+                                <AppointmentArchived />
+                            </div>
+                        </div>        
+                    </section>
+                </div>
+            </section>
         </>
     );
 }
