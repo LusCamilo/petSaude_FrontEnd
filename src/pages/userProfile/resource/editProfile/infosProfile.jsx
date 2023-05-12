@@ -109,7 +109,7 @@ export const InfosProfile = (props) => {
                 </div>
 
             </div>
-            <UserPhoto nome={name} completName={props.completName} callBackProfilePhoto={props.onProfilePhotoChange} profilePhoto={props.profilePhoto} />
+            <UserPhoto nome={name} completName={props.completName} onProfilePhotoChange={props.onProfilePhotoChange} profilePhoto={props.profilePhoto} />
         </div>
     );
 }

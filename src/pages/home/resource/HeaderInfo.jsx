@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import Photo from '../../../assets/svg/userAnonimo.svg';
 import FootHeader from "../../../assets/svg/FootHeader.svg";
 import Home from '../../../assets/svg/Home.svg';
 import Work from '../../../assets/svg/Work.svg';
+import Blog from '../../../assets/svg/Blog.svg';
 import Info from '../../../assets/svg/InfoOutline.svg';
 import Calendary from '../../../assets/svg/Calendar today.svg';
 import Person from '../../../assets/svg/Person.svg';
@@ -23,7 +25,7 @@ export const HeaderInfo = (props) => {
       if (decoded) {
         setUserNome(decoded.userName);
         setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
-        setLinkTo('../profile/veterinary')
+        setLinkTo('../userProfile/veterinary')
       }
     }, [decoded, token]);
 
@@ -31,14 +33,13 @@ export const HeaderInfo = (props) => {
         <>
           <div className=" bg-[#9ED1B7] w-full h-full ">
             <div className="flex font-normal items-center justify-around xl:p-5 h-30 text-4xl ">
-            <button className=" md:hidden py-3 px-4 mx-2 rounded focus:outline-none group">
-              <div className="w-5 h-1 bg-gray-600 mb-1"></div>
-              <div className="w-5 h-1 bg-gray-600 mb-1"></div>
-              <div className="w-5 h-1 bg-gray-600 mb-1"></div>
-              <div className="absolute top-0 -left-full opacity-0 h-screen w-8/12 bg-[#ECECEC] border transform 
-                group-focus:left-0 group-focus:opacity-100 transition-all duration-300">
-                <h2 className="pt-10 pl-5 text-left  text-2xl font-semibold">Menu</h2>
-                    <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+              <button className=" md:hidden py-3 px-4 mx-2 rounded focus:outline-none group">
+                <div className="w-5 h-1 bg-gray-600 mb-1"></div>
+                <div className="w-5 h-1 bg-gray-600 mb-1"></div>
+                <div className="w-5 h-1 bg-gray-600 mb-1"></div>
+                <div className="absolute top-0 -left-full opacity-0 h-screen w-8/12 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300">
+                  <h2 className="pt-10 pl-5 text-left  text-2xl font-semibold">Menu</h2>
+                  <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                     <li className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                       <img src={Home} className="pr-3"></img>
                       <Link to="/home/Home-Web"  href="#" className=" duration-500 flex flex-col-reverse relative transition-all
@@ -72,26 +73,72 @@ export const HeaderInfo = (props) => {
                   </ul>
                 <h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">Configurações</h3>
                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
-                  <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                    <img src={Person} className="pr-3"></img>
-                    <Link to="/profile/editPerson">Perfil</Link>  
+                <li className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                  <img src={Home} className="pr-3"></img>
+                  <Link to="/home/Home-Web"  href="#" className=" duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full"> Home
+                  </Link>
+                </li>
+                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                  <img src={Work} className="pr-3"></img>
+                  <Link className=" duration-500 flex flex-col-reverse relative transition-all
+                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                    hover:after:w-full" to="/home/searchProfessionals"> Profissionais
+                  </Link>
+                </li>
+                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                <img src={Blog} className="pr-3"></img>
+                  Blog
+                </li>
+                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                <img src={Info} className="pr-3"></img>
+                <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
+                      after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                      hover:after:w-full"> Profissionais
+                    </Link>
                   </li>
                   <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                    <img src={Lock} className="pr-3"></img>
-                      <Link to="/profile/editProfile">Segurança</Link>   
+                  <img src={Blog} className="pr-3"></img>
+                    Blog
+                  </li>
+                  <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                  <img src={Info} className="pr-3"></img>
+                  <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
+                        after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                        hover:after:w-full">Sobre nós
+                      </Link>
+                  </li>
+                  <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                  <img src={Calendary} className="pr-3"></img>
+                  <Link to="/home/appointmentMenu"></Link>
+                    Consultas
+                  </li>
+                </ul>
+              <h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">Configurações</h3>
+              <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                <img src={Person} className="pr-3"></img>
+                <Link to="/profile/editPerson">Perfil</Link>
+
+                </li>
+                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                  <img src={Lock} className="pr-3"></img>
+                  <Link to="/profile/editProfile">Segurança</Link>
+
                   </li>
                 </ul>
               </div>
             </button>
                     <h1 className=" text-1xl sm:flex justify-start font-bold">PetSaúde</h1>
                     <nav>
-                        <div class="flex justify-between items-center ">
-                            <span class="text-3xl cursor-pointer mx-2 md:hidden block">
+                        <div className="flex justify-between items-center ">
+                            <span className="text-3xl cursor-pointer mx-2 md:hidden block">
                                 <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
                             </span>
                         </div>
-                        <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
-                            <li class="mx-4 my-6 md:my-0">
+                        <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
+                            <li className="mx-4 my-6 md:my-0">
                               <Link className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                               after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                               hover:after:w-full" to="/home/searchProfessionals">Profissionais
@@ -110,10 +157,10 @@ export const HeaderInfo = (props) => {
                               </Link>
                             </li>
                         </ul>
-                        <div class="menu">
-                            <span class="bar"></span>
-                            <span class="b`ar"></span>
-                            <span class="bar"></span>
+                        <div className="menu">
+                            <span className="bar"></span>
+                            <span className="b`ar"></span>
+                            <span className="bar"></span>
                         </div>
                     </nav>
                     <button className=" w-10 md:flex flex-direction " 
@@ -121,7 +168,7 @@ export const HeaderInfo = (props) => {
                         document.location.href = "/profile/editProfile";
                       }}>
                         <img className="pt-10 pr-1 md:pt-1 " src={userFoto} />
-                        <Link to="/profile/editProfile" class=" invisible xl:visible home-btn p-1 ">
+                        <Link to="/profile/editProfile" className=" invisible xl:visible home-btn p-1 ">
                             {userNome}
                         </Link>
                     </button>
@@ -134,8 +181,7 @@ export const HeaderInfo = (props) => {
                     </div>
                     <img className=" mr-80 pr-20 pt-0 w-full" src={FootHeader}/>
                 </div>
-
             </div> 
         </>
-    )
+  )
 };

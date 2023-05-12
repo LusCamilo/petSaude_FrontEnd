@@ -26,33 +26,36 @@ export async function getSpecialtiesPetById(id) {
     return await response.json()
 }
 
-export async function deleteSpecialtiesPet(id) {
+export async function deleteSpecialtiesPet(specialitiesPet) {
 
-    const url = `${BASE_URL}veterinarian/user/pet/${id}`
+    const url = `${BASE_URL}veterinarian/attended-animals`
     const response = await fetch(url, {
         method: 'DELETE',
         headers:{
             'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
-        }
+        },
+        body: specialitiesPet
     })
 
     return await response.json()
     
 }
 
-export async function updateSpecialities(specialitiesPet) {
+export async function updateSpecialitiesPet(specialitiesPet) {
     const url = `${BASE_URL}veterinarian/attended-animals`
     const response = await fetch(url, {
         method: 'PUT',
         headers:{
             'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(specialitiesPet)
+        body: specialitiesPet
     })
 
-    return await response.json()
+    return response.json();
     
 }
 

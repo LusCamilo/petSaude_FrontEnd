@@ -8,34 +8,10 @@ import search from "../../assets/svg/lupa.svg";
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import './radixSearch.css'
 import axios from 'axios';
-import { ServerError } from "../profile/pet/cards/erro500";
-import Modal from 'react-modal'
-import { WarnRequest } from "../profile/pet/cards/warnTwo";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const customStyles = {
-  content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      border: '4px solid transparent',
-      borderRadius: '12px 12px',
-      backgroundColor: '#FFFFFF00',
-      display: "flex",
-      justifyContent: "center"
-  },
-  overlay : {
-      backgroundColor: '#0000'
-  }
-};
-
-
 export const SearchProfessional = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit} = useForm();
   const [vets, setVets] = useState([]);
   const [inputSearch, setInputSearch] = useState(
     localStorage.getItem("__Vet_Search") || ""
@@ -193,20 +169,20 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
 
   return (
     <>
-      <HeaderInfo
+      <HeaderInfo 
         title="Profissionais"
         description="Temos os melhores e mais confiaveis profissionais em nosso site."
       />
-      <div className={`p-20 container mx-auto px-4 flex flex-col gap-10 min-h-screen`}>
-        <div className="flex flex-row w-full" >
-          <div className="flex flex-row gap-2 w-full border-4 border-black rounded-lg items-center align-middle  content-center mr-4">
-          <img className="w-10" src={search} />
+      <div className={`p-2 md:p-20 container mx-auto px-4 gap-10 min-h-screen`}>
+        <div className="flex flex-col w-full pr-5" >
+          <div className="flex flex-row gap-2 w-full border-2 border-black rounded-lg items-center align-middle  content-center mr-4 ml-0 md:ml-5 ">
+          <img className="pl-2 w-10 text-center" src={search} />
           <form
             onChange={handleSubmit(onSearch)}
             className="w-full flex pt-3 items-center content-center align-middle"
           >
             <input
-              className="xl:w-full h-10 text-2xl flex items-center content-center"
+              className="xl:w-full h-14 text-2xl flex items-centercontent-center"
               placeholder="Pesquisar especialistas"
               defaultValue={inputSearch}
               onChange={(e) => setInputSearch(e.target.value)}
@@ -214,50 +190,68 @@ const [umCorteRapidao, setUmCorteRapidao] = useState('')
             />
           </form>
         </div>
-        <form className="w-3/12">
+        <form className="m-2 md:m-10 items-center flex flex-row">
             <RadioGroup.Root className="RadioGroupRoot" value={filtro} onChange={handleRadioChange} defaultValue="userName" aria-label="View density">
-                <div className="flex flex-col md:flex-row">
+<<<<<<< HEAD
+<<<<<<< HEAD
+                <div className="flex flex-row">
                   <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1" >
+                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1">
                       <RadioGroup.Indicator className="RadioGroupIndicator" />
                       </RadioGroup.Item>
                       <label className="Label" htmlFor="r1">
                         Procurar por nome
                       </label>
+=======
+              <div className="flex flex-col md:flex-row">
+=======
+              <div className="flex flex-col md:flex-row w-full">
+>>>>>>> 82eecfb (responsive search)
+                <div className="flex flex-row gap-2">
+                    <div className="border-2 w-full p-5 rounded-lg items-center"  style={{ display: 'flex', alignItems: 'center' }}>
+                        <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("userName")} name="userName" defaultValue="userName" id="r1" >
+                        <RadioGroup.Indicator className="RadioGroupIndicator" />
+                        </RadioGroup.Item>
+                        <label className="Label" htmlFor="r1">
+                          Procurar por nome
+                        </label>
+                    </div>
+                    <div className="border-2 w-full p-5 rounded-lg"  style={{ display: 'flex', alignItems: 'center' }}>
+                        <RadioGroup.Item className="RadioGroupItem" onClick={() => citySearch()} name="city" defaultValue="city" id="r2">
+                        <RadioGroup.Indicator className="RadioGroupIndicator" />
+                        </RadioGroup.Item>
+                        <label className="Label" htmlFor="r2">
+                          Procurar por cidade
+                        </label>
+                    </div>
+>>>>>>> 2bd73f7 (responsive search)
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <RadioGroup.Item className="RadioGroupItem" onClick={() => citySearch()} name="city" defaultValue="city" id="r2">
-                      <RadioGroup.Indicator className="RadioGroupIndicator" />
-                      </RadioGroup.Item>
-                      <label className="Label" htmlFor="r2">
-                        Procurar por cidade
-                      </label>
+                  <div className="flex flex-row gap-2">
+                  <div className="border-2 w-full p-5 rounded-lg" style={{ display: 'flex', alignItems: 'center' }}>
+                        <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("speciality")} name="speciality" defaultValue="speciality" id="r3">
+                        <RadioGroup.Indicator className="RadioGroupIndicator" />
+                        </RadioGroup.Item>
+                        <label className="Label" htmlFor="r3">
+                          Procurar por Especialização
+                        </label>
+                    </div>
+                    <div className="border-2 w-full p-5 rounded-lg" style={{ display: 'flex', alignItems: 'center' }}>
+                        <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("animal")} name="animal" defaultValue="animal" id="r4">
+                        <RadioGroup.Indicator className="RadioGroupIndicator" />
+                        </RadioGroup.Item>
+                        <label className="Label" htmlFor="r4">
+                          Procurar por animais
+                        </label>
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-row">
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("speciality")} name="speciality" defaultValue="speciality" id="r3">
-                      <RadioGroup.Indicator className="RadioGroupIndicator" />
-                      </RadioGroup.Item>
-                      <label className="Label" htmlFor="r3">
-                        Procurar por Especialização
-                      </label>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <RadioGroup.Item className="RadioGroupItem" onClick={() => setMudarFiltro("animal")} name="animal" defaultValue="animal" id="r4">
-                      <RadioGroup.Indicator className="RadioGroupIndicator" />
-                      </RadioGroup.Item>
-                      <label className="Label" htmlFor="r4">
-                        Procurar por animais
-                      </label>
-                  </div>
-                </div>
+              </div>
+               
             </RadioGroup.Root>
         </form>
         </div>
         <div>
           {vets.map((vet) => {
-            if (vet.id !== undefined) {
+            if (vet.id != undefined) {
             return (
               <CardProfessionals
                 key={vet.id}

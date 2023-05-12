@@ -10,6 +10,7 @@ import check from './resource/img/saveProfile.png'
 import { deleteClient, deleteVeterinary, getUser, getVeterinary, updateProfileInfosClient, updateProfileInfosVeterinary } from '../../services/integrations/user';
 import { PetHeader } from './pet/petHeader';
 import jwt_decode from "jwt-decode";
+import { set } from 'react-hook-form';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -118,12 +119,20 @@ export const EditProfile = () => {
         if (Boolean(localStorage.getItem('__user_isVet'))) {
             storageRef = ref(storage, `Veterinario/${value.name}`);
         }
-        uploadBytes(storageRef, value).then(() => {
-            console.log('Arquivo enviado com sucesso!');
-            return getDownloadURL(storageRef)
-        }).then((url) => {
-            setProfilePhoto(url)
-        });
+        if (value) {
+            uploadBytes(storageRef, value)
+                .then(() => getDownloadURL(storageRef))
+                .then((url) => {
+                    if (url !== undefined) {
+                        console.log(url);
+                        setProfilePhoto(url);
+                    } else {
+                        setProfilePhoto('');
+                    }
+                });
+        } else {
+            setProfilePhoto('');
+        }
 
     }
 
@@ -132,12 +141,15 @@ export const EditProfile = () => {
         if (Boolean(localStorage.getItem('__user_isVet'))) {
             storageRef = ref(storage, `Veterinario/${value.name}`);
         }
-        uploadBytes(storageRef, value).then(() => {
-            console.log('Arquivo enviado com sucesso!');
-            return getDownloadURL(storageRef)
-        }).then((url) => {
-            setProfileBannerPhoto(url)
-        });
+        if (value) {
+            uploadBytes(storageRef, value).then(() => {
+                return getDownloadURL(storageRef)
+            }).then((url) => {
+                setProfileBannerPhoto(url)
+            });
+        } else {
+            setProfileBannerPhoto('')
+        }
 
     }
 

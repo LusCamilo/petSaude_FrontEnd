@@ -5,7 +5,7 @@ import Dog from "../../assets/svg/dogAndCat.svg";
 import Doctor from "../../assets/svg/medico 1.svg";
 import "./css/LandingPage.css";
 import Local from "../../assets/svg/localizacao.svg";
-import { PetHeader } from "../profile/pet/petHeader";
+import { PetHeader } from "../userProfile/pet/petHeader";
 import { FaUserNurse } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
 
@@ -24,34 +24,38 @@ export const LandingPage = () => {
   return (
     <section className="h-screen flex flex-col justify-between overflow-hidden">
       <PetHeader />
-      <div className="flex md:flex-row flex-col w-full p-10 md:gap-5 gap-2">
-        <label className="relative flex items-center gap-2 border-solid border-black border-[1px] md:py-2 py-1 md:px-4 px-2 rounded-lg md:w-1/2 w-full">
-          <FaUserNurse className=" text-black text-4xl" />
-          <input
-            type="text"
-            name="search-vet-username"
-            id="search-vet-username"
-            className="text-3xl text-black outline-none border-none"
-            placeholder="Pesquisar especialista"
-            onKeyPress={(event) =>
-              handleKeyPress(event.target.value, event, "userName")
-            }
-          />
-        </label>
-        <label className="relative flex items-center gap-2 border-solid border-black border-[1px] md:py-2 py-1 md:px-4 px-2  rounded-lg md:w-1/2 w-full">
-          <GoLocation className=" text-black text-4xl" />
-          <input
-            type="text"
-            name="search-vet-username"
-            id="search-vet-username"
-            className="text-3xl text-black outline-none border-none"
-            placeholder="Pesquisar veteriários próximos"
-            onKeyPress={(event) =>
-              handleKeyPress(event.target.value, event, "city")
-            }
-          />
-        </label>
+
+      <div className=" flex w-full justify-center">
+        <div className="flex md:flex-row flex-col w-4/5 items-center p-10 md:gap-5 gap-2">
+          <label className="relative flex items-center gap-2 border-solid border-black border-[1px] md:py-2 py-1 md:px-4 px-2 rounded-xl md:w-1/2 w-full">
+            <FaUserNurse className=" text-black text-4xl" />
+            <input
+              type="text"
+              name="search-vet-username"
+              id="search-vet-username"
+              className="text-3xl text-black outline-none border-none"
+              placeholder="Pesquisar especialista"
+              onKeyPress={(event) =>
+                handleKeyPress(event.target.value, event, "userName")
+              }
+            />
+          </label>
+          <label className="relative flex items-center gap-2 border-solid border-black border-[1px] md:py-2 py-1 md:px-4 px-2  rounded-xl md:w-1/2 w-full">
+            <GoLocation className=" text-black text-4xl" />
+            <input
+              type="text"
+              name="search-vet-username"
+              id="search-vet-username"
+              className="text-3xl text-black outline-none border-none"
+              placeholder="Pesquisar veteriários próximos"
+              onKeyPress={(event) =>
+                handleKeyPress(event.target.value, event, "city")
+              }
+            />
+          </label>
+        </div>
       </div>
+
       <div className="flex flex-col md:flex-row justify-between items-center w-full p-10 relative">
         <div className="flex flex-col justify-center items-center md:w-1/2 gap-10">
           <h1 className="md:mt-14 font-bold text-3xl sm:text-4xl md:text-6xl w-full xl:w-3/5 md:text-left text-center">

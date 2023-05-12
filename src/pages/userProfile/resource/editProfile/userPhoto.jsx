@@ -14,11 +14,11 @@ export const UserPhoto = (props) => {
         console.log(event.target.files[0])
         const file = event.target.files[0]
         if (file) {
-            props.callBackProfilePhoto(file);
+            props.onProfilePhotoChange(file);
             setSelectedFile(URL.createObjectURL(file));
         } else {
-            props.callBackProfilePhoto(props.props.profilePhoto);
-            setSelectedFile(props.props.profilePhoto);
+            props.onProfilePhotoChange(props.profilePhoto);
+            setSelectedFile(props.profilePhoto);
         }
 
     }

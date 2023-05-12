@@ -10,7 +10,7 @@ import "./Footer.css"
 export const Footer = () => {
     return (
         <>
-            <div className="bg-[#9ED1B7] flex flex-col pt-10 md:pt-28 md:mt-10 pb-10 md:pb-0">
+            <div className="bg-[#9ED1B7] flex flex-col pt-10 md:pt-28 mt-10 pb-10 md:pb-0">
                 <div className=" flex justify-center items-center flex-row">
                     <div className="basis-1/3 md:basis-1/4 w-1/8 flex items-center justify-evenly flex-col">
                         <h4 className="flex flex-row font-bold text-xs md:text-2xl items-center"><img className="w-10 md:w-20" src={logo} alt="" /> PetSaude</h4>

@@ -4,12 +4,12 @@ import { get, useForm } from "react-hook-form";
 import { registerUser } from "../../services/integrations/user";
 import { Link } from "react-router-dom";
 import backgroundImage from "../../assets/image/address-image.png"
-import { ServerError } from "../profile/pet/cards/erro500";
+import { ServerError } from "../userProfile/pet/cards/erro500";
 import Modal from 'react-modal'
-import { WarnRequest } from "../profile/pet/cards/warnTwo";
+import { WarnRequest } from "../userProfile/pet/cards/warnTwo";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { PetAddSucess } from "../profile/pet/cards/sucess";
+import { PetAddSucess } from "../userProfile/pet/cards/sucess";
 
 const customStyles = {
     content: {
@@ -210,8 +210,8 @@ export function RegisterAddress() {
             </div>
             <div className='lg:w-1/2 md:w-full w-full min-h-screen h-fit bg-white flex flex-col md:justify-center justify-between items-center lg:gap-6 md:gap-4 sm:gap-2 z-10 p-4'>
                 <AuthHeader title='Podemos saber a sua localização?' subtitle='Para a experiência na plataforma, informe-nos a sua localização' firebaseFeature={false} />
-                <form onSubmit={handleSubmit(submitForm)} className='h-fit lg:w-3/4 w-full gap-2 p-0 lg:mt-12 md:mt-6' >
-                    <label className='w-full flex flex-col text-black'>
+                <form onSubmit={handleSubmit(submitForm)} className='h-fit lg:w-3/4 w-full gap-2 p-0 lg:mt-10 md:mt-6' >
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         CEP
                         <input
                             onBlurCapture={(e) => {
@@ -222,36 +222,36 @@ export function RegisterAddress() {
                         />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
-                        <label className='w-full flex flex-col text-black'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             Cidade
                             <input value={city} className={errors.city ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="city" />
                         </label>
-                        <label className='w-full flex flex-col text-black'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             Estado
                             <input value={uf} className={errors.state ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="state" />
                         </label>
                     </div>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         Rua
                         <input value={street} className={errors.street ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="street" />
                     </label>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         Bairro
                         <input value={neight} className={errors.neighborhood ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="neighborhood" />
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
-                        <label className='w-full flex flex-col text-black'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             Número
                             <input className={errors.number ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="number" {...register('number', { required: true })} />
                         </label>
-                        <label className='w-full flex flex-col text-black'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             Complemento (Se houver)
                             <input className={errors.complement ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="complement" {...register('complement', { required: false })} />
                         </label>
                     </div>
                     <div className='flex xl:flex-row flex-col justify-between gap-2 w-full lg:mt-12 mt-6'>
-                        <button id='client' type="submit" onClick={event => localStorage.setItem('__register_type', event.target.id)} className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-2xl rounded transition drop-shadow-xl py-3 hover:bg-[#78A890]'>Cadastrar cliente</button>
-                        <button id='professional' type="submit" onClick={event => localStorage.setItem('__register_type', event.target.id)} className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-2xl rounded transition py-3 drop-shadow-xl hover:bg-[#78A890]'>Cadastrar profissional</button>
+                        <button id='client' type="submit" onClick={event => localStorage.setItem('__register_type', event.target.id)} className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-xl md:text-2xl rounded transition drop-shadow-xl py-3 hover:bg-[#78A890]'>Cadastrar cliente</button>
+                        <button id='professional' type="submit" onClick={event => localStorage.setItem('__register_type', event.target.id)} className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-xl md:text-2xl rounded transition py-3 drop-shadow-xl hover:bg-[#78A890]'>Cadastrar profissional</button>
                     </div>
                 </form>
                 <p className='mt-8 mb-4'>Já tem uma conta?<Link to='/login' className='pl-1 font-bold'>Faça login</Link></p>

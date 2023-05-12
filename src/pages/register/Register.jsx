@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import React from "react";
-import { ServerError } from "../profile/pet/cards/erro500";
+import { ServerError } from "../userProfile/pet/cards/erro500";
 import Modal from 'react-modal'
-import { WarnRequest } from "../profile/pet/cards/warnTwo";
-
+import { WarnRequest } from "../userProfile/pet/cards/warnTwo";
 
 const customStyles = {
     content: {
@@ -108,26 +107,26 @@ export function Register() {
         <section className='flex flex-row w-screen h-screen bg-gradient-to-br from-[#092b5a] to-[#9ed1b7] opacity-90 overflow-x-hidden'>
             <div className='lg:w-1/2 md:w-2/3 w-full min-h-screen h-fit bg-white flex flex-col md:justify-center justify-between items-center lg:gap-6 md:gap-4 sm:gap-2 z-10 p-4'>
                 <AuthHeader title='É novo por aqui?' subtitle='Insira suas informações abaixo e cadastre-se!' firebaseFeature={true} />
-                <form className='h-fit lg:w-3/4 xl:w-2/3 w-full gap-2 p-0 lg:mt-12 md:mt-6' onSubmit={handleSubmit(submitForm)}>
-                    <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
-                        <label className='w-full flex flex-col text-black'>
+                <form className='h-fit lg:w-3/4 xl:w-2/3 w-full gap-2 p-0 lg:mt-10 md:mt-6' onSubmit={handleSubmit(submitForm)}>
+                    <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full mt-6 md:mt-0'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             Primeiro nome
                             <input className={errors.firstName ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="firstName"  {...register('firstName', {required: true})}/>
                         </label>
-                        <label className='w-full flex flex-col text-black'>
+                        <label className='w-full flex flex-col md:text-xl text-lg'>
                             Sobrenome
                             <input className={errors.lastName ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="lastName" {...register('lastName', {required: true})} />
                         </label>
                     </div>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         CPF
                         <input className={errors.cpf ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="cpf" {...register('cpf', {required: true})}/>
                     </label>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         E-mail
                         <input className={errors.email ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="email" name="email" {...register('email', {required: true})} />
                     </label>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         Senha
                         <div className='relative'>
                             <input className={errors.password ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type={isPasswordVisible ? 'text' : 'password'} name="password" {...register('password', {minLength: 6, required: true})} />
@@ -137,7 +136,7 @@ export function Register() {
                             }
                         </div>
                     </label>
-                    <label className='w-full flex flex-col text-black'>
+                    <label className='w-full flex flex-col md:text-xl text-lg'>
                         Confirme a senha
                         <div className='relative'>
                             <input className={errors.confirmPassword ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type={isConfirmPasswordVisible ? 'text' : 'password'} name="confirmPassword" {...register('confirmPassword', {required: true})} />
@@ -148,11 +147,11 @@ export function Register() {
                         </div>
                     </label>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
-                        <label className='w-full text-black'>
+                        <label className='w-full md:text-xl text-lg'>
                             Celular
                             <input className={errors.cellphoneNumber ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="tel" name="cellphoneNumber" {...register('cellphoneNumber', {required: true})} />
                         </label>
-                        <label className='w-full text-black'>
+                        <label className='w-full md:text-xl text-lg'>
                             Telefone
                             <input className='h-12 px-2 w-full' type="tel" name="phoneNumber" {...register('phoneNumber')} />
                         </label>

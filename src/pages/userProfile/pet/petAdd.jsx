@@ -114,7 +114,7 @@ export const PetAdd = (props) => {
         petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
 
         setTimeout(function() {
-            document.location.href = "/profile/upgradeUser";
+            document.location.href = "/userProfile/upgradeUser";
         }, 2000); 
     }
 

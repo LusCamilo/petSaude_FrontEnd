@@ -14,7 +14,7 @@ export const CardPets = (props) => {
                 </label>
                 <img id={props.id} src={lapis} alt="Icone editar" className='w-5 h-5 cursor-pointer' onClick={(e) => {
                     localStorage.setItem("__pet_id" ,e.target.id)
-                    document.location.href = "/profile/pet/Config" 
+                    document.location.href = "/userProfile/pet/Config"
 
                 }} />
             </div>
