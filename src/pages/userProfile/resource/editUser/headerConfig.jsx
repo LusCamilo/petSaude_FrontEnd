@@ -35,22 +35,22 @@ export const Config = (props) => {
                   <p className='pt-2'>Home</p>
 
                 </Link>
-                <Link to="/home/searchProfessionals" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                <Link to="/home/search-professionals" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                   <img src={Work} className="pr-3  w-14"></img>
                   <p className='pt-2'>Profissionais</p>
 
                 </Link>
-                <Link to="/home/BlogPreview" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                {/* <Link to="/home/BlogPreview" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                   <img src={Blog} className="pr-3 w-14"></img>
                   <p className='pt-2'> Blog</p>
 
-                </Link>
+                </Link> */}
                 <Link to="/home/aboutUs" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                   <img src={Info} className="pr-3 w-14"></img>
                   <p className='pt-2'> Sobre nós</p>
 
                 </Link>
-                <Link to="/profile/appointmentView" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                <Link to="/profile/appointment-view" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                   <img src={Calendary} className="pr-3  w-14"></img>
                   <p className='pt-2'>Consultas</p>
                 </Link>
@@ -61,7 +61,7 @@ export const Config = (props) => {
                   <img src={Person} className="pr-3 w-14 "></img>
                   <p className='pt-2'>Perfil</p>
                 </Link>
-                <Link to="/profile/editSecurity" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full ">
+                <Link to="/profile/edit-profile" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full ">
                   <img src={Lock} className="pr-3 w-14"></img>
                   <p className='pt-2'>Segurança</p>
                 </Link>
@@ -99,7 +99,7 @@ export const Config = (props) => {
         <div className='content-start pr-44 mt-20 justify-end hidden md:flex'>
           <button className='w-52 h-12 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex' onClick={
             () => {
-              document.location.href = '/userProfile/editProfile'
+              document.location.href = '/profile/edit-profile'
             }
           }>
             <img src={lapis} alt="" />

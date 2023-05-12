@@ -165,10 +165,10 @@ export const HeaderInfo = (props) => {
                     </nav>
                     <button className=" w-10 md:flex flex-direction " 
                       onClick={() => {
-                        document.location.href = "/profile/editProfile";
+                        document.location.href = "/profile/configuration";
                       }}>
                         <img className="pt-10 pr-1 md:pt-1 " src={userFoto} />
-                        <Link to="/profile/editProfile" className=" invisible xl:visible home-btn p-1 ">
+                        <Link to="/profile/configuration" className=" invisible xl:visible home-btn p-1 ">
                             {userNome}
                         </Link>
                     </button>

@@ -15,7 +15,7 @@ export const LandingPage = () => {
       event.preventDefault(); // evita a renderização da tela
       localStorage.setItem("__Vet_Search", inputValue);
       localStorage.setItem("__Vet_WhenSearch", whenSearch);
-      window.open("/home/searchProfessionals", "_self"); // abre uma nova aba
+      window.open("/home/search-professionals", "_self"); // abre uma nova aba
     }
   }
 
