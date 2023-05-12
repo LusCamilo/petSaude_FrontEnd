@@ -12,11 +12,14 @@ export const HomeWeb = () => {
   return (
     <>
       <LandingPage />
+<<<<<<< HEAD
       {/*<WebFunction />*/}
       {/*<ChatInfos />*/}
       {/*<PraisedDoctors />*/}
       {/*<Assessments />*/}
       {/*<BlogPreview />*/}
+=======
+>>>>>>> 8046441d19e8afb13841c9336bc595375dfe5c8e
       <WebFunction />
       {/* <ChatInfos />
       <PraisedDoctors /> */}

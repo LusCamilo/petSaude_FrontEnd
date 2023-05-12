@@ -27,28 +27,29 @@ export const HomePage = () => {
           <Link to="/register/address">Endereço do usuario</Link>
           <Link to="/register/veterinary">Cadastro do veterinario</Link>
           <Link to="/home">Landing Page</Link>
-          <Link to="/home/aboutUs">About Us</Link>
+          <Link to="/home/about-us">About Us</Link>
           <Link to="/profile/pet/Add">Pet add</Link>
-          <Link to="/home/searchProfessionals">Procurar profissionais</Link>
+          <Link to="/home/search-professionals">Procurar profissionais</Link>
         </div>
         <div className="flex flex-col gap-5 content-center bg-purple-600">
           <p className="font-bold text-2xl">Tela em produção</p>
-          <Link to="/profile/upgradeUser">Upgrade User</Link>
-          <Link to="/profile/pet/Config"> Pet Config</Link>
-          <Link to="/profile/editProfile">editProfile</Link>
+          <Link to="/profile/configuration">Upgrade User</Link>
+          <Link to="/profile/pet/edit"> Pet Config</Link>
+          <Link to="/profile/edit-profissionais">editProfile</Link>
           <Link to="/profile/veterinary">profile veterinary</Link>
-          <Link to="/home/Home-Web">Home principal</Link>
-          <Link to="/profile/appointmentView">AppointmentView</Link>
-          <Link to="/profile/blogProfile">Blog Profile</Link>
+          <Link to="/profile/appointment-view">AppointmentView</Link>
+          <Link to="/home">Home principal</Link>
+          {/* <Link to="/profile/blog-profile">Blog Profile</Link> */}
         </div>
         <div className="flex flex-col gap-5 content-center bg-yellow-300">
           <p className="font-bold text-2xl">Apenas componentes</p>
-          <Link to="/home/HeaderWeb">Header das telas Web</Link>
-          <Link to="/home/HeaderInfo">Header with Infos</Link>
-          <Link to="/home/Footer">Footer</Link>
-          <Link to="/profile/infosPerson">Infos Person</Link>
-          <Link to="/profile/headerConfig">Header Config</Link>
+          <Link to="/pet/petHeader">Header das telas Web</Link>
+          <Link to="/home/resource/HeaderInfo">Header with Infos</Link>
+          <Link to="/home/resource/Footer">Footer</Link>
+          {/* <Link to="/profile/edit-person">Infos Person</Link> */}
+          <Link to="/pages/userProfile/resource/editUser/headerConfig">Header config infos profile</Link>
           <Link to="/profile/appointment">Appointment</Link>
+          <Link to="/pages/userProfile/resource/header">Header config veterinary</Link>
         </div>
       </div>
     </>
