@@ -52,7 +52,6 @@ export const Prossionais = (props) => {
     const [especialidadesPetVet, setEspecialidadesPetVet] = useState([])
 
     const [checkedBoxes, setCheckedBoxes] = useState([]);
-    const [checkedBoxesPet, setCheckedBoxesPet] = useState([]);
 
     useEffect(() => {
 

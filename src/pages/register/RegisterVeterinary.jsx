@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./css/cadastroVet.css";
 import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
@@ -56,11 +56,12 @@ const checkboxSpecialitiesPet = async () => {
 
 export const RegisterVeterinary = () => {
 
-    
+
     const [especialidades, setEspecialidades] = useState([])
     const [especialidadesPet, setEspecialidadesPet] = useState([])
 
     const [checkedBoxes, setCheckedBoxes] = useState([]);
+    const [checkedBoxesEspecialidades, setCheckedBoxesEspecialidades] = useState([]);
 
     useEffect(() => {
         async function fetchDataAll() {
@@ -92,78 +93,55 @@ export const RegisterVeterinary = () => {
 
     const handleCheckBoxEspecialidadesChange = async (event) => {
         const { id } = event.target;
-        const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
+        const isChecked = event.target.checked;
 
-        const storage = localStorage.getItem('__user_id');
+        // Verificar se o item já está presente no array de IDs selecionados
+        const index = checkedBoxesEspecialidades.findIndex((item) => item.id === parseInt(id));
 
-        let json = {
-            specialties: [
-                {
-                    veterinaryId: parseInt(storage),
-                    specialtiesId: parseInt(id)
-                }
-            ]
-        }
-
-        const body = JSON.stringify(json)
-
-        console.log(body);
-
-        try {
-            if (event.target.checked) {
-
-                await updateSpecialities(body)
-
-                if (index === -1) {
-                    setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
-                }
-            } else {
-                
-
-                if (index !== -1) {
-                    setCheckedBoxes((prevState) =>
-                        prevState.filter((item) => item.id !== parseInt(id))
-                    );
-                }
+        if (isChecked) {
+            if (index === -1) {
+                // Adicionar o ID ao array de IDs selecionados
+                setCheckedBoxesEspecialidades((prevState) => [...prevState, { specialtiesId: parseInt(id) }]);
             }
-        } catch (error) {
-            console.error('Error:', error);
+        } else {
+            if (index !== -1) {
+                // Remover o ID do array de IDs selecionados
+                setCheckedBoxesEspecialidades((prevState) =>
+                    prevState.filter((item) => item.id !== parseInt(id))
+                );
+            }
         }
     };
 
 
-    const handleCheckBoxPetChange = async (event) => {
+    const handleCheckBoxPetChange = (event) => {
         const { id } = event.target;
+        const isChecked = event.target.checked;
+
+        // Verificar se o item já está presente no array de IDs selecionados
         const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
-        const storage = localStorage.getItem('__user_id');
 
-        let json = {
-            AnimalTypesVetInfos: [
-                {
-                    veterinaryId: parseInt(storage),
-                    animalTypesId: parseInt(id),
-                },
-            ],
-        };
-
-        const body = JSON.stringify(json);
-        try {
-            if (event.target.checked) {
-                await updateSpecialitiesPet(body);
-                if (index === -1) {
-                    setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
-                }
-            } else {
-                if (index !== -1) {
-                    setCheckedBoxes((prevState) =>
-                        prevState.filter((item) => item.id !== parseInt(id))
-                    );
-                }
+        if (isChecked) {
+            if (index === -1) {
+                // Adicionar o ID ao array de IDs selecionados
+                setCheckedBoxes((prevState) => [...prevState, { animalTypesId: parseInt(id) }]);
             }
-        } catch (error) {
-            console.error('Error:', error);
+        } else {
+            if (index !== -1) {
+                // Remover o ID do array de IDs selecionados
+                setCheckedBoxes((prevState) =>
+                    prevState.filter((item) => item.id !== parseInt(id))
+                );
+            }
         }
     };
+
+    // Exibir o array completo no console sempre que houver alterações em checkedBoxes
+    useEffect(() => {
+    }, [checkedBoxes, checkedBoxesEspecialidades]);
+
+
+
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
@@ -234,10 +212,31 @@ export const RegisterVeterinary = () => {
 
         if (validateForm(data)) {
             const createUserResponse = await registerVet(allInfos)
-            console.log(createUserResponse.response);
+
+            console.log(checkedBoxes);
+            console.log(checkedBoxesEspecialidades);
             let error1 = createUserResponse.response ? createUserResponse.response : ""
             let error = createUserResponse.response.error ? createUserResponse.response.error : ""
             if (createUserResponse.response.id) {
+
+                const especialidades = checkedBoxesEspecialidades.map((item) => {
+                    return { ...item, veterinaryId: createUserResponse.response.id };
+                });
+                const especialidadesPet = checkedBoxes.map((item) => {
+                    return { ...item, veterinaryId: createUserResponse.response.id };
+                });
+
+                console.log(especialidades);
+                console.log(especialidadesPet);
+
+                console.log(
+                    await updateSpecialitiesPet(JSON.stringify({AnimalTypesVetInfos: especialidadesPet}))
+                );
+                console.log(
+                    await updateSpecialities(JSON.stringify({specialties: especialidades}))
+                );
+
+
                 showToastMessage()
                 setTimeout(function () {
                     openModalSucess()
@@ -276,7 +275,6 @@ export const RegisterVeterinary = () => {
                 }
             }
 
-            // else alert('Erro na criação do usuário')
         } else {
             openModal()
             setTimeout(function () {
@@ -318,11 +316,11 @@ export const RegisterVeterinary = () => {
                     </div>
                     <div className='w-full flex flex-col items-start m-1'>
                         <span className='font-normal md:text-xl text-lg'>Animais que atende</span>
-                        <div className='flex flex-wrap gap-2 m-1'>
+                        <div className='flex flex-wrap gap-2 m-1' onClick={handleCheckBoxPetChange}>
                             {especialidadesPet.map((item) => {
                                 return (
                                     <label className='flex gap-2 items-center text-2xl'>
-                                        <input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox"/>
+                                        <input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox" />
                                         {item.name}
                                     </label>
                                 )
