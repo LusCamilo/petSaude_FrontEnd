@@ -13,10 +13,11 @@ export async function registerUser(userInfos) {
             },
             body: JSON.stringify(userInfos)
         })
-        console.log(userInfos);
-        return await response.json()
+
+        return response.json()
+
     } catch (err) {
-        console.log(err.message);
+        console.log(err);
     }
 }
 
@@ -120,6 +121,7 @@ export async function updateProfileInfosClient(infosProfile) {
             },
             body: JSON.stringify(infosProfile)
         })
+        console.log(JSON.stringify(infosProfile));
         return await response.json()
     } catch (err) {
         console.log(err.message);

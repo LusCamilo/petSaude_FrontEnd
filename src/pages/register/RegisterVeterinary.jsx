@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./css/cadastroVet.css";
 import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
+import { getSpecialties, updateSpecialities } from "../../services/integrations/specialties";
+import { getSpecialtiesPet, updateSpecialitiesPet } from "../../services/integrations/specialtiesPet";
 import backgroundImage from "../../assets/svg/imgVetCadastro.svg";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import { registerVet } from "../../services/integrations/user";
@@ -26,12 +28,54 @@ const customStyles = {
         display: "flex",
         justifyContent: "center"
     },
-    overlay : {
+    overlay: {
         backgroundColor: '#0000'
     }
- };
+};
+
+
+const checkboxSpecialities = async () => {
+
+    const response = await getSpecialties()
+
+    return {
+        allSpecialities: response.response,
+    }
+
+}
+const checkboxSpecialitiesPet = async () => {
+
+    const response = await getSpecialtiesPet()
+
+    return {
+        allSpecialitiesPet: response.response,
+
+    }
+
+}
 
 export const RegisterVeterinary = () => {
+
+    
+    const [especialidades, setEspecialidades] = useState([])
+    const [especialidadesPet, setEspecialidadesPet] = useState([])
+
+    const [checkedBoxes, setCheckedBoxes] = useState([]);
+
+    useEffect(() => {
+        async function fetchDataAll() {
+
+            const dados = await checkboxSpecialities()
+            const dadosPet = await checkboxSpecialitiesPet()
+
+            setEspecialidades(dados.allSpecialities)
+
+            setEspecialidadesPet(dadosPet.allSpecialitiesPet)
+
+        }
+
+        fetchDataAll()
+    }, [])
 
     const showToastMessage = () => {
         toast('Criando usuário', {
@@ -43,7 +87,82 @@ export const RegisterVeterinary = () => {
             draggable: true,
             progress: undefined,
             theme: "light",
-            });
+        });
+    };
+
+    const handleCheckBoxEspecialidadesChange = async (event) => {
+        const { id } = event.target;
+        const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
+
+        const storage = localStorage.getItem('__user_id');
+
+        let json = {
+            specialties: [
+                {
+                    veterinaryId: parseInt(storage),
+                    specialtiesId: parseInt(id)
+                }
+            ]
+        }
+
+        const body = JSON.stringify(json)
+
+        console.log(body);
+
+        try {
+            if (event.target.checked) {
+
+                await updateSpecialities(body)
+
+                if (index === -1) {
+                    setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+                }
+            } else {
+                
+
+                if (index !== -1) {
+                    setCheckedBoxes((prevState) =>
+                        prevState.filter((item) => item.id !== parseInt(id))
+                    );
+                }
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
+    const handleCheckBoxPetChange = async (event) => {
+        const { id } = event.target;
+        const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
+        const storage = localStorage.getItem('__user_id');
+
+        let json = {
+            AnimalTypesVetInfos: [
+                {
+                    veterinaryId: parseInt(storage),
+                    animalTypesId: parseInt(id),
+                },
+            ],
+        };
+
+        const body = JSON.stringify(json);
+        try {
+            if (event.target.checked) {
+                await updateSpecialitiesPet(body);
+                if (index === -1) {
+                    setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+                }
+            } else {
+                if (index !== -1) {
+                    setCheckedBoxes((prevState) =>
+                        prevState.filter((item) => item.id !== parseInt(id))
+                    );
+                }
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -51,11 +170,11 @@ export const RegisterVeterinary = () => {
     const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
 
     function openModalServer() {
-       setIsOpenSever(true)
+        setIsOpenSever(true)
     }
 
     function closeModalServer() {
-       setIsOpenSever(false);
+        setIsOpenSever(false);
     }
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -115,54 +234,54 @@ export const RegisterVeterinary = () => {
 
         if (validateForm(data)) {
             const createUserResponse = await registerVet(allInfos)
-            console.log( createUserResponse.response);
+            console.log(createUserResponse.response);
             let error1 = createUserResponse.response ? createUserResponse.response : ""
             let error = createUserResponse.response.error ? createUserResponse.response.error : ""
             if (createUserResponse.response.id) {
                 showToastMessage()
-                setTimeout(function() {
+                setTimeout(function () {
                     openModalSucess()
-                    setTimeout(function() {
+                    setTimeout(function () {
                         closeModalSucess()
-                        document.location.href = '/login' 
-                    }, 5000); 
-                }, 4000); 
+                        document.location.href = '/login'
+                    }, 5000);
+                }, 4000);
             } else {
                 console.log(error1)
                 console.log(error);
                 console.log(error.includes('já está em uso'))
-                if(error1 == "Email já está em uso" || error == "CRMV já está em uso"){
+                if (error1 == "Email já está em uso" || error == "CRMV já está em uso") {
                     console.log("aqui");
                     if (error1 == 'Email já está em uso') {
                         let firstWord = error1.split(" ")[0]
                         openModalEmail(firstWord)
-                        setTimeout(function() {
+                        setTimeout(function () {
                             closeModalEmail()
-                            document.location.href = '/register' 
-                        }, 2000); 
+                            document.location.href = '/register'
+                        }, 2000);
                     } else {
                         let firstWord = error.split(" ")[0]
                         openModalEmail(firstWord)
-                        setTimeout(function() {
+                        setTimeout(function () {
                             closeModalEmail()
-                            document.location.href = '/register' 
-                        }, 2000); 
+                            document.location.href = '/register'
+                        }, 2000);
                     }
-                }else{
+                } else {
                     openModal()
-                        setTimeout(function() {
-                            closeModal()
-                            document.location.href = '/register' 
-                        }, 2000); 
+                    setTimeout(function () {
+                        closeModal()
+                        document.location.href = '/register'
+                    }, 2000);
                 }
             }
 
             // else alert('Erro na criação do usuário')
         } else {
             openModal()
-            setTimeout(function() {
+            setTimeout(function () {
                 closeModal()
-            }, 2000); 
+            }, 2000);
         }
         // TODO: INTEGRAÇÃO
     }
@@ -185,59 +304,29 @@ export const RegisterVeterinary = () => {
                     <div className='w-full flex flex-col items-start m-1'>
                         <span className='font-normal md:text-xl text-lg'>Especialidades</span>
                         <div className='flex flex-wrap gap-2 m-1'>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('surgeon')} />
-                                Cirurgião
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('clinic')} />
-                                Clínica
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('laboratory')} />
-                                Laboratorial
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('research')} />
-                                Pesquisa
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('anesthetist')} />
-                                Anestesista
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('anesthetist')} />
-                                Farmácia Veterinária
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('anesthetist')} />
-                                Técnico em Zoo
-                            </label>
+                            <div className='flex flex-wrap pt-2 md:grid md:grid-rows-2 grid-flow-col w-full  gap-5' onClick={handleCheckBoxEspecialidadesChange}>
+                                {especialidades.map((item) => {
+                                    return (
+                                        <label className='flex gap-2 items-center text-2xl'>
+                                            <input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox" />
+                                            {item.name}
+                                        </label>
+                                    )
+                                })}
+                            </div>
                         </div>
                     </div>
                     <div className='w-full flex flex-col items-start m-1'>
                         <span className='font-normal md:text-xl text-lg'>Animais que atende</span>
                         <div className='flex flex-wrap gap-2 m-1'>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('dog')} />
-                                Cachorro
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('cat')} />
-                                Gato
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('birds')} />
-                                Aves
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('reptiles')} />
-                                Répteis
-                            </label>
-                            <label className='flex gap-1 items-center md:text-xl text-lg'>
-                                <input className='w-5 h-5 rounded' type="checkbox" {...register('exoctics')} />
-                                Exóticos
-                            </label>
+                            {especialidadesPet.map((item) => {
+                                return (
+                                    <label className='flex gap-2 items-center text-2xl'>
+                                        <input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox"/>
+                                        {item.name}
+                                    </label>
+                                )
+                            })}
                         </div>
                     </div>
                     <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
@@ -290,7 +379,7 @@ export const RegisterVeterinary = () => {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <ServerError/>
+                    <ServerError />
                 </Modal>
                 <Modal
                     isOpen={modalIsOpen}
@@ -299,7 +388,7 @@ export const RegisterVeterinary = () => {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <WarnRequest boolBotoes={'hidden'} description="Erro ao cadastrar, veja se todas as informações estão corretas"/>
+                    <WarnRequest boolBotoes={'hidden'} description="Erro ao cadastrar, veja se todas as informações estão corretas" />
                 </Modal>
                 <Modal
                     isOpen={emailModal}
@@ -308,7 +397,7 @@ export const RegisterVeterinary = () => {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <WarnRequest boolBotoes={'hidden'} description={`${wordUsed} já utilizado, escolha outro`}/>
+                    <WarnRequest boolBotoes={'hidden'} description={`${wordUsed} já utilizado, escolha outro`} />
                 </Modal>
                 <Modal
                     isOpen={sucess}
@@ -317,7 +406,7 @@ export const RegisterVeterinary = () => {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <PetAddSucess aparecer='hidden' title="Sucesso" what="Novo usuário criado com sucesso!"/>
+                    <PetAddSucess aparecer='hidden' title="Sucesso" what="Novo usuário criado com sucesso!" />
                 </Modal>
 
             </div>

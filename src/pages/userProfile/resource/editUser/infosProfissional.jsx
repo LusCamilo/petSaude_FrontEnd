@@ -99,18 +99,27 @@ export const Prossionais = (props) => {
 
         const body = JSON.stringify(json)
 
-        if (event.target.checked) {
-            if (index === -1) {
+        console.log(body);
+
+        try {
+            if (event.target.checked) {
+
                 await updateSpecialities(body)
-                setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+                
+                if (index === -1) {
+                    setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+                }
+            } else {
+                await deleteSpecialties(body)
+
+                if (index !== -1) {
+                    setCheckedBoxes((prevState) =>
+                        prevState.filter((item) => item.id !== parseInt(id))
+                    );
+                }
             }
-        } else {
-            await deleteSpecialties(body)
-            if (index !== -1) {
-                setCheckedBoxes(
-                    checkedBoxes.filter((item) => item.id !== parseInt(id))
-                );
-            }
+        } catch (error) {
+            console.error('Error:', error);
         }
     };
 
@@ -129,19 +138,22 @@ export const Prossionais = (props) => {
         };
 
         const body = JSON.stringify(json);
-
-        if (event.target.checked) {
-            if (index === -1) {
+        try {
+            if (event.target.checked) {
                 await updateSpecialitiesPet(body);
-                setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+                if (index === -1) {
+                    setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+                }
+            } else {
+                await deleteSpecialtiesPet(body);
+                if (index !== -1) {
+                    setCheckedBoxes((prevState) =>
+                        prevState.filter((item) => item.id !== parseInt(id))
+                    );
+                }
             }
-        } else {
-            await deleteSpecialtiesPet(body);
-            if (index !== -1) {
-                setCheckedBoxes((prevState) =>
-                    prevState.filter((item) => item.id !== parseInt(id))
-                );
-            }
+        } catch (error) {
+            console.error('Error:', error);
         }
     };
 

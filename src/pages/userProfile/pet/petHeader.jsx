@@ -22,7 +22,6 @@ export const PetHeader = () => {
 
   useEffect(() => {
     if (decoded) {
-      console.log(decoded)
       setUserNome(decoded.userName);
       setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
       if (decoded.userName === '')
@@ -123,15 +122,11 @@ export const PetHeader = () => {
             src={userFoto}
           />
         </Link>
-<<<<<<< HEAD
-        {/* <Link to="../login">
-=======
         <Link to="../../login">
->>>>>>> 6550f53 (adjusts routes)
           <p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
             {userNome}
           </p>
-        </Link> */}
+        </Link>
       </div>
     </header>
   //   </>
