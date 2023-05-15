@@ -34,13 +34,10 @@ export const HomePage = () => {
         <div className="flex flex-col gap-5 content-center bg-purple-600">
           <p className="font-bold text-2xl">Tela em produção</p>
           <Link to="/profile/configuration">Upgrade User</Link>
-<<<<<<< HEAD
           <Link to="/profile/pet/Config"> Pet Config</Link>
           <Link to="/profile/editProfile">editProfile</Link>
-=======
           <Link to="/profile/pet/edit"> Pet Config</Link>
           <Link to="/profile/edit-profissionais">editProfile</Link>
->>>>>>> f11ffa02208f5721005e29e8aab90f4a86ce69bd
           <Link to="/profile/veterinary">profile veterinary</Link>
           <Link to="/profile/appointment-view">AppointmentView</Link>
           <Link to="/home">Home principal</Link>

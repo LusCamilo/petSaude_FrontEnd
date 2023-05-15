@@ -20,7 +20,10 @@ export const Appointment = (props) => {
     const [petId, setPetId] = useState(0)
     const [petsAll, setPetAll] = useState([]);
     const [petsName, setPetName] = useState('Nome');
+    const [ThereArentPets, setThereArentPets] = useState('hidden');
+    const [ThereArePets, setThereArePets] = useState('flex');
     const [petsEspecie, setPetEspecie] = useState('Tamanho');
+
     const [petImage, setPetImage] = useState(Monkey)
     const { register, handleSubmit, formState: errors, setValue } = useForm()
 
@@ -45,9 +48,13 @@ export const Appointment = (props) => {
             const pets = await getAllPets(decoded.id);
             if (pets == null || pets == undefined || pets == []) {
                 setPetAll([{ name: "Não foram encontrados pets" }]);
+                setThereArentPets('flex')
+                setThereArePets('hidden')
             } else setPetAll(pets)
           } else {
             setPetAll([ "Não foram encontrados pets" ]);
+            setThereArentPets('flex')
+            setThereArePets('hidden')
           }
         };
         fetchData();
@@ -137,7 +144,7 @@ export const Appointment = (props) => {
             <div className='p-2 md:p-20  w-full'>
                 <h1 className='flex justify-start text-3xl md:text-5xl font-semibold pt-2 md:pt-10'>Selecione o animal</h1>
                 <div className='flex justify-between md:pt-10 w-full  '>
-                <div className='flex flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400'>
+                <div className={`${ThereArePets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
                     {petsAll.map(pet => {
                         if (pet.photo == null || pet.photo == undefined || pet.photo == '') {
                             return(<button
@@ -164,6 +171,14 @@ export const Appointment = (props) => {
                         }
                         
                     })}
+                    </div>
+                    <div className={`${ThereArentPets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
+                    
+                       
+                        <div className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'>  
+                                <img className='w-32' src={Dog} alt="Pet ainda não há foto" />
+                                <p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>Voê não possui pets</p>
+                        </div>
                     </div>
                     <div className='hidden md:flex justify-end pl-20'>
                     <img className=' w-56 rounded-full' src={petImage}></img>

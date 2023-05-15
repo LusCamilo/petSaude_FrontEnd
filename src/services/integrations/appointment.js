@@ -1,5 +1,5 @@
 import {BASE_URL} from "../../lib/_base_url";
-import {HELP_URL} from "../../lib/_base_url";
+
 
 const token = localStorage.getItem('__user_JWT')
 
@@ -23,7 +23,7 @@ export async function appointmentAdd(appointmentInfos) {
 
 export async function getAppointments(idPeople) {
 
-  const url = `${HELP_URL}id/veterinary?userID=${idPeople}`
+  const url = `${BASE_URL}id/veterinary?userID=${idPeople}`
   console.log(url);
   return await fetch(url, {
     method: 'GET',
@@ -37,7 +37,7 @@ export async function getAppointments(idPeople) {
 
 export async function recusarAppointments(idAppointment) {
 
-  const url = `${HELP_URL}appointment/${idAppointment}/validate?status=DECLINED`
+  const url = `${BASE_URL}appointment/${idAppointment}/validate?status=DECLINED`
   console.log(url);
   const response = await fetch(url, {
     method: 'PUT',
@@ -51,7 +51,7 @@ export async function recusarAppointments(idAppointment) {
 
 export async function aceitadoAppointments(idAppointment) {
 
-  const url = `${HELP_URL}appointment/${idAppointment}/validate?status=SCHEDULED`
+  const url = `${BASE_URL}appointment/${idAppointment}/validate?status=SCHEDULED`
   console.log(url);
   const response = await fetch(url, {
     method: 'PUT',
@@ -65,7 +65,7 @@ export async function aceitadoAppointments(idAppointment) {
 
 export async function canceladoAppointments(idAppointment) {
 
-  const url = `${HELP_URL}appointment/${idAppointment}/validate?status=CANCEL`
+  const url = `${BASE_URL}appointment/${idAppointment}/validate?status=CANCEL`
   console.log(url);
   const response = await fetch(url, {
     method: 'PUT',
