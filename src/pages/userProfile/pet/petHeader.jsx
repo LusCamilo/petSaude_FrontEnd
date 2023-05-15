@@ -11,7 +11,7 @@ import Lock from "../../../assets/svg/Lock.svg";
 import { HomeWeb } from "../../home/HomeWeb";
 import jwt_decode from "jwt-decode";
 import Logout from "../../../assets/svg/Logout.svg";
-import Notifications from "../../../utils/notifications";
+//import Notifications from "../../../utils/notifications";
 
 export const PetHeader = () => {
   const [userNome, setUserNome] = useState("");
@@ -22,11 +22,15 @@ export const PetHeader = () => {
 
   useEffect(() => {
     if (decoded) {
+      console.log(decoded);
       setUserNome(decoded.userName);
-      setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
-      if (decoded.userName === '')
-        setLinkTo('../profile/edit-profile')
-      setLinkTo('../profile')
+      setUserFoto(
+        decoded.profilePhoto !== ""
+          ? decoded.profilePhoto
+          : "https://www.svgrepo.com/show/335455/profile-default.svg"
+      );
+      if (decoded.userName === "") setLinkTo("../profile/edit-profile");
+      setLinkTo("../profile");
     }
   }, [decoded, token]);
 
@@ -113,14 +117,14 @@ export const PetHeader = () => {
             </ul>
           </div>
         </button>
-        <Link to='../home' className=" md:pt-1 text-1xl sm:flex justify-start font-bold my-0 mx-auto">
+        <Link
+          to="../home"
+          className=" md:pt-1 text-1xl sm:flex justify-start font-bold my-0 mx-auto"
+        >
           PetSaúde
         </Link>
         <Link to={linkTo} className=" md:flex flex-row gap-2">
-          <img
-            className="w-14 h-14 p-1 md:p-0 rounded-full"
-            src={userFoto}
-          />
+          <img className="w-14 h-14 p-1 md:p-0 rounded-full" src={userFoto} />
         </Link>
         <Link to="../../login">
           <p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
@@ -129,15 +133,15 @@ export const PetHeader = () => {
         </Link>
       </div>
     </header>
-  //   </>
+    //   </>
 
-  // <p
-  //   className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
-  // >
-  //   {userNome}
-  // </p>
-  //         </Link >
-  //       </div >
-  //     </header >
+    // <p
+    //   className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
+    // >
+    //   {userNome}
+    // </p>
+    //         </Link >
+    //       </div >
+    //     </header >
   );
 };
