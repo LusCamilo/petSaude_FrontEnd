@@ -11,7 +11,7 @@ import Person from '../../../assets/svg/Person.svg';
 import Lock from '../../../assets/svg/Lock.svg';
 import jwt_decode from "jwt-decode";
 // import { PetHeader } from "../../profile/pet/petHeader";
-import Logout from "../../../assets/svg/Logout.svg";
+// import Logout from "../../../assets/svg/Logout.svg";
 
 export const HeaderInfo = (props) => {
 
@@ -38,7 +38,7 @@ export const HeaderInfo = (props) => {
                 <div className="w-5 h-1 bg-gray-600 mb-1"></div>
                 <div className="w-5 h-1 bg-gray-600 mb-1"></div>
                 <div className="absolute top-0 -left-full opacity-0 h-screen w-8/12 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300">
-                  <h2 className="pt-10 pl-5 text-left  text-2xl font-semibold">Menu</h2>
+                  <h2 className="pt-10 text-left text-2xl font-semibold">Menu</h2>
                   <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                     <li className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                       <img src={Home} className="pr-3"></img>
@@ -67,8 +67,8 @@ export const HeaderInfo = (props) => {
                     </li>
                     <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                     <img src={Calendary} className="pr-3"></img>
-                    <Link to="/home/appointmentMenu"></Link>
-                      Consultas
+                    <Link to="/home/appointmentMenu"> Consultas</Link>
+                    
                     </li>
                   </ul>
                 <h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">Configurações</h3>
@@ -159,7 +159,7 @@ export const HeaderInfo = (props) => {
                         </ul>
                         <div className="menu">
                             <span className="bar"></span>
-                            <span className="b`ar"></span>
+                            <span className="bar"></span>
                             <span className="bar"></span>
                         </div>
                     </nav>

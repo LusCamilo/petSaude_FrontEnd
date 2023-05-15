@@ -13,8 +13,9 @@ export async function registerUser(userInfos) {
             },
             body: JSON.stringify(userInfos)
         })
-       // console.log( await response);
-        return await response.json()
+
+        return response.json()
+
     } catch (err) {
         console.log(err);
     }

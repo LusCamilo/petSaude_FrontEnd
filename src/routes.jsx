@@ -42,6 +42,7 @@ export const Rotas = () => {
 
         <Route path="/pet/petHeader" element={<PetHeader />} />
         <Route path="/pet/PetConfig" element={<PetConfig />} />
+        
 
         <Route path="/pages/userProfile/resource/editUser/headerConfig" element={<Config  />} />
         <Route path="/pages/userProfile/resource/header" element={<HeaderProfile  />} />
