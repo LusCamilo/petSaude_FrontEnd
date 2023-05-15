@@ -10,13 +10,8 @@ import Calendary from '../../../assets/svg/Calendar today.svg';
 import Person from '../../../assets/svg/Person.svg';
 import Lock from '../../../assets/svg/Lock.svg';
 import jwt_decode from "jwt-decode";
-<<<<<<< HEAD
 // import { PetHeader } from "../../profile/pet/petHeader";
 import Logout from "../../../assets/svg/Logout.svg";
-=======
-// import { Header } from "../../profile/pet/petHeader";
-// // import Logout from "../../../assets/svg/Logout.svg";
->>>>>>> 6550f53 (adjusts routes)
 
 export const HeaderInfo = (props) => {
 

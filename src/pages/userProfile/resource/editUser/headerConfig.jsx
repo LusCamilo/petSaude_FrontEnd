@@ -99,11 +99,7 @@ export const Config = (props) => {
         <div className='content-start pr-44 mt-20 justify-end hidden md:flex'>
           <button className='w-52 h-12 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex' onClick={
             () => {
-<<<<<<< HEAD
               document.location.href = '/profile/edit-profile'
-=======
-              document.location.href = '/pages/userProfile/resource/editUser/responseUser/infosPerson'
->>>>>>> 8046441d19e8afb13841c9336bc595375dfe5c8e
             }
           }>
             <img src={lapis} alt="" />

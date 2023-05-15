@@ -195,10 +195,6 @@ import 'react-toastify/dist/ReactToastify.css';
         </div>
         <form className="m-2 md:m-10 items-center flex flex-row">
             <RadioGroup.Root className="RadioGroupRoot" value={filtro} onChange={handleRadioChange} defaultValue="userName" aria-label="View density">
-<<<<<<< HEAD
-
-=======
->>>>>>> 8046441d19e8afb13841c9336bc595375dfe5c8e
               <div className="flex flex-col md:flex-row w-full">
                 <div className="flex flex-row gap-2">
                     <div className="border-2 w-full p-5 rounded-lg items-center"  style={{ display: 'flex', alignItems: 'center' }}>
@@ -217,13 +213,7 @@ import 'react-toastify/dist/ReactToastify.css';
                           Procurar por cidade
                         </label>
                     </div>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
  {/* 2bd73f7 (responsive search) */}
->>>>>>> 6550f53 (adjusts routes)
->>>>>>> 8046441d19e8afb13841c9336bc595375dfe5c8e
                   </div>
                   <div className="flex flex-row gap-2">
                   <div className="border-2 w-full p-5 rounded-lg" style={{ display: 'flex', alignItems: 'center' }}>
