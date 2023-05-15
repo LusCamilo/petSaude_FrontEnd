@@ -93,7 +93,6 @@ export const InfosProfile = (props) => {
                                         disabled: false,
                                         class: ''
                                     })
-                                    console.log();
                                 } else {
                                     setClassPassword({
                                         type: 'password',
