@@ -8,7 +8,7 @@ export const AcademicInfos = (props) => {
 
     
     return (
-        <div className='flex flex-col items-center md:w-1/3 mt-4'>
+        <div className='flex flex-col items-center md:w-96 mt-4'>
             <h2 className="text-3xl pt-5 mb-3 w-max">
                 Informações acadêmicas
             </h2>

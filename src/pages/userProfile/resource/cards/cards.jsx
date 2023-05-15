@@ -42,13 +42,13 @@ export const Cards = () => {
         <div className='flex flex-col gap-2 md:px-44'>
             <h2 className='pl-5 text-3xl md:pt-4 pb-3'>Avaliações</h2>
             <div className='flex items-center pl-14 md:pl-0'>
-                <img src={arrow} onClick={handleLeftClick} className='hidden md:flex flex-col border cursor-pointer py-3 px-4 rounded-full drop-shadow-[0px 4px 4px rgba(0, 0, 0, 0.25), 0px 1px 2px rgba(0, 0, 0, 0.3)]' />
+                {/* <img src={arrow} onClick={handleLeftClick} className='hidden md:flex flex-col border cursor-pointer py-3 px-4 rounded-full drop-shadow-[0px 4px 4px rgba(0, 0, 0, 0.25), 0px 1px 2px rgba(0, 0, 0, 0.3)]' /> */}
                 <div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%]' ref={carrossel}>
                     {jsonTeste.map(item =>
                         <Card img={item.img} name={item.name} description={item.description} avaliacao={item.avaliacao} />
                     )}
                 </div>
-                <img src={arrow} onClick={handleRightClick} className='hidden md:flex justify-self-end border rotate-180 cursor-pointer py-3 px-4 rounded-full' />
+                {/* <img src={arrow} onClick={handleRightClick} className='hidden md:flex justify-self-end border rotate-180 cursor-pointer py-3 px-4 rounded-full' /> */}
             </div>
         </div>
     );

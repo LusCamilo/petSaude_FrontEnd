@@ -95,8 +95,9 @@ export const Login = () => {
                         className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-2xl rounded lg:mt-12 mt-6 transition py-3 hover:bg-[#78A890]'>Entrar
                     </button>
                 </form>
-                <p>Ainda não tem uma conta?<Link to='/register'
-                    className='pl-1 font-bold'>Cadastre-se</Link></p>
+                <p>Ainda não tem uma conta?
+                    <Link to='/register' className='pl-1 font-bold'>Cadastre-se</Link>
+                    </p>
             </div>
             <div className='absolute w-full h-full overflow-hidden flex items-center justify-end'>
                 <img src={backgroundImage} alt="" className='w-2/3 h-fit opacity-50' />

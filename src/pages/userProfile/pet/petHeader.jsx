@@ -121,9 +121,7 @@ export const PetHeader = () => {
             className="w-14 h-14 p-1 md:p-0 rounded-full"
             src={userFoto}
           />
-        </Link>
-        <Link to="../../login">
-          <p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
+          <p className=" items-center hidden md:flex home-btn text-2xl ml-1 text-black">
             {userNome}
           </p>
         </Link>
