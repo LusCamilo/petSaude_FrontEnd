@@ -256,21 +256,21 @@ export const RegisterVeterinary = () => {
                         openModalEmail(firstWord)
                         setTimeout(function () {
                             closeModalEmail()
-                            document.location.href = '/register'
+                            //document.location.href = '/register'
                         }, 2000);
                     } else {
                         let firstWord = error.split(" ")[0]
                         openModalEmail(firstWord)
                         setTimeout(function () {
                             closeModalEmail()
-                            document.location.href = '/register'
+                            //document.location.href = '/register'
                         }, 2000);
                     }
                 } else {
                     openModal()
                     setTimeout(function () {
                         closeModal()
-                        document.location.href = '/register'
+                        //document.location.href = '/register'
                     }, 2000);
                 }
             }

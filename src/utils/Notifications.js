@@ -27,6 +27,18 @@ class Notifications {
 		})
 	}
 
+	async warning(message) {
+		await this.swal.fire({
+			timer: 2000,
+			icon: "warning",
+			title: <p>{message}</p>,
+			timerProgressBar: false,
+			showConfirmButton: true,
+			showDenyButton: true,
+			showLoaderOnConfirm: true,
+		})
+	}
+
 }
 
 export default new Notifications()

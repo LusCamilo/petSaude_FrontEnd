@@ -99,23 +99,25 @@ export const Appointment = (props) => {
         const appointmentInfos = {
           date: date,
           startsAt: date + ' ' + startsAt,
-          endsAt: date + ' ' + startsAt,
           description: description,
           veterinaryId: parseInt(vet, 10),
           petId: petId,
         }
         const addAppointment = await appointmentAdd(appointmentInfos);
         console.log("aqui");
-        console.log( addAppointment.statusText);
-        if(addAppointment.statusText == 'Created'){
+        console.log( addAppointment);
+        if(addAppointment.response.message == 'Consulta criada com sucesso'){
             showToastMessage("Consulta criada com sucesso")
             setTimeout(function () {
                 props.onCancel()
             }, 2000);
-        } else if(addAppointment.response == "A data não pode ser anterior a atual"){
-            
+        } else if(addAppointment.response == "A data não pode ser anterior a atual" || addAppointment.response == "Já existe uma consulta agendada para o Veterinário nesse horário"){
+            showToastMessage("Erro ao criar a consulta, por causa da data, tente outra")
+            setTimeout(function () {
+                props.onCancel()
+            }, 2000);
         }else {
-            showToastMessage("Erro ao criar a consulta, tente novamente")
+            showToastMessage("Erro ao criar a consulta, tente novamente mais tarde")
             setTimeout(function () {
                 props.onCancel()
             }, 2000);

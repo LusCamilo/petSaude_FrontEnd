@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/verifyLoggedUser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +51,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "copyright",
     "ts.external.directory.path": "/private/var/folders/hc/1stsw54n0cv18d19tqth_p181h77b7/T/AppTranslocation/21428643-1150-4B9E-820D-CE309DC60644/d/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -104,6 +108,7 @@
       <workItem from="1683749528302" duration="6816000" />
       <workItem from="1683719640863" duration="6856000" />
       <workItem from="1683802557160" duration="970000" />
+      <workItem from="1684148412899" duration="8477000" />
     </task>
     <servers />
   </component>

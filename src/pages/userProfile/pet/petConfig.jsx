@@ -174,7 +174,7 @@ export const PetConfig = (props) => {
     }
 
     return (
-        <>
+        <> 
             <PetHeader />
             <main className='static w-full'>
                 <div>
