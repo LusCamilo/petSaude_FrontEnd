@@ -107,13 +107,18 @@ export function RegisterAddress() {
             localStorage.setItem('__user_register_infos', JSON.stringify(userInfos))
             document.location.href = '/register/veterinary'
         } else {
-            console.log(allInfos);
+
+            console.log(JSON.stringify(allInfos));
             const response = await registerUser(allInfos)
+            let error1 = response?.response || "";
+            let error = response?.response?.error || "";
+
             console.log(response);
-            let error1 = response.response ? response.response : ""
-            let error = response.response.error ? response.response.error : ""
+
+
             if (response.response.id) {
-                console.log(response.response.id);
+                
+                localStorage.setItem('__user_id', response.id)
                 showToastMessage()
                 setTimeout(function () {
                     openModalSucess()
@@ -127,7 +132,6 @@ export function RegisterAddress() {
                 console.log(error);
                 console.log(error.includes('já está em uso'))
                 if (error1 == "Email já está em uso" || error1 == "CPF já está em uso") {
-                    console.log("aqui");
                     let firstWord = error1.split(" ")[0]
                     openModalEmail(firstWord)
                     setTimeout(function () {
@@ -142,8 +146,7 @@ export function RegisterAddress() {
                     }, 2000);
                 }
             }
-            localStorage.setItem('__user_id', response.id)
-            //
+            
         }
     }
 

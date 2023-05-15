@@ -175,13 +175,39 @@ export const EditProfile = () => {
                         profilePhoto: profilePhoto
                     }
 
+                    console.log(JSON.stringify(profileInfos))
+
                     if (localStorage.getItem('__user_isVet') == 'true')
-                        updateProfileInfosVeterinary(profileInfos)
+                        updateProfileInfosVeterinary(profileInfos).then(response =>  {
+                            // Verifica se a resposta é um objeto válido
+                            if (response && typeof response === 'object') {
+                                // Verifica se a propriedade 'message' está presente no objeto
+                                if (response.hasOwnProperty('message')) {
+                                    window.alert("Esse email já está sendo utilizado");
+                                }
+                            } else {
+                                window.alert('Dados atualizados com sucesso');
+                                document.location.href = '/profile/configuration'
+                            }
+                        })
+
+
                     else
-                        console.log(updateProfileInfosClient(profileInfos))
+                        updateProfileInfosClient(profileInfos).then(response => {
+                            // Verifica se a resposta é um objeto válido
+                            if (response && typeof response === 'object') {
+                                // Verifica se a propriedade 'message' está presente no objeto
+                                if (response.hasOwnProperty('message')) {
+                                    window.alert("Esse email já está sendo utilizado");
+                                }
+                            } else {
+                                window.alert('Dados atualizados com sucesso');
+                                document.location.href = '/profile/configuration'
+                            }
+                        })
 
 
-                    document.location.href = '/profile/edit-security'
+
 
                 }}>
                     <img src={check} className='w-10 h-10 my-5 mx-5' />

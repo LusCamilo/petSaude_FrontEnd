@@ -52,7 +52,7 @@ const customStyles = {
 
 
 
-export const PetAdd = (props) => {
+export const PetAdd = () => {
 
     const [name, setName] = useState("Nome")
     function newName(event) {

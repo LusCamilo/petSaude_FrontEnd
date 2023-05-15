@@ -24,10 +24,7 @@ export const Pessoais = (props) => {
         setCpf(event.target.value);
     }
     function handleRgChange(event) {
-        setRg(event.target.value);
-        console.log(
-            event.target.value
-        );
+        setRg(event.target.value)
     }
     function handleCelularChange(event) {
         setCelular(event.target.value);
@@ -36,6 +33,7 @@ export const Pessoais = (props) => {
         setTelefone(event.target.value);
     }
     function handleTextChange(event) {
+        console.log(event.target.value);
         setText(event.target.value);
     }
 
@@ -61,8 +59,8 @@ export const Pessoais = (props) => {
 
 
     const handleSubmit = async () => {
+        let response
         let infos
-
 
         infos = {
             personName: `${name} ${lastName}`,
@@ -73,33 +71,36 @@ export const Pessoais = (props) => {
             bio: text
         }
 
-        let response
+        console.log(infos);
+        // if (text == null || rg == null) {
+        //     infos = {
+        //         personName: `${name} ${lastName}`,
+        //         cpf: cpf,
+        //         rg: "",
+        //         cellphoneNumber: celular,
+        //         phoneNumber: telefone,
+        //         bio: ""
+        //     }
+        // }
 
-        if (text == null || text == null) {
-            infos = {
-                personName: `${name} ${lastName}`,
-                cpf: cpf,
-                rg: "",
-                cellphoneNumber: celular,
-                phoneNumber: telefone,
-                bio: ""
+        if ((localStorage.getItem('__user_isVet')) == 'true') {
+            response = await updatePersonalInfosVeterinary(infos)
+            window.alert(response.message)
+            window.location.reload()
+        } else {
+            response = await updatePersonalInfosClient(infos)
+            if (response.response != 'Item atualizado com sucesso no Banco de Dados') {
+                if (response.response.meta.target == "tbl_client_rg_key") {
+                    window.alert("Rg já está em uso")
+                    window.location.reload()
+                }
+            }else{
+                window.alert(response.response)
+                window.location.reload()
             }
         }
 
-        if ((localStorage.getItem('__user_isVet')) == 'true')
-            console.log(
 
-                response = await updatePersonalInfosVeterinary(infos)
-            );
-        else
-            console.log(
-                response = await updatePersonalInfosClient(infos)
-
-            );
-
-        if (response.response != 'Item atualizado com sucesso no Banco de Dados')
-            window.alert('ops, algo deu errado ao atualizar os dados')
-        else window.alert('Item atualizado com sucesso no Banco de Dados')
 
 
     }
@@ -114,37 +115,37 @@ export const Pessoais = (props) => {
                             <div className=''>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Primeiro nome
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleNameChange} defaultValue={name} className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleNameChange} onChange={handleNameChange} defaultValue={name} className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className='flex justify-center'>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Sobrenome
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleLastNameChange} defaultValue={lastName} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleLastNameChange} onChange={handleLastNameChange} defaultValue={lastName} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className=''>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     CPF
-                                    <input disabled={true} type="text" name="firstName" onChange={handleCpfChange} defaultValue={cpf} className={`bg-transparent border-none text-2xl ${personalInfos.textColor}`} />
+                                    <input disabled={true} type="text" name="firstName" onBlurCapture={handleCpfChange} onChange={handleCpfChange} defaultValue={cpf} className={`bg-transparent border-none text-2xl ${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className='flex justify-center'>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     RG
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleRgChange} defaultValue={rg} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleRgChange} onChange={handleRgChange} defaultValue={rg} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className=''>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Celular
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleCelularChange} defaultValue={celular} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleCelularChange} onChange={handleCelularChange} defaultValue={celular} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
                                 </label>
                             </div>
                             <div className='flex justify-center'>
                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                     Telefone
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onChange={handleTelefoneChange} defaultValue={telefone} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+                                    <input disabled={personalInfos.disabled} onBlurCapture={handleTelefoneChange} type="text" name="firstName" onChange={handleTelefoneChange} defaultValue={telefone} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
                                 </label>
                             </div>
                         </form>
@@ -162,9 +163,7 @@ export const Pessoais = (props) => {
                                 if (window.confirm('deseja atualizar os seus dados pessoais?')) {
 
                                     setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
-                                    handleSubmit().then(
-                                        // window.location.reload()
-                                    )
+                                    handleSubmit()
                                 }
                             }
 
@@ -176,7 +175,7 @@ export const Pessoais = (props) => {
                 </div>
                 <div className='w-full sm:mr-10'>
                     <p className='flex flex-col text-xl text-[#A9A9A9] pt-3 sm:pt-20 mr-0 sm:mr-20 w-full sm:w-10/12 '> Biografia
-                        <TextareaAutosize id="my-textarea" onChange={handleTextChange} defaultValue={text} className="block w-full p-2 rounded resize-none" />
+                        <TextareaAutosize disabled={personalInfos.disabled} id="my-textarea" onBlurCapture={handleTextChange} onChange={handleTextChange} defaultValue={text} className="block w-full p-2 rounded resize-none" />
                     </p>
                 </div>
             </section>

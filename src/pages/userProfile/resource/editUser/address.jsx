@@ -36,7 +36,7 @@ export const Address = (props) => {
                     <div className=''>
                         <label className='flex flex-col text-xl text-[#A9A9A9]'>
                             CEP
-                            <input disabled={address.disabled} type="text" onChange={handleCepChange} name="firstName" defaultValue={cep} className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
+                            <input disabled={address.disabled} type="text" onBlurCapture={handleCepChange} onChange={handleCepChange} name="firstName" defaultValue={cep} className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
                         </label>
                     </div>
                     <div className='flex justify-start md:ml-24'>
@@ -77,22 +77,30 @@ export const Address = (props) => {
                         } else {
                             setaddress({ disabled: true, textColor: 'opacity-50' })
 
-                            if (window.confirm('deseja atualizar os seus dados pessoais?')) {
-                                props.viaCep(cep).then(response => {
-                                    if (response != { 'erro': 'true' } && response != Error) {
-
-                                        let zipCode  = { zipCode: cep, number: `${props.number}`, complement: complement }
-
-                                        if (complement == null) {
-                                            zipCode = { zipCode: cep, number: `${props.number}`, complement: '' }
-                                        }
-
-                                        updateAddress(zipCode, props.id)
-                                            .then((response) => console.log(response.response))
-                                            .then(window.location.reload())
-
-                                    }
-                                })
+                            if (window.confirm('Deseja atualizar os seus dados pessoais?')) {
+                                if (cep !== '') {
+                                    props.viaCep(cep)
+                                        .then((response) => {
+                                            if (!response.erro) {
+                                                console.log(response);
+                                                let zipCode = { zipCode: cep, number: `${props.number}`, complement: complement };
+                                                updateAddress(zipCode, props.id)
+                                                    .then((response) => {
+                                                        window.alert(response.response);
+                                                        window.location.reload();
+                                                    })
+                                            }else{
+                                                window.alert('É necessário fornecer um CEP válido')
+                                                window.location.reload();
+                                            }
+                                        })
+                                        .catch(() => {
+                                            window.alert('É necessário fornecer um CEP válido');
+                                            window.location.reload();
+                                        });
+                                } else {
+                                    window.alert('É necessário fornecer um CEP');
+                                }
                             }
                         }
                     }}>

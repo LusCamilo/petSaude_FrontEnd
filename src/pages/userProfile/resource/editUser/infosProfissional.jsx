@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import lapis from "../../../../assets/svg/pencil.svg"
 import { set, useForm } from 'react-hook-form';
 import { updateProfessionalInfos } from '../../../../services/integrations/user';
-import { getSpecialties, getSpecialtiesById } from '../../../../services/integrations/specialties';
+import { deleteSpecialties, getSpecialties, getSpecialtiesById, updateSpecialities } from '../../../../services/integrations/specialties';
 import { deleteSpecialtiesPet, getSpecialtiesPet, getSpecialtiesPetById, updateSpecialitiesPet } from '../../../../services/integrations/specialtiesPet';
 import { logDOM } from '@testing-library/react';
 
@@ -52,7 +52,6 @@ export const Prossionais = (props) => {
     const [especialidadesPetVet, setEspecialidadesPetVet] = useState([])
 
     const [checkedBoxes, setCheckedBoxes] = useState([]);
-    const [checkedBoxesPet, setCheckedBoxesPet] = useState([]);
 
     useEffect(() => {
 
@@ -82,20 +81,44 @@ export const Prossionais = (props) => {
 
     }, [props.area, props.formacao, props.instituicao, props.crmv, props.dataFormacao, props.dataInicioAtuacao])
 
-    const handleCheckBoxEspecialidadesChange = (event) => {
+    const handleCheckBoxEspecialidadesChange = async (event) => {
         const { id } = event.target;
         const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
 
-        if (event.target.checked) {
-            if (index === -1) {
-                setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+        const storage = localStorage.getItem('__user_id');
+
+        let json = {
+            specialties: [
+                {
+                    veterinaryId: parseInt(storage),
+                    specialtiesId: parseInt(id)
+                }
+            ]
+        }
+
+        const body = JSON.stringify(json)
+
+        console.log(body);
+
+        try {
+            if (event.target.checked) {
+
+                await updateSpecialities(body)
+                
+                if (index === -1) {
+                    setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+                }
+            } else {
+                await deleteSpecialties(body)
+
+                if (index !== -1) {
+                    setCheckedBoxes((prevState) =>
+                        prevState.filter((item) => item.id !== parseInt(id))
+                    );
+                }
             }
-        } else {
-            if (index !== -1) {
-                setCheckedBoxes(
-                    checkedBoxes.filter((item) => item.id !== parseInt(id))
-                );
-            }
+        } catch (error) {
+            console.error('Error:', error);
         }
     };
 
@@ -114,19 +137,22 @@ export const Prossionais = (props) => {
         };
 
         const body = JSON.stringify(json);
-
-        if (event.target.checked) {
-            if (index === -1) {
+        try {
+            if (event.target.checked) {
                 await updateSpecialitiesPet(body);
-                setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+                if (index === -1) {
+                    setCheckedBoxes([...checkedBoxes, { id: parseInt(id) }]);
+                }
+            } else {
+                await deleteSpecialtiesPet(body);
+                if (index !== -1) {
+                    setCheckedBoxes((prevState) =>
+                        prevState.filter((item) => item.id !== parseInt(id))
+                    );
+                }
             }
-        } else {
-            await deleteSpecialtiesPet(body);
-            if (index !== -1) {
-                setCheckedBoxes((prevState) =>
-                    prevState.filter((item) => item.id !== parseInt(id))
-                );
-            }
+        } catch (error) {
+            console.error('Error:', error);
         }
     };
 
@@ -208,12 +234,12 @@ export const Prossionais = (props) => {
                     <div className='flex flex-col gap-10'>
                         <div className='w-full flex flex-col items-start'>
                             <span className='font-normal text-xl text-[#A9A9A9]'>Especialidades</span>
-                            <div className='flex flex-wrap pt-2 md:grid md:grid-rows-2 grid-flow-col w-full  gap-5'>
+                            <div className='flex flex-wrap pt-2 md:grid md:grid-rows-2 grid-flow-col w-full  gap-5' onClick={handleCheckBoxEspecialidadesChange}>
                                 {especialidades.map((item) => {
                                     const isChecked = especialidadesVet.findIndex(vetItem => vetItem.specialitiesId === item.id) !== -1;
                                     return (
-                                        <label id={item.id} className='flex gap-2 items-center text-2xl'>
-                                            <input className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} onClick={handleCheckBoxEspecialidadesChange} />
+                                        <label className='flex gap-2 items-center text-2xl'>
+                                            <input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} />
                                             {item.name}
                                         </label>
                                     )

@@ -34,6 +34,11 @@ export const HomePage = () => {
         <div className="flex flex-col gap-5 content-center bg-purple-600">
           <p className="font-bold text-2xl">Tela em produção</p>
           <Link to="/profile/configuration">Upgrade User</Link>
+<<<<<<< HEAD
+          <Link to="/profile/pet/Config"> Pet Config</Link>
+          <Link to="/profile/editProfile">editProfile</Link>
+=======
+>>>>>>> 6b92143862ad442bb84a7a9c2f7fc34bada61085
           <Link to="/profile/pet/edit"> Pet Config</Link>
           <Link to="/profile/edit-profissionais">editProfile</Link>
           <Link to="/profile/veterinary">profile veterinary</Link>

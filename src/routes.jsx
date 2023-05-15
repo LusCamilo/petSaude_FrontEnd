@@ -50,7 +50,6 @@ export const Rotas = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/register/address" element={<RegisterAddress />} />
         <Route path="/register/veterinary" element={<RegisterVeterinary />} />
-
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/veterinary" element={<VeterinaryProfile />} />
         <Route path="/profile/configuration" element={<UpgradeUser />} />
