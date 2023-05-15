@@ -11,7 +11,7 @@ import Lock from "../../../assets/svg/Lock.svg";
 import { HomeWeb } from "../../home/HomeWeb";
 import jwt_decode from "jwt-decode";
 import Logout from "../../../assets/svg/Logout.svg";
-import Notifications from "../../../utils/notifications";
+import Notifications from "../../../utils/Notifications";
 
 export const PetHeader = (props) => {
   const [userNome, setUserNome] = useState("");

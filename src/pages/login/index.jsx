@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { login, signup } from "../../services/integrations/authentication";
-import Notifications from "../../utils/notifications";
+import Notifications from "../../utils/Notifications";
 
 const setUserIdentificationInfos = async () => {
 
