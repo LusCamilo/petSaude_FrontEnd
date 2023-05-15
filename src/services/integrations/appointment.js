@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 import {BASE_URL} from "../../lib/_base_url";
-
-=======
-import {BASE_URL, LOCAL_URL} from "../../lib/_base_url";
->>>>>>> 6b92143862ad442bb84a7a9c2f7fc34bada61085
 
 const token = localStorage.getItem('__user_JWT')
 

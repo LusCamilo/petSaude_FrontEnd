@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link, Router, Navigate} from "react-router-dom";
 import Footprint from "../../assets/svg/petPaws.svg";
 import Dog from "../../assets/svg/dogAndCat.svg";
 import Doctor from "../../assets/svg/medico 1.svg";
@@ -8,6 +8,7 @@ import Local from "../../assets/svg/localizacao.svg";
 import { PetHeader } from "../userProfile/pet/petHeader";
 import { FaUserNurse } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
+import jwt_decode from "jwt-decode";
 
 export const LandingPage = () => {
   function handleKeyPress(inputValue, event, whenSearch) {
@@ -20,6 +21,14 @@ export const LandingPage = () => {
   }
 
   localStorage.setItem("__Vet_Search", "");
+
+  function verifyLoggedUser() {
+    const jwt = localStorage.getItem('__user_JWT')
+    if (!jwt || jwt === '' || jwt_decode())
+      document.location.href = '/login'
+  }
+
+  verifyLoggedUser()
 
   return (
     <section className="h-screen flex flex-col justify-normal overflow-hidden">
