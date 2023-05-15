@@ -39,11 +39,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
     //const [filtro, setFiltro] = useState("userName");
       const onSearch = async (data) => {
-        console.log("Neste");
         localStorage.setItem("__Vet_Search", data.search)
         try {
           if (data.search === "") {
-
               let response = await getAllVets();
               let result = response.response;
               let json = Object.values(result);
@@ -54,8 +52,10 @@ import 'react-toastify/dist/ReactToastify.css';
           let response = await getUsers(data.search, ondeProcurar);
           let result = response.response;
           let json
+          console.log(response);
+          console.log("aaa");
           console.log(result);
-          if (result === "Nenhum veterinário atende aos filtros de pesquisa" ) {
+          if (result === "Nenhum veterinário atende aos filtros de pesquisa"  || result.error.includes("Error") ) {
             json = []
             showToastMessage()
           } else {
@@ -149,7 +149,7 @@ import 'react-toastify/dist/ReactToastify.css';
               item.userName.toLowerCase().includes(data.search.toLowerCase())
           );
           setUmCorteRapidao(inputSearch)
-          if (json === []) {
+          if (json == []) {
             showToastMessage()
           }
           setVets(json);

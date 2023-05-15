@@ -30,7 +30,7 @@ const storage = getStorage(app);
 
 const customStyles = {
     content: {
-        top: '50%',
+        top: '50%', 
         left: '50%',
         right: 'auto',
         bottom: 'auto',
@@ -157,7 +157,7 @@ export const PetAdd = () => {
                 <div>
                     <div className='flex justify-start p-3 sm:p-10 flex-row items-center content-center align-middle h-30 sm:h-80'>
                         <div className="w-56 sm:h-48 sm:40 md:w-82 rounded-full ">
-                            <input type="file" accept="image/jpeg, svg" name="photo" id="photoProfile" className="hidden" onChange={handleFileInputChange} />
+                            <input type="file" accept="image/*" name="photo" id="photoProfile" className="hidden" onChange={handleFileInputChange} />
                             <label htmlFor='photoProfile' style={{ backgroundImage: `url(${selectedFile})` }}
                                 className='flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
                                 <img className="rounded-full" src={addMais} />
