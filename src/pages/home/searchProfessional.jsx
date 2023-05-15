@@ -213,7 +213,6 @@ import 'react-toastify/dist/ReactToastify.css';
                           Procurar por cidade
                         </label>
                     </div>
- {/* 2bd73f7 (responsive search) */}
                   </div>
                   <div className="flex flex-row gap-2">
                   <div className="border-2 w-full p-5 rounded-lg" style={{ display: 'flex', alignItems: 'center' }}>
