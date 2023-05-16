@@ -83,12 +83,24 @@ export const Address = (props) => {
                                         .then((response) => {
                                             if (!response.erro) {
                                                 console.log(response);
-                                                let zipCode = { zipCode: cep, number: `${props.number}`, complement: complement };
-                                                updateAddress(zipCode, props.id)
-                                                    .then((response) => {
+                                                if (response.complemento !== null) {
+                                                    let zipCode = { zipCode: cep, number: `${props.number}`, complement: complement };
+                                                    updateAddress(zipCode, props.id)
+                                                        .then(response => {
+                                                            console.log(response.response);
+                                                            window.alert(response.response);
+                                                            window.location.reload();
+                                                        })
+                                                }else{
+                                                    let zipCode = { zipCode: cep, number: `${props.number}`, complement: "" };
+                                                    updateAddress(zipCode, props.id)
+                                                    .then(response => {
+                                                        console.log(response.response);
                                                         window.alert(response.response);
                                                         window.location.reload();
                                                     })
+                                                }
+
                                             }else{
                                                 window.alert('É necessário fornecer um CEP válido')
                                                 window.location.reload();

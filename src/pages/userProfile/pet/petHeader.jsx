@@ -105,7 +105,15 @@ export const PetHeader = () => {
                 <img src={Lock} className="pr-3 w-14"></img>
                 Segurança
               </button>
-              <div className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6  flex flex-row h-30 text-[#B3261E] font-semibold">
+              <div className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6  flex flex-row h-30 text-[#B3261E] font-semibold" onClick={() => {
+                if (window.confirm('Deseja Sair do seu Perfil?')) {
+                  localStorage.removeItem("__user_JWT")
+                  localStorage.removeItem("__user_id")
+                  localStorage.removeItem("__pet_id")
+                  localStorage.removeItem("__user_isVet")
+                  document.location.href = "/login"
+                }
+              }}>
                 <div className="flex flex-row gap-3 items-center">
                   <img src={Logout} alt="" /> Sair
                 </div>
@@ -129,15 +137,15 @@ export const PetHeader = () => {
         </Link>
       </div>
     </header>
-  //   </>
+    //   </>
 
-  // <p
-  //   className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
-  // >
-  //   {userNome}
-  // </p>
-  //         </Link >
-  //       </div >
-  //     </header >
+    // <p
+    //   className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black"
+    // >
+    //   {userNome}
+    // </p>
+    //         </Link >
+    //       </div >
+    //     </header >
   );
 };
