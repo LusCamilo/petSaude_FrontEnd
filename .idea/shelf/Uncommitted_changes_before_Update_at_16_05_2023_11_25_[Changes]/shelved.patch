@@ -1,0 +1,757 @@
+Index: src/pages/userProfile/resource/editUser/headerConfig.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react';\r\nimport { Link } from \"react-router-dom\";\r\nimport Home from '../../../../assets/svg/Home.svg';\r\nimport Work from '../../../../assets/svg/Work.svg';\r\nimport Info from '../../../../assets/svg/InfoOutline.svg';\r\nimport Calendary from '../../../../assets/svg/Calendar today.svg';\r\nimport Person from '../../../../assets/svg/Person.svg';\r\nimport Lock from '../../../../assets/svg/Lock.svg';\r\nimport lapis from \"../../../../assets/svg/pencil.svg\";\r\nimport configIcon from \"../../../../assets/svg/Icon button.svg\";\r\n\r\nexport const Config = (props) => {\r\n\treturn (\r\n\t\t<section>\r\n\t\t\t<div className=\"flex font-normal items-center justify-between bg-white shadow pl-5 xl:p-10 h-30 text-4xl\">\r\n\t\t\t\t<div className='flex flex-row justify-center align-center text-center'>\r\n\t\t\t\t\t<button className=\"block d:hidden  py-3 md:px-4 mx-2 rounded focus:outline-none hover-bg-gray-200 group \">\r\n\t\t\t\t\t\t<div className=\"w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5\"></div>\r\n\t\t\t\t\t\t<div className=\"w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5\"></div>\r\n\t\t\t\t\t\t<div className=\"w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5\"></div>\r\n\t\t\t\t\t\t<div className=\"absolute top-0 -left-full opacity-0 h-screen w-96 bg-[#ECECEC] border transform\r\n                group-focus:left-0 group-focus:opacity-100 transition-all duration-300\">\r\n\t\t\t\t\t\t\t<h2 className=\"pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl\">Menu</h2>\r\n\t\t\t\t\t\t\t<ul className=\"flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3\">\r\n\t\t\t\t\t\t\t\t<Link to=\"/home\" className=\"flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n\t\t\t\t\t\t\t\t\t<img src={Home} className=\"pr-3  w-14\" alt='Home' />\r\n\t\t\t\t\t\t\t\t\t<p className='pt-2'>Home</p>\r\n\r\n\t\t\t\t\t\t\t\t</Link>\r\n\t\t\t\t\t\t\t\t<Link to=\"/home/search-professionals\" className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n\t\t\t\t\t\t\t\t\t<img src={Work} className=\"pr-3  w-14\" alt='Briefing case'/>\r\n\t\t\t\t\t\t\t\t\t<p className='pt-2'>Profissionais</p>\r\n\t\t\t\t\t\t\t\t</Link>\r\n\t\t\t\t\t\t\t\t{/* <Link to=\"/home/BlogPreview\" className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                  <img src={Blog} className=\"pr-3 w-14\"></img>\r\n                  <p className='pt-2'> Blog</p>\r\n\r\n                </Link> */}\r\n\t\t\t\t\t\t\t\t<Link to=\"/home/aboutUs\" className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n\t\t\t\t\t\t\t\t\t<img src={Info} className=\"pr-3 w-14\" alt='Info' />\r\n\t\t\t\t\t\t\t\t\t<p className='pt-2'> Sobre nós</p>\r\n\r\n\t\t\t\t\t\t\t\t</Link>\r\n\t\t\t\t\t\t\t\t<Link to=\"/profile/appointment-view\" className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n\t\t\t\t\t\t\t\t\t<img src={Calendary} className=\"pr-3  w-14\" alt='Calendary'/>\r\n\t\t\t\t\t\t\t\t\t<p className='pt-2'>Consultas</p>\r\n\t\t\t\t\t\t\t\t</Link>\r\n\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t<h3 className=\"pt-5 pl-5 text-left  text-2xl font-semibold\">Configurações</h3>\r\n\t\t\t\t\t\t\t<ul className=\"flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3\">\r\n\t\t\t\t\t\t\t\t<Link to=\"/profile/veterinar\" className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n\t\t\t\t\t\t\t\t\t<img src={Person} className=\"pr-3 w-14 \" alt='Person' />\r\n\t\t\t\t\t\t\t\t\t<p className='pt-2'>Perfil</p>\r\n\t\t\t\t\t\t\t\t</Link>\r\n\t\t\t\t\t\t\t\t<Link to=\"/profile/edit-profile\" className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full \">\r\n\t\t\t\t\t\t\t\t\t<img src={Lock} className=\"pr-3 w-14\" alt='Lock' />\r\n\t\t\t\t\t\t\t\t\t<p className='pt-2'>Segurança</p>\r\n\t\t\t\t\t\t\t\t</Link>\r\n\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</button>\r\n\r\n\t\t\t\t\t<h1 className=\" text-1xl justify-start font-bold hidden md:flex md:pt-1\">PetSaúde</h1>\r\n\t\t\t\t\t<h1 className=\" text-1xl pt-3 md:pt-5 font-normal flex md:hidden pl-24\">Perfil</h1>\r\n\r\n\t\t\t\t\t<div className=\"flex content-items-center flex-direction md:pt-2 md:hidden pl-20\" >\r\n\t\t\t\t\t\t<img className=\"flex content-center content-items-center h-20 xl:w-2/4  pt-2\" src={configIcon} alt='Configuration gear' />\r\n\t\t\t\t\t</div>\r\n\r\n\t\t\t\t</div>\r\n\t\t\t\t<div className=\" md:flex items-center gap-5\" >\r\n\t\t\t\t\t<img className=\"w-20 pl-5 pt-20 pr-1 md:pt-1 md:w-20 hidden md:flex \" src={props.profilePhoto} alt='Profile' />\r\n\t\t\t\t\t<Link to=\"../login\" className=\"flex home-btn text-2xl\">\r\n\t\t\t\t\t\t{props.personName}\r\n\t\t\t\t\t</Link>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div className='flex justify-between ml-5 md:ml-20'>\r\n\t\t\t\t<div className='flex items-center justify-center md:pt-10'>\r\n\t\t\t\t\t<img className=' md:w-60 md:h-60 rounded-full bg-slate-200' src={props.profilePhoto} alt='Profile' />\r\n\t\t\t\t\t<div className='flex flex-col pl-10 pt-5 '>\r\n\t\t\t\t\t\t<label>\r\n\t\t\t\t\t\t\t<h2 className='bg-transparent border-none text-2xl md:text-5xl font-semibold '>@{props.userName}</h2>\r\n\t\t\t\t\t\t</label>\r\n\t\t\t\t\t\t<label>\r\n\t\t\t\t\t\t\t<h2 className='bg-transparent border-none text-2xl md:text-1xl text-[#A9A9A9]'>{props.personName}</h2>\r\n\t\t\t\t\t\t</label>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div className='content-start pr-44 mt-20 justify-end hidden md:flex'>\r\n\t\t\t\t\t<button className='w-52 h-12 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex' onClick={\r\n\t\t\t\t\t\t() => {\r\n\t\t\t\t\t\t\tdocument.location.href = '/profile/edit-profile'\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}>\r\n\t\t\t\t\t\t<img src={lapis} alt=\"\" />\r\n\t\t\t\t\t\tEditar\r\n\t\t\t\t\t</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</section>\r\n\t)\r\n};\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pages/userProfile/resource/editUser/headerConfig.jsx b/src/pages/userProfile/resource/editUser/headerConfig.jsx
+--- a/src/pages/userProfile/resource/editUser/headerConfig.jsx	(revision 0d689915b66e36bfb45ad5c2755c1182b1d63c99)
++++ b/src/pages/userProfile/resource/editUser/headerConfig.jsx	(date 1684246548214)
+@@ -8,59 +8,21 @@
+ import Lock from '../../../../assets/svg/Lock.svg';
+ import lapis from "../../../../assets/svg/pencil.svg";
+ import configIcon from "../../../../assets/svg/Icon button.svg";
++import {SideBarMenu} from "../../../../components/sideBarMenu";
+ 
+ export const Config = (props) => {
+ 	return (
+ 		<section>
+ 			<div className="flex font-normal items-center justify-between bg-white shadow pl-5 xl:p-10 h-30 text-4xl">
+ 				<div className='flex flex-row justify-center align-center text-center'>
+-					<button className="block d:hidden  py-3 md:px-4 mx-2 rounded focus:outline-none hover-bg-gray-200 group ">
++					<button id='menu-button' className="block d:hidden  py-3 md:px-4 mx-2 rounded focus:outline-none hover-bg-gray-200 group ">
+ 						<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
+ 						<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
+ 						<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
+-						<div className="absolute top-0 -left-full opacity-0 h-screen w-96 bg-[#ECECEC] border transform
+-                group-focus:left-0 group-focus:opacity-100 transition-all duration-300">
+-							<h2 className="pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl">Menu</h2>
+-							<ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+-								<Link to="/home" className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-									<img src={Home} className="pr-3  w-14" alt='Home' />
+-									<p className='pt-2'>Home</p>
+-
+-								</Link>
+-								<Link to="/home/search-professionals" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-									<img src={Work} className="pr-3  w-14" alt='Briefing case'/>
+-									<p className='pt-2'>Profissionais</p>
+-								</Link>
+-								{/* <Link to="/home/BlogPreview" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                  <img src={Blog} className="pr-3 w-14"></img>
+-                  <p className='pt-2'> Blog</p>
+-
+-                </Link> */}
+-								<Link to="/home/aboutUs" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-									<img src={Info} className="pr-3 w-14" alt='Info' />
+-									<p className='pt-2'> Sobre nós</p>
+-
+-								</Link>
+-								<Link to="/profile/appointment-view" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-									<img src={Calendary} className="pr-3  w-14" alt='Calendary'/>
+-									<p className='pt-2'>Consultas</p>
+-								</Link>
+-							</ul>
+-							<h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">Configurações</h3>
+-							<ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+-								<Link to="/profile/veterinar" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-									<img src={Person} className="pr-3 w-14 " alt='Person' />
+-									<p className='pt-2'>Perfil</p>
+-								</Link>
+-								<Link to="/profile/edit-profile" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full ">
+-									<img src={Lock} className="pr-3 w-14" alt='Lock' />
+-									<p className='pt-2'>Segurança</p>
+-								</Link>
+-							</ul>
+-						</div>
+ 					</button>
++					<SideBarMenu />
+ 
+-					<h1 className=" text-1xl justify-start font-bold hidden md:flex md:pt-1">PetSaúde</h1>
++					<Link to='/' className=" text-1xl justify-start font-bold hidden md:flex md:pt-1">PetSaúde</Link>
+ 					<h1 className=" text-1xl pt-3 md:pt-5 font-normal flex md:hidden pl-24">Perfil</h1>
+ 
+ 					<div className="flex content-items-center flex-direction md:pt-2 md:hidden pl-20" >
+@@ -68,12 +30,10 @@
+ 					</div>
+ 
+ 				</div>
+-				<div className=" md:flex items-center gap-5" >
++				<Link to="/profile" className="flex home-btn text-2xl items-center gap-5">
+ 					<img className="w-20 pl-5 pt-20 pr-1 md:pt-1 md:w-20 hidden md:flex " src={props.profilePhoto} alt='Profile' />
+-					<Link to="../login" className="flex home-btn text-2xl">
+-						{props.personName}
+-					</Link>
+-				</div>
++					{props.personName}
++				</Link>
+ 			</div>
+ 			<div className='flex justify-between ml-5 md:ml-20'>
+ 				<div className='flex items-center justify-center md:pt-10'>
+Index: src/pages/userProfile/resource/header.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react';\r\nimport { Link } from \"react-router-dom\";\r\nimport configIcon from \"./img/configIcon.png\";\r\nimport Menu from \"../../../assets/svg/leading-icon.svg\";\r\n\r\n\r\nexport const HeaderProfile = () => {\r\n\treturn (\r\n\r\n\t\t<header className=\" flex font-normal justify-between md:pb-5 md:h-30 text-4xl items-center md:px-12 md:pt-5\">\r\n\t\t\t<img className=\"visible md:h-40 w-20 md:hidden \" src={Menu} alt='Menu' />\r\n\t\t\t<Link to=\"../home\">\r\n\t\t\t\t<h1 className=\" text-1xl hidden xl:flex sm:flex justify-start font-bold\">PetSaúde</h1>\r\n\t\t\t</Link>\r\n\t\t\t<nav>\r\n\t\t\t\t<div className=\"flex justify-between items-center \">\r\n                    <span className=\"text-3xl cursor-pointer mx-2 md:hidden block\">\r\n                        <ion-icon name=\"menu\" onclick=\"Menu(this)\"></ion-icon>\r\n                    </span>\r\n\t\t\t\t</div>\r\n\t\t\t\t<ul className=\"md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 \">\r\n\t\t\t\t\t<li className=\"flex mx-4 my-6 md:my-0 h-fit\">\r\n\t\t\t\t\t\t<Link to=\"/\" className=\"text-2xl hover:text-green-300 duration-500\">Home</Link>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t\t<li className=\"flex mx-4 my-6 md:my-0 h-fit\">\r\n\t\t\t\t\t\t<Link to=\"/home/search-professionals\" className=\"text-2xl hover:text-green-300 duration-500\">Profissionais</Link>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t\t<li className=\"flex mx-4 my-6 md:my-0 h-fit\">\r\n\t\t\t\t\t\t<Link to=\"/home/about-us\" className=\"text-2xl hover:text-green-300 duration-500 flex-row justify-center \">Sobre nós</Link>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t\t<div className=\"menu\">\r\n\t\t\t\t\t<span className=\"bar\"></span>\r\n\t\t\t\t\t<span className=\"bar\"></span>\r\n\t\t\t\t\t<span className=\"bar\"></span>\r\n\t\t\t\t</div>\r\n\t\t\t</nav>\r\n\t\t\t<Link to='/profile/configuration' className=\"flex items-center gap-x-3 justify-center p-2 md:pt-2\" >\r\n\t\t\t\t<img className='flex border justify-center rounded-full p-3' src={configIcon} alt='Configuration gear' />\r\n\t\t\t\t<p className='hidden md:flex xl:flex home-btn text-3xl'>Configurações</p>\r\n\t\t\t</Link>\r\n\t\t</header>\r\n\r\n\t);\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pages/userProfile/resource/header.jsx b/src/pages/userProfile/resource/header.jsx
+--- a/src/pages/userProfile/resource/header.jsx	(revision 0d689915b66e36bfb45ad5c2755c1182b1d63c99)
++++ b/src/pages/userProfile/resource/header.jsx	(date 1684247004019)
+@@ -1,42 +1,26 @@
+ import React from 'react';
+ import { Link } from "react-router-dom";
+-import configIcon from "./img/configIcon.png";
+ import Menu from "../../../assets/svg/leading-icon.svg";
++import {SideBarMenu} from "../../../components/sideBarMenu";
++import {BsFillGearFill} from "react-icons/bs";
+ 
+ 
+ export const HeaderProfile = () => {
+ 	return (
+ 
+-		<header className=" flex font-normal justify-between md:pb-5 md:h-30 text-4xl items-center md:px-12 md:pt-5">
++		<header className="flex font-normal justify-between md:pb-5 md:h-30 text-4xl items-center md:px-12 md:pt-5">
+ 			<img className="visible md:h-40 w-20 md:hidden " src={Menu} alt='Menu' />
+-			<Link to="../home">
++			<button id='menu-button' className="block py-3 md:px-4 mx-2 rounded focus:outline-none hover-bg-gray-200 group ">
++				<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
++				<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
++				<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
++			</button>
++			<SideBarMenu />
++			<Link to="/">
+ 				<h1 className=" text-1xl hidden xl:flex sm:flex justify-start font-bold">PetSaúde</h1>
+ 			</Link>
+-			<nav>
+-				<div className="flex justify-between items-center ">
+-                    <span className="text-3xl cursor-pointer mx-2 md:hidden block">
+-                        <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+-                    </span>
+-				</div>
+-				<ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
+-					<li className="flex mx-4 my-6 md:my-0 h-fit">
+-						<Link to="/" className="text-2xl hover:text-green-300 duration-500">Home</Link>
+-					</li>
+-					<li className="flex mx-4 my-6 md:my-0 h-fit">
+-						<Link to="/home/search-professionals" className="text-2xl hover:text-green-300 duration-500">Profissionais</Link>
+-					</li>
+-					<li className="flex mx-4 my-6 md:my-0 h-fit">
+-						<Link to="/home/about-us" className="text-2xl hover:text-green-300 duration-500 flex-row justify-center ">Sobre nós</Link>
+-					</li>
+-				</ul>
+-				<div className="menu">
+-					<span className="bar"></span>
+-					<span className="bar"></span>
+-					<span className="bar"></span>
+-				</div>
+-			</nav>
+ 			<Link to='/profile/configuration' className="flex items-center gap-x-3 justify-center p-2 md:pt-2" >
+-				<img className='flex border justify-center rounded-full p-3' src={configIcon} alt='Configuration gear' />
++				<BsFillGearFill className='border justify-center rounded-full p-2 w-10 h-10' />
+ 				<p className='hidden md:flex xl:flex home-btn text-3xl'>Configurações</p>
+ 			</Link>
+ 		</header>
+Index: src/pages/userProfile/pet/petHeader.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useState, useEffect } from \"react\";\r\nimport { Link } from \"react-router-dom\";\r\nimport Home from \"../../../assets/svg/Home.svg\";\r\nimport Work from \"../../../assets/svg/Work.svg\";\r\nimport Info from \"../../../assets/svg/InfoOutline.svg\";\r\nimport Calendary from \"../../../assets/svg/Calendar today.svg\";\r\nimport Person from \"../../../assets/svg/Person.svg\";\r\nimport Lock from \"../../../assets/svg/Lock.svg\";\r\nimport jwt_decode from \"jwt-decode\";\r\nimport Logout from \"../../../assets/svg/Logout.svg\";\r\n\r\nexport const PetHeader = () => {\r\n\tconst [userNome, setUserNome] = useState(\"\");\r\n\tconst [userFoto, setUserFoto] = useState(\"\");\r\n\tconst [linkTo, setLinkTo] = useState(\"/login\");\r\n\tconst token = localStorage.getItem(\"__user_JWT\");\r\n\tconst decoded = jwt_decode(token);\r\n\r\n\tuseEffect(() => {\r\n\t\tif (decoded) {\r\n\t\t\tconsole.log(decoded);\r\n\t\t\tsetUserNome(decoded.userName);\r\n\t\t\tsetUserFoto(\r\n\t\t\t\tdecoded.profilePhoto !== \"\"\r\n\t\t\t\t\t? decoded.profilePhoto\r\n\t\t\t\t\t: \"https://www.svgrepo.com/show/335455/profile-default.svg\"\r\n\t\t\t);\r\n\t\t\tif (decoded.userName === \"\") setLinkTo(\"/profile/edit-profile\");\r\n\t\t\tsetLinkTo(\"/profile\");\r\n\t\t}\r\n\t}, [decoded, token]);\r\n\r\n\treturn (\r\n\t\t<header>\r\n\t\t\t<div className=\"flex font-normal items-center justify-between bg-transparent shadowxl:p-10 p-4 h-30 text-4xl md:p-5\">\r\n\t\t\t\t<button className=\" mx-2 rounded focus:outline-none group\">\r\n\t\t\t\t\t<div className=\"w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5\"></div>\r\n\t\t\t\t\t<div className=\"w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5\"></div>\r\n\t\t\t\t\t<div className=\"w-8 h-1.5 bg-[#000] md:w-10 md:h-1.5\"></div>\r\n\t\t\t\t\t<div className=\"absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300 z-10\">\r\n\t\t\t\t\t\t<h2 className=\"pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl\">\r\n\t\t\t\t\t\t\tMenu\r\n\t\t\t\t\t\t</h2>\r\n\t\t\t\t\t\t<ul className=\"flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3\">\r\n\t\t\t\t\t\t\t<button onClick={<Link to=\"/home/home\"></Link>}\r\n\t\t\t\t\t\t\t        className=\"flex items-center hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\"\r\n\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<img src={Home} className=\"pr-3  w-14\" alt='Home' />\r\n\t\t\t\t\t\t\t\tHome\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\tonClick={() => {\r\n\t\t\t\t\t\t\t\t\tdocument.location.href = \"/home/search-professionals\";\r\n\t\t\t\t\t\t\t\t}}\r\n\t\t\t\t\t\t\t\tclassName=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\"\r\n\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<img src={Work} className=\"pr-3  w-14\" alt='Briefing case' />\r\n\t\t\t\t\t\t\t\tProfissionais\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\tonClick={<Link to=\"/home/about-us\"></Link>}\r\n\t\t\t\t\t\t\t\tclassName=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\"\r\n\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<img src={Info} className=\"pr-3 w-14\" alt='Info' />\r\n\t\t\t\t\t\t\t\tSobre nós\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\tonClick={() => {\r\n\t\t\t\t\t\t\t\t\tdocument.location.href = \"/profile/appointment-view\";\r\n\t\t\t\t\t\t\t\t}}\r\n\t\t\t\t\t\t\t\tclassName=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\"\r\n\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<img src={Calendary} className=\"pr-3  w-14\"></img>\r\n\t\t\t\t\t\t\t\tConsultas\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t<h3 className=\"pt-5 pl-5 text-left  text-2xl font-semibold\">\r\n\t\t\t\t\t\t\tConfigurações\r\n\t\t\t\t\t\t</h3>\r\n\t\t\t\t\t\t<ul className=\"flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3\">\r\n\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\tonClick={() => {\r\n\t\t\t\t\t\t\t\t\tdocument.location.href = \"/profile/configuration\";\r\n\t\t\t\t\t\t\t\t}}\r\n\t\t\t\t\t\t\t\tclassName=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\"\r\n\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<img src={Person} className=\"pr-3 w-14\"></img>\r\n\t\t\t\t\t\t\t\tPerfil\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\tonClick={() => {\r\n\t\t\t\t\t\t\t\t\tdocument.location.href = \"/profile/edit-profile\";\r\n\t\t\t\t\t\t\t\t}}\r\n\t\t\t\t\t\t\t\tclassName=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full \"\r\n\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<img src={Lock} className=\"pr-3 w-14\"></img>\r\n\t\t\t\t\t\t\t\tSegurança\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t<div className=\"border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6  flex flex-row h-30 text-[#B3261E] font-semibold\" onClick={() => {\r\n\t\t\t\t\t\t\t\tif (window.confirm('Deseja Sair do seu Perfil?')) {\r\n\t\t\t\t\t\t\t\t\tlocalStorage.removeItem(\"__user_JWT\")\r\n\t\t\t\t\t\t\t\t\tlocalStorage.removeItem(\"__user_id\")\r\n\t\t\t\t\t\t\t\t\tlocalStorage.removeItem(\"__pet_id\")\r\n\t\t\t\t\t\t\t\t\tlocalStorage.removeItem(\"__user_isVet\")\r\n\t\t\t\t\t\t\t\t\tdocument.location.href = \"/login\"\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t}}>\r\n\t\t\t\t\t\t\t\t<div className=\"flex flex-row gap-3 items-center\">\r\n\t\t\t\t\t\t\t\t\t<img src={Logout} alt=\"\" />\r\n\t\t\t\t\t\t\t\t\t<Link>\r\n\t\t\t\t\t\t\t\t\t\tSair\r\n\t\t\t\t\t\t\t\t\t</Link>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</button>\r\n\t\t\t\t<Link\r\n\t\t\t\t\tto=\"../home\"\r\n\t\t\t\t\tclassName=\" md:pt-1 text-1xl sm:flex justify-start font-bold my-0 mx-auto\"\r\n\t\t\t\t>\r\n\t\t\t\t\tPetSaúde\r\n\t\t\t\t</Link>\r\n\t\t\t\t<Link to={linkTo} className=\" md:flex flex-row gap-2\">\r\n\t\t\t\t\t<img className=\"w-14 h-14 p-1 md:p-0 rounded-full\" src={userFoto} />\r\n\t\t\t\t</Link>\r\n\t\t\t\t<Link to=\"../../\">\r\n\t\t\t\t\t<p className=\" items-center hidden md:flex home-btn text-2xl mr-3 text-black\">\r\n\t\t\t\t\t\t{userNome}\r\n\t\t\t\t\t</p>\r\n\t\t\t\t</Link>\r\n\t\t\t</div>\r\n\t\t</header>\r\n\t\t//   </>\r\n\r\n\t\t// <p\r\n\t\t//   className=\" items-center hidden md:flex home-btn text-2xl mr-3 text-black\"\r\n\t\t// >\r\n\t\t//   {userNome}\r\n\t\t// </p>\r\n\t\t//         </Link >\r\n\t\t//       </div >\r\n\t\t//     </header >\r\n\t);\r\n};\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pages/userProfile/pet/petHeader.jsx b/src/pages/userProfile/pet/petHeader.jsx
+--- a/src/pages/userProfile/pet/petHeader.jsx	(revision 0d689915b66e36bfb45ad5c2755c1182b1d63c99)
++++ b/src/pages/userProfile/pet/petHeader.jsx	(date 1684246342438)
+@@ -1,13 +1,7 @@
+ import React, { useState, useEffect } from "react";
+ import { Link } from "react-router-dom";
+-import Home from "../../../assets/svg/Home.svg";
+-import Work from "../../../assets/svg/Work.svg";
+-import Info from "../../../assets/svg/InfoOutline.svg";
+-import Calendary from "../../../assets/svg/Calendar today.svg";
+-import Person from "../../../assets/svg/Person.svg";
+-import Lock from "../../../assets/svg/Lock.svg";
+ import jwt_decode from "jwt-decode";
+-import Logout from "../../../assets/svg/Logout.svg";
++import {SideBarMenu} from "../../../components/sideBarMenu";
+ 
+ export const PetHeader = () => {
+ 	const [userNome, setUserNome] = useState("");
+@@ -18,7 +12,8 @@
+ 
+ 	useEffect(() => {
+ 		if (decoded) {
+-			console.log(decoded);
++			if (decoded.userName === '')
++				document.location.href = '/profile/edit-profile'
+ 			setUserNome(decoded.userName);
+ 			setUserFoto(
+ 				decoded.profilePhoto !== ""
+@@ -33,98 +28,20 @@
+ 	return (
+ 		<header>
+ 			<div className="flex font-normal items-center justify-between bg-transparent shadowxl:p-10 p-4 h-30 text-4xl md:p-5">
+-				<button className=" mx-2 rounded focus:outline-none group">
++				<button id='menu-button' className=" mx-2 rounded focus:outline-none group">
+ 					<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
+ 					<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
+ 					<div className="w-8 h-1.5 bg-[#000] md:w-10 md:h-1.5"></div>
+-					<div className="absolute top-0 -left-full opacity-0 h-full w-96 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300 z-10">
+-						<h2 className="pt-10 pl-5 text-left  text-2xl font-semibold md:font-5xl">
+-							Menu
+-						</h2>
+-						<ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+-							<button onClick={<Link to="/home/home"></Link>}
+-							        className="flex items-center hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
+-							>
+-								<img src={Home} className="pr-3  w-14" alt='Home' />
+-								Home
+-							</button>
+-							<button
+-								onClick={() => {
+-									document.location.href = "/home/search-professionals";
+-								}}
+-								className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
+-							>
+-								<img src={Work} className="pr-3  w-14" alt='Briefing case' />
+-								Profissionais
+-							</button>
+-							<button
+-								onClick={<Link to="/home/about-us"></Link>}
+-								className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
+-							>
+-								<img src={Info} className="pr-3 w-14" alt='Info' />
+-								Sobre nós
+-							</button>
+-							<button
+-								onClick={() => {
+-									document.location.href = "/profile/appointment-view";
+-								}}
+-								className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
+-							>
+-								<img src={Calendary} className="pr-3  w-14"></img>
+-								Consultas
+-							</button>
+-						</ul>
+-						<h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">
+-							Configurações
+-						</h3>
+-						<ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+-							<button
+-								onClick={() => {
+-									document.location.href = "/profile/configuration";
+-								}}
+-								className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
+-							>
+-								<img src={Person} className="pr-3 w-14"></img>
+-								Perfil
+-							</button>
+-							<button
+-								onClick={() => {
+-									document.location.href = "/profile/edit-profile";
+-								}}
+-								className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-5/6 text-left rounded-full "
+-							>
+-								<img src={Lock} className="pr-3 w-14"></img>
+-								Segurança
+-							</button>
+-							<div className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6  flex flex-row h-30 text-[#B3261E] font-semibold" onClick={() => {
+-								if (window.confirm('Deseja Sair do seu Perfil?')) {
+-									localStorage.removeItem("__user_JWT")
+-									localStorage.removeItem("__user_id")
+-									localStorage.removeItem("__pet_id")
+-									localStorage.removeItem("__user_isVet")
+-									document.location.href = "/login"
+-								}
+-							}}>
+-								<div className="flex flex-row gap-3 items-center">
+-									<img src={Logout} alt="" />
+-									<Link>
+-										Sair
+-									</Link>
+-								</div>
+-							</div>
+-						</ul>
+-					</div>
+ 				</button>
++				<SideBarMenu />
+ 				<Link
+-					to="../home"
++					to="/"
+ 					className=" md:pt-1 text-1xl sm:flex justify-start font-bold my-0 mx-auto"
+ 				>
+ 					PetSaúde
+ 				</Link>
+ 				<Link to={linkTo} className=" md:flex flex-row gap-2">
+-					<img className="w-14 h-14 p-1 md:p-0 rounded-full" src={userFoto} />
+-				</Link>
+-				<Link to="../../">
++					<img className="w-14 h-14 p-1 md:p-0 rounded-full" src={userFoto} alt='Profile' />
+ 					<p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
+ 						{userNome}
+ 					</p>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d540ed0f-a197-44a1-b703-00dde3391e36\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_08_14_[Changes]/shelved.patch\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_08_14__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/discord.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/discord.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/App.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/App.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/headers/AuthHeader.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/headers/AuthHeader.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/headers/headerEdits.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/headers/headerEdits.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/sideBarMenu/index.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/sideBarMenu/index.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/index.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/index.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/lib/_base_url.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/lib/_base_url.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/AboutUs.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/AboutUs.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/AppPreview.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/AppPreview.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/Assessments.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/Assessments.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/BlogPreview.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/BlogPreview.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/BlogProfile.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/BlogProfile.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/Home.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/Home.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/HomeWeb.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/HomeWeb.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/LandingPage.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/LandingPage.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/PraisedDoctors.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/PraisedDoctors.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/WebFunction.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/WebFunction.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/chatInfos.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/chatInfos.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/filterName.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/filterName.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/radixSearch.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/radixSearch.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/resource/CardBlog.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/resource/CardBlog.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/resource/CardProfessionals.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/resource/CardProfessionals.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/resource/Footer.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/resource/Footer.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/resource/Footer.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/resource/Footer.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/resource/HeaderWeb.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/resource/HeaderWeb.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/resource/nameEspeciality.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/resource/nameEspeciality.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/resource/searchArea.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/resource/searchArea.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/searchProfessional.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/searchProfessional.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/register/Register.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/register/Register.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/register/css/cadastroVet.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/register/css/cadastroVet.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/editProfile.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/editProfile.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/pet/cards/erro500.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/pet/cards/erro500.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/pet/cards/sucess.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/pet/cards/sucess.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/pet/cards/warn.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/pet/cards/warn.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/pet/cards/warnTwo.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/pet/cards/warnTwo.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/pet/petAdd.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/pet/petAdd.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/academicInfo.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/academicInfo.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentModal.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentModal.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentPets.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentPets.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentView.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentView.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/cards/card.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/cards/card.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/cards/cards.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/cards/cards.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/infosProfile.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/infosProfile.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/topContainer.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/topContainer.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/userPhoto.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/userPhoto.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/address.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/address.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/allPets.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/allPets.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/cardPets.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/cardPets.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/headerConfig.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/headerConfig.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosPerson.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosPerson.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/address.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/address.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/consults.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/consults.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosPerson.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosPerson.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosProfissionais.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosProfissionais.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/security.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/security.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/headerEdit.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/headerEdit.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/maps.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/maps.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/routes.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/routes.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/services/integrations/appointment.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/services/integrations/appointment.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/services/integrations/authentication.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/services/integrations/authentication.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/services/integrations/filters.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/services/integrations/filters.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/services/integrations/pet.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/services/integrations/pet.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/services/integrations/specialties.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/services/integrations/specialties.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/services/integrations/specialtiesPet.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/services/integrations/specialtiesPet.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/services/integrations/user.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/services/integrations/user.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/utils/Notifications.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/utils/Notifications.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/utils/verifyLoggedUser.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/utils/verifyLoggedUser.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"CSS File\" />\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2OxcCi8CwzrS3XXDQj0GcMUrHyn\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;D:/Development/tcc/petSaude_FrontEnd&quot;,\r\n    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\r\n    &quot;ts.external.directory.path&quot;: &quot;/private/var/folders/hc/1stsw54n0cv18d19tqth_p181h77b7/T/AppTranslocation/21428643-1150-4B9E-820D-CE309DC60644/d/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/src/pages/profile/veterinaryProfile\" />\r\n      <recent name=\"D:\\Development\\tcc\\petSaude_FrontEnd\\src\\assets\\css\" />\r\n      <recent name=\"D:\\Development\\tcc\\petSaude_FrontEnd\\src\\assets\\image\" />\r\n      <recent name=\"$PROJECT_DIR$/public\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"npm.build\">\r\n    <configuration name=\"build\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"build\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.build\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d540ed0f-a197-44a1-b703-00dde3391e36\" name=\"Changes\" comment=\"\" />\r\n      <created>1682505548193</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1682505548193</updated>\r\n      <workItem from=\"1682505550446\" duration=\"874000\" />\r\n      <workItem from=\"1683289768621\" duration=\"438000\" />\r\n      <workItem from=\"1683715186475\" duration=\"683000\" />\r\n      <workItem from=\"1683719559850\" duration=\"48000\" />\r\n      <workItem from=\"1683719640863\" duration=\"6767000\" />\r\n      <workItem from=\"1683749528302\" duration=\"6816000\" />\r\n      <workItem from=\"1683719640863\" duration=\"6856000\" />\r\n      <workItem from=\"1683802557160\" duration=\"970000\" />\r\n      <workItem from=\"1684148412899\" duration=\"8477000\" />\r\n      <workItem from=\"1684236203291\" duration=\"3125000\" />\r\n      <workItem from=\"1684239389671\" duration=\"2597000\" />\r\n      <workItem from=\"1684242118013\" duration=\"1183000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"dependencySupport\" implementationName=\"javascript:npm:styled-components\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"javascript:npm:tailwindcss\" />\r\n    <option featureType=\"dependencySupport\" implementationName=\"javascript:npm:postcss\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 0d689915b66e36bfb45ad5c2755c1182b1d63c99)
++++ b/.idea/workspace.xml	(date 1684246987815)
+@@ -5,90 +5,12 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_08_14_[Changes]/shelved.patch" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_08_14__Changes_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/components/headers/AuthHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/headers/AuthHeader.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/components/headers/headerEdits.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/headers/headerEdits.jsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/lib/_base_url.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/_base_url.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/AboutUs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/AboutUs.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/AppPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/AppPreview.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/Assessments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/Assessments.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/BlogPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/BlogPreview.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/BlogProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/BlogProfile.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/Home.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/PraisedDoctors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/PraisedDoctors.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/WebFunction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/WebFunction.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/chatInfos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/chatInfos.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/filterName.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/filterName.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/radixSearch.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/radixSearch.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/CardBlog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/CardBlog.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/CardProfessionals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/CardProfessionals.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/Footer.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/Footer.jsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/HeaderWeb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/HeaderWeb.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/nameEspeciality.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/nameEspeciality.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/searchArea.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/searchArea.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/searchProfessional.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/searchProfessional.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/Register.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/register/css/cadastroVet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/css/cadastroVet.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/editProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/editProfile.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/erro500.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/erro500.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/sucess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/sucess.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warn.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warnTwo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warnTwo.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petAdd.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petAdd.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/academicInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/academicInfo.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentModal.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentPets.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentView.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/card.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/cards.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/cards.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/infosProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/infosProfile.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/topContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/topContainer.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/userPhoto.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/userPhoto.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/address.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/address.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/allPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/allPets.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/cardPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/cardPets.jsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/headerConfig.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/headerConfig.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosPerson.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosPerson.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/address.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/address.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/consults.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/consults.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosPerson.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosPerson.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosProfissionais.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosProfissionais.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/security.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/security.jsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/headerEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/headerEdit.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/maps.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/maps.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/services/integrations/appointment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/appointment.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/services/integrations/authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/authentication.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/services/integrations/filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/filters.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/services/integrations/pet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/pet.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/services/integrations/specialties.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/specialties.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/services/integrations/specialtiesPet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/specialtiesPet.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/services/integrations/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/user.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/utils/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/utils/verifyLoggedUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/verifyLoggedUser.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -189,7 +111,7 @@
+       <workItem from="1684148412899" duration="8477000" />
+       <workItem from="1684236203291" duration="3125000" />
+       <workItem from="1684239389671" duration="2597000" />
+-      <workItem from="1684242118013" duration="1183000" />
++      <workItem from="1684242118013" duration="4780000" />
+     </task>
+     <servers />
+   </component>
+Index: src/pages/home/resource/HeaderInfo.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, {useEffect, useState} from \"react\";\r\nimport {Link} from \"react-router-dom\";\r\nimport FootHeader from \"../../../assets/svg/FootHeader.svg\";\r\nimport Home from '../../../assets/svg/Home.svg';\r\nimport Work from '../../../assets/svg/Work.svg';\r\nimport Blog from '../../../assets/svg/Blog.svg';\r\nimport Info from '../../../assets/svg/InfoOutline.svg';\r\nimport Calendary from '../../../assets/svg/Calendar today.svg';\r\nimport Person from '../../../assets/svg/Person.svg';\r\nimport Lock from '../../../assets/svg/Lock.svg';\r\nimport jwt_decode from \"jwt-decode\";\r\n\r\nexport const HeaderInfo = (props) => {\r\n\r\n  const [userNome, setUserNome] = useState('Entrar')\r\n  const [userFoto, setUserFoto] = useState('Entrar')\r\n  const [linkTo, setLinkTo] = useState('../login')\r\n  const token = localStorage.getItem('__user_JWT')\r\n  const decoded = jwt_decode(token);\r\n\r\n  useEffect(() => {\r\n      if (decoded) {\r\n        setUserNome(decoded.userName);\r\n        setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');\r\n        setLinkTo('../userProfile/veterinary')\r\n      }\r\n    }, [decoded, token]);\r\n\r\n    return (\r\n        <>\r\n          <div className=\" bg-[#9ED1B7] w-full h-full \">\r\n            <div className=\"flex font-normal items-center justify-around xl:p-5 h-30 text-4xl \">\r\n              <button className=\" md:hidden py-3 px-4 mx-2 rounded focus:outline-none group\">\r\n                <div className=\"w-5 h-1 bg-gray-600 mb-1\"></div>\r\n                <div className=\"w-5 h-1 bg-gray-600 mb-1\"></div>\r\n                <div className=\"w-5 h-1 bg-gray-600 mb-1\"></div>\r\n                <div className=\"absolute top-0 -left-full opacity-0 h-screen w-8/12 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300\">\r\n                  <h2 className=\"pt-10 text-left text-2xl font-semibold\">Menu</h2>\r\n                  <ul className=\"flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3\">\r\n                    <li className=\"flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                      <img src={Home} className=\"pr-3\" alt='Home' />\r\n                      <Link to=\"/home/Home-Web\"  href=\"#\" className=\" duration-500 flex flex-col-reverse relative transition-all\r\n                        after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                        hover:after:w-full\"> Home\r\n                      </Link>\r\n                    </li>\r\n                    <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                      <img src={Work} className=\"pr-3\" alt='Briefing case' />\r\n                      <Link className=\" duration-500 flex flex-col-reverse relative transition-all\r\n                        after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                        hover:after:w-full\" to=\"/home/searchProfessionals\"> Profissionais\r\n                      </Link>\r\n                    </li>\r\n                    {/* <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                    <img src={Blog} className=\"pr-3\"></img>\r\n                      Blog\r\n                    </li> */}\r\n                    <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                    <img src={Info} className=\"pr-3\" alt='Info' />\r\n                    <Link to=\"/home/aboutUs\" className=\" duration-500 flex flex-col-reverse relative transition-all\r\n                          after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                          hover:after:w-full\">Sobre nós\r\n                        </Link>\r\n                    </li>\r\n                    <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                    <img src={Calendary} className=\"pr-3\" alt='Calendary' />\r\n                    <Link to=\"/home/appointmentMenu\"> Consultas</Link>\r\n\r\n                    </li>\r\n                  </ul>\r\n                <h3 className=\"pt-5 pl-5 text-left  text-2xl font-semibold\">Configurações</h3>\r\n                <ul className=\"flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3\">\r\n                <li className=\"flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                  <img src={Home} className=\"pr-3\" alt='Home' />\r\n                  <Link to=\"/home/Home-Web\"  href=\"#\" className=\" duration-500 flex flex-col-reverse relative transition-all\r\n                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                    hover:after:w-full\"> Home\r\n                  </Link>\r\n                </li>\r\n                <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                  <img src={Work} className=\"pr-3\" alt='Briefing case' />\r\n                  <Link className=\" duration-500 flex flex-col-reverse relative transition-all\r\n                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                    hover:after:w-full\" to=\"/home/searchProfessionals\"> Profissionais\r\n                  </Link>\r\n                </li>\r\n                <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                <img src={Blog} className=\"pr-3\" alt='Blog' />\r\n                  Blog\r\n                </li>\r\n                <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                <img src={Info} className=\"pr-3\" alt='Info' />\r\n                <Link to=\"/home/aboutUs\" className=\" duration-500 flex flex-col-reverse relative transition-all\r\n                      after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                      hover:after:w-full\"> Profissionais\r\n                    </Link>\r\n                  </li>\r\n                  <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                  <img src={Blog} className=\"pr-3\" alt='Blog' />\r\n                    Blog\r\n                  </li>\r\n                  <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                  <img src={Info} className=\"pr-3\" alt='Info' />\r\n                  <Link to=\"/home/aboutUs\" className=\" duration-500 flex flex-col-reverse relative transition-all\r\n                        after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                        hover:after:w-full\">Sobre nós\r\n                      </Link>\r\n                  </li>\r\n                  <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                  <img src={Calendary} className=\"pr-3\" alt='Calendary' />\r\n                  <Link to=\"/home/appointmentMenu\"></Link>\r\n                    Consultas\r\n                  </li>\r\n                </ul>\r\n              <h3 className=\"pt-5 pl-5 text-left  text-2xl font-semibold\">Configurações</h3>\r\n              <ul className=\"flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3\">\r\n                <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                <img src={Person} className=\"pr-3\" alt='Person' />\r\n                <Link to=\"/profile/editPerson\">Perfil</Link>\r\n\r\n                </li>\r\n                <li className=\"flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full\">\r\n                  <img src={Lock} className=\"pr-3\" alt='Lock' />\r\n                  <Link to=\"/profile/editProfile\">Segurança</Link>\r\n\r\n                  </li>\r\n                </ul>\r\n              </div>\r\n            </button>\r\n                    <h1 className=\" text-1xl sm:flex justify-start font-bold\">PetSaúde</h1>\r\n                    <nav>\r\n                        <div className=\"flex justify-between items-center \">\r\n                            <span className=\"text-3xl cursor-pointer mx-2 md:hidden block\">\r\n                                <ion-icon name=\"menu\" onclick=\"Menu(this)\"></ion-icon>\r\n                            </span>\r\n                        </div>\r\n                        <ul className=\"md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 \">\r\n                            <li className=\"mx-4 my-6 md:my-0\">\r\n                              <Link className=\"text-2xl duration-500 flex flex-col-reverse relative transition-all\r\n                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                              hover:after:w-full\" to=\"/home/searchProfessionals\">Profissionais\r\n                              </Link>\r\n                            </li>\r\n                            {/* <li class=\"mx-4 my-6 md:my-0\">\r\n                              <Link to=\"/profile/blogProfile\" className=\"text-2xl duration-500 flex flex-col-reverse relative transition-all\r\n                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                              hover:after:w-full\">Blog\r\n                              </Link>\r\n                            </li> */}\r\n                            <li className=\"mx-4 my-6 md:my-0\">\r\n                              <Link to=\"/home/aboutUs\" className=\"text-2xl duration-500 flex flex-col-reverse relative transition-all\r\n                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition\r\n                              hover:after:w-full\">Sobre nós\r\n                              </Link>\r\n                            </li>\r\n                        </ul>\r\n                        <div className=\"menu\">\r\n                            <span className=\"bar\"></span>\r\n                            <span className=\"bar\"></span>\r\n                            <span className=\"bar\"></span>\r\n                        </div>\r\n                    </nav>\r\n                    <button className=\" w-10 md:flex flex-direction \"\r\n                      onClick={() => {\r\n                        document.location.href = \"/profile/configuration\";\r\n                      }}>\r\n                        <img className=\"pt-10 pr-1 md:pt-1 \" src={userFoto} alt='Profile'/>\r\n                        <Link to=\"/profile/configuration\" className=\" invisible xl:visible home-btn p-1 \">\r\n                            {userNome}\r\n                        </Link>\r\n                    </button>\r\n                </div>\r\n\r\n                <div className=\"flex flex-col justify-items-center text-center  gap-20\">\r\n                    <div className=\"flex flex-col justify-center w-full basis-1/4 content-center items-center gap-20 \">\r\n                        <h1 className=\"font-bold text-7xl h-3/4 rounded-3xl bg-[#78A890] xl:text-8xl mt-20  hidden md:flex justify-center content-center items-center px-20 py-10\"> {props.title}</h1>\r\n                        <p className=\"md:flex justify-center xl:text-center text-3xl  w-full  hidden \"> {props.description} </p>\r\n                    </div>\r\n                    <img className=\" mr-80 pr-20 pt-0 w-full\" src={FootHeader} alt='Dog paws'/>\r\n                </div>\r\n            </div>\r\n        </>\r\n  )\r\n};
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pages/home/resource/HeaderInfo.jsx b/src/pages/home/resource/HeaderInfo.jsx
+--- a/src/pages/home/resource/HeaderInfo.jsx	(revision 0d689915b66e36bfb45ad5c2755c1182b1d63c99)
++++ b/src/pages/home/resource/HeaderInfo.jsx	(date 1684246062493)
+@@ -1,184 +1,76 @@
+ import React, {useEffect, useState} from "react";
+ import {Link} from "react-router-dom";
+ import FootHeader from "../../../assets/svg/FootHeader.svg";
+-import Home from '../../../assets/svg/Home.svg';
+-import Work from '../../../assets/svg/Work.svg';
+-import Blog from '../../../assets/svg/Blog.svg';
+-import Info from '../../../assets/svg/InfoOutline.svg';
+-import Calendary from '../../../assets/svg/Calendar today.svg';
+-import Person from '../../../assets/svg/Person.svg';
+-import Lock from '../../../assets/svg/Lock.svg';
+ import jwt_decode from "jwt-decode";
++import {SideBarMenu} from "../../../components/sideBarMenu";
+ 
+ export const HeaderInfo = (props) => {
+ 
+-  const [userNome, setUserNome] = useState('Entrar')
+-  const [userFoto, setUserFoto] = useState('Entrar')
+-  const [linkTo, setLinkTo] = useState('../login')
+-  const token = localStorage.getItem('__user_JWT')
+-  const decoded = jwt_decode(token);
++	const [userNome, setUserNome] = useState('Entrar')
++	const [userFoto, setUserFoto] = useState('Entrar')
++	const [linkTo, setLinkTo] = useState('../login')
++	const token = localStorage.getItem('__user_JWT')
++	const decoded = jwt_decode(token);
+ 
+-  useEffect(() => {
+-      if (decoded) {
+-        setUserNome(decoded.userName);
+-        setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
+-        setLinkTo('../userProfile/veterinary')
+-      }
+-    }, [decoded, token]);
++	useEffect(() => {
++		if (decoded) {
++			setUserNome(decoded.userName);
++			setUserFoto(decoded.profilePhoto !== '' ? decoded.profilePhoto : 'https://www.svgrepo.com/show/335455/profile-default.svg');
++			setLinkTo('../userProfile/veterinary')
++		}
++	}, [decoded, token]);
+ 
+-    return (
+-        <>
+-          <div className=" bg-[#9ED1B7] w-full h-full ">
+-            <div className="flex font-normal items-center justify-around xl:p-5 h-30 text-4xl ">
+-              <button className=" md:hidden py-3 px-4 mx-2 rounded focus:outline-none group">
+-                <div className="w-5 h-1 bg-gray-600 mb-1"></div>
+-                <div className="w-5 h-1 bg-gray-600 mb-1"></div>
+-                <div className="w-5 h-1 bg-gray-600 mb-1"></div>
+-                <div className="absolute top-0 -left-full opacity-0 h-screen w-8/12 bg-[#ECECEC] border transform group-focus:left-0 group-focus:opacity-100 transition-all duration-300">
+-                  <h2 className="pt-10 text-left text-2xl font-semibold">Menu</h2>
+-                  <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+-                    <li className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                      <img src={Home} className="pr-3" alt='Home' />
+-                      <Link to="/home/Home-Web"  href="#" className=" duration-500 flex flex-col-reverse relative transition-all
+-                        after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                        hover:after:w-full"> Home
+-                      </Link>
+-                    </li>
+-                    <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                      <img src={Work} className="pr-3" alt='Briefing case' />
+-                      <Link className=" duration-500 flex flex-col-reverse relative transition-all
+-                        after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                        hover:after:w-full" to="/home/searchProfessionals"> Profissionais
+-                      </Link>
+-                    </li>
+-                    {/* <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                    <img src={Blog} className="pr-3"></img>
+-                      Blog
+-                    </li> */}
+-                    <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                    <img src={Info} className="pr-3" alt='Info' />
+-                    <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
+-                          after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                          hover:after:w-full">Sobre nós
+-                        </Link>
+-                    </li>
+-                    <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                    <img src={Calendary} className="pr-3" alt='Calendary' />
+-                    <Link to="/home/appointmentMenu"> Consultas</Link>
+-
+-                    </li>
+-                  </ul>
+-                <h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">Configurações</h3>
+-                <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+-                <li className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                  <img src={Home} className="pr-3" alt='Home' />
+-                  <Link to="/home/Home-Web"  href="#" className=" duration-500 flex flex-col-reverse relative transition-all
+-                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                    hover:after:w-full"> Home
+-                  </Link>
+-                </li>
+-                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                  <img src={Work} className="pr-3" alt='Briefing case' />
+-                  <Link className=" duration-500 flex flex-col-reverse relative transition-all
+-                    after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                    hover:after:w-full" to="/home/searchProfessionals"> Profissionais
+-                  </Link>
+-                </li>
+-                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                <img src={Blog} className="pr-3" alt='Blog' />
+-                  Blog
+-                </li>
+-                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                <img src={Info} className="pr-3" alt='Info' />
+-                <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
+-                      after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                      hover:after:w-full"> Profissionais
+-                    </Link>
+-                  </li>
+-                  <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                  <img src={Blog} className="pr-3" alt='Blog' />
+-                    Blog
+-                  </li>
+-                  <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                  <img src={Info} className="pr-3" alt='Info' />
+-                  <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
+-                        after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                        hover:after:w-full">Sobre nós
+-                      </Link>
+-                  </li>
+-                  <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                  <img src={Calendary} className="pr-3" alt='Calendary' />
+-                  <Link to="/home/appointmentMenu"></Link>
+-                    Consultas
+-                  </li>
+-                </ul>
+-              <h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">Configurações</h3>
+-              <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
+-                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                <img src={Person} className="pr-3" alt='Person' />
+-                <Link to="/profile/editPerson">Perfil</Link>
+-
+-                </li>
+-                <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+-                  <img src={Lock} className="pr-3" alt='Lock' />
+-                  <Link to="/profile/editProfile">Segurança</Link>
+-
+-                  </li>
+-                </ul>
+-              </div>
+-            </button>
+-                    <h1 className=" text-1xl sm:flex justify-start font-bold">PetSaúde</h1>
+-                    <nav>
+-                        <div className="flex justify-between items-center ">
+-                            <span className="text-3xl cursor-pointer mx-2 md:hidden block">
+-                                <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+-                            </span>
+-                        </div>
+-                        <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
+-                            <li className="mx-4 my-6 md:my-0">
+-                              <Link className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+-                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                              hover:after:w-full" to="/home/searchProfessionals">Profissionais
+-                              </Link>
+-                            </li>
+-                            {/* <li class="mx-4 my-6 md:my-0">
+-                              <Link to="/profile/blogProfile" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+-                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                              hover:after:w-full">Blog
+-                              </Link>
+-                            </li> */}
+-                            <li className="mx-4 my-6 md:my-0">
+-                              <Link to="/home/aboutUs" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
+-                              after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+-                              hover:after:w-full">Sobre nós
+-                              </Link>
+-                            </li>
+-                        </ul>
+-                        <div className="menu">
+-                            <span className="bar"></span>
+-                            <span className="bar"></span>
+-                            <span className="bar"></span>
+-                        </div>
+-                    </nav>
+-                    <button className=" w-10 md:flex flex-direction "
+-                      onClick={() => {
+-                        document.location.href = "/profile/configuration";
+-                      }}>
+-                        <img className="pt-10 pr-1 md:pt-1 " src={userFoto} alt='Profile'/>
+-                        <Link to="/profile/configuration" className=" invisible xl:visible home-btn p-1 ">
+-                            {userNome}
+-                        </Link>
+-                    </button>
+-                </div>
+-
+-                <div className="flex flex-col justify-items-center text-center  gap-20">
+-                    <div className="flex flex-col justify-center w-full basis-1/4 content-center items-center gap-20 ">
+-                        <h1 className="font-bold text-7xl h-3/4 rounded-3xl bg-[#78A890] xl:text-8xl mt-20  hidden md:flex justify-center content-center items-center px-20 py-10"> {props.title}</h1>
+-                        <p className="md:flex justify-center xl:text-center text-3xl  w-full  hidden "> {props.description} </p>
+-                    </div>
+-                    <img className=" mr-80 pr-20 pt-0 w-full" src={FootHeader} alt='Dog paws'/>
+-                </div>
+-            </div>
+-        </>
+-  )
+-};
+\ No newline at end of file
++	return (
++		<header className=" bg-[#9ED1B7] w-full h-full ">
++			<div className="flex font-normal items-center justify-around xl:p-5 h-30 text-4xl ">
++				<button className="md:hidden py-3 px-4 mx-2 rounded focus:outline-none group">
++					<div className="w-5 h-1 bg-gray-600 mb-1"></div>
++					<div className="w-5 h-1 bg-gray-600 mb-1"></div>
++					<div className="w-5 h-1 bg-gray-600 mb-1"></div>
++					<SideBarMenu />
++				</button>
++				<Link to='/' className=" text-1xl sm:flex justify-start font-bold">PetSaúde</Link>
++				<nav>
++					<div className="flex justify-between items-center ">
++						<span className="text-3xl cursor-pointer mx-2 md:hidden block">
++							<ion-icon name="menu" onclick="Menu(this)"></ion-icon>
++						</span>
++					</div>
++					<ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ">
++						<li className="mx-4 my-6 md:my-0">
++							<Link className="text-2xl duration-500 flex flex-col-reverse relative transition-all
++                             after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
++                             hover:after:w-full" to="/home/search-professionals">Profissionais
++							</Link>
++						</li>
++						<li className="mx-4 my-6 md:my-0">
++							<Link to="/home/about-us" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
++                            after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
++                            hover:after:w-full">Sobre nós
++							</Link>
++						</li>
++					</ul>
++					<div className="menu">
++						<span className="bar"></span>
++						<span className="bar"></span>
++						<span className="bar"></span>
++					</div>
++				</nav>
++				<button className="w-fit md:flex flex-direction "
++				        onClick={() => {document.location.href = "/profile/configuration";}}>
++					<img className="pt-10 pr-1 md:pt-1 w-10 rounded" src={userFoto} alt='Profile'/>
++					<Link to="/profile/configuration" className=" invisible xl:visible home-btn p-1 ">
++						{userNome}
++					</Link>
++				</button>
++			</div>
++			<div className="flex flex-col justify-items-center text-center  gap-20">
++				<div className="flex flex-col justify-center w-full basis-1/4 content-center items-center gap-20 ">
++					<h1 className="font-bold text-7xl h-3/4 rounded-3xl bg-[#78A890] xl:text-8xl mt-20  hidden md:flex justify-center content-center items-center px-20 py-10"> {props.title}</h1>
++					<p className="md:flex justify-center xl:text-center text-3xl  w-full  hidden "> {props.description} </p>
++				</div>
++				<img className=" mr-80 pr-20 pt-0 w-full" src={FootHeader} alt='Dog paws'/>
++			</div>
++		</header>
++	)
++};
+Index: src/components/sideBarMenu/index.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {Link} from \"react-router-dom\";\r\nimport Home from \"../../assets/svg/Home.svg\";\r\nimport Work from \"../../assets/svg/Work.svg\";\r\nimport Info from \"../../assets/svg/InfoOutline.svg\";\r\nimport Calendary from \"../../assets/svg/Calendar today.svg\";\r\nimport Lock from \"../../assets/svg/Lock.svg\";\r\nimport Logout from \"../../assets/svg/Logout.svg\";\r\nimport React, {useEffect, useState} from \"react\";\r\nimport {AiOutlineClose} from \"react-icons/ai\";\r\nimport {BsPersonFill} from \"react-icons/bs\";\r\n\r\nexport const SideBarMenu = (props) => {\r\n\tconst [showMenu, setShowMenu] = useState(false)\r\n\tuseEffect(() => {\r\n\t\tsetShowMenu(props.show)\r\n\t}, [props.show])\r\n\tfunction toggleMenu() {\r\n\t\tif (showMenu) setShowMenu(false)\r\n\t\telse setShowMenu(true)\r\n\t}\r\n\r\n\tconst button = document.querySelector(\"#teste\")\r\n\tif (button) button.addEventListener('click', toggleMenu)\r\n\r\n\treturn (\r\n\t\t<div\r\n\t\t\tclassName={showMenu\r\n\t\t\t? \"pt-5 px-4 absolute top-0 left-0 opacity-100 h-full w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10\"\r\n\t\t\t: \"absolute top-0 hidden -left-0 opacity-0 h-full w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10\"}>\r\n\t\t\t<AiOutlineClose onClick={toggleMenu} className='cursor-pointer'/>\r\n\t\t\t<h2 className=\"pt-5 pl-5 text-left  text-2xl font-semibold\">\r\n\t\t\t\tMenu\r\n\t\t\t</h2>\r\n\t\t\t<ul className=\"flex flex-col items-center w-full text-base space-y-3 mt-2\">\r\n\t\t\t\t<Link to=\"/\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\r\n\t\t\t\t\t<img src={Home} className=\"pr-3  w-14\" alt=\"Home\"></img>\r\n\t\t\t\t\tHome\r\n\t\t\t\t</Link>\r\n\t\t\t\t<Link to=\"/home/search-professionals\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\r\n\t\t\t\t\t<img src={Work} className=\"pr-3  w-14\" alt=\"Work\"></img>\r\n\t\t\t\t\tProfissionais\r\n\t\t\t\t</Link>\r\n\t\t\t\t<Link to=\"/home/about-us\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\r\n\t\t\t\t\t<img src={Info} className=\"pr-3 w-14\" alt=\"Info\"></img>\r\n\t\t\t\t\tSobre nós\r\n\t\t\t\t</Link>\r\n\t\t\t\t<Link to=\"/profile/appointment-view\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\r\n\t\t\t\t\t<img src={Calendary} className=\"pr-3  w-14\" alt=\"Calendary\"></img>\r\n\t\t\t\t\tConsultas\r\n\t\t\t\t</Link>\r\n\t\t\t</ul>\r\n\t\t\t<h3 className=\"pt-5 pl-5 text-left text-2xl font-semibold\">\r\n\t\t\t\tConfigurações\r\n\t\t\t</h3>\r\n\t\t\t<ul className=\"flex flex-col items-center w-full text-base space-y-3 mt-2\">\r\n\t\t\t\t<Link to=\"/profile/configuration\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\r\n\t\t\t\t\t<BsPersonFill className='pr-3 w-14 h-12'/>\r\n\t\t\t\t\tPerfil\r\n\t\t\t\t</Link>\r\n\t\t\t\t<Link to=\"/profile/edit-profile\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-full text-left rounded-full \">\r\n\t\t\t\t\t<img src={Lock} className=\"pr-3 w-14\" alt=\"Lock\"></img>\r\n\t\t\t\t\tSegurança\r\n\t\t\t\t</Link>\r\n\t\t\t\t<div\r\n\t\t\t\t\tclassName=\"border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6 w-full flex flex-row h-30 text-[#B3261E] font-semibold\">\r\n\t\t\t\t\t<div className=\"flex flex-row gap-3 items-center\">\r\n\t\t\t\t\t\t<img src={Logout} alt=\"\"/> Sair\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t)\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/sideBarMenu/index.jsx b/src/components/sideBarMenu/index.jsx
+--- a/src/components/sideBarMenu/index.jsx	(revision 0d689915b66e36bfb45ad5c2755c1182b1d63c99)
++++ b/src/components/sideBarMenu/index.jsx	(date 1684245136678)
+@@ -1,26 +1,20 @@
+ import {Link} from "react-router-dom";
+-import Home from "../../assets/svg/Home.svg";
+-import Work from "../../assets/svg/Work.svg";
+-import Info from "../../assets/svg/InfoOutline.svg";
+-import Calendary from "../../assets/svg/Calendar today.svg";
+-import Lock from "../../assets/svg/Lock.svg";
+-import Logout from "../../assets/svg/Logout.svg";
+-import React, {useEffect, useState} from "react";
+-import {AiOutlineClose} from "react-icons/ai";
+-import {BsPersonFill} from "react-icons/bs";
++import React, { useState} from "react";
++import {AiFillHome, AiFillInfoCircle, AiOutlineClose} from "react-icons/ai";
++import {BsBriefcaseFill, BsFillCalendarFill, BsPersonFill} from "react-icons/bs";
++import {FaLock} from "react-icons/fa";
++import {IoExit} from "react-icons/io5";
+ 
+ export const SideBarMenu = (props) => {
+ 	const [showMenu, setShowMenu] = useState(false)
+-	useEffect(() => {
+-		setShowMenu(props.show)
+-	}, [props.show])
++
+ 	function toggleMenu() {
+ 		if (showMenu) setShowMenu(false)
+ 		else setShowMenu(true)
+ 	}
+ 
+-	const button = document.querySelector("#teste")
+-	if (button) button.addEventListener('click', toggleMenu)
++	const activationbutton = document.querySelector("#menu-button")
++	if (activationbutton) activationbutton.addEventListener('click', toggleMenu)
+ 
+ 	return (
+ 		<div
+@@ -33,19 +27,19 @@
+ 			</h2>
+ 			<ul className="flex flex-col items-center w-full text-base space-y-3 mt-2">
+ 				<Link to="/" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full">
+-					<img src={Home} className="pr-3  w-14" alt="Home"></img>
++					<AiFillHome className='pr-3 w-14 h-12 text-[#49454F]' />
+ 					Home
+ 				</Link>
+ 				<Link to="/home/search-professionals" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full">
+-					<img src={Work} className="pr-3  w-14" alt="Work"></img>
++					<BsBriefcaseFill className='pr-3 w-14 h-12 text-[#49454F]' />
+ 					Profissionais
+ 				</Link>
+ 				<Link to="/home/about-us" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full">
+-					<img src={Info} className="pr-3 w-14" alt="Info"></img>
++					<AiFillInfoCircle className='pr-3 w-14 h-12 text-[#49454F]' />
+ 					Sobre nós
+ 				</Link>
+ 				<Link to="/profile/appointment-view" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full">
+-					<img src={Calendary} className="pr-3  w-14" alt="Calendary"></img>
++					<BsFillCalendarFill className='pr-3 w-14 h-12 text-[#49454F]' />
+ 					Consultas
+ 				</Link>
+ 			</ul>
+@@ -54,17 +48,17 @@
+ 			</h3>
+ 			<ul className="flex flex-col items-center w-full text-base space-y-3 mt-2">
+ 				<Link to="/profile/configuration" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full">
+-					<BsPersonFill className='pr-3 w-14 h-12'/>
++					<BsPersonFill className='pr-3 w-14 h-12 text-[#49454F]'/>
+ 					Perfil
+ 				</Link>
+ 				<Link to="/profile/edit-profile" className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-full text-left rounded-full ">
+-					<img src={Lock} className="pr-3 w-14" alt="Lock"></img>
++					<FaLock className='pr-3 w-14 h-12 text-[#49454F]' />
+ 					Segurança
+ 				</Link>
+-				<div
+-					className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6 w-full flex flex-row h-30 text-[#B3261E] font-semibold">
++				<div className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6 w-full flex flex-row h-30 text-[#B3261E] font-semibold">
+ 					<div className="flex flex-row gap-3 items-center">
+-						<img src={Logout} alt=""/> Sair
++						<IoExit className='pr-3 w-14 h-12' />
++						Sair
+ 					</div>
+ 				</div>
+ 			</ul>
