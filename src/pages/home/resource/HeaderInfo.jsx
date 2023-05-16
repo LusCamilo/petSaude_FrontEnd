@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import Photo from '../../../assets/svg/userAnonimo.svg';
 import FootHeader from "../../../assets/svg/FootHeader.svg";
 import Home from '../../../assets/svg/Home.svg';
 import Work from '../../../assets/svg/Work.svg';
@@ -10,8 +9,6 @@ import Calendary from '../../../assets/svg/Calendar today.svg';
 import Person from '../../../assets/svg/Person.svg';
 import Lock from '../../../assets/svg/Lock.svg';
 import jwt_decode from "jwt-decode";
-// import { PetHeader } from "../../profile/pet/petHeader";
-// import Logout from "../../../assets/svg/Logout.svg";
 
 export const HeaderInfo = (props) => {
 
@@ -41,14 +38,14 @@ export const HeaderInfo = (props) => {
                   <h2 className="pt-10 text-left text-2xl font-semibold">Menu</h2>
                   <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                     <li className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                      <img src={Home} className="pr-3"></img>
+                      <img src={Home} className="pr-3" alt='Home' />
                       <Link to="/home/Home-Web"  href="#" className=" duration-500 flex flex-col-reverse relative transition-all
                         after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                         hover:after:w-full"> Home
                       </Link>
                     </li>
                     <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                      <img src={Work} className="pr-3"></img>
+                      <img src={Work} className="pr-3" alt='Briefing case' />
                       <Link className=" duration-500 flex flex-col-reverse relative transition-all
                         after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                         hover:after:w-full" to="/home/searchProfessionals"> Profissionais
@@ -59,58 +56,58 @@ export const HeaderInfo = (props) => {
                       Blog
                     </li> */}
                     <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                    <img src={Info} className="pr-3"></img>
+                    <img src={Info} className="pr-3" alt='Info' />
                     <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
                           after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                           hover:after:w-full">Sobre nós
                         </Link>
                     </li>
                     <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                    <img src={Calendary} className="pr-3"></img>
+                    <img src={Calendary} className="pr-3" alt='Calendary' />
                     <Link to="/home/appointmentMenu"> Consultas</Link>
-                    
+
                     </li>
                   </ul>
                 <h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">Configurações</h3>
                 <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                 <li className="flex hover:bg-[#9ED1B7]  py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                  <img src={Home} className="pr-3"></img>
+                  <img src={Home} className="pr-3" alt='Home' />
                   <Link to="/home/Home-Web"  href="#" className=" duration-500 flex flex-col-reverse relative transition-all
                     after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                     hover:after:w-full"> Home
                   </Link>
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                  <img src={Work} className="pr-3"></img>
+                  <img src={Work} className="pr-3" alt='Briefing case' />
                   <Link className=" duration-500 flex flex-col-reverse relative transition-all
                     after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                     hover:after:w-full" to="/home/searchProfessionals"> Profissionais
                   </Link>
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                <img src={Blog} className="pr-3"></img>
+                <img src={Blog} className="pr-3" alt='Blog' />
                   Blog
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                <img src={Info} className="pr-3"></img>
+                <img src={Info} className="pr-3" alt='Info' />
                 <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
                       after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                       hover:after:w-full"> Profissionais
                     </Link>
                   </li>
                   <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                  <img src={Blog} className="pr-3"></img>
+                  <img src={Blog} className="pr-3" alt='Blog' />
                     Blog
                   </li>
                   <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                  <img src={Info} className="pr-3"></img>
+                  <img src={Info} className="pr-3" alt='Info' />
                   <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
                         after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                         hover:after:w-full">Sobre nós
                       </Link>
                   </li>
                   <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                  <img src={Calendary} className="pr-3"></img>
+                  <img src={Calendary} className="pr-3" alt='Calendary' />
                   <Link to="/home/appointmentMenu"></Link>
                     Consultas
                   </li>
@@ -118,12 +115,12 @@ export const HeaderInfo = (props) => {
               <h3 className="pt-5 pl-5 text-left  text-2xl font-semibold">Configurações</h3>
               <ul className="flex flex-col items-center w-full text-base cursor-pointer pt-5 space-y-3">
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                <img src={Person} className="pr-3"></img>
+                <img src={Person} className="pr-3" alt='Person' />
                 <Link to="/profile/editPerson">Perfil</Link>
 
                 </li>
                 <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
-                  <img src={Lock} className="pr-3"></img>
+                  <img src={Lock} className="pr-3" alt='Lock' />
                   <Link to="/profile/editProfile">Segurança</Link>
 
                   </li>
@@ -150,7 +147,7 @@ export const HeaderInfo = (props) => {
                               hover:after:w-full">Blog
                               </Link>
                             </li> */}
-                            <li class="mx-4 my-6 md:my-0">
+                            <li className="mx-4 my-6 md:my-0">
                               <Link to="/home/aboutUs" className="text-2xl duration-500 flex flex-col-reverse relative transition-all
                               after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                               hover:after:w-full">Sobre nós
@@ -163,11 +160,11 @@ export const HeaderInfo = (props) => {
                             <span className="bar"></span>
                         </div>
                     </nav>
-                    <button className=" w-10 md:flex flex-direction " 
+                    <button className=" w-10 md:flex flex-direction "
                       onClick={() => {
                         document.location.href = "/profile/configuration";
                       }}>
-                        <img className="pt-10 pr-1 md:pt-1 " src={userFoto} />
+                        <img className="pt-10 pr-1 md:pt-1 " src={userFoto} alt='Profile'/>
                         <Link to="/profile/configuration" className=" invisible xl:visible home-btn p-1 ">
                             {userNome}
                         </Link>
@@ -179,9 +176,9 @@ export const HeaderInfo = (props) => {
                         <h1 className="font-bold text-7xl h-3/4 rounded-3xl bg-[#78A890] xl:text-8xl mt-20  hidden md:flex justify-center content-center items-center px-20 py-10"> {props.title}</h1>
                         <p className="md:flex justify-center xl:text-center text-3xl  w-full  hidden "> {props.description} </p>
                     </div>
-                    <img className=" mr-80 pr-20 pt-0 w-full" src={FootHeader}/>
+                    <img className=" mr-80 pr-20 pt-0 w-full" src={FootHeader} alt='Dog paws'/>
                 </div>
-            </div> 
+            </div>
         </>
   )
 };

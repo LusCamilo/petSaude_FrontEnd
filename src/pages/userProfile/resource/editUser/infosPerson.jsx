@@ -5,231 +5,199 @@ import { updatePersonalInfosClient, updatePersonalInfosVeterinary } from '../../
 
 export const Pessoais = (props) => {
 
-    const [personalInfos, setPersonalInfos] = useState({ disabled: true, textColor: 'opacity-50' })
-    const [name, setName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [cpf, setCpf] = useState('')
-    const [rg, setRg] = useState('')
-    const [celular, setCelular] = useState('')
-    const [telefone, setTelefone] = useState('')
-    const [text, setText] = useState('')
+	const [personalInfos, setPersonalInfos] = useState({ disabled: true, textColor: 'opacity-50' })
+	const [name, setName] = useState('')
+	const [lastName, setLastName] = useState('')
+	const [cpf, setCpf] = useState('')
+	const [rg, setRg] = useState('')
+	const [celular, setCelular] = useState('')
+	const [telefone, setTelefone] = useState('')
+	const [text, setText] = useState('')
 
-    function handleNameChange(event) {
-        setName(event.target.value);
-    }
-    function handleLastNameChange(event) {
-        setLastName(event.target.value);
-    }
+	function handleNameChange(event) {
+		setName(event.target.value);
+	}
+	function handleLastNameChange(event) {
+		setLastName(event.target.value);
+	}
 
-    function handleCpfChange(event) {
-        let inputValue = event.target.value;
-        inputValue = inputValue.replace(/\D/g, '');
+	function handleCpfChange(event) {
+		let inputValue = event.target.value;
+		inputValue = inputValue.replace(/\D/g, '');
 
-        if (inputValue.length > 11) {
-            inputValue = inputValue.substr(0, 11);
-        }
-        inputValue = inputValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+		if (inputValue.length > 11) {
+			inputValue = inputValue.substr(0, 11);
+		}
+		inputValue = inputValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
 
-        setCpf(inputValue);
-    }
-
-
-    function handleRgChange(event) {
-        let inputValue = event.target.value;
-        inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, '');
-
-        if (inputValue.length > 12) {
-            inputValue = inputValue.substr(0, 13);
-        }
-        inputValue = inputValue.replace(/([a-zA-Z0-9]{2})([a-zA-Z0-9]{3})([a-zA-Z0-9]{3})([a-zA-Z0-9]{1})/, '$1.$2.$3-$4');
-        // 21.500.224-6
-
-        setRg(inputValue);
-    }
+		setCpf(inputValue);
+	}
 
 
+	function handleRgChange(event) {
+		let inputValue = event.target.value;
+		inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, '');
+		if (inputValue.length > 13) {
+			inputValue = inputValue.substr(0, 13);
+		}
+		inputValue = inputValue.replace(/([a-zA-Z0-9]{2})([a-zA-Z0-9]{3})([a-zA-Z0-9]{3})([a-zA-Z0-9]{1})/, '$1.$2.$3-$4');
+		setRg(inputValue);
+	}
 
+	function handleCelularChange(event) {
+		let inputValue = event.target.value;
+		inputValue = inputValue.replace(/\D/g, '');
+		if (inputValue.length > 11) {
+			inputValue = inputValue.substr(0, 11);
+		}
+		inputValue = inputValue.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+		setCelular(inputValue);
+	}
 
-    function handleCelularChange(event) {
-        let inputValue = event.target.value;
-        inputValue = inputValue.replace(/\D/g, '');
+	function handleTelefoneChange(event) {
+		let inputValue = event.target.value;
+		inputValue = inputValue.replace(/\D/g, '');
+		if (inputValue.length > 8) {
+			inputValue = inputValue.substr(0, 8);
+		}
+		inputValue = inputValue.replace(/(\d{4})(\d{4})/, '$1-$2');
+		setTelefone(inputValue);
+	}
+	function handleTextChange(event) {
+		console.log(event.target.value);
+		setText(event.target.value);
+	}
 
-        if (inputValue.length > 11) {
-            inputValue = inputValue.substr(0, 11);
-        }
-        inputValue = inputValue.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+	useEffect(() => {
+		setName(props.name)
+		setLastName(props.lastName)
+		setCpf(props.cpf)
+		setRg(props.rg)
+		setCelular(props.celular)
+		setTelefone(props.telefone)
+		setText(props.text)
+	}, [
+		props.name,
+		props.lastName,
+		props.cpf,
+		props.rg,
+		props.celular,
+		props.telefone,
+		props.text
+	])
+	const handleSubmit = async () => {
+		let response
+		let infos
 
+		if (name === '' || lastName === '' || cpf === '') {
+			window.alert("existem campos que devem ser preenchidos")
+			window.location.reload()
+		}else{
+			infos = {
+				personName: `${name} ${lastName}`,
+				cpf: cpf,
+				rg: rg,
+				cellphoneNumber: celular,
+				phoneNumber: telefone,
+				bio: text
+			}
 
-        setCelular(inputValue);
-    }
+			console.log(infos);
 
-    function handleTelefoneChange(event) {
-        let inputValue = event.target.value;
-        inputValue = inputValue.replace(/\D/g, '');
+			if ((localStorage.getItem('__user_isVet')) === 'true') {
+				response = await updatePersonalInfosVeterinary(infos)
+				if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
+					if (response.response.meta.target === "tbl_veterinary_rg_key") {
+						window.alert("Rg já está em uso")
+						window.location.reload()
+					}
+				} else {
+					window.alert(response.response)
+					window.location.reload()
+				}
+				window.location.reload()
+			} else {
 
-        if (inputValue.length > 8) {
-            inputValue = inputValue.substr(0, 8);
-        }
-        inputValue = inputValue.replace(/(\d{4})(\d{4})/, '$1-$2');
+				response = await updatePersonalInfosClient(infos)
+				if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
+					if (response.response.meta.target === "tbl_client_rg_key") {
+						window.alert("Rg já está em uso")
+						window.location.reload()
+					}
+				} else {
+					window.alert(response.response)
+					window.location.reload()
+				}
+			}
+		}
+	}
 
-
-        setTelefone(inputValue);
-    }
-    function handleTextChange(event) {
-        console.log(event.target.value);
-        setText(event.target.value);
-    }
-
-    useEffect(() => {
-
-        setName(props.name)
-        setLastName(props.lastName)
-        setCpf(props.cpf)
-        setRg(props.rg)
-        setCelular(props.celular)
-        setTelefone(props.telefone)
-        setText(props.text)
-
-    }, [
-        props.name,
-        props.lastName,
-        props.cpf,
-        props.rg,
-        props.celular,
-        props.telefone,
-        props.text
-    ])
-
-
-    const handleSubmit = async () => {
-        let response
-        let infos
-
-        if (name == '' || lastName == '' || cpf == '') {
-            window.alert("existem campos que devem ser preenchidos")
-            window.location.reload()
-        }else{
-            infos = {
-                personName: `${name} ${lastName}`,
-                cpf: cpf,
-                rg: rg,
-                cellphoneNumber: celular,
-                phoneNumber: telefone,
-                bio: text
-            }
-    
-            console.log(infos);
-    
-            if ((localStorage.getItem('__user_isVet')) == 'true') {
-                response = await updatePersonalInfosVeterinary(infos)
-                if (response.response != 'Item atualizado com sucesso no Banco de Dados') {
-                    if (response.response.meta.target == "tbl_veterinary_rg_key") {
-                        window.alert("Rg já está em uso")
-                        window.location.reload()
-                    }
-                } else {
-                    window.alert(response.response)
-                    window.location.reload()
-                }
-                window.location.reload()
-            } else {
-    
-                response = await updatePersonalInfosClient(infos)
-                if (response.response != 'Item atualizado com sucesso no Banco de Dados') {
-                    if (response.response.meta.target == "tbl_client_rg_key") {
-                        window.alert("Rg já está em uso")
-                        window.location.reload()
-                    }
-                } else {
-                    window.alert(response.response)
-                    window.location.reload()
-                }
-            }
-        }
-
-
-
-
-
-
-
-    }
-
-    return (
-        <>
-            <section className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 md:pl-20 py-8'>
-                <h2 className='text-5xl md:text-6xl font-bold font-sans text-center sm:text-left'>Informações Pessoais</h2>
-                <div className='flex flex-row'>
-                    <div className='flex flex-row justify-between w-full  pr-0 sm:pr-12'>
-                        <form className='gap-1 sm:gap-10 mt-10 grid grid-cols-1 sm:grid-cols-2 sm:w-4/5'>
-                            <div className=''>
-                                <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                    Primeiro nome
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleNameChange} onChange={handleNameChange} defaultValue={name} className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
-                                </label>
-                            </div>
-                            <div className='flex justify-center'>
-                                <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                    Sobrenome
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleLastNameChange} onChange={handleLastNameChange} defaultValue={lastName} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
-                                </label>
-                            </div>
-                            <div className=''>
-                                <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                    CPF
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleCpfChange} onChange={handleCpfChange} value={cpf} className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
-                                </label>
-                            </div>
-                            <div className='flex justify-center'>
-                                <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                    RG
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleRgChange} onChange={handleRgChange} value={rg} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
-                                </label>
-                            </div>
-                            <div className=''>
-                                <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                    Celular
-                                    <input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleCelularChange} onChange={handleCelularChange} value={celular} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
-                                </label>
-                            </div>
-                            <div className='flex justify-center'>
-                                <label className='flex flex-col text-xl text-[#A9A9A9]'>
-                                    Telefone
-                                    <input disabled={personalInfos.disabled} onBlurCapture={handleTelefoneChange} type="text" name="firstName" onChange={handleTelefoneChange} value={telefone} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                    <div className='hidden sm:flex flex-row w-1/5 justify-end pr-10 '>
-                        <button className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
-
-
-                            if (personalInfos.disabled == true) {
-                                setPersonalInfos({ disabled: false, textColor: '' })
-
-                            } else {
-
-
-                                if (window.confirm('deseja atualizar os seus dados pessoais?')) {
-                                    setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
-                                    handleSubmit()
-                                    // .then(document.location.reload())
-                                }
-                            }
-
-                        }}>
-                            <img src={lapis} alt="" />
-                            Editar
-                        </button>
-                    </div>
-                </div>
-                <div className='w-full sm:mr-10'>
-                    <p className='flex flex-col text-xl text-[#A9A9A9] pt-3 sm:pt-20 mr-0 sm:mr-20 w-full sm:w-10/12 '> Biografia
-                        <TextareaAutosize disabled={personalInfos.disabled} id="my-textarea" onBlurCapture={handleTextChange} onChange={handleTextChange} defaultValue={text} className="block w-full p-2 rounded resize-none" />
-                    </p>
-                </div>
-            </section>
-        </>
-    );
+	return (
+		<section className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 md:pl-20 py-8'>
+			<h2 className='text-5xl md:text-6xl font-bold font-sans text-center sm:text-left'>Informações Pessoais</h2>
+			<div className='flex flex-row'>
+				<div className='flex flex-row justify-between w-full  pr-0 sm:pr-12'>
+					<form className='gap-1 sm:gap-10 mt-10 grid grid-cols-1 sm:grid-cols-2 sm:w-4/5'>
+						<div className=''>
+							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+								Primeiro nome
+								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleNameChange} onChange={handleNameChange} defaultValue={name} className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
+							</label>
+						</div>
+						<div className='flex justify-center'>
+							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+								Sobrenome
+								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleLastNameChange} onChange={handleLastNameChange} defaultValue={lastName} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+							</label>
+						</div>
+						<div className=''>
+							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+								CPF
+								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleCpfChange} onChange={handleCpfChange} value={cpf} className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
+							</label>
+						</div>
+						<div className='flex justify-center'>
+							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+								RG
+								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleRgChange} onChange={handleRgChange} value={rg} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+							</label>
+						</div>
+						<div className=''>
+							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+								Celular
+								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleCelularChange} onChange={handleCelularChange} value={celular} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+							</label>
+						</div>
+						<div className='flex justify-center'>
+							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+								Telefone
+								<input disabled={personalInfos.disabled} onBlurCapture={handleTelefoneChange} type="text" name="firstName" onChange={handleTelefoneChange} value={telefone} className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+							</label>
+						</div>
+					</form>
+				</div>
+				<div className='hidden sm:flex flex-row w-1/5 justify-end pr-10 '>
+					<button className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
+						if (personalInfos.disabled == true) {
+							setPersonalInfos({ disabled: false, textColor: '' })
+						} else {
+							if (window.confirm('deseja atualizar os seus dados pessoais?')) {
+								setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
+								handleSubmit()
+								// .then(document.location.reload())
+							}
+						}
+					}}>
+						<img src={lapis} alt="" />
+						Editar
+					</button>
+				</div>
+			</div>
+			<div className='w-full sm:mr-10'>
+				<p className='flex flex-col text-xl text-[#A9A9A9] pt-3 sm:pt-20 mr-0 sm:mr-20 w-full sm:w-10/12 '> Biografia
+					<TextareaAutosize disabled={personalInfos.disabled} id="my-textarea" onBlurCapture={handleTextChange} onChange={handleTextChange} defaultValue={text} className="block w-full p-2 rounded resize-none" />
+				</p>
+			</div>
+		</section>
+	);
 };
-

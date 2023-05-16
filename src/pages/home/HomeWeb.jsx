@@ -4,11 +4,11 @@ import { WebFunction } from "./WebFunction";
 import { Footer } from "./resource/Footer";
 
 export const HomeWeb = () => {
-  return (
-    <>
-      <LandingPage />
-      <WebFunction />
-      <Footer/>
-    </>
-  );
+	return (
+		<section>
+			<LandingPage />
+			<WebFunction />
+			<Footer/>
+		</section>
+	);
 };

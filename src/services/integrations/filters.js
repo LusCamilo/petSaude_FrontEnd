@@ -1,8 +1,7 @@
-// Função que faz a requisição GET e recebe um JSON
 import { BASE_URL } from "../../lib/_base_url";
 
 export async function getUsers(search, searchIt) {
-  if (search == null || search == undefined) {
+  if (search === null) {
     search = ''
   }
   console.log("Procurando");
@@ -19,7 +18,6 @@ export async function getUsers(search, searchIt) {
     .catch(error => console.log('Error Procurar veterinários'));
 }
 
-
 export async function getAllVets() {
   const url = `${BASE_URL}veterinary`
   return fetch(url)
@@ -28,10 +26,8 @@ export async function getAllVets() {
 }
 
 export async function getVet(idVet) {
-
   const url = `${BASE_URL}id/veterinary?userID=${idVet}`
   return fetch(url)
     .then(response => response.json())
     .catch(error => console.error(error));
 }
-  // Exemplo de uso da função

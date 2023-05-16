@@ -344,15 +344,12 @@ label input{
     }
 
     .img-forms{
-
         display: flex;
         justify-content: center;
         align-items: center;
-
     }
 
     .arrow-img{
-    
         display: none;
     
     }
