@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_08_14_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_08_14__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_05_23_08_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_05_23_08_14__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/headers/AuthHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/headers/AuthHeader.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/headers/headerEdits.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/headers/headerEdits.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/_base_url.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/_base_url.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/AboutUs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/AboutUs.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/AppPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/AppPreview.jsx" afterDir="false" />
@@ -77,6 +81,14 @@
       <change beforePath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/integrations/appointment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/appointment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/integrations/authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/authentication.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/integrations/filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/filters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/integrations/pet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/pet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/integrations/specialties.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/specialties.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/integrations/specialtiesPet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/specialtiesPet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/integrations/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/verifyLoggedUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/verifyLoggedUser.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +189,7 @@
       <workItem from="1684148412899" duration="8477000" />
       <workItem from="1684236203291" duration="3125000" />
       <workItem from="1684239389671" duration="2597000" />
-      <workItem from="1684242118013" duration="863000" />
+      <workItem from="1684242118013" duration="1183000" />
     </task>
     <servers />
   </component>
