@@ -241,14 +241,26 @@ export const AppointmentPeding = (props) => {
 
 
 	const getappo = async (idPerson) => {
-		let allAboutIt = await getAppointments(idPerson)
+        const token = localStorage.getItem('__user_JWT')
+        const decoded = jwt_decode(token);
+        console.log(decoded.isVet);
+        let allAboutIt
+        if (decoded.isVet == true) {
+            allAboutIt = await getAppointments(idPerson)    
+        } else {
+            let person = await getUser(idPerson)
+            console.log(person);
+            allAboutIt = person
+        }
 
-		if (allAboutIt.response === 'Não foram encontrados registros no Banco de Dados') {
-			return []
-		} else {
-			return allAboutIt.response.user.Appointments
-		}
-
+        
+        console.log("Appoinments");
+        console.log(allAboutIt);
+        if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
+            return []
+        } else {
+            return allAboutIt.response.user.Appointments
+        }
 	};
 
 	const getclient = async (idPerson) => {
