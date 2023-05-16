@@ -96,7 +96,7 @@ export async function deleteClient(token) {
 
 export async function deleteVeterinary(id, token) {
 
-    const url = `${BASE_URL}id/veterinary/${id}`
+    const url = `${BASE_URL}veterinary/${id}`
     const response = await fetch(url, {
         method: 'DELETE',
         headers: {

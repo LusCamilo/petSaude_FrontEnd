@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/home/Home";
 import { HomeWeb } from "./pages/home/HomeWeb";
-import { HeaderInfo} from "./pages/home/resource/HeaderInfo";
+import { HeaderInfo } from "./pages/home/resource/HeaderInfo";
 import { Footer } from "./pages/home/resource/Footer";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register/Register";
@@ -22,12 +22,12 @@ import { AppointmentView } from "./pages/userProfile/resource/appointment/appoin
 import { SearchProfessional } from "./pages/home/searchProfessional";
 import { AppointmentAsk } from "./pages/userProfile/resource/appointment/appointments/appointmentAsk";
 import { BlogProfile } from "./pages/home/BlogProfile";
-import {Profile} from "./pages/userProfile/profile";
-import {AboutUs} from "./pages/home/AboutUs";
+import { Profile } from "./pages/userProfile/profile";
+import { AboutUs } from "./pages/home/AboutUs";
 import { PetHeader } from "./pages/userProfile/pet/petHeader";
 import { PetConfig } from "./pages/userProfile/pet/petConfig";
 import { Config } from "./pages/userProfile/resource/editUser/headerConfig";
-import {HeaderProfile} from "./pages/userProfile/resource/header"
+import { HeaderProfile } from "./pages/userProfile/resource/header"
 
 export const Rotas = () => {
   return (
@@ -36,17 +36,14 @@ export const Rotas = () => {
         <Route path="/" element={<HomeWeb />}></Route>
         <Route path="/home" element={<HomeWeb />} />
         <Route path="/home/about-us" element={<AboutUs />} />
-        <Route path="/home/resource/HeaderInfo" element={<HeaderInfo/>} />
+        <Route path="/home/resource/HeaderInfo" element={<HeaderInfo />} />
         <Route path="/home/resource/Footer" element={<Footer />} />
 
 
         <Route path="/pet/petHeader" element={<PetHeader />} />
         <Route path="/pet/PetConfig" element={<PetConfig />} />
-        
-
-        <Route path="/pages/userProfile/resource/editUser/headerConfig" element={<Config  />} />
-        <Route path="/pages/userProfile/resource/header" element={<HeaderProfile  />} />
-
+        <Route path="/pages/userProfile/resource/editUser/headerConfig" element={<Config />} />
+        <Route path="/pages/userProfile/resource/header" element={<HeaderProfile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/register/address" element={<RegisterAddress />} />
@@ -74,7 +71,7 @@ export const Rotas = () => {
         />
         <Route path="/profile/pending-appointments" element={<AppointmentAsk />} />
         <Route path="/profile/blog-profile" element={<BlogProfile />} />
-        
+
       </Routes>
     </Router>
   );

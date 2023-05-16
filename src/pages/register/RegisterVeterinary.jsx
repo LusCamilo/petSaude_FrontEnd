@@ -242,7 +242,7 @@ export const RegisterVeterinary = () => {
                     openModalSucess()
                     setTimeout(function () {
                         closeModalSucess()
-                        document.location.href = '/login'
+                        // document.location.href = '/login'
                     }, 5000);
                 }, 4000);
             } else {

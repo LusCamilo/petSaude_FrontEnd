@@ -137,6 +137,7 @@ export const Prossionais = (props) => {
         };
 
         const body = JSON.stringify(json);
+        
         try {
             if (event.target.checked) {
                 await updateSpecialitiesPet(body);
@@ -279,7 +280,8 @@ export const Prossionais = (props) => {
                                         crmv: crmv,
                                         startActingDate: `${dataInicioAtuacao}T00:00:00.000Z`,
                                         formationDate: `${dataFormacao}T00:00:00.000Z`,
-                                    }).then(window.location.reload())
+                                    })
+                                    .then(window.location.reload())
                             }
                         }
                     }}>

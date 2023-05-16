@@ -38,10 +38,11 @@ export const Pessoais = (props) => {
         let inputValue = event.target.value;
         inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, '');
 
-        if (inputValue.length > 13) {
+        if (inputValue.length > 12) {
             inputValue = inputValue.substr(0, 13);
         }
         inputValue = inputValue.replace(/([a-zA-Z0-9]{2})([a-zA-Z0-9]{3})([a-zA-Z0-9]{3})([a-zA-Z0-9]{1})/, '$1.$2.$3-$4');
+        // 21.500.224-6
 
         setRg(inputValue);
     }

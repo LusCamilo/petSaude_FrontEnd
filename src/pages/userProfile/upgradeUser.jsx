@@ -202,6 +202,13 @@ export const UpgradeUser = () => {
         closeModal()
     }
 
+    const deleteVet = () => {
+        console.log(
+            deleteVeterinary(localStorage.getItem('__user_id') ,localStorage.getItem('__user_JWT'))
+        );
+        closeModal()
+    }
+
     // console.log(infos.PetSpecieVeterinary);
     // console.log(infos.VeterinaryEspecialities);
 
@@ -295,12 +302,20 @@ export const UpgradeUser = () => {
                             </div>
                             <div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
                                 <button className='flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
-                                    deleteVeterinary(localStorage.getItem('__user_id'), localStorage.getItem('__user_JWT'))
-                                    document.location.href = '/login'
+                                    openModal()
                                 }}>
                                     <img src={lixeira} className='h-full' />
                                     Excluir perfil
                                 </button>
+                                <Modal
+                                    isOpen={modalIsOpen}
+                                    onAfterOpen={afterOpenModal}
+                                    onRequestClose={closeModal}
+                                    style={customStyles}
+                                    contentLabel="Example Modal"
+                                >
+                                    <WarnRequest onClose={closeModal} description="Tem certeza que deseja excluir seu perfil?" onSave={deleteVet} href="/login" />
+                                </Modal>
                             </div>
                         </>
                         :
