@@ -36,18 +36,11 @@ export const SearchProfessional = () => {
 		onSearchIt({ search:  inputSearch, searchIt: value})
 	};
 
-<<<<<<< HEAD
-//      const setMudarFiltro = (value) => {
-//        setOndeProcurar(value)
-//        onSearchIt({ search:  inputSearch, searchIt: value})
-//      };
-=======
 	function citySearch() {
 		setFiltro("city");
 		setOndeProcurar("value")
 		onSearchIt({ search:  inputSearch})
 	}
->>>>>>> 4880f6156a738fcfdf7d20691f59c6501b4807ce
 
 	const [umCorteRapidao, setUmCorteRapidao] = useState('')
 
