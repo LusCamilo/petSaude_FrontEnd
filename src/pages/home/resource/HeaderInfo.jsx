@@ -61,9 +61,9 @@ export const HeaderInfo = (props) => {
                     <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                     <img src={Info} className="pr-3"></img>
                     <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
-                          after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
-                          hover:after:w-full">Sobre nós
-                        </Link>
+                      after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
+                      hover:after:w-full">Sobre nós
+                    </Link>
                     </li>
                     <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                     <img src={Calendary} className="pr-3"></img>
@@ -98,13 +98,13 @@ export const HeaderInfo = (props) => {
                       hover:after:w-full"> Profissionais
                     </Link>
                   </li>
-                  <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+               {/*}   <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                   <img src={Blog} className="pr-3"></img>
                     Blog
-                  </li>
+                  </li> */}
                   <li className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                   <img src={Info} className="pr-3"></img>
-                  <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all
+                  <Link to="/home/about-us" className=" duration-500 flex flex-col-reverse relative transition-all
                         after:h-0.5 after:absolute after:w-0 after:bg-green-300 after:transition
                         hover:after:w-full">Sobre nós
                       </Link>

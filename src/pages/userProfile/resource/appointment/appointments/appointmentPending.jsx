@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Modal from 'react-modal'
 import { WarnRequest } from '../../../pet/cards/warnTwo';
 import { PetAddSucess } from '../../../pet/cards/sucess';
+import cuidado from '../../../../userProfile/resource/img/Cuidado.png'
 
 const customStylesWarn = {
     content: {
@@ -138,8 +139,6 @@ export const AppointmentPeding = (props) => {
                           vetPhone: vet.cellphoneNumber,
                           vetPhoto: vet.profilePhoto
                         };
-
-                        console.log(finalArray);
                       
                         return finalArray;
                       }));
@@ -203,7 +202,6 @@ export const AppointmentPeding = (props) => {
       const cancelarAppointment = async (idAppointment) => {
           
         const recusar = await canceladoAppointments(idAppointment);
-        console.log(recusar);
         if (recusar.response.message == "Consulta cancelada") {
             showToastMessageSucess("Consulta cancelada com sucesso!")
             setTimeout(() => {
@@ -223,7 +221,6 @@ export const AppointmentPeding = (props) => {
       const finalizarAppointment = async (idAppointment) => {
 
         const aceitar = await finalizadoAppointments(idAppointment);
-        console.log(aceitar);
         if (aceitar.response.message == "Consulta concluída") {
             showToastMessageSucess("Consulta finalizada com sucesso!")
             setTimeout(() => {
@@ -241,7 +238,18 @@ export const AppointmentPeding = (props) => {
 
 
     const getappo = async (idPerson) => {
-        let allAboutIt = await getAppointments(idPerson)
+        const token = localStorage.getItem('__user_JWT')
+        const decoded = jwt_decode(token);
+        console.log(decoded.isVet);
+        let allAboutIt
+        if (decoded.isVet == true) {
+            allAboutIt = await getAppointments(idPerson)    
+        } else {
+            let person = await getUser(idPerson)
+            console.log(person);
+            allAboutIt = person
+        }
+
         
         if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
             return []
@@ -313,6 +321,8 @@ export const AppointmentPeding = (props) => {
                         Nenhuma consulta a ser aceita
                     </div>
                     {pedidos.map(pedido =>{
+
+                        console.log(pedido.idAppoint);
                         
                         return(
                             <div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
@@ -323,7 +333,28 @@ export const AppointmentPeding = (props) => {
                                     style={customStylesWarn}
                                     contentLabel="Example Modal"
                                 >
-                                    <WarnRequest boolBotoes={'flex'} onClose={closeModalQuestionWarn} Pet={pedido.nomePet} idApp={pedido.idAppoint} onSave={()=>cancelarAppointment(pedido.idAppoint)} description={`Certeza que deseja finalizar a consulta? Pode ser penalizado...`} href="/profile/appointment-view" />
+                                    <div className='w-screen h-screen bg-[#F9DEDC] rounded-3xl flex justify-center content-center flex-col'>
+                                        <h2 className='text-[#B3261E] text-6xl flex content-center justify-center mt-10'>Erro</h2>
+                                        <div className='w-full flex justify-center'>
+                                            <img src={cuidado} alt="" className='w-40 h-40'/>
+                                        </div>
+                                        <p className='text-black text-xl w-full flex content-center justify-center text-center'>Certeza que deseja finalizar a consulta? Pode ser penalizado...</p>
+                                        <div className='flex flex-coll justify-center gap-5 text-4xl mt-5 mb-10'>
+                                            <button className={`flex text-[#F9DEDC] text-xl p-5 bg-[#B3261E] rounded-full` }
+                                            onClick={() => closeModalQuestionWarn()}>
+                                                Não
+                                            </button>
+                                            <button className={`flex text-[#F9DEDC] text-xl p-5 bg-[#B3261E] rounded-full`} onClick={
+                                                () => {
+                                                    console.log(pedido.idAppoint);
+                                                    cancelarAppointment(pedido.idAppoint)
+                                                    //document.location.href = "/profile/appointment-view"
+                                                }
+                                            }>
+                                                Sim
+                                            </button>
+                                        </div>
+                                    </div>
                                 </Modal>
                                 <Modal
                                     isOpen={Sucess}

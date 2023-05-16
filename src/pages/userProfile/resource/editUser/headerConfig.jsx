@@ -45,7 +45,7 @@ export const Config = (props) => {
                   <p className='pt-2'> Blog</p>
 
                 </Link> */}
-                <Link to="/home/aboutUs" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
+                <Link to="/home/about-us" className="flex hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full">
                   <img src={Info} className="pr-3 w-14"></img>
                   <p className='pt-2'> Sobre nós</p>
 

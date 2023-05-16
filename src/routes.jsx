@@ -27,7 +27,7 @@ import {AboutUs} from "./pages/home/AboutUs";
 import { PetHeader } from "./pages/userProfile/pet/petHeader";
 import { PetConfig } from "./pages/userProfile/pet/petConfig";
 import { Config } from "./pages/userProfile/resource/editUser/headerConfig";
-import {HeaderProfile} from "./pages/userProfile/resource/header"
+import { HeaderProfile } from "./pages/userProfile/resource/header"
 
 export const Rotas = () => {
   return (

@@ -20,7 +20,7 @@ export async function appointmentAdd(appointmentInfos) {
 }
 
 export async function getAppointments(idPeople) {
-
+  
   const url = `${BASE_URL}id/veterinary?userID=${idPeople}`
   console.log(url);
   return await fetch(url, {
@@ -32,6 +32,21 @@ export async function getAppointments(idPeople) {
     .then(response => response.json())
     .catch(error => console.log('Error Procurar veterinários'));
 }
+
+export async function getAllAppointments() {
+
+  const url = `${BASE_URL}appointment/all`
+  console.log(url);
+  return await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+  })
+    .then(response => response.json())
+    .catch(error => console.log('Error Procurar veterinários'));
+}
+
 
 export async function recusarAppointments(idAppointment, jsonAppointment) {
 

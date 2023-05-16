@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './styleAppointment.css'
 import * as Dialog from '@radix-ui/react-dialog';
 import jwt_decode from "jwt-decode";
-import { getAppointments } from '../../../../../services/integrations/appointment';
+import { getAppointments, getAllAppointments } from '../../../../../services/integrations/appointment';
 import { getUser, getVeterinary} from '../../../../../services/integrations/user'
 import {  recusarAppointments, aceitadoAppointments } from '../../../../../services/integrations/appointment'
 import { ToastContainer, toast } from 'react-toastify';
@@ -26,25 +26,21 @@ export const AppointmentAsk = () => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('__user_JWT')
-                console.log(token);
                 const decoded = jwt_decode(token);
-                console.log(decoded.id);
+                console.log(decoded);
                 let appoint = await getappo(decoded.id)
-                console.log("appoint");
-                console.log(appoint);
-               
+                const all = await getAllAppointments()
+               console.log(appoint);
                 if (appoint != undefined && appoint != null) {
                     
                     let filteredAppointments = appoint.filter(appointment => appointment.status == 'WAITING_CONFIRMATION');
-                    
+                    console.log(filteredAppointments);
+                    console.log(appoint);
+                    console.log(all);
                     let appoints = await Promise.all(filteredAppointments.map(async (app) => {
                         let client = await getclient(app.clientId);
                         let arrayPet = await getPet(app.petId, client.Pet)
                         let vet = await getvet(app.veterinaryId)
-                        console.log(appoint);
-                        console.log(client);
-                        console.log(arrayPet);
-                        console.log(vet);
                         const consultaDataSplit = app.date.split('T');
                         const consultaDataPrimeiraMetade = consultaDataSplit[0];
                         const consultaDataFormatada = consultaDataPrimeiraMetade.split('-').reverse().join('/');
@@ -70,8 +66,6 @@ export const AppointmentAsk = () => {
                             idadeString = idadeEmMeses.toString() + " meses";
                         }
     
-                        console.log(idadeEmAnos); // Saída: 23
-    
     
                         const finalArray = {
                           idAppoint: app.id,
@@ -91,8 +85,6 @@ export const AppointmentAsk = () => {
                           vetPhone: vet.cellphoneNumber,
                           vetPhoto: vet.profilePhoto
                         };
-
-                        console.log(finalArray);
                       
                         return finalArray;
                       }));
@@ -103,9 +95,6 @@ export const AppointmentAsk = () => {
                     setPedido([])
                     
                 }
-                    
-                  
-                console.log();
                 if (decoded.isVet == false) {
                     setButtonAceitar('hidden')
                 }
@@ -158,7 +147,6 @@ export const AppointmentAsk = () => {
           };
           
         const recusar = await recusarAppointments(idAppointment, jsonNothing);
-        console.log(recusar);
         if (recusar.response.message == "Consulta recusada") {
             showToastMessageSucess("Consulta recusada com sucesso!")
             setTimeout(() => {
@@ -181,7 +169,6 @@ export const AppointmentAsk = () => {
             price: parseFloat(preco)
           };
         const aceitar = await aceitadoAppointments(idAppointment, jsonAppointment);
-        console.log(aceitar);
         if (aceitar.response.message == "Consulta aceita") {
             showToastMessageSucess("Consulta aceita com sucesso!")
             setTimeout(() => {
@@ -199,8 +186,21 @@ export const AppointmentAsk = () => {
 
 
     const getappo = async (idPerson) => {
-        let allAboutIt = await getAppointments(idPerson)
+        const token = localStorage.getItem('__user_JWT')
+        const decoded = jwt_decode(token);
+        console.log(decoded.isVet);
+        let allAboutIt
+        if (decoded.isVet == true) {
+            allAboutIt = await getAppointments(idPerson)    
+        } else {
+            let person = await getUser(idPerson)
+            console.log(person);
+            allAboutIt = person
+        }
+
         
+        console.log("Appoinments");
+        console.log(allAboutIt);
         if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
             return []
         } else {
@@ -211,8 +211,6 @@ export const AppointmentAsk = () => {
 
     const getclient = async (idPerson) => {
         let allAboutIt = await getUser(idPerson)
-        console.log("entrou");
-        console.log(allAboutIt);
         if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
             return []
         } else {
@@ -223,8 +221,6 @@ export const AppointmentAsk = () => {
 
     const getvet = async (idPerson) => {
         let allAboutIt = await getVeterinary(idPerson)
-        console.log("vet");
-        console.log(allAboutIt);
         if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
             return []
         } else {
@@ -256,7 +252,6 @@ export const AppointmentAsk = () => {
 
     useEffect( ()  => {
         const token = localStorage.getItem('__user_JWT')
-        console.log(token);
         const decoded = jwt_decode(token);
 
         if (decoded.isVet) {
@@ -439,7 +434,7 @@ export const AppointmentAsk = () => {
                                                         lang="pt-BR"
                                                         className='min-w-full text-2xl'
                                                         defaultValue={preco}
-                                                        onBlur={(e) => formatPrice(e.target)}
+                                                       // onBlur={(e) => formatPrice(e.target)}
                                                         onChange={(e) => setPreco(e.target.value)}
                                                     />
                                                 </div>

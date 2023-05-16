@@ -35,11 +35,10 @@ export const SearchProfessional = () => {
     onSearchIt({ search: inputSearch });
   }
 
-<<<<<<< HEAD
-      const setMudarFiltro = (value) => {
-        setOndeProcurar(value)
-        onSearchIt({ search:  inputSearch, searchIt: value})
-      };
+//      const setMudarFiltro = (value) => {
+//        setOndeProcurar(value)
+//        onSearchIt({ search:  inputSearch, searchIt: value})
+//      };
 
       function citySearch() {
         setFiltro("city");
@@ -58,15 +57,8 @@ export const SearchProfessional = () => {
               let result = response.response;
               let json = Object.values(result);
               setVets(json);
-=======
-  const [umCorteRapidao, setUmCorteRapidao] = useState("");
->>>>>>> 7bee162 (page search and footer)
-
+          }
   //const [filtro, setFiltro] = useState("userName");
-  const onSearch = async (data) => {
-    console.log("Neste");
-    localStorage.setItem("__Vet_Search", data.search);
-    try {
       if (data.search === "") {
         let response = await getAllVets();
         let result = response.response;
@@ -76,7 +68,6 @@ export const SearchProfessional = () => {
         if (filtro !== "city") {
           let response = await getUsers(data.search, ondeProcurar);
           let result = response.response;
-<<<<<<< HEAD
           let json
           console.log(response);
           console.log("aaa");
@@ -84,13 +75,6 @@ export const SearchProfessional = () => {
           if (result === "Nenhum veterinário atende aos filtros de pesquisa"  || result.error.includes("Error") ) {
             json = []
             showToastMessage()
-=======
-          let json;
-          console.log(result);
-          if (result === "Nenhum veterinário atende aos filtros de pesquisa") {
-            json = [];
-            showToastMessage();
->>>>>>> 7bee162 (page search and footer)
           } else {
             json = result.filter(
               (item) =>
@@ -189,15 +173,9 @@ export const SearchProfessional = () => {
                 .includes(data.search.toLowerCase()) ||
               item.userName.toLowerCase().includes(data.search.toLowerCase())
           );
-<<<<<<< HEAD
           setUmCorteRapidao(inputSearch)
           if (json == []) {
             showToastMessage()
-=======
-          setUmCorteRapidao(inputSearch);
-          if (json === []) {
-            showToastMessage();
->>>>>>> 7bee162 (page search and footer)
           }
           setVets(json);
         }

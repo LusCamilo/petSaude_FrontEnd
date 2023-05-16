@@ -18,7 +18,7 @@ export const Appointment = (props) => {
     const [startsAt, setStartAt] = useState('')
     const [description, setDescription] = useState('')
     const [petId, setPetId] = useState(0)
-    const [petsAll, setPetAll] = useState([]);
+    const [petsAll, setPetAll] = useState([{ name: "Não foram encontrados pets" , photo: Dog}]);
     const [petsName, setPetName] = useState('Nome');
     const [ThereArentPets, setThereArentPets] = useState('hidden');
     const [ThereArePets, setThereArePets] = useState('flex');
@@ -58,6 +58,9 @@ export const Appointment = (props) => {
           }
         };
         fetchData();
+        console.log("---");
+        console.log(petsAll);
+        console.log(petsAll.length);
       }, []);
     
     const [classButton, setClassButton] = useState("")
@@ -139,100 +142,172 @@ export const Appointment = (props) => {
         } else  setPetImage(pet.photo);
       }
 
-
-    return (
-    <section id='buttonCanceled' className=" w-full h-full -mt-60 bg-black" >
-        <form onSubmit={handleSubmit(submitAppointment)} className=" flex justify-start w-full">
-            <div className='p-2 md:p-20  w-full'>
-                <h1 className='flex justify-start text-3xl md:text-5xl font-semibold pt-2 md:pt-10'>Selecione o animal</h1>
-                <div className='flex justify-between md:pt-10 w-full  '>
-                <div className={`${ThereArePets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
-                    {petsAll.map(pet => {
-                        if (pet.photo == null || pet.photo == undefined || pet.photo == '') {
-                            return(<button
-                                className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
-                                key={pet.id}
-                                type='button'
-                                id={pet.id}
-                                onClick={() => handlePetSelection(pet)}
-                                >  
-                                    <img className='w-32' src={Dog} alt="Pet ainda não há foto" />
-                                    <p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>{pet.name}</p>
-                                </button>)
-                        } else{
-                            return(<button
-                                key={pet.id}
-                                type='button'
-                                className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
-                                id={pet.id}
-                                onClick={() => handlePetSelection(pet)}
-                                >  
-                                    <img className='w-32' src={pet.photo} alt={pet.name} />
-                                    <p className='text-3xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>{pet.name}</p>
-                                </button>)
-                        }
-                        
-                    })}
-                    </div>
-                    <div className={`${ThereArentPets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
-                    
-                       
-                        <div className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'>  
-                                <img className='w-32' src={Dog} alt="Pet ainda não há foto" />
-                                <p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>Voê não possui pets</p>
+      
+    if (petsAll == [] || petsAll.length == 0) {
+        return (
+            <section id='buttonCanceled' className=" w-full h-full -mt-60 bg-black" >
+                <form onSubmit={handleSubmit(submitAppointment)} className=" flex justify-start w-full">
+                    <div className='p-2 md:p-20  w-full'>
+                        <h1 className='flex justify-start text-3xl md:text-5xl font-semibold pt-2 md:pt-10'>Selecione o animal</h1>
+                        <div className='flex justify-between md:pt-10 w-full  '>
+                        <div className={`${ThereArePets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
+                            <div>  
+                                <img className='w-32' src={Dog} alt="imagem conceitual" />
+                                <p className='text-3xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>Você não possui pets cadastrados, clique aqui para cadastrar seu primeiro!</p>
+                            </div>
+                            </div>
+                            <div className={`${ThereArentPets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`} onClick={()=>	document.location.href = "/profile/pet/add"}>
+                                <button className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'>  
+                                        <img className='w-32' src={Dog} alt="Pet ainda não há foto" />
+                                        <p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>Voê não possui pets</p>
+                                </button>
+                            </div>
+                            <div className='hidden md:flex justify-end pl-20'>
+                            <img className=' w-56 rounded-full' src={petImage}></img>
+                                <div className='flex flex-col pl-10 md:pt-10'>
+                                    <label>
+                                        <input disabled type="text" name="firstName" value={petsName} className='bg-transparent border-none  md:text-5xl font-semibold ' />
+                                    </label>
+                                    <label>
+                                        <input disabled type="text" name="firstName" value={petsEspecie} className='bg-transparent border-none text-1xl md:text-6xl text-[#A9A9A9]' />
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className='hidden md:flex justify-end pl-20'>
-                    <img className=' w-56 rounded-full' src={petImage}></img>
-                        <div className='flex flex-col pl-10 md:pt-10'>
-                            <label>
-                                <input disabled type="text" name="firstName" value={petsName} className='bg-transparent border-none  md:text-5xl font-semibold ' />
-                            </label>
-                            <label>
-                                <input disabled type="text" name="firstName" value={petsEspecie} className='bg-transparent border-none text-1xl md:text-6xl text-[#A9A9A9]' />
-                            </label>
+                    <div className=' w-full'>
+                        <div className=''>
+                            <h2 className='hidden md:flex md:text-5xl font-semibold pl-20'>Informações</h2>
+                            <h2 className='flex justify-center text-3xl md:hidden md:text-5xl font-semibold'>Data e hora</h2>
+                            <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full  pl-14 md:pl-20 pt-3 md:pt-10'>
+                                <label className='w-full flex flex-col text-gray-400 '>
+                                    Data
+                                    <input type='date' onChange={newDate}min={dataFormatada}/>
+                                </label>
+                                <label className='w-full flex flex-col text-gray-400'>
+                                    Hora
+                                    <input type='time' onChange={newTime} />
+                                </label>
+                            </div>
+                            <div className=' p-4'>
+                                <label htmlFor="descricao" className=" mb-2">Descrição:</label>
+                                <textarea id="descricao" name="descricao" className=" border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" rows="4" onChange={newDescription}></textarea>
+                            </div>
+                        </div>
+                        <div className='p-3 md:pl-20 md:pr-20'>
+                            <div className='flex mt-2 md:mt-10 justify-between gap-5'>
+                                <button className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button" onClick={() =>  props.onCancel()}>
+                                    Cancelar
+                                </button>
+                                <button type="submit" className='md:ml-56 p-2 w-32 md:w-56 text-center md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'
+                                      onClick={(event) => {
+                                        submitAppointment(event);
+                                      }}
+                                    >
+                                    Marcar 
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className=' w-full'>
-                <div className=''>
-                    <h2 className='hidden md:flex md:text-5xl font-semibold pl-20'>Informações</h2>
-                    <h2 className='flex justify-center text-3xl md:hidden md:text-5xl font-semibold'>Data e hora</h2>
-                    <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full  pl-14 md:pl-20 pt-3 md:pt-10'>
-                        <label className='w-full flex flex-col text-gray-400 '>
-                            Data
-                            <input type='date' onChange={newDate}min={dataFormatada}/>
-                        </label>
-                        <label className='w-full flex flex-col text-gray-400'>
-                            Hora
-                            <input type='time' onChange={newTime} />
-                        </label>
+        
+                </form>
+            </section>
+            );   
+    } else {
+        return (
+            <section id='buttonCanceled' className=" w-full h-full -mt-60 bg-black" >
+                <form onSubmit={handleSubmit(submitAppointment)} className=" flex justify-start w-full">
+                    <div className='p-2 md:p-20  w-full'>
+                        <h1 className='flex justify-start text-3xl md:text-5xl font-semibold pt-2 md:pt-10'>Selecione o animal</h1>
+                        <div className='flex justify-between md:pt-10 w-full  '>
+                        <div className={`${ThereArePets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
+                            {petsAll.map(pet => {
+                                if (pet.photo == null || pet.photo == undefined || pet.photo == '') {
+                                    return(<button
+                                        className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
+                                        key={pet.id}
+                                        type='button'
+                                        id={pet.id}
+                                        onClick={() => handlePetSelection(pet)}
+                                        >  
+                                            <img className='w-32' src={Dog} alt="Pet ainda não há foto" />
+                                            <p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>{pet.name}</p>
+                                        </button>)
+                                } else{
+                                    return(<button
+                                        key={pet.id}
+                                        type='button'
+                                        className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
+                                        id={pet.id}
+                                        onClick={() => handlePetSelection(pet)}
+                                        >  
+                                            <img className='w-32' src={pet.photo} alt={pet.name} />
+                                            <p className='text-3xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>{pet.name}</p>
+                                        </button>)
+                                }
+                                
+                            })}
+                            </div>
+                            <div className={`${ThereArentPets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
+                            
+                               
+                                <div className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'>  
+                                        <img className='w-32' src={Dog} alt="Pet ainda não há foto" />
+                                        <p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>Voê não possui pets</p>
+                                </div>
+                            </div>
+                            <div className='hidden md:flex justify-end pl-20'>
+                            <img className=' w-56 rounded-full' src={petImage}></img>
+                                <div className='flex flex-col pl-10 md:pt-10'>
+                                    <label>
+                                        <input disabled type="text" name="firstName" value={petsName} className='bg-transparent border-none  md:text-5xl font-semibold ' />
+                                    </label>
+                                    <label>
+                                        <input disabled type="text" name="firstName" value={petsEspecie} className='bg-transparent border-none text-1xl md:text-6xl text-[#A9A9A9]' />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className=' p-4'>
-                        <label htmlFor="descricao" className=" mb-2">Descrição:</label>
-                        <textarea id="descricao" name="descricao" className=" border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" rows="4" onChange={newDescription}></textarea>
+                    <div className=' w-full'>
+                        <div className=''>
+                            <h2 className='hidden md:flex md:text-5xl font-semibold pl-20'>Informações</h2>
+                            <h2 className='flex justify-center text-3xl md:hidden md:text-5xl font-semibold'>Data e hora</h2>
+                            <div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full  pl-14 md:pl-20 pt-3 md:pt-10'>
+                                <label className='w-full flex flex-col text-gray-400 '>
+                                    Data
+                                    <input type='date' onChange={newDate}min={dataFormatada}/>
+                                </label>
+                                <label className='w-full flex flex-col text-gray-400'>
+                                    Hora
+                                    <input type='time' onChange={newTime} />
+                                </label>
+                            </div>
+                            <div className=' p-4'>
+                                <label htmlFor="descricao" className=" mb-2">Descrição:</label>
+                                <textarea id="descricao" name="descricao" className=" border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" rows="4" onChange={newDescription}></textarea>
+                            </div>
+                        </div>
+                        <div className='p-3 md:pl-20 md:pr-20'>
+                            <div className='flex mt-2 md:mt-10 justify-between gap-5'>
+                                <button className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button" onClick={() =>  props.onCancel()}>
+                                    Cancelar
+                                </button>
+                                <button type="submit" className='md:ml-56 p-2 w-32 md:w-56 text-center md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'
+                                      onClick={(event) => {
+                                        submitAppointment(event);
+                                      }}
+                                    >
+                                    Marcar 
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className='p-3 md:pl-20 md:pr-20'>
-                    <div className='flex mt-2 md:mt-10 justify-between gap-5'>
-                        <button className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button" onClick={() =>  props.onCancel()}>
-                            Cancelar
-                        </button>
-                        <button type="submit" className='md:ml-56 p-2 w-32 md:w-56 text-center md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'
-                              onClick={(event) => {
-                                submitAppointment(event);
-                              }}
-                            >
-                            Marcar 
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </form>
-    </section>
-    );   
+        
+                </form>
+            </section>
+            );   
+    }
 
 };
 

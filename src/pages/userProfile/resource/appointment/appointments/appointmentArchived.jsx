@@ -52,14 +52,10 @@ export const AppointmentArchived = (props) => {
       // references are now sync'd and can be accessed.
       //subtitle.style.color = '#f00';
     }
-    const [tutorStatus, setTutorStatus] = useState('hidden')
-    const [buttonStatus, setButtonStatus] = useState('flex')
+    const [isVet, setisVet] = useState('hidden')
     const [buttonAceitar, setButtonAceitar] = useState('flex')
-    const [showVet, setShowVet] = useState('hidden')
-    const [showClient, setShowClient] = useState('flex')
     const [divNothing, setDivNothing] = useState('hidden') 
-    const [duracao, setDuracao] = useState(0) 
-    const [preco, setPreco] = useState(0.0) 
+
 
     const [warn, setWarn] = React.useState(false);
     const [Sucess, setSucess] = React.useState(false);
@@ -86,7 +82,9 @@ export const AppointmentArchived = (props) => {
                 const token = localStorage.getItem('__user_JWT')
                 const decoded = jwt_decode(token);
                 let appoint = await getappo(decoded.id)
-               
+               if (decoded.isVet == false) {
+                    setisVet('flex')
+               }
                 if (appoint != undefined && appoint != null) {
                     
                     let filteredAppointments = appoint.filter(appointment => appointment.status == 'CANCELED' || appointment.status == 'CONCLUDED');
@@ -98,8 +96,7 @@ export const AppointmentArchived = (props) => {
                         const consultaDataSplit = app.date.split('T');
                         const consultaDataPrimeiraMetade = consultaDataSplit[0];
                         const consultaDataFormatada = consultaDataPrimeiraMetade.split('-').reverse().join('/');
-    
-    
+                      
                         const horarioSplit = app.startsAt.split('T');
                         const horarioSegundaMetade = horarioSplit[1];
                         const horarioSplit2 = horarioSegundaMetade.split(':00.000Z');
@@ -112,6 +109,10 @@ export const AppointmentArchived = (props) => {
                         const idadeEmAnos = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24 * 365));
     
                         let idadeString;
+
+                        let statusTraduzido 
+                        if (app.status == "CONCLUDED") statusTraduzido = 'Finalizado'
+                        else statusTraduzido = 'Cancelado'
     
                         if (typeof idadeEmAnos === "number" && Number.isInteger(idadeEmAnos)) {
                             idadeString = idadeEmAnos.toString() + " anos";
@@ -139,7 +140,9 @@ export const AppointmentArchived = (props) => {
                           duration: formattedDuration,
                           vetName: vet.personName,
                           vetPhone: vet.cellphoneNumber,
-                          vetPhoto: vet.profilePhoto
+                          vetPhoto: vet.profilePhoto,
+                          estado: app.status,
+                          status: statusTraduzido
                         };
 
                         console.log(finalArray);
@@ -180,7 +183,18 @@ export const AppointmentArchived = (props) => {
 
 
     const getappo = async (idPerson) => {
-        let allAboutIt = await getAppointments(idPerson)
+        const token = localStorage.getItem('__user_JWT')
+        const decoded = jwt_decode(token);
+        console.log(decoded.isVet);
+        let allAboutIt
+        if (decoded.isVet == true) {
+            allAboutIt = await getAppointments(idPerson)    
+        } else {
+            let person = await getUser(idPerson)
+            console.log(person);
+            allAboutIt = person
+        }
+
         
         if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
             return []
@@ -235,9 +249,9 @@ export const AppointmentArchived = (props) => {
         let finalizar = 0;
       
         pedidos.forEach(pedir => {
-          if (pedir.estado == "Cancelado") {
+          if (pedir.estado == "CANCELED") {
             cancelada += 1;
-          } else if (pedir.estado == "Finalizado") {
+          } else if (pedir.estado == "CONCLUDED") {
             finalizar += 1;
           }
         });
@@ -265,7 +279,8 @@ export const AppointmentArchived = (props) => {
             </div>
             <div className='w-full flex flex-col gap-3 mr-2'>
                     {pedidos.map(pedido =>{
-                         const cor = pedido.estado == 'Cancelado' ? 'bg-[#F1EAC6]' : 'bg-[#09738A]'
+                        console.log(pedido.estado);
+                         const cor = pedido.estado == 'CONCLUDED' ? 'bg-[#09738A]' : 'bg-[#F1EAC6]'
                         return(
                             <div className={`${cor} border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 sm:pl-20 py-8`}>
                                 <div className='flex flex-row items-center content-center text-center text-6xl gap-4'>
@@ -338,9 +353,9 @@ export const AppointmentArchived = (props) => {
                                 </div>
                                 <div className='flex flex-row items-center content-center text-bottom gap-2'>
                                     <h2 className='font-normal  flex justify-center sm:justify-start font-sans'>Status:</h2>
-                                    <div className='text-[#49454F] font-normal text-lg font-sans'>{pedido.estado}</div>
+                                    <div className='text-[#49454F] font-normal text-lg font-sans'>{pedido.status}</div>
                                 </div>
-                                <div>
+                                <div className={`${isVet}`}>
                                 <button 
                                 class="bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded"
                                 onClick={openModal}

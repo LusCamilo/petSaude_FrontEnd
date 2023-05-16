@@ -77,7 +77,7 @@ export const PetHeader = (props) => {
                   Blog
                 </button> */}
                 <button
-                  onClick={<Link to="/home/aboutUs"></Link>}
+                  onClick={<Link to="/home/about-us"></Link>}
                   className="flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-5/6 text-left rounded-full"
                 >
                   <img src={Info} className="pr-3 w-14"></img>
