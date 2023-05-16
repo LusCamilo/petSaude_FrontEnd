@@ -19,15 +19,17 @@ export const Footer = () => {
 
                     <div className="basis-1/3 md:basis-1/4 w-1/8 flex items-center flex-col content-evenly">
                         <h5 className="font-semibold text-lg md:text-2xl flex items-center justify-center"> Veja também : </h5>
-                        <ul className="flex w-fit items-start justify-start flex-col gap-2">
+                        <ul className="flex w-fit items-start justify-start flex-col gap-2 pt-5 ">
+                            <li className="w-full md:text-xl font-montserrat font-normal text-sm miniSize">
+                                <Link to="/home">Home</Link>
+                            </li>
+
                             <li className="w-full text-sm md:text-xl font-montserrat font-normal miniSize">
-                                <Link to="/home/searchProfessionals" className=" duration-500 flex flex-col-reverse relative transition-all">Profissionais</Link>
+                                <Link to="/home/search-professionals" className=" duration-500 flex flex-col-reverse relative transition-all">Profissionais</Link>
                             </li>
+                           
                             <li className="w-full md:text-xl font-montserrat font-normal text-sm miniSize">
-                                <Link to="/home">Blog</Link>
-                            </li>
-                            <li className="w-full md:text-xl font-montserrat font-normal text-sm miniSize">
-                                <Link to="/home/aboutUs" className=" duration-500 flex flex-col-reverse relative transition-all">Sobre nós</Link>
+                                <Link to="/home/about-us" className=" duration-500 flex flex-col-reverse relative transition-all">Sobre nós</Link>
                             </li>
                         </ul>
                     </div>
@@ -56,7 +58,7 @@ export const Footer = () => {
                 </div>
                 <div className=" justify-center mt-20 mb-5 flex-col hidden md:flex">
                     <img src={linha} alt="" className="flex mx-28"/>
-                    <p className="flex justify-center">©Copyright 2023 - NovaDev</p>
+                    <p className="flex justify-center">©Copyright 2023 - INovaDev</p>
                 </div>
             </div>
         </>

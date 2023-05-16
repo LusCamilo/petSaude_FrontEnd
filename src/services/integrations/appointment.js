@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import {BASE_URL} from "../../lib/_base_url";
-
-=======
 import {BASE_URL, LOCAL_URL} from "../../lib/_base_url";
->>>>>>> 6b92143862ad442bb84a7a9c2f7fc34bada61085
 
 const token = localStorage.getItem('__user_JWT')
 
@@ -38,37 +33,40 @@ export async function getAppointments(idPeople) {
     .catch(error => console.log('Error Procurar veterinários'));
 }
 
-export async function recusarAppointments(idAppointment) {
+export async function recusarAppointments(idAppointment, jsonAppointment) {
 
   const url = `${BASE_URL}appointment/${idAppointment}/validate?status=DECLINED`
   console.log(url);
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': `Bearer ${token}`
-      }
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(jsonAppointment)
   })
   return await response.json()
 }
 
-export async function aceitadoAppointments(idAppointment) {
+export async function aceitadoAppointments(idAppointment, jsonAppointment) {
 
   const url = `${BASE_URL}appointment/${idAppointment}/validate?status=SCHEDULED`
-  console.log(url);
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': `Bearer ${token}`
-      }
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(jsonAppointment)
   })
   return await response.json()
 }
 
 export async function canceladoAppointments(idAppointment) {
 
-  const url = `${BASE_URL}appointment/${idAppointment}/validate?status=CANCEL`
+  const url = `${BASE_URL}appointment/${idAppointment}/status/CANCELED`
   console.log(url);
   const response = await fetch(url, {
     method: 'PUT',
@@ -80,4 +78,16 @@ export async function canceladoAppointments(idAppointment) {
   return await response.json()
 }
 
+export async function finalizadoAppointments(idAppointment) {
 
+  const url = `${BASE_URL}appointment/${idAppointment}/status/CONCLUDED`
+  console.log(url);
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `Bearer ${token}`
+      }
+  })
+  return await response.json()
+}

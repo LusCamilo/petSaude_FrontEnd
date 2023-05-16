@@ -17,6 +17,8 @@ export const AppointmentAsk = () => {
     const [showVet, setShowVet] = useState('hidden')
     const [showClient, setShowClient] = useState('flex')
     const [divNothing, setDivNothing] = useState('hidden') 
+    const [duracao, setDuracao] = useState(0) 
+    const [preco, setPreco] = useState(0.0) 
 
 
 
@@ -150,7 +152,13 @@ export const AppointmentAsk = () => {
     };
 
       const recusarAppointment = async (idAppointment) => {
-        const recusar = await recusarAppointments(idAppointment);
+        const jsonNothing = {
+            duration: 0,
+            price: 0.00
+          };
+          
+        const recusar = await recusarAppointments(idAppointment, jsonNothing);
+        console.log(recusar);
         if (recusar.response.message == "Consulta recusada") {
             showToastMessageSucess("Consulta recusada com sucesso!")
             setTimeout(() => {
@@ -163,27 +171,28 @@ export const AppointmentAsk = () => {
             setTimeout(() => {
                 window.location.reload();
               }, 2000); // Refresh after 5 seconds
-              
         }
         return recusar
       }
 
       const marcarAppointment = async (idAppointment) => {
-        const aceitar = await aceitadoAppointments(idAppointment);
-        if (aceitar.response.message == "Consulta recusada") {
+        const jsonAppointment = {
+            duration: parseFloat(duracao),
+            price: parseFloat(preco)
+          };
+        const aceitar = await aceitadoAppointments(idAppointment, jsonAppointment);
+        console.log(aceitar);
+        if (aceitar.response.message == "Consulta aceita") {
             showToastMessageSucess("Consulta aceita com sucesso!")
-
             setTimeout(() => {
                 window.location.reload();
               }, 2000); // Refresh after 5 seconds
-              
           }
           else {
             showToastMessageFailed()
             setTimeout(() => {
                 window.location.reload();
-              }, 2000); // Refresh after 5 seconds
-              
+              }, 2000); // Refresh after 5 second
         }
         return aceitar
       }
@@ -223,6 +232,17 @@ export const AppointmentAsk = () => {
         }
 
     };
+
+    function formatPrice(input) {
+        let value = input.value.replace(/[^0-9\.]/g, '');
+      
+        let decimalCount = value.split('.').length - 1;
+        if (decimalCount > 1) {
+          value = value.slice(0, -1);
+        }
+      
+        input.value = parseFloat(value).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+      }
 
     const handleClick = () => {
         setTutorStatus('flex');
@@ -396,11 +416,33 @@ export const AppointmentAsk = () => {
                                         <div className='w-1/3 flex justify-center gap-5 flex-col'>
                                             <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
                                                 Duracação
-                                                <input type="time" id="duracao" name="duracao" min="00:01" max="03:00" className='w-full' />
+                                                <input type="time" id="duracao" name="duracao" min="00:01" className='w-full text-2xl' 
+                                                  defaultValue={duracao}
+                                                  onChange={(e) => {
+                                                    const time = e.target.value.split(':');
+                                                    const hours = parseInt(time[0]);
+                                                    const minutes = parseInt(time[1]);
+                                                    const totalMinutes = (hours * 60) + minutes;
+                                                    setDuracao(totalMinutes);
+                                                  }}/>
                                             </label>
-                                            <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full '>
+                                            <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
                                                 Valor
-                                                <div className='flex flex-row'>R$<input type="number" id="duracao" name="duracao" className='w-full' /></div>
+                                                <div className='flex items-center justify-center gap-2'>
+                                                    <span className='text-2xl align-bottom'>R$  </span>
+                                                    <input
+                                                        type="number"
+                                                        step="0.01"
+                                                        min="0.01"
+                                                        name="preco"
+                                                        id="preco"
+                                                        lang="pt-BR"
+                                                        className='min-w-full text-2xl'
+                                                        defaultValue={preco}
+                                                        onBlur={(e) => formatPrice(e.target)}
+                                                        onChange={(e) => setPreco(e.target.value)}
+                                                    />
+                                                </div>
                                             </label>
                                         </div> 
                                     </div>

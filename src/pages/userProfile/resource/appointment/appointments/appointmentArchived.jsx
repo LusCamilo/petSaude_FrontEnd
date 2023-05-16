@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './styleAppointment.css'
-import Modal from 'react-modal';
+import * as Dialog from '@radix-ui/react-dialog';
+import jwt_decode from "jwt-decode";
+import { getAppointments } from '../../../../../services/integrations/appointment';
+import { getUser, getVeterinary} from '../../../../../services/integrations/user'
+import {  canceladoAppointments, finalizadoAppointments } from '../../../../../services/integrations/appointment'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Modal from 'react-modal'
+import { WarnRequest } from '../../../pet/cards/warnTwo';
+import { PetAddSucess } from '../../../pet/cards/sucess';
 
 const customStyles = {
     content: {
@@ -43,50 +52,175 @@ export const AppointmentArchived = (props) => {
       // references are now sync'd and can be accessed.
       //subtitle.style.color = '#f00';
     }
+    const [tutorStatus, setTutorStatus] = useState('hidden')
+    const [buttonStatus, setButtonStatus] = useState('flex')
+    const [buttonAceitar, setButtonAceitar] = useState('flex')
+    const [showVet, setShowVet] = useState('hidden')
+    const [showClient, setShowClient] = useState('flex')
+    const [divNothing, setDivNothing] = useState('hidden') 
+    const [duracao, setDuracao] = useState(0) 
+    const [preco, setPreco] = useState(0.0) 
 
+    const [warn, setWarn] = React.useState(false);
+    const [Sucess, setSucess] = React.useState(false);
+    function openModalQuestionWarn() {
+        setWarn(true)
+    }
+
+    function closeModalQuestionWarn() {
+        setWarn(false);
+    }
+
+    function openModalQuestionSucess() {
+        setSucess(true)
+    }
+
+    function closeModalQuestionSucess() {
+        setSucess(false);
+    }
 
 
     useEffect(() => {
-        setPedido([
-          {
-            imagemPet: "https://i.pinimg.com/564x/d6/f8/50/d6f850459ccd0a00dd65ca3309cb3d7c.jpg",
-            estado: "Cancelado",
-            nomePet: "Rex",
-            sexo: "Masculino",
-            especie: "Cachorro",
-            tamanho: "Médio",
-            idade: "4 anos",
-            dataConsulta: "2023-05-10",
-            horario: "14:00",
-            descricao: "Exame de rotina",
-          },
-          {
-            imagemPet: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVYPUnLOG9LqCBw0kA_tkN4iQqA1NQTh9Lr8hQuKh0LogsMDExaCImrwdhjcDNQoLp5UE&usqp=CAU",
-            estado: "Cancelado",
-            nomePet: "Pixie",
-            sexo: "Feminino",
-            especie: "Gato",
-            tamanho: "Pequeno",
-            idade: "1 ano",
-            dataConsulta: "25/05/2023",
-            horario: "13:00",
-            descricao: "Exame cardiaco",
-          },
-          {
-            imagemPet: "https://www.portaldoanimal.org/wp-content/uploads/2019/02/gatinha-pastor-alemao2-6.jpg",
-            estado: "Finalizado",
-            nomePet: "Randell",
-            sexo: "Masculino",
-            especie: "Guaxinim",
-            tamanho: "Médio",
-            idade: "3 anos",
-            dataConsulta: "24/08/2023",
-            horario: "21:00",
-            descricao: "Exame imunológico",
-          },
-        ]);
+        const fetchData = async () => {
+            try {
+                const token = localStorage.getItem('__user_JWT')
+                const decoded = jwt_decode(token);
+                let appoint = await getappo(decoded.id)
+               
+                if (appoint != undefined && appoint != null) {
+                    
+                    let filteredAppointments = appoint.filter(appointment => appointment.status == 'CANCELED' || appointment.status == 'CONCLUDED');
+                    
+                    let appoints = await Promise.all(filteredAppointments.map(async (app) => {
+                        let client = await getclient(app.clientId);
+                        let arrayPet = await getPet(app.petId, client.Pet)
+                        let vet = await getvet(app.veterinaryId);
+                        const consultaDataSplit = app.date.split('T');
+                        const consultaDataPrimeiraMetade = consultaDataSplit[0];
+                        const consultaDataFormatada = consultaDataPrimeiraMetade.split('-').reverse().join('/');
+    
+    
+                        const horarioSplit = app.startsAt.split('T');
+                        const horarioSegundaMetade = horarioSplit[1];
+                        const horarioSplit2 = horarioSegundaMetade.split(':00.000Z');
+                        const horario = horarioSplit2[0];
+    
+                        const dataDeNascimento = new Date(arrayPet.birthDate);
+                        const dataAtual = new Date();
+    
+                        const diferencaEmMilissegundos = dataAtual - dataDeNascimento;
+                        const idadeEmAnos = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24 * 365));
+    
+                        let idadeString;
+    
+                        if (typeof idadeEmAnos === "number" && Number.isInteger(idadeEmAnos)) {
+                            idadeString = idadeEmAnos.toString() + " anos";
+                        } else {
+                            const idadeEmMeses = idadeEmAnos * 12;
+                            idadeString = idadeEmMeses.toString() + " meses";
+                        }
+                      
+                      const formattedDuration = formatDuration(app.duration);
+    
+                        const finalArray = {
+                          idAppoint: app.id,
+                          imagemPet: arrayPet.photo,
+                          donoImg: client.profilePhoto,
+                          dono: client.personName,
+                          telefone: client.cellphoneNumber,
+                          nomePet: arrayPet.name,
+                          sexo: arrayPet.petGender,
+                          especie: arrayPet.petSpecie.name,
+                          tamanho: arrayPet.petSize,
+                          idade: idadeString,
+                          dataConsulta: consultaDataFormatada,
+                          horario: horario,
+                          descricao: app.description,
+                          duration: formattedDuration,
+                          vetName: vet.personName,
+                          vetPhone: vet.cellphoneNumber,
+                          vetPhoto: vet.profilePhoto
+                        };
 
-      }, []);
+                        console.log(finalArray);
+                      
+                        return finalArray;
+                      }));
+                      setDivNothing('hidden')
+                      setPedido(appoints)   
+                } else {
+                    setDivNothing('flex')
+                    setPedido([])
+                    
+                }
+                    
+                  
+                if (decoded.isVet == false) {
+                    setButtonAceitar('hidden')
+                }
+            } catch (error) {
+            }
+        }
+        fetchData();
+    }, []);
+
+
+    function formatDuration(duration) {
+        const hours = Math.floor(duration / 60);
+        const minutes = duration % 60;
+        const formattedHours = hours.toString().padStart(2, '0');
+        const formattedMinutes = minutes.toString().padStart(2, '0');
+        return `${formattedHours}h${formattedMinutes}min`;
+    }
+
+    const getPet = async (idPet, arrayPet) => {
+        const filteredPets = arrayPet.filter(pet => pet.id === idPet);
+        return filteredPets[0];
+      }
+
+
+    const getappo = async (idPerson) => {
+        let allAboutIt = await getAppointments(idPerson)
+        
+        if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
+            return []
+        } else {
+            return allAboutIt.response.user.Appointments
+        }
+
+    };
+
+    const getclient = async (idPerson) => {
+        let allAboutIt = await getUser(idPerson)
+        if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
+            return []
+        } else {
+            return  allAboutIt.response.user
+        }
+
+    };
+
+    const getvet = async (idPerson) => {
+        let allAboutIt = await getVeterinary(idPerson)
+        if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
+            return []
+        } else {
+            return  allAboutIt.response.user
+        }
+
+    };
+
+    function formatPrice(input) {
+        let value = input.value.replace(/[^0-9\.]/g, '');
+      
+        let decimalCount = value.split('.').length - 1;
+        if (decimalCount > 1) {
+          value = value.slice(0, -1);
+        }
+      
+        input.value = parseFloat(value).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+      }
+
 
       const handleOpenModal = () => {
         setShowModal(true);

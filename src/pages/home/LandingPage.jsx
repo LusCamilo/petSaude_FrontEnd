@@ -1,15 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Footprint from "../../assets/svg/petPaws.svg";
 import Dog from "../../assets/svg/dogAndCat.svg";
-import Doctor from "../../assets/svg/medico 1.svg";
 import "./css/LandingPage.css";
-import Local from "../../assets/svg/localizacao.svg";
 import { PetHeader } from "../userProfile/pet/petHeader";
 import { FaUserNurse } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
+import verifyLoggedUser from "../../utils/verifyLoggedUser";
 
 export const LandingPage = () => {
+  verifyLoggedUser()
   function handleKeyPress(inputValue, event, whenSearch) {
     if (event.key === "Enter") {
       event.preventDefault(); // evita a renderização da tela

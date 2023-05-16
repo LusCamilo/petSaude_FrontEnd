@@ -107,19 +107,19 @@ export const TopContainer = (props) => {
     }
 
     //localStorage.getItem('__register_type') === "professional"
+
     if (isVet == true) {
 
         return (
             <div id='topHeader' className='flex flex-col items-center md:px-44'>
-                <img src={props.profilePhoto} className='w-full md:max-h-[400px] rounded-b-lg ' />
+                <img src={props.profilePhoto} className='w-full md:h-[500px] rounded-b-xl ' />
                 <div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex'>
                     <img src={props.userPhoto} className="flex relative pl-24 sm:pl-56 md:pl-0 md:border-4 h-28  md:h-48 md:border-white border-solid rounded-full" />
                     <div className='flex flex-col md:flex-row justify-between w-full md:mt-16'>
                         <div className='flex flex-col md:flex-row items-center gap-1 pt-4'>
                             <div className='flex'>
                                 <p className='text-3xl md:text-4xl'>{props.name}</p>
-                                <img className='pl-2' src={iconVet} />
-                                
+                                <img className='pl-2' src={iconVet} /> 
                             </div>
 
                             <div className='flex md:hidden'>
@@ -187,18 +187,18 @@ export const TopContainer = (props) => {
 
         return (
             <div id='topHeader' className='flex flex-col items-center md:px-44'>
-                <img src={props.profilePhoto} className='w-full md:max-h-[400px] rounded-b-lg ' />
+                <div className='w-full md:max-h-[500px] h-[500px] rounded-b-xl relative overflow-hidden flex items-center justify-center'>
+                    <img src={props.profilePhoto} className='bg-cover w-full' />
+                </div>
                 <div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex'>
-                    <img src={props.userPhoto} className="flex relative pl-24 sm:pl-56 md:pl-0 md:border-4 h-28  md:h-48 md:border-white border-solid rounded-full" />
+                    <img src={props.userPhoto} className="bg-cover w-full flex relative pl-24 sm:pl-56 md:pl-0 md:border-4 h-28 md:h-48 md:w-48 md:border-white border-solid rounded-full" />
                     <div className='flex flex-col md:flex-row justify-between w-full md:mt-16'>
-                        <div className='flex flex-col md:flex-row items-center gap-1 pt-4'>
+                        <div className='flex flex-col md:flex-col md:items-start gap-1 pt-9 pl-3'>
                             <div className='flex'>
                                 <p className='text-3xl md:text-4xl'>{props.name}</p>
                                 <img className='pl-2' src={iconVet} />
-                                
                             </div>
-
-                            <div className='flex md:hidden'>
+                            <div className='flex'>
                                 <p className='flex justify-center text-xl'> 777
                                     <span className='pl-2 text-[#A9A9A9]'>Clientes</span>
                                 </p>
@@ -219,7 +219,7 @@ export const TopContainer = (props) => {
                 <div className='w-full h-[1px] bg-gray-400 mt-2 '></div>
                 <h2 className='self-start text-3xl pt-5 pb-2 pl-5'>Sobre Mim</h2>
                 <div className='flex w-full p-5 text-justify'>
-                    <span className={`  md:w-11/12 ${props.biografia}`} id="biografia">
+                    <span className={`md:w-11/12 ${props.biografia}`} id="biografia">
                         {props.biografia}
                         <a href="#" className={`text-sky-600 ${lerMenos}`} onClick={textTruncate} >
                             ler menos
@@ -230,8 +230,7 @@ export const TopContainer = (props) => {
                     </a>
                 </div>
             </div >
-        );
+        );  
     }
 
 }
-

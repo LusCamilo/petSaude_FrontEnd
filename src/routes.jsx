@@ -33,7 +33,7 @@ export const Rotas = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/" element={<HomeWeb />}></Route>
         <Route path="/home" element={<HomeWeb />} />
         <Route path="/home/about-us" element={<AboutUs />} />
         <Route path="/home/resource/HeaderInfo" element={<HeaderInfo/>} />
@@ -42,6 +42,7 @@ export const Rotas = () => {
 
         <Route path="/pet/petHeader" element={<PetHeader />} />
         <Route path="/pet/PetConfig" element={<PetConfig />} />
+        
 
         <Route path="/pages/userProfile/resource/editUser/headerConfig" element={<Config  />} />
         <Route path="/pages/userProfile/resource/header" element={<HeaderProfile  />} />
@@ -65,7 +66,7 @@ export const Rotas = () => {
           element={<ProfissonaisInfos />}
         />
         <Route path="/profile/appointment" element={<Appointment />} />
-        {/* <Route path="/profile/appointment-view" element={<AppointmentView />} /> */}
+        <Route path="/profile/appointment-view" element={<AppointmentView />} />
         {/*<Route path="/profile/appointment-menu" element={<AppointmentMenu />} />*/}
         <Route
           path="/home/search-professionals"

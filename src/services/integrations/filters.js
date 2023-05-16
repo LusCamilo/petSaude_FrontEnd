@@ -3,8 +3,9 @@ import { BASE_URL } from "../../lib/_base_url";
 
 export async function getUsers(search, searchIt) {
   if (search == null || search == undefined) {
-    search = ' '
+    search = ''
   }
+  console.log("Procurando");
   const url = `${BASE_URL}veterinary?${searchIt}=${search}`
   console.log(url);
   return await fetch(url, {
@@ -12,6 +13,7 @@ export async function getUsers(search, searchIt) {
     headers: {
       'Access-Control-Allow-Origin': '*',
     }
+    
   })
     .then(response => response.json())
     .catch(error => console.log('Error Procurar veterinários'));
