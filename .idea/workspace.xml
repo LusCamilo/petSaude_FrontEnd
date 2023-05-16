@@ -5,15 +5,78 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/verifyLoggedUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_05_23_08_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_05_23_08_14__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/headers/AuthHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/headers/AuthHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/headers/headerEdits.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/headers/headerEdits.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/_base_url.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/_base_url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/AboutUs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/AboutUs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/AppPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/AppPreview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/Assessments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/Assessments.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/BlogPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/BlogPreview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/BlogProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/BlogProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/PraisedDoctors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/PraisedDoctors.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/WebFunction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/WebFunction.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/chatInfos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/chatInfos.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/filterName.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/filterName.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/radixSearch.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/radixSearch.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/CardBlog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/CardBlog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/CardProfessionals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/CardProfessionals.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/Footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/HeaderWeb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/HeaderWeb.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/nameEspeciality.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/nameEspeciality.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/searchArea.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/searchArea.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/searchProfessional.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/searchProfessional.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/css/cadastroVet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/css/cadastroVet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/editProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/editProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/erro500.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/erro500.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/sucess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/sucess.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warnTwo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warnTwo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petAdd.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petAdd.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/academicInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/academicInfo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentPets.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/cards.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/cards.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/infosProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/infosProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/topContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/topContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/userPhoto.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/userPhoto.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/address.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/address.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/allPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/allPets.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/cardPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/cardPets.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/headerConfig.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/headerConfig.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosPerson.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosPerson.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/address.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/address.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/consults.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/consults.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosPerson.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosPerson.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosProfissionais.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/infosProfissionais.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/security.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/security.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/headerEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/headerEdit.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/maps.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/maps.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/integrations/appointment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/appointment.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +91,9 @@
       </list>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -39,23 +105,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Development/tcc/petSaude_FrontEnd",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "copyright",
-    "ts.external.directory.path": "/private/var/folders/hc/1stsw54n0cv18d19tqth_p181h77b7/T/AppTranslocation/21428643-1150-4B9E-820D-CE309DC60644/d/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Development/tcc/petSaude_FrontEnd&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/private/var/folders/hc/1stsw54n0cv18d19tqth_p181h77b7/T/AppTranslocation/21428643-1150-4B9E-820D-CE309DC60644/d/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages/profile/veterinaryProfile" />
@@ -109,10 +175,18 @@
       <workItem from="1683719640863" duration="6856000" />
       <workItem from="1683802557160" duration="970000" />
       <workItem from="1684148412899" duration="8477000" />
+      <workItem from="1684236203291" duration="3125000" />
+      <workItem from="1684239389671" duration="2597000" />
+      <workItem from="1684242118013" duration="863000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="javascript:npm:styled-components" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:tailwindcss" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:postcss" />
   </component>
 </project>
