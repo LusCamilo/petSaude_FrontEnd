@@ -38,7 +38,6 @@ class Notifications {
 			showLoaderOnConfirm: true,
 		})
 	}
-
 }
 
 export default new Notifications()

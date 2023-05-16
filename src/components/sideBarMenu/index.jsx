@@ -3,7 +3,6 @@ import Home from "../../assets/svg/Home.svg";
 import Work from "../../assets/svg/Work.svg";
 import Info from "../../assets/svg/InfoOutline.svg";
 import Calendary from "../../assets/svg/Calendar today.svg";
-import Person from "../../assets/svg/Person.svg";
 import Lock from "../../assets/svg/Lock.svg";
 import Logout from "../../assets/svg/Logout.svg";
 import React, {useEffect, useState} from "react";
