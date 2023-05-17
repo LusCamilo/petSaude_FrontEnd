@@ -10,8 +10,6 @@ export const PetAddSucess = (props) => {
 		if(props.aparecer === '') setAparecer('flex')
 	}, []);
 
-	console.log(props.Pet);
-
 	return(
 		<div className='flex justify-center content-start flex-col p-4'>
 			<div className='bg-[#E3EFF0] rounded-3xl flex justify-center content-center flex-col'>
@@ -28,7 +26,6 @@ export const PetAddSucess = (props) => {
 				</button>
 				<button className='rounded-3xl bg-[#78A890] text-center h-10 w-20'
 				        onClick={() => {
-					        console.log("Apertado");
 					        props.onSave()
 
 				        }}>

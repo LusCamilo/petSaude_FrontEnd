@@ -6,6 +6,9 @@ import {SideBarMenu} from "../../../../components/sideBarMenu";
 import { PetHeader } from '../../pet/petHeader';
 
 export const Config = (props) => {
+
+	
+
 	return (
 		<section>
 			{/* <div className="flex font-normal items-center justify-between bg-white shadow pl-5 xl:p-10 h-30 text-4xl">

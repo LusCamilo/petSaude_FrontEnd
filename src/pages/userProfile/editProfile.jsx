@@ -9,6 +9,7 @@ import { PetHeader } from './pet/petHeader';
 import jwt_decode from "jwt-decode";
 import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
 import Notifications from "../../utils/Notifications";
+import getUserInfos from "../../utils/getUserInfos";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -20,34 +21,6 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
-
-const InfosUser = async () => {
-	const token = localStorage.getItem('__user_JWT')
-	const decoded = jwt_decode(token);
-	if (decoded.isVet === false) {
-		const response = await getUser(decoded.id)
-		return {
-			id: response.response.user.id,
-			userName: response.response.user.userName,
-			personName: response.response.user.personName,
-			profilePhoto: response.response.user.profilePhoto,
-			profileBannerPhoto: response.response.user.profileBannerPhoto,
-			email: response.response.user.email,
-			password: response.response.user.password,
-		}
-	} else {
-		const response = await getVeterinary(decoded.id)
-		return {
-			id: response.response.user.id,
-			userName: response.response.user.userName,
-			personName: response.response.user.personName,
-			profilePhoto: response.response.user.profilePhoto,
-			profileBannerPhoto: response.response.user.profileBannerPhoto,
-			email: response.response.user.email,
-			password: response.response.user.password,
-		}
-	}
-}
 
 export const EditProfile = () => {
 	const [infos, setInfos] = useState({})
@@ -65,7 +38,7 @@ export const EditProfile = () => {
 				// await Notifications.warning('Crie um nome de usuário').then(test => console.log(test))
 		}
 		async function fetchData() {
-			const allInfosUser = (await InfosUser())
+			const allInfosUser = (await getUserInfos())
 			setInfos(
 				{
 					userName: allInfosUser.userName,
@@ -110,7 +83,6 @@ export const EditProfile = () => {
 				.then(() => getDownloadURL(storageRef))
 				.then((url) => {
 					if (url !== undefined) {
-						console.log(url);
 						setProfilePhoto(url);
 					} else {
 						setProfilePhoto('');
@@ -158,8 +130,6 @@ export const EditProfile = () => {
 						profileBannerPhoto: profileBannerPhoto,
 						profilePhoto: profilePhoto
 					}
-
-					console.log(JSON.stringify(profileInfos))
 
 					if (localStorage.getItem('__user_isVet') === 'true')
 						updateProfileInfosVeterinary(profileInfos).then(response =>  {

@@ -47,7 +47,6 @@ const dataFormation = (date) => {
 
 const InfosUser = async () => {
 	const response = await getPet(localStorage.getItem("__pet_id"))
-	console.log(response);
 	return {
 		id: response.id,
 		name: response.name,
@@ -93,7 +92,6 @@ export const PetConfig = (props) => {
 		setDateBorn(infos.birthDate ? infos.birthDate : '')
 		async function fetchData() {
 			const allInfosPet = await InfosUser()
-			console.log(allInfosPet);
 			const dataFormation = allInfosPet.birthDate.split("T")
 			let data = dataFormation[0].split("-")
 			const newData = new Date(data[0], data[1], data[2])

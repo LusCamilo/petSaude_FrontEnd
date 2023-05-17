@@ -4,8 +4,6 @@ import './cssPadraoCards.css'
 
 
 export const WarnRequest = (props) => {
-	console.log(props.Pet);
-	console.log(props.id);
 
 	return(
 		<div className='w-screen h-screen bg-[#F9DEDC] rounded-3xl flex justify-center content-center flex-col'>
@@ -21,7 +19,6 @@ export const WarnRequest = (props) => {
 				</button>
 				<button className={`${props.boolBotoes} text-[#F9DEDC] text-xl p-5 bg-[#B3261E] rounded-full`} onClick={
 					() => {
-						console.log();
 						props.onSave()
 						//document.location.href = props.href
 					}

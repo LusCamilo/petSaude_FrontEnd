@@ -139,8 +139,6 @@ export const AppointmentPeding = (props) => {
 							vetPhoto: vet.profilePhoto
 						};
 
-						console.log(finalArray);
-
 						return finalArray;
 					}));
 					setDivNothing('hidden')
@@ -203,7 +201,6 @@ export const AppointmentPeding = (props) => {
 	const cancelarAppointment = async (idAppointment) => {
 
 		const recusar = await canceladoAppointments(idAppointment);
-		console.log(recusar);
 		if (recusar.response.message === "Consulta cancelada") {
 			showToastMessageSucess("Consulta cancelada com sucesso!")
 			setTimeout(() => {
@@ -223,7 +220,6 @@ export const AppointmentPeding = (props) => {
 	const finalizarAppointment = async (idAppointment) => {
 
 		const aceitar = await finalizadoAppointments(idAppointment);
-		console.log(aceitar);
 		if (aceitar.response.message === "Consulta concluída") {
 			showToastMessageSucess("Consulta finalizada com sucesso!")
 			setTimeout(() => {
@@ -243,19 +239,13 @@ export const AppointmentPeding = (props) => {
 	const getappo = async (idPerson) => {
         const token = localStorage.getItem('__user_JWT')
         const decoded = jwt_decode(token);
-        console.log(decoded.isVet);
         let allAboutIt
         if (decoded.isVet == true) {
             allAboutIt = await getAppointments(idPerson)    
         } else {
             let person = await getUser(idPerson)
-            console.log(person);
             allAboutIt = person
         }
-
-        
-        console.log("Appoinments");
-        console.log(allAboutIt);
         if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
             return []
         } else {
@@ -326,7 +316,7 @@ export const AppointmentPeding = (props) => {
 				{pedidos.map(pedido =>{
 
 					return(
-						<div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
+						<div key={pedido.id}  className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
 							<Modal
 								isOpen={warn}
 								onAfterOpen={''}
@@ -529,44 +519,3 @@ export const AppointmentPeding = (props) => {
 		</section>
 	)
 }
-
-// const cancelarAppointment = async (idAppointment) => {
-
-//     const recusar = await canceladoAppointments(idAppointment);
-//     if (recusar.response.message == "Consulta recusada") {
-//         showToastMessageSucess("Consulta cancelada com sucesso!")
-//         setTimeout(() => {
-//             window.location.reload();
-//           }, 2000); // Refresh after 5 seconds
-
-//       }
-//       else {
-//         showToastMessageFailed()
-//         setTimeout(() => {
-//             window.location.reload();
-//           }, 2000); // Refresh after 5 seconds
-//     }
-//     return recusar
-//   }
-
-//   const finalizarAppointment = async (idAppointment) => {
-//     const jsonAppointment = {
-//         duration: parseFloat(duracao),
-//         price: parseFloat(preco)
-//       };
-//     const aceitar = await finalizadoAppointments(idAppointment);
-//     console.log(aceitar);
-//     if (aceitar.response.message == "Consulta aceita") {
-//         showToastMessageSucess("Consulta finalizada com sucesso!")
-//         setTimeout(() => {
-//             window.location.reload();
-//           }, 2000); // Refresh after 5 seconds
-//       }
-//       else {
-//         showToastMessageFailed()
-//         setTimeout(() => {
-//             window.location.reload();
-//           }, 2000); // Refresh after 5 second
-//     }
-//     return aceitar
-//   }

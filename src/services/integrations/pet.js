@@ -29,7 +29,6 @@ export const getPet = async (petID) => {
 
 export async function petAdd(petInfos, userID) {
 	const url = `${BASE_URL}pet?userID=${userID}`
-	console.log(url)
 	const response = await fetch(url, {
 		method: 'POST',
 		headers: {
@@ -40,7 +39,6 @@ export async function petAdd(petInfos, userID) {
 		},
 		body: JSON.stringify(petInfos)
 	})
-	console.log(response);
 	return await response.json()
 }
 
@@ -53,7 +51,6 @@ export async function petDelete(idPet) {
 			'Authorization': `Bearer ${token}`
 		}
 	})
-	console.log(response);
 	return await response.json()
 }
 
@@ -68,7 +65,6 @@ export async function petUpdate(idPet, petInfos) {
 		},
 		body: JSON.stringify(petInfos)
 	})
-	console.log(response);
 	return await response.json()
 }
 

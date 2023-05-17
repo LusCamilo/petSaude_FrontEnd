@@ -31,7 +31,6 @@ const customStyles = {
 export function Register() {
 	const { register, handleSubmit, formState: {errors} } = useForm()
 	const submitForm = data => {
-		console.log(errors.firstName);
 		if (validateForm(data)) {
 			localStorage.setItem('__user_register_infos', JSON.stringify(data))
 			document.location.href = '/register/address'
@@ -76,8 +75,6 @@ export function Register() {
 	}
 
 	const validateForm = (data) => {
-		console.log(errors.confirmPassword);
-		console.log(data);
 		let error = {
 			status: false,
 			message: '',

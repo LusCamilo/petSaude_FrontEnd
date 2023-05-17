@@ -8,6 +8,7 @@ import { Maps } from '../resource/maps.jsx';
 
 export const VeterinaryProfile = () => {
 	const [vets, setVets] = useState([]);
+	const [numberAppoinments, setVAppoinments] = useState(0);
 	const onSearch = async () => {
 		try {
 			let vetJson = localStorage.getItem("__Vet_Id");
@@ -18,11 +19,12 @@ export const VeterinaryProfile = () => {
 				json = []
 			} else {
 				json = result
-			}
+			} 
 			setVets(json[0])
 			if (vets.isVet === true) {
 				localStorage.setItem('__register_type', "professional")
 			}
+			
 		} catch (error) {
 			console.error(error);
 		}
@@ -36,7 +38,7 @@ export const VeterinaryProfile = () => {
 		<div>
 			<HeaderProfile />
 			<div>
-				<TopContainer name={vets.personName} profilePhoto={vets.profileBannerPhoto} userPhoto={vets.profilePhoto} biografia={vets.biography} />
+				<TopContainer name={vets.personName} profilePhoto={vets.profileBannerPhoto} userPhoto={vets.profilePhoto} biografia={vets.biography} id={vets.id} />
 				<Cards />
 				<div className='flex flex-col md:flex-row justify-between gap-[10%] px-10 md:px-44 mb-16'>
 					<AcademicInfos formacao={vets.formation} dataFormacao={vets.formationDate} instituicao={vets.institution} carreiraInicio={vets.startActingDate} />

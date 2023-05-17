@@ -36,7 +36,7 @@ export const LandingPage = () => {
 			localStorage.setItem("__Vet_WhenSearch", whenSearch);
 			window.open("/home/search-professionals", "_self"); // abre uma nova aba
 		}
-	}
+	} 
 
 	localStorage.setItem("__Vet_Search", "");
 

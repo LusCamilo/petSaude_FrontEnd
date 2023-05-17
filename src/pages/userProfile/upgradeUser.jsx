@@ -168,8 +168,6 @@ export const UpgradeUser = () => {
 		closeModal()
 	}
 
-	// console.log(infos.PetSpecieVeterinary);
-	// console.log(infos.VeterinaryEspecialities);
 
 	let largura = window.innerWidth
 
