@@ -14,7 +14,7 @@ export const Footer = () => {
 				<div className="flex w-full justify-evenly md:justify-center items-center flex-row">
 					<div className="basis-1/3 md:basis-1/4 w-1/8 flex items-center justify-evenly flex-col">
 						<h4 className="flex flex-row justify-between font-bold text-lg md:text-2xl items-center"><img className="w-10 md:w-20" src={logo} alt="" /> PetSaúde</h4>
-						<p className="flex w-full ml-5 items-center break-words md:w-56 font-montserrat text-sm md:text-xl miniSize">Nossos serviços estão dispóniveis a qualquer hora e em qualque lugar!</p>
+						<p className="flex w-full ml-5 md:ml-24 items-center break-words md:w-72 font-montserrat text-sm md:text-xl miniSize md:pl-5 ">Nossos serviços estão dispóniveis a qualquer hora e em qualque lugar!</p>
 					</div>
 
 					<div className="basis-1/3 md:basis-1/4 w-1/8 flex items-center flex-col content-evenly">
@@ -38,13 +38,13 @@ export const Footer = () => {
 						<ul className="flex items-center justify-center flex-col gap-4 py-2 px-7 pt-3.5">
 							<li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full xl:h-14 xl:w-72 xl:items-center"><img className="w-10" src={Doctor} alt="Icone de um médico" />
 								<Link className=" duration-500 flex flex-col-reverse relative transition-all
-                                hover:after:w-full" to="/home/searchProfessionals">
+                                hover:after:w-full" to="/home/search-professionals">
 									Especialistas da área
 								</Link>
 							</li>
 							<li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full xl:h-14 xl:w-72 xl:items-center"><img className="w-10" src={Local} alt="Icone de um pino"  />
 								<Link className=" duration-500 flex flex-col-reverse relative transition-all
-                                hover:after:w-full" to="/home/searchProfessionals">
+                                hover:after:w-full" to="/home/search-professionals">
 									Veterinários próximos
 								</Link>
 							</li>

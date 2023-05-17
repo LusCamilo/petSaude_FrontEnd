@@ -326,7 +326,7 @@ export const AppointmentPeding = (props) => {
 				{pedidos.map(pedido =>{
 
 					return(
-						<div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
+						<div className='border-none sm:border-solid border w-5/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
 							<Modal
 								isOpen={warn}
 								onAfterOpen={''}
