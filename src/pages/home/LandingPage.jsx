@@ -82,7 +82,7 @@ export const LandingPage = () => {
 						</h1>
 						<Link
 							className="flex text-center justify-center items-center border-2 rounded-xl border-[#9ED1B7] p-1 w-56 sm:w-96 h-full basis-1/6 text-xl md:text-3xl xl:basis-1/6 xl:h-20 transition hover:bg-[#9ED1B7] hover:text-white hover:shadow-xl hover:scale-105"
-							to="/home/searchProfessionals"
+							to="/home/search-professionals"
 						>
 							Procure um veterinário próximo!
 						</Link>

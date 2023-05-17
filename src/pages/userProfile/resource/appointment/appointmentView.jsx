@@ -76,7 +76,7 @@ export const AppointmentView = (props) => {
 					<section className='w-1/2'>
 						<div className='flex flex-col md:flex-row gap-5'>
 
-							<div className='flex flex-col w-5/6 md:w-full bg-[#E3EFF0] rounded-lg pb-96 md:h-screen'>
+							<div className='flex flex-col w-5/6 md:w-96 bg-[#E3EFF0] rounded-lg pb-96 md:h-screen'>
 								<ul className="flex flex-col items-center w-full cursor-pointer pt-5 space-y-3 text-xl">
 									<button type="button" className={`flex ${tela1.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30 w-56 md:w-5/6 text-left ${tela1.text} rounded-full`}
 									        onClick={handleClickPedidos}
