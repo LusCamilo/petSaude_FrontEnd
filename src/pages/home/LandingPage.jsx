@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import Footprint from "../../assets/svg/petPaws.svg";
 import Dog from "../../assets/svg/dogAndCat.svg";
@@ -7,9 +7,28 @@ import { PetHeader } from "../userProfile/pet/petHeader";
 import { FaUserNurse } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
 import verifyLoggedUser from "../../utils/verifyLoggedUser";
+import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
+import jwt_decode from "jwt-decode";
 
 export const LandingPage = () => {
-	verifyLoggedUser()
+	const jwt = localStorage.getItem('__user_JWT')
+	const {userName} = jwt_decode(jwt)
+	useEffect(() => {
+		async function validateUser() {
+			verifyLoggedUser()
+			const userHasName = await verifyIfUserHasUserName()
+			if (!userHasName.status)
+				console.log(userHasName.status)
+				// document.location.href = '/profile/edit-profile'
+		}
+		validateUser()
+	}, [userName])
+	// verifyLoggedUser()
+	// const userHasName = verifyIfUserHasUserName()
+	// if (!userHasName.status)
+	// 	console.log(userHasName)
+		// document.location.href = '/profile/edit-profile'
+
 	function handleKeyPress(inputValue, event, whenSearch) {
 		if (event.key === "Enter") {
 			event.preventDefault(); // evita a renderização da tela
