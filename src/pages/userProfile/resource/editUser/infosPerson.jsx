@@ -37,8 +37,8 @@ export const Pessoais = (props) => {
 	function handleRgChange(event) {
 		let inputValue = event.target.value;
 		inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, '');
-		if (inputValue.length > 13) {
-			inputValue = inputValue.substr(0, 13);
+		if (inputValue.length > 10) {
+			inputValue = inputValue.substr(0, 10);
 		}
 		inputValue = inputValue.replace(/([a-zA-Z0-9]{2})([a-zA-Z0-9]{3})([a-zA-Z0-9]{3})([a-zA-Z0-9]{1})/, '$1.$2.$3-$4');
 		setRg(inputValue);
@@ -91,7 +91,7 @@ export const Pessoais = (props) => {
 		if (name === '' || lastName === '' || cpf === '') {
 			window.alert("existem campos que devem ser preenchidos")
 			window.location.reload()
-		}else{
+		} else {
 			infos = {
 				personName: `${name} ${lastName}`,
 				cpf: cpf,
@@ -101,31 +101,84 @@ export const Pessoais = (props) => {
 				bio: text
 			}
 
+<<<<<<< HEAD
 			if ((localStorage.getItem('__user_isVet')) === 'true') {
 				response = await updatePersonalInfosVeterinary(infos)
 				if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
 					if (response.response.meta.target === "tbl_veterinary_rg_key") {
 						window.alert("Rg já está em uso")
-						window.location.reload()
-					}
-				} else {
-					window.alert(response.response)
-					window.location.reload()
-				}
-				window.location.reload()
-			} else {
+=======
+			if (text != null) {
+				console.log(infos);
 
-				response = await updatePersonalInfosClient(infos)
-				if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
-					if (response.response.meta.target === "tbl_client_rg_key") {
-						window.alert("Rg já está em uso")
+				if ((localStorage.getItem('__user_isVet')) === 'true') {
+					response = await updatePersonalInfosVeterinary(infos)
+					console.log(response);
+					if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
+						if (response.response.meta.target === "tbl_veterinary_rg_key") {
+							window.alert("Rg já está em uso")
+							window.location.reload()
+						}
+					} else {
+						window.alert(response.response)
+>>>>>>> 5742f8ad9b004fe153bfaaa63cff926507eed119
 						window.location.reload()
 					}
-				} else {
-					window.alert(response.response)
 					window.location.reload()
+				} else {
+
+					response = await updatePersonalInfosClient(infos)
+					console.log(response);
+					if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
+						if (response.response.meta.target === "tbl_client_rg_key") {
+							window.alert("Rg já está em uso")
+							window.location.reload()
+						}
+					} else {
+						window.alert(response.response)
+						window.location.reload()
+					}
+				}
+			}else {
+				infos = {
+					personName: `${name} ${lastName}`,
+					cpf: cpf,
+					rg: rg,
+					cellphoneNumber: celular,
+					phoneNumber: telefone,
+					bio: ""
+				}
+				console.log(infos);
+
+				if ((localStorage.getItem('__user_isVet')) === 'true') {
+					response = await updatePersonalInfosVeterinary(infos)
+					console.log(response);
+					if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
+						if (response.response.meta.target === "tbl_veterinary_rg_key") {
+							window.alert("Rg já está em uso")
+							window.location.reload()
+						}
+					} else {
+						window.alert(response.response)
+						window.location.reload()
+					}
+					window.location.reload()
+				} else {
+
+					response = await updatePersonalInfosClient(infos)
+					console.log(response);
+					if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
+						if (response.response.meta.target === "tbl_client_rg_key") {
+							window.alert("Rg já está em uso")
+							window.location.reload()
+						}
+					} else {
+						window.alert(response.response)
+						window.location.reload()
+					}
 				}
 			}
+
 		}
 	}
 
@@ -181,7 +234,6 @@ export const Pessoais = (props) => {
 							if (window.confirm('deseja atualizar os seus dados pessoais?')) {
 								setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
 								handleSubmit()
-								// .then(document.location.reload())
 							}
 						}
 					}}>

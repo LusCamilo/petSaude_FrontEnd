@@ -29,13 +29,12 @@ class Notifications {
 
 	async warning(message) {
 		await this.swal.fire({
-			timer: 2000,
-			icon: "warning",
+			timer: 1500,
+			icon: "info",
 			title: <p>{message}</p>,
-			timerProgressBar: false,
-			showConfirmButton: true,
-			showDenyButton: true,
-			showLoaderOnConfirm: true,
+			timerProgressBar: true,
+			showConfirmButton: false,
+			buttonsStyling: false,
 		})
 	}
 }

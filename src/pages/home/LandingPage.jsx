@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import Footprint from "../../assets/svg/petPaws.svg";
 import Dog from "../../assets/svg/dogAndCat.svg";
@@ -7,9 +7,28 @@ import { PetHeader } from "../userProfile/pet/petHeader";
 import { FaUserNurse } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
 import verifyLoggedUser from "../../utils/verifyLoggedUser";
+import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
+import jwt_decode from "jwt-decode";
 
 export const LandingPage = () => {
-	verifyLoggedUser()
+	const jwt = localStorage.getItem('__user_JWT')
+	const {userName} = jwt_decode(jwt)
+	useEffect(() => {
+		async function validateUser() {
+			verifyLoggedUser()
+			const userHasName = await verifyIfUserHasUserName()
+			if (!userHasName.status)
+				console.log(userHasName.status)
+				// document.location.href = '/profile/edit-profile'
+		}
+		validateUser()
+	}, [userName])
+	// verifyLoggedUser()
+	// const userHasName = verifyIfUserHasUserName()
+	// if (!userHasName.status)
+	// 	console.log(userHasName)
+		// document.location.href = '/profile/edit-profile'
+
 	function handleKeyPress(inputValue, event, whenSearch) {
 		if (event.key === "Enter") {
 			event.preventDefault(); // evita a renderização da tela
@@ -63,7 +82,7 @@ export const LandingPage = () => {
 						</h1>
 						<Link
 							className="flex text-center justify-center items-center border-2 rounded-xl border-[#9ED1B7] p-1 w-56 sm:w-96 h-full basis-1/6 text-xl md:text-3xl xl:basis-1/6 xl:h-20 transition hover:bg-[#9ED1B7] hover:text-white hover:shadow-xl hover:scale-105"
-							to="/home/searchProfessionals"
+							to="/home/search-professionals"
 						>
 							Procure um veterinário próximo!
 						</Link>
