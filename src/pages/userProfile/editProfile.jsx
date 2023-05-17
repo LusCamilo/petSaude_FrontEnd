@@ -120,7 +120,17 @@ export const EditProfile = () => {
 					onPasswordChange={handleChildPasswordChange}
 					onProfilePhotoChange={handleChildProfilePhotoChange}
 					userName={infos.userName} completName={infos.personName} email={infos.email} password={infos.password} profilePhoto={infos.profilePhoto}
+
+					
 				/>
+				{/* <div className="h-20 w-1/3 sm:h-48 sm:40 md:w-56 rounded-full ">
+							<input type="file" accept="image/*" name="photo" id="profilePhoto" className="hidden"  />
+							<label htmlFor='infos' style={{ backgroundImage: `url(${profilePhoto})` }}
+							       className='flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
+								
+							</label>
+				</div> */}
+
 				<button className='md:flex md:end-40  self-end rounded-lg bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={() => {
 
 					let profileInfos = {
@@ -130,6 +140,10 @@ export const EditProfile = () => {
 						profileBannerPhoto: profileBannerPhoto,
 						profilePhoto: profilePhoto
 					}
+
+					
+
+					console.log(JSON.stringify(profileInfos))
 
 					if (localStorage.getItem('__user_isVet') === 'true')
 						updateProfileInfosVeterinary(profileInfos).then(response =>  {
@@ -154,7 +168,7 @@ export const EditProfile = () => {
 							}
 						})
 				}}>
-					<img src={check} className='w-10 h-10 my-5 mx-5' alt='Check' />
+					<img src={check} className='rounded- my-5 mx-4' alt='Check' />
 				</button>
 			</div>
 		</div>
