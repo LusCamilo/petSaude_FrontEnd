@@ -4,16 +4,16 @@ import jwt_decode from "jwt-decode";
 import {SideBarMenu} from "../../../components/sideBarMenu";
 
 export const PetHeader = () => {
-	const [userNome, setUserNome] = useState("");
-	const [userFoto, setUserFoto] = useState("");
+	const [userName, setUserName] = useState("");
+	const [userPhoto, setUserPhoto] = useState("");
 	const [linkTo, setLinkTo] = useState("/login");
 	const token = localStorage.getItem("__user_JWT");
 	const decoded = jwt_decode(token);
 
 	useEffect(() => {
 		if (decoded) {
-			setUserNome(decoded.userName);
-			setUserFoto(
+			setUserName(decoded.userName);
+			setUserPhoto(
 				decoded.profilePhoto !== ""
 					? decoded.profilePhoto
 					: "https://www.svgrepo.com/show/335455/profile-default.svg"
@@ -39,9 +39,9 @@ export const PetHeader = () => {
 					PetSaúde
 				</Link>
 				<Link to={linkTo} className=" md:flex flex-row gap-2">
-					<img className="w-14 h-14 p-1 md:p-0 rounded-full" src={userFoto} alt='Profile' />
-					<p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
-						{userNome}
+					<img className="w-14 h-14 p-1 md:p-0 rounded-full" src={userPhoto} alt='Profile' />
+					<p className=" items-center hidden md:flex home-btn text-2xl text-black">
+						{userName}
 					</p>
 				</Link>
 			</div>

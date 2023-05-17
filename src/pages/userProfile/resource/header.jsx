@@ -17,7 +17,7 @@ export const HeaderProfile = () => {
 			<Link to="/">
 				<h1 className=" text-1xl hidden xl:flex sm:flex justify-start font-bold">PetSaúde</h1>
 			</Link>
-			<Link to='/profile/configuration' className="flex items-center gap-x-3 justify-center p-2 md:pt-2" >
+			<Link to='/profile/configuration' className="flex items-center gap-2 justify-center p-2 md:pt-2" >
 				<BsFillGearFill className='border justify-center rounded-full p-2 w-10 h-10' />
 				<p className='hidden md:flex xl:flex home-btn text-3xl'>Configurações</p>
 			</Link>

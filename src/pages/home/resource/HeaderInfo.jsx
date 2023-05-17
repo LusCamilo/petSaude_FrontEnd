@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import FootHeader from "../../../assets/svg/FootHeader.svg";
 import jwt_decode from "jwt-decode";
 import {SideBarMenu} from "../../../components/sideBarMenu";
+import { PetHeader } from "../../userProfile/pet/petHeader";
 
 export const HeaderInfo = (props) => {
 
@@ -22,7 +23,7 @@ export const HeaderInfo = (props) => {
 
 	return (
 		<header className=" bg-[#9ED1B7] w-full h-full ">
-			<div className="flex font-normal items-center justify-around xl:p-5 h-30 text-4xl ">
+			{/* <div className="flex font-normal items-center justify-around xl:p-5 h-30 text-4xl ">
 				<button className="md:hidden py-3 px-4 mx-2 rounded focus:outline-none group">
 					<div className="w-5 h-1 bg-gray-600 mb-1"></div>
 					<div className="w-5 h-1 bg-gray-600 mb-1"></div>
@@ -63,7 +64,8 @@ export const HeaderInfo = (props) => {
 						{userNome}
 					</Link>
 				</button>
-			</div>
+			</div> */}
+			<PetHeader />
 			<div className="flex flex-col justify-items-center text-center  gap-20">
 				<div className="flex flex-col justify-center w-full basis-1/4 content-center items-center gap-20 ">
 					<h1 className="font-bold text-7xl h-3/4 rounded-3xl bg-[#78A890] xl:text-8xl mt-20  hidden md:flex justify-center content-center items-center px-20 py-10"> {props.title}</h1>

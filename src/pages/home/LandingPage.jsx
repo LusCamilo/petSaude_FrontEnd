@@ -59,6 +59,19 @@ export const LandingPage = () => {
 								}
 							/>
 						</label>
+						{/* <label className="relative flex items-center gap-2 border-solid border-black border-[1px] md:py-2 py-1 md:px-4 px-2 rounded-xl md:w-1/2 w-full">
+							<FaUserNurse className=" text-black md:text-4xl text-3xl" />
+							<input
+								type="text"
+								name="search-vet-username"
+								id="search-vet-username"
+								className="text-xl md:text-3xl text-black outline-none border-none placeholder:text-xl md:placeholder:text-3xl"
+								placeholder="Pesquisar especialialidade"
+								onKeyPress={(event) =>
+									handleKeyPress(event.target.value, event, "userName")
+								}
+							/>
+						</label> */}
 						<label className="relative flex items-center gap-2 border-solid border-black border-[1px] md:py-2 py-1 md:px-4 px-2  rounded-xl md:w-1/2 w-full">
 							<GoLocation className=" text-black md:text-4xl text-3xl" />
 							<input
