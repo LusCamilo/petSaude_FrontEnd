@@ -48,10 +48,7 @@ export const TopContainer = (props) => {
 	const [isVet, SetIsVet] = useState(false)
 	useEffect(() => {
 		const token = localStorage.getItem('__user_JWT')
-		console.log(token);
 		const decoded = jwt_decode(token);
-		console.log(decoded ? decoded : '');
-		console.log(decoded.profilePhoto);
 		if (decoded.isVet === false) {
 			SetIsVet(true)
 		}

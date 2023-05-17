@@ -8,7 +8,15 @@ export const Address = (props) => {
 	const [complement, setComplement] = useState('')
 
 	function handleCepChange(event) {
-		setCep(event.target.value);
+		let inputValue = event.target.value;
+		inputValue = inputValue.replace(/\D/g, '');
+
+		if (inputValue.length > 8) {
+			inputValue = inputValue.substr(0, 8);
+		}
+		inputValue = inputValue.replace(/(\d{5})(\d{3})/, '$1-$2');
+		
+		setCep(inputValue);
 	}
 	function handleComplementChange(event) {
 		setComplement(event.target.value);
@@ -31,7 +39,7 @@ export const Address = (props) => {
 					<div className=''>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							CEP
-							<input disabled={address.disabled} type="text" onBlurCapture={handleCepChange} onChange={handleCepChange} name="firstName" defaultValue={cep} className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
+							<input disabled={address.disabled} type="text" onBlurCapture={handleCepChange} onChange={handleCepChange} name="firstName" value={cep} className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
