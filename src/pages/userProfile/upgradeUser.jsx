@@ -19,6 +19,8 @@ import {deleteClient, deleteVeterinary, getUser, getVeterinary} from '../../serv
 import Modal from 'react-modal';
 import {WarnRequest} from './pet/cards/warnTwo';
 
+import { PetHeader } from "../userProfile/pet/petHeader";
+
 const customStyles = {
 	content: {
 		top: '50%',
@@ -175,6 +177,7 @@ export const UpgradeUser = () => {
 		return (
 			<section>
 				<Config />
+				{/* <PetHeader /> */}
 				<main>
 					<div>
 						<p className=' font-bold font-sans  h-10 text-2xl'>Configurações</p>
@@ -242,7 +245,8 @@ export const UpgradeUser = () => {
 	} else {
 		return (
 			<section>
-				<Config userName={infos.userName} personName={infos.personName} profilePhoto={infos.profilePhoto} />
+				{/* <Config userName={infos.userName} personName={infos.personName} profilePhoto={infos.profilePhoto} /> */}
+				<PetHeader />
 				<main className='flex flex-col gap-10'>
 					<Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular} telefone={infos.telefone} text={infos.text} className='' />
 					<Address id={infos.addressId} viaCep={getAddressFromZipCode} cep={infos.cep} bairro={infos.bairro} rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento} className='' />
