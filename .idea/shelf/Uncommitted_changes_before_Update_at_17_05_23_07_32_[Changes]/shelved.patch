@@ -1,0 +1,94 @@
+Index: src/components/sideBarMenu/index.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {Link} from \"react-router-dom\";\nimport Home from \"../../assets/svg/Home.svg\";\nimport Work from \"../../assets/svg/Work.svg\";\nimport Info from \"../../assets/svg/InfoOutline.svg\";\nimport Calendary from \"../../assets/svg/Calendar today.svg\";\nimport Person from \"../../assets/svg/Person.svg\";\nimport Lock from \"../../assets/svg/Lock.svg\";\nimport Logout from \"../../assets/svg/Logout.svg\";\nimport React, {useEffect, useState} from \"react\";\nimport {AiOutlineClose} from \"react-icons/ai\";\nimport {BsPersonFill} from \"react-icons/bs\";\n\nexport const SideBarMenu = (props) => {\n\tconst [showMenu, setShowMenu] = useState(false)\n\tuseEffect(() => {\n\t\tsetShowMenu(props.show)\n\t}, [props.show])\n\tfunction toggleMenu() {\n\t\tif (showMenu) setShowMenu(false)\n\t\telse setShowMenu(true)\n\t}\n\n\tconst button = document.querySelector(\"#teste\")\n\tif (button) button.addEventListener('click', toggleMenu)\n\n\treturn (\n\t\t<div\n\t\t\tclassName={showMenu\n\t\t\t? \"pt-5 px-4 absolute top-0 left-0 opacity-100 h-full w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10\"\n\t\t\t: \"absolute top-0 hidden -left-0 opacity-0 h-full w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10\"}>\n\t\t\t<AiOutlineClose onClick={toggleMenu} className='cursor-pointer'/>\n\t\t\t<h2 className=\"pt-5 pl-5 text-left  text-2xl font-semibold\">\n\t\t\t\tMenu\n\t\t\t</h2>\n\t\t\t<ul className=\"flex flex-col items-center w-full text-base space-y-3 mt-2\">\n\t\t\t\t<Link to=\"/\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\n\t\t\t\t\t<img src={Home} className=\"pr-3  w-14\" alt=\"Home\"></img>\n\t\t\t\t\tHome\n\t\t\t\t</Link>\n\t\t\t\t<Link to=\"/home/search-professionals\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\n\t\t\t\t\t<img src={Work} className=\"pr-3  w-14\" alt=\"Work\"></img>\n\t\t\t\t\tProfissionais\n\t\t\t\t</Link>\n\t\t\t\t<Link to=\"/home/about-us\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\n\t\t\t\t\t<img src={Info} className=\"pr-3 w-14\" alt=\"Info\"></img>\n\t\t\t\t\tSobre nós\n\t\t\t\t</Link>\n\t\t\t\t<Link to=\"/profile/appointment-view\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\n\t\t\t\t\t<img src={Calendary} className=\"pr-3  w-14\" alt=\"Calendary\"></img>\n\t\t\t\t\tConsultas\n\t\t\t\t</Link>\n\t\t\t</ul>\n\t\t\t<h3 className=\"pt-5 pl-5 text-left text-2xl font-semibold\">\n\t\t\t\tConfigurações\n\t\t\t</h3>\n\t\t\t<ul className=\"flex flex-col items-center w-full text-base space-y-3 mt-2\">\n\t\t\t\t<Link to=\"/profile/configuration\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9] h-30 w-full text-left rounded-full\">\n\t\t\t\t\t<BsPersonFill className='pr-3 w-14 h-12'/>\n\t\t\t\t\tPerfil\n\t\t\t\t</Link>\n\t\t\t\t<Link to=\"/profile/edit-profile\" className=\"flex items-center hover:bg-[#9ED1B7] py-2 px-6 bg-[#D9D9D9]  h-30 w-full text-left rounded-full \">\n\t\t\t\t\t<img src={Lock} className=\"pr-3 w-14\" alt=\"Lock\"></img>\n\t\t\t\t\tSegurança\n\t\t\t\t</Link>\n\t\t\t\t<div\n\t\t\t\t\tclassName=\"border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6 w-full flex flex-row h-30 text-[#B3261E] font-semibold\">\n\t\t\t\t\t<div className=\"flex flex-row gap-3 items-center\">\n\t\t\t\t\t\t<img src={Logout} alt=\"\"/> Sair\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</ul>\n\t\t</div>\n\t)\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/sideBarMenu/index.jsx b/src/components/sideBarMenu/index.jsx
+--- a/src/components/sideBarMenu/index.jsx	(revision 2c9b1cd10374e2e7f91710be573bae4a9a14660b)
++++ b/src/components/sideBarMenu/index.jsx	(date 1684160714035)
+@@ -3,7 +3,6 @@
+ import Work from "../../assets/svg/Work.svg";
+ import Info from "../../assets/svg/InfoOutline.svg";
+ import Calendary from "../../assets/svg/Calendar today.svg";
+-import Person from "../../assets/svg/Person.svg";
+ import Lock from "../../assets/svg/Lock.svg";
+ import Logout from "../../assets/svg/Logout.svg";
+ import React, {useEffect, useState} from "react";
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"d540ed0f-a197-44a1-b703-00dde3391e36\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/src/components/sideBarMenu/index.jsx\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/utils/verifyLoggedUser.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/HomeWeb.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/HomeWeb.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/pages/home/LandingPage.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/home/LandingPage.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/pages/login/index.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/login/index.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/utils/notifications.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/utils/Notifications.js\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"CSS File\" />\n        <option value=\"JavaScript File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2OxcCi8CwzrS3XXDQj0GcMUrHyn\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"WebServerToolWindowFactoryState\": \"false\",\n    \"last_opened_file_path\": \"D:/Development/tcc/petSaude_FrontEnd\",\n    \"list.type.of.created.stylesheet\": \"CSS\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"yarn\",\n    \"settings.editor.selected.configurable\": \"copyright\",\n    \"ts.external.directory.path\": \"/private/var/folders/hc/1stsw54n0cv18d19tqth_p181h77b7/T/AppTranslocation/21428643-1150-4B9E-820D-CE309DC60644/d/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/pages/profile/veterinaryProfile\" />\n      <recent name=\"D:\\Development\\tcc\\petSaude_FrontEnd\\src\\assets\\css\" />\n      <recent name=\"D:\\Development\\tcc\\petSaude_FrontEnd\\src\\assets\\image\" />\n      <recent name=\"$PROJECT_DIR$/public\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"npm.build\">\n    <configuration name=\"build\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\n      <command value=\"run\" />\n      <scripts>\n        <script value=\"build\" />\n      </scripts>\n      <node-interpreter value=\"project\" />\n      <envs />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\n      <command value=\"run\" />\n      <scripts>\n        <script value=\"start\" />\n      </scripts>\n      <node-interpreter value=\"project\" />\n      <envs />\n      <method v=\"2\" />\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"npm.start\" />\n        <item itemvalue=\"npm.build\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"d540ed0f-a197-44a1-b703-00dde3391e36\" name=\"Changes\" comment=\"\" />\n      <created>1682505548193</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1682505548193</updated>\n      <workItem from=\"1682505550446\" duration=\"874000\" />\n      <workItem from=\"1683289768621\" duration=\"438000\" />\n      <workItem from=\"1683715186475\" duration=\"683000\" />\n      <workItem from=\"1683719559850\" duration=\"48000\" />\n      <workItem from=\"1683719640863\" duration=\"6767000\" />\n      <workItem from=\"1683749528302\" duration=\"6816000\" />\n      <workItem from=\"1683719640863\" duration=\"6856000\" />\n      <workItem from=\"1683802557160\" duration=\"970000\" />\n      <workItem from=\"1684148412899\" duration=\"8477000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 2c9b1cd10374e2e7f91710be573bae4a9a14660b)
++++ b/.idea/workspace.xml	(date 1684319547722)
+@@ -5,15 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/utils/verifyLoggedUser.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/HomeWeb.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/LandingPage.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/index.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/pet/petHeader.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petHeader.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/utils/notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sideBarMenu/index.jsx" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -39,23 +31,23 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "last_opened_file_path": "D:/Development/tcc/petSaude_FrontEnd",
+-    "list.type.of.created.stylesheet": "CSS",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "yarn",
+-    "settings.editor.selected.configurable": "copyright",
+-    "ts.external.directory.path": "/private/var/folders/hc/1stsw54n0cv18d19tqth_p181h77b7/T/AppTranslocation/21428643-1150-4B9E-820D-CE309DC60644/d/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;D:/Development/tcc/petSaude_FrontEnd&quot;,
++    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;copyright&quot;,
++    &quot;ts.external.directory.path&quot;: &quot;/private/var/folders/hc/1stsw54n0cv18d19tqth_p181h77b7/T/AppTranslocation/21428643-1150-4B9E-820D-CE309DC60644/d/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/src/pages/profile/veterinaryProfile" />
+@@ -108,7 +100,7 @@
+       <workItem from="1683749528302" duration="6816000" />
+       <workItem from="1683719640863" duration="6856000" />
+       <workItem from="1683802557160" duration="970000" />
+-      <workItem from="1684148412899" duration="8477000" />
++      <workItem from="1684148412899" duration="8902000" />
+     </task>
+     <servers />
+   </component>

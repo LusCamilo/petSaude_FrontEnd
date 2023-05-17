@@ -7,6 +7,8 @@ import check from './resource/img/saveProfile.png'
 import { getUser, getVeterinary, updateProfileInfosClient, updateProfileInfosVeterinary } from '../../services/integrations/user';
 import { PetHeader } from './pet/petHeader';
 import jwt_decode from "jwt-decode";
+import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
+import Notifications from "../../utils/Notifications";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -48,8 +50,6 @@ const InfosUser = async () => {
 }
 
 export const EditProfile = () => {
-	const token = localStorage.getItem('__user_JWT')
-	const decoded = jwt_decode(token);
 	const [infos, setInfos] = useState({})
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
@@ -58,6 +58,12 @@ export const EditProfile = () => {
 	const [profileBannerPhoto, setProfileBannerPhoto] = useState('')
 
 	useEffect(() => {
+		async function verifyUserName() {
+			const userHasUserName = verifyIfUserHasUserName()
+			if (!userHasUserName.status && userHasUserName.popUp)
+				console.log('POPUP')
+				// await Notifications.warning('Crie um nome de usuário').then(test => console.log(test))
+		}
 		async function fetchData() {
 			const allInfosUser = (await InfosUser())
 			setInfos(
@@ -77,8 +83,9 @@ export const EditProfile = () => {
 			setProfileBannerPhoto(infos.profileBannerPhoto)
 			setProfilePhoto(infos.profilePhoto)
 		}
+		verifyUserName()
 		fetchData()
-	}, [infos.userName, infos.email, infos.password, infos.personName, infos.profilePhoto, infos.profileBannerPhoto])
+	}, [infos.email, infos.personName])
 
 	function handleChildNameChange(value) {
 		setName(value)
@@ -93,6 +100,7 @@ export const EditProfile = () => {
 	}
 
 	function handleChildProfilePhotoChange(value) {
+		console.log(value)
 		let storageRef = ref(storage, `Client/${value.name}`);
 		if (Boolean(localStorage.getItem('__user_isVet'))) {
 			storageRef = ref(storage, `Veterinario/${value.name}`);
@@ -155,9 +163,7 @@ export const EditProfile = () => {
 
 					if (localStorage.getItem('__user_isVet') === 'true')
 						updateProfileInfosVeterinary(profileInfos).then(response =>  {
-							// Verifica se a resposta é um objeto válido
 							if (response && typeof response === 'object') {
-								// Verifica se a propriedade 'message' está presente no objeto
 								if (response.hasOwnProperty('message')) {
 									window.alert("Esse email já está sendo utilizado");
 								}
@@ -168,9 +174,7 @@ export const EditProfile = () => {
 						})
 					else
 						updateProfileInfosClient(profileInfos).then(response => {
-							// Verifica se a resposta é um objeto válido
 							if (response && typeof response === 'object') {
-								// Verifica se a propriedade 'message' está presente no objeto
 								if (response.hasOwnProperty('message')) {
 									window.alert("Esse email já está sendo utilizado");
 								}
