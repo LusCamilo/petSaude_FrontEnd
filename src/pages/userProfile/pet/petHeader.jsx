@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import {SideBarMenu} from "../../../components/sideBarMenu";
+import getUserInfos from "../../../utils/getUserInfos";
 
 export const PetHeader = () => {
 	const [userNome, setUserNome] = useState("");
@@ -11,16 +12,16 @@ export const PetHeader = () => {
 	const decoded = jwt_decode(token);
 
 	useEffect(() => {
-		if (decoded) {
-			setUserNome(decoded.userName);
-			setUserFoto(
-				decoded.profilePhoto !== ""
-					? decoded.profilePhoto
-					: "https://www.svgrepo.com/show/335455/profile-default.svg"
-			);
-			if (decoded.userName === "") setLinkTo("/profile/edit-profile");
+		async function loadUserInfos() {
+			const userInfos = await getUserInfos()
+			setUserNome(userInfos.userName)
+			if (userInfos.profilePhoto !== '') setUserFoto(userInfos.profilePhoto)
+			else setUserFoto('https://www.svgrepo.com/show/335455/profile-default.svg')
+			if (userInfos.userName === "") setLinkTo("/profile/edit-profile");
 			setLinkTo("/profile");
 		}
+
+		loadUserInfos()
 	}, [decoded, token]);
 
 	return (
