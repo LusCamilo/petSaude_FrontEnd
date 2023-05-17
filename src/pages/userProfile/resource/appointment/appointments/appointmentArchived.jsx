@@ -145,7 +145,6 @@ export const AppointmentArchived = (props) => {
                           status: statusTraduzido
                         };
 
-                        console.log(finalArray);
                       
                         return finalArray;
                       }));
@@ -185,13 +184,11 @@ export const AppointmentArchived = (props) => {
     const getappo = async (idPerson) => {
         const token = localStorage.getItem('__user_JWT')
         const decoded = jwt_decode(token);
-        console.log(decoded.isVet);
         let allAboutIt
         if (decoded.isVet == true) {
             allAboutIt = await getAppointments(idPerson)    
         } else {
             let person = await getUser(idPerson)
-            console.log(person);
             allAboutIt = person
         }
 
@@ -279,7 +276,6 @@ export const AppointmentArchived = (props) => {
             </div>
             <div className='w-full flex flex-col gap-3 mr-2'>
                     {pedidos.map(pedido =>{
-                        console.log(pedido.estado);
                          const cor = pedido.estado == 'CONCLUDED' ? 'bg-[#09738A]' : 'bg-[#F1EAC6]'
                         return(
                             <div className={`${cor} border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 sm:pl-20 py-8`}>

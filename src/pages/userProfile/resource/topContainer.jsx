@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getVeterinary } from '../../../services/integrations/user';
 
 const customStyles = {
 	content: {
@@ -31,6 +32,8 @@ export const TopContainer = (props) => {
 	const [biografia, setBiografia] = useState("truncate")
 	const [lerMais, setLerMais] = useState("")
 	const [lerMenos, setLerMenos] = useState("hidden")
+	const [quantAppont, setQuantAppont] = useState(0)
+	const [Stringappoinment, setStringAppoinment] = useState('Consultas concluidas')
 
 	const showToastMessage = (message) => {
 		toast(`${message}`, {
@@ -46,15 +49,30 @@ export const TopContainer = (props) => {
 	};
 
 	const [isVet, SetIsVet] = useState(false)
+
 	useEffect(() => {
 		const token = localStorage.getItem('__user_JWT')
-		console.log(token);
 		const decoded = jwt_decode(token);
-		console.log(decoded ? decoded : '');
-		console.log(decoded.profilePhoto);
 		if (decoded.isVet === false) {
 			SetIsVet(true)
 		}
+
+
+		async function fetchData() {
+			let allInfos = await getVeterinary(localStorage.getItem("__Vet_correctId"))
+			let allAppoinments = await allInfos.response.user.Appointments
+			let quantAppontments = allAppoinments.filter(appointment => appointment.status === "CONCLUDED");
+			let quant = quantAppontments.length
+			setQuantAppont(quant)
+			if (quant == 1) {
+				setStringAppoinment('Consulta Concluida')
+			} else if(quant == 0) {
+				setStringAppoinment('Não há consultas concluidas')
+			} else  {
+				setStringAppoinment('Consultas concluidas')
+			}
+		  }
+		  fetchData();
 	}, []);
 
 	const textTruncate = () => {
@@ -109,8 +127,8 @@ export const TopContainer = (props) => {
 							</div>
 
 							<div className='flex md:hidden'>
-								<p className='flex justify-center text-xl'> 777
-									<span className='pl-2 text-[#A9A9A9]'>Clientes</span>
+								<p className='flex justify-center text-xl'> {quantAppont}
+									<span className='pl-2 text-[#A9A9A9]'>{Stringappoinment}</span>
 								</p>
 							</div>
 						</div>
@@ -185,8 +203,8 @@ export const TopContainer = (props) => {
 								<img className='pl-2' src={iconVet} alt='Veterinary badge' />
 							</div>
 							<div className='flex'>
-								<p className='flex justify-center text-xl'> 777
-									<span className='pl-2 text-[#A9A9A9]'>Clientes</span>
+								<p className='flex justify-center text-xl'> {quantAppont}
+									<span className='pl-2 text-[#A9A9A9]'>{Stringappoinment}</span>
 								</p>
 							</div>
 						</div>

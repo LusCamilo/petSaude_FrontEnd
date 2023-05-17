@@ -38,7 +38,6 @@ export const BlogProfile = () => {
 //const [filtro, setFiltro] = useState("userName");
 	const onSearch = async (data) => {
 		localStorage.setItem("__Vet_Search", data.search)
-		console.log(ondeProcurar);
 		try {
 			if (data.search === "") {
 				let response = await getAllVets();
@@ -46,7 +45,6 @@ export const BlogProfile = () => {
 				let json = Object.values(result);
 				setVets(json);
 			} else {
-				console.log(ondeProcurar);
 				if (ondeProcurar !== "city") {
 					let response = await getUsers(data.search, ondeProcurar);
 					let result = response.response;
@@ -63,7 +61,6 @@ export const BlogProfile = () => {
 					setUmCorteRapidao('')
 					setVets(json);
 				} else {
-					console.log("abecedario");
 					let response = await getAllVets();
 
 					let result = response.response;
@@ -92,7 +89,6 @@ export const BlogProfile = () => {
 				let json = Object.values(result);
 				setVets(json);
 			} else {
-				console.log(ondeProcurar);
 				if (ondeProcurar !== "city") {
 					let response = await getUsers(data.search, ondeProcurar);
 					let result = response.response;
@@ -109,7 +105,6 @@ export const BlogProfile = () => {
 					setUmCorteRapidao('')
 					setVets(json);
 				} else {
-					console.log("abecedario");
 					let response = await getAllVets();
 
 					let result = response.response;

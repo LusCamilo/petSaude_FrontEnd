@@ -108,14 +108,9 @@ export function RegisterAddress() {
 			document.location.href = '/register/veterinary'
 		} else {
 
-			console.log(JSON.stringify(allInfos));
 			const response = await registerUser(allInfos)
 			let error1 = response?.response || "";
 			let error = response?.response?.error || "";
-
-			console.log(response);
-
-
 			if (response.response.id) {
 
 				localStorage.setItem('__user_id', response.id)
@@ -128,9 +123,6 @@ export function RegisterAddress() {
 					}, 5000);
 				}, 4000);
 			} else {
-				console.log(error1)
-				console.log(error);
-				console.log(error.includes('já está em uso'))
 				if (error1 == "Email já está em uso" || error1 == "CPF já está em uso") {
 					let firstWord = error1.split(" ")[0]
 					openModalEmail(firstWord)
@@ -218,7 +210,6 @@ export function RegisterAddress() {
 						CEP
 						<input
 							onBlurCapture={(e) => {
-								console.log(e);
 								getAddressFromZipCode(e.target.value)
 							}}
 							className={errors.zipCode ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="zipCode" {...register('zipCode', { required: true })}

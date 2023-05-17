@@ -69,7 +69,6 @@ export const Prossionais = (props) => {
 			]
 		}
 		const body = JSON.stringify(json)
-		console.log(body);
 		try {
 			if (event.target.checked) {
 				await updateSpecialities(body)

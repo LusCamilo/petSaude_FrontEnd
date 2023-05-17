@@ -77,12 +77,10 @@ export const Address = (props) => {
 									props.viaCep(cep)
 										.then((response) => {
 											if (!response.erro) {
-												console.log(response);
 												if (response.complemento !== null) {
 													let zipCode = { zipCode: cep, number: `${props.number}`, complement: complement };
 													updateAddress(zipCode, props.id)
 														.then(response => {
-															console.log(response.response);
 															window.alert(response.response);
 															window.location.reload();
 														})
@@ -90,7 +88,6 @@ export const Address = (props) => {
 													let zipCode = { zipCode: cep, number: `${props.number}`, complement: "" };
 													updateAddress(zipCode, props.id)
 														.then(response => {
-															console.log(response.response);
 															window.alert(response.response);
 															window.location.reload();
 														})

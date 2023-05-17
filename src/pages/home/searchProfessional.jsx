@@ -44,22 +44,8 @@ export const SearchProfessional = () => {
 
 	const [umCorteRapidao, setUmCorteRapidao] = useState('')
 
-	// const onSearch = async (data) => {
-	// 	localStorage.setItem("__Vet_Search", data.search)
-	// 	try {
-	// 		if (data.search === "") {
-	// 			let response = await getAllVets();
-	// 			let result = response.response;
-	// 			let json = Object.values(result);
-	// 			setVets(json);
-	// 		}
-	// 	} catch (err) {
-	// 		console.log(err)
-	// 		await Notifications.error(err.message)
-	// 	}
-	// }
+
 	const onSearch = async (data) => {
-		console.log("Neste");
 		localStorage.setItem("__Vet_Search", data.search);
 		try {
 			if (data.search === "") {
@@ -72,7 +58,6 @@ export const SearchProfessional = () => {
 					let response = await getUsers(data.search, ondeProcurar);
 					let result = response.response;
 					let json;
-					console.log(result);
 					if (result === "Nenhum veterinário atende aos filtros de pesquisa") {
 						json = [];
 						showToastMessage();
@@ -101,17 +86,12 @@ export const SearchProfessional = () => {
 								`https://viacep.com.br/ws/${item.Address.cep}/json/`
 							);
 							let pessoa = response.data.localidade;
-							console.log(
-								pessoa.toLowerCase().includes(procurarCidade.toLowerCase())
-							);
 							return pessoa
 								.toLowerCase()
 								.includes(procurarCidade.toLowerCase());
 						});
-						console.log(jsonFinal);
 						if (jsonFinal === []) {
 							showToastMessage();
-							console.log("Resultado");
 						}
 						setVets(jsonFinal);
 					}
@@ -137,7 +117,6 @@ export const SearchProfessional = () => {
 
 	const onSearchIt = async (data) => {
 		try {
-			console.log("nesse");
 			if (data.search === "") {
 				let response = await getAllVets();
 				let result = response.response;
@@ -152,7 +131,6 @@ export const SearchProfessional = () => {
 					if (result === "Nenhum veterinário atende aos filtros de pesquisa") {
 						showToastMessage();
 						json = [];
-						console.log("Result");
 					} else {
 						json = result.filter(
 							(item) =>

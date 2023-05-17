@@ -20,7 +20,6 @@ export async function appointmentAdd(appointmentInfos) {
 export async function getAppointments(idPeople) {
   
   const url = `${BASE_URL}id/veterinary?userID=${idPeople}`
-  console.log(url);
   return await fetch(url, {
     method: 'GET',
     headers: {
@@ -34,7 +33,6 @@ export async function getAppointments(idPeople) {
 export async function getAllAppointments() {
 
   const url = `${BASE_URL}appointment/all`
-  console.log(url);
   return await fetch(url, {
     method: 'GET',
     headers: {
@@ -77,7 +75,6 @@ export async function aceitadoAppointments(idAppointment, jsonAppointment) {
 
 export async function canceladoAppointments(idAppointment) {
 	const url = `${BASE_URL}appointment/${idAppointment}/status/CANCELED`
-	console.log(url);
 	const response = await fetch(url, {
 		method: 'PUT',
 		headers: {
@@ -90,7 +87,6 @@ export async function canceladoAppointments(idAppointment) {
 
 export async function finalizadoAppointments(idAppointment) {
 	const url = `${BASE_URL}appointment/${idAppointment}/status/CONCLUDED`
-	console.log(url);
 	const response = await fetch(url, {
 		method: 'PUT',
 		headers: {

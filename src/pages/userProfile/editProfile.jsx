@@ -102,7 +102,6 @@ export const EditProfile = () => {
 				.then(() => getDownloadURL(storageRef))
 				.then((url) => {
 					if (url !== undefined) {
-						console.log(url);
 						setProfilePhoto(url);
 					} else {
 						setProfilePhoto('');
@@ -150,8 +149,6 @@ export const EditProfile = () => {
 						profileBannerPhoto: profileBannerPhoto,
 						profilePhoto: profilePhoto
 					}
-
-					console.log(JSON.stringify(profileInfos))
 
 					if (localStorage.getItem('__user_isVet') === 'true')
 						updateProfileInfosVeterinary(profileInfos).then(response =>  {

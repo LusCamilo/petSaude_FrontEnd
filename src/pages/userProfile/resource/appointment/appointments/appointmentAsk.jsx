@@ -27,16 +27,10 @@ export const AppointmentAsk = () => {
             try {
                 const token = localStorage.getItem('__user_JWT')
                 const decoded = jwt_decode(token);
-                console.log(decoded);
                 let appoint = await getappo(decoded.id)
-                const all = await getAllAppointments()
-               console.log(appoint);
                 if (appoint != undefined && appoint != null) {
                     
                     let filteredAppointments = appoint.filter(appointment => appointment.status == 'WAITING_CONFIRMATION');
-                    console.log(filteredAppointments);
-                    console.log(appoint);
-                    console.log(all);
                     let appoints = await Promise.all(filteredAppointments.map(async (app) => {
                         let client = await getclient(app.clientId);
                         let arrayPet = await getPet(app.petId, client.Pet)
@@ -128,6 +122,19 @@ export const AppointmentAsk = () => {
 
 
     const showToastMessageFailed = (message) => {
+        toast.error(`${message}`, {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
+    const showToastMessageFailedSistem = (message) => {
         toast.error('Erro no sistema, tente mais tarde', {
             position: "top-right",
             autoClose: 1500,
@@ -153,9 +160,13 @@ export const AppointmentAsk = () => {
                 window.location.reload();
               }, 2000); // Refresh after 5 seconds
               
-          }
-          else {
-            showToastMessageFailed()
+          } else if (recusar.response.error == "Você não tem permissão para fazer essa alteração") {
+            showToastMessageFailed("Você não tem permissão para recusar uma consulta")
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000); // Refresh after 5 seconds
+          }else {
+            showToastMessageFailedSistem()
             setTimeout(() => {
                 window.location.reload();
               }, 2000); // Refresh after 5 seconds
@@ -176,7 +187,7 @@ export const AppointmentAsk = () => {
               }, 2000); // Refresh after 5 seconds
           }
           else {
-            showToastMessageFailed()
+            showToastMessageFailedSistem()
             setTimeout(() => {
                 window.location.reload();
               }, 2000); // Refresh after 5 second
@@ -188,19 +199,13 @@ export const AppointmentAsk = () => {
     const getappo = async (idPerson) => {
         const token = localStorage.getItem('__user_JWT')
         const decoded = jwt_decode(token);
-        console.log(decoded.isVet);
         let allAboutIt
         if (decoded.isVet == true) {
             allAboutIt = await getAppointments(idPerson)    
         } else {
             let person = await getUser(idPerson)
-            console.log(person);
             allAboutIt = person
         }
-
-        
-        console.log("Appoinments");
-        console.log(allAboutIt);
         if (allAboutIt.response == 'Não foram encontrados registros no Banco de Dados') {
             return []
         } else {
@@ -287,7 +292,7 @@ export const AppointmentAsk = () => {
                     </div>
                     {pedidos.map(pedido =>{
                         return(
-                            <div className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
+                            <div key={pedido.id} className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
                                 <div className='flex flex-row items-center md:content-center md:text-center text-6xl gap-4'>
                                     <img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
                                     <h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
@@ -443,15 +448,17 @@ export const AppointmentAsk = () => {
                                     </div>
                                 </span>
                                 <div className='flex flex-row justify-around md:justify-between'>
-                                    <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
-                                    onClick={() => recusarAppointment(pedido.idAppoint)}
-                                    >
-                                        Recusar
-                                    </button>
+                                    {/* <span className={`${buttonAceitar}`}> */}
+                                        <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
+                                        onClick={() => recusarAppointment(pedido.idAppoint)}
+                                        >
+                                            Recusar
+                                        </button>
+                                    {/* </span> */}
                                     <button className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal mr-20`}
                                         onClick={handleClickAgain}
                                     >
-                                        Cancelar
+                                        Ver menos informações
                                     </button>
                                     <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-72 h-14 border rounded-full text-xl font-normal mr-20`} 
                                         onClick={handleClick}

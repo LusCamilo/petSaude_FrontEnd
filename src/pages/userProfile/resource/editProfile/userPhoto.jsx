@@ -11,7 +11,6 @@ export const UserPhoto = (props) => {
 	}, [props.profilePhoto])
 
 	const handleFileInputChange = (event) => {
-		console.log(event.target.files[0])
 		const file = event.target.files[0]
 		if (file) {
 			props.onProfilePhotoChange(file);

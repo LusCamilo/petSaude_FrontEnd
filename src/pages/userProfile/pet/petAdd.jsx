@@ -47,6 +47,14 @@ const customStyles = {
 
 export const PetAdd = () => {
 
+	let hoje = new Date();
+	let ano = hoje.getFullYear();
+	let mes = hoje.getMonth() + 1;
+	let dia = hoje.getDate();
+	if (mes < 10)  mes = '0' + mes
+	if (dia < 10)  dia = '0' + dia
+	let dataFormatada = `${ano}-${mes}-${dia}`;
+
 	const [name, setName] = useState("Nome")
 	function newName(event) {
 		setName(event.target.value);
@@ -190,7 +198,7 @@ export const PetAdd = () => {
 							<div className='w-full'>
 								<label className='flex flex-col text-xl text-[#A9A9A9] sm:1/4'>
 									Data de Nascimento
-									<input type="date" onBlurCapture={newBornDate} name="firstName" className='w-full border-none text-3xl text-[#000] ' />
+									<input type="date" onBlurCapture={newBornDate} name="firstName" className='w-full border-none text-3xl text-[#000] ' max={dataFormatada}/>
 								</label>
 							</div>
 							<div>
@@ -222,7 +230,7 @@ export const PetAdd = () => {
 						style={customStyles}
 						contentLabel="Example Modal"
 					>
-						<PetAddSucess className='cardPet' title="Sucesso" what='Novo pet adicionado' onCancel={cancelClose} />
+						<PetAddSucess className='cardPet' title="Sucesso" aparecer="hidden" what='Novo pet adicionado' onCancel={cancelClose} />
 					</Modal>
 				</div>
 			</main>

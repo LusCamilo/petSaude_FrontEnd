@@ -35,9 +35,6 @@ export const AppointmentView = (props) => {
 		setTela3({estado: 'flex', cor: 'bg-[#09738A]'})
 	};
 
-	const handlePetSelection = (pet) => {
-		console.log(`Selected pet: ${pet.name}`);
-	};
 	const [tamanho, setTamanho] = useState('')
 
 	const [name, setName] = useState('')

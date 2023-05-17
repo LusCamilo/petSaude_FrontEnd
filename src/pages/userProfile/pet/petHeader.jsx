@@ -13,7 +13,7 @@ export const PetHeader = () => {
 	useEffect(() => {
 		if (decoded) {
 			if (decoded.userName === '')
-				document.location.href = '/profile/edit-profile'
+				
 			setUserNome(decoded.userName);
 			setUserFoto(
 				decoded.profilePhoto !== ""

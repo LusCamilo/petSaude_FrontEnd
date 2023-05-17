@@ -64,7 +64,6 @@ export const Pessoais = (props) => {
 		setTelefone(inputValue);
 	}
 	function handleTextChange(event) {
-		console.log(event.target.value);
 		setText(event.target.value);
 	}
 
@@ -101,8 +100,6 @@ export const Pessoais = (props) => {
 				phoneNumber: telefone,
 				bio: text
 			}
-
-			console.log(infos);
 
 			if ((localStorage.getItem('__user_isVet')) === 'true') {
 				response = await updatePersonalInfosVeterinary(infos)

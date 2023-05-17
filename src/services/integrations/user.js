@@ -62,7 +62,6 @@ export async function getUser(id) {
 }
 
 export async function getVeterinary(id) {
-
 	const url = `${BASE_URL}id/veterinary?userID=${id}`
 	const response = await fetch(url, {
 		method: "GET",
@@ -114,7 +113,6 @@ export async function updateProfileInfosClient(infosProfile) {
 			},
 			body: JSON.stringify(infosProfile)
 		})
-		console.log(JSON.stringify(infosProfile));
 		return await response.json()
 	} catch (err) {
 		console.log(err.message);

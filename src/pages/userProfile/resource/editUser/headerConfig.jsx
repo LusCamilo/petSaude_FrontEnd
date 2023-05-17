@@ -5,6 +5,9 @@ import configIcon from "../../../../assets/svg/Icon button.svg";
 import {SideBarMenu} from "../../../../components/sideBarMenu";
 
 export const Config = (props) => {
+
+	
+
 	return (
 		<section>
 			<div className="flex font-normal items-center justify-between bg-white shadow pl-5 xl:p-10 h-30 text-4xl">

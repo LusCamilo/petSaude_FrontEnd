@@ -4,9 +4,7 @@ export async function getUsers(search, searchIt) {
   if (search === null) {
     search = ''
   }
-  console.log("Procurando");
   const url = `${BASE_URL}veterinary?${searchIt}=${search}`
-  console.log(url);
   return await fetch(url, {
     method: 'GET',
     headers: {

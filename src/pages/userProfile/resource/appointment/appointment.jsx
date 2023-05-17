@@ -46,11 +46,15 @@ export const Appointment = (props) => {
 			const decoded = jwt_decode(token);
 			if (decoded.id) {
 				const pets = await getAllPets(decoded.id);
-				if (pets == null || pets == undefined || pets == []) {
-					setPetAll([{ name: "Não foram encontrados pets" }]);
-					setThereArentPets('flex')
-					setThereArePets('hidden')
-				} else setPetAll(pets)
+				if (pets == 'Não foram encontrados registros no Banco de Dados') {
+					document.location.href = '/profile/pet/add'
+				}else {
+					if (pets == null || pets == undefined || pets == []) {
+						setPetAll([{ name: "Não foram encontrados pets" }]);
+						setThereArentPets('flex')
+						setThereArePets('hidden')
+					} else setPetAll(pets)
+				}
 			} else {
 				setPetAll([ "Não foram encontrados pets" ]);
 				setThereArentPets('flex')
@@ -104,8 +108,6 @@ export const Appointment = (props) => {
 			petId: petId,
 		}
 		const addAppointment = await appointmentAdd(appointmentInfos);
-		console.log("aqui");
-		console.log( addAppointment);
 		if(addAppointment.response.message == 'Consulta criada com sucesso'){
 			showToastMessage("Consulta criada com sucesso")
 			setTimeout(function () {
@@ -202,7 +204,7 @@ export const Appointment = (props) => {
 						<div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full  pl-14 md:pl-20 pt-3 md:pt-10'>
 							<label className='w-full flex flex-col text-gray-400 '>
 								Data
-								<input type='date' onChange={newDate}min={dataFormatada}/>
+								<input type='date' onChange={newDate} min={dataFormatada}/>
 							</label>
 							<label className='w-full flex flex-col text-gray-400'>
 								Hora

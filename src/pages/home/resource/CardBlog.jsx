@@ -5,7 +5,6 @@ export const CardProfessionals = (props) => {
 	const [especializacao, setEspecializacao] = useState('')
 
 	useEffect(() => {
-		console.log(props.especializacao);
 		if (props.especializacao === null || props.especializacao === "") {
 			setEspecializacao('')
 		} else {

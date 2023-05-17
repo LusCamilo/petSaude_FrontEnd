@@ -53,6 +53,15 @@ export const RegisterVeterinary = () => {
 	const [checkedBoxes, setCheckedBoxes] = useState([]);
 	const [checkedBoxesEspecialidades, setCheckedBoxesEspecialidades] = useState([]);
 
+	let hoje = new Date();
+	let ano = hoje.getFullYear();
+	let mes = hoje.getMonth() + 1;
+	let dia = hoje.getDate();
+	if (mes < 10)  mes = '0' + mes
+	if (dia < 10)  dia = '0' + dia
+	let dataFormatada = `${ano}-${mes}-${dia}`;
+
+
 	useEffect(() => {
 		async function fetchDataAll() {
 			const dados = await checkboxSpecialities()
@@ -157,6 +166,13 @@ export const RegisterVeterinary = () => {
 		setSucess(false);
 	}
 
+	const [formation, setFormation] = useState('1900-01-01')
+	const minStartActivy = (date) => {
+		console.log(date);
+		setFormation(date); 
+	  };
+	  
+
 	const submitForm = async data => {
 		const userInfos = JSON.parse(localStorage.getItem('__user_register_infos'))
 		const allInfos = {
@@ -177,10 +193,12 @@ export const RegisterVeterinary = () => {
 			formationDate: data.formationDate,
 			startActingDate: data.startActingDate
 		}
+
+
+
+
 		if (validateForm(data)) {
 			const createUserResponse = await registerVet(allInfos)
-			console.log(checkedBoxes);
-			console.log(checkedBoxesEspecialidades);
 			let error1 = createUserResponse.response ? createUserResponse.response : ""
 			let error = createUserResponse.response.error ? createUserResponse.response.error : ""
 			if (createUserResponse.response.id) {
@@ -190,15 +208,6 @@ export const RegisterVeterinary = () => {
 				const especialidadesPet = checkedBoxes.map((item) => {
 					return { ...item, veterinaryId: createUserResponse.response.id };
 				});
-				console.log(especialidades);
-				console.log(especialidadesPet);
-				console.log(
-					await updateSpecialitiesPet(JSON.stringify({AnimalTypesVetInfos: especialidadesPet}))
-				);
-				console.log(
-					await updateSpecialities(JSON.stringify({specialties: especialidades}))
-				);
-
 
 				showToastMessage()
 				setTimeout(function () {
@@ -209,11 +218,7 @@ export const RegisterVeterinary = () => {
 					}, 5000);
 				}, 4000);
 			} else {
-				console.log(error1)
-				console.log(error);
-				console.log(error.includes('já está em uso'))
 				if (error1 == "Email já está em uso" || error == "CRMV já está em uso") {
-					console.log("aqui");
 					if (error1 == 'Email já está em uso') {
 						let firstWord = error1.split(" ")[0]
 						openModalEmail(firstWord)
@@ -311,11 +316,25 @@ export const RegisterVeterinary = () => {
 					<div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full'>
 						<label className='w-full flex flex-col md:text-xl text-lg'>
 							Data de formação
-							<input className={errors.formationDate ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="date" name="formationDate" {...register('formationDate', { required: true })} />
+							<input
+								className={errors.formationDate ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'}
+								type="date"
+								name="formationDate"
+								max={dataFormatada}
+								onChange={(e) => minStartActivy(e)}
+								{...register('formationDate', { required: true })}
+							/>
 						</label>
 						<label className='w-full flex flex-col md:text-xl text-lg'>
 							Início de atuação
-							<input className={errors.startActingDate ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="date" name="startActingDate" {...register('startActingDate', { required: true })} />
+							<input
+								className={errors.startActingDate ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'}
+								type="date"
+								name="startActingDate"
+								max={dataFormatada}
+								min={formation} // define a data mínima como a data de formação selecionada
+								{...register('startActingDate', { required: true })}
+							/>
 						</label>
 					</div>
 					<button type="submit" className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-2xl rounded transition drop-shadow-xl py-3 hover:bg-[#78A890] mt-4'>Cadastrar-se</button>
