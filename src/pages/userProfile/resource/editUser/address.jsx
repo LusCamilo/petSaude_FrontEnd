@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import lapis from "../../../../assets/svg/pencil.svg"
+import lapisConfirm from "../../../../assets/svg/pencilConfirm.svg"
 import { updateAddress } from "../../../../services/integrations/address.js";
 
+
 export const Address = (props) => {
-	const [address, setaddress] = useState({ disabled: true, textColor: 'opacity-50' })
+	const [address, setAddress] = useState({ disabled: true, textColor: 'opacity-50' })
+	const [button, setButton] = useState({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
+
 	const [cep, setCep] = useState('')
 	const [complement, setComplement] = useState('')
 
@@ -15,7 +19,7 @@ export const Address = (props) => {
 			inputValue = inputValue.substr(0, 8);
 		}
 		inputValue = inputValue.replace(/(\d{5})(\d{3})/, '$1-$2');
-		
+
 		setCep(inputValue);
 	}
 	function handleComplementChange(event) {
@@ -74,11 +78,14 @@ export const Address = (props) => {
 					</div>
 				</div>
 				<div className='hidden sm:flex flex-col content-end aling-end pr-10 '>
-					<button className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
-						if (address.disabled === true) {
-							setaddress({ disabled: false, textColor: '' })
+					<button className={`w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[${button.bgColor}] rounded-full drop-shadow-lg text-[${button.color}]`} onClick={() => {
+						if (address.disabled == true) {
+							setAddress({ disabled: false, textColor: '', text: 'Confirmar' })
+							setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
 						} else {
-							setaddress({ disabled: true, textColor: 'opacity-50' })
+							// if (window.confirm('deseja atualizar os seus dados pessoais?')) {
+							setAddress({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
+							setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
 
 							if (window.confirm('Deseja atualizar os seus dados pessoais?')) {
 								if (cep !== '') {
@@ -92,7 +99,7 @@ export const Address = (props) => {
 															window.alert(response.response);
 															window.location.reload();
 														})
-												}else{
+												} else {
 													let zipCode = { zipCode: cep, number: `${props.number}`, complement: "" };
 													updateAddress(zipCode, props.id)
 														.then(response => {
@@ -101,7 +108,7 @@ export const Address = (props) => {
 														})
 												}
 
-											}else{
+											} else {
 												window.alert('É necessário fornecer um CEP válido')
 												window.location.reload();
 											}
@@ -116,8 +123,8 @@ export const Address = (props) => {
 							}
 						}
 					}}>
-						<img src={lapis} alt="" />
-						Editar
+						<img src={button.icon} alt="" />
+						{button.text}
 					</button>
 				</div>
 			</div>

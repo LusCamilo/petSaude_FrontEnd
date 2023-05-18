@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import lapis from "../../../../assets/svg/pencil.svg"
+import lapisConfirm from "../../../../assets/svg/pencilConfirm.svg"
 import { updatePersonalInfosClient, updatePersonalInfosVeterinary } from '../../../../services/integrations/user';
 
 export const Pessoais = (props) => {
 
-	const [personalInfos, setPersonalInfos] = useState({ disabled: true, textColor: 'opacity-50' })
+	const [personalInfos, setPersonalInfos] = useState({ disabled: true, textColor: 'opacity-50'})
+	const [button, setButton] = useState({text:'Editar', color:'#000', bgColor: '#ECECEC', icon: lapis })
 	const [name, setName] = useState('')
 	const [lastName, setLastName] = useState('')
 	const [cpf, setCpf] = useState('')
@@ -101,13 +103,6 @@ export const Pessoais = (props) => {
 				bio: text
 			}
 
-<<<<<<< HEAD
-			if ((localStorage.getItem('__user_isVet')) === 'true') {
-				response = await updatePersonalInfosVeterinary(infos)
-				if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
-					if (response.response.meta.target === "tbl_veterinary_rg_key") {
-						window.alert("Rg já está em uso")
-=======
 			if (text != null) {
 				console.log(infos);
 
@@ -121,7 +116,6 @@ export const Pessoais = (props) => {
 						}
 					} else {
 						window.alert(response.response)
->>>>>>> 5742f8ad9b004fe153bfaaa63cff926507eed119
 						window.location.reload()
 					}
 					window.location.reload()
@@ -227,18 +221,20 @@ export const Pessoais = (props) => {
 					</form>
 				</div>
 				<div className='hidden sm:flex flex-row w-1/5 justify-end pr-10 '>
-					<button className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
+					<button className={`w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[${button.bgColor}] rounded-full drop-shadow-lg text-[${button.color}]`} onClick={() => {
 						if (personalInfos.disabled == true) {
-							setPersonalInfos({ disabled: false, textColor: '' })
+							setPersonalInfos({ disabled: false, textColor: '', text: 'Confirmar'})
+							setButton({text:'Confirmar' , bgColor: '#49454F', color: '#A9A9A9',  icon: lapisConfirm})
 						} else {
 							if (window.confirm('deseja atualizar os seus dados pessoais?')) {
-								setPersonalInfos({ disabled: true, textColor: 'opacity-50' })
+								setPersonalInfos({ disabled: true, textColor: 'opacity-50', text: 'Editar'})
+								setButton({text:'Editar', color:'#000', bgColor: '#ECECEC', icon: lapis})
 								handleSubmit()
 							}
 						}
 					}}>
-						<img src={lapis} alt="" />
-						Editar
+						<img src={button.icon} alt="" />
+						{button.text}
 					</button>
 				</div>
 			</div>
