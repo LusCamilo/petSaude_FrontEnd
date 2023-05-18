@@ -6,7 +6,7 @@ import {FaLock} from "react-icons/fa";
 import {IoExit} from "react-icons/io5";
 import signOutUser from "../../utils/signOutUser";
 
-export const SideBarMenu = (props) => {
+export const SideBarMenu = () => {
 	const [showMenu, setShowMenu] = useState(false)
 
 	function toggleMenu() {

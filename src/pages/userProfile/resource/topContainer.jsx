@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
+import isValidImageUrl from "../../../utils/isValidImageUrl";
 
 const customStyles = {
 	content: {
@@ -47,15 +48,12 @@ export const TopContainer = (props) => {
 		});
 	};
 
-	const [isVet, SetIsVet] = useState(false)
+	const [thisUserIsVet, setThisUserIsVet] = useState(props.isVet)
 
 	useEffect(() => {
 		const token = localStorage.getItem('__user_JWT')
 		const decoded = jwt_decode(token);
-		if (decoded.isVet === false) {
-			SetIsVet(true)
-		}
-
+		setThisUserIsVet(decoded.isVet)
 
 		async function fetchData() {
 			let allInfos = await getVeterinary(localStorage.getItem("__Vet_correctId"))
@@ -108,11 +106,6 @@ export const TopContainer = (props) => {
 		closeModal();
 	}
 
-	function isValidImageUrl(url) {
-		const imageUrlRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
-		return imageUrlRegex.test(url);
-	}
-
 	console.log(props)
 
 	return (
@@ -147,7 +140,7 @@ export const TopContainer = (props) => {
 							<p>9,8/10</p>
 						</div>
 					</div>
-					{props.isVet ? <button
+					{props.isVet && !props.myProfile && !thisUserIsVet ? <button
 						className='botaoAppont bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10 z-10'
 						onClick={openModal}>
 						Agendar uma consulta

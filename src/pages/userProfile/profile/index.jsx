@@ -30,7 +30,8 @@ export const Profile = () => {
 					profilePhoto={userInfos.profileBannerPhoto}
 					userPhoto={userInfos.profilePhoto}
 					biografia={userInfos.biography}
-					isVet={userInfos.isVet}/>
+					isVet={userInfos.isVet}
+					myProfile={true}/>
 				<Cards/>
 				<div className='flex flex-col md:flex-row justify-between gap-[10%] px-10 md:px-44 mb-16'>
 					{isVet ? <AcademicInfos formacao={userInfos.formation} dataFormacao={userInfos.formationDate} instituicao={userInfos.institution} carreiraInicio={userInfos.startActingDate}/> : null}
