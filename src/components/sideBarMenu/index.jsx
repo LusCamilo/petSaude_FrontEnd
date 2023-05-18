@@ -19,8 +19,8 @@ export const SideBarMenu = (props) => {
 	return (
 		<div
 			className={showMenu
-			? "pt-5 px-4 absolute top-0 left-0 opacity-100 h-full w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10"
-			: "absolute top-0 hidden -left-0 opacity-0 h-full w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10"}>
+			? "pt-5 px-4 fixed top-0 left-0 opacity-100 h-screen w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10"
+			: "fixed top-0 hidden -left-0 opacity-0 h-screen w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10"}>
 			<AiOutlineClose onClick={toggleMenu} className='cursor-pointer'/>
 			<h2 className="pt-5 pl-5 text-left  text-2xl font-semibold">
 				Menu
