@@ -4,8 +4,9 @@ import {AiFillHome, AiFillInfoCircle, AiOutlineClose} from "react-icons/ai";
 import {BsBriefcaseFill, BsFillCalendarFill, BsPersonFill} from "react-icons/bs";
 import {FaLock} from "react-icons/fa";
 import {IoExit} from "react-icons/io5";
+import signOutUser from "../../utils/signOutUser";
 
-export const SideBarMenu = (props) => {
+export const SideBarMenu = () => {
 	const [showMenu, setShowMenu] = useState(false)
 
 	function toggleMenu() {
@@ -19,8 +20,8 @@ export const SideBarMenu = (props) => {
 	return (
 		<div
 			className={showMenu
-			? "pt-5 px-4 absolute top-0 left-0 opacity-100 h-full w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10"
-			: "absolute top-0 hidden -left-0 opacity-0 h-full w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10"}>
+			? "pt-5 px-4 fixed top-0 left-0 opacity-100 h-screen w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10"
+			: "fixed top-0 hidden -left-0 opacity-0 h-screen w-96 bg-[#ECECEC] border transform transition-all duration-300 z-10"}>
 			<AiOutlineClose onClick={toggleMenu} className='cursor-pointer'/>
 			<h2 className="pt-5 pl-5 text-left  text-2xl font-semibold">
 				Menu
@@ -55,23 +56,10 @@ export const SideBarMenu = (props) => {
 					<FaLock className='pr-3 w-14 h-12 text-[#49454F]' />
 					Segurança
 				</Link>
-				<div className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6 w-full flex flex-row h-30 text-[#B3261E] font-semibold" onClick={() => {
-
-					localStorage.removeItem('__pet_id');
-					localStorage.removeItem('__user_register_infos');
-					localStorage.removeItem('__user_id');
-					localStorage.removeItem('__user_isVet');
-					localStorage.removeItem('__register_type');
-					localStorage.removeItem('__user_JWT');
-
-					document.location.href = "/login"
-
-				}}>
-					<div className="flex flex-row gap-3 items-center">
-						<IoExit className='pr-3 w-14 h-12' />
-						Sair
-					</div>
-				</div>
+				<span className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6 w-full flex flex-row h-30 text-[#B3261E] font-semibold gap-3 items-center cursor-pointer" onClick={signOutUser}>
+					<IoExit className='pr-3 w-14 h-12' />
+					Sair
+				</span>
 			</ul>
 		</div>
 	)

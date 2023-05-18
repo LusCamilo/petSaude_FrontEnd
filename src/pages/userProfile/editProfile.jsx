@@ -4,12 +4,12 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { TopContainer } from './resource/editProfile/topContainer';
 import { InfosProfile } from './resource/editProfile/infosProfile';
 import check from './resource/img/saveProfile.png'
-import { getUser, getVeterinary, updateProfileInfosClient, updateProfileInfosVeterinary } from '../../services/integrations/user';
+import { updateProfileInfosClient, updateProfileInfosVeterinary } from '../../services/integrations/user';
 import { PetHeader } from './pet/petHeader';
-import jwt_decode from "jwt-decode";
 import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
-import Notifications from "../../utils/Notifications";
 import getUserInfos from "../../utils/getUserInfos";
+import {AiFillCheckCircle} from "react-icons/ai";
+import Notifications from "../../utils/Notifications";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -73,7 +73,6 @@ export const EditProfile = () => {
 	}
 
 	function handleChildProfilePhotoChange(value) {
-		console.log(value)
 		let storageRef = ref(storage, `Client/${value.name}`);
 		if (Boolean(localStorage.getItem('__user_isVet'))) {
 			storageRef = ref(storage, `Veterinario/${value.name}`);
@@ -109,6 +108,35 @@ export const EditProfile = () => {
 		}
 	}
 
+	async function editInformations() {
+		let profileInfos = {
+			userName: name,
+			email: email,
+			password: password,
+			profileBannerPhoto: profileBannerPhoto,
+			profilePhoto: profilePhoto
+		}
+
+		if (localStorage.getItem('__user_isVet') === 'true')
+			updateProfileInfosVeterinary(profileInfos).then(async (response) =>  {
+				if (response && typeof response === 'object') {
+					if (response.hasOwnProperty('message')) await Notifications.error('E-mail já está em uso')
+				} else {
+					await Notifications.success('Informações atualizadas com sucesso')
+					document.location.href = '/profile/configuration'
+				}
+			})
+		else
+			updateProfileInfosClient(profileInfos).then(async (response) => {
+				if (response && typeof response === 'object') {
+					if (response.hasOwnProperty('message')) await Notifications.error('E-mail já está em uso')
+				} else {
+					await Notifications.success('Informações atualizadas com sucesso')
+					document.location.href = '/profile/configuration'
+				}
+			})
+	}
+
 	return (
 		<div>
 			<PetHeader name={infos.personName} />
@@ -120,55 +148,10 @@ export const EditProfile = () => {
 					onPasswordChange={handleChildPasswordChange}
 					onProfilePhotoChange={handleChildProfilePhotoChange}
 					userName={infos.userName} completName={infos.personName} email={infos.email} password={infos.password} profilePhoto={infos.profilePhoto}
-
-					
 				/>
-				{/* <div className="h-20 w-1/3 sm:h-48 sm:40 md:w-56 rounded-full ">
-							<input type="file" accept="image/*" name="photo" id="profilePhoto" className="hidden"  />
-							<label htmlFor='infos' style={{ backgroundImage: `url(${profilePhoto})` }}
-							       className='flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
-								
-							</label>
-				</div> */}
 
-				<button className='md:flex md:end-40  self-end rounded-lg bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={() => {
-
-					let profileInfos = {
-						userName: name,
-						email: email,
-						password: password,
-						profileBannerPhoto: profileBannerPhoto,
-						profilePhoto: profilePhoto
-					}
-
-					
-
-					console.log(JSON.stringify(profileInfos))
-
-					if (localStorage.getItem('__user_isVet') === 'true')
-						updateProfileInfosVeterinary(profileInfos).then(response =>  {
-							if (response && typeof response === 'object') {
-								if (response.hasOwnProperty('message')) {
-									window.alert("Esse email já está sendo utilizado");
-								}
-							} else {
-								window.alert('Dados atualizados com sucesso');
-								document.location.href = '/profile/configuration'
-							}
-						})
-					else
-						updateProfileInfosClient(profileInfos).then(response => {
-							if (response && typeof response === 'object') {
-								if (response.hasOwnProperty('message')) {
-									window.alert("Esse email já está sendo utilizado");
-								}
-							} else {
-								window.alert('Dados atualizados com sucesso');
-								document.location.href = '/profile/configuration'
-							}
-						})
-				}}>
-					<img src={check} className='rounded- my-5 mx-4' alt='Check' />
+				<button className='md:flex md:end-40  self-end rounded-lg bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={editInformations}>
+					<AiFillCheckCircle className='rounded m-3 w-12 h-12' />
 				</button>
 			</div>
 		</div>

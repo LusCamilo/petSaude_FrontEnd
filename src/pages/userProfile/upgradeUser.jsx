@@ -5,7 +5,6 @@ import {Pessoais} from './resource/editUser/infosPerson';
 import {Prossionais} from './resource/editUser/infosProfissional';
 import './css/UpgradeUser.css';
 import {Pets} from './resource/editUser/allPets';
-import Person from '../../assets/svg/Person.svg';
 import Cadeado from '../../assets/svg/Lock.svg';
 import Work from '../../assets/svg/Work.svg';
 import Calendary from '../../assets/svg/calendary.svg';
@@ -18,8 +17,7 @@ import lapis from './/resource/img/LapisColorido.svg'
 import {deleteClient, deleteVeterinary, getUser, getVeterinary} from '../../services/integrations/user';
 import Modal from 'react-modal';
 import {WarnRequest} from './pet/cards/warnTwo';
-
-import { PetHeader } from "../userProfile/pet/petHeader";
+import {BsFillPersonFill} from "react-icons/bs";
 
 const customStyles = {
 	content: {
@@ -127,10 +125,10 @@ export const UpgradeUser = () => {
 					text: allInfosUser.biography,
 					cep: allInfosUser.cep,
 					addressId: allInfosUser.addressId,
-					rua: address.logradouro,
+					// rua: address.logradouro,
 					bairro: address.bairro,
-					estado: address.uf,
-					cidade: address.localidade,
+					// estado: address.uf,
+					// cidade: address.localidade,
 					complemento: allInfosUser.complement,
 					profilePhoto: allInfosUser.profilePhoto,
 					profileBannerPhoto: allInfosUser.profileBannerPhoto,
@@ -145,6 +143,7 @@ export const UpgradeUser = () => {
 				}
 			)
 		}
+
 		fetchData()
 	}, [])
 
@@ -168,128 +167,66 @@ export const UpgradeUser = () => {
 		closeModal()
 	}
 
+	return (
+		<section>
+			<Config userName={infos.userName} personName={infos.personName} profilePhoto={infos.profilePhoto}/>
+			<main className='flex flex-col gap-10 '>
+				<Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular}
+									telefone={infos.telefone} text={infos.text} className=''/>
+				<Address id={infos.addressId} viaCep={getAddressFromZipCode} cep={infos.cep} bairro={infos.bairro}
+								 rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento}
+								 className=''/>
 
-	let largura = window.innerWidth
-
-	if (largura <= 8) {
-		return (
-			<section>
-				<Config />
-				<main>
-					<div>
-						<p className=' font-bold font-sans  h-10 text-2xl'>Configurações</p>
-						<div className='border-2 border-[#CAC4D0] rounded-full py-5 px-5 flex flex-row  mt-2'>
-							<div className='flex flex-row  gap-5'>
-								<img src={Person} alt="" />
-								Informações pessoais
-								<Link to="/profile/edit-profile">
-									<img className='pl-16' src={Arrow} alt="" />
-								</Link>
-
-							</div>
+				{localStorage.getItem("__user_isVet") === 'true' ?
+					<>
+						<Prossionais area={infos.occupationArea} instituicao={infos.institution} dataFormacao={infos.formationDate}
+												 formacao={infos.formation} crmv={infos.crmv} dataInicioAtuacao={infos.startActingDate}
+												 className=''/>
+						<div className='fixed right-0 bottom-10 w-64 h-16 bg-[#1C1B1F] flex sm:hidden rounded-xl'>
+							<button
+								className='flex flex-row content-center justify-center items-center gap-3 text-[#A9A9A9] text-3xl h-16 rounded-xl w-64'>
+								<img src={lapis} alt=""/>
+								Habilitar Edição
+							</button>
 						</div>
-						<div className='border-2 border-[#CAC4D0] rounded-full py-5 px-5 flex flex-row  mt-2'>
-							<div className='flex flex-row  gap-5'>
-								<img src={Cadeado} alt="" />
-								Segurança
-								<Link to="/profile/editSecurity">
-									<img className='pl-36' src={Arrow} alt="" />
-								</Link>
-
-							</div>
-						</div>
-						<div className='border-2 border-[#CAC4D0] rounded-full py-5 px-5 flex flex-row  mt-2'>
-							<div className='flex flex-row  gap-5'>
-								<img src={Local} alt="" />
-								Localização
-								<Link to="/profile/editAdress">
-									<img className='pl-36' src={Arrow} alt="" />
-								</Link>
-
-							</div>
-						</div>
-					</div>
-					<div>
-						<p className=' font-bold font-sans  h-10 text-2xl pt-10'>Adicionais</p>
-						<div className='border-2 border-[#CAC4D0] rounded-full py-5 px-5 flex flex-row mt-10'>
-							<div className='flex flex-row  gap-5'>
-								<img src={Calendary} alt="" />
-								Consultas
-								<Link to="/profile/Consultas">
-									<img className='pl-36' src={Arrow} alt="" />
-								</Link>
-							</div>
-						</div>
-						<div className='border-2 border-[#CAC4D0] rounded-full py-5 px-5 flex flex-row mt-2 '>
-							<div className='flex flex-row  gap-5'>
-								<img src={Work} alt="" />
-								Informações Profissionais
-								<Link to="/profile/editProfissionais">
-									<img className='pl-10' src={Arrow} alt="" />
-								</Link>
-							</div>
-						</div>
-						<div className='border-2 border-[#B3261E] rounded-full py-5 px-5 flex flex-row  mt-10 text-[#B3261E] font-semibold'>
-							<div className='flex flex-row  gap-5'>
-								<img src={Logout} alt="" />
-								Sair
-							</div>
-						</div>
-					</div>
-				</main>
-			</section>
-		)
-	} else {
-		return (
-			<section>
-				<Config userName={infos.userName} personName={infos.personName} profilePhoto={infos.profilePhoto} />
-				<main className='flex flex-col gap-10 '>
-					<Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular} telefone={infos.telefone} text={infos.text} className='' />
-					<Address id={infos.addressId} viaCep={getAddressFromZipCode} cep={infos.cep} bairro={infos.bairro} rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento} className='' />
-
-					{localStorage.getItem("__user_isVet") === 'true' ?
-						<>
-							<Prossionais area={infos.occupationArea} instituicao={infos.institution} dataFormacao={infos.formationDate} formacao={infos.formation} crmv={infos.crmv} dataInicioAtuacao={infos.startActingDate} className='' />
-							<div className='fixed right-0 bottom-10 w-64 h-16 bg-[#1C1B1F] flex sm:hidden rounded-xl'>
-								<button className='flex flex-row content-center justify-center items-center gap-3 text-[#A9A9A9] text-3xl h-16 rounded-xl w-64'>
-									<img src={lapis} alt="" />
-									Habilitar Edição
-								</button>
-							</div>
-							<div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
-								<button className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
+						<div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
+							<button
+								className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64'
+								onClick={() => {
 									deleteVeterinary(localStorage.getItem('__user_id'), localStorage.getItem('__user_JWT'))
 									document.location.href = '/login'
 								}}>
-									<img src={lixeira} className='h-full' alt='Trash' />
-									Excluir perfil
-								</button>
-							</div>
-						</>
-						:
-						<>
-							<Pets personImage={infos.profilePhoto} />
-							<div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
-								<button className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64' onClick={() => {
+								<img src={lixeira} className='h-full' alt='Trash'/>
+								Excluir perfil
+							</button>
+						</div>
+					</>
+					:
+					<>
+						<Pets personImage={infos.profilePhoto}/>
+						<div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
+							<button
+								className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64'
+								onClick={() => {
 									openModal()
 								}}>
-									<img src={lixeira} className='h-full' alt='Trash' />
-									Excluir perfil
-								</button>
-								<Modal
-									isOpen={modalIsOpen}
-									onAfterOpen={afterOpenModal}
-									onRequestClose={closeModal}
-									style={customStyles}
-									contentLabel="Example Modal"
-								>
-									<WarnRequest onClose={closeModal} description="Tem certeza que deseja excluir seu perfil?" onSave={deletePetzinho} href="/login" />
-								</Modal>
-							</div>
-						</>
-					}
-				</main>
-			</section>
-		);
-	}
+								<img src={lixeira} className='h-full' alt='Trash'/>
+								Excluir perfil
+							</button>
+							<Modal
+								isOpen={modalIsOpen}
+								onAfterOpen={afterOpenModal}
+								onRequestClose={closeModal}
+								style={customStyles}
+								contentLabel="Example Modal"
+							>
+								<WarnRequest onClose={closeModal} description="Tem certeza que deseja excluir seu perfil?"
+														 onSave={deletePetzinho} href="/login"/>
+							</Modal>
+						</div>
+					</>
+				}
+			</main>
+		</section>
+	);
 }

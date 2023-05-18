@@ -75,17 +75,17 @@ export const AppointmentView = (props) => {
 
 							<div className='flex flex-col w-5/6 md:w-96 bg-[#E3EFF0] rounded-lg pb-96 md:h-screen'>
 								<ul className="flex flex-col items-center w-full cursor-pointer pt-5 space-y-3 text-xl">
-									<button type="button" className={`flex ${tela1.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30 w-56 md:w-5/6 text-left ${tela1.text} rounded-full`}
+									<button type="button" className={`flex ${tela1.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left ${tela1.text} rounded-2xl`}
 									        onClick={handleClickPedidos}
 									>
 										Pedidos de consultas
 									</button>
-									<button type="button" className={`flex ${tela2.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30 w-56 md:w-5/6 text-left rounded-full`}
+									<button type="button" className={`flex ${tela2.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
 									        onClick={handleClickPendentes}
 									>
 										Consultas pendentes
 									</button>
-									<button type="button" className={`flex ${tela3.cor} items-center border border-black py-2 px-6 bg-[#E3EFF0] h-30 w-56 md:w-5/6 text-left rounded-full`}
+									<button type="button" className={`flex ${tela3.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
 									        onClick={handleClickArquivadas}
 									>
 										Consultas arquivadas

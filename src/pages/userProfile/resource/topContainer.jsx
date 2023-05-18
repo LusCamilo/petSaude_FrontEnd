@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
+import isValidImageUrl from "../../../utils/isValidImageUrl";
 
 const customStyles = {
 	content: {
@@ -48,6 +49,7 @@ export const TopContainer = (props) => {
 	};
 
 	const [isVet, SetIsVet] = useState('hidden')
+	const [thisUserIsVet, setThisUserIsVet] = useState(props.isVet)
 
 	useEffect(() => {
 		const token = localStorage.getItem('__user_JWT')
@@ -60,6 +62,7 @@ export const TopContainer = (props) => {
 			SetIsVet("flex")
 		}
 
+		setThisUserIsVet(decoded.isVet)
 
 		async function fetchData() {
 			let allInfos = await getVeterinary(localStorage.getItem("__Vet_correctId"))
@@ -67,9 +70,9 @@ export const TopContainer = (props) => {
 			let quantAppontments = allAppoinments.filter(appointment => appointment.status === "CONCLUDED");
 			let quant = quantAppontments.length
 			setQuantAppont(quant)
-			if (quant == 1) {
+			if (quant === 1) {
 				setStringAppoinment('Consulta Concluida')
-			} else if(quant == 0) {
+			} else if(quant <= 0) {
 				setStringAppoinment('Não há consultas concluidas')
 			} else  {
 				setStringAppoinment('Consultas concluidas')
@@ -122,14 +125,17 @@ export const TopContainer = (props) => {
 			<div className='w-full md:h-[500px] rounded-b-xl bg-gray-300'>
 				<img src={props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl' + isValidImageUrl(props.profileBannerPhoto) ? ' hidden' : null}/>
 			</div>
-			<div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex'>
-				<img
-					src={isValidImageUrl(props.profilePhoto) || props.profilePhoto === '' ? 'https://www.svgrepo.com/show/335455/profile-default.svg' : props.profilePhoto}
-					alt='Profile'
-					className="flex relative pl-24 sm:pl-56 md:pl-0 md:border-4 h-28  md:h-48 md:border-white border-solid rounded-full"/>
-				<div className='flex flex-col md:flex-row justify-between w-full md:mt-16'>
+			<div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex h-fit'>
+				<div className='flex relative md:border-4 h-28 w-28 md:h-48 md:border-white border-solid rounded-full md:w-48 items-center justify-center bg-white'>
+					<img
+						src={isValidImageUrl(props.profilePhoto) || props.profilePhoto === '' ? 'https://www.svgrepo.com/show/335455/profile-default.svg' : props.profilePhoto}
+						alt='Profile'
+						className="h-full w-full rounded-full"
+					/>
+				</div>
+				<div className='flex flex-col md:flex-row justify-between w-fit md:mt-16'>
 					<div className='flex flex-col md:flex-row items-center gap-1 pt-4'>
-						<div className='flex'>
+						<div className='flex ml-4'>
 							<p className='text-3xl md:text-4xl'>{props.name}</p>
 							{props.isVet ? <img className='pl-2' src={iconVet} alt='Veterinary badge'/> : null}
 						</div>
@@ -149,8 +155,8 @@ export const TopContainer = (props) => {
 							<p>9,8/10</p>
 						</div>
 					</div>
-					{props.isVet ?  <button
-						className={`${isVet} botaoAppont bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10`}
+					{props.isVet && !props.myProfile && !thisUserIsVet ? <button
+						className='botaoAppont bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10 z-10'
 						onClick={openModal}>
 						Agendar uma consulta
 					</button> : null}

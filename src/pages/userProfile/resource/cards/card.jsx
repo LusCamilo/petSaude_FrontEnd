@@ -7,7 +7,7 @@ export const Card = (props) => {
 
 	if (localStorage.getItem('__register_type') === "professional") {
 		return (
-			<div className='flex flex-none flex-col max-w-xs h-4/5 border-solid border-2 border-gray-400 rounded-xl'>
+			<div className='flex flex-none flex-col max-w-xs h-4/5 border-solid border border-gray-400 rounded-xl'>
 				<div className='flex items-center justify-between px-4 py-3'>
 					<div className='flex flex-row items-center gap-4'>
 						<img className='w-10 h-10' src={img} alt="" />

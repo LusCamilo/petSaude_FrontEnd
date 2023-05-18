@@ -6,7 +6,7 @@ import {BsFillGearFill} from "react-icons/bs";
 export const HeaderProfile = () => {
 	return (
 		<header className="flex font-normal justify-between md:pb-5 md:h-30 text-4xl items-center md:px-12 md:pt-5">
-			<button id='menu-button' className="block py-3 md:px-4 mx-2 rounded focus:outline-none hover-bg-gray-200 group ">
+			<button id='menu-button' className="block py-3 md:px-4 mx-2 rounded focus:outline-none hover-bg-gray-200 group">
 				<span className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5 block"></span>
 				<span className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5 block"></span>
 				<span className="w-8 h-1.5 bg-[#000] md:w-10 md:h-1.5 block"></span>
