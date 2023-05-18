@@ -4,6 +4,7 @@ import {AiFillHome, AiFillInfoCircle, AiOutlineClose} from "react-icons/ai";
 import {BsBriefcaseFill, BsFillCalendarFill, BsPersonFill} from "react-icons/bs";
 import {FaLock} from "react-icons/fa";
 import {IoExit} from "react-icons/io5";
+import signOutUser from "../../utils/signOutUser";
 
 export const SideBarMenu = (props) => {
 	const [showMenu, setShowMenu] = useState(false)
@@ -55,23 +56,10 @@ export const SideBarMenu = (props) => {
 					<FaLock className='pr-3 w-14 h-12 text-[#49454F]' />
 					Segurança
 				</Link>
-				<div className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6 w-full flex flex-row h-30 text-[#B3261E] font-semibold" onClick={() => {
-
-					localStorage.removeItem('__pet_id');
-					localStorage.removeItem('__user_register_infos');
-					localStorage.removeItem('__user_id');
-					localStorage.removeItem('__user_isVet');
-					localStorage.removeItem('__register_type');
-					localStorage.removeItem('__user_JWT');
-
-					document.location.href = "/login"
-
-				}}>
-					<div className="flex flex-row gap-3 items-center">
-						<IoExit className='pr-3 w-14 h-12' />
-						Sair
-					</div>
-				</div>
+				<span className="border-2 border-[#B3261E] hover:bg-[#f7b9b6] rounded-full py-2 px-6 w-full flex flex-row h-30 text-[#B3261E] font-semibold gap-3 items-center cursor-pointer" onClick={signOutUser}>
+					<IoExit className='pr-3 w-14 h-12' />
+					Sair
+				</span>
 			</ul>
 		</div>
 	)
