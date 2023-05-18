@@ -113,14 +113,17 @@ export const TopContainer = (props) => {
 			<div className='w-full md:h-[500px] rounded-b-xl bg-gray-300'>
 				<img src={props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl' + isValidImageUrl(props.profileBannerPhoto) ? ' hidden' : null}/>
 			</div>
-			<div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex'>
-				<img
-					src={isValidImageUrl(props.profilePhoto) || props.profilePhoto === '' ? 'https://www.svgrepo.com/show/335455/profile-default.svg' : props.profilePhoto}
-					alt='Profile'
-					className="flex relative pl-24 sm:pl-56 md:pl-0 md:border-4 h-28  md:h-48 md:border-white border-solid rounded-full"/>
-				<div className='flex flex-col md:flex-row justify-between w-full md:mt-16'>
+			<div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex h-fit'>
+				<div className='flex relative md:border-4 h-28 w-28 md:h-48 md:border-white border-solid rounded-full md:w-48 items-center justify-center bg-white'>
+					<img
+						src={isValidImageUrl(props.profilePhoto) || props.profilePhoto === '' ? 'https://www.svgrepo.com/show/335455/profile-default.svg' : props.profilePhoto}
+						alt='Profile'
+						className="h-full w-full rounded-full"
+					/>
+				</div>
+				<div className='flex flex-col md:flex-row justify-between w-fit md:mt-16'>
 					<div className='flex flex-col md:flex-row items-center gap-1 pt-4'>
-						<div className='flex'>
+						<div className='flex ml-4'>
 							<p className='text-3xl md:text-4xl'>{props.name}</p>
 							{props.isVet ? <img className='pl-2' src={iconVet} alt='Veterinary badge'/> : null}
 						</div>
