@@ -309,14 +309,14 @@ export const AppointmentPeding = (props) => {
 
 	return(
 		<section className=''>
-			<div className=' w-full flex flex-col gap-3 mr-2'>
+			<div className=' w-3/6 flex flex-col gap-3 mr-2'>
 				<div className={`${divNothing}`}>
 					Nenhuma consulta a ser aceita
 				</div>
 				{pedidos.map(pedido =>{
 
 					return(
-						<div key={pedido.id}  className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
+						<div key={pedido.id}  className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 p-20'>
 							<Modal
 								isOpen={warn}
 								onAfterOpen={''}
@@ -335,7 +335,7 @@ export const AppointmentPeding = (props) => {
 							>
 								<PetAddSucess aparecer='flex' onClose={closeModalQuestionSucess} Pet={pedido.nomePet} onSave={()=>finalizarAppointment(pedido.idAppoint)} title="Sucesso" what="A consulta já foi finalizada, certo?" href="/profile/appointment-view" />
 							</Modal>
-							<div className='flex flex-row items-center md:content-center md:text-center text-6xl gap-4'>
+							<div className='flex flex-row items-center md:content-center md:text-center text-5xl gap-4'>
 								<img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
 								<h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
 							</div>
@@ -420,7 +420,7 @@ export const AppointmentPeding = (props) => {
 									</div>
 								</div>
 							</div>
-							<h2 className='font-normal  flex justify-center sm:justify-start font-sans text-5xl pb-5 '>Informações de consulta </h2>
+							<h2 className='font-normal  flex justify-center sm:justify-start font-sans text-3xl pb-5 '>Informações de consulta </h2>
 							<div className='flex flex-col justify-between pr-20'>
 								<div className='flex flex-row justify-start w-full sm:w-full '>
 									<div className='w-1/3'>
@@ -491,7 +491,7 @@ export const AppointmentPeding = (props) => {
 									</div>
 								</div>
 							</span>
-							<div className='flex flex-row justify-around'>
+							<div className='flex flex-row justify-between pt-5'>
 								<button className={`bg-[#F9DEDC] flex justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
 								        onClick={() => openModalQuestionWarn()}>
 									Cancelar consulta
