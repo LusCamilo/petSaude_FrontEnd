@@ -10,6 +10,7 @@ import Modal from 'react-modal'
 import { WarnRequest } from '../../../pet/cards/warnTwo';
 import { PetAddSucess } from '../../../pet/cards/sucess';
 import cuidado from '../../../../userProfile/resource/img/Cuidado.png'
+import { AppointmentPedingCards } from './appointmentPedingCards';
 
 const customStylesWarn = {
 	content: {
@@ -61,6 +62,7 @@ export const AppointmentPeding = (props) => {
 
 	const [warn, setWarn] = React.useState(false);
 	const [Sucess, setSucess] = React.useState(false);
+
 	function openModalQuestionWarn() {
 		setWarn(true)
 	}
@@ -284,16 +286,6 @@ export const AppointmentPeding = (props) => {
 		input.value = parseFloat(value).toLocaleString('pt-BR', {minimumFractionDigits: 2});
 	}
 
-	const handleClick = () => {
-		setTutorStatus('flex');
-		setButtonStatus('hidden');
-	};
-
-	const handleClickAgain = () => {
-		setTutorStatus('hidden');
-		setButtonStatus('flex');
-	};
-
 	useEffect( ()  => {
 		const token = localStorage.getItem('__user_JWT')
 		const decoded = jwt_decode(token);
@@ -314,207 +306,44 @@ export const AppointmentPeding = (props) => {
 					Nenhuma consulta a ser aceita
 				</div>
 				{pedidos.map(pedido =>{
-
+					console.log(pedido.idAppoint);
 					return(
-						<div key={pedido.id}  className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 py-8 md:pl-20 sm:pl-20'>
-							<Modal
-								isOpen={warn}
-								onAfterOpen={''}
-								onRequestClose={closeModalQuestionWarn}
-								style={customStylesWarn}
-								contentLabel="Example Modal"
-							>
-								<WarnRequest boolBotoes={'flex'} onClose={closeModalQuestionWarn} Pet={pedido.nomePet} idApp={pedido.idAppoint} onSave={()=>cancelarAppointment(pedido.idAppoint)} description={`Certeza que deseja finalizar a consulta? Pode ser penalizado...`} href="/profile/appointment-view" />
-							</Modal>
-							<Modal
-								isOpen={Sucess}
-								onAfterOpen={''}
-								onRequestClose={closeModalQuestionSucess}
-								style={customStylesSucess}
-								contentLabel="Example Modal"
-							>
-								<PetAddSucess aparecer='flex' onClose={closeModalQuestionSucess} Pet={pedido.nomePet} onSave={()=>finalizarAppointment(pedido.idAppoint)} title="Sucesso" what="A consulta já foi finalizada, certo?" href="/profile/appointment-view" />
-							</Modal>
-							<div className='flex flex-row items-center md:content-center md:text-center text-6xl gap-4'>
-								<img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
-								<h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
-							</div>
-							<div className='flex md:justify-between pr-20'>
-								<div className='flex flex-col justify-start w-full sm:w-1/3 '>
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Nome
-											<input type="text" disabled placeholder={pedido.nomePet} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
+					//chamada para o código filho
+						<AppointmentPedingCards 
+							key={pedido.id}
+							id={pedido.idAppoint}
+							showClient={showClient}
+							showVet={showVet}
+							imagemPet={pedido.imagemPet}
+							nomePet={pedido.nomePet}
+							tamanho={pedido.tamanho}
+							sexo={pedido.sexo}
+							idade={pedido.idade}
+							especie={pedido.especie}
+							donoImg={pedido.donoImg}
+							dono={pedido.dono}
+							telefone={pedido.telefone}
+							vetPhoto={pedido.vetPhoto}
+							vetName={pedido.vetName}
+							vetPhone={pedido.vetPhone}
+							dataConsulta={pedido.dataConsulta}
+							horario={pedido.horario}
+							duration={pedido.duration}
+							descricao={pedido.descricao}
 
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Tamanho
-											<input type="text" disabled placeholder={pedido.tamanho} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-								</div>
-								<div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3'>
-									<div className='w-full'>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Sexo
-											<input type="text" disabled placeholder={pedido.sexo} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-									<div className='w-full'>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Idade
-											<input type="text" disabled placeholder={pedido.idade} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-								</div>
-								<div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3'>
-									<div className='w-full'>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Espécie
-											<input type="text" disabled placeholder={pedido.especie} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div className={`${showClient} flex-row items-center content-center text-center text-6xl gap-4`}>
-								<img className='PetImage' src={pedido.donoImg} alt="Imagem do pet" />
-								<h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.dono}</h2>
-							</div>
-							<div className='flex flex-col sm:flex-row justify-between pr-20'>
-								<div className={`${showClient} flex-row justify-start w-full`}>
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]' >
-											Nome
-											<input type="text" disabled placeholder={pedido.dono} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
+							
+							cancel={openModalQuestionWarn}
+							finish={openModalQuestionSucess}
+							closeSucess={closeModalQuestionSucess}
+							closeWarn={closeModalQuestionWarn}
+							finalizar={finalizarAppointment}
+							cancelar={cancelarAppointment}
+							warn={warn}
+							Sucess={Sucess}
+						/>
+				)})}
 
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Telefone
-											<input type="text" disabled placeholder={pedido.telefone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div className={`${showVet} flex-row items-center content-center text-center text-6xl gap-4`}>
-								<img className='PetImage' src={pedido.vetPhoto} alt="Imagem do pet" />
-								<h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.vetName}</h2>
-							</div>
-							<div className='flex flex-col sm:flex-row justify-between pr-20'>
-								<div className={`${showVet} flex-row justify-start w-full`}>
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]' >
-											Nome
-											<input type="text" disabled placeholder={pedido.vetName} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Telefone
-											<input type="text" disabled placeholder={pedido.vetPhone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-								</div>
-							</div>
-							<h2 className='font-normal  flex justify-center sm:justify-start font-sans text-5xl pb-5 '>Informações de consulta </h2>
-							<div className='flex flex-col justify-between pr-20'>
-								<div className='flex flex-row justify-start w-full sm:w-full '>
-									<div className='w-1/3'>
-										<label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
-											Data
-											<input type="text" disabled placeholder={pedido.dataConsulta} className='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-									<div className='w-1/3'>
-										<label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
-											Horário
-											<input type="text" disabled placeholder={pedido.horario} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-									<div className='w-1/3'>
-										<label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
-											Duração
-											<input type="text" disabled placeholder={pedido.duration} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-								</div>
-								<div className='flex flex-row sm:flex-col justify-start content-center w-full '>
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Descrição
-											<p>
-												{pedido.descricao}
-											</p>
-											{/* <input type="text" disabled placeholder={pedido.descricao} class='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl'/> */}
-										</label>
-									</div>
-								</div>
-							</div>
-							<span className={`${buttonAceitar}`}>
-								<div className={`${tutorStatus} flex-col justify-center items-start md:items-center content-center mb-2 ` }>
-									<h2>Confirmar consulta</h2>
-									<div className='w-1/3 flex justify-center gap-5 flex-col'>
-										<label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
-											Duracação
-											<input type="time" id="duracao" name="duracao" min="00:01" className='w-full text-2xl'
-											       defaultValue={duracao}
-											       onChange={(e) => {
-															 const time = e.target.value.split(':');
-															 const hours = parseInt(time[0]);
-															 const minutes = parseInt(time[1]);
-															 const totalMinutes = (hours * 60) + minutes;
-															 setDuracao(totalMinutes);
-														 }}/>
-										</label>
-										<label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
-											Valor
-											<div className='flex items-center justify-center gap-2'>
-												<span className='text-2xl align-bottom'>R$  </span>
-												<input
-													type="number"
-													step="0.01"
-													min="0.01"
-													name="preco"
-													id="preco"
-													lang="pt-BR"
-													className='min-w-full text-2xl'
-													defaultValue={preco}
-													onBlur={(e) => formatPrice(e.target)}
-													onChange={(e) => setPreco(e.target.value)}
-												/>
-											</div>
-										</label>
-									</div>
-								</div>
-							</span>
-							<div className='flex flex-row justify-around'>
-								<button className={`bg-[#F9DEDC] flex justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
-								        onClick={() => openModalQuestionWarn()}>
-									Cancelar consulta
-								</button>
-								<button className={`bg-[#9ED1B7] flex justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
-								        onClick={() => openModalQuestionSucess()}>
-									Concluir consulta
-								</button>
-							</div>
-							<ToastContainer
-								position="top-right"
-								autoClose={1500}
-								hideProgressBar={false}
-								newestOnTop={false}
-								closeOnClick
-								rtl={false}
-								pauseOnFocusLoss
-								draggable
-								pauseOnHover
-								theme="light"
-							/>
-						</div>
-					)})}
+			
 			</div>
 		</section>
 	)

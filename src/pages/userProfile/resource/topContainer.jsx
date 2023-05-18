@@ -47,13 +47,17 @@ export const TopContainer = (props) => {
 		});
 	};
 
-	const [isVet, SetIsVet] = useState(false)
+	const [isVet, SetIsVet] = useState('hidden')
 
 	useEffect(() => {
 		const token = localStorage.getItem('__user_JWT')
 		const decoded = jwt_decode(token);
-		if (decoded.isVet === false) {
-			SetIsVet(true)
+
+		console.log(decoded);
+		console.log(decoded.isVet == false);
+		console.log(props);
+		if (decoded.isVet == false) {
+			SetIsVet("flex")
 		}
 
 
@@ -113,8 +117,6 @@ export const TopContainer = (props) => {
 		return imageUrlRegex.test(url);
 	}
 
-	console.log(props)
-
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>
 			<div className='w-full md:h-[500px] rounded-b-xl bg-gray-300'>
@@ -147,8 +149,8 @@ export const TopContainer = (props) => {
 							<p>9,8/10</p>
 						</div>
 					</div>
-					{props.isVet ? <button
-						className='botaoAppont bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10 z-10'
+					{props.isVet ?  <button
+						className={`${isVet} botaoAppont bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10`}
 						onClick={openModal}>
 						Agendar uma consulta
 					</button> : null}

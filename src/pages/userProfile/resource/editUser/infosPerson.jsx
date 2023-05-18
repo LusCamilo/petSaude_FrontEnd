@@ -101,13 +101,6 @@ export const Pessoais = (props) => {
 				bio: text
 			}
 
-<<<<<<< HEAD
-			if ((localStorage.getItem('__user_isVet')) === 'true') {
-				response = await updatePersonalInfosVeterinary(infos)
-				if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
-					if (response.response.meta.target === "tbl_veterinary_rg_key") {
-						window.alert("Rg já está em uso")
-=======
 			if (text != null) {
 				console.log(infos);
 
@@ -121,7 +114,6 @@ export const Pessoais = (props) => {
 						}
 					} else {
 						window.alert(response.response)
->>>>>>> 5742f8ad9b004fe153bfaaa63cff926507eed119
 						window.location.reload()
 					}
 					window.location.reload()

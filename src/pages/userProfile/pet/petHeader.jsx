@@ -12,33 +12,20 @@ export const PetHeader = () => {
 	const decoded = jwt_decode(token);
 
 	useEffect(() => {
-<<<<<<< HEAD
-		if (decoded) {
-			setUserName(decoded.userName);
-			setUserPhoto(
-				decoded.profilePhoto !== ""
-					? decoded.profilePhoto
-					: "https://www.svgrepo.com/show/335455/profile-default.svg"
-			);
-			if (decoded.userName === "") setLinkTo("/profile/edit-profile");
-			setLinkTo("/profile");
-=======
 		async function loadUserInfos() {
 			const userInfos = await getUserInfos()
 			if (userInfos) {
-				setUserNome(userInfos.userName)
-				if (userInfos.profilePhoto !== '') setUserFoto(userInfos.profilePhoto)
-				else setUserFoto('https://www.svgrepo.com/show/335455/profile-default.svg')
+				setUserName(userInfos.userName)
+				if (userInfos.profilePhoto !== '') setUserPhoto(userInfos.profilePhoto)
+				else setUserPhoto('https://www.svgrepo.com/show/335455/profile-default.svg')
 				if (userInfos.userName === "") setLinkTo("/profile/edit-profile");
 				else setLinkTo('/profile')
 			}
->>>>>>> ab819adc1db3047d2096a3bebf438a77f5a859ce
 		}
 
 		loadUserInfos()
 	}, [decoded, token]);
 
-	console.log(linkTo)
 
 	return (
 		<header>
@@ -52,17 +39,10 @@ export const PetHeader = () => {
 				<Link to="/" className="text-1xl font-bold">
 					PetSaúde
 				</Link>
-<<<<<<< HEAD
 				<Link to={linkTo} className=" md:flex flex-row gap-2">
 					<img className="w-14 h-14 p-1 md:p-0 rounded-full" src={userPhoto} alt='Profile' />
 					<p className=" items-center hidden md:flex home-btn text-2xl text-black">
 						{userName}
-=======
-				<Link to={linkTo} className="flex flex-row gap-2 z-10">
-					<img className="w-14 h-14 p-1 md:p-0 rounded-full" src={userFoto} alt='Profile' />
-					<p className=" items-center hidden md:flex home-btn text-2xl mr-3 text-black">
-						{userNome}
->>>>>>> ab819adc1db3047d2096a3bebf438a77f5a859ce
 					</p>
 				</Link>
 			</div>
