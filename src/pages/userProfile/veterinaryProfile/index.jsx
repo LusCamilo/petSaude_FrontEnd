@@ -38,7 +38,14 @@ export const VeterinaryProfile = () => {
 		<div>
 			<HeaderProfile />
 			<div>
-				<TopContainer name={vets.personName} profilePhoto={vets.profileBannerPhoto} userPhoto={vets.profilePhoto} biografia={vets.biography} id={vets.id} />
+				<TopContainer
+					name={vets.personName}
+					profilePhoto={vets.profilePhoto}
+					profileBannerPhoto={vets.profileBannerPhoto}
+					biografia={vets.biography}
+					id={vets.id}
+					isVet={vets.isVet}
+					myProfile={false} />
 				<Cards />
 				<div className='flex flex-col md:flex-row justify-between gap-[10%] px-10 md:px-44 mb-16'>
 					<AcademicInfos formacao={vets.formation} dataFormacao={vets.formationDate} instituicao={vets.institution} carreiraInicio={vets.startActingDate} />
