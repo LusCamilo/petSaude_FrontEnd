@@ -3,8 +3,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 import lapis from "../../../../assets/svg/pencil.svg"
 import {updatePersonalInfosClient, updatePersonalInfosVeterinary} from '../../../../services/integrations/user';
 import Notifications from "../../../../utils/Notifications";
-import {login} from "../../../../services/integrations/authentication";
-import jwt_decode from "jwt-decode";
 
 export const Pessoais = (props) => {
 
@@ -98,6 +96,16 @@ export const Pessoais = (props) => {
 
 	}
 
+	function resetInfos() {
+		console.log(props)
+		setName(props.name)
+		setLastName(props.lastName)
+		setRg(props.rg)
+		setCelular(props.celular)
+		setTelefone(props.telefone)
+		setBio(props.text)
+	}
+
 	const handleSubmit = async () => {
 		try {
 			let response
@@ -108,13 +116,20 @@ export const Pessoais = (props) => {
 				if (result.isConfirmed) {
 					if (!validateForm()) await Notifications.error('Existem campos vazios que devem ser preenchidos.')
 
-					infos = {
-						personName: name + ' ' + lastName,
-						cpf,
-						rg: rg === null ? '' : rg,
-						cellphoneNumber: celular,
-						phoneNumber: telefone === null ? '' : telefone,
-						bio: bio === null ? '' : bio
+			if (text != null) {
+				console.log(infos);
+
+				if ((localStorage.getItem('__user_isVet')) === 'true') {
+					response = await updatePersonalInfosVeterinary(infos)
+					console.log(response);
+					if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
+						if (response.response.meta.target === "tbl_veterinary_rg_key") {
+							window.alert("Rg já está em uso")
+							window.location.reload()
+						}
+					} else {
+						window.alert(response.response)
+						window.location.reload()
 					}
 
 					if (localStorage.getItem('__user_isVet') === true) userType = 'veterinary'
@@ -127,6 +142,9 @@ export const Pessoais = (props) => {
 					if (response.response) await Notifications.success('Informações alteradas com sucesso')
 				} else {
 					await Notifications.success('Nenhuma informação alterada!')
+					window.location.reload()
+					// setPersonalInfos({disabled: true, textColor: 'opacity-50'})
+					// resetInfos()
 				}
 			})
 		} catch (err) {
@@ -195,7 +213,7 @@ export const Pessoais = (props) => {
 					<button
 						className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg'
 						onClick={() => {
-							if (personalInfos.disabled == true) {
+							if (personalInfos.disabled === true) {
 								setPersonalInfos({disabled: false, textColor: ''})
 							} else {
 								handleSubmit()

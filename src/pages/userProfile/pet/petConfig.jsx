@@ -16,6 +16,7 @@ import {PetAddWarn} from './cards/warn';
 import './css/pet.css';
 import lapis from '../../../assets/svg/pencil.svg';
 import {getPet, petUpdate} from '../../../services/integrations/pet';
+import Modal from 'react-modal'
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -285,6 +286,9 @@ export const PetConfig = (props) => {
 
 								const { id } = infos
 								petUpdate(id, infosPet)
+								setTimeout(() => {
+									document.location.href = "/profile/configuration";
+								}, 2000); 
 							}}>
 								<img src={certo} alt="" />
 							</button>
@@ -292,7 +296,7 @@ export const PetConfig = (props) => {
 						<Dialog.Portal >
 							<Dialog.Overlay className="DialogOverlay" />
 							<Dialog.Content className="DialogContent" class='cardPet'>
-								<PetAddSucess what="Pet editado" />
+								<PetAddSucess what="Pet editado" aparecer="hidden" />
 							</Dialog.Content>
 						</Dialog.Portal>
 					</Dialog.Root>

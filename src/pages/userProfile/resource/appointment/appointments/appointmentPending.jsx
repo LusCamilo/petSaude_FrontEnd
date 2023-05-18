@@ -10,6 +10,7 @@ import Modal from 'react-modal'
 import { WarnRequest } from '../../../pet/cards/warnTwo';
 import { PetAddSucess } from '../../../pet/cards/sucess';
 import cuidado from '../../../../userProfile/resource/img/Cuidado.png'
+import { AppointmentPedingCards } from './appointmentPedingCards';
 
 const customStylesWarn = {
 	content: {
@@ -61,6 +62,7 @@ export const AppointmentPeding = (props) => {
 
 	const [warn, setWarn] = React.useState(false);
 	const [Sucess, setSucess] = React.useState(false);
+
 	function openModalQuestionWarn() {
 		setWarn(true)
 	}
@@ -284,16 +286,6 @@ export const AppointmentPeding = (props) => {
 		input.value = parseFloat(value).toLocaleString('pt-BR', {minimumFractionDigits: 2});
 	}
 
-	const handleClick = () => {
-		setTutorStatus('flex');
-		setButtonStatus('hidden');
-	};
-
-	const handleClickAgain = () => {
-		setTutorStatus('hidden');
-		setButtonStatus('flex');
-	};
-
 	useEffect( ()  => {
 		const token = localStorage.getItem('__user_JWT')
 		const decoded = jwt_decode(token);
@@ -314,7 +306,7 @@ export const AppointmentPeding = (props) => {
 					Nenhuma consulta a ser aceita
 				</div>
 				{pedidos.map(pedido =>{
-
+					console.log(pedido.idAppoint);
 					return(
 						<div key={pedido.id}  className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 p-20'>
 							<Modal
@@ -347,49 +339,39 @@ export const AppointmentPeding = (props) => {
 											<input type="text" disabled placeholder={pedido.nomePet} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
 										</label>
 									</div>
+					//chamada para o código filho
+						<AppointmentPedingCards 
+							key={pedido.id}
+							id={pedido.idAppoint}
+							showClient={showClient}
+							showVet={showVet}
+							imagemPet={pedido.imagemPet}
+							nomePet={pedido.nomePet}
+							tamanho={pedido.tamanho}
+							sexo={pedido.sexo}
+							idade={pedido.idade}
+							especie={pedido.especie}
+							donoImg={pedido.donoImg}
+							dono={pedido.dono}
+							telefone={pedido.telefone}
+							vetPhoto={pedido.vetPhoto}
+							vetName={pedido.vetName}
+							vetPhone={pedido.vetPhone}
+							dataConsulta={pedido.dataConsulta}
+							horario={pedido.horario}
+							duration={pedido.duration}
+							descricao={pedido.descricao}
 
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Tamanho
-											<input type="text" disabled placeholder={pedido.tamanho} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-								</div>
-								<div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3'>
-									<div className='w-full'>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Sexo
-											<input type="text" disabled placeholder={pedido.sexo} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-									<div className='w-full'>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Idade
-											<input type="text" disabled placeholder={pedido.idade} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-								</div>
-								<div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3'>
-									<div className='w-full'>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
-											Espécie
-											<input type="text" disabled placeholder={pedido.especie} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div className={`${showClient} flex-row items-center content-center text-center text-6xl gap-4`}>
-								<img className='PetImage' src={pedido.donoImg} alt="Imagem do pet" />
-								<h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.dono}</h2>
-							</div>
-							<div className='flex flex-col sm:flex-row justify-between pr-20'>
-								<div className={`${showClient} flex-row justify-start w-full`}>
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]' >
-											Nome
-											<input type="text" disabled placeholder={pedido.dono} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
-										</label>
-									</div>
+							
+							cancel={openModalQuestionWarn}
+							finish={openModalQuestionSucess}
+							closeSucess={closeModalQuestionSucess}
+							closeWarn={closeModalQuestionWarn}
+							finalizar={finalizarAppointment}
+							cancelar={cancelarAppointment}
+							warn={warn}
+							Sucess={Sucess}
+						/>
 
 									<div>
 										<label className='flex flex-col text-xl text-[#A9A9A9]'>

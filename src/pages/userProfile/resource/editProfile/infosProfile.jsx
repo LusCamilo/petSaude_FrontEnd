@@ -67,7 +67,7 @@ export const InfosProfile = (props) => {
 
 				<div className="flex justify-betwen">
 					<div className='flex flex-col gap-14'>
-						<button className='w-52 h-12 hidden md:flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
+						<button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' onClick={() => {
 
 							if (document.getElementById('userInfo').disabled == true) {
 								userInfosDisableState({
@@ -81,11 +81,11 @@ export const InfosProfile = (props) => {
 								})
 							}
 						}}>
-							<img src={lapis} />
+							<img src={lapis} alt="" className='h-7'/>
 							Editar
 						</button>
 						<button
-							className=' w-20 md:w-52 md:h-12 hidden md:flex flex-row justify-center items-center gap-4 bg-[#F9DEDC] rounded-full drop-shadow-lg font-bold text-[#410E0B]'
+							className='w-fit px-10 h-14 flex-row justify-center items-center cursor-pointer gap-4 rounded-full drop-shadow-lg hidden md:flex text-2xl text-[#410E0B] bg-[#F9DEDC]'
 							onClick={() => {
 								if (document.getElementById('password').type == 'password') {
 									setClassPassword({

@@ -15,7 +15,7 @@ export const VeterinaryProfile = () => {
 			let response = await getUsers(vetJson, "userName");
 			let result = response.response;
 			let json
-			if (result === "Nenhum veterinário atende aos filtros de pesquisa" ) {
+			if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
 				json = []
 			} else {
 				json = result
@@ -33,6 +33,7 @@ export const VeterinaryProfile = () => {
 	useEffect(() => {
 		onSearch(); // Chama a função apenas uma vez durante o ciclo de vida do componente
 	}, []);
+
 
 	return (
 		<div>

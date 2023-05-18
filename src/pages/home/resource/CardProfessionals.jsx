@@ -9,7 +9,7 @@ export const CardProfessionals = (props) => {
 	const [veterinariosEspecialdades, setVeterinariosEspecialdades] = useState([]);
 	const [showEspecialidade, setShowEspecialidade] = useState('flex');
 	const [firstName, setFirstName] = useState('');
-
+	//console.log(props);
 	useEffect(() => {
 		let pesquisa = props.umCorteRapido
 		let city = addressInfo ? addressInfo.cidade : "";
@@ -102,15 +102,15 @@ export const CardProfessionals = (props) => {
 					</div>
 					<div className="flex flex-row text-xl md:text-2xl gap-2 w-80 md:w-full">
 						<p className="font-bold">Especialização: </p>
-						<p className={`${showEspecialidade} text-2xl w-4/6`}>
+						<ul className={`${showEspecialidade} text-2xl w-4/6`}>
 							{veterinariosEspecialdades.map(esp =>{
 								return(
-									<p>
-										{esp.specialities.name}
-									</p>
+									<lo key={esp.specialities.id}>
+										{esp.specialities.name},
+									</lo>
 								)
 							})}
-						</p>
+						</ul>
 					</div>
 				</div>
 				<div className="flex w-56 justify-end items-end ">
