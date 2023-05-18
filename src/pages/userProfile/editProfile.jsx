@@ -120,9 +120,7 @@ export const EditProfile = () => {
 		if (localStorage.getItem('__user_isVet') === 'true')
 			updateProfileInfosVeterinary(profileInfos).then(async (response) =>  {
 				if (response && typeof response === 'object') {
-					if (response.hasOwnProperty('message')) {
-						await Notifications.error('E-mail já está em uso')
-					}
+					if (response.hasOwnProperty('message')) await Notifications.error('E-mail já está em uso')
 				} else {
 					await Notifications.success('Informações atualizadas com sucesso')
 					document.location.href = '/profile/configuration'
@@ -131,9 +129,7 @@ export const EditProfile = () => {
 		else
 			updateProfileInfosClient(profileInfos).then(async (response) => {
 				if (response && typeof response === 'object') {
-					if (response.hasOwnProperty('message')) {
-						await Notifications.error('E-mail já está em uso')
-					}
+					if (response.hasOwnProperty('message')) await Notifications.error('E-mail já está em uso')
 				} else {
 					await Notifications.success('Informações atualizadas com sucesso')
 					document.location.href = '/profile/configuration'
