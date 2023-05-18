@@ -44,6 +44,7 @@ export const Address = (props) => {
 
 			await Notifications.confirmOrCancel('Deseja atualizar o endereço?', async (result) => {
 				await Notifications.success(result.toString())
+				await updateAddress({zipCode: cep, number: `${props.number}`, complement: complement}, props.id)
 			})
 		} catch (err) {
 			if (err instanceof Error) await Notifications.error(err.message)
@@ -140,17 +141,16 @@ export const Address = (props) => {
 				</div>
 				<div className='hidden sm:flex flex-col content-end aling-end pr-10 '>
 					<button
-						className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg'
+						className={`w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[${button.bgColor}] text-[${button.color}] rounded-full drop-shadow-lg`}
 						onClick={() => {
 							if (address.disabled === true) {
 								setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
 								setAddress({ disabled: false, textColor: '' })
 							} else {
-								if (window.confirm('deseja atualizar o seu endereço?')) {
-									setAddress({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
-									setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
-									handleSubmit()
-								}
+								setAddress({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
+								setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
+								handleSubmit()
+
 							}
 						}}>
 						<img src={button.icon} alt="" />

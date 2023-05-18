@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import {Address} from './resource/editUser/address';
 import {Pessoais} from './resource/editUser/infosPerson';
 import {Prossionais} from './resource/editUser/infosProfissional';
 import './css/UpgradeUser.css';
 import {Pets} from './resource/editUser/allPets';
-import Cadeado from '../../assets/svg/Lock.svg';
-import Work from '../../assets/svg/Work.svg';
-import Calendary from '../../assets/svg/calendary.svg';
-import Local from '../../assets/svg/Gps.svg';
-import Logout from '../../assets/svg/Logout.svg';
+// import Cadeado from '../../assets/svg/Lock.svg';
+// import Work from '../../assets/svg/Work.svg';
+// import Calendary from '../../assets/svg/calendary.svg';
+// import Local from '../../assets/svg/Gps.svg';
+// import Logout from '../../assets/svg/Logout.svg';
 import {Config} from "./resource/editUser/headerConfig.jsx";
-import Arrow from '../../assets/svg/Arrow.svg';
+// import Arrow from '../../assets/svg/Arrow.svg';
 import lixeira from './/resource/img/Delete.svg'
 import lapis from './/resource/img/LapisColorido.svg'
 import {deleteClient, deleteVeterinary, getUser, getVeterinary} from '../../services/integrations/user';
 import Modal from 'react-modal';
 import {WarnRequest} from './pet/cards/warnTwo';
-import {BsFillPersonFill} from "react-icons/bs";
+// import {BsFillPersonFill} from "react-icons/bs";
 
 const customStyles = {
 	content: {
@@ -125,10 +125,10 @@ export const UpgradeUser = () => {
 					text: allInfosUser.biography,
 					cep: allInfosUser.cep,
 					addressId: allInfosUser.addressId,
-					// rua: address.logradouro,
+					rua: address.logradouro,
 					bairro: address.bairro,
-					// estado: address.uf,
-					// cidade: address.localidade,
+					estado: address.uf,
+					cidade: address.localidade,
 					complemento: allInfosUser.complement,
 					profilePhoto: allInfosUser.profilePhoto,
 					profileBannerPhoto: allInfosUser.profileBannerPhoto,

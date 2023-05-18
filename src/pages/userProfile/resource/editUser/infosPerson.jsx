@@ -128,22 +128,35 @@ export const Pessoais = (props) => {
 						bio: bio === null ? '' : bio
 					}
 
-					if (localStorage.getItem('__user_isVet') === true) userType = 'veterinary'
+					if (localStorage.getItem('__user_isVet') == "true") userType = 'veterinary'
 					else userType = 'client'
 
 					if (userType === 'client') response = await updatePersonalInfosClient(infos)
 					else response = await updatePersonalInfosVeterinary(infos)
 
-					if (response?.message?.meta) await Notifications.error(response.message.meta.cause)
-					if (response.response) await Notifications.success('Informações alteradas com sucesso')
+					console.log(response);
+
+
+					if (typeof response.response === "string" ||typeof response.message === "string") await Notifications.success('Informações alteradas com sucesso')
+					else if (response.response?.meta) {
+						if (response.response.meta.target === "tbl_client_cpf_key") await Notifications.error("CPF já está sendo utilizado");
+						if (response.response.meta.target === "tbl_client_rg_key") await Notifications.error("RG já está sendo utilizado");
+						window.location.reload();
+					} else {
+						if (response.message.meta.target === "tbl_veterinary_cpf_key") await Notifications.error("CPF já está sendo utilizado");
+						if (response.message.meta.target === "tbl_veterinary_rg_key") await Notifications.error("RG já está sendo utilizado");
+						window.location.reload();
+					}
+
 				} else {
 					await Notifications.success('Nenhuma informação alterada!')
-					window.location.reload()
+					// window.location.reload()
 					// setPersonalInfos({disabled: true, textColor: 'opacity-50'})
 					// resetInfos()
 				}
 			})
 		} catch (err) {
+			console.log(err);
 			if (err instanceof Error) await Notifications.error(err.message)
 		}
 	}
@@ -211,11 +224,10 @@ export const Pessoais = (props) => {
 							setPersonalInfos({ disabled: false, textColor: '', text: 'Confirmar' })
 							setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
 						} else {
-							if (window.confirm('deseja atualizar os seus dados pessoais?')) {
-								setPersonalInfos({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
-								setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
-								handleSubmit()
-							}
+							setPersonalInfos({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
+							setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
+							handleSubmit()
+
 						}
 					}}>
 						<img src={button.icon} alt="" />

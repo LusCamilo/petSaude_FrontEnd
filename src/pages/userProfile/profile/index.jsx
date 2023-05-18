@@ -15,7 +15,7 @@ export const Profile = () => {
 		async function loadUserInfos() {
 			const userInfos = await getUserInfos()
 			setUserInfos(userInfos)
-			console.log(userInfos)
+			// console.log(userInfos)
 			SetIsVet(userInfos.isVet)
 		}
 		loadUserInfos()

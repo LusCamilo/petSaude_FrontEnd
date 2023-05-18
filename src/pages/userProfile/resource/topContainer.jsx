@@ -55,9 +55,9 @@ export const TopContainer = (props) => {
 		const token = localStorage.getItem('__user_JWT')
 		const decoded = jwt_decode(token);
 
-		console.log(decoded);
-		console.log(decoded.isVet == false);
-		console.log(props);
+		// console.log(decoded);
+		// console.log(decoded.isVet == false);
+		// console.log(props);
 		if (decoded.isVet == false) {
 			SetIsVet("flex")
 		}
@@ -123,7 +123,8 @@ export const TopContainer = (props) => {
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>
 			<div className='w-full md:h-[500px] rounded-b-xl bg-gray-300'>
-				<img src={props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl' + isValidImageUrl(props.profileBannerPhoto) ? ' hidden' : null}/>
+				<img src={props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl' + isValidImageUrl(props.profileBannerPhoto) ? ' hidden' : null
+			}/>
 			</div>
 			<div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex h-fit'>
 				<div className='flex relative md:border-4 h-28 w-28 md:h-48 md:border-white border-solid rounded-full md:w-48 items-center justify-center bg-white'>

@@ -15,13 +15,9 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { PetAddWarn } from './cards/warn';
 import './css/pet.css';
 import lapis from '../../../assets/svg/pencil.svg';
-<<<<<<< HEAD
-import { getPet, petUpdate } from '../../../services/integrations/pet';
 import { getSpecialtiesPet } from '../../../services/integrations/specialtiesPet';
-=======
 import {getPet, petUpdate} from '../../../services/integrations/pet';
-import Modal from 'react-modal'
->>>>>>> 51a4864365a678917f438d2363ad4a0f616f8632
+
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
