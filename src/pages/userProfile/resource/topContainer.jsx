@@ -48,11 +48,20 @@ export const TopContainer = (props) => {
 		});
 	};
 
+	const [isVet, SetIsVet] = useState('hidden')
 	const [thisUserIsVet, setThisUserIsVet] = useState(props.isVet)
 
 	useEffect(() => {
 		const token = localStorage.getItem('__user_JWT')
 		const decoded = jwt_decode(token);
+
+		console.log(decoded);
+		console.log(decoded.isVet == false);
+		console.log(props);
+		if (decoded.isVet == false) {
+			SetIsVet("flex")
+		}
+
 		setThisUserIsVet(decoded.isVet)
 
 		async function fetchData() {
@@ -106,7 +115,10 @@ export const TopContainer = (props) => {
 		closeModal();
 	}
 
-	console.log(props)
+	function isValidImageUrl(url) {
+		const imageUrlRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
+		return imageUrlRegex.test(url);
+	}
 
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>

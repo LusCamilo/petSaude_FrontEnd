@@ -134,8 +134,10 @@ export const PetAdd = () => {
 
 		petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
 
-		setTimeout(function () {
-			document.location.href = "/profile/configuration";
+		setTimeout(function() {
+			setTimeout(function() {
+				document.location.href = "/profile/configuration";
+			}, 2000);
 		}, 2000);
 	}
 
@@ -162,8 +164,6 @@ export const PetAdd = () => {
 	}
 
 	function afterOpenModal() {
-		// references are now sync'd and can be accessed.
-		//subtitle.style.color = '#f00';
 	}
 
 	function cancelClose() {

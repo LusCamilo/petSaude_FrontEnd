@@ -285,6 +285,7 @@ export const SearchProfessional = () => {
 				</div>
 				<div>
 					{vets.map((vet) => {
+						console.log(vet);
 						if (vet.id != undefined) {
 							return (
 								<CardProfessionals
