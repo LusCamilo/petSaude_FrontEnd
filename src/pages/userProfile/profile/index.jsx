@@ -27,8 +27,8 @@ export const Profile = () => {
 			<div>
 				<TopContainer
 					name={userInfos.userName}
-					profilePhoto={userInfos.profileBannerPhoto}
-					userPhoto={userInfos.profilePhoto}
+					profilePhoto={userInfos.profilePhoto}
+					profileBannerPhoto={userInfos.profileBannerPhoto}
 					biografia={userInfos.biography}
 					isVet={userInfos.isVet}
 					myProfile={true}/>

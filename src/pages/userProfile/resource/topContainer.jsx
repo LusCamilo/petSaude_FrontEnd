@@ -61,9 +61,9 @@ export const TopContainer = (props) => {
 			let quantAppontments = allAppoinments.filter(appointment => appointment.status === "CONCLUDED");
 			let quant = quantAppontments.length
 			setQuantAppont(quant)
-			if (quant == 1) {
+			if (quant === 1) {
 				setStringAppoinment('Consulta Concluida')
-			} else if(quant == 0) {
+			} else if(quant <= 0) {
 				setStringAppoinment('Não há consultas concluidas')
 			} else  {
 				setStringAppoinment('Consultas concluidas')
