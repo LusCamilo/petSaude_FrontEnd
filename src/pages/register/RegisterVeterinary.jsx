@@ -57,8 +57,8 @@ export const RegisterVeterinary = () => {
 	let ano = hoje.getFullYear();
 	let mes = hoje.getMonth() + 1;
 	let dia = hoje.getDate();
-	if (mes < 10)  mes = '0' + mes
-	if (dia < 10)  dia = '0' + dia
+	if (mes < 10) mes = '0' + mes
+	if (dia < 10) dia = '0' + dia
 	let dataFormatada = `${ano}-${mes}-${dia}`;
 
 
@@ -169,9 +169,9 @@ export const RegisterVeterinary = () => {
 	const [formation, setFormation] = useState('1900-01-01')
 	const minStartActivy = (date) => {
 		console.log(date);
-		setFormation(date); 
-	  };
-	  
+		setFormation(date);
+	};
+
 
 	const submitForm = async data => {
 		const userInfos = JSON.parse(localStorage.getItem('__user_register_infos'))
@@ -209,12 +209,16 @@ export const RegisterVeterinary = () => {
 					return { ...item, veterinaryId: createUserResponse.response.id };
 				});
 
+				await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: especialidadesPet }))
+				await updateSpecialities(JSON.stringify({ specialties: especialidades }))
+
+
 				showToastMessage()
 				setTimeout(function () {
 					openModalSucess()
 					setTimeout(function () {
 						closeModalSucess()
-						document.location.href = '/login'
+						// document.location.href = '/login'
 					}, 5000);
 				}, 4000);
 			} else {

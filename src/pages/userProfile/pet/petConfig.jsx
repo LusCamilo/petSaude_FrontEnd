@@ -1,22 +1,27 @@
-import React, {useEffect, useState} from 'react';
-import {initializeApp} from 'firebase/app';
-import {getDownloadURL, getStorage, ref, uploadBytes} from 'firebase/storage';
-import {useForm} from "react-hook-form";
-import {PetHeader} from './petHeader';
+import React, { useEffect, useState } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { useForm } from "react-hook-form";
+import { PetHeader } from './petHeader';
 import addMais from "../resource/img/AddMais.png"
 import linha from "../../../assets/svg/linha.svg"
 import '../../reset.css';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import {styled} from '@stitches/react';
+import { styled } from '@stitches/react';
 import certo from '../resource/img/Certo.jpg'
 import lixeira from '../resource/img/Excluir.png'
-import {PetAddSucess} from './cards/sucess';
+import { PetAddSucess } from './cards/sucess';
 import * as Dialog from '@radix-ui/react-dialog';
-import {PetAddWarn} from './cards/warn';
+import { PetAddWarn } from './cards/warn';
 import './css/pet.css';
 import lapis from '../../../assets/svg/pencil.svg';
+<<<<<<< HEAD
+import { getPet, petUpdate } from '../../../services/integrations/pet';
+import { getSpecialtiesPet } from '../../../services/integrations/specialtiesPet';
+=======
 import {getPet, petUpdate} from '../../../services/integrations/pet';
 import Modal from 'react-modal'
+>>>>>>> 51a4864365a678917f438d2363ad4a0f616f8632
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -62,7 +67,18 @@ const InfosUser = async () => {
 	}
 }
 
+const checkboxSpecialitiesPet = async () => {
+	const response = await getSpecialtiesPet()
+	return {
+		allSpecialitiesPet: response.response,
+	}
+}
+
 export const PetConfig = (props) => {
+
+	const [especialidadesPet, setEspecialidadesPet] = useState([])
+	const [animalType, setAnimalType] = useState('')
+
 	const { register, handleSubmit, formState: errors, setValue } = useForm()
 	const [selectedFile, setSelectedFile] = useState('');
 	const [tamanho, setTamanho] = useState('')
@@ -77,20 +93,21 @@ export const PetConfig = (props) => {
 		setDateBorn(event.target.value);
 	}
 
-	const [specie, setSpecie] = useState('')
-	function newSpecie(event) {
-		setSpecie(event.target.value);
-	}
-
 	const [infos, setInfos] = useState({})
 
 	useEffect(() => {
 		setSelectedFile(infos.photo ? infos.photo : '')
 		setName(infos.name ? infos.name : '')
-		setSpecie(infos.specie ? infos.specie : '')
+		setAnimalType(infos.specie ? infos.specie : '')
 		setTamanho(infos.size ? infos.size : '')
 		setSexo(infos.gender ? infos.gender : '')
 		setDateBorn(infos.birthDate ? infos.birthDate : '')
+		async function fetchDataSpecialities() {
+
+			const dadosPet = await checkboxSpecialitiesPet()
+			setEspecialidadesPet(dadosPet.allSpecialitiesPet)
+
+		}
 		async function fetchData() {
 			const allInfosPet = await InfosUser()
 			const dataFormation = allInfosPet.birthDate.split("T")
@@ -110,8 +127,10 @@ export const PetConfig = (props) => {
 					specie: allInfosPet.nameSpecie,
 				}
 			)
+
 		}
 		fetchData()
+		fetchDataSpecialities()
 	}, [infos.photo, infos.name, infos.specie, infos.size, infos.gender, infos.birthDate])
 
 	const [petInfosDisable, petInfosDisableState] = useState({
@@ -159,14 +178,14 @@ export const PetConfig = (props) => {
 						<div className="h-20 w-1/3 sm:h-48 sm:40 md:w-56 rounded-full ">
 							<input type="file" accept="image/*" name="photo" id="photoProfile" className="hidden" onChange={handleFileInputChange} />
 							<label htmlFor='photoProfile' style={{ backgroundImage: `url(${selectedFile})` }}
-							       className='flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
+								className='flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
 								<img className src={addMais} alt='Add icon' />
 							</label>
 						</div>
 						{infos.id && (
 							<div className='flex flex-col w-2/3 sm:w-full p-3 sm:p-10'>
 								<p className='md:text-5xl font-medium '>{name}</p>
-								<p className='md:text-5xl font-normal text-[#A9A9A9]'>{specie}</p>
+								<p className='md:text-5xl font-normal text-[#A9A9A9]'>{animalType}</p>
 							</div>
 						)}
 					</div>
@@ -197,7 +216,15 @@ export const PetConfig = (props) => {
 							<div>
 								<label className='flex flex-col text-xl text-[#A9A9A9]'>
 									Espécie
-									<input type="text" disabled={petInfosDisable.disable} onBlur={newSpecie} defaultValue={infos.specie} name="especieAnimal" id="specisAnimal" placeholder='Espécie' className={`bg-transparent placeholder:text-black placeholder:text-3xl border-none text-2xl  ${petInfosDisable.class}`} />
+									<DropdownMenu.Root className="w-full">
+										<DropdownMenu.Trigger disabled={petInfosDisable.disable} className={`flex justify-start  text-2xl ${petInfosDisable.class}`} >{animalType}</DropdownMenu.Trigger>
+										<StyledContent>
+											{especialidadesPet.map((item) => {
+												return <StyledItem onSelect={() => setAnimalType(item.name)}>{item.name}</StyledItem>
+											})}
+											<StyledArrow />
+										</StyledContent>
+									</DropdownMenu.Root>
 								</label>
 							</div>
 						</div>
@@ -281,7 +308,7 @@ export const PetConfig = (props) => {
 									size: tamanhoPut,
 									gender: sexo,
 									ownerID: infos.ownerID,
-									specie: specie,
+									specie: animalType,
 								}
 
 								const { id } = infos

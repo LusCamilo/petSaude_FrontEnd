@@ -1,10 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import lapis from "../../../../assets/svg/pencil.svg"
-import {updateAddress} from "../../../../services/integrations/address.js";
+import lapisConfirm from "../../../../assets/svg/pencilConfirm.svg"
+import { updateAddress } from "../../../../services/integrations/address.js";
 import Notifications from "../../../../utils/Notifications";
 
+
 export const Address = (props) => {
-	const [address, setaddress] = useState({disabled: true, textColor: 'opacity-50'})
+	const [address, setAddress] = useState({ disabled: true, textColor: 'opacity-50' })
+	const [button, setButton] = useState({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
+
 	const [cep, setCep] = useState('')
 	const [complement, setComplement] = useState('')
 
@@ -92,45 +96,45 @@ export const Address = (props) => {
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							CEP
 							<input disabled={address.disabled} type="text" onBlurCapture={handleCepChange}
-										 onChange={handleCepChange}
-										 name="firstName" value={cep}
-										 className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`}/>
+								onChange={handleCepChange}
+								name="firstName" value={cep}
+								className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Cidade
 							<input disabled="true" type="text" name="firstName" defaultValue={props.cidade}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className=''>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Estado
 							<input disabled="true" type="text" name="firstName" defaultValue={props.estado}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Bairro
 							<input disabled="true" type="text" name="firstName" defaultValue={props.bairro}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className=''>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Rua
 							<input disabled="true" type="text" name="firstName" defaultValue={props.rua}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Complemento
 							<input disabled={address.disabled} onChange={handleComplementChange} type="text" name="firstName"
-										 defaultValue={complement}
-										 className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`}/>
+								defaultValue={complement}
+								className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
 						</label>
 					</div>
 				</div>
@@ -139,13 +143,18 @@ export const Address = (props) => {
 						className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg'
 						onClick={() => {
 							if (address.disabled === true) {
-								setaddress({disabled: false, textColor: ''})
+								setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
+								setAddress({ disabled: false, textColor: '' })
 							} else {
-								handleSubmit()
+								if (window.confirm('deseja atualizar o seu endereço?')) {
+									setAddress({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
+									setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
+									handleSubmit()
+								}
 							}
 						}}>
-						<img src={lapis} alt=""/>
-						Editar
+						<img src={button.icon} alt="" />
+						{button.text}
 					</button>
 				</div>
 			</div>

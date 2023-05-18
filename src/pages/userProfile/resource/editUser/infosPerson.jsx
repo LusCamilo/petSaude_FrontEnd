@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import lapis from "../../../../assets/svg/pencil.svg"
-import {updatePersonalInfosClient, updatePersonalInfosVeterinary} from '../../../../services/integrations/user';
+import lapisConfirm from "../../../../assets/svg/pencilConfirm.svg"
+import { updatePersonalInfosClient, updatePersonalInfosVeterinary } from '../../../../services/integrations/user';
 import Notifications from "../../../../utils/Notifications";
+
 
 export const Pessoais = (props) => {
 
-	const [personalInfos, setPersonalInfos] = useState({disabled: true, textColor: 'opacity-50'})
+	const [personalInfos, setPersonalInfos] = useState({ disabled: true, textColor: 'opacity-50' })
+	const [button, setButton] = useState({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
 	const [name, setName] = useState('')
 	const [lastName, setLastName] = useState('')
 	const [cpf, setCpf] = useState('')
@@ -116,20 +119,13 @@ export const Pessoais = (props) => {
 				if (result.isConfirmed) {
 					if (!validateForm()) await Notifications.error('Existem campos vazios que devem ser preenchidos.')
 
-			if (text != null) {
-				console.log(infos);
-
-				if ((localStorage.getItem('__user_isVet')) === 'true') {
-					response = await updatePersonalInfosVeterinary(infos)
-					console.log(response);
-					if (response.response !== 'Item atualizado com sucesso no Banco de Dados') {
-						if (response.response.meta.target === "tbl_veterinary_rg_key") {
-							window.alert("Rg já está em uso")
-							window.location.reload()
-						}
-					} else {
-						window.alert(response.response)
-						window.location.reload()
+					infos = {
+						personName: name + ' ' + lastName,
+						cpf,
+						rg: rg === null ? '' : rg,
+						cellphoneNumber: celular,
+						phoneNumber: telefone === null ? '' : telefone,
+						bio: bio === null ? '' : bio
 					}
 
 					if (localStorage.getItem('__user_isVet') === true) userType = 'veterinary'
@@ -163,72 +159,75 @@ export const Pessoais = (props) => {
 							<label className='flex flex-col text-xl text-[#A9A9A9]'>
 								Primeiro nome
 								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleNameChange}
-											 onChange={handleNameChange} defaultValue={name}
-											 className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`}/>
+									onChange={handleNameChange} defaultValue={name}
+									className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
 							</label>
 						</div>
 						<div className='flex justify-center'>
 							<label className='flex flex-col text-xl text-[#A9A9A9]'>
 								Sobrenome
 								<input disabled={personalInfos.disabled} type="text" name="firstName"
-											 onBlurCapture={handleLastNameChange} onChange={handleLastNameChange} defaultValue={lastName}
-											 className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`}/>
+									onBlurCapture={handleLastNameChange} onChange={handleLastNameChange} defaultValue={lastName}
+									className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
 							</label>
 						</div>
 						<div className=''>
 							<label className='flex flex-col text-xl text-[#A9A9A9]'>
 								CPF
 								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleCpfChange}
-											 onChange={handleCpfChange} value={cpf}
-											 className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`}/>
+									onChange={handleCpfChange} value={cpf}
+									className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
 							</label>
 						</div>
 						<div className='flex justify-center'>
 							<label className='flex flex-col text-xl text-[#A9A9A9]'>
 								RG
 								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleRgChange}
-											 onChange={handleRgChange} value={rg}
-											 className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`}/>
+									onChange={handleRgChange} value={rg}
+									className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
 							</label>
 						</div>
 						<div className=''>
 							<label className='flex flex-col text-xl text-[#A9A9A9]'>
 								Celular
 								<input disabled={personalInfos.disabled} type="text" name="firstName"
-											 onBlurCapture={handleCelularChange} onChange={handleCelularChange} value={celular}
-											 className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`}/>
+									onBlurCapture={handleCelularChange} onChange={handleCelularChange} value={celular}
+									className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
 							</label>
 						</div>
 						<div className='flex justify-center'>
 							<label className='flex flex-col text-xl text-[#A9A9A9]'>
 								Telefone
 								<input disabled={personalInfos.disabled} onBlurCapture={handleTelefoneChange} type="text"
-											 name="firstName" onChange={handleTelefoneChange} value={telefone}
-											 className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`}/>
+									name="firstName" onChange={handleTelefoneChange} value={telefone}
+									className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
 							</label>
 						</div>
 					</form>
 				</div>
 				<div className='hidden sm:flex flex-row w-1/5 justify-end pr-10 '>
-					<button
-						className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg'
-						onClick={() => {
-							if (personalInfos.disabled === true) {
-								setPersonalInfos({disabled: false, textColor: ''})
-							} else {
+					<button className={`w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[${button.bgColor}] rounded-full drop-shadow-lg text-[${button.color}]`} onClick={() => {
+						if (personalInfos.disabled == true) {
+							setPersonalInfos({ disabled: false, textColor: '', text: 'Confirmar' })
+							setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
+						} else {
+							if (window.confirm('deseja atualizar os seus dados pessoais?')) {
+								setPersonalInfos({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
+								setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
 								handleSubmit()
 							}
-						}}>
-						<img src={lapis} alt=""/>
-						Editar
+						}
+					}}>
+						<img src={button.icon} alt="" />
+						{button.text}
 					</button>
 				</div>
 			</div>
 			<div className='w-full sm:mr-10'>
 				<p className='flex flex-col text-xl text-[#A9A9A9] pt-3 sm:pt-20 mr-0 sm:mr-20 w-full sm:w-10/12 '> Biografia
 					<TextareaAutosize disabled={personalInfos.disabled} id="my-textarea" onBlurCapture={handleTextChange}
-														onChange={handleTextChange} defaultValue={bio}
-														className="block w-full p-2 rounded resize-none"/>
+						onChange={handleTextChange} defaultValue={bio}
+						className="block w-full p-2 rounded resize-none" />
 				</p>
 			</div>
 		</section>

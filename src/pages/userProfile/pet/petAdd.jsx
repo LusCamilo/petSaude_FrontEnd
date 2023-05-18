@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { PetHeader } from './petHeader';
@@ -11,6 +11,8 @@ import { PetAddSucess } from './cards/sucess';
 import { petAdd } from "../../../services/integrations/pet.js";
 import './css/pet.css'
 import Modal from 'react-modal'
+import { getSpecialtiesPet } from '../../../services/integrations/specialtiesPet';
+
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -40,20 +42,46 @@ const customStyles = {
 		display: "flex",
 		justifyContent: "center"
 	},
-	overlay : {
+	overlay: {
 		backgroundColor: '#0000'
 	}
 };
 
+const checkboxSpecialitiesPet = async () => {
+	const response = await getSpecialtiesPet()
+	return {
+		allSpecialitiesPet: response.response,
+	}
+}
+
 export const PetAdd = () => {
+
+	const [especialidadesPet, setEspecialidadesPet] = useState([])
+	const [animalType, setAnimalType] = useState('Espécie')
+
 
 	let hoje = new Date();
 	let ano = hoje.getFullYear();
 	let mes = hoje.getMonth() + 1;
 	let dia = hoje.getDate();
-	if (mes < 10)  mes = '0' + mes
-	if (dia < 10)  dia = '0' + dia
+	if (mes < 10) mes = '0' + mes
+	if (dia < 10) dia = '0' + dia
 	let dataFormatada = `${ano}-${mes}-${dia}`;
+
+
+
+
+
+
+	useEffect(() => {
+		async function fetchDataAll() {
+			const dadosPet = await checkboxSpecialitiesPet()
+
+			setEspecialidadesPet(dadosPet.allSpecialitiesPet)
+		}
+
+		fetchDataAll()
+	}, [])
 
 	const [name, setName] = useState("Nome")
 	function newName(event) {
@@ -63,11 +91,6 @@ export const PetAdd = () => {
 	const [bornDate, setBornDate] = useState("DataDeNascimento")
 	function newBornDate(event) {
 		setBornDate(event.target.value);
-	}
-
-	const [specie, setSpecie] = useState("Especie")
-	function newSpecie(event) {
-		setSpecie(event.target.value);
 	}
 
 	const [tamanho, setTamanho] = useState(["Pequeno", "SMALL"])
@@ -106,7 +129,7 @@ export const PetAdd = () => {
 			microship: false,
 			size: tamanho[1],
 			gender: sexo[1],
-			specie: specie,
+			specie: animalType,
 		}
 
 		petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
@@ -149,20 +172,20 @@ export const PetAdd = () => {
 
 	return (
 		<section>
-			<PetHeader namePerson="Teste" personImage="https://revistapesquisa.fapesp.br/wp-content/uploads/2009/03/SITE_Darwin-4-1140.jpg" />
+			<PetHeader/>
 			<main className='static'>
 				<div>
 					<div className='flex justify-start p-3 sm:p-10 flex-row items-center content-center align-middle h-30 sm:h-80'>
 						<div className="w-56 sm:h-48 sm:40 md:w-82 rounded-full ">
 							<input type="file" accept="image/*" name="photo" id="photoProfile" className="hidden" onChange={handleFileInputChange} />
 							<label htmlFor='photoProfile' style={{ backgroundImage: `url(${selectedFile})` }}
-							       className='flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
+								className='flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
 								<img className="rounded-full" src={addMais} alt='Add icon' />
 							</label>
 						</div>
 						<div className='flex flex-col w-2/3 sm:w-full p-3 sm:p-10'>
 							<h2 className='bg-transparent border-none md:text-5xl font-medium'>{name}</h2>
-							<h2 className='bg-transparent border-none text-3xl text-[#A9A9A9]'>{specie}</h2>
+							<h2 className='bg-transparent border-none text-3xl text-[#A9A9A9]'>{animalType}</h2>
 						</div>
 					</div>
 				</div>
@@ -180,8 +203,8 @@ export const PetAdd = () => {
 									<DropdownMenu.Root className="w-full">
 										<DropdownMenu.Trigger className='flex justify-start text-black text-3xl'>{sexo[0]}</DropdownMenu.Trigger>
 										<StyledContent>
-											<StyledItem onSelect={() => setSexo(["Fêmea", "F"])}>Feminino</StyledItem>
-											<StyledItem onSelect={() => setSexo(["Macho", "M"])}>Masculino</StyledItem>
+											<StyledItem onSelect={() => setSexo(["Fêmea", "F"])}>Fêmea</StyledItem>
+											<StyledItem onSelect={() => setSexo(["Macho", "M"])}>Macho</StyledItem>
 											<StyledArrow />
 										</StyledContent>
 									</DropdownMenu.Root>
@@ -190,7 +213,15 @@ export const PetAdd = () => {
 							<div>
 								<label className='flex flex-col text-xl text-[#A9A9A9]'>
 									Espécie
-									<input type="text" onBlurCapture={newSpecie} name="especieAnimal" id="specisAnimal" placeholder='Espécie' className='bg-transparent placeholder:text-black placeholder:text-3xl border-none text-3xl text-[#000]' />
+									<DropdownMenu.Root className="w-full">
+										<DropdownMenu.Trigger className='flex justify-start text-black text-3xl'>{animalType}</DropdownMenu.Trigger>
+										<StyledContent>
+											{especialidadesPet.map((item) => {
+												return<StyledItem onSelect={() => setAnimalType(item.name)}>{item.name}</StyledItem>
+											})}
+											<StyledArrow />
+										</StyledContent>
+									</DropdownMenu.Root>
 								</label>
 							</div>
 						</div>
@@ -198,7 +229,7 @@ export const PetAdd = () => {
 							<div className='w-full'>
 								<label className='flex flex-col text-xl text-[#A9A9A9] sm:1/4'>
 									Data de Nascimento
-									<input type="date" onBlurCapture={newBornDate} name="firstName" className='w-full border-none text-3xl text-[#000] ' max={dataFormatada}/>
+									<input type="date" onBlurCapture={newBornDate} name="firstName" className='w-full border-none text-3xl text-[#000] ' max={dataFormatada} />
 								</label>
 							</div>
 							<div>
