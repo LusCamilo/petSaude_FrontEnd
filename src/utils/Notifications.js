@@ -37,6 +37,16 @@ class Notifications {
 			buttonsStyling: false,
 		})
 	}
+
+	async confirmOrCancel(message, callback) {
+		await this.swal.fire({
+			icon: "question",
+			title: <p>{message}</p>,
+			timerProgressBar: false,
+			showConfirmButton: true,
+			showCancelButton: true,
+		}).then(callback)
+	}
 }
 
 export default new Notifications()
