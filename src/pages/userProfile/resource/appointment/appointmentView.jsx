@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { AppointmentAsk } from './appointments/appointmentAsk';
-import { PetHeader } from '../../pet/petHeader';
-import { AppointmentPeding } from './appointments/appointmentPending';
-import { AppointmentArchived } from './appointments/appointmentArchived';
-import { ToastContainer, toast } from 'react-toastify';
+import React, {useState, useEffect} from 'react';
+import {AppointmentAsk} from './appointments/appointmentAsk';
+import {PetHeader} from '../../pet/petHeader';
+import {AppointmentPeding} from './appointments/appointmentPending';
+import {AppointmentArchived} from './appointments/appointmentArchived';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -38,6 +38,7 @@ export const AppointmentView = (props) => {
 	const [tamanho, setTamanho] = useState('')
 
 	const [name, setName] = useState('')
+
 	function newName(event) {
 		setName(event.target.value);
 	}
@@ -45,6 +46,7 @@ export const AppointmentView = (props) => {
 	const [sexo, setSexo] = useState('')
 
 	const [specie, setSpecie] = useState('')
+
 	function newSpecie(event) {
 		setSpecie(event.target.value);
 	}
@@ -64,50 +66,47 @@ export const AppointmentView = (props) => {
 	})
 
 
-
 	return (
 		<>
-			<PetHeader />
-			<section>
-				<div className='w-full flex flex-row gap-5'>
-					<section className='w-fit'>
-						<div className='flex flex-col md:flex-row gap-2'>
-
-							<div className='flex flex-col w-5/6 md:w-96 bg-[#E3EFF0] rounded-lg pb-96 md:h-screen'>
-								<ul className="flex flex-col items-center w-full cursor-pointer pt-5 space-y-3 text-xl">
-									<button type="button" className={`flex ${tela1.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left ${tela1.text} rounded-2xl`}
-									        onClick={handleClickPedidos}
-									>
-										Pedidos de consultas
-									</button>
-									<button type="button" className={`flex ${tela2.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
-									        onClick={handleClickPendentes}
-									>
-										Consultas pendentes
-									</button>
-									<button type="button" className={`flex ${tela3.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
-									        onClick={handleClickArquivadas}
-									>
-										Consultas arquivadas
-									</button>
-								</ul>
-							</div>
+			<PetHeader/>
+			<section className={'w-screen flex flex-row gap-5'}>
+				<div className='w-fit'>
+					<div className='flex flex-col md:flex-row gap-2'>
+						<div className='flex flex-col w-5/6 md:w-96 bg-[#E3EFF0] rounded-lg pb-96 md:h-screen'>
+							<ul className="flex flex-col items-center w-full cursor-pointer pt-5 space-y-3 text-xl">
+								<button type="button"
+												className={`flex ${tela1.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left ${tela1.text} rounded-2xl`}
+												onClick={handleClickPedidos}
+								>
+									Pedidos de consultas
+								</button>
+								<button type="button"
+												className={`flex ${tela2.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
+												onClick={handleClickPendentes}
+								>
+									Consultas pendentes
+								</button>
+								<button type="button"
+												className={`flex ${tela3.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
+												onClick={handleClickArquivadas}
+								>
+									Consultas arquivadas
+								</button>
+							</ul>
 						</div>
-					</section>
-					<section className='w-full'>
-						<div className='w-full'>
-							<div className={`${tela2.estado} w-full`}>
-								<AppointmentPeding  />
-							</div>
-							<div className={`${tela1.estado} w-full`}>
-								<AppointmentAsk />
-							</div>
-							<div className={`${tela3.estado} w-full`}>
-								<AppointmentArchived />
-							</div>
-						</div>
-					</section>
+					</div>
 				</div>
+				<section className='grow'>
+					<div className={`${tela2.estado} w-full`}>
+						<AppointmentPeding/>
+					</div>
+					<div className={`${tela1.estado} w-full`}>
+						<AppointmentAsk/>
+					</div>
+					<div className={`${tela3.estado} w-full`}>
+						<AppointmentArchived/>
+					</div>
+				</section>
 			</section>
 		</>
 	);
