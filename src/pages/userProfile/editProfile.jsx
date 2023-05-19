@@ -8,7 +8,7 @@ import { updateProfileInfosClient, updateProfileInfosVeterinary } from '../../se
 import { PetHeader } from './pet/petHeader';
 import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
 import getUserInfos from "../../utils/getUserInfos";
-import {AiFillCheckCircle} from "react-icons/ai";
+import { AiFillCheckCircle } from "react-icons/ai";
 import Notifications from "../../utils/Notifications";
 
 const firebaseConfig = {
@@ -35,7 +35,7 @@ export const EditProfile = () => {
 			const userHasUserName = verifyIfUserHasUserName()
 			if (!userHasUserName.status && userHasUserName.popUp)
 				console.log('POPUP')
-				// await Notifications.warning('Crie um nome de usuário').then(test => console.log(test))
+			// await Notifications.warning('Crie um nome de usuário').then(test => console.log(test))
 		}
 		async function fetchData() {
 			const allInfosUser = (await getUserInfos())
@@ -118,7 +118,8 @@ export const EditProfile = () => {
 		}
 
 		if (localStorage.getItem('__user_isVet') === 'true')
-			updateProfileInfosVeterinary(profileInfos).then(async (response) =>  {
+			updateProfileInfosVeterinary(profileInfos).then(async (response) => {
+				console.log(response);
 				if (response && typeof response === 'object') {
 					if (response.hasOwnProperty('message')) await Notifications.error('E-mail já está em uso')
 				} else {
@@ -127,6 +128,7 @@ export const EditProfile = () => {
 				}
 			})
 		else
+
 			updateProfileInfosClient(profileInfos).then(async (response) => {
 				if (response && typeof response === 'object') {
 					if (response.hasOwnProperty('message')) await Notifications.error('E-mail já está em uso')

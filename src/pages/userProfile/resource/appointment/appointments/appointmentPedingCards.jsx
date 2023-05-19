@@ -299,3 +299,34 @@ export const AppointmentPedingCards = (props) => {
             </Modal>
         </div>       
 )}
+
+{/* <AppointmentPedingCards 
+key={pedido.id}
+id={pedido.idAppoint}
+showClient={showClient}
+showVet={showVet}
+imagemPet={pedido.imagemPet}
+nomePet={pedido.nomePet}
+tamanho={pedido.tamanho}
+sexo={pedido.sexo}
+idade={pedido.idade}
+especie={pedido.especie}
+donoImg={pedido.donoImg}
+dono={pedido.dono}
+telefone={pedido.telefone}
+vetPhoto={pedido.vetPhoto}
+vetName={pedido.vetName}
+vetPhone={pedido.vetPhone}
+dataConsulta={pedido.dataConsulta}
+horario={pedido.horario}
+duration={pedido.duration}
+descricao={pedido.descricao}
+cancel={openModalQuestionWarn}
+finish={openModalQuestionSucess}
+closeSucess={closeModalQuestionSucess}
+closeWarn={closeModalQuestionWarn}
+finalizar={finalizarAppointment}
+cancelar={cancelarAppointment}
+warn={warn}
+Sucess={Sucess}
+/> */}

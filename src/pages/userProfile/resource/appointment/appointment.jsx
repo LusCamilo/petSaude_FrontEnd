@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Monkey from '../../../../assets/svg/monkey.svg';
 import Dog from '../../../../assets/svg/iconDog.svg';
-import { getAllPets   } from '../../../../services/integrations/pet';
+import { getAllPets } from '../../../../services/integrations/pet';
 import { appointmentAdd } from '../../../../services/integrations/appointment';
 import { PetSpawn } from './appointmentPets';
 import Modal from 'react-modal'
@@ -48,7 +48,7 @@ export const Appointment = (props) => {
 				const pets = await getAllPets(decoded.id);
 				if (pets == 'Não foram encontrados registros no Banco de Dados') {
 					document.location.href = '/profile/pet/add'
-				}else {
+				} else {
 					if (pets == null || pets == undefined || pets == []) {
 						setPetAll([{ name: "Não foram encontrados pets" }]);
 						setThereArentPets('flex')
@@ -56,7 +56,7 @@ export const Appointment = (props) => {
 					} else setPetAll(pets)
 				}
 			} else {
-				setPetAll([ "Não foram encontrados pets" ]);
+				setPetAll(["Não foram encontrados pets"]);
 				setThereArentPets('flex')
 				setThereArePets('hidden')
 			}
@@ -93,8 +93,8 @@ export const Appointment = (props) => {
 	let ano = hoje.getFullYear();
 	let mes = hoje.getMonth() + 1;
 	let dia = hoje.getDate();
-	if (mes < 10)  mes = '0' + mes
-	if (dia < 10)  dia = '0' + dia
+	if (mes < 10) mes = '0' + mes
+	if (dia < 10) dia = '0' + dia
 	let dataFormatada = `${ano}-${mes}-${dia}`;
 
 	async function submitAppointment(event) {
@@ -108,17 +108,17 @@ export const Appointment = (props) => {
 			petId: petId,
 		}
 		const addAppointment = await appointmentAdd(appointmentInfos);
-		if(addAppointment.response.message == 'Consulta criada com sucesso'){
+		if (addAppointment.response.message == 'Consulta criada com sucesso') {
 			showToastMessage("Consulta criada com sucesso")
 			setTimeout(function () {
 				props.onCancel()
 			}, 2000);
-		} else if(addAppointment.response == "A data não pode ser anterior a atual" || addAppointment.response == "Já existe uma consulta agendada para o Veterinário nesse horário"){
+		} else if (addAppointment.response == "A data não pode ser anterior a atual" || addAppointment.response == "Já existe uma consulta agendada para o Veterinário nesse horário") {
 			showToastMessage("Erro ao criar a consulta, por causa da data, tente outra")
 			setTimeout(function () {
 				props.onCancel()
 			}, 2000);
-		}else {
+		} else {
 			showToastMessage("Erro ao criar a consulta, tente novamente mais tarde")
 			setTimeout(function () {
 				props.onCancel()
@@ -138,7 +138,7 @@ export const Appointment = (props) => {
 		setPetId(pet.id);
 		if (pet.photo == null || pet.photo == undefined) {
 			setPetImage(Dog);
-		} else  setPetImage(pet.photo);
+		} else setPetImage(pet.photo);
 	}
 
 
@@ -151,27 +151,31 @@ export const Appointment = (props) => {
 						<div className={`${ThereArePets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
 							{petsAll.map(pet => {
 								if (pet.photo == null || pet.photo == undefined || pet.photo == '') {
-									return(<button
-										className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
-										key={pet.id}
-										type='button'
-										id={pet.id}
-										onClick={() => handlePetSelection(pet)}
-									>
-										<img className='w-32' src={Dog} alt="Pet ainda não há foto" />
-										<p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>{pet.name}</p>
-									</button>)
-								} else{
-									return(<button
-										key={pet.id}
-										type='button'
-										className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
-										id={pet.id}
-										onClick={() => handlePetSelection(pet)}
-									>
-										<img className='w-32' src={pet.photo} alt={pet.name} />
-										<p className='text-3xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>{pet.name}</p>
-									</button>)
+									return (
+										<button
+											className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
+											key={pet.id}
+											type='button'
+											id={pet.id}
+											onClick={() => handlePetSelection(pet)}
+										>
+											<img className='w-32' src={Dog} alt="Pet ainda não há foto" />
+											<p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>{pet.name}</p>
+										</button>
+									)
+								} else {
+									return (
+										<button
+											key={pet.id}
+											type='button'
+											className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
+											id={pet.id}
+											onClick={() => handlePetSelection(pet)}
+										>
+											<img className='w-32' src={pet.photo} alt={pet.name} />
+											<p className='text-3xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>{pet.name}</p>
+										</button>
+									)
 								}
 
 							})}
@@ -204,7 +208,7 @@ export const Appointment = (props) => {
 						<div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full  pl-14 md:pl-20 pt-3 md:pt-10'>
 							<label className='w-full flex flex-col text-gray-400 '>
 								Data
-								<input type='date' onChange={newDate} min={dataFormatada}/>
+								<input type='date' onChange={newDate} min={dataFormatada} />
 							</label>
 							<label className='w-full flex flex-col text-gray-400'>
 								Hora
@@ -218,13 +222,13 @@ export const Appointment = (props) => {
 					</div>
 					<div className='p-3 md:pl-20 md:pr-20'>
 						<div className='flex mt-2 md:mt-10 justify-between gap-5'>
-							<button className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button" onClick={() =>  props.onCancel()}>
+							<button className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button" onClick={() => props.onCancel()}>
 								Cancelar
 							</button>
 							<button type="submit" className='md:ml-56 p-2 w-32 md:w-56 text-center md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'
-							        onClick={(event) => {
-								        submitAppointment(event);
-							        }}
+								onClick={(event) => {
+									submitAppointment(event);
+								}}
 							>
 								Marcar
 							</button>
