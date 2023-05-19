@@ -128,14 +128,11 @@ export const Pessoais = (props) => {
 						bio: bio === null ? '' : bio
 					}
 
-					if (localStorage.getItem('__user_isVet') == "true") userType = 'veterinary'
+					if (localStorage.getItem('__user_isVet') === "true") userType = 'veterinary'
 					else userType = 'client'
 
 					if (userType === 'client') response = await updatePersonalInfosClient(infos)
 					else response = await updatePersonalInfosVeterinary(infos)
-
-					console.log(response);
-
 
 					if (typeof response.response === "string" ||typeof response.message === "string") await Notifications.success('Informações alteradas com sucesso')
 					else if (response.response?.meta) {

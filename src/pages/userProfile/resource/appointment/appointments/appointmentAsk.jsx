@@ -16,9 +16,9 @@ export const AppointmentAsk = () => {
     const [buttonAceitar, setButtonAceitar] = useState('flex')
     const [showVet, setShowVet] = useState('hidden')
     const [showClient, setShowClient] = useState('flex')
-    const [divNothing, setDivNothing] = useState('hidden') 
-    const [duracao, setDuracao] = useState(0) 
-    const [preco, setPreco] = useState(0.0) 
+    const [divNothing, setDivNothing] = useState('hidden')
+    const [duracao, setDuracao] = useState(0)
+    const [preco, setPreco] = useState(0.0)
 
 
 
@@ -28,8 +28,8 @@ export const AppointmentAsk = () => {
                 const token = localStorage.getItem('__user_JWT')
                 const decoded = jwt_decode(token);
                 let appoint = await getappo(decoded.id)
-                if (appoint != undefined && appoint != null) {
-                    
+                if (appoint !== undefined && appoint != null) {
+
                     let filteredAppointments = appoint.filter(appointment => appointment.status == 'WAITING_CONFIRMATION');
                     let appoints = await Promise.all(filteredAppointments.map(async (app) => {
                         let client = await getclient(app.clientId);
@@ -38,29 +38,29 @@ export const AppointmentAsk = () => {
                         const consultaDataSplit = app.date.split('T');
                         const consultaDataPrimeiraMetade = consultaDataSplit[0];
                         const consultaDataFormatada = consultaDataPrimeiraMetade.split('-').reverse().join('/');
-    
-    
+
+
                         const horarioSplit = app.startsAt.split('T');
                         const horarioSegundaMetade = horarioSplit[1];
                         const horarioSplit2 = horarioSegundaMetade.split(':00.000Z');
                         const horario = horarioSplit2[0];
-    
+
                         const dataDeNascimento = new Date(arrayPet.birthDate);
                         const dataAtual = new Date();
-    
+
                         const diferencaEmMilissegundos = dataAtual - dataDeNascimento;
                         const idadeEmAnos = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24 * 365));
-    
+
                         let idadeString;
-    
+
                         if (typeof idadeEmAnos === "number" && Number.isInteger(idadeEmAnos)) {
                             idadeString = idadeEmAnos.toString() + " anos";
                         } else {
                             const idadeEmMeses = idadeEmAnos * 12;
                             idadeString = idadeEmMeses.toString() + " meses";
                         }
-    
-    
+
+
                         const finalArray = {
                           idAppoint: app.id,
                           imagemPet: arrayPet.photo,
@@ -79,15 +79,15 @@ export const AppointmentAsk = () => {
                           vetPhone: vet.cellphoneNumber,
                           vetPhoto: vet.profilePhoto
                         };
-                      
+
                         return finalArray;
                       }));
                       setDivNothing('hidden')
-                      setPedido(appoints)   
+                      setPedido(appoints)
                 } else {
                     setDivNothing('flex')
                     setPedido([])
-                    
+
                 }
                 if (decoded.isVet == false) {
                     setButtonAceitar('hidden')
@@ -100,8 +100,8 @@ export const AppointmentAsk = () => {
     }, []);
 
 
-    
-      
+
+
     const getPet = async (idPet, arrayPet) => {
         const filteredPets = arrayPet.filter(pet => pet.id === idPet);
         return filteredPets[0];
@@ -152,14 +152,14 @@ export const AppointmentAsk = () => {
             duration: 0,
             price: 0.00
           };
-          
+
         const recusar = await recusarAppointments(idAppointment, jsonNothing);
         if (recusar.response.message == "Consulta recusada") {
             showToastMessageSucess("Consulta recusada com sucesso!")
             setTimeout(() => {
                 window.location.reload();
               }, 2000); // Refresh after 5 seconds
-              
+
           } else if (recusar.response.error == "Você não tem permissão para fazer essa alteração") {
             showToastMessageFailed("Você não tem permissão para recusar uma consulta")
                 setTimeout(() => {
@@ -201,7 +201,7 @@ export const AppointmentAsk = () => {
         const decoded = jwt_decode(token);
         let allAboutIt
         if (decoded.isVet == true) {
-            allAboutIt = await getAppointments(idPerson)    
+            allAboutIt = await getAppointments(idPerson)
         } else {
             let person = await getUser(idPerson)
             allAboutIt = person
@@ -236,12 +236,12 @@ export const AppointmentAsk = () => {
 
     function formatPrice(input) {
         let value = input.value.replace(/[^0-9\.]/g, '');
-      
+
         let decimalCount = value.split('.').length - 1;
         if (decimalCount > 1) {
           value = value.slice(0, -1);
         }
-      
+
         input.value = parseFloat(value).toLocaleString('pt-BR', {minimumFractionDigits: 2});
       }
 
@@ -249,7 +249,7 @@ export const AppointmentAsk = () => {
         setTutorStatus('flex');
         setButtonStatus('hidden');
       };
-    
+
       const handleClickAgain = () => {
         setTutorStatus('hidden');
         setButtonStatus('flex');
@@ -305,7 +305,7 @@ export const AppointmentAsk = () => {
                                                 <input type="text" disabled placeholder={pedido.nomePet} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>
-                                        
+
                                         <div>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                                 Tamanho
@@ -319,13 +319,13 @@ export const AppointmentAsk = () => {
                                                 Sexo
                                                 <input type="text" disabled placeholder={pedido.sexo} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
-                                        </div>   
+                                        </div>
                                         <div className='w-full'>
                                             <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                             Idade
                                             <input type="text" disabled placeholder={pedido.idade} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
-                                        </div>                        
+                                        </div>
                                     </div>
                                     <div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3'>
                                         <div className='w-full'>
@@ -333,7 +333,7 @@ export const AppointmentAsk = () => {
                                                 Espécie
                                                 <input type="text" disabled placeholder={pedido.especie} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
-                                        </div>                   
+                                        </div>
                                     </div>
                                 </div>
                                 <div  className={`${showClient} flex-col`}>
@@ -349,7 +349,7 @@ export const AppointmentAsk = () => {
                                                     <input type="text" disabled placeholder={pedido.dono} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                                 </label>
                                             </div>
-                                            
+
                                             <div>
                                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                                     Telefone
@@ -372,7 +372,7 @@ export const AppointmentAsk = () => {
                                                     <input type="text" disabled placeholder={pedido.vetName} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                                 </label>
                                             </div>
-                                            
+
                                             <div>
                                                 <label className='flex flex-col text-xl text-[#A9A9A9]'>
                                                     Telefone
@@ -403,11 +403,11 @@ export const AppointmentAsk = () => {
                                             <label class='flex flex-col text-xl text-[#A9A9A9]'>
                                                 Descrição
                                                 <p>
-                                                    {pedido.descricao} 
+                                                    {pedido.descricao}
                                                 </p>
                                                 {/* <input type="text" disabled placeholder={pedido.descricao} class='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl'/> */}
                                             </label>
-                                        </div>      
+                                        </div>
                                     </div>
                                 </div>
                                 <span className={`${buttonAceitar} flex justify-start`}>
@@ -416,7 +416,7 @@ export const AppointmentAsk = () => {
                                         <div className='w-56 flex justify-center gap-5 flex-col'>
                                             <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full pt-5'>
                                                 Duracação
-                                                <input type="time" id="duracao" name="duracao" min="00:01" className='w-full text-2xl pl-2' 
+                                                <input type="time" id="duracao" name="duracao" min="00:01" className='w-full text-2xl pl-2'
                                                   defaultValue={duracao}
                                                   onChange={(e) => {
                                                     const time = e.target.value.split(':');
@@ -460,13 +460,13 @@ export const AppointmentAsk = () => {
                                     >
                                         Ver menos informações
                                     </button>
-                                    <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-1/2 h-14 border rounded-full text-xl font-normal mr-20`} 
+                                    <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-1/2 h-14 border rounded-full text-xl font-normal mr-20`}
                                         onClick={handleClick}
                                     >
                                         Ver mais informações
                                     </button>
                                     <span className={`${buttonAceitar}`}>
-                                        <button className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal mr-20`} 
+                                        <button className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal mr-20`}
                                         onClick={() => marcarAppointment(pedido.idAppoint)}>
                                             Marcar
                                         </button>
@@ -486,7 +486,7 @@ export const AppointmentAsk = () => {
                                 />
                             </div>
                         )})}
-                </div>    
+                </div>
         </section>
     )
 }
