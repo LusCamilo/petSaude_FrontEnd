@@ -10,6 +10,7 @@ import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
 import getUserInfos from "../../utils/getUserInfos";
 import {AiFillCheckCircle} from "react-icons/ai";
 import Notifications from "../../utils/Notifications";
+// import certo from './/resource/img/Sucesso.png'
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -150,8 +151,9 @@ export const EditProfile = () => {
 					userName={infos.userName} completName={infos.personName} email={infos.email} password={infos.password} profilePhoto={infos.profilePhoto}
 				/>
 
-				<button className='md:flex md:end-40  self-end rounded-lg bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={editInformations}>
-					<AiFillCheckCircle className='rounded m-3 w-12 h-12' />
+				<button className='md:flex justify-center items-center h-16 w-16 p-2 self-end rounded-2xl bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={editInformations}>
+					{/* <img src={certo} alt="" className='h-full'/> */}
+					{/* <AiFillCheckCircle className='m-3 w-14 h-14' /> */}
 				</button>
 			</div>
 		</div>

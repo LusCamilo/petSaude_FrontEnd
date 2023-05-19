@@ -46,20 +46,20 @@ export const InfosProfile = (props) => {
 
 	return (
 		<div className='w-full h-full flex flex-col  border rounded-lg border-black gap-10 p-8'>
-			<h2 className='text-5xl font-sans'>Informações do perfil</h2>
+			<h2 className='text-6xl font-bold font-sans'>Informações do perfil</h2>
 			<div className="flex justify-between flex-col md:flex-row gap-3 items-center">
 				<div className='flex flex-col'>
-					<div className='flex flex-col text-xl text-[#A9A9A9]'>
+					<div className='flex flex-col text-2xl text-[#A9A9A9]'>
 						Nome de usuario
 						<input disabled={userInfosDisable.disable} onChange={handleNameChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} placeholder="Seu Nome" defaultValue={props.userName} id="userInfo" />
 					</div>
-					<div className='hidden md:flex justify-between pt-4  flex-col alight-start text-2xl md:text-xl text-[#A9A9A9] '>
+					<div className='hidden md:flex justify-between pt-4  flex-col alight-start text-2xl md:text-2xl text-[#A9A9A9] '>
 						Senha
 						<input type={passwordClass.type} id='password' disabled={passwordClass.disabled} onChange={handlePasswordChange} className={`text-black md:text-3xl md:p-1 ${passwordClass.class}`} placeholder="Senha" defaultValue={props.password} />
 					</div>
 				</div>
 				<div>
-					<div className='flex flex-col text-xl text-[#A9A9A9] md:pb-24'>
+					<div className='flex flex-col text-2xl text-[#A9A9A9] md:pb-24'>
 						E-mail
 						<input disabled={userInfosDisable.disable} onChange={handleEmailChange} className={`text-black text-3xl md:p-1 ${userInfosDisable.class}`} placeholder="Email" defaultValue={props.email} />
 					</div>
