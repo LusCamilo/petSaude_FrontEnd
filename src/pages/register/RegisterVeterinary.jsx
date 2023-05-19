@@ -172,6 +172,17 @@ export const RegisterVeterinary = () => {
 		setFormation(date);
 	};
 
+	const handleCRMVChange = (event) => {
+		let inputValue = event.target.value;
+		inputValue = inputValue.replace(/\D/g, '');
+		if (inputValue.length > 4) {
+			inputValue = inputValue.substr(0, 4);
+		}
+		
+		event.target.value = inputValue
+		
+	}
+
 
 	const submitForm = async data => {
 		const userInfos = JSON.parse(localStorage.getItem('__user_register_infos'))
@@ -209,8 +220,13 @@ export const RegisterVeterinary = () => {
 					return { ...item, veterinaryId: createUserResponse.response.id };
 				});
 
-				await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: especialidadesPet }))
-				await updateSpecialities(JSON.stringify({ specialties: especialidades }))
+				console.log(
+					await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: especialidadesPet }))
+				);
+				console.log(
+					await updateSpecialities(JSON.stringify({ specialties: especialidades }))
+				);
+
 
 
 				showToastMessage()
@@ -218,7 +234,7 @@ export const RegisterVeterinary = () => {
 					openModalSucess()
 					setTimeout(function () {
 						closeModalSucess()
-						// document.location.href = '/login'
+						document.location.href = '/login'
 					}, 5000);
 				}, 4000);
 			} else {
@@ -306,7 +322,7 @@ export const RegisterVeterinary = () => {
 						</label>
 						<label className='w-full flex flex-col md:text-xl text-lg'>
 							CRMV
-							<input className={errors.crmv ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="crmv" {...register('crmv', { required: true })} />
+							<input className={errors.crmv ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="crmv" {...register('crmv', { required: true })} onChange={handleCRMVChange} />
 						</label>
 					</div>
 					<label className='w-full flex flex-col md:text-xl text-lg'>

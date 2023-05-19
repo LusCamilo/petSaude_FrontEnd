@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import lapis from "../../../../assets/svg/pencil.svg"
+import lapisConfirm from "../../../../assets/svg/pencilConfirm.svg"
 import { useForm } from 'react-hook-form';
 import { updateProfessionalInfos } from '../../../../services/integrations/user';
 import { deleteSpecialties, getSpecialties, getSpecialtiesById, updateSpecialities } from '../../../../services/integrations/specialties';
@@ -26,6 +27,7 @@ const checkboxSpecialitiesPet = async () => {
 export const Prossionais = (props) => {
 	const { register, handleSubmit, formState: { errors } } = useForm()
 	const [professionalInfos, setProfessionalInfos] = useState({ disabled: true, textColor: 'opacity-50' })
+	const [button, setButton] = useState({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
 	const [areaAtuacao, setAreaAtuacao] = useState(props.area)
 	const [formacao, setformacao] = useState(props.formacao)
 	const [instituicao, setinstituicao] = useState(props.instituicao)
@@ -137,9 +139,14 @@ export const Prossionais = (props) => {
 			e.target.value
 		)
 	}
-	const handleCRMVChange = (e) => {
+	const handleCRMVChange = (event) => {
+		let inputValue = event.target.value;
+		inputValue = inputValue.replace(/\D/g, '');
+		if (inputValue.length > 4) {
+			inputValue = inputValue.substr(0, 4);
+		}
 		setCRMV(
-			e.target.value
+			inputValue
 		)
 	}
 	const handleDataFormacaoChange = (e) => {
@@ -180,7 +187,7 @@ export const Prossionais = (props) => {
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							CRMV
-							<input type="text" id='cep' name="area" defaultValue={crmv} onChange={handleCRMVChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+							<input type="text" id='cep' name="area" value={crmv} onChange={handleCRMVChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
 						</label>
 					</div>
 					<div>
@@ -229,40 +236,40 @@ export const Prossionais = (props) => {
 					</div>
 				</div>
 				<div className='hidden sm:flex flex-col content-end aling-end pr-10 '>
-					<button className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={async () => {
-						if (professionalInfos.disabled === true) {
-							setProfessionalInfos({ disabled: false, textColor: '' })
+					<button className={`w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[${button.bgColor}] rounded-full drop-shadow-lg text-[${button.color}]`} onClick={() => {
+						if (professionalInfos.disabled == true) {
+							setProfessionalInfos({ disabled: false, textColor: '', text: 'Confirmar' })
+							setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
 						} else {
-							if (window.confirm('deseja atualizar os seus dados profissionais?')) {
-								setProfessionalInfos({ disabled: true, textColor: 'opacity-50' })
-								console.log(
-									await updateProfessionalInfos(localStorage.getItem('__user_id'),
-										{
-											occupationArea: areaAtuacao,
-											formation: formacao,
-											institution: instituicao,
-											crmv: crmv,
-											startActingDate: `${dataInicioAtuacao}T00:00:00.000Z`,
-											formationDate: `${dataFormacao}T00:00:00.000Z`,
-										}
-									).then(response => {
-										if (response.response) {
-											if(response.response ==  'Unexpected token I in JSON at position 1')
-												window.alert('CRMV já está em uso') 
-										}else 
-											window.alert("dados atualizados com sucesso")
-											window.location.reload()
+							setProfessionalInfos({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
+							setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
+							console.log(
+								 updateProfessionalInfos(localStorage.getItem('__user_id'),
+									{
+										occupationArea: areaAtuacao,
+										formation: formacao,
+										institution: instituicao,
+										crmv: crmv,
+										startActingDate: `${dataInicioAtuacao}T00:00:00.000Z`,
+										formationDate: `${dataFormacao}T00:00:00.000Z`,
+									}
+								).then(response => {
+									if (response.response) {
+										if (response.response == 'Unexpected token I in JSON at position 1')
+											window.alert('CRMV já está em uso')
+									} else
+										window.alert("dados atualizados com sucesso")
+									window.location.reload()
 
-									})
-								);
-							}
+								})
+							);
 						}
 					}}>
-						<img src={lapis} alt="" />
-						Editar
+						<img src={button.icon} alt="" />
+						{button.text}
 					</button>
 				</div>
 			</div>
-		</div>
+		</div >
 	);
 }

@@ -134,9 +134,6 @@ export const Pessoais = (props) => {
 					if (userType === 'client') response = await updatePersonalInfosClient(infos)
 					else response = await updatePersonalInfosVeterinary(infos)
 
-					console.log(response);
-
-
 					if (typeof response.response === "string" ||typeof response.message === "string") await Notifications.success('Informações alteradas com sucesso')
 					else if (response.response?.meta) {
 						if (response.response.meta.target === "tbl_client_cpf_key") await Notifications.error("CPF já está sendo utilizado");
@@ -150,7 +147,7 @@ export const Pessoais = (props) => {
 
 				} else {
 					await Notifications.success('Nenhuma informação alterada!')
-					// window.location.reload()
+					window.location.reload()
 					// setPersonalInfos({disabled: true, textColor: 'opacity-50'})
 					// resetInfos()
 				}

@@ -301,7 +301,7 @@ export const AppointmentPeding = (props) => {
 
 	return(
 		<section className=''>
-			<div className=' w-3/6 flex flex-col gap-3 mr-2'>
+			<div className=' w-full flex flex-col gap-3 mr-2'>
 				<div className={`${divNothing}`}>
 					Nenhuma consulta a ser aceita
 				</div>
@@ -339,7 +339,7 @@ export const AppointmentPeding = (props) => {
 											<input type="text" disabled placeholder={pedido.nomePet} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
 										</label>
 									</div>
-					//chamada para o código filho
+					{/* //chamada para o código filho
 						<AppointmentPedingCards 
 							key={pedido.id}
 							id={pedido.idAppoint}
@@ -371,7 +371,7 @@ export const AppointmentPeding = (props) => {
 							cancelar={cancelarAppointment}
 							warn={warn}
 							Sucess={Sucess}
-						/>
+						/> */}
 
 									<div>
 										<label className='flex flex-col text-xl text-[#A9A9A9]'>
