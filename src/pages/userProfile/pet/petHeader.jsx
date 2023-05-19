@@ -39,15 +39,9 @@ export const PetHeader = () => {
 				<Link to="/">
 					<h1 className=" text-1xl hidden xl:flex sm:flex justify-start font-bold">PetSaúde</h1>
 				</Link>
-<<<<<<< HEAD
 				<Link to={linkTo} className=" md:flex flex-row gap-2">
 					<img className="w-14 h-14 p-1 md:p-0 rounded-full" src={userPhoto} alt='Profile' />
 					<p className=" items-center hidden md:flex home-btn text-2xl text-black">
-=======
-				<Link to={linkTo} className="flex items-center gap-2 justify-center p-2 md:pt-2 z-10">
-					<img className="w-14 h-14 rounded-full" src={userPhoto} alt='Profile' />
-					<p className=" items-center hidden md:flex home-btn text-3xl">
->>>>>>> 8d78aea24373cc7d8762c3431a3b73a4227029f0
 						{userName}
 					</p>
 				</Link>
