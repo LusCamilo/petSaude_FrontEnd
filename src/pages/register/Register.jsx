@@ -5,33 +5,27 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import React from "react";
-import { ServerError } from "../userProfile/pet/cards/erro500";
-import Modal from 'react-modal'
-import { WarnRequest } from "../userProfile/pet/cards/warnTwo";
-
-const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-		border: '4px solid transparent',
-		borderRadius: '12px 12px',
-		backgroundColor: '#FFFFFF00',
-		display: "flex",
-		justifyContent: "center"
-	},
-	overlay: {
-		backgroundColor: '#0000'
-	}
-};
+import Notifications from "../../utils/Notifications";
 
 export function Register() {
 	const { register, handleSubmit, formState: { errors } } = useForm()
-	const submitForm = data => {
-		if (validateForm(data)) {
+
+	async function validateForm (data) {
+		console.log(data)
+		if (data) {
+			let {password, confirmPassword} = data
+			if (password !== confirmPassword) {
+				await Notifications.error('As senhas não batem')
+				return false
+			}
+			return true
+		}
+		await Notifications.error('Dados inválidos')
+		return false
+	}
+
+	async function submitForm(data) {
+		if (await validateForm(data)) {
 			localStorage.setItem('__user_register_infos', JSON.stringify(data))
 			document.location.href = '/register/address'
 		}
@@ -94,50 +88,6 @@ export function Register() {
 	}
 
 	const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
-
-	function openModalServer() {
-		setIsOpenSever(true)
-	}
-
-	function closeModalServer() {
-		setIsOpenSever(false);
-	}
-
-	const [modalIsOpen, setIsOpen] = React.useState(false);
-
-	function openModal() {
-		setIsOpen(true)
-	}
-
-	function closeModal() {
-		setIsOpen(false);
-	}
-
-	const validateForm = (data) => {
-		let error = {
-			status: false,
-			message: '',
-		};
-
-		if (data) {
-			let {
-				password,
-				confirmPassword,
-			} = data
-
-			if (password !== confirmPassword) {
-				error = { status: true, message: 'Password needs to be the same' }
-				openModal()
-				setTimeout(function () {
-					closeModal()
-				}, 2000);
-			}
-			if (error.status)
-				throw new Error(error.message)
-			else return true
-		}
-		return false
-	}
 
 	return (
 		<section className='flex flex-row w-screen h-screen bg-gradient-to-br from-[#092b5a] to-[#9ed1b7] opacity-90 overflow-x-hidden'>
@@ -212,24 +162,6 @@ export function Register() {
 					</div>
 					<button type="submit" className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-2xl rounded lg:mt-12 mt-6 transition py-3 hover:bg-[#78A890]'>Continuar</button>
 				</form>
-				<Modal
-					isOpen={modalIsOpenServer}
-					onAfterOpen={''}
-					onRequestClose={closeModal}
-					style={customStyles}
-					contentLabel="Example Modal"
-				>
-					<ServerError />
-				</Modal>
-				<Modal
-					isOpen={modalIsOpen}
-					onAfterOpen={''}
-					onRequestClose={closeModalServer}
-					style={customStyles}
-					contentLabel="Example Modal"
-				>
-					<WarnRequest boolBotoes={'hidden'} description="As senhas devem ser as mesmas" />
-				</Modal>
 				<p className='mt-8 mb-4'>Já tem uma conta?<Link to='/login' className='pl-1 font-bold'>Faça login</Link></p>
 			</div>
 			<div className='absolute w-full h-full overflow-hidden flex items-center justify-end'>

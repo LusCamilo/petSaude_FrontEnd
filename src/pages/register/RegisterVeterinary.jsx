@@ -13,6 +13,8 @@ import { WarnRequest } from "../userProfile/pet/cards/warnTwo";
 import { PetAddSucess } from "../userProfile/pet/cards/sucess";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Notifications from "../../utils/Notifications";
+import {all} from "axios";
 
 const customStyles = {
 	content: {
@@ -126,76 +128,31 @@ export const RegisterVeterinary = () => {
 	}, [checkedBoxes, checkedBoxesEspecialidades]);
 
 	const { register, handleSubmit, formState: { errors } } = useForm()
-	const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
-	function openModalServer() {
-		setIsOpenSever(true)
-	}
-
-	function closeModalServer() {
-		setIsOpenSever(false);
-	}
-
-	const [modalIsOpen, setIsOpen] = React.useState(false);
-
-	function openModal() {
-		setIsOpen(true)
-	}
-
-	function closeModal() {
-		setIsOpen(false);
-	}
 
 	const [emailModal, setEmailModal] = React.useState(false);
 	const [wordUsed, setWordUsed] = React.useState(false);
-	function openModalEmail(word) {
-		setWordUsed(word)
-		setEmailModal(true)
-	}
-
-	function closeModalEmail() {
-		setEmailModal(false);
-	}
-
 	const [sucess, setSucess] = React.useState(false);
-
-	function openModalSucess() {
-		setSucess(true)
-	}
-
-	function closeModalSucess() {
-		setSucess(false);
-	}
-
 	const [formation, setFormation] = useState('1900-01-01')
+
 	const minStartActivy = (date) => {
 		console.log(date);
 		setFormation(date);
 	};
 
+	const handleCRMVChange = (event) => {
+		let inputValue = event.target.value;
+		inputValue = inputValue.replace(/\D/g, '');
+		if (inputValue.length > 4) {
+			inputValue = inputValue.substr(0, 4);
+		}
+		
+		event.target.value = inputValue
+		
+	}
+
 
 	const submitForm = async data => {
 		const userInfos = JSON.parse(localStorage.getItem('__user_register_infos'))
-		const allInfos = {
-			personName: `${userInfos.firstName} ${userInfos.lastName}`,
-			cpf: userInfos.cpf,
-			email: userInfos.email,
-			password: userInfos.password,
-			cellphoneNumber: userInfos.cellphoneNumber,
-			phoneNumber: userInfos.phoneNumber,
-			isVet: false,
-			address: {
-				...userInfos.address
-			},
-			crmv: data.crmv,
-			occupationArea: data.occupationArea,
-			formation: data.formation,
-			institution: data.institution,
-			formationDate: data.formationDate,
-			startActingDate: data.startActingDate
-		}
-
-
-
 
 		if (validateForm(data)) {
 			const createUserResponse = await registerVet(allInfos)
@@ -209,8 +166,13 @@ export const RegisterVeterinary = () => {
 					return { ...item, veterinaryId: createUserResponse.response.id };
 				});
 
-				await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: especialidadesPet }))
-				await updateSpecialities(JSON.stringify({ specialties: especialidades }))
+				console.log(
+					await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: especialidadesPet }))
+				);
+				console.log(
+					await updateSpecialities(JSON.stringify({ specialties: especialidades }))
+				);
+
 
 
 				showToastMessage()
@@ -218,7 +180,7 @@ export const RegisterVeterinary = () => {
 					openModalSucess()
 					setTimeout(function () {
 						closeModalSucess()
-						// document.location.href = '/login'
+						document.location.href = '/login'
 					}, 5000);
 				}, 4000);
 			} else {
@@ -247,21 +209,30 @@ export const RegisterVeterinary = () => {
 				}
 			}
 
-		} else {
-			openModal()
-			setTimeout(function () {
-				closeModal()
-			}, 2000);
-		}
-		// TODO: INTEGRAÇÃO
+			const {response} = await registerVet(allInfos)
+			if (response.id) {
+				const specialities = checkedBoxesEspecialidades.map(item => {
+					return {...item, veterinaryId: response.id}
+				})
+				const attendedAnimals = checkedBoxes.map(item => {
+					return {...item, veterinaryId: response.id}
+				})
+
+				await updateSpecialitiesPet(JSON.stringify({AnimalTypesVetInfos: attendedAnimals}))
+				await updateSpecialities(JSON.stringify({specialties: specialities}))
+			} else {
+				if (response.error)
+					if (response.error.toLowerCase().includes('crmv')) await Notifications.error('O CRMV já está em uso')
+				if (response.toLowerCase().includes('e-mail')) await Notifications.error('O e-mail já está em uso')
+				else await Notifications.error('Não foi possível criar o usuário')
+				document.location.href = '/register'
+			}
+		} else await Notifications.error('Dados inválidos')
 	}
 
 	const validateForm = (data) => {
-		// TODO: VALIDAÇÃO DO FORM PARA INTEGRAÇÃO
 		return !!data;
 	}
-
-
 
 	return (
 		<section className='flex flex-row-reverse w-screen h-screen bg-gradient-to-br from-[#092b5a] to-[#9ed1b7] opacity-90 overflow-x-hidden'>
@@ -306,7 +277,7 @@ export const RegisterVeterinary = () => {
 						</label>
 						<label className='w-full flex flex-col md:text-xl text-lg'>
 							CRMV
-							<input className={errors.crmv ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="crmv" {...register('crmv', { required: true })} />
+							<input className={errors.crmv ? 'h-12 px-2 border-b-2 border-b-red-700 bg-red-200 w-full' : 'h-12 px-2 w-full'} type="text" name="crmv" {...register('crmv', { required: true })} onChange={handleCRMVChange} />
 						</label>
 					</div>
 					<label className='w-full flex flex-col md:text-xl text-lg'>
@@ -344,54 +315,6 @@ export const RegisterVeterinary = () => {
 					<button type="submit" className='w-full h-fit bg-[#09738A] text-center text-white font-bold text-2xl rounded transition drop-shadow-xl py-3 hover:bg-[#78A890] mt-4'>Cadastrar-se</button>
 				</form>
 				<p className='mt-8 mb-4'>Já tem uma conta?<Link to='/login' className='pl-1 font-bold'>Faça login</Link></p>
-				<ToastContainer
-					position="top-center"
-					autoClose={5000}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnFocusLoss
-					draggable
-					pauseOnHover
-					theme="light"
-				/>
-				<Modal
-					isOpen={modalIsOpenServer}
-					onAfterOpen={''}
-					onRequestClose={closeModal}
-					style={customStyles}
-					contentLabel="Example Modal"
-				>
-					<ServerError />
-				</Modal>
-				<Modal
-					isOpen={modalIsOpen}
-					onAfterOpen={''}
-					onRequestClose={closeModalServer}
-					style={customStyles}
-					contentLabel="Example Modal"
-				>
-					<WarnRequest boolBotoes={'hidden'} description="Erro ao cadastrar, veja se todas as informações estão corretas" />
-				</Modal>
-				<Modal
-					isOpen={emailModal}
-					onAfterOpen={''}
-					onRequestClose={closeModalEmail}
-					style={customStyles}
-					contentLabel="Example Modal"
-				>
-					<WarnRequest boolBotoes={'hidden'} description={`${wordUsed} já utilizado, escolha outro`} />
-				</Modal>
-				<Modal
-					isOpen={sucess}
-					onAfterOpen={''}
-					onRequestClose={closeModalSucess}
-					style={customStyles}
-					contentLabel="Example Modal"
-				>
-					<PetAddSucess aparecer='hidden' title="Sucesso" what="Novo usuário criado com sucesso!" />
-				</Modal>
 			</div>
 		</section>
 	);

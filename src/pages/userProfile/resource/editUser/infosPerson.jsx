@@ -147,7 +147,7 @@ export const Pessoais = (props) => {
 
 				} else {
 					await Notifications.success('Nenhuma informação alterada!')
-					// window.location.reload()
+					window.location.reload()
 					// setPersonalInfos({disabled: true, textColor: 'opacity-50'})
 					// resetInfos()
 				}
