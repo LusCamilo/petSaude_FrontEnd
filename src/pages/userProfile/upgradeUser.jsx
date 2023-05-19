@@ -17,6 +17,7 @@ import lapis from './/resource/img/LapisColorido.svg'
 import {deleteClient, deleteVeterinary, getUser, getVeterinary} from '../../services/integrations/user';
 import Modal from 'react-modal';
 import {WarnRequest} from './pet/cards/warnTwo';
+import Notifications from "../../utils/Notifications";
 // import {BsFillPersonFill} from "react-icons/bs";
 
 const customStyles = {
@@ -107,7 +108,6 @@ const getAddressFromZipCode = async (cep) => {
 }
 export const UpgradeUser = () => {
 	const [infos, setInfos] = useState({})
-	const [address, setAddress] = useState(true)
 	useEffect(() => {
 		async function fetchData() {
 			const allInfosUser = (await InfosUser())
@@ -147,24 +147,13 @@ export const UpgradeUser = () => {
 		fetchData()
 	}, [])
 
-	const [modalIsOpen, setIsOpen] = React.useState(false);
-
-	function openModal() {
-		setIsOpen(true);
-	}
-
-	function closeModal() {
-		setIsOpen(false);
-	}
-
-	function afterOpenModal() {
-		// references are now sync'd and can be accessed.
-		//subtitle.style.color = '#f00';
-	}
-
-	const deletePetzinho = () => {
-		deleteClient(localStorage.getItem('__user_JWT'))
-		closeModal()
+	async function handleDeleteUser() {
+		await Notifications.warningConfirmOrCancel('Tem certeza que deseja excluir o seu perfil?', 'Essa ação é irreversível', async (result) => {
+			if (result.isConfirmed) {
+				document.location.href = '/login'
+				await deleteClient(localStorage.getItem('__user_JWT'))
+			}
+		})
 	}
 
 	return (
@@ -207,22 +196,20 @@ export const UpgradeUser = () => {
 						<div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
 							<button
 								className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64'
-								onClick={() => {
-									openModal()
-								}}>
+								onClick={handleDeleteUser}>
 								<img src={lixeira} className='h-full' alt='Trash'/>
 								Excluir perfil
 							</button>
-							<Modal
-								isOpen={modalIsOpen}
-								onAfterOpen={afterOpenModal}
-								onRequestClose={closeModal}
-								style={customStyles}
-								contentLabel="Example Modal"
-							>
-								<WarnRequest onClose={closeModal} description="Tem certeza que deseja excluir seu perfil?"
-														 onSave={deletePetzinho} href="/login"/>
-							</Modal>
+							{/*<Modal*/}
+							{/*	isOpen={modalIsOpen}*/}
+							{/*	onAfterOpen={afterOpenModal}*/}
+							{/*	onRequestClose={closeModal}*/}
+							{/*	style={customStyles}*/}
+							{/*	contentLabel="Example Modal"*/}
+							{/*>*/}
+							{/*	<WarnRequest onClose={closeModal} description="Tem certeza que deseja excluir seu perfil?"*/}
+							{/*							 onSave={deletePetzinho} href="/login"/>*/}
+							{/*</Modal>*/}
 						</div>
 					</>
 				}

@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/address.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/address.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/_base_url.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/_base_url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/RegisterAddress.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +115,7 @@
       <workItem from="1684242118013" duration="6029000" />
       <workItem from="1684406525216" duration="10849000" />
       <workItem from="1684492403158" duration="1596000" />
-      <workItem from="1684499020860" duration="2045000" />
+      <workItem from="1684499020860" duration="6580000" />
     </task>
     <servers />
   </component>
