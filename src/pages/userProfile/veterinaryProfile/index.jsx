@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUsers } from "../../../services/integrations/filters";
+import { getVet } from "../../../services/integrations/filters";
 import { HeaderProfile } from "../resource/header.jsx";
 import { Cards } from "../resource/cards/cards.jsx"
 import { TopContainer } from '../resource/topContainer.jsx';
@@ -11,28 +11,29 @@ export const VeterinaryProfile = () => {
 	const [numberAppoinments, setVAppoinments] = useState(0);
 	const onSearch = async () => {
 		try {
-			let vetJson = localStorage.getItem("__Vet_Id");
-			let response = await getUsers(vetJson, "userName");
+			let vetId = localStorage.getItem("__Vet_correctId");
+			let response = await getVet(vetId);
 			let result = response.response;
 			let json
 			if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
 				json = []
 			} else {
-				json = result
+				json = result.user
 			} 
-			setVets(json[0])
-			if (vets.isVet === true) {
+			setVets(json)
+			if (vets.isVet == true) {
 				localStorage.setItem('__register_type', "professional")
 			}
-			
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
 	useEffect(() => {
-		onSearch(); // Chama a função apenas uma vez durante o ciclo de vida do componente
+		onSearch();
 	}, []);
+
+
 
 
 	return (
@@ -46,7 +47,8 @@ export const VeterinaryProfile = () => {
 					biografia={vets.biography}
 					id={vets.id}
 					isVet={vets.isVet}
-					myProfile={false} />
+					myProfile={false}
+					 />
 				<Cards />
 				<div className='flex flex-col md:flex-row justify-between gap-[10%] px-10 md:px-44 mb-16'>
 					<AcademicInfos formacao={vets.formation} dataFormacao={vets.formationDate} instituicao={vets.institution} carreiraInicio={vets.startActingDate} />

@@ -6,6 +6,22 @@ import carreira from './img/carreira.png'
 
 export const AcademicInfos = (props) => {
 
+	function formatarData(dataString) {
+		var data = new Date(dataString);
+		
+		var dia = data.getUTCDate();
+		var mes = data.getUTCMonth() + 1;
+		var ano = data.getUTCFullYear();
+		
+		// Adicionando zeros à esquerda se necessário
+		dia = dia < 10 ? '0' + dia : dia;
+		mes = mes < 10 ? '0' + mes : mes;
+		
+		return dia + '/' + mes + '/' + ano;
+	}
+	  
+	const dateFormation = formatarData(props.dataFormacao)
+	const dateInicioCarreira = formatarData(props.carreiraInicio)
 
 	return (
 		<div className='flex flex-col items-center md:w-96 mt-4'>
@@ -23,7 +39,7 @@ export const AcademicInfos = (props) => {
 				<div className='flex items-center justify-between border gap-x-4 pl-4 rounded-lg border-zinc-700'>
 					<span className='flex flex-col'>
 						<h3>Data de Formação:</h3>
-						<p>{props.dataFormacao}</p>
+						<p>{dateFormation}</p>
 					</span>
 					<img className='p-4 border rounded-lg' src={formacaoDate} alt='Formation hat'  />
 				</div>
@@ -37,7 +53,7 @@ export const AcademicInfos = (props) => {
 				<div className='flex items-center border justify-between rounded-lg gap-x-4 pl-4 border-zinc-700'>
 					<span className='flex flex-col'>
 						<h3>Inicio de Carreira:</h3>
-						<p>{props.carreiraInicio}</p>
+						<p>{dateInicioCarreira}</p>
 					</span>
 					<img className='p-4 border rounded-lg' src={carreira} alt='Briefing case' />
 				</div>
@@ -62,7 +78,7 @@ export const AcademicInfos = (props) => {
 					<div className='border shadow-lg rounded text-center w-44 p-2' >
 
 						<h3>Inicio de Carreira:</h3>
-						<p>{props.carreiraInicio}</p>
+						<p>{dateInicioCarreira}</p>
 					</div>
 				</div>
 			</div>

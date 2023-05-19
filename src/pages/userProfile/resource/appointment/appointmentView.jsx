@@ -70,8 +70,8 @@ export const AppointmentView = (props) => {
 			<PetHeader />
 			<section>
 				<div className='w-full flex flex-row gap-5'>
-					<section className='w-1/2'>
-						<div className='flex flex-col md:flex-row gap-5'>
+					<section className='w-fit'>
+						<div className='flex flex-col md:flex-row gap-2'>
 
 							<div className='flex flex-col w-5/6 md:w-96 bg-[#E3EFF0] rounded-lg pb-96 md:h-screen'>
 								<ul className="flex flex-col items-center w-full cursor-pointer pt-5 space-y-3 text-xl">

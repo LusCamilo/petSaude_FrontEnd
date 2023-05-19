@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CardProfessionals } from "./resource/CardProfessionals";
 import { Footer } from "./resource/Footer";
 import { HeaderInfo } from "./resource/HeaderInfo";
-import { getUsers, getAllVets } from "../../services/integrations/filters";
+import { getUsers, getAllVets, getVet } from "../../services/integrations/filters";
 import { useForm } from "react-hook-form";
 import search from "../../assets/svg/lupa.svg";
 import * as RadioGroup from "@radix-ui/react-radio-group";
@@ -44,6 +44,7 @@ export const SearchProfessional = () => {
 
 	const [umCorteRapidao, setUmCorteRapidao] = useState('')
 
+	console.log(localStorage.getItem("__Vet_WhenSearch"));
 
 	const onSearch = async (data) => {
 		localStorage.setItem("__Vet_Search", data.search);
@@ -51,8 +52,10 @@ export const SearchProfessional = () => {
 			if (data.search === "") {
 				let response = await getAllVets();
 				let result = response.response;
+
 				let json = Object.values(result);
-				setVets(json);
+				let arrayEmbaralhado = shuffleArray(json);
+				setVets(arrayEmbaralhado);
 			} else {
 				if (filtro !== "city") {
 					let response = await getUsers(data.search, ondeProcurar);
@@ -71,9 +74,9 @@ export const SearchProfessional = () => {
 						);
 					}
 					setUmCorteRapidao("");
-					setVets(json);
+					let arrayEmbaralhado = shuffleArray(json);
+					setVets(arrayEmbaralhado);
 				} else {
-					//Pedir ajuda ajuda pro Rafael
 					let response = await getAllVets();
 					let procurarCidade = data.search;
 					let result = response.response;
@@ -93,7 +96,9 @@ export const SearchProfessional = () => {
 						if (jsonFinal === []) {
 							showToastMessage();
 						}
-						setVets(jsonFinal);
+
+						let arrayEmbaralhado = shuffleArray(jsonFinal);
+						setVets(arrayEmbaralhado)
 					}
 				}
 			}
@@ -115,13 +120,22 @@ export const SearchProfessional = () => {
 		});
 	};
 
+	function shuffleArray(array) {
+		for (let i = array.length - 1; i > 0; i--) {
+		  const j = Math.floor(Math.random() * (i + 1));
+		  [array[i], array[j]] = [array[j], array[i]];
+		}
+		return array;
+	  }
+
 	const onSearchIt = async (data) => {
 		try {
 			if (data.search === "") {
 				let response = await getAllVets();
 				let result = response.response;
 				let json = Object.values(result);
-				setVets(json);
+				let arrayEmbaralhado = shuffleArray(json);
+				setVets(arrayEmbaralhado)
 			} else {
 				let json;
 				if (filtro !== "city") {
@@ -140,7 +154,8 @@ export const SearchProfessional = () => {
 								item.userName.toLowerCase().includes(data.search.toLowerCase())
 						);
 					}
-					setVets(json);
+					let arrayEmbaralhado = shuffleArray(json);
+					setVets(arrayEmbaralhado)
 				} else {
 					let response = await getAllVets();
 					let result = response.response;
@@ -156,7 +171,8 @@ export const SearchProfessional = () => {
 					if (json === []) {
 						showToastMessage()
 					}
-					setVets(json);
+					let arrayEmbaralhado = shuffleArray(json);
+					setVets(arrayEmbaralhado)
 				}
 			}
 		} catch (error) {
@@ -285,7 +301,6 @@ export const SearchProfessional = () => {
 				</div>
 				<div>
 					{vets.map((vet) => {
-						console.log(vet);
 						if (vet.id != undefined) {
 							return (
 								<CardProfessionals

@@ -39,6 +39,18 @@ export function RegisterAddress() {
 
   const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
 
+  function handleCepChange(event) {
+		let inputValue = event.target.value;
+		inputValue = inputValue.replace(/\D/g, '');
+
+		if (inputValue.length > 8) {
+			inputValue = inputValue.substr(0, 8);
+		}
+		inputValue = inputValue.replace(/(\d{5})(\d{3})/, '$1-$2');
+
+    event.target.value = inputValue
+	}
+
   function openModalServer() {
     setIsOpenSever(true);
   }
@@ -95,18 +107,16 @@ export function RegisterAddress() {
       },
     };
 
-    if (registerType === "professional") {
+    if (registerType == "professional") {
       allInfos.isVet = "true";
       userInfos.address = data;
       localStorage.setItem("__user_register_infos", JSON.stringify(userInfos));
       document.location.href = "/register/veterinary";
     } else {
-      console.log(JSON.stringify(allInfos));
       const response = await registerUser(allInfos);
       let error1 = response?.response || "";
       let error = response?.response?.error || "";
 
-      console.log(response);
 
       if (response.response.id) {
         localStorage.setItem("__user_id", response.id);
@@ -119,9 +129,6 @@ export function RegisterAddress() {
           }, 5000);
         }, 4000);
       } else {
-        console.log(error1);
-        console.log(error);
-        console.log(error.includes("já está em uso"));
         if (
           error1 == "Email já está em uso" ||
           error1 == "CPF já está em uso"
@@ -211,7 +218,6 @@ export function RegisterAddress() {
             CEP
             <input
               onBlurCapture={(e) => {
-                console.log(e);
                 getAddressFromZipCode(e.target.value);
               }}
               className={
@@ -222,6 +228,7 @@ export function RegisterAddress() {
               type="text"
               name="zipCode"
               {...register("zipCode", { required: true })}
+              onChange={handleCepChange}
             />
           </label>
           <div className="flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full">

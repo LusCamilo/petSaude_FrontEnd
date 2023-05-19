@@ -1,10 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import lapis from "../../../../assets/svg/pencil.svg"
-import {updateAddress} from "../../../../services/integrations/address.js";
+import lapisConfirm from "../../../../assets/svg/pencilConfirm.svg"
+import { updateAddress } from "../../../../services/integrations/address.js";
 import Notifications from "../../../../utils/Notifications";
 
+
 export const Address = (props) => {
-	const [address, setaddress] = useState({disabled: true, textColor: 'opacity-50'})
+	const [address, setAddress] = useState({ disabled: true, textColor: 'opacity-50' })
+	const [button, setButton] = useState({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
+
 	const [cep, setCep] = useState('')
 	const [complement, setComplement] = useState('')
 
@@ -40,6 +44,7 @@ export const Address = (props) => {
 
 			await Notifications.confirmOrCancel('Deseja atualizar o endereço?', async (result) => {
 				await Notifications.success(result.toString())
+				await updateAddress({zipCode: cep, number: `${props.number}`, complement: complement}, props.id)
 			})
 		} catch (err) {
 			if (err instanceof Error) await Notifications.error(err.message)
@@ -92,60 +97,64 @@ export const Address = (props) => {
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							CEP
 							<input disabled={address.disabled} type="text" onBlurCapture={handleCepChange}
-										 onChange={handleCepChange}
-										 name="firstName" value={cep}
-										 className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`}/>
+								onChange={handleCepChange}
+								name="firstName" value={cep}
+								className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Cidade
 							<input disabled="true" type="text" name="firstName" defaultValue={props.cidade}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className=''>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Estado
 							<input disabled="true" type="text" name="firstName" defaultValue={props.estado}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Bairro
 							<input disabled="true" type="text" name="firstName" defaultValue={props.bairro}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className=''>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Rua
 							<input disabled="true" type="text" name="firstName" defaultValue={props.rua}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-xl text-[#A9A9A9]'>
 							Complemento
 							<input disabled={address.disabled} onChange={handleComplementChange} type="text" name="firstName"
-										 defaultValue={complement}
-										 className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`}/>
+								defaultValue={complement}
+								className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
 						</label>
 					</div>
 				</div>
 				<div className='hidden sm:flex flex-col content-end aling-end pr-10 '>
 					<button
-						className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg'
+						className={`w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[${button.bgColor}] text-[${button.color}] rounded-full drop-shadow-lg`}
 						onClick={() => {
 							if (address.disabled === true) {
-								setaddress({disabled: false, textColor: ''})
+								setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
+								setAddress({ disabled: false, textColor: '' })
 							} else {
+								setAddress({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
+								setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
 								handleSubmit()
+
 							}
 						}}>
-						<img src={lapis} alt=""/>
-						Editar
+						<img src={button.icon} alt="" />
+						{button.text}
 					</button>
 				</div>
 			</div>

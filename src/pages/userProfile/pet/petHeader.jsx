@@ -26,7 +26,6 @@ export const PetHeader = () => {
 		loadUserInfos()
 	}, [decoded, token]);
 
-
 	return (
 		<header>
 			<div className="flex font-normal justify-between md:pb-5 md:h-30 text-4xl items-center md:px-12 md:pt-5">
@@ -39,9 +38,9 @@ export const PetHeader = () => {
 				<Link to="/">
 					<h1 className=" text-1xl hidden xl:flex sm:flex justify-start font-bold">PetSaúde</h1>
 				</Link>
-				<Link to={linkTo} className=" md:flex flex-row gap-2">
-					<img className="w-14 h-14 p-1 md:p-0 rounded-full" src={userPhoto} alt='Profile' />
-					<p className=" items-center hidden md:flex home-btn text-2xl text-black">
+				<Link to={linkTo} className="flex items-center gap-2 justify-center p-2 md:pt-2 z-10">
+					<img className="w-14 h-14 rounded-full" src={userPhoto} alt='Profile' />
+					<p className=" items-center hidden md:flex home-btn text-3xl">
 						{userName}
 					</p>
 				</Link>

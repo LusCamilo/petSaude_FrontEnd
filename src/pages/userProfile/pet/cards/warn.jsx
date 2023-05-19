@@ -2,7 +2,7 @@ import React from 'react';
 import { petDelete } from '../../../../services/integrations/pet';
 import cuidado from '../../resource/img/Cuidado.png'
 
-export const PetAddWarn = () => {
+export const PetAddWarn = (props) => {
 	return(
 		<div className='w-screen h-screen flex justify-center content-start '>
 			<div className='w-1/3 h-96 bg-[#F9DEDC] rounded-3xl drop-shadow-lg flex justify-center content-center flex-col'>
@@ -17,8 +17,11 @@ export const PetAddWarn = () => {
 					</button>
 					<button className='text-[#F9DEDC] text-xl p-5 bg-[#B3261E] rounded-full' onClick={
 						() => {
+							props.delete()
 							petDelete(localStorage.getItem('__pet_id'))
-							document.location.href = "/profile/pet/edit"
+							setTimeout(() => {
+								document.location.href = "/profile/configuration";
+							}, 3000); 
 						}
 					}>
 						Sim

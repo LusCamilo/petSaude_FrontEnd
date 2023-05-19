@@ -54,10 +54,6 @@ export const TopContainer = (props) => {
 	useEffect(() => {
 		const token = localStorage.getItem('__user_JWT')
 		const decoded = jwt_decode(token);
-
-		console.log(decoded);
-		console.log(decoded.isVet == false);
-		console.log(props);
 		if (decoded.isVet == false) {
 			SetIsVet("flex")
 		}
@@ -116,14 +112,19 @@ export const TopContainer = (props) => {
 	}
 
 	function isValidImageUrl(url) {
+		console.log(url);
 		const imageUrlRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
 		return imageUrlRegex.test(url);
 	}
 
+	
+	console.log(props);
+
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>
 			<div className='w-full md:h-[500px] rounded-b-xl bg-gray-300'>
-				<img src={props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl' + isValidImageUrl(props.profileBannerPhoto) ? ' hidden' : null}/>
+				<img src={props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl' + isValidImageUrl(props.profileBannerPhoto) ? ' hidden' : null
+			}/>
 			</div>
 			<div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex h-fit'>
 				<div className='flex relative md:border-4 h-28 w-28 md:h-48 md:border-white border-solid rounded-full md:w-48 items-center justify-center bg-white'>
@@ -156,7 +157,7 @@ export const TopContainer = (props) => {
 						</div>
 					</div>
 					{props.isVet && !props.myProfile && !thisUserIsVet ? <button
-						className='botaoAppont bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10 z-10'
+						className='botaoAppont bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10'
 						onClick={openModal}>
 						Agendar uma consulta
 					</button> : null}

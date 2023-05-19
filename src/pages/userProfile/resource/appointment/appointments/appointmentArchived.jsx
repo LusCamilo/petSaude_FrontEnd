@@ -278,7 +278,7 @@ export const AppointmentArchived = (props) => {
                     {pedidos.map(pedido =>{
                          const cor = pedido.estado == 'CONCLUDED' ? 'bg-[#09738A]' : 'bg-[#F1EAC6]'
                         return(
-                            <div className={`${cor} border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-3 sm:pl-20 py-8`}>
+                            <div className={`${cor} border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 p-20`}>
                                 <div className='flex flex-row items-center content-center text-center text-6xl gap-4'>
                                     <img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
                                     <h2 className='font-normal flexjustify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>

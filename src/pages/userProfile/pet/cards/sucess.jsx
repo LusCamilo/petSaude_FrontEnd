@@ -4,11 +4,11 @@ import './cssPadraoCards.css'
 
 export const PetAddSucess = (props) => {
 
-	const [aparecer, setAparecer] = useState('hidden')
+	// const [aparecer, setAparecer] = useState('hidden')
 
-	useEffect(() => {
-		if(props.aparecer === '') setAparecer('flex')
-	}, []);
+	// useEffect(() => {
+	// 	if(props.aparecer === '') setAparecer('flex')
+	// }, []);
 
 	return(
 		<div className='flex justify-center content-start flex-col p-4'>

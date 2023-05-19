@@ -301,49 +301,57 @@ export const AppointmentPeding = (props) => {
 
 	return(
 		<section className=''>
-			<div className=' w-full flex flex-col gap-3 mr-2'>
+			<div className=' w-3/6 flex flex-col gap-3 mr-2'>
 				<div className={`${divNothing}`}>
 					Nenhuma consulta a ser aceita
 				</div>
 				{pedidos.map(pedido =>{
-					console.log(pedido.idAppoint);
 					return(
-					//chamada para o código filho
-						<AppointmentPedingCards 
-							key={pedido.id}
-							id={pedido.idAppoint}
-							showClient={showClient}
-							showVet={showVet}
-							imagemPet={pedido.imagemPet}
-							nomePet={pedido.nomePet}
-							tamanho={pedido.tamanho}
-							sexo={pedido.sexo}
-							idade={pedido.idade}
-							especie={pedido.especie}
-							donoImg={pedido.donoImg}
-							dono={pedido.dono}
-							telefone={pedido.telefone}
-							vetPhoto={pedido.vetPhoto}
-							vetName={pedido.vetName}
-							vetPhone={pedido.vetPhone}
-							dataConsulta={pedido.dataConsulta}
-							horario={pedido.horario}
-							duration={pedido.duration}
-							descricao={pedido.descricao}
-
-							
-							cancel={openModalQuestionWarn}
-							finish={openModalQuestionSucess}
-							closeSucess={closeModalQuestionSucess}
-							closeWarn={closeModalQuestionWarn}
-							finalizar={finalizarAppointment}
-							cancelar={cancelarAppointment}
-							warn={warn}
-							Sucess={Sucess}
-						/>
-				)})}
-
-			
+						<div>
+							<AppointmentPedingCards 
+								key={pedido.id}
+								id={pedido.idAppoint}
+								showClient={showClient}
+								showVet={showVet}
+								imagemPet={pedido.imagemPet}
+								nomePet={pedido.nomePet}
+								tamanho={pedido.tamanho}
+								sexo={pedido.sexo}
+								idade={pedido.idade}
+								especie={pedido.especie}
+								donoImg={pedido.donoImg}
+								dono={pedido.dono}
+								telefone={pedido.telefone}
+								vetPhoto={pedido.vetPhoto}
+								vetName={pedido.vetName}
+								vetPhone={pedido.vetPhone}
+								dataConsulta={pedido.dataConsulta}
+								horario={pedido.horario}
+								duration={pedido.duration}
+								descricao={pedido.descricao}
+								cancel={openModalQuestionWarn}
+								finish={openModalQuestionSucess}
+								closeSucess={closeModalQuestionSucess}
+								closeWarn={closeModalQuestionWarn}
+								finalizar={finalizarAppointment}
+								cancelar={cancelarAppointment}
+								warn={warn}
+								Sucess={Sucess}
+							/>
+							<ToastContainer
+								position="top-right"
+								autoClose={1500}
+								hideProgressBar={false}
+								newestOnTop={false}
+								closeOnClick
+								rtl={false}
+								pauseOnFocusLoss
+								draggable
+								pauseOnHover
+								theme="light"
+							/>
+						</div>
+					)})}
 			</div>
 		</section>
 	)

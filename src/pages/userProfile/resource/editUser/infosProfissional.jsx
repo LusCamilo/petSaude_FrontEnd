@@ -229,22 +229,32 @@ export const Prossionais = (props) => {
 					</div>
 				</div>
 				<div className='hidden sm:flex flex-col content-end aling-end pr-10 '>
-					<button className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
+					<button className='w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={async () => {
 						if (professionalInfos.disabled === true) {
 							setProfessionalInfos({ disabled: false, textColor: '' })
 						} else {
-							setProfessionalInfos({ disabled: true, textColor: 'opacity-50' })
-
 							if (window.confirm('deseja atualizar os seus dados profissionais?')) {
-								updateProfessionalInfos(localStorage.getItem('__user_id'),
-									{
-										occupationArea: areaAtuacao,
-										formation: formacao,
-										institution: instituicao,
-										crmv: crmv,
-										startActingDate: `${dataInicioAtuacao}T00:00:00.000Z`,
-										formationDate: `${dataFormacao}T00:00:00.000Z`,
-									}).then(window.location.reload())
+								setProfessionalInfos({ disabled: true, textColor: 'opacity-50' })
+								console.log(
+									await updateProfessionalInfos(localStorage.getItem('__user_id'),
+										{
+											occupationArea: areaAtuacao,
+											formation: formacao,
+											institution: instituicao,
+											crmv: crmv,
+											startActingDate: `${dataInicioAtuacao}T00:00:00.000Z`,
+											formationDate: `${dataFormacao}T00:00:00.000Z`,
+										}
+									).then(response => {
+										if (response.response) {
+											if(response.response ==  'Unexpected token I in JSON at position 1')
+												window.alert('CRMV já está em uso') 
+										}else 
+											window.alert("dados atualizados com sucesso")
+											window.location.reload()
+
+									})
+								);
 							}
 						}
 					}}>

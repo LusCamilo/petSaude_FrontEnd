@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './styleAppointment.css'
 import jwt_decode from "jwt-decode";
-import { getAppointments } from '../../../../../services/integrations/appointment';
-import { getUser, getVeterinary} from '../../../../../services/integrations/user'
 import {  canceladoAppointments, finalizadoAppointments } from '../../../../../services/integrations/appointment'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from 'react-modal'
 import { WarnRequest } from '../../../pet/cards/warnTwo';
 import { PetAddSucess } from '../../../pet/cards/sucess';
-import cuidado from '../../../../userProfile/resource/img/Cuidado.png'
 
 const customStylesWarn = {
 	content: {
@@ -80,22 +77,18 @@ export const AppointmentPedingCards = (props) => {
 	const [Sucess, setSucess] = React.useState(false);
 
     function openModalQuestionWarn() {
-        console.log("Warn open");
 		setWarn(true)
 	}
 
 	function closeModalQuestionWarn() {
-        console.log("Warn close");
 		setWarn(false);
 	}
 
 	function openModalQuestionSucess() {
-        console.log("sucess open");
 		setSucess(true)
 	}
 
 	function closeModalQuestionSucess() {
-        console.log("sucess close");
 		setSucess(false);
 	}
 
@@ -106,14 +99,14 @@ export const AppointmentPedingCards = (props) => {
 			showToastMessageSucess("Consulta cancelada com sucesso!")
 			setTimeout(() => {
 				window.location.reload();
-			}, 2000); // Refresh after 5 seconds
+			}, 2000); 
 
 		}
 		else {
 			showToastMessageFailed()
-			// setTimeout(() => {
-			//     window.location.reload();
-			//   }, 2000); // Refresh after 5 seconds
+			setTimeout(() => {
+			    window.location.reload();
+			  }, 2000); 
 		}
 		return recusar
 	}
@@ -125,19 +118,19 @@ export const AppointmentPedingCards = (props) => {
 			showToastMessageSucess("Consulta finalizada com sucesso!")
 			setTimeout(() => {
 				window.location.reload();
-			}, 2000); // Refresh after 5 seconds
+			}, 2000); 
 		}
 		else {
 			showToastMessageFailed()
 			setTimeout(() => {
 				window.location.reload();
-			}, 2000); // Refresh after 5 second
+			}, 2000); 
 		}
 		return aceitar
 	}
 
     return(
-        <div className=' border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-8 py-8 md:pl-20 sm:pl-20'>
+        <div className='w-full border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 pl-8 py-8 md:pl-20 sm:pl-20'>
             <div className='flex flex-row items-center md:content-center md:text-center text-6xl gap-4'>
                 <img className='PetImage' src={props.imagemPet} alt="Imagem do pet" />
                 <h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{props.nomePet}</h2>
@@ -283,6 +276,7 @@ export const AppointmentPedingCards = (props) => {
                 pauseOnHover
                 theme="light"
             />
+            
             			
             <Modal
             isOpen={warn}
