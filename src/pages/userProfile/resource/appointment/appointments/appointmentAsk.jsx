@@ -28,7 +28,7 @@ export const AppointmentAsk = () => {
                 const token = localStorage.getItem('__user_JWT')
                 const decoded = jwt_decode(token);
                 let appoint = await getappo(decoded.id)
-                if (appoint != undefined && appoint != null) {
+                if (appoint !== undefined && appoint != null) {
 
                     let filteredAppointments = appoint.filter(appointment => appointment.status == 'WAITING_CONFIRMATION');
                     let appoints = await Promise.all(filteredAppointments.map(async (app) => {
@@ -81,9 +81,9 @@ export const AppointmentAsk = () => {
                         };
 
                         return finalArray;
-                    }));
-                    setDivNothing('hidden')
-                    setPedido(appoints)
+                      }));
+                      setDivNothing('hidden')
+                      setPedido(appoints)
                 } else {
                     setDivNothing('flex')
                     setPedido([])
@@ -151,16 +151,16 @@ export const AppointmentAsk = () => {
         const jsonNothing = {
             duration: 0,
             price: 0.00
-        };
+          };
 
         const recusar = await recusarAppointments(idAppointment, jsonNothing);
         if (recusar.response.message == "Consulta recusada") {
             showToastMessageSucess("Consulta recusada com sucesso!")
             setTimeout(() => {
                 window.location.reload();
-            }, 2000); // Refresh after 5 seconds
+              }, 2000); // Refresh after 5 seconds
 
-        } else if (recusar.response.error == "Você não tem permissão para fazer essa alteração") {
+          } else if (recusar.response.error == "Você não tem permissão para fazer essa alteração") {
             showToastMessageFailed("Você não tem permissão para recusar uma consulta")
             setTimeout(() => {
                 window.location.reload();
@@ -234,12 +234,23 @@ export const AppointmentAsk = () => {
 
     };
 
+    function formatPrice(input) {
+        let value = input.value.replace(/[^0-9\.]/g, '');
+
+        let decimalCount = value.split('.').length - 1;
+        if (decimalCount > 1) {
+          value = value.slice(0, -1);
+        }
+
+        input.value = parseFloat(value).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+      }
+
     const handleClick = () => {
         setTutorStatus('flex');
         setButtonStatus('hidden');
-    };
+      };
 
-    const handleClickAgain = () => {
+      const handleClickAgain = () => {
         setTutorStatus('hidden');
         setButtonStatus('flex');
     };

@@ -162,75 +162,78 @@ export const Prossionais = (props) => {
 
 
 	return (
-		<div className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 pl-2 sm:pl-20 py-8'>
+		<div className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col pl-2 md:p-10'>
 			<h2 className='text-5xl md:text-6xl font-bold font-sans text-center sm:text-left'>Informações Profissonais</h2>
-			<div className='flex flex-row justify-between '>
-				<div className='gap-1 sm:gap-10 mt-10  grid grid-cols-1 sm:grid-cols-2 sm:w-4/5'>
-					<div className='0'>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
-							Área de Atuação
-							<input type="text" id='cep' name="area" defaultValue={areaAtuacao} onChange={handleAreaAtuacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
-						</label>
-					</div>
-					<div className='flex justify-start md:ml-24 '>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
-							Formação
-							<input type="text" id='cep' name="area" defaultValue={formacao} onChange={handleFormacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
-						</label>
-					</div>
-					<div>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
-							Instituição
-							<input type="text" id='cep' name="area" defaultValue={instituicao} onChange={handleInstituicaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
-						</label>
-					</div>
-					<div className='flex justify-start md:ml-24'>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
-							CRMV
-							<input type="text" id='cep' name="area" value={crmv} onChange={handleCRMVChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
-						</label>
-					</div>
-					<div>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
-							Data de Formação
-							<input type="date" id='cep' name="area" defaultValue={dataFormacao} onChange={handleDataFormacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
-						</label>
-					</div>
-					<div className='flex justify-start md:ml-24'>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
-							Início de atuação
-							<input type="date" id='cep' name="area" defaultValue={dataInicioAtuacao} onChange={handleDataAtuacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
-						</label>
-					</div>
-
-					<div className='flex flex-col gap-10'>
-						<div className='w-full flex flex-col items-start'>
-							<span className='font-normal text-xl text-[#A9A9A9]'>Especialidades</span>
-							<div className='flex flex-wrap pt-2 md:grid md:grid-rows-2 grid-flow-col w-full  gap-5' onClick={handleCheckBoxEspecialidadesChange}>
-								{especialidades.map((item) => {
-									const isChecked = especialidadesVet.findIndex(vetItem => vetItem.specialitiesId === item.id) !== -1;
-									return (
-										<label className='flex gap-2 items-center text-2xl'>
-											<input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} />
-											{item.name}
-										</label>
-									)
-								})}
-							</div>
+			<div className='flex flex-row justify-between'>
+				<div className='flex flex-col w-4/5'>
+					<div className='gap-1 sm:gap-10 mt-10 grid grid-cols-1 sm:grid-cols-2 sm:w-4/5'>
+						<div className='0'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
+								Área de Atuação
+								<input type="text" id='cep' name="area" defaultValue={areaAtuacao} onChange={handleAreaAtuacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+							</label>
 						</div>
+						<div className='flex justify-start md:ml-24 '>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
+								Formação
+								<input type="text" id='cep' name="area" defaultValue={formacao} onChange={handleFormacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+							</label>
+						</div>
+						<div>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
+								Instituição
+								<input type="text" id='cep' name="area" defaultValue={instituicao} onChange={handleInstituicaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+							</label>
+						</div>
+						<div className='flex justify-start md:ml-24'>
+							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+								CRMV
+								<input type="text" id='cep' name="area" defaultValue={crmv} onChange={handleCRMVChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+							</label>
+						</div>
+						<div>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
+								Data de Formação
+								<input type="date" id='cep' name="area" defaultValue={dataFormacao} onChange={handleDataFormacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+							</label>
+						</div>
+						<div className='flex justify-start md:ml-24'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
+								Início de atuação
+								<input type="date" id='cep' name="area" defaultValue={dataInicioAtuacao} onChange={handleDataAtuacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+							</label>
+						</div>
+					</div>
+					<div className='gap-1 sm:gap-10 mt-10 grid grid-cols-1 sm:w-4/5'>
+						<div className='flex flex-col gap-10'>
+							<div className='w-full flex flex-col items-start gap-4'>
+								<span className='font-normal text-2xl text-[#A9A9A9]'>Especialidades</span>
+								<div className='flex flex-wrap pt-2 md:grid md:grid-rows-2 grid-flow-col w-full  gap-5' onClick={handleCheckBoxEspecialidadesChange}>
+									{especialidades.map((item) => {
+										const isChecked = especialidadesVet.findIndex(vetItem => vetItem.specialitiesId === item.id) !== -1;
+										return (
+											<label className='flex gap-2 items-center text-2xl'>
+												<input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} />
+												{item.name}
+											</label>
+										)
+									})}
+								</div>
+							</div>
 
-						<div className='w-full flex flex-col items-start'>
-							<span className='font-normal text-xl text-[#A9A9A9]'>Animais que atende</span>
-							<div className='flex flex-wrap gap-5' onClick={handleCheckBoxPetChange}>
-								{especialidadesPet.map((item) => {
-									const isChecked = especialidadesPetVet.findIndex(vetItem => vetItem.petSpecieId === item.id) !== -1;
-									return (
-										<label className='flex gap-2 items-center text-2xl'>
-											<input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} />
-											{item.name}
-										</label>
-									)
-								})}
+							<div className='w-full flex flex-col items-start gap-4'>
+								<span className='font-normal text-2xl text-[#A9A9A9]'>Animais que atende</span>
+								<div className='flex flex-wrap gap-5' onClick={handleCheckBoxPetChange}>
+									{especialidadesPet.map((item) => {
+										const isChecked = especialidadesPetVet.findIndex(vetItem => vetItem.petSpecieId === item.id) !== -1;
+										return (
+											<label className='flex gap-2 items-center text-2xl'>
+												<input id={item.id} className='w-5 h-5 rounded text-[#000000]' type="checkbox" defaultChecked={isChecked} />
+												{item.name}
+											</label>
+										)
+									})}
+								</div>
 							</div>
 						</div>
 					</div>
