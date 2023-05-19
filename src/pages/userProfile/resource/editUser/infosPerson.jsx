@@ -7,7 +7,7 @@ import Notifications from "../../../../utils/Notifications";
 
 
 export const Pessoais = (props) => {
-
+ 
 	const [personalInfos, setPersonalInfos] = useState({ disabled: true, textColor: 'opacity-50' })
 	const [button, setButton] = useState({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
 	const [name, setName] = useState('')
@@ -162,14 +162,13 @@ export const Pessoais = (props) => {
 	}
 
 	return (
-		<section
-			className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 md:pl-20 py-8'>
+		<section className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col md:p-10'>
 			<h2 className='text-5xl md:text-6xl font-bold font-sans text-center sm:text-left'>Informações Pessoais</h2>
 			<div className='flex flex-row'>
 				<div className='flex flex-row justify-between w-full  pr-0 sm:pr-12'>
 					<form className='gap-1 sm:gap-10 mt-10 grid grid-cols-1 sm:grid-cols-2 sm:w-4/5'>
 						<div className=''>
-							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+							<label className='flex flex-col text-[#A9A9A9] text-2xl'>
 								Primeiro nome
 								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleNameChange}
 									onChange={handleNameChange} defaultValue={name}
@@ -177,15 +176,15 @@ export const Pessoais = (props) => {
 							</label>
 						</div>
 						<div className='flex justify-center'>
-							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 								Sobrenome
 								<input disabled={personalInfos.disabled} type="text" name="firstName"
 									onBlurCapture={handleLastNameChange} onChange={handleLastNameChange} defaultValue={lastName}
-									className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+									className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
 							</label>
 						</div>
 						<div className=''>
-							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 								CPF
 								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleCpfChange}
 									onChange={handleCpfChange} value={cpf}
@@ -193,33 +192,33 @@ export const Pessoais = (props) => {
 							</label>
 						</div>
 						<div className='flex justify-center'>
-							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 								RG
 								<input disabled={personalInfos.disabled} type="text" name="firstName" onBlurCapture={handleRgChange}
 									onChange={handleRgChange} value={rg}
-									className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+									className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
 							</label>
 						</div>
 						<div className=''>
-							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 								Celular
 								<input disabled={personalInfos.disabled} type="text" name="firstName"
 									onBlurCapture={handleCelularChange} onChange={handleCelularChange} value={celular}
-									className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+									className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
 							</label>
 						</div>
 						<div className='flex justify-center'>
-							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 								Telefone
 								<input disabled={personalInfos.disabled} onBlurCapture={handleTelefoneChange} type="text"
 									name="firstName" onChange={handleTelefoneChange} value={telefone}
-									className={`bg-transparent border-none text-2xl text-[#000]${personalInfos.textColor}`} />
+									className={`bg-transparent border-none text-2xl text-[#000] ${personalInfos.textColor}`} />
 							</label>
 						</div>
 					</form>
 				</div>
 				<div className='hidden sm:flex flex-row w-1/5 justify-end pr-10 '>
-					<button className={`w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[${button.bgColor}] rounded-full drop-shadow-lg text-[${button.color}]`} onClick={() => {
+					<button className={`w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[${button.bgColor}] rounded-full drop-shadow-lg hidden md:flex text-2xl text-[${button.color}]`} onClick={() => {
 						if (personalInfos.disabled == true) {
 							setPersonalInfos({ disabled: false, textColor: '', text: 'Confirmar' })
 							setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
@@ -230,13 +229,13 @@ export const Pessoais = (props) => {
 
 						}
 					}}>
-						<img src={button.icon} alt="" />
+						<img src={button.icon} alt="" className='h-7' />
 						{button.text}
 					</button>
 				</div>
 			</div>
 			<div className='w-full sm:mr-10'>
-				<p className='flex flex-col text-xl text-[#A9A9A9] pt-3 sm:pt-20 mr-0 sm:mr-20 w-full sm:w-10/12 '> Biografia
+				<p className='flex flex-col text-2xl gap-4 text-[#A9A9A9] pt-3 sm:pt-20 mr-0 sm:mr-20 w-full sm:w-10/12 '> Biografia
 					<TextareaAutosize disabled={personalInfos.disabled} id="my-textarea" onBlurCapture={handleTextChange}
 						onChange={handleTextChange} defaultValue={bio}
 						className="block w-full p-2 rounded resize-none" />

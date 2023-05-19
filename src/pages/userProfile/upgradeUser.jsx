@@ -170,7 +170,7 @@ export const UpgradeUser = () => {
 	return (
 		<section>
 			<Config userName={infos.userName} personName={infos.personName} profilePhoto={infos.profilePhoto}/>
-			<main className='flex flex-col gap-10 '>
+			<main className='flex flex-col gap-10'>
 				<Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular}
 									telefone={infos.telefone} text={infos.text} className=''/>
 				<Address id={infos.addressId} viaCep={getAddressFromZipCode} cep={infos.cep} bairro={infos.bairro}

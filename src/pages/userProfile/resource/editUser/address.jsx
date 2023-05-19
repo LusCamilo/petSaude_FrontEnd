@@ -88,29 +88,28 @@ export const Address = (props) => {
 	}
 
 	return (
-		<div
-			className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 pl-2 sm:pl-20 py-8'>
+		<div className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col pl-2 md:p-10'>
 			<h2 className='text-5xl md:text-6xl font-bold text-center sm:text-left'>Endereço</h2>
 			<div className='flex flex-row justify-between '>
 				<div className='gap-1 sm:gap-10 mt-10 grid grid-cols-1 sm:grid-cols-2 sm:w-4/5'>
 					<div className=''>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
+						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							CEP
 							<input disabled={address.disabled} type="text" onBlurCapture={handleCepChange}
 								onChange={handleCepChange}
 								name="firstName" value={cep}
-								className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
+								className={`bg-transparent border-none text-2xl text-[#000] ${address.textColor}`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
+						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							Cidade
 							<input disabled="true" type="text" name="firstName" defaultValue={props.cidade}
 								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className=''>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
+						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							Estado
 							<input disabled="true" type="text" name="firstName" defaultValue={props.estado}
 								className={`bg-transparent border-none text-2xl opacity-50`} />
@@ -124,14 +123,14 @@ export const Address = (props) => {
 						</label>
 					</div>
 					<div className=''>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
+						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							Rua
 							<input disabled="true" type="text" name="firstName" defaultValue={props.rua}
 								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
+						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							Complemento
 							<input disabled={address.disabled} onChange={handleComplementChange} type="text" name="firstName"
 								defaultValue={complement}
@@ -141,7 +140,7 @@ export const Address = (props) => {
 				</div>
 				<div className='hidden sm:flex flex-col content-end aling-end pr-10 '>
 					<button
-						className={`w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[${button.bgColor}] text-[${button.color}] rounded-full drop-shadow-lg`}
+						className={`w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 rounded-full drop-shadow-lg hidden md:flex text-2xl bg-[${button.bgColor}] text-[${button.color}]`}
 						onClick={() => {
 							if (address.disabled === true) {
 								setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
@@ -153,7 +152,7 @@ export const Address = (props) => {
 
 							}
 						}}>
-						<img src={button.icon} alt="" />
+						<img src={button.icon} alt="" className='h-7' />
 						{button.text}
 					</button>
 				</div>
