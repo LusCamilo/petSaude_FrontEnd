@@ -178,7 +178,7 @@ export const UpgradeUser = () => {
 								Habilitar Edição
 							</button>
 						</div>
-						<div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
+						<div className='w-full sm:flex justify-end'>
 							<button
 								className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64'
 								onClick={() => {
@@ -193,7 +193,7 @@ export const UpgradeUser = () => {
 					:
 					<>
 						<Pets personImage={infos.profilePhoto}/>
-						<div className='w-full sm:flex justify-end mr-5 pr-10 pb-10'>
+						<div className='w-full sm:flex justify-end'>
 							<button
 								className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64'
 								onClick={handleDeleteUser}>

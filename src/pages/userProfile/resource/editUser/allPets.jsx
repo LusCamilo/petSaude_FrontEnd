@@ -32,7 +32,7 @@ export const Pets = (props) => {
 		<div className='flex flex-col gap-2 border-2 rounded-lg border-black py-8'>
 			<div className='flex justify-between items-center pt-4 pb-3 px-20'>
 				<h2 className='text-6xl font-bold'>Pets</h2>
-				<button className='cursor-pointer text-[#09738A] p-3 rounded-full border border-[#91B0B2]'
+				<button className='w-fit px-14 h-14 flex-row justify-center items-center gap-4 drop-shadow-lg md:flex text-2xl cursor-pointer text-[#09738A] rounded-full border border-[#91B0B2] border-solid hover:text-[#91B0B2] hover:bg-[#09738A]'
 				        onClick={() => {
 					        document.location.href = '/profile/pet/add'
 				        }

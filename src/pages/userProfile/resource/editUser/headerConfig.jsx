@@ -11,28 +11,6 @@ export const Config = (props) => {
 
 	return (
 		<section>
-			{/* <div className="flex font-normal items-center justify-between bg-white shadow pl-5 xl:p-10 h-30 text-4xl">
-				<div className='flex flex-row justify-center align-center text-center'>
-					<button id='menu-button' className="block d:hidden  py-3 md:px-4 mx-2 rounded focus:outline-none hover-bg-gray-200 group ">
-						<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
-						<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
-						<div className="w-8 h-1.5 bg-[#000] mb-1 md:w-10 md:h-1.5"></div>
-					</button>
-					<SideBarMenu />
-
-					<Link to='/' className=" text-1xl justify-start font-bold hidden md:flex md:pt-1">PetSaúde</Link>
-					<h1 className=" text-1xl pt-3 md:pt-5 font-normal flex md:hidden pl-24">Perfil</h1>
-
-					<div className="flex content-items-center flex-direction md:pt-2 md:hidden pl-20" >
-						<img className="flex content-center content-items-center h-20 xl:w-2/4  pt-2" src={configIcon} alt='Configuration gear' />
-					</div>
-
-				</div>
-				<Link to="/profile" className="flex home-btn text-2xl items-center gap-5">
-					<img className="w-20 pl-5 pt-20 pr-1 md:pt-1 md:w-20 hidden md:flex " src={props.profilePhoto} alt='Profile' />
-					{props.personName}
-				</Link>
-			</div> */}
 			<PetHeader />
 			<div className='flex justify-between w-full px-36'>
 				<div className='flex items-center justify-center md:pt-10'>
