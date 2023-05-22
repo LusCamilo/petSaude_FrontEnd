@@ -230,6 +230,14 @@ export const PetConfig = (props) => {
 	function afterOpenModal() {
 	}
 
+	let hoje = new Date();
+	let ano = hoje.getFullYear();
+	let mes = hoje.getMonth() + 1;
+	let dia = hoje.getDate();
+	if (mes < 10) mes = '0' + mes
+	if (dia < 10) dia = '0' + dia
+	let dataFormatada = `${ano}-${mes}-${dia}`;
+
 	const editarPetizinho = async (id, infosPet) =>{
 		const result = await petUpdate(id, infosPet)
 	
@@ -322,7 +330,7 @@ export const PetConfig = (props) => {
 							<div className='w-full'>
 								<label className='flex flex-col text-xl text-[#A9A9A9]'>
 									Data de Nascimento
-									<input type="date" disabled={petInfosDisable.disable} onChange={newDateBorn} name="dateBorn" defaultValue={infos.birthDate} className={`bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`} />
+									<input type="date" disabled={petInfosDisable.disable} onChange={newDateBorn} name="dateBorn" defaultValue={infos.birthDate} className={`bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`}   max={dataFormatada} />
 								</label>
 							</div>
 							<div>
@@ -362,8 +370,8 @@ export const PetConfig = (props) => {
 					</div>
 				</div>
 				<div className='w-full flex justify-between mb-30'>
-					<Dialog.Root>
-						<Dialog.Trigger asChild>
+					<Dialog.Root >
+						<Dialog.Trigger asChild className='w-full flex justify-between'>
 							<button className='mt-3' asChild>
 								<img src={lixeira} alt="" />
 							</button>

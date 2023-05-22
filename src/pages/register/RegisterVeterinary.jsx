@@ -135,7 +135,6 @@ export const RegisterVeterinary = () => {
 	const [formation, setFormation] = useState('1900-01-01')
 
 	const minStartActivy = (date) => {
-		console.log(date);
 		setFormation(date);
 	};
 
@@ -154,60 +153,28 @@ export const RegisterVeterinary = () => {
 	const submitForm = async data => {
 		const userInfos = JSON.parse(localStorage.getItem('__user_register_infos'))
 
+		const allInfos = {
+			personName: `${userInfos.firstName} ${userInfos.lastName}`,
+			cpf: userInfos.cpf,
+			email: userInfos.email,
+			password: userInfos.password,
+			cellphoneNumber: userInfos.cellphoneNumber,
+			phoneNumber: userInfos.phoneNumber,
+			isVet: false,
+			address: {
+				...userInfos.address
+			},
+			crmv: data.crmv,
+			occupationArea: data.occupationArea,
+			formation: data.formation,
+			institution: data.institution,
+			formationDate: data.formationDate,
+			startActingDate: data.startActingDate
+		}
+
+		console.log(allInfos);
+
 		if (validateForm(data)) {
-			const createUserResponse = await registerVet(allInfos)
-			let error1 = createUserResponse.response ? createUserResponse.response : ""
-			let error = createUserResponse.response.error ? createUserResponse.response.error : ""
-			if (createUserResponse.response.id) {
-				const especialidades = checkedBoxesEspecialidades.map((item) => {
-					return { ...item, veterinaryId: createUserResponse.response.id };
-				});
-				const especialidadesPet = checkedBoxes.map((item) => {
-					return { ...item, veterinaryId: createUserResponse.response.id };
-				});
-
-				console.log(
-					await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: especialidadesPet }))
-				);
-				console.log(
-					await updateSpecialities(JSON.stringify({ specialties: especialidades }))
-				);
-
-
-
-				showToastMessage()
-				setTimeout(function () {
-					openModalSucess()
-					setTimeout(function () {
-						closeModalSucess()
-						document.location.href = '/login'
-					}, 5000);
-				}, 4000);
-			} else {
-				if (error1 == "Email já está em uso" || error == "CRMV já está em uso") {
-					if (error1 == 'Email já está em uso') {
-						let firstWord = error1.split(" ")[0]
-						openModalEmail(firstWord)
-						setTimeout(function () {
-							closeModalEmail()
-							//document.location.href = '/register'
-						}, 2000);
-					} else {
-						let firstWord = error.split(" ")[0]
-						openModalEmail(firstWord)
-						setTimeout(function () {
-							closeModalEmail()
-							//document.location.href = '/register'
-						}, 2000);
-					}
-				} else {
-					openModal()
-					setTimeout(function () {
-						closeModal()
-						//document.location.href = '/register'
-					}, 2000);
-				}
-			}
 
 			const {response} = await registerVet(allInfos)
 			if (response.id) {
@@ -220,6 +187,8 @@ export const RegisterVeterinary = () => {
 
 				await updateSpecialitiesPet(JSON.stringify({AnimalTypesVetInfos: attendedAnimals}))
 				await updateSpecialities(JSON.stringify({specialties: specialities}))
+				Notifications.success('Veterinário criado com sucesso')
+				document.location.href = '/login'
 			} else {
 				if (response.error)
 					if (response.error.toLowerCase().includes('crmv')) await Notifications.error('O CRMV já está em uso')
@@ -227,6 +196,61 @@ export const RegisterVeterinary = () => {
 				else await Notifications.error('Não foi possível criar o usuário')
 				document.location.href = '/register'
 			}
+
+			// const createUserResponse = await registerVet(allInfos)
+			// let error1 = createUserResponse.response ? createUserResponse.response : ""
+			// let error = createUserResponse.response.error ? createUserResponse.response.error : ""
+			// if (createUserResponse.response.id) {
+			// 	console.log();
+			// 	const especialidades = checkedBoxesEspecialidades.map((item) => {
+			// 		return { ...item, veterinaryId: createUserResponse.response.id };
+			// 	});
+			// 	const especialidadesPet = checkedBoxes.map((item) => {
+			// 		return { ...item, veterinaryId: createUserResponse.response.id };
+			// 	});
+
+			// 	console.log(
+			// 		await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: especialidadesPet }))
+			// 	);
+			// 	console.log(
+			// 		await updateSpecialities(JSON.stringify({ specialties: especialidades }))
+			// 	);
+
+
+
+			// 	showToastMessage()
+			// 	setTimeout(function () {
+			// 		setTimeout(function () {
+			// 			document.location.href = '/login'
+			// 		}, 5000);
+			// 	}, 4000);
+			// } else {
+			// 	if (error1 == "Email já está em uso" || error == "CRMV já está em uso") {
+			// 		if (error1 == 'Email já está em uso') {
+			// 			//let firstWord = error1.split(" ")[0]
+			// 			//openModalEmail(firstWord)
+			// 			setTimeout(function () {
+			// 				//closeModalEmail()
+			// 				//document.location.href = '/register'
+			// 			}, 2000);
+			// 		} else {
+			// 			let firstWord = error.split(" ")[0]
+			// 			//openModalEmail(firstWord)
+			// 			setTimeout(function () {
+			// 				//closeModalEmail()
+			// 				//document.location.href = '/register'
+			// 			}, 2000);
+			// 		}
+			// 	} else {
+			// 		//openModal()
+			// 		setTimeout(function () {
+			// 			//closeModal()
+			// 			//document.location.href = '/register'
+			// 		}, 2000);
+			// 	}
+			// }
+
+
 		} else await Notifications.error('Dados inválidos')
 	}
 

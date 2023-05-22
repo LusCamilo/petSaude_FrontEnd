@@ -13,6 +13,7 @@ import './css/pet.css'
 import Modal from 'react-modal'
 import { getSpecialtiesPet } from '../../../services/integrations/specialtiesPet';
 import { ToastContainer, toast } from 'react-toastify';
+import Notifications from '../../../utils/Notifications';
 
 
 const firebaseConfig = {
@@ -175,7 +176,7 @@ export const PetAdd = () => {
 			}
 
 			resultAPI = await petAdd(newPet, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
-
+			console.log(resultAPI);
 			if(resultAPI.response.statusCode == 400 || resultAPI.response.status == 400){
 			
 				showErrorMessage()
@@ -195,6 +196,18 @@ export const PetAdd = () => {
 			}
 		} else {
 			resultAPI = await petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
+			console.log(resultAPI);
+		}
+
+		if (resultAPI.response.statusCode == 201) {
+			showSucessMessage()
+			setTimeout(() => {
+				Notifications.success('Pet Criado com sucesso')
+				setTimeout(() => {
+					document.location.href = "/profile/configuration";
+				}, 1600); 
+			}, 2300); 
+
 
 		}
 	}

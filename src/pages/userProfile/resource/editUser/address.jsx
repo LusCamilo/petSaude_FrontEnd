@@ -11,6 +11,7 @@ export const Address = (props) => {
 
 	const [cep, setCep] = useState('')
 	const [complement, setComplement] = useState('')
+	const [number, setNumber] = useState('')
 
 	function handleCepChange(event) {
 		let inputValue = event.target.value;
@@ -28,9 +29,14 @@ export const Address = (props) => {
 		setComplement(event.target.value);
 	}
 
+	function handleNumberChange(event) {
+		setNumber(event.target.value);
+	}
+
 	useEffect(() => {
 		setCep(props.cep)
 		setComplement(props.complemento)
+		setNumber(props.number)
 	}, [
 		props.cep,
 		props.complement,
@@ -65,7 +71,7 @@ export const Address = (props) => {
 			await Notifications.confirmOrCancel('Deseja atualizar o endereço?', async (result) => {
 				if (result.isConfirmed) {
 					if (await validateForm()) {
-						updateAddress({zipCode: cep, number: `${props.number}`, complement}, props.id)
+						updateAddress({zipCode: cep, number, complement}, props.id)
 							.catch(err => Notifications.error(err.message))
 						await Notifications.success('Endereço atualizado com sucesso')
 					}
@@ -100,8 +106,8 @@ export const Address = (props) => {
 					</div>
 					<div className=''>
 						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
-							Estado
-							<input disabled="true" type="text" name="firstName" defaultValue={props.estado}
+							Rua
+							<input disabled="true" type="text" name="firstName" defaultValue={props.rua}
 										 className={`bg-transparent border-none text-2xl opacity-50`}/>
 						</label>
 					</div>
@@ -114,15 +120,16 @@ export const Address = (props) => {
 					</div>
 					<div className=''>
 						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
-							Rua
-							<input disabled="true" type="text" name="firstName" defaultValue={props.rua}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+							Número
+							<input disabled={address.disabled}onChange={handleNumberChange} type="text" name="número"
+								defaultValue={number}
+										 className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`}/>
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							Complemento
-							<input disabled={address.disabled} onChange={handleComplementChange} type="text" name="firstName"
+							<input disabled={address.disabled} onChange={handleComplementChange} type="text" name="complemento"
 										 defaultValue={complement}
 										 className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`}/>
 						</label>

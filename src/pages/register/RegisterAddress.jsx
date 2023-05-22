@@ -64,7 +64,7 @@ export function RegisterAddress() {
 			},
 		};
 
-		if (registerType === "professional") {
+		if (registerType == "professional") {
 			allInfos.isVet = "true";
 			userInfos.address = data;
 			localStorage.setItem("__user_register_infos", JSON.stringify(userInfos));
@@ -73,7 +73,7 @@ export function RegisterAddress() {
 			const response = await registerUser(allInfos);
 			let emailError = response?.response || "";
 			let cpfError = response?.response?.error || "";
-
+			console.log(response);
 
 			if (response.response.id) {
 				await Notifications.success('Usuário criado com sucesso')

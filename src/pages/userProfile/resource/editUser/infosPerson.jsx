@@ -232,7 +232,7 @@ export const Pessoais = (props) => {
 				</div>
 			</div>
 			<div className='w-full sm:mr-10'>
-				<p className='flex flex-col text-2xl gap-4 text-[#A9A9A9] pt-3 sm:pt-20 mr-0 sm:mr-20 w-full sm:w-10/12 '> Biografia
+				<p className='flex flex-col text-2xl gap-4 text-[#A9A9A9] pt-3 sm:pt-20 mr-0 sm:mr-20 w-full sm:w-10/12 '> Biografia (Máximo 1000 caracteres)
 					<TextareaAutosize disabled={personalInfos.disabled} id="my-textarea" onBlurCapture={handleTextChange}
 						onChange={handleTextChange} defaultValue={bio}
 						className="block w-full p-2 rounded resize-none" />

@@ -58,6 +58,14 @@ export const Prossionais = (props) => {
 		fetchDataAll()
 	}, [props.area, props.formacao, props.instituicao, props.crmv, props.dataFormacao, props.dataInicioAtuacao])
 
+	let hoje = new Date();
+	let ano = hoje.getFullYear();
+	let mes = hoje.getMonth() + 1;
+	let dia = hoje.getDate();
+	if (mes < 10) mes = '0' + mes
+	if (dia < 10) dia = '0' + dia
+	let dataFormatada = `${ano}-${mes}-${dia}`;
+
 	const handleCheckBoxEspecialidadesChange = async (event) => {
 		const { id } = event.target;
 		const index = checkedBoxes.findIndex((item) => item.id === parseInt(id));
@@ -194,13 +202,13 @@ export const Prossionais = (props) => {
 						<div>
 							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 								Data de Formação
-								<input type="date" id='cep' name="area" defaultValue={dataFormacao} onChange={handleDataFormacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+								<input	max={dataFormatada} type="date" id='cep' name="area" defaultValue={dataFormacao} onChange={handleDataFormacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl w-full text-[#000] ${professionalInfos.textColor}`} />
 							</label>
 						</div>
 						<div className='flex justify-start md:ml-24'>
-							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9] w-full'>
 								Início de atuação
-								<input type="date" id='cep' name="area" defaultValue={dataInicioAtuacao} onChange={handleDataAtuacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+								<input max={dataFormatada} type="date" id='cep' name="area" defaultValue={dataInicioAtuacao} onChange={handleDataAtuacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
 							</label>
 						</div>
 					</div>
