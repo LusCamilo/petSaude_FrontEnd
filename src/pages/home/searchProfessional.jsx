@@ -32,76 +32,62 @@ export const SearchProfessional = () => {
 	}
 
 	const setMudarFiltro = (value) => {
+		console.log(value);
 		setOndeProcurar(value)
 		onSearchIt({ search: inputSearch, searchIt: value })
 	};
 
-	function citySearch() {
-		setFiltro("city");
-		setOndeProcurar("value")
-		onSearchIt({ search: inputSearch })
-	}
-
 	const [umCorteRapidao, setUmCorteRapidao] = useState('')
 
-	console.log(localStorage.getItem("__Vet_WhenSearch"));
+
+// Função para buscar veterinários com base no filtro de cidade
+async function getVetsByCity(city) {
+	try {
+	  const { response } = await getAllVets(); // Função que busca todos os veterinários
+	  const filteredVets = await response.filter(vet =>  axios.get(`https://viacep.com.br/ws/${vet.Address.cep}/json/`) == city);
+	  return filteredVets;
+	} catch (error) {
+	  console.error('Erro ao buscar veterinários por cidade:', error);
+	  return [];
+	}
+  }
+  
+  // Função de filtro principal
+  async function filterVets(data, filtro) {
+	try {
+	  let filteredVets = [];
+	  
+	  if (data.search == '') {
+		filteredVets = await getAllVets(); // Função que busca todos os veterinários
+	  } else if (filtro !== 'city') {
+		const { response } = await getUsers(data.search, filtro); // Função que busca veterinários com base em dados específicos
+		if (response.includes('Nenhum veterinário atende aos filtros de pesquisa')) {
+		  filteredVets = shuffleArray([]);
+		} else {
+		  filteredVets = response;
+		}
+	  } else {
+		filteredVets = await getVetsByCity(data.search); // Função que busca veterinários por cidade
+	  }
+	  
+	 const resultado = setVets(await shuffleArray(filteredVets));
+	  
+	 console.log(resultado); // Função para atualizar o estado "vets" com o array embaralhado
+	} catch (error) {
+	  console.error('Erro ao filtrar veterinários:', error);
+	}
+  }
+  
+	// useEffect(() => {
+	//   // Chamada inicial para carregar todos os veterinários
+	//   filterVets({ search: '', filtro: '' }, '');
+	// }, []);
+  
 
 	const onSearch = async (data) => {
 		localStorage.setItem("__Vet_Search", data.search);
 		try {
-			if (data.search === "") {
-				let response = await getAllVets();
-				let result = response.response;
-
-				let json = Object.values(result);
-				let arrayEmbaralhado = shuffleArray(json);
-				setVets(arrayEmbaralhado);
-			} else {
-				if (filtro !== "city") {
-					let response = await getUsers(data.search, ondeProcurar);
-					let result = response.response;
-					let json;
-					if (result === "Nenhum veterinário atende aos filtros de pesquisa") {
-						json = [];
-						showToastMessage();
-					} else {
-						json = result.filter(
-							(item) =>
-								item.personName
-									.toLowerCase()
-									.includes(data.search.toLowerCase()) ||
-								item.userName.toLowerCase().includes(data.search.toLowerCase())
-						);
-					}
-					setUmCorteRapidao("");
-					let arrayEmbaralhado = shuffleArray(json);
-					setVets(arrayEmbaralhado);
-				} else {
-					let response = await getAllVets();
-					let procurarCidade = data.search;
-					let result = response.response;
-					let json = Object.values(result);
-					if (procurarCidade === "") {
-						setVets(response);
-					} else {
-						let jsonFinal = json.filter(async (item) => {
-							const response = await axios.get(
-								`https://viacep.com.br/ws/${item.Address.cep}/json/`
-							);
-							let pessoa = response.data.localidade;
-							return pessoa
-								.toLowerCase()
-								.includes(procurarCidade.toLowerCase());
-						});
-						if (jsonFinal === []) {
-							showToastMessage();
-						}
-
-						let arrayEmbaralhado = shuffleArray(jsonFinal);
-						setVets(arrayEmbaralhado)
-					}
-				}
-			}
+			await filterVets(data, filtro)
 		} catch (error) {
 			console.error(error);
 		}
@@ -129,22 +115,23 @@ export const SearchProfessional = () => {
 	  }
 
 	const onSearchIt = async (data) => {
+		localStorage.setItem("__Vet_Search", data.search);
 		try {
-			if (data.search === "") {
+			if (data.search == "") {
 				let response = await getAllVets();
 				let result = response.response;
+
 				let json = Object.values(result);
 				let arrayEmbaralhado = shuffleArray(json);
-				setVets(arrayEmbaralhado)
+				setVets(arrayEmbaralhado);
 			} else {
-				let json;
-				if (filtro !== "city") {
-					localStorage.setItem("__Vet_Search", data.search);
-					let response = await getUsers(data.search, data.searchIt);
+				if (filtro != "city") {
+					let response = await getUsers(data.search, ondeProcurar);
 					let result = response.response;
+					let json;
 					if (result === "Nenhum veterinário atende aos filtros de pesquisa") {
-						showToastMessage();
 						json = [];
+						showToastMessage();
 					} else {
 						json = result.filter(
 							(item) =>
@@ -154,25 +141,33 @@ export const SearchProfessional = () => {
 								item.userName.toLowerCase().includes(data.search.toLowerCase())
 						);
 					}
+					setUmCorteRapidao("");
 					let arrayEmbaralhado = shuffleArray(json);
-					setVets(arrayEmbaralhado)
+					setVets(arrayEmbaralhado);
 				} else {
 					let response = await getAllVets();
+					let procurarCidade = data.search;
 					let result = response.response;
 					let json = Object.values(result);
-					json = result.filter(
-						(item) =>
-							item.personName
-								.toLowerCase()
-								.includes(data.search.toLowerCase()) ||
-							item.userName.toLowerCase().includes(data.search.toLowerCase())
-					);
-					setUmCorteRapidao(inputSearch)
-					if (json === []) {
-						showToastMessage()
+					if (procurarCidade == "") {
+						setVets(response);
+					} else {
+						let jsonFinal = await Promise.all(
+							json.map(async (item) => {
+							  let response = await axios.get(`https://viacep.com.br/ws/${item.Address.cep}/json/`);
+							  let pessoa = response.data.localidade;
+							  return { item, pessoa };
+							})
+						  );
+						  
+						  jsonFinal = jsonFinal.filter((item) =>
+							item.pessoa.toLowerCase().includes(procurarCidade.toLowerCase())
+						  );
+						  
+						  let arrayEmbaralhado = shuffleArray(jsonFinal.map((item) => item.item));
+						  setVets(arrayEmbaralhado);
+						  
 					}
-					let arrayEmbaralhado = shuffleArray(json);
-					setVets(arrayEmbaralhado)
 				}
 			}
 		} catch (error) {
@@ -300,8 +295,9 @@ export const SearchProfessional = () => {
 					</div>
 				</div>
 				<div>
-					{vets.map((vet) => {
+					{/* {vets.map((vet) => {
 						if (vet.id != undefined) {
+
 							return (
 								<CardProfessionals
 									key={vet.id}
@@ -318,7 +314,7 @@ export const SearchProfessional = () => {
 								/>
 							);
 						}
-					})}
+					})} */}
 					<ToastContainer
 						position="top-right"
 						autoClose={2000}

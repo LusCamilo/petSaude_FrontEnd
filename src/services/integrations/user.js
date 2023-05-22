@@ -30,6 +30,7 @@ export async function registerVet(vetInfos) {
 			},
 			body: JSON.stringify(vetInfos)
 		})
+		console.log(response);
 		return await response.json()
 	} catch (err) {
 		console.log(err.message);
