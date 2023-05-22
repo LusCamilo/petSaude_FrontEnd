@@ -3,6 +3,16 @@ import {UpgradeUser} from '../../../upgradeUser'
 import { PetHeader } from '../../../pet/petHeader';
 
 export const ProfissonaisInfos = () => {
+
+
+	let hoje = new Date();
+	let ano = hoje.getFullYear();
+	let mes = hoje.getMonth() + 1;
+	let dia = hoje.getDate();
+	if (mes < 10) mes = '0' + mes
+	if (dia < 10) dia = '0' + dia
+	let dataFormatada = `${ano}-${mes}-${dia}`;
+
 	let largura = window.innerWidth
 	if(largura > 768){
 		return(
@@ -32,11 +42,11 @@ export const ProfissonaisInfos = () => {
 						</fieldset>
 						<fieldset className="border border-solid border-black p-3 rounded-lg w-11/12">
 							<legend className="text-sm">Data de formação</legend>
-							<input type="date" name="cep" className='bg-transparent border-none text-2xl text-[#000]' />
+							<input 	max={dataFormatada} type="date" name="cep" className='bg-transparent border-none text-2xl text-[#000]' />
 						</fieldset>
 						<fieldset className="border border-solid border-black p-3 rounded-lg w-11/12">
 							<legend className="text-sm">Início de atuação</legend>
-							<input type="date" name="cep" className='bg-transparent border-none text-2xl text-[#000]' />
+							<input 	max={dataFormatada} type="date" name="cep" className='bg-transparent border-none text-2xl text-[#000]' />
 						</fieldset>
 
 

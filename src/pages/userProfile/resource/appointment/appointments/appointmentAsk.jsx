@@ -19,6 +19,7 @@ export const AppointmentAsk = () => {
     const [divNothing, setDivNothing] = useState('hidden')
     const [duracao, setDuracao] = useState(0)
     const [preco, setPreco] = useState(0.0)
+    
 
 
 
@@ -309,22 +310,22 @@ export const AppointmentAsk = () => {
                 </div>
                 {pedidos.map(pedido => {
                     return (
-                        <div key={pedido.id} className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 p-20'>
+                        <div key={pedido.id} className='border-none sm:border-solid border w-2/4 rounded-3xl border-black flex flex-col gap-0 p-14'>
                             <div className='flex flex-row items-center md:content-center md:text-center text-5xl gap-4'>
                                 <img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
                                 <h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
                             </div>
-                            <div className='flex md:justify-between pr-20'>
+                            <div className='flex md:justify-between pr-20 pt-5'>
                                 <div className='flex flex-col justify-start w-full sm:w-1/3 '>
                                     <div>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                        <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                             Nome
                                             <input type="text" disabled placeholder={pedido.nomePet} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                         </label>
                                     </div>
 
                                     <div>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                        <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                             Tamanho
                                             <input type="text" disabled placeholder={pedido.tamanho} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                         </label>
@@ -332,13 +333,13 @@ export const AppointmentAsk = () => {
                                 </div>
                                 <div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3'>
                                     <div className='w-full'>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                        <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                             Sexo
                                             <input type="text" disabled placeholder={pedido.sexo} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                         </label>
                                     </div>
                                     <div className='w-full'>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                        <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                             Idade
                                             <input type="text" disabled placeholder={pedido.idade} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                         </label>
@@ -346,7 +347,7 @@ export const AppointmentAsk = () => {
                                 </div>
                                 <div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3'>
                                     <div className='w-full'>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                        <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                             Espécie
                                             <input type="text" disabled placeholder={pedido.especie} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                         </label>
@@ -361,14 +362,14 @@ export const AppointmentAsk = () => {
                                 <div className='flex flex-col sm:flex-row justify-between pr-20'>
                                     <div className={`${tutorStatus} flex-row justify-start w-full`}>
                                         <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]' >
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]' >
                                                 Nome
                                                 <input type="text" disabled placeholder={pedido.dono} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                             </label>
                                         </div>
 
                                         <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                                 Telefone
                                                 <input type="text" disabled placeholder={pedido.telefone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                             </label>
@@ -384,14 +385,14 @@ export const AppointmentAsk = () => {
                                 <div className='flex flex-col sm:flex-row justify-between pr-20'>
                                     <div className={`${tutorStatus} flex-row justify-start w-full`}>
                                         <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]' >
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]' >
                                                 Nome
                                                 <input type="text" disabled placeholder={pedido.vetName} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                             </label>
                                         </div>
 
                                         <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                                 Telefone
                                                 <input type="text" disabled placeholder={pedido.vetPhone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                             </label>
@@ -403,13 +404,13 @@ export const AppointmentAsk = () => {
                             <div className='flex flex-col justify-between pr-20'>
                                 <div className='flex flex-row justify-start w-full sm:w-full '>
                                     <div>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
+                                        <label className='flex flex-col text-2xl text-[#A9A9A9] gap-0'>
                                             Data
                                             <input type="text" disabled placeholder={pedido.dataConsulta} className='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl ' />
                                         </label>
                                     </div>
                                     <div className='w-full'>
-                                        <label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
+                                        <label className='flex flex-col text-2xl text-[#A9A9A9] gap-0'>
                                             Horário
                                             <input type="text" disabled placeholder={pedido.horario} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl ' />
                                         </label>
@@ -417,22 +418,22 @@ export const AppointmentAsk = () => {
                                 </div>
                                 <div className='flex flex-row sm:flex-col justify-start content-center w-full '>
                                     <div>
-                                        <label class='flex flex-col text-xl text-[#A9A9A9]'>
+                                        <label class='flex flex-col text-2xl text-[#A9A9A9]'>
                                             Descrição
-                                            <p>
+                                            <p className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-xl '>
                                                 {pedido.descricao}
                                             </p>
-                                            {/* <input type="text" disabled placeholder={pedido.descricao} class='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl'/> */}
+                                            {/* <input type="text" disabled placeholder={pedido.descricao} class='bg-transparent placeholder:text-gray-400 class='bg-transparent placeholder:text-gray-400 '/> */}
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <span className={`${buttonAceitar} flex justify-start`}>
+                            <span className={`${buttonAceitar} flex justify-center w-5/6 pl-40`}>
                                 <div className={`${tutorStatus} flex-col mb-2 text-3xl pt-5`}>
                                     <h2>Confirmar consulta</h2>
-                                    <div className='w-56 flex justify-center gap-5 flex-col'>
+                                    <div className='w-56 flex justify-center gap-5 flex-col pl-10'>
                                         <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full pt-5'>
-                                            Duracação
+                                            Duração
                                             <input type="time" id="duracao" name="duracao" min="00:01" className='w-full text-2xl pl-2'
                                                 defaultValue={duracao}
                                                 onChange={(e) => {
@@ -446,10 +447,10 @@ export const AppointmentAsk = () => {
                                         <label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
                                             Valor
                                             <div className='flex items-center justify-center gap-2'>
-                                                <span className='text-2xl align-bottom'>R$  </span>
+                                                <span className='text-2xl align-bottom '>R$</span>
                                                 <input
                                                     type="text"
-                                                    className='min-w-full text-2xl pl-2'
+                                                    className='min-w-full text-2xl mr-8'
                                                     id="preco"
                                                     value={preco}
                                                     onChange={formatarPreco}
@@ -459,31 +460,36 @@ export const AppointmentAsk = () => {
                                     </div>
                                 </div>
                             </span>
-                            <div className='flex flex-row justify-between pt-5'>
-                                {/* <span className={`${buttonAceitar}`}> */}
-                                <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-1/2 h-14 border rounded-full text-xl font-normal mr-20`}
-                                    onClick={() => recusarAppointment(pedido.idAppoint)}
-                                >
-                                    Recusar
-                                </button>
-                                {/* </span> */}
-                                <button className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-1/2 h-14 mt-10 border rounded-full text-xl font-normal mr-20`}
-                                    onClick={handleClickAgain}
-                                >
-                                    Ver menos informações
-                                </button>
-                                <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-1/2 h-14 border rounded-full text-xl font-normal mr-20`}
-                                    onClick={handleClick}
-                                >
-                                    Ver mais informações
-                                </button>
-                                <span className={`${buttonAceitar}`}>
+                           <div className='flex flex-row justify-between pt-5'>
+                                <span className={`flex justify-start`}>
+                                        <button className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-1/2 h-14 border rounded-full text-xl font-normal mr-20`}
+                                            onClick={() => recusarAppointment(pedido.idAppoint)}
+                                        >
+                                            Recusar
+                                        </button>
+                                    
+                                        <button className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-4/5 h-14 mt-10 pl-3 pr-3 border rounded-full text-xl font-normal mr-20`}
+                                            onClick={handleClickAgain}
+                                        >
+                                            Ver menos informações
+                                        </button>
+                                </span> 
+                                
+                               
+                                <span className={`${buttonAceitar} flex justify-end`}>
+                                    <button className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-60 h-14 border rounded-full text-xl font-normal `}
+                                        onClick={handleClick}
+                                    >
+                                        Ver mais informações
+                                    </button>
+                                
                                     <button className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal mr-20`}
                                         onClick={() => marcarAppointment(pedido.idAppoint)}>
                                         Marcar
                                     </button>
-                                </span>
+                                </span> 
                             </div>
+
                             <ToastContainer
                                 position="top-right"
                                 autoClose={1500}

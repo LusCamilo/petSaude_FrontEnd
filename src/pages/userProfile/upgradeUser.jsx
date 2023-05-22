@@ -106,6 +106,7 @@ export const UpgradeUser = () => {
 		async function fetchData() {
 			const allInfosUser = (await InfosUser())
 			const address = (await getAddressFromZipCode(allInfosUser.cep))
+			console.log(allInfosUser.number);
 			setInfos(
 				{
 					userName: allInfosUser.userName,
@@ -125,6 +126,7 @@ export const UpgradeUser = () => {
 					estado: address.uf,
 					cidade: address.localidade,
 					complemento: allInfosUser.complement,
+					number: allInfosUser.number,
 					profilePhoto: allInfosUser.profilePhoto,
 					profileBannerPhoto: allInfosUser.profileBannerPhoto,
 					institution: allInfosUser.institution,
@@ -158,7 +160,7 @@ export const UpgradeUser = () => {
 				<Pessoais name={infos.firstName} lastName={infos.lastName} cpf={infos.cpf} rg={infos.rg} celular={infos.celular}
 									telefone={infos.telefone} text={infos.text} className=''/>
 				<Address id={infos.addressId} viaCep={getAddressFromZipCode} cep={infos.cep} bairro={infos.bairro}
-								 rua={infos.rua} estado={infos.estado} cidade={infos.cidade} complemento={infos.complemento}
+								 rua={infos.rua} estado={infos.estado} cidade={infos.cidade} number={infos.number} complemento={infos.complemento}
 								 className=''/>
 
 				{localStorage.getItem("__user_isVet") === 'true' ?

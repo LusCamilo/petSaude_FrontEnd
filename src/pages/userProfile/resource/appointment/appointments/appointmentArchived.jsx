@@ -278,61 +278,61 @@ export const AppointmentArchived = (props) => {
                     {pedidos.map(pedido =>{
                          const cor = pedido.estado == 'CONCLUDED' ? 'bg-[#09738A]' : 'bg-[#F1EAC6]'
                         return(
-                            <div className={`${cor} border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 p-20`}>
+                            <div className={`${cor} border-none sm:border-solid border h-1/6 rounded-3xl border-black flex flex-col gap-0 p-14 `}>
                                 <div className='flex flex-row items-center content-center text-center text-6xl gap-4'>
                                     <img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
-                                    <h2 className='font-normal flexjustify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
+                                    <h2 className='font-normal flex justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
                                 </div>
-                                <div className='flex flex-col sm:flex-row justify-between pr-20'>
-                                    <div className='flex flex-col justify-start w-full sm:w-1/3 '>
+                                <div className='flex flex-col sm:flex-row justify-between pr-10 pt-5'>
+                                    <div className='flex flex-col justify-start w-full sm:w-1/3 mr-5'>
                                         <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                                 Nome
                                                 <input type="text" disabled placeholder={pedido.nomePet} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>
                                         
                                         <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                                 Tamanho
                                                 <input type="text" disabled placeholder={pedido.tamanho} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>
                                     </div>
-                                    <div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3'>
+                                    <div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3 mr-5'>
                                         <div className='w-full'>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                                 Sexo
                                                 <input type="text" disabled placeholder={pedido.sexo} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>   
                                         <div className='w-full'>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                             Idade
                                             <input type="text" disabled placeholder={pedido.idade} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>                        
                                     </div>
-                                    <div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3'>
+                                    <div className='flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3 mr-20'>
                                         <div className='w-full'>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                                 Espécie
-                                                <input type="text" disabled placeholder={pedido.especie} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
+                                                <input type="text" disabled placeholder={pedido.especie} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl'/>
                                             </label>
                                         </div>                   
                                     </div>
                                 </div>
-                                <h2 className='font-normal  flex justify-center sm:justify-start font-sans'>Informações de consulta </h2>
-                                <div className='flex flex-col justify-between pr-20'>
-                                    <div className='flex flex-row justify-start w-full sm:w-full '>
-                                        <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
+                                <h2 className='font-normal flex justify-center sm:justify-start font-sans text-3xl pt-5'>Informações de consulta </h2>
+                                <div className='flex flex-col justify-between pr-5 pt-5'>
+                                    <div className='flex flex-row justify-start w-full sm:w-full pt-5'>
+                                        <div className='mr-24'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9] gap-0'>
                                             Data
                                             <input type="text" disabled placeholder={pedido.dataConsulta} className='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>
                                         <div className='w-full'>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9] gap-0'>
                                                 Horário
                                                 <input type="text" disabled placeholder={pedido.horario} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
                                             </label>
@@ -340,16 +340,16 @@ export const AppointmentArchived = (props) => {
                                     </div>
                                     <div className='flex flex-row sm:flex-col justify-start content-center w-full '>
                                         <div>
-                                            <label className='flex flex-col text-xl text-[#A9A9A9]'>
+                                            <label className='flex flex-col text-2xl text-[#A9A9A9]'>
                                                 Descrição
                                                 <input type="text" disabled placeholder={pedido.descricao} className='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl '/>
                                             </label>
                                         </div>                 
                                     </div>
                                 </div>
-                                <div className='flex flex-row items-center content-center text-bottom gap-2'>
-                                    <h2 className='font-normal  flex justify-center sm:justify-start font-sans'>Status:</h2>
-                                    <div className='text-[#49454F] font-normal text-lg font-sans'>{pedido.status}</div>
+                                <div className='flex flex-row items-center content-center text-bottom gap-3 pt-5 text-3xl'>
+                                    <h2 className='font-normal flex justify-center sm:justify-start font-sans '>Status:</h2>
+                                    <div className='text-[#49454F] font-normal  font-sans'>{pedido.status}</div>
                                 </div>
                                 <div className={`${isVet}`}>
                                 <button 

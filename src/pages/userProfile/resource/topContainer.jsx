@@ -112,13 +112,10 @@ export const TopContainer = (props) => {
 	}
 
 	function isValidImageUrl(url) {
-		console.log(url);
 		const imageUrlRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
 		return imageUrlRegex.test(url);
 	}
 
-	
-	console.log(props);
 
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>
