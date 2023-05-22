@@ -2,9 +2,9 @@ import React from "react";
 import linha from "../../../assets/svg/linha.svg"
 import logo from "../../../assets/svg/deco.svg"
 import { Link } from 'react-router-dom';
-import Lupa from "../../../assets/svg/lupa.svg"
-import Doctor from "../../../assets/svg/medico 1.svg";
-import Local from "../../../assets/svg/localizacao.svg";
+import { BiSearch } from "react-icons/bi";
+import { FaUserNurse } from "react-icons/fa";
+import { GoLocation } from "react-icons/go";
 import "./Footer.css"
 
 export const Footer = () => {
@@ -34,15 +34,20 @@ export const Footer = () => {
 						</ul>
 					</div>
 					<div className="basis-1/4 hidden md:flex flex-col items-center"> 
-						<h5 className="flex text-xs md:text-2xl w-1/8 font-semibold font-montserrat items-center justify-center flex-row gap-4"><img src={Lupa} alt="Icone de uma lupa" className="w-7 y-7" /> Pesquise :</h5>
+						<h5 className="flex text-xs md:text-2xl w-1/8 font-semibold font-montserrat items-center justify-center flex-row gap-4">
+						<BiSearch className="text-3xl"/>
+							 Pesquise :
+						</h5>
 						<ul className="flex items-center justify-center flex-col gap-4 py-2 px-7 pt-3.5">
-							<li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full xl:h-14 xl:w-72 xl:items-center"><img className="w-10" src={Doctor} alt="Icone de um médico" />
+							<li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full xl:h-14 xl:w-72 xl:items-center">
+								<FaUserNurse className="text-3xl "/>
 								<Link className=" duration-500 flex flex-col-reverse relative transition-all
                                 hover:after:w-full" to="/home/search-professionals">
 									Especialistas da área
 								</Link>
 							</li>
-							<li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full xl:h-14 xl:w-72 xl:items-center"><img className="w-10" src={Local} alt="Icone de um pino"  />
+							<li className="flex text-xs md:text-lg font-montserrat gap-4 bg-[#78A890] px-4 rounded-full xl:h-14 xl:w-72 xl:items-center">
+								<GoLocation className="text-3xl "/>
 								<Link className=" duration-500 flex flex-col-reverse relative transition-all
                                 hover:after:w-full" to="/home/search-professionals">
 									Veterinários próximos

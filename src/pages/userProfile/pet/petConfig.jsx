@@ -340,7 +340,7 @@ export const PetConfig = (props) => {
 								</label>
 							</div>
 						</div>
-						<div className='w-full sm:w-1/3 flex justify-end content-center'>
+						<div className='w-full sm:w-1/3 flex justify-between content-center'>
 							<button className='w-full sm:w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg' onClick={() => {
 
 								if (document.getElementById('petInfos').disabled === true) {
@@ -361,10 +361,10 @@ export const PetConfig = (props) => {
 						</div>
 					</div>
 				</div>
-				<div className='w-full flex justify-between mb-30'>
+				<div className='w-full flex justify-between mb-30 '>
 					<Dialog.Root>
 						<Dialog.Trigger asChild>
-							<button className='mt-3' asChild>
+							<button className='mt-3 ' asChild>
 								<img src={lixeira} alt="" />
 							</button>
 						</Dialog.Trigger>
@@ -424,7 +424,7 @@ export const PetConfig = (props) => {
 							</Dialog.Content>
 						</Dialog.Portal>
 					</Dialog.Root>
-					<ToastContainer
+					{/* <ToastContainer
 						position="top-right"
 						autoClose={5000}
 						hideProgressBar={false}
@@ -459,7 +459,7 @@ export const PetConfig = (props) => {
 						draggable
 						pauseOnHover
 						theme="light"
-						/>
+						/> */}
 				</div>
 			</main>
 		</section>
