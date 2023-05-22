@@ -1,24 +1,18 @@
 import React, {useEffect, useState} from 'react';
 // import {Link} from 'react-router-dom';
-import {Address} from './resource/editUser/address';
-import {Pessoais} from './resource/editUser/infosPerson';
-import {Prossionais} from './resource/editUser/infosProfissional';
+import { Address } from './resource/editUser/address';
+import { Pessoais } from './resource/editUser/infosPerson';
+import { Prossionais } from './resource/editUser/infosProfissional';
 import './css/UpgradeUser.css';
-import {Pets} from './resource/editUser/allPets';
-// import Cadeado from '../../assets/svg/Lock.svg';
-// import Work from '../../assets/svg/Work.svg';
-// import Calendary from '../../assets/svg/calendary.svg';
-// import Local from '../../assets/svg/Gps.svg';
-// import Logout from '../../assets/svg/Logout.svg';
-import {Config} from "./resource/editUser/headerConfig.jsx";
-// import Arrow from '../../assets/svg/Arrow.svg';
-import lixeira from './/resource/img/Delete.svg'
-import lapis from './/resource/img/LapisColorido.svg'
-import {deleteClient, deleteVeterinary, getUser, getVeterinary} from '../../services/integrations/user';
+import { Pets } from './resource/editUser/allPets';
+import { Config } from "./resource/editUser/headerConfig.jsx";
+import { deleteClient, deleteVeterinary, getUser, getVeterinary } from '../../services/integrations/user';
 import Modal from 'react-modal';
-import {WarnRequest} from './pet/cards/warnTwo';
+import { WarnRequest } from './pet/cards/warnTwo';
 import Notifications from "../../utils/Notifications";
 // import {BsFillPersonFill} from "react-icons/bs";
+import { IoMdTrash } from "react-icons/io";
+
 
 const customStyles = {
 	content: {
@@ -118,6 +112,7 @@ export const UpgradeUser = () => {
 					personName: allInfosUser.personName,
 					firstName: allInfosUser.firstName,
 					lastName: allInfosUser.lastName,
+					profilePhoto: allInfosUser.profilePhoto,
 					cpf: allInfosUser.cpf,
 					rg: allInfosUser.rg,
 					celular: allInfosUser.cellphoneNumber,
@@ -169,15 +164,9 @@ export const UpgradeUser = () => {
 				{localStorage.getItem("__user_isVet") === 'true' ?
 					<>
 						<Prossionais area={infos.occupationArea} instituicao={infos.institution} dataFormacao={infos.formationDate}
-												 formacao={infos.formation} crmv={infos.crmv} dataInicioAtuacao={infos.startActingDate}
-												 className=''/>
-						<div className='fixed right-0 bottom-10 w-64 h-16 bg-[#1C1B1F] flex sm:hidden rounded-xl'>
-							<button
-								className='flex flex-row content-center justify-center items-center gap-3 text-[#A9A9A9] text-3xl h-16 rounded-xl w-64'>
-								<img src={lapis} alt=""/>
-								Habilitar Edição
-							</button>
-						</div>
+									formacao={infos.formation} crmv={infos.crmv} dataInicioAtuacao={infos.startActingDate}
+									className='' 
+						/>
 						<div className='w-full sm:flex justify-end'>
 							<button
 								className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64'
@@ -185,7 +174,7 @@ export const UpgradeUser = () => {
 									deleteVeterinary(localStorage.getItem('__user_id'), localStorage.getItem('__user_JWT'))
 									document.location.href = '/login'
 								}}>
-								<img src={lixeira} className='h-full' alt='Trash'/>
+								<IoMdTrash className='text-7xl'/>
 								Excluir perfil
 							</button>
 						</div>
@@ -197,7 +186,7 @@ export const UpgradeUser = () => {
 							<button
 								className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64'
 								onClick={handleDeleteUser}>
-								<img src={lixeira} className='h-full' alt='Trash'/>
+								<IoMdTrash className='text-7xl'/>
 								Excluir perfil
 							</button>
 							{/*<Modal*/}

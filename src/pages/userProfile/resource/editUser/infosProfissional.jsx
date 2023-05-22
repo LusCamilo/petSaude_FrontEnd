@@ -163,7 +163,7 @@ export const Prossionais = (props) => {
 
 	return (
 		<div className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col pl-2 md:p-10'>
-			<h2 className='text-5xl md:text-6xl font-bold font-sans text-center sm:text-left'>Informações Profissonais</h2>
+			<h2 className='text-5xl md:text-6xl font-bold font-sans text-center sm:text-left'>Informações Profissionais</h2>
 			<div className='flex flex-row justify-between'>
 				<div className='flex flex-col w-4/5'>
 					<div className='gap-1 sm:gap-10 mt-10 grid grid-cols-1 sm:grid-cols-2 sm:w-4/5'>
@@ -239,7 +239,7 @@ export const Prossionais = (props) => {
 					</div>
 				</div>
 				<div className='hidden sm:flex flex-col content-end aling-end pr-10 '>
-					<button className={`w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[${button.bgColor}] rounded-full drop-shadow-lg text-[${button.color}]`} onClick={() => {
+					<button className={`w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 rounded-full drop-shadow-lg hidden md:flex text-2xl bg-[${button.bgColor}] text-[${button.color}]`} onClick={() => {
 						if (professionalInfos.disabled == true) {
 							setProfessionalInfos({ disabled: false, textColor: '', text: 'Confirmar' })
 							setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
@@ -268,7 +268,7 @@ export const Prossionais = (props) => {
 							);
 						}
 					}}>
-						<img src={button.icon} alt="" />
+						<img src={button.icon} alt="" className='h-7'/>
 						{button.text}
 					</button>
 				</div>

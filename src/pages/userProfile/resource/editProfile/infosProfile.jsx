@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import lapis from "../../../../assets/svg/pencil.svg"
 import { UserPhoto } from './userPhoto';
+import { MdEdit } from 'react-icons/md';
+
 
 
 
@@ -67,7 +68,8 @@ export const InfosProfile = (props) => {
 
 				<div className="flex justify-betwen">
 					<div className='flex flex-col gap-14'>
-						<button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' onClick={() => {
+						<button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' 
+						onClick={() => {
 
 							if (document.getElementById('userInfo').disabled == true) {
 								userInfosDisableState({
@@ -81,7 +83,7 @@ export const InfosProfile = (props) => {
 								})
 							}
 						}}>
-							<img src={lapis} alt="" className='h-7'/>
+							<MdEdit className='text-4xl'/>	
 							Editar
 						</button>
 						<button
