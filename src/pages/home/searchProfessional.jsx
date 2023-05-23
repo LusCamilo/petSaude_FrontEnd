@@ -41,19 +41,30 @@ export const SearchProfessional = () => {
 
 
 // Função para buscar veterinários com base no filtro de cidade
+const axios = require('axios');
+
 async function getVetsByCity(city) {
-	try {
-	  const { response } = await getAllVets(); // Função que busca todos os veterinários
-	  const filteredVets = await response.filter(vet =>  axios.get(`https://viacep.com.br/ws/${vet.Address.cep}/json/`) == city);
-	  return filteredVets;
-	} catch (error) {
-	  console.error('Erro ao buscar veterinários por cidade:', error);
-	  return [];
-	}
+  try {
+    const { response } = await getAllVets(); // Função que busca todos os veterinários
+
+    const vetsWithCity = await Promise.all(response.map(async (vet) => {
+      const cepResponse = await axios.get(`https://viacep.com.br/ws/${vet.Address.cep}/json/`);
+      const vetCity = cepResponse.data.localidade;
+      return { ...vet, cidade: vetCity };
+    }));
+
+    const filteredVets = vetsWithCity.filter(vet => vet.cidade.includes(city));
+
+    return filteredVets;
+  } catch (error) {
+    console.error('Erro ao buscar veterinários por cidade:', error);
+    return [];
   }
+}
+
   
   // Função de filtro principal
-  async function filterVets(data, filtro) {
+  async function filterVets(data, filtro = "city") {
 	try {
 	  let filteredVets = [];
 	  
@@ -295,7 +306,7 @@ async function getVetsByCity(city) {
 					</div>
 				</div>
 				<div>
-					{/* {vets.map((vet) => {
+				 {vets.map((vet) => {
 						if (vet.id != undefined) {
 
 							return (
@@ -307,14 +318,13 @@ async function getVetsByCity(city) {
 									cep={vet.Address.cep}
 									formacao={vet.formation}
 									instituicao={vet.institution}
-									//especializacao={vet.VeterinaryEspecialities[0].specialities.name}
 									image={vet.profilePhoto}
 									dateStart={vet.startActingDate}
 									umCorteRapido={umCorteRapidao}
 								/>
 							);
 						}
-					})} */}
+					})}
 					<ToastContainer
 						position="top-right"
 						autoClose={2000}
