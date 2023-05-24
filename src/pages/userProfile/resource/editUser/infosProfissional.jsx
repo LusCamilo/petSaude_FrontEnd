@@ -131,6 +131,11 @@ export const Prossionais = (props) => {
 		}
 	};
 
+	const [formation, setFormation] = useState('1900-01-01')
+
+	const minStartActivy = (date) => {
+		setFormation(date);
+	};
 
 	const handleAreaAtuacaoChange = (e) => {
 		setAreaAtuacao(
@@ -202,13 +207,13 @@ export const Prossionais = (props) => {
 						<div>
 							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 								Data de Formação
-								<input	max={dataFormatada} type="date" id='cep' name="area" defaultValue={dataFormacao} onChange={handleDataFormacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl w-full text-[#000] ${professionalInfos.textColor}`} />
+								<input type="date" id='cep' name="area" defaultValue={dataFormacao} onChange={handleDataFormacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl w-full text-[#000] ${professionalInfos.textColor}`} max={dataFormatada}  />
 							</label>
 						</div>
 						<div className='flex justify-start md:ml-24'>
 							<label className='flex flex-col text-2xl text-[#A9A9A9] w-full'>
 								Início de atuação
-								<input max={dataFormatada} type="date" id='cep' name="area" defaultValue={dataInicioAtuacao} onChange={handleDataAtuacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} />
+								<input  type="date" id='cep' name="area" defaultValue={dataInicioAtuacao} onChange={handleDataAtuacaoChange} disabled={professionalInfos.disabled} className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`} max={dataFormatada} min={formation} />
 							</label>
 						</div>
 					</div>

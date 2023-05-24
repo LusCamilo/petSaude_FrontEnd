@@ -4,7 +4,7 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useForm } from "react-hook-form";
 import { PetHeader } from "./petHeader";
 import addMais from "../resource/img/AddMais.png";
-import linha from "../../../assets/svg/linha.svg";
+import cuidado from '../resource/img/Cuidado.png'
 import "../../reset.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { styled } from "@stitches/react";
@@ -12,13 +12,13 @@ import certo from "../resource/img/Certo.jpg";
 import lixeira from "../resource/img/Excluir.png";
 import { PetAddSucess } from "./cards/sucess";
 import * as Dialog from "@radix-ui/react-dialog";
-import { PetAddWarn } from "./cards/warn";
 import "./css/pet.css";
 import lapis from "../../../assets/svg/pencil.svg";
 import { getSpecialtiesPet } from "../../../services/integrations/specialtiesPet";
 import { getPet, petUpdate } from "../../../services/integrations/pet";
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
+import { petDelete } from "../../../services/integrations/pet";
 
 const customStyles = {
   content: {
@@ -68,6 +68,7 @@ const updatingPet = () => {
   });
 };
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
   authDomain: "petsaude-6ba51.firebaseapp.com",
@@ -116,70 +117,27 @@ const checkboxSpecialitiesPet = async () => {
   };
 };
 
-export const PetConfig = (props) => {
+export const PetConfig = () => {
+  // State variables
   const [especialidadesPet, setEspecialidadesPet] = useState([]);
   const [animalType, setAnimalType] = useState("");
-
-  const { register, handleSubmit, formState: errors, setValue } = useForm();
   const [selectedFile, setSelectedFile] = useState("");
   const [tamanho, setTamanho] = useState("");
   const [name, setName] = useState("");
   const [sexo, setSexo] = useState("");
-  function newName(event) {
-    setName(event.target.value);
-  }
-
   const [dateBorn, setDateBorn] = useState();
-  function newDateBorn(event) {
-    setDateBorn(event.target.value);
-  }
-
   const [infos, setInfos] = useState({});
-
-  useEffect(() => {
-    setSelectedFile(infos.photo ? infos.photo : "");
-    setName(infos.name ? infos.name : "");
-    setAnimalType(infos.specie ? infos.specie : "");
-    setTamanho(infos.size ? infos.size : "");
-    setSexo(infos.gender ? infos.gender : "");
-    setDateBorn(infos.birthDate ? infos.birthDate : "");
-    async function fetchDataSpecialities() {
-      const dadosPet = await checkboxSpecialitiesPet();
-      setEspecialidadesPet(dadosPet.allSpecialitiesPet);
-    }
-    async function fetchData() {
-      const allInfosPet = await InfosUser();
-      const dataFormation = allInfosPet.birthDate.split("T");
-      let data = dataFormation[0].split("-");
-      const newData = new Date(data[0], data[1], data[2]);
-
-      setInfos({
-        id: allInfosPet.id,
-        name: allInfosPet.name,
-        birthDate: newData.toISOString().slice(0, 10),
-        photo: allInfosPet.photo,
-        microship: allInfosPet.microship,
-        size: allInfosPet.petSize,
-        gender: allInfosPet.petGender,
-        ownerID: allInfosPet.ownerId,
-        specie: allInfosPet.nameSpecie,
-      });
-    }
-    fetchData();
-    fetchDataSpecialities();
-  }, [
-    infos.photo,
-    infos.name,
-    infos.specie,
-    infos.size,
-    infos.gender,
-    infos.birthDate,
-  ]);
-
   const [petInfosDisable, petInfosDisableState] = useState({
     disable: true,
-    class: " text-slate-400",
+    class: "text-slate-400",
   });
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsClose, setIsClose] = React.useState(false);
+
+  // Form validation
+  const { register, handleSubmit, formState: errors, setValue } = useForm();
+
+  // Styled components
   const StyledContent = styled(DropdownMenu.Content, {
     minWidth: 130,
     backgroundColor: "white",
@@ -202,6 +160,16 @@ export const PetConfig = (props) => {
   const StyledArrow = styled(DropdownMenu.Arrow, {
     fill: "white",
   });
+
+  // Event handlers
+  function newName(event) {
+    setName(event.target.value);
+  }
+
+  function newDateBorn(event) {
+    setDateBorn(event.target.value);
+  }
+
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
     const storageRef = ref(storage, `Pet/${file.name}`);
@@ -214,18 +182,73 @@ export const PetConfig = (props) => {
       });
   };
 
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
   function openModal() {
     setIsOpen(true);
   }
 
+  function closeModalError() {
+    console.log("Fechar close");
+    setIsClose(false);
+    console.log(modalIsOpen);
+  }
+
+  function openModal() {
+    setIsClose(true);
+  }
+
   function closeModal() {
+    console.log("Fechar close");
     setIsOpen(false);
+    console.log(modalIsOpen);
   }
 
   function afterOpenModal() {}
 
+  // Fetch data and initialization
+  useEffect(() => {
+    setSelectedFile(infos.photo ? infos.photo : "");
+    setName(infos.name ? infos.name : "");
+    setAnimalType(infos.specie ? infos.specie : "");
+    setTamanho(infos.size ? infos.size : "");
+    setSexo(infos.gender ? infos.gender : "");
+    setDateBorn(infos.birthDate ? infos.birthDate : "");
+
+    async function fetchDataSpecialities() {
+      const dadosPet = await checkboxSpecialitiesPet();
+      setEspecialidadesPet(dadosPet.allSpecialitiesPet);
+    }
+
+    async function fetchData() {
+      const allInfosPet = await InfosUser();
+      const dataFormation = allInfosPet.birthDate.split("T");
+      let data = dataFormation[0].split("-");
+      const newData = new Date(data[0], data[1], data[2]);
+
+      setInfos({
+        id: allInfosPet.id,
+        name: allInfosPet.name,
+        birthDate: newData.toISOString().slice(0, 10),
+        photo: allInfosPet.photo,
+        microship: allInfosPet.microship,
+        size: allInfosPet.petSize,
+        gender: allInfosPet.petGender,
+        ownerID: allInfosPet.ownerId,
+        specie: allInfosPet.nameSpecie,
+      });
+    }
+
+    fetchData();
+    fetchDataSpecialities();
+  }, [
+    infos.photo,
+    infos.name,
+    infos.specie,
+    infos.size,
+    infos.gender,
+    infos.birthDate,
+  ]);
+
+  // Other functions
   let hoje = new Date();
   let ano = hoje.getFullYear();
   let mes = hoje.getMonth() + 1;
@@ -440,14 +463,21 @@ export const PetConfig = (props) => {
         <div className="w-full flex justify-between mb-30">
           <Dialog.Root>
             <Dialog.Trigger asChild className="w-full flex justify-between">
-              <button className="mt-3" asChild>
+              <button className="mt-3" asChild onClick={ 
+                () => {
+                  console.log("bah rato");
+                  deletingPet(infos.id)
+                  petDelete(localStorage.getItem('__pet_id'))
+                  setTimeout(() => {
+                    document.location.href = "/profile/configuration";
+                  }, 3000); 
+                }}>
                 <img src={lixeira} alt="" />
               </button>
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="DialogOverlay" />
               <Dialog.Content className="DialogContent" class="cardPet">
-                <PetAddWarn delete={deletingPet} />
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>
@@ -503,42 +533,18 @@ export const PetConfig = (props) => {
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>
-          {/* <ToastContainer
-						position="top-right"
-						autoClose={5000}
-						hideProgressBar={false}
-						newestOnTop={false}
-						closeOnClick
-						rtl={false}
-						pauseOnFocusLoss
-						draggable
-						pauseOnHover
-						theme="light"
-						/>
-						<ToastContainer
-						position="top-right"
-						autoClose={2000}
-						hideProgressBar={false}
-						newestOnTop={false}
-						closeOnClick
-						rtl={false}
-						pauseOnFocusLoss
-						draggable
-						pauseOnHover
-						theme="light"
-						/>
-						<ToastContainer
-						position="top-right"
-						autoClose={1000}
-						hideProgressBar={false}
-						newestOnTop={false}
-						closeOnClick
-						rtl={false}
-						pauseOnFocusLoss
-						draggable
-						pauseOnHover
-						theme="light"
-						/> */}
+          <ToastContainer
+            position="top-right"
+            autoClose={100}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
         </div>
       </main>
     </section>
