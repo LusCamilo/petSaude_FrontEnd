@@ -143,11 +143,11 @@ export const Appointment = (props) => {
 
 
 	return (
-		<section id='buttonCanceled' className=" w-full h-full -mt-60 bg-black" >
+		<section id='buttonCanceled' className=" w-full h-full bg-black" >
 			<form onSubmit={handleSubmit(submitAppointment)} className=" flex justify-start w-full">
-				<div className='p-2 md:p-20  w-full'>
-					<h1 className='flex justify-start text-3xl md:text-5xl font-semibold pt-2 md:pt-10'>Selecione o animal</h1>
-					<div className='flex justify-between md:pt-10 w-full  '>
+				<div className='p-2 md:p-10  w-full'>
+					<h1 className='flex justify-start text-3xl md:text-5xl font-normal'>Selecione o animal</h1>
+					<div className='flex justify-between md:pt-5 w-full h-56  '>
 						<div className={`${ThereArePets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
 							{petsAll.map(pet => {
 								if (pet.photo == null || pet.photo == undefined || pet.photo == '') {
@@ -185,7 +185,7 @@ export const Appointment = (props) => {
 
 							<div className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'>
 								<img className='w-32' src={Dog} alt="Pet ainda não há foto" />
-								<p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>Voê não possui pets</p>
+								<p className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black' disabled>Você não possui pets</p>
 							</div>
 						</div>
 						<div className='hidden md:flex justify-end pl-20'>
@@ -203,9 +203,9 @@ export const Appointment = (props) => {
 				</div>
 				<div className=' w-full'>
 					<div className=''>
-						<h2 className='hidden md:flex md:text-5xl font-semibold pl-20'>Informações</h2>
+						<h2 className='hidden md:flex md:text-4xl font-normal pl-10'>Informações</h2>
 						<h2 className='flex justify-center text-3xl md:hidden md:text-5xl font-semibold'>Data e hora</h2>
-						<div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full  pl-14 md:pl-20 pt-3 md:pt-10'>
+						<div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full  pl-14 md:pl-10 pt-3 '>
 							<label className='w-full flex flex-col text-gray-400 '>
 								Data
 								<input type='date' onChange={newDate} min={dataFormatada} />
@@ -215,17 +215,17 @@ export const Appointment = (props) => {
 								<input type='time' onChange={newTime} />
 							</label>
 						</div>
-						<div className=' p-4'>
+						<div className=' p-4 ml-2'>
 							<label htmlFor="descricao" className=" mb-2">Descrição:</label>
-							<textarea id="descricao" name="descricao" className=" border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" rows="4" onChange={newDescription}></textarea>
+							<textarea id="descricao" name="descricao" className=" pl-2 border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" rows="4" onChange={newDescription}></textarea>
 						</div>
 					</div>
-					<div className='p-3 md:pl-20 md:pr-20'>
+					<div className='p-3 md:pl-20 md:pr-20 mb-10'>
 						<div className='flex mt-2 md:mt-10 justify-between gap-5'>
-							<button className={`p-2 md:w-56 md:text-center md:h-20 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-bold text-2xl origin-center `} type="button" onClick={() => props.onCancel()}>
+							<button className={`p-2 md:w-40 md:text-center md:h-14 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-normal text-2xl origin-center `} type="button" onClick={() => props.onCancel()}>
 								Cancelar
 							</button>
-							<button type="submit" className='md:ml-56 p-2 w-32 md:w-56 text-center md:h-20 border rounded-full bg-[#9ED1B7] text-[#41564B] font-bold text-2xl'
+							<button type="submit" className='md:ml-56 p-2 md:w-40 md:h-14 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-normal text-2xl'
 								onClick={(event) => {
 									submitAppointment(event);
 								}}

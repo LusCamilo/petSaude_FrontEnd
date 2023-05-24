@@ -11,13 +11,13 @@ import isValidImageUrl from "../../../utils/isValidImageUrl";
 
 const customStyles = {
 	content: {
-		top: '50%',
+		top: '53%',
 		left: '50%',
 		right: 'auto',
 		bottom: 'auto',
 		transform: 'translate(-50%, -50%)',
-		border: '4px solid #9ED1B7',
-		borderRadius: '10px',
+		border: '3px solid #9ED1B7',
+		borderRadius: '32px',
 		width: '75vw',
 		height: '50vh',
 		zIndex: 99,

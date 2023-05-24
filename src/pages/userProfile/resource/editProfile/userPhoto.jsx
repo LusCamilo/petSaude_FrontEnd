@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import more from "../img/more.png"
+import { IoMdAdd } from "react-icons/io";
 
 
 export const UserPhoto = (props) => {
@@ -27,7 +27,7 @@ export const UserPhoto = (props) => {
 			<input type="file" accept="image/*" name="photo" id="photoUser" className="hidden" onChange={handleFileInputChange} />
 				<div className="flex items-center gap-x-3">
 					<label htmlFor='photoUser' onChange={handleFileInputChange} className='h-24 md:h-48 w-24 md:w-48 bg-no-repeat bg-cover flex cursor-pointer bg-slate-200 justify-center items-center rounded-full' style={{ backgroundImage: `url(${selectedFile})` }}>
-						<img src={more} className="" />
+					    <IoMdAdd className="text-8xl text-white" alt="Add icon" />
 					</label>
 					<span className='flex flex-col w-fit gap-1'>
                         <h2 className='text-2xl md:text-5xl font-semibold w-full'>{`@${props.nome}`}</h2>

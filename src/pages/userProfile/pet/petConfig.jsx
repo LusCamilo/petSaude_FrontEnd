@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useForm } from "react-hook-form";
 import { PetHeader } from "./petHeader";
-import addMais from "../resource/img/AddMais.png";
+import { IoMdAdd } from "react-icons/io";
 import linha from "../../../assets/svg/linha.svg";
 import "../../reset.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
@@ -14,6 +14,7 @@ import { PetAddSucess } from "./cards/sucess";
 import * as Dialog from "@radix-ui/react-dialog";
 import { PetAddWarn } from "./cards/warn";
 import "./css/pet.css";
+import { RiPencilFill } from "react-icons/ri";
 import lapis from "../../../assets/svg/pencil.svg";
 import { getSpecialtiesPet } from "../../../services/integrations/specialtiesPet";
 import { getPet, petUpdate } from "../../../services/integrations/pet";
@@ -282,7 +283,7 @@ export const PetConfig = (props) => {
                 style={{ backgroundImage: `url(${selectedFile})` }}
                 className="flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken "
               >
-                <img className src={addMais} alt="Add icon" />
+                <IoMdAdd className="text-8xl text-white" alt="Add icon" />
               </label>
             </div>
             {infos.id && (
@@ -416,7 +417,7 @@ export const PetConfig = (props) => {
             </div>
             <div className="w-full sm:w-1/3 flex justify-between content-center">
               <button
-                className="w-full sm:w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg"
+                className="w-full sm:w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg text-2xl"
                 onClick={() => {
                   if (document.getElementById("petInfos").disabled === true) {
                     petInfosDisableState({
@@ -431,7 +432,7 @@ export const PetConfig = (props) => {
                   }
                 }}
               >
-                <img src={lapis} alt="Edit" />
+                <RiPencilFill className="text-3xl"/>
                 Editar
               </button>
             </div>

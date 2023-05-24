@@ -4,30 +4,29 @@ export async function getUsers(search, searchIt) {
   console.log(search);
   console.log(searchIt);
   if (search == null) {
-    search = ''
+    search = "";
   }
-  const url = `${BASE_URL}veterinary?${searchIt}=${search}`
+  const url = `${BASE_URL}veterinary?${searchIt}=${search}`;
   return await fetch(url, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Access-Control-Allow-Origin': '*',
-    }
-    
+      "Access-Control-Allow-Origin": "*",
+    },
   })
-    .then(response => console.log(response.json()))
-    .catch(error => console.log('Error Procurar veterinários'));
+    .then((response) => console.log(response.json()))
+    .catch((error) => console.log("Error Procurar veterinários"));
 }
 
 export async function getAllVets() {
-  const url = `${BASE_URL}veterinary`
+  const url = `${BASE_URL}veterinary`;
   return fetch(url)
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 }
 
 export async function getVet(idVet) {
-  const url = `${BASE_URL}id/veterinary?userID=${idVet}`
+  const url = `${BASE_URL}id/veterinary?userID=${idVet}`;
   return fetch(url)
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 }

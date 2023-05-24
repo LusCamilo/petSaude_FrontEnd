@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import lapis from "../../../../assets/svg/pencil.svg"
 import { UserPhoto } from './userPhoto';
+import { RiPencilFill } from "react-icons/ri";
 
 
 
@@ -81,7 +81,7 @@ export const InfosProfile = (props) => {
 								})
 							}
 						}}>
-							<img src={lapis} alt="" className='h-7'/>
+							<RiPencilFill className='text-3xl'/>
 							Editar
 						</button>
 						<button
