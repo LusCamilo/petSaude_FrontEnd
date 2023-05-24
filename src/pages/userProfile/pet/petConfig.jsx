@@ -18,7 +18,6 @@ import { getSpecialtiesPet } from "../../../services/integrations/specialtiesPet
 import { getPet, petUpdate } from "../../../services/integrations/pet";
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
-import { petDelete } from "../../../services/integrations/pet";
 
 const customStyles = {
   content: {
@@ -129,7 +128,7 @@ export const PetConfig = () => {
   const [infos, setInfos] = useState({});
   const [petInfosDisable, petInfosDisableState] = useState({
     disable: true,
-    class: "text-slate-400",
+    class: " text-slate-400",
   });
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modalIsClose, setIsClose] = React.useState(false);
@@ -291,7 +290,7 @@ export const PetConfig = () => {
       <main className="static w-full">
         <div>
           <div className="flex justify-start p-3 sm:p-10 flex-row items-center content-center align-middle h-30 sm:h-80">
-            <div className="h-20 w-1/3 sm:h-48 sm:40 md:w-56 rounded-full ">
+            <div className="h-20 w-20 md:h-48 md:w-48 rounded-full">
               <input
                 type="file"
                 accept="image/*"
@@ -303,29 +302,29 @@ export const PetConfig = () => {
               <label
                 htmlFor="photoProfile"
                 style={{ backgroundImage: `url(${selectedFile})` }}
-                className="flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken "
+                className="flex justify-center items-center rounded-full bg-slate-900 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken "
               >
                 <img className src={addMais} alt="Add icon" />
               </label>
             </div>
             {infos.id && (
-              <div className="flex flex-col w-2/3 sm:w-full p-3 sm:p-10">
+              <div className="flex flex-col w-2/3 sm:w-fit p-3 sm:p-10">
                 <p className="md:text-5xl font-medium ">{name}</p>
-                <p className="md:text-5xl font-normal text-[#A9A9A9]">
+                <p className="md:text-3xl font-normal text-[#A9A9A9]">
                   {animalType}
                 </p>
               </div>
             )}
           </div>
         </div>
-        <div className="w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 pl-3 sm:pl-20 py-8">
+        <div className="w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-5 md:p-10">
           <h2 className="font-bold text-5xl flex justify-center sm:justify-start sm:text-6xl font-sans">
             Informações{" "}
           </h2>
           <div className="flex flex-col sm:flex-row justify-between pr-20">
             <div className="flex flex-col gap-3 sm:gap-5 justify-start w-full sm:w-1/3 mb-2">
               <div>
-                <label className="flex flex-col text-xl text-[#A9A9A9]">
+                <label className="flex flex-col text-2xl text-[#A9A9A9]">
                   Nome
                   <input
                     type="text"
@@ -333,7 +332,7 @@ export const PetConfig = () => {
                     disabled={petInfosDisable.disable}
                     name="nameAnimal"
                     placeholder="Nome"
-                    className={`bg-transparent placeholder:text-black placeholder:text-3xl border-none text-2xl ${petInfosDisable.class}`}
+                    className={`h-fit bg-transparent placeholder:text-black placeholder:text-2xl border-none text-2xl ${petInfosDisable.class}`}
                     defaultValue={infos.name}
                     id="petInfos"
                   />
@@ -387,7 +386,7 @@ export const PetConfig = () => {
               </div>
             </div>
             <div className="flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3">
-              <div className="w-full">
+              <div className="w-2/4">
                 <label className="flex flex-col text-xl text-[#A9A9A9]">
                   Data de Nascimento
                   <input
@@ -396,7 +395,7 @@ export const PetConfig = () => {
                     onChange={newDateBorn}
                     name="dateBorn"
                     defaultValue={infos.birthDate}
-                    className={`bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`}
+                    className={`h-fit bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`}
                     max={dataFormatada}
                   />
                 </label>
@@ -437,9 +436,8 @@ export const PetConfig = () => {
                 </label>
               </div>
             </div>
-            <div className="w-full sm:w-1/3 flex justify-between content-center">
-              <button
-                className="w-full sm:w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg"
+            <div className="w-full sm:w-1/3 h-fit flex justify-end content-center">
+              <button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' 
                 onClick={() => {
                   if (document.getElementById("petInfos").disabled === true) {
                     petInfosDisableState({
@@ -454,8 +452,9 @@ export const PetConfig = () => {
                   }
                 }}
               >
-                <img src={lapis} alt="Edit" />
-                Editar
+                <img src={lapis} alt="Edit" className='h-7'/>
+                {/* <MdEdit className='text-4xl'/> */}
+                Editar	
               </button>
             </div>
           </div>
@@ -463,17 +462,9 @@ export const PetConfig = () => {
         <div className="w-full flex justify-between mb-30">
           <Dialog.Root>
             <Dialog.Trigger asChild className="w-full flex justify-between">
-              <button className="mt-3" asChild onClick={ 
-                () => {
-                  console.log("bah rato");
-                  deletingPet(infos.id)
-                  petDelete(localStorage.getItem('__pet_id'))
-                  setTimeout(() => {
-                    document.location.href = "/profile/configuration";
-                  }, 3000); 
-                }}>
+              <button className="mt-3" asChild>
                 <img src={lixeira} alt="" />
-              </button>
+              </button> */}
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="DialogOverlay" />
@@ -483,8 +474,7 @@ export const PetConfig = () => {
           </Dialog.Root>
           <Dialog.Root>
             <Dialog.Trigger asChild>
-              <button
-                className="mt-3"
+              <button className='md:flex justify-center items-center h-20 w-20 self-end rounded-2xl bg-[#9ED1B7] mt-5 shadow-md mb-7'
                 asChild
                 onClick={() => {
                   const data = dataFormation(dateBorn);
@@ -510,7 +500,7 @@ export const PetConfig = () => {
                   editarPetizinho(id, infosPet);
                 }}
               >
-                <img src={certo} alt="" />
+                <AiOutlineCheck className='text-5xl'/>
               </button>
             </Dialog.Trigger>
             <Dialog.Portal>

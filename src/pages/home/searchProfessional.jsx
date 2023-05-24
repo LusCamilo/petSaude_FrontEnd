@@ -69,7 +69,7 @@ async function getVetsByCity(city) {
 	  let filteredVets = [];
 	  
 	  if (data.search == '') {
-		let vetsArray = await getAllVets();
+		let vetsArray = await getAllVets()
 		filteredVets = vetsArray.response// Função que busca todos os veterinários
 	  } else if (filtro !== 'city') {
 		const response  = await getUsers(data.search, filtro);
