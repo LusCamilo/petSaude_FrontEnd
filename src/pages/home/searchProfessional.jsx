@@ -69,7 +69,8 @@ async function getVetsByCity(city) {
 	  let filteredVets = [];
 	  
 	  if (data.search == '') {
-		filteredVets = await getAllVets(); // Função que busca todos os veterinários
+		let vetArray = await getAllVets()
+		filteredVets = vetArray.response // Função que busca todos os veterinários
 	  } else if (filtro !== 'city') {
 		const { response } = await getUsers(data.search, filtro); // Função que busca veterinários com base em dados específicos
 		if (response.includes('Nenhum veterinário atende aos filtros de pesquisa')) {
@@ -82,6 +83,7 @@ async function getVetsByCity(city) {
 	  }
 	  
 	 const resultado = setVets(await shuffleArray(filteredVets));
+	 console.log(vets);
 	  
 	 console.log(resultado); // Função para atualizar o estado "vets" com o array embaralhado
 	} catch (error) {
