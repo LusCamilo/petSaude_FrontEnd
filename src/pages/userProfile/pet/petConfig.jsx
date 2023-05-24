@@ -131,11 +131,7 @@ export const PetConfig = () => {
   const [infos, setInfos] = useState({});
   const [petInfosDisable, petInfosDisableState] = useState({
     disable: true,
-<<<<<<< HEAD
-    class: "text-slate-400",
-=======
     class: "opacity-50",
->>>>>>> 3dc45df7c04d17fec850479a16e8fc80f7285f4b
   });
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modalIsClose, setIsClose] = React.useState(false);
