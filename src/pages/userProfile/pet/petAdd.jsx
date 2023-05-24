@@ -14,6 +14,7 @@ import Modal from 'react-modal'
 import { getSpecialtiesPet } from '../../../services/integrations/specialtiesPet';
 import { ToastContainer, toast } from 'react-toastify';
 import Notifications from '../../../utils/Notifications';
+import { AiOutlineCheck } from 'react-icons/ai';
 
 
 const firebaseConfig = {
@@ -186,13 +187,12 @@ export const PetAdd = () => {
 
 			} else {	
 				showSucessMessage()
-				setTimeout(function() {
-	
-					setTimeout(function() {
-						openModal()
+				setTimeout(() => {
+					Notifications.success('Pet Criado com sucesso')
+					setTimeout(() => {
 						document.location.href = "/profile/configuration";
-					}, 2000);
-				}, 2000);
+					}, 1600); 
+				}, 2300); 
 			}
 		} else {
 			resultAPI = await petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
@@ -246,32 +246,32 @@ export const PetAdd = () => {
 			<main className='static'>
 				<div>
 					<div className='flex justify-start p-3 sm:p-10 flex-row items-center content-center align-middle h-30 sm:h-80'>
-						<div className="w-56 sm:h-48 sm:40 md:w-82 rounded-full ">
+						<div className="h-20 w-20 md:h-48 md:w-48 rounded-full ">
 							<input type="file" accept="image/*" name="photo" id="photoProfile" className="hidden" onChange={handleFileInputChange} />
 							<label htmlFor='photoProfile' style={{ backgroundImage: `url(${selectedFile})` }}
 								className='flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
 								<img className="rounded-full" src={addMais} alt='Add icon' />
 							</label>
 						</div>
-						<div className='flex flex-col w-2/3 sm:w-full p-3 sm:p-10'>
+						<div className='flex flex-col w-2/3 sm:w-fit p-3 sm:p-10'>
 							<h2 className='bg-transparent border-none md:text-5xl font-medium'>{name}</h2>
 							<h2 className='bg-transparent border-none text-3xl text-[#A9A9A9]'>{animalType}</h2>
 						</div>
 					</div>
 				</div>
-				<div className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 pl-3 sm:pl-20 py-8'>
+				<div className='w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-5 md:p-10'>
 					<h2 className='font-bold text-5xl flex justify-center sm:justify-start sm:text-6xl font-sans'>Informações</h2>
-					<div className='flex flex-col sm:flex-row justify-between pr-20'>
+					<div className='flex flex-col sm:flex-row justify-start pr-20'>
 						<div className='flex flex-col gap-3 sm:gap-5 justify-start w-full sm:w-1/3 mb-2'>
-							<label className='flex flex-col text-xl text-[#A9A9A9]'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 								Nome
-								<input type="text" onBlurCapture={newName} name="nameAnimal" id="nameAnimal" placeholder='Nome' className='bg-transparent placeholder:text-black  placeholder:text-3xl border-none text-3xl text-[#000]' />
+								<input type="text" onBlurCapture={newName} name="nameAnimal" id="nameAnimal" placeholder='Nome' className='h-fit bg-transparent placeholder:text-black  placeholder:text-2xl border-none text-2xl text-[#000]' />
 							</label>
 							<div>
-								<label className='flex flex-col text-xl text-[#A9A9A9]'>
+								<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 									Sexo
 									<DropdownMenu.Root className="w-full">
-										<DropdownMenu.Trigger className='flex justify-start text-black text-3xl'>{sexo[0]}</DropdownMenu.Trigger>
+										<DropdownMenu.Trigger className='flex justify-start text-black text-2xl'>{sexo[0]}</DropdownMenu.Trigger>
 										<StyledContent>
 											<StyledItem onSelect={() => setSexo(["Fêmea", "F"])}>Fêmea</StyledItem>
 											<StyledItem onSelect={() => setSexo(["Macho", "M"])}>Macho</StyledItem>
@@ -281,10 +281,10 @@ export const PetAdd = () => {
 								</label>
 							</div>
 							<div>
-								<label className='flex flex-col text-xl text-[#A9A9A9]'>
+								<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 									Espécie
 									<DropdownMenu.Root className="w-full">
-										<DropdownMenu.Trigger className='flex justify-start text-black text-3xl'>{animalType}</DropdownMenu.Trigger>
+										<DropdownMenu.Trigger className='h-fit flex justify-start text-black text-2xl'>{animalType}</DropdownMenu.Trigger>
 										<StyledContent>
 											{especialidadesPet.map((item) => {
 												return<StyledItem onSelect={() => setAnimalType(item.name)}>{item.name}</StyledItem>
@@ -296,17 +296,17 @@ export const PetAdd = () => {
 							</div>
 						</div>
 						<div className='flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3'>
-							<div className='w-full'>
-								<label className='flex flex-col text-xl text-[#A9A9A9] sm:1/4'>
+							<div className='w-3/4'>
+								<label className='flex flex-col text-2xl text-[#A9A9A9] w-3/4'>
 									Data de Nascimento
-									<input type="date" onBlurCapture={newBornDate} name="firstName" className='w-full border-none text-3xl text-[#000] ' max={dataFormatada} />
+									<input type="date" onBlurCapture={newBornDate} name="firstName" className='h-fit w-full border-none text-2xl text-[#000] ' max={dataFormatada} />
 								</label>
 							</div>
 							<div>
-								<label className='flex flex-col text-xl text-[#A9A9A9] sm:w-1/4'>
+								<label className='flex flex-col text-2xl text-[#A9A9A9] sm:w-1/4'>
 									Tamanho
 									<DropdownMenu.Root className="w-full">
-										<DropdownMenu.Trigger className='flex justify-start text-black text-3xl'>{tamanho[0]}</DropdownMenu.Trigger>
+										<DropdownMenu.Trigger className='h-fit flex justify-start text-black text-2xl'>{tamanho[0]}</DropdownMenu.Trigger>
 										<StyledContent>
 											<StyledItem onSelect={() => setTamanho(["Grande", "BIG"])}>Grande</StyledItem>
 											<StyledItem onSelect={() => setTamanho(["Médio", "MEDIUM"])}>Médio</StyledItem>
@@ -320,45 +320,11 @@ export const PetAdd = () => {
 					</div>
 				</div>
 				<div className='w-full flex justify-end mb-30'>
-					<button onClick={submitPet}>
-						<img src={certo} alt="" />
+					<button className='md:flex justify-center items-center h-20 w-20 self-end rounded-2xl bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={submitPet}>
+						<AiOutlineCheck className='text-5xl'/>
 					</button>
-					{/*  submitPet*/}
-					<Modal
-						isOpen={modalIsOpen}
-						onAfterOpen={afterOpenModal}
-						onRequestClose={closeModal}
-						style={customStyles}
-						contentLabel="Example Modal"
-					>
-						<PetAddSucess className='cardPet' title="Sucesso" aparecer="hidden" what='Novo pet adicionado' onCancel={cancelClose} />
-					</Modal>
 				</div>
 			</main>
-			<ToastContainer
-			position="top-right"
-			autoClose={100}
-			hideProgressBar={false}
-			newestOnTop={false}
-			closeOnClick
-			rtl={false}
-			pauseOnFocusLoss
-			draggable
-			pauseOnHover
-			theme="light"
-			/>
-			<ToastContainer
-				position="top-right"
-				autoClose={100}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-				theme="light"
-				/>
 		</section>
 	);
 }

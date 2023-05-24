@@ -123,7 +123,7 @@ export const TopContainer = (props) => {
 				<img src={props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl' + isValidImageUrl(props.profileBannerPhoto) ? ' hidden' : null
 			}/>
 			</div>
-			<div className='self-start w-full mt-[-120px] md:mt-[-80px] px-9 md:flex h-fit'>
+			<div className='self-start w-full mt-[-120px] md:mt-[-80px] md:flex ml-9 h-fit'>
 				<div className='flex relative md:border-4 h-28 w-28 md:h-48 md:border-white border-solid rounded-full md:w-48 items-center justify-center bg-white'>
 					<img
 						src={isValidImageUrl(props.profilePhoto) || props.profilePhoto === '' ? 'https://www.svgrepo.com/show/335455/profile-default.svg' : props.profilePhoto}
@@ -131,7 +131,7 @@ export const TopContainer = (props) => {
 						className="h-full w-full rounded-full"
 					/>
 				</div>
-				<div className='flex flex-col md:flex-row justify-between w-fit md:mt-16'>
+				<div className='flex flex-col md:flex-row justify-between w-5/6 md:mt-16'>
 					<div className='flex flex-col md:flex-row items-center gap-1 pt-4'>
 						<div className='flex ml-4'>
 							<p className='text-3xl md:text-4xl'>{props.name}</p>
@@ -153,15 +153,17 @@ export const TopContainer = (props) => {
 							<p>9,8/10</p>
 						</div>
 					</div>
-					{props.isVet && !props.myProfile && !thisUserIsVet ? <button
-						className='botaoAppont bg-lime-500 rounded-md px-3 py-2 text-2xl w-full md:text-4xl md:w-96 shadow-lg justify-center self-center md:mt-10'
+					{props.isVet && !props.myProfile && !thisUserIsVet ? 
+					<button
+					// botaoAppont bg-lime-500 rounded-md px-3 py-2 text-xl w-full md:text-3xl md:w-80 shadow-lg justify-center items-center self-center md:mt-6
+						className='bg-lime-500 rounded-lg p-3 h-fit text-xl md:text-3xl shadow-lg md:mt-10'
 						onClick={openModal}>
 						Agendar uma consulta
 					</button> : null}
 				</div>
 			</div>
 			<div className='w-full h-[1px] bg-gray-400 mt-2 '></div>
-			<h2 className='self-start text-3xl pt-5 pb-2 pl-5'>Sobre Mim</h2>
+			<h2 className='self-start text-3xl pt-5 pb-2'>Sobre Mim</h2>
 			<div className='flex w-full p-5 text-justify'>
 				<span className={`md:w-11/12`} id="biografia">
 					{props.biografia}

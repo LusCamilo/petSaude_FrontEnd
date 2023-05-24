@@ -54,7 +54,7 @@ export const Address = (props) => {
 			if (cep !== '' || cep !== null) {
 				const apiResponse = await validateCep(cep)
 				if (apiResponse.error) {
-					await Notifications.error('CEP inválido')
+					await Notifications.error('CEP inválido ou não encontrado')
 					return false
 				}
 				return true

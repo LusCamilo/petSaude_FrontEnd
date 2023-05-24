@@ -45,6 +45,8 @@ export function RegisterAddress() {
 		event.target.value = inputValue
 	}
 
+
+
 	const submitForm = async (data) => {
 		const registerType = localStorage.getItem("__register_type");
 		let userInfos = JSON.parse(localStorage.getItem("__user_register_infos"));
@@ -63,6 +65,18 @@ export function RegisterAddress() {
 				...data,
 			},
 		};
+
+	
+
+		let hoje = new Date();
+		let ano = hoje.getFullYear();
+		let mes = hoje.getMonth() + 1;
+		let dia = hoje.getDate();
+		if (mes < 10) mes = '0' + mes
+		if (dia < 10) dia = '0' + dia
+		let dataFormatada = `${ano}-${mes}-${dia}`;
+
+		console.log(allInfos);
 
 		if (registerType == "professional") {
 			allInfos.isVet = "true";

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { UserPhoto } from './userPhoto';
+<<<<<<< HEAD
 import { RiPencilFill } from "react-icons/ri";
+=======
+import { MdEdit } from 'react-icons/md';
+
+>>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
 
 
 
@@ -67,7 +72,8 @@ export const InfosProfile = (props) => {
 
 				<div className="flex justify-betwen">
 					<div className='flex flex-col gap-14'>
-						<button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' onClick={() => {
+						<button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' 
+						onClick={() => {
 
 							if (document.getElementById('userInfo').disabled == true) {
 								userInfosDisableState({
@@ -81,7 +87,11 @@ export const InfosProfile = (props) => {
 								})
 							}
 						}}>
+<<<<<<< HEAD
 							<RiPencilFill className='text-3xl'/>
+=======
+							<MdEdit className='text-4xl'/>	
+>>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
 							Editar
 						</button>
 						<button

@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import lapis from "../../../../assets/svg/pencil.svg";
-import configIcon from "../../../../assets/svg/Icon button.svg";
-import {SideBarMenu} from "../../../../components/sideBarMenu";
 import { PetHeader } from '../../pet/petHeader';
+// import { MdEdit } from 'react-icons/md';
 
 export const Config = (props) => {
 

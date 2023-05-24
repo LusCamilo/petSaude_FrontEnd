@@ -3,8 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useForm } from "react-hook-form";
 import { PetHeader } from "./petHeader";
+<<<<<<< HEAD
 import { IoMdAdd } from "react-icons/io";
 import linha from "../../../assets/svg/linha.svg";
+=======
+import addMais from "../resource/img/AddMais.png";
+import cuidado from '../resource/img/Cuidado.png'
+>>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
 import "../../reset.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { styled } from "@stitches/react";
@@ -12,7 +17,6 @@ import certo from "../resource/img/Certo.jpg";
 import lixeira from "../resource/img/Excluir.png";
 import { PetAddSucess } from "./cards/sucess";
 import * as Dialog from "@radix-ui/react-dialog";
-import { PetAddWarn } from "./cards/warn";
 import "./css/pet.css";
 import { RiPencilFill } from "react-icons/ri";
 import lapis from "../../../assets/svg/pencil.svg";
@@ -20,6 +24,9 @@ import { getSpecialtiesPet } from "../../../services/integrations/specialtiesPet
 import { getPet, petUpdate } from "../../../services/integrations/pet";
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
+import { petDelete } from "../../../services/integrations/pet";
+import { AiOutlineCheck } from 'react-icons/ai';
+import { IoMdTrash } from "react-icons/io";
 
 const customStyles = {
   content: {
@@ -69,6 +76,7 @@ const updatingPet = () => {
   });
 };
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
   authDomain: "petsaude-6ba51.firebaseapp.com",
@@ -117,70 +125,27 @@ const checkboxSpecialitiesPet = async () => {
   };
 };
 
-export const PetConfig = (props) => {
+export const PetConfig = () => {
+  // State variables
   const [especialidadesPet, setEspecialidadesPet] = useState([]);
   const [animalType, setAnimalType] = useState("");
-
-  const { register, handleSubmit, formState: errors, setValue } = useForm();
   const [selectedFile, setSelectedFile] = useState("");
   const [tamanho, setTamanho] = useState("");
   const [name, setName] = useState("");
   const [sexo, setSexo] = useState("");
-  function newName(event) {
-    setName(event.target.value);
-  }
-
   const [dateBorn, setDateBorn] = useState();
-  function newDateBorn(event) {
-    setDateBorn(event.target.value);
-  }
-
   const [infos, setInfos] = useState({});
-
-  useEffect(() => {
-    setSelectedFile(infos.photo ? infos.photo : "");
-    setName(infos.name ? infos.name : "");
-    setAnimalType(infos.specie ? infos.specie : "");
-    setTamanho(infos.size ? infos.size : "");
-    setSexo(infos.gender ? infos.gender : "");
-    setDateBorn(infos.birthDate ? infos.birthDate : "");
-    async function fetchDataSpecialities() {
-      const dadosPet = await checkboxSpecialitiesPet();
-      setEspecialidadesPet(dadosPet.allSpecialitiesPet);
-    }
-    async function fetchData() {
-      const allInfosPet = await InfosUser();
-      const dataFormation = allInfosPet.birthDate.split("T");
-      let data = dataFormation[0].split("-");
-      const newData = new Date(data[0], data[1], data[2]);
-
-      setInfos({
-        id: allInfosPet.id,
-        name: allInfosPet.name,
-        birthDate: newData.toISOString().slice(0, 10),
-        photo: allInfosPet.photo,
-        microship: allInfosPet.microship,
-        size: allInfosPet.petSize,
-        gender: allInfosPet.petGender,
-        ownerID: allInfosPet.ownerId,
-        specie: allInfosPet.nameSpecie,
-      });
-    }
-    fetchData();
-    fetchDataSpecialities();
-  }, [
-    infos.photo,
-    infos.name,
-    infos.specie,
-    infos.size,
-    infos.gender,
-    infos.birthDate,
-  ]);
-
   const [petInfosDisable, petInfosDisableState] = useState({
     disable: true,
-    class: " text-slate-400",
+    class: "opacity-50",
   });
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsClose, setIsClose] = React.useState(false);
+
+  // Form validation
+  const { register, handleSubmit, formState: errors, setValue } = useForm();
+
+  // Styled components
   const StyledContent = styled(DropdownMenu.Content, {
     minWidth: 130,
     backgroundColor: "white",
@@ -203,6 +168,16 @@ export const PetConfig = (props) => {
   const StyledArrow = styled(DropdownMenu.Arrow, {
     fill: "white",
   });
+
+  // Event handlers
+  function newName(event) {
+    setName(event.target.value);
+  }
+
+  function newDateBorn(event) {
+    setDateBorn(event.target.value);
+  }
+
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
     const storageRef = ref(storage, `Pet/${file.name}`);
@@ -215,18 +190,73 @@ export const PetConfig = (props) => {
       });
   };
 
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
   function openModal() {
     setIsOpen(true);
   }
 
+  function closeModalError() {
+    console.log("Fechar close");
+    setIsClose(false);
+    console.log(modalIsOpen);
+  }
+
+  function openModal() {
+    setIsClose(true);
+  }
+
   function closeModal() {
+    console.log("Fechar close");
     setIsOpen(false);
+    console.log(modalIsOpen);
   }
 
   function afterOpenModal() {}
 
+  // Fetch data and initialization
+  useEffect(() => {
+    setSelectedFile(infos.photo ? infos.photo : "");
+    setName(infos.name ? infos.name : "");
+    setAnimalType(infos.specie ? infos.specie : "");
+    setTamanho(infos.size ? infos.size : "");
+    setSexo(infos.gender ? infos.gender : "");
+    setDateBorn(infos.birthDate ? infos.birthDate : "");
+
+    async function fetchDataSpecialities() {
+      const dadosPet = await checkboxSpecialitiesPet();
+      setEspecialidadesPet(dadosPet.allSpecialitiesPet);
+    }
+
+    async function fetchData() {
+      const allInfosPet = await InfosUser();
+      const dataFormation = allInfosPet.birthDate.split("T");
+      let data = dataFormation[0].split("-");
+      const newData = new Date(data[0], data[1], data[2]);
+
+      setInfos({
+        id: allInfosPet.id,
+        name: allInfosPet.name,
+        birthDate: newData.toISOString().slice(0, 10),
+        photo: allInfosPet.photo,
+        microship: allInfosPet.microship,
+        size: allInfosPet.petSize,
+        gender: allInfosPet.petGender,
+        ownerID: allInfosPet.ownerId,
+        specie: allInfosPet.nameSpecie,
+      });
+    }
+
+    fetchData();
+    fetchDataSpecialities();
+  }, [
+    infos.photo,
+    infos.name,
+    infos.specie,
+    infos.size,
+    infos.gender,
+    infos.birthDate,
+  ]);
+
+  // Other functions
   let hoje = new Date();
   let ano = hoje.getFullYear();
   let mes = hoje.getMonth() + 1;
@@ -269,7 +299,7 @@ export const PetConfig = (props) => {
       <main className="static w-full">
         <div>
           <div className="flex justify-start p-3 sm:p-10 flex-row items-center content-center align-middle h-30 sm:h-80">
-            <div className="h-20 w-1/3 sm:h-48 sm:40 md:w-56 rounded-full ">
+            <div className="h-20 w-20 md:h-48 md:w-48 rounded-full">
               <input
                 type="file"
                 accept="image/*"
@@ -281,29 +311,29 @@ export const PetConfig = (props) => {
               <label
                 htmlFor="photoProfile"
                 style={{ backgroundImage: `url(${selectedFile})` }}
-                className="flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken "
+                className="flex justify-center items-center rounded-full bg-slate-900 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken "
               >
                 <IoMdAdd className="text-8xl text-white" alt="Add icon" />
               </label>
             </div>
             {infos.id && (
-              <div className="flex flex-col w-2/3 sm:w-full p-3 sm:p-10">
+              <div className="flex flex-col w-2/3 sm:w-fit p-3 sm:p-10">
                 <p className="md:text-5xl font-medium ">{name}</p>
-                <p className="md:text-5xl font-normal text-[#A9A9A9]">
+                <p className="md:text-3xl font-normal text-[#A9A9A9]">
                   {animalType}
                 </p>
               </div>
             )}
           </div>
         </div>
-        <div className="w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-10 pl-3 sm:pl-20 py-8">
+        <div className="w-full h-full border-none sm:border-solid border-2 rounded-lg border-black flex flex-col gap-5 md:p-10">
           <h2 className="font-bold text-5xl flex justify-center sm:justify-start sm:text-6xl font-sans">
             Informações{" "}
           </h2>
           <div className="flex flex-col sm:flex-row justify-between pr-20">
             <div className="flex flex-col gap-3 sm:gap-5 justify-start w-full sm:w-1/3 mb-2">
               <div>
-                <label className="flex flex-col text-xl text-[#A9A9A9]">
+                <label className="flex flex-col text-2xl text-[#A9A9A9]">
                   Nome
                   <input
                     type="text"
@@ -311,7 +341,7 @@ export const PetConfig = (props) => {
                     disabled={petInfosDisable.disable}
                     name="nameAnimal"
                     placeholder="Nome"
-                    className={`bg-transparent placeholder:text-black placeholder:text-3xl border-none text-2xl ${petInfosDisable.class}`}
+                    className={`h-fit bg-transparent placeholder:text-black placeholder:text-2xl border-none text-2xl ${petInfosDisable.class}`}
                     defaultValue={infos.name}
                     id="petInfos"
                   />
@@ -365,7 +395,7 @@ export const PetConfig = (props) => {
               </div>
             </div>
             <div className="flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3">
-              <div className="w-full">
+              <div className="w-2/4">
                 <label className="flex flex-col text-xl text-[#A9A9A9]">
                   Data de Nascimento
                   <input
@@ -374,7 +404,7 @@ export const PetConfig = (props) => {
                     onChange={newDateBorn}
                     name="dateBorn"
                     defaultValue={infos.birthDate}
-                    className={`bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`}
+                    className={`h-fit bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`}
                     max={dataFormatada}
                   />
                 </label>
@@ -415,9 +445,14 @@ export const PetConfig = (props) => {
                 </label>
               </div>
             </div>
+<<<<<<< HEAD
             <div className="w-full sm:w-1/3 flex justify-between content-center">
               <button
                 className="w-full sm:w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg text-2xl"
+=======
+            <div className="w-full sm:w-1/3 h-fit flex justify-end content-center">
+              <button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' 
+>>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
                 onClick={() => {
                   if (document.getElementById("petInfos").disabled === true) {
                     petInfosDisableState({
@@ -432,30 +467,43 @@ export const PetConfig = (props) => {
                   }
                 }}
               >
+<<<<<<< HEAD
                 <RiPencilFill className="text-3xl"/>
                 Editar
+=======
+                <img src={lapis} alt="Edit" className='h-7'/>
+                {/* <MdEdit className='text-4xl'/> */}
+                Editar	
+>>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
               </button>
             </div>
           </div>
         </div>
         <div className="w-full flex justify-between mb-30">
           <Dialog.Root>
-            <Dialog.Trigger asChild className="w-full flex justify-between">
-              <button className="mt-3" asChild>
-                <img src={lixeira} alt="" />
+            <Dialog.Trigger asChild>
+              <button 
+                className="md:flex justify-center items-center h-20 w-20 self-start rounded-2xl text-[#410E0B] bg-[#F9DEDC] mt-5 shadow-md mb-7" 
+                asChild
+              >
+                <IoMdTrash className='text-6xl'/>
               </button>
+              {/* <button 
+                className="mt-3" 
+                asChild
+              >
+                <img src={lixeira} alt="" />
+              </button> */}
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="DialogOverlay" />
               <Dialog.Content className="DialogContent" class="cardPet">
-                <PetAddWarn delete={deletingPet} />
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>
           <Dialog.Root>
             <Dialog.Trigger asChild>
-              <button
-                className="mt-3"
+              <button className='md:flex justify-center items-center h-20 w-20 self-end rounded-2xl bg-[#9ED1B7] mt-5 shadow-md mb-7'
                 asChild
                 onClick={() => {
                   const data = dataFormation(dateBorn);
@@ -481,7 +529,7 @@ export const PetConfig = (props) => {
                   editarPetizinho(id, infosPet);
                 }}
               >
-                <img src={certo} alt="" />
+                <AiOutlineCheck className='text-5xl'/>
               </button>
             </Dialog.Trigger>
             <Dialog.Portal>
@@ -504,42 +552,18 @@ export const PetConfig = (props) => {
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>
-          {/* <ToastContainer
-						position="top-right"
-						autoClose={5000}
-						hideProgressBar={false}
-						newestOnTop={false}
-						closeOnClick
-						rtl={false}
-						pauseOnFocusLoss
-						draggable
-						pauseOnHover
-						theme="light"
-						/>
-						<ToastContainer
-						position="top-right"
-						autoClose={2000}
-						hideProgressBar={false}
-						newestOnTop={false}
-						closeOnClick
-						rtl={false}
-						pauseOnFocusLoss
-						draggable
-						pauseOnHover
-						theme="light"
-						/>
-						<ToastContainer
-						position="top-right"
-						autoClose={1000}
-						hideProgressBar={false}
-						newestOnTop={false}
-						closeOnClick
-						rtl={false}
-						pauseOnFocusLoss
-						draggable
-						pauseOnHover
-						theme="light"
-						/> */}
+          <ToastContainer
+            position="top-right"
+            autoClose={100}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
         </div>
       </main>
     </section>
