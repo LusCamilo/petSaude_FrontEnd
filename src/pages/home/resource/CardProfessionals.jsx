@@ -72,6 +72,13 @@ export const CardProfessionals = (props) => {
 		localStorage.setItem("__Vet_Id", event)
 		localStorage.setItem("__Vet_correctId", id);
 	}
+
+	// function truncateSpecialities(specialities) {
+	// 	const parsedToStringArray = specialities.join(', ');
+	// 	// TODO: VALIDAR SE O TAMANHO DA STRING EXCEDE O TAMANHO PERMETIDO
+	// 	return parsedToStringArray.slice(0, 40) + '...'
+	// }
+
 	return (
 		<div className={`w-full h-3/6 md:h-96 ${effects} flex-col md:flex-row gap-5 p-10 drop-shadow-2xl bg-white mb-10 rounded-3xl`}>
 			<div className="w-72 md:w-1/4 h-full">
@@ -103,9 +110,11 @@ export const CardProfessionals = (props) => {
 						<p className="font-bold">Especialização: </p>
 						<ul className={`${showEspecialidade} text-2xl w-4/6`}>
 							{veterinariosEspecialdades.map(esp =>{
+								const name = esp.specialities.name
+								console.log({name, id: esp.specialities.id});
 								return(
 									<p key={esp.specialities.id}>
-										{esp.specialities.name},
+										{name},
 									</p>
 								)
 							})}
