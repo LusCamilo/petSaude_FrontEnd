@@ -18,6 +18,9 @@ import { getSpecialtiesPet } from "../../../services/integrations/specialtiesPet
 import { getPet, petUpdate } from "../../../services/integrations/pet";
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
+import { petDelete } from "../../../services/integrations/pet";
+import { AiOutlineCheck } from 'react-icons/ai';
+import { IoMdTrash } from "react-icons/io";
 
 const customStyles = {
   content: {
@@ -128,7 +131,11 @@ export const PetConfig = () => {
   const [infos, setInfos] = useState({});
   const [petInfosDisable, petInfosDisableState] = useState({
     disable: true,
-    class: " text-slate-400",
+<<<<<<< HEAD
+    class: "text-slate-400",
+=======
+    class: "opacity-50",
+>>>>>>> 3dc45df7c04d17fec850479a16e8fc80f7285f4b
   });
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modalIsClose, setIsClose] = React.useState(false);
@@ -461,8 +468,31 @@ export const PetConfig = () => {
         </div>
         <div className="w-full flex justify-between mb-30">
           <Dialog.Root>
+<<<<<<< HEAD
             <Dialog.Trigger asChild className="w-full flex justify-between">
-              <button className="mt-3" asChild>
+              <button className="mt-3" asChild onClick={ 
+                () => {
+                  console.log("bah rato");
+                  deletingPet(infos.id)
+                  petDelete(localStorage.getItem('__pet_id'))
+                  setTimeout(() => {
+                    document.location.href = "/profile/configuration";
+                  }, 3000); 
+                }}>
+                <img src={lixeira} alt="" />
+=======
+            <Dialog.Trigger asChild>
+              <button 
+                className="md:flex justify-center items-center h-20 w-20 self-start rounded-2xl text-[#410E0B] bg-[#F9DEDC] mt-5 shadow-md mb-7" 
+                asChild
+              >
+                <IoMdTrash className='text-6xl'/>
+>>>>>>> 3dc45df7c04d17fec850479a16e8fc80f7285f4b
+              </button>
+              {/* <button 
+                className="mt-3" 
+                asChild
+              >
                 <img src={lixeira} alt="" />
               </button> */}
             </Dialog.Trigger>
