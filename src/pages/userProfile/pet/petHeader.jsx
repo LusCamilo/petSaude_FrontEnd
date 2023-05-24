@@ -36,9 +36,9 @@ export const PetHeader = () => {
 				</button>
 				<SideBarMenu />
 				<Link to="/">
-					<h1 className=" text-1xl hidden xl:flex sm:flex justify-start font-bold">PetSaúde</h1>
+					<h1 className=" text-1xl hidden xl:flex sm:flex font-bold">PetSaúde</h1>
 				</Link>
-				<Link to={linkTo} className="flex items-center gap-2 justify-center p-2 md:pt-2 z-10">
+				<Link to={linkTo} className="flex items-center gap-2 justify-center py-1 z-10">
 					<img className="w-14 h-14 rounded-full" src={userPhoto} alt='Profile' />
 					<p className=" items-center hidden md:flex home-btn text-3xl">
 						{userName}

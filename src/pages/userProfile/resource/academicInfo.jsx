@@ -3,6 +3,8 @@ import formacao from './img/formacao.png'
 import formacaoDate from './img/formacaoDate.png'
 import instituicao from './img/instituicao.png'
 import carreira from './img/carreira.png'
+import { IoSchool } from 'react-icons/io5';
+import { FaSchool } from 'react-icons/fa';
 
 export const AcademicInfos = (props) => {
 
@@ -33,7 +35,7 @@ export const AcademicInfos = (props) => {
 					<span className='flex flex-col'>
 						<h3>Formação:</h3>
 						<p>{props.formacao}</p>
-					</span>
+					</span>					
 					<img className='p-4 border rounded-lg' src={formacao} alt='Formation' />
 				</div>
 				<div className='flex items-center justify-between border gap-x-4 pl-4 rounded-lg border-zinc-700'>
@@ -71,7 +73,6 @@ export const AcademicInfos = (props) => {
 				</div>
 				<div className='flex pt-5 justify-center gap-2'>
 					<div className='border shadow-lg  rounded text-center w-44 p-2 '>
-
 						<h3>Instituição:</h3>
 						<p>{props.instituicao}</p>
 					</div>

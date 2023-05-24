@@ -306,7 +306,7 @@ export const AppointmentPeding = (props) => {
 					console.log(pedido.idAppoint);
 					return (
 						<div key={pedido.id}
-								 className='border-none sm:border-solid border h-1/6 rounded-lg border-black flex flex-col gap-0 p-20'>
+								 className='border-none sm:border-solid border w-2/4 rounded-3xl border-black flex flex-col gap-0 p-14'>
 							<Modal
 								isOpen={warn}
 								onAfterOpen={''}
@@ -334,7 +334,7 @@ export const AppointmentPeding = (props) => {
 								<img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet"/>
 								<h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>
 							</div>
-							<div className='flex md:justify-between pr-20'>
+							<div className='flex md:justify-between pr-20 pt-5'>
 								<div className='flex flex-col justify-start w-full sm:w-1/3 '>
 									<div>
 										<label className='flex flex-col text-xl text-[#A9A9A9]'>
@@ -374,10 +374,10 @@ export const AppointmentPeding = (props) => {
 									{/*	Sucess={Sucess}*/}
 									{/*/>*/}
 
-									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
+									<div className='w-full'>
+										<label className='flex flex-col text-2xl text-[#A9A9A9] '>
 											Telefone
-											<input type="text" disabled placeholder={pedido.telefone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
+											<input type="text" disabled placeholder={pedido.telefone} className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-2xl'/>
 										</label>
 									</div>
 								</div>
@@ -389,7 +389,7 @@ export const AppointmentPeding = (props) => {
 							<div className='flex flex-col sm:flex-row justify-between pr-20'>
 								<div className={`${showVet} flex-row justify-start w-full`}>
 									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
+										<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 											Nome
 											<input type="text" disabled placeholder={pedido.vetName}
 														 className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
@@ -397,7 +397,7 @@ export const AppointmentPeding = (props) => {
 									</div>
 
 									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
+										<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 											Telefone
 											<input type="text" disabled placeholder={pedido.vetPhone}
 														 className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
@@ -410,21 +410,21 @@ export const AppointmentPeding = (props) => {
 							<div className='flex flex-col justify-between pr-20'>
 								<div className='flex flex-row justify-start w-full sm:w-full '>
 									<div className='w-1/3'>
-										<label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
+										<label className='flex flex-col text-2xl text-[#A9A9A9] gap-0'>
 											Data
 											<input type="text" disabled placeholder={pedido.dataConsulta}
 														 className='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl '/>
 										</label>
 									</div>
 									<div className='w-1/3'>
-										<label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
+										<label className='flex flex-col text-2xl text-[#A9A9A9] gap-0'>
 											Horário
 											<input type="text" disabled placeholder={pedido.horario}
 														 className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
 										</label>
 									</div>
 									<div className='w-1/3'>
-										<label className='flex flex-col text-xl text-[#A9A9A9] gap-0'>
+										<label className='flex flex-col text-2xl text-[#A9A9A9] gap-0'>
 											Duração
 											<input type="text" disabled placeholder={pedido.duration}
 														 className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl '/>
@@ -433,9 +433,9 @@ export const AppointmentPeding = (props) => {
 								</div>
 								<div className='flex flex-row sm:flex-col justify-start content-center w-full '>
 									<div>
-										<label className='flex flex-col text-xl text-[#A9A9A9]'>
+										<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 											Descrição
-											<p>
+											<p  className='bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-2xl '>
 												{pedido.descricao}
 											</p>
 											{/* <input type="text" disabled placeholder={pedido.descricao} class='bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl'/> */}
@@ -445,11 +445,11 @@ export const AppointmentPeding = (props) => {
 							</div>
 							<span className={`${buttonAceitar}`}>
 								<div
-									className={`${tutorStatus} flex-col justify-center items-start md:items-center content-center mb-2 `}>
+									className={`${tutorStatus} flex-col justify-center items-start md:items-center content-center mb-2`}>
 									<h2>Confirmar consulta</h2>
 									<div className='w-1/3 flex justify-center gap-5 flex-col'>
 										<label className='flex flex-col justify-center text-xl text-[#A9A9A9] w-full'>
-											Duracação
+											Duração
 											<input type="time" id="duracao" name="duracao" min="00:01" className='w-full text-2xl'
 														 defaultValue={duracao}
 														 onChange={(e) => {
@@ -488,7 +488,7 @@ export const AppointmentPeding = (props) => {
 									Cancelar consulta
 								</button>
 								<button
-									className={`bg-[#9ED1B7] flex justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
+									className={`bg-[#9ED1B7] flex justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal `}
 									onClick={() => openModalQuestionSucess()}>
 									Concluir consulta
 								</button>

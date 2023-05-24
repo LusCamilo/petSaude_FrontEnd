@@ -161,7 +161,7 @@ export const TopContainer = (props) => {
 				</div>
 			</div>
 			<div className='w-full h-[1px] bg-gray-400 mt-2 '></div>
-			<h2 className='self-start text-3xl pt-5 pb-2 pl-5'>Sobre Mim</h2>
+			<h2 className='self-start text-3xl pt-5 pb-2'>Sobre Mim</h2>
 			<div className='flex w-full p-5 text-justify'>
 				<span className={`md:w-11/12`} id="biografia">
 					{props.biografia}

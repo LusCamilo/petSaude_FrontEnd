@@ -8,9 +8,8 @@ import { updateProfileInfosClient, updateProfileInfosVeterinary } from '../../se
 import { PetHeader } from './pet/petHeader';
 import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
 import getUserInfos from "../../utils/getUserInfos";
-import { AiFillCheckCircle } from "react-icons/ai";
 import Notifications from "../../utils/Notifications";
-// import certo from './/resource/img/Sucesso.png'
+import { AiOutlineCheck } from 'react-icons/ai';
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -153,9 +152,8 @@ export const EditProfile = () => {
 					userName={infos.userName} completName={infos.personName} email={infos.email} password={infos.password} profilePhoto={infos.profilePhoto}
 				/>
 
-				<button className='md:flex justify-center items-center h-16 w-16 p-2 self-end rounded-2xl bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={editInformations}>
-					{/* <img src={certo} alt="" className='h-full'/> */}
-					{/* <AiFillCheckCircle className='m-3 w-14 h-14' /> */}
+				<button className='md:flex justify-center items-center h-20 w-20 self-end rounded-2xl bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={editInformations}>
+					<AiOutlineCheck className='text-5xl'/>
 				</button>
 			</div>
 		</div>
