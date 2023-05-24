@@ -3,7 +3,7 @@ import { BASE_URL } from "../../lib/_base_url";
 export async function getUsers(search, searchIt) {
   console.log(search);
   console.log(searchIt);
-  if (search == null) {
+  if (search === null) {
     search = ''
   }
   const url = `${BASE_URL}veterinary?${searchIt}=${search}`
@@ -14,7 +14,7 @@ export async function getUsers(search, searchIt) {
     }
     
   })
-    .then(response => console.log(response.json()))
+    .then(response => response.json())
     .catch(error => console.log('Error Procurar veterinários'));
 }
 
