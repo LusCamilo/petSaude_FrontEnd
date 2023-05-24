@@ -44,7 +44,7 @@ export async function deleteSpecialties(specialities) {
 }
 
 export async function updateSpecialities(specialities) {
-    const url = `${BASE_URL}veterinarian/specialities/`
+    const url = `${BASE_URL}veterinarian/specialities`
     const response = await fetch(url, {
         method: 'PUT',
         headers:{

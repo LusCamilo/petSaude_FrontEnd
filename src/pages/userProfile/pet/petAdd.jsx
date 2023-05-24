@@ -187,13 +187,12 @@ export const PetAdd = () => {
 
 			} else {	
 				showSucessMessage()
-				setTimeout(function() {
-	
-					setTimeout(function() {
-						openModal()
+				setTimeout(() => {
+					Notifications.success('Pet Criado com sucesso')
+					setTimeout(() => {
 						document.location.href = "/profile/configuration";
-					}, 2000);
-				}, 2000);
+					}, 1600); 
+				}, 2300); 
 			}
 		} else {
 			resultAPI = await petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
@@ -324,41 +323,8 @@ export const PetAdd = () => {
 					<button className='md:flex justify-center items-center h-20 w-20 self-end rounded-2xl bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={submitPet}>
 						<AiOutlineCheck className='text-5xl'/>
 					</button>
-					<Modal
-						isOpen={modalIsOpen}
-						onAfterOpen={afterOpenModal}
-						onRequestClose={closeModal}
-						style={customStyles}
-						contentLabel="Example Modal"
-					>
-						<PetAddSucess className='cardPet' title="Sucesso" aparecer="hidden" what='Novo pet adicionado' onCancel={cancelClose} />
-					</Modal>
 				</div>
 			</main>
-			<ToastContainer
-			position="top-right"
-			autoClose={100}
-			hideProgressBar={false}
-			newestOnTop={false}
-			closeOnClick
-			rtl={false}
-			pauseOnFocusLoss
-			draggable
-			pauseOnHover
-			theme="light"
-			/>
-			<ToastContainer
-				position="top-right"
-				autoClose={100}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-				theme="light"
-				/>
 		</section>
 	);
 }

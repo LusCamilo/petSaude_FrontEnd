@@ -310,7 +310,7 @@ export const AppointmentAsk = () => {
                 </div>
                 {pedidos.map(pedido => {
                     return (
-                        <div key={pedido.id} className='border-none sm:border-solid border w-2/4 rounded-3xl border-black flex flex-col gap-0 p-14'>
+                        <div key={pedido.id} className='border-none sm:border-solid border w-5/6 rounded-3xl border-black flex flex-col gap-0 p-14'>
                             <div className='flex flex-row items-center md:content-center md:text-center text-5xl gap-4'>
                                 <img className='PetImage' src={pedido.imagemPet} alt="Imagem do pet" />
                                 <h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{pedido.nomePet}</h2>

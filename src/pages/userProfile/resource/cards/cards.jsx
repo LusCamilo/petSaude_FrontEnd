@@ -4,27 +4,36 @@ import { CardPets } from '../editUser/cardPets.jsx';
 import { Card } from './card.jsx';
 import jwt_decode from "jwt-decode";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { getRatings } from '../../../../services/integrations/rating';
+import { Rating } from '../../veterinaryProfile/rating';
 
 
-const infosPet = async () => {
+const infosPet = async (props) => {
 
 	const token = localStorage.getItem('__user_JWT')
 	const decoded = jwt_decode(token);
-	const response = await getUser(decoded.id)
-	return response.response.user.Pet
+
+	if (props.isVet == true) {
+		const response = await getRatings(decoded.id)
+		return []
+	} else {
+		const response = await getUser(decoded.id)
+		return response.response.user.Pet
+	}
+	
 
 }
 
 export const Cards = (props) => {
-	const [pet, setPet] = useState([]);
+	const [petOrRating, setPetOrRating] = useState([]);
 	useEffect(() => {
 		async function fetchData() {
-			const PetsInfos = await infosPet()
-			setPet(PetsInfos);
+			const infos = await infosPet()
+			setPetOrRating(infos);
 		}
 		fetchData();
 	}, []);	
-
+ 
 	const carrossel = useRef(null)
 
 	const handleLeftClick = () => {
@@ -37,22 +46,40 @@ export const Cards = (props) => {
 		carrossel.current.scrollLeft -= result
 		// carrossel.current.scrollLeft += carrossel.current.offsetWidth
 	}
-	return (
-		<div className='flex flex-col gap-2 md:px-44'>
-			<h2 className='text-3xl md:pt-4 pb-3'>{localStorage.getItem("__user_isVet") == 'true' ? 'Avaliações' : 'Pets'}</h2>
-			<div className='flex items-center pl-14 md:pl-0 justify-between'>
-				<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
-				<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
-					{pet.map((item) => {
-						return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
-					})}
-					{/* {pet.map((item) => {
-						return <Card id={item.id} img={item.personImage} name={item.name} imgPet={item.img} />
-					})} */}
+
+	if (props.isVet == true) {
+		return (
+			<div className='flex flex-col gap-2 md:px-44'>
+				<h2 className='text-3xl md:pt-4 pb-3'>Avaliações</h2>
+				<div className='flex items-center pl-14 md:pl-0 justify-between'>
+					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
+					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
+						{petOrRating.map((item) => {
+							return <Rating id={item.id} personImage={props.personImage}  score={item.score} text={item.text} />
+						})}
+						
+					</div>
+					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
 				</div>
-				<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
 			</div>
-		</div>
-	);
+		);
+	} else {
+		return (
+			<div className='flex flex-col gap-2 md:px-44'>
+				<h2 className='text-3xl md:pt-4 pb-3'>{localStorage.getItem("__user_isVet") == 'true' ? 'Avaliações' : 'Pets'}</h2>
+				<div className='flex items-center pl-14 md:pl-0 justify-between'>
+					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
+					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
+						{petOrRating.map((item) => {
+							return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
+						})}
+						
+					</div>
+					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
+				</div>
+			</div>
+		);
+	}
+
 }
 

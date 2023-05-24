@@ -13,7 +13,7 @@ export const AboutUs = () => {
 				<div className="bg-[#9ED1B7] p-3 md:p-20 mr-24 ml-24">
 					<img src={groupTalking} alt="Imagem decorativa" className="w-full"/>
 					<div>
-						<div className="flex flex-row items-center h-1/4 gap-4 align-middle">
+						<div className="flex flex-row items-center h-1/4 gap-5 align-middle pt-5 mb-5">
 							<MdOutlinePets className='text-5xl'/>
 							<h3 className="text-2xl md:text-4xl font-medium">O que oferecemos:</h3>
 						</div>
