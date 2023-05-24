@@ -44,7 +44,7 @@ export const Pets = (props) => {
 				{/* <IoIosArrowBack className='text-5xl cursor-pointer' onClick={handleLeftClick}/> */}
 				<div className='flex overflow-x-auto scroll-smooth gap-2' ref={carrossel}>
 					{pet.map((item) => {
-						return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
+						return <CardPets key={item.id} id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
 					})}
 				</div>
 				{/* <IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/> */}

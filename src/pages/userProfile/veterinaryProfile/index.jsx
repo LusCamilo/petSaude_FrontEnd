@@ -8,7 +8,6 @@ import { Maps } from '../resource/maps.jsx';
 
 export const VeterinaryProfile = () => {
 	const [vets, setVets] = useState([]);
-	const [numberAppoinments, setVAppoinments] = useState(0);
 	const onSearch = async () => {
 		try {
 			let vetId = localStorage.getItem("__Vet_correctId");
@@ -21,7 +20,7 @@ export const VeterinaryProfile = () => {
 				json = result.user
 			} 
 			setVets(json)
-			if (vets.isVet == true) {
+			if (vets.isVet == true) { 
 				localStorage.setItem('__register_type', "professional")
 			}
 		} catch (error) {
@@ -49,7 +48,10 @@ export const VeterinaryProfile = () => {
 					isVet={vets.isVet}
 					myProfile={false}
 					 />
-				<Cards />
+				<Cards 
+					id={vets.id}
+					isVet={vets.isVet}
+				/>
 				<div className='flex flex-col md:flex-row justify-between gap-[10%] px-10 md:px-44 mb-16'>
 					<AcademicInfos formacao={vets.formation} dataFormacao={vets.formationDate} instituicao={vets.institution} carreiraInicio={vets.startActingDate} />
 					<Maps/>

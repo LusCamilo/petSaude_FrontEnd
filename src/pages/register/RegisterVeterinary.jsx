@@ -75,19 +75,6 @@ export const RegisterVeterinary = () => {
 		fetchDataAll()
 	}, [])
 
-	const showToastMessage = () => {
-		toast('Criando usuário', {
-			position: "top-right",
-			autoClose: 2000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "light",
-		});
-	};
-
 	const handleCheckBoxEspecialidadesChange = async (event) => {
 		const { id } = event.target;
 		const isChecked = event.target.checked;
@@ -128,10 +115,6 @@ export const RegisterVeterinary = () => {
 	}, [checkedBoxes, checkedBoxesEspecialidades]);
 
 	const { register, handleSubmit, formState: { errors } } = useForm()
-
-	const [emailModal, setEmailModal] = React.useState(false);
-	const [wordUsed, setWordUsed] = React.useState(false);
-	const [sucess, setSucess] = React.useState(false);
 	const [formation, setFormation] = useState('1900-01-01')
 
 	const minStartActivy = (date) => {
@@ -178,6 +161,7 @@ export const RegisterVeterinary = () => {
 
 			const {response} = await registerVet(allInfos)
 			if (response.id) {
+
 				const specialities = checkedBoxesEspecialidades.map(item => {
 					return {...item, veterinaryId: response.id}
 				})
@@ -185,70 +169,29 @@ export const RegisterVeterinary = () => {
 					return {...item, veterinaryId: response.id}
 				})
 
-				await updateSpecialitiesPet(JSON.stringify({AnimalTypesVetInfos: attendedAnimals}))
-				await updateSpecialities(JSON.stringify({specialties: specialities}))
+				console.log(
+					await updateSpecialitiesPet(JSON.stringify({AnimalTypesVetInfos: attendedAnimals}))
+				);
+				console.log(
+					await updateSpecialities(JSON.stringify({specialties: specialities}))
+				);
+
+
 				Notifications.success('Veterinário criado com sucesso')
-				document.location.href = '/login'
+				setTimeout(function() {
+					document.location.href = '/login'
+				  }, 2000); 
+				
 			} else {
 				if (response.error)
 					if (response.error.toLowerCase().includes('crmv')) await Notifications.error('O CRMV já está em uso')
 				if (response.toLowerCase().includes('e-mail')) await Notifications.error('O e-mail já está em uso')
 				else await Notifications.error('Não foi possível criar o usuário')
-				document.location.href = '/register'
+				setTimeout(function() {
+					document.location.href = '/register'
+				  }, 2000); 
+				
 			}
-
-			// const createUserResponse = await registerVet(allInfos)
-			// let error1 = createUserResponse.response ? createUserResponse.response : ""
-			// let error = createUserResponse.response.error ? createUserResponse.response.error : ""
-			// if (createUserResponse.response.id) {
-			// 	console.log();
-			// 	const especialidades = checkedBoxesEspecialidades.map((item) => {
-			// 		return { ...item, veterinaryId: createUserResponse.response.id };
-			// 	});
-			// 	const especialidadesPet = checkedBoxes.map((item) => {
-			// 		return { ...item, veterinaryId: createUserResponse.response.id };
-			// 	});
-
-			// 	console.log(
-			// 		await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: especialidadesPet }))
-			// 	);
-			// 	console.log(
-			// 		await updateSpecialities(JSON.stringify({ specialties: especialidades }))
-			// 	);
-
-
-
-			// 	showToastMessage()
-			// 	setTimeout(function () {
-			// 		setTimeout(function () {
-			// 			document.location.href = '/login'
-			// 		}, 5000);
-			// 	}, 4000);
-			// } else {
-			// 	if (error1 == "Email já está em uso" || error == "CRMV já está em uso") {
-			// 		if (error1 == 'Email já está em uso') {
-			// 			//let firstWord = error1.split(" ")[0]
-			// 			//openModalEmail(firstWord)
-			// 			setTimeout(function () {
-			// 				//closeModalEmail()
-			// 				//document.location.href = '/register'
-			// 			}, 2000);
-			// 		} else {
-			// 			let firstWord = error.split(" ")[0]
-			// 			//openModalEmail(firstWord)
-			// 			setTimeout(function () {
-			// 				//closeModalEmail()
-			// 				//document.location.href = '/register'
-			// 			}, 2000);
-			// 		}
-			// 	} else {
-			// 		//openModal()
-			// 		setTimeout(function () {
-			// 			//closeModal()
-			// 			//document.location.href = '/register'
-			// 		}, 2000);
-			// 	}
-			// }
 
 
 		} else await Notifications.error('Dados inválidos')
@@ -331,7 +274,7 @@ export const RegisterVeterinary = () => {
 								type="date"
 								name="startActingDate"
 								max={dataFormatada}
-								min={formation} // define a data mínima como a data de formação selecionada
+								min={formation} 
 								{...register('startActingDate', { required: true })}
 							/>
 						</label>
