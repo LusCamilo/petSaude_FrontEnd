@@ -452,9 +452,8 @@ export const PetConfig = () => {
                   }
                 }}
               >
-                <img src={lapis} alt="Edit" className='h-7'/>
-                {/* <MdEdit className='text-4xl'/> */}
-                Editar	
+                <RiPencilFill className="text-3xl"/>
+                Editar
               </button>
             </div>
           </div>
@@ -468,12 +467,6 @@ export const PetConfig = () => {
               >
                 <IoMdTrash className='text-6xl'/>
               </button>
-              {/* <button 
-                className="mt-3" 
-                asChild
-              >
-                <img src={lixeira} alt="" />
-              </button> */}
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="DialogOverlay" />
