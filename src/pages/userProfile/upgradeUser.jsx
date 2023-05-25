@@ -127,7 +127,6 @@ export const UpgradeUser = () => {
 					cidade: address.localidade,
 					complemento: allInfosUser.complement,
 					number: allInfosUser.number,
-					profilePhoto: allInfosUser.profilePhoto,
 					profileBannerPhoto: allInfosUser.profileBannerPhoto,
 					institution: allInfosUser.institution,
 					crmv: allInfosUser.crmv,
