@@ -32,9 +32,6 @@ export const VeterinaryProfile = () => {
 		onSearch();
 	}, []);
 
-
-
-
 	return (
 		<div>
 			<HeaderProfile />

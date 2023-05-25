@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { UserPhoto } from './userPhoto';
 import { RiPencilFill } from "react-icons/ri";
 
-
-
 export const InfosProfile = (props) => {
 
 

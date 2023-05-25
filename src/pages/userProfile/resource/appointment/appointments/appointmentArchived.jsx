@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import "./styleAppointment.css";
 import * as Dialog from "@radix-ui/react-dialog";
 import jwt_decode from "jwt-decode";
@@ -38,6 +39,7 @@ const customStyles = {
 };
 
 export const AppointmentArchived = (props) => {
+  const { register, handleSubmit, formState: errors, setValue } = useForm();
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [pedidos, setPedido] = useState([]);
   const [quant, setQuant] = useState({ Finalizado: 0, Cancelado: 0 });
@@ -58,24 +60,6 @@ export const AppointmentArchived = (props) => {
   const [isVet, setisVet] = useState("hidden");
   const [buttonAceitar, setButtonAceitar] = useState("flex");
   const [divNothing, setDivNothing] = useState("hidden");
-
-  const [warn, setWarn] = React.useState(false);
-  const [Sucess, setSucess] = React.useState(false);
-  function openModalQuestionWarn() {
-    setWarn(true);
-  }
-
-  function closeModalQuestionWarn() {
-    setWarn(false);
-  }
-
-  function openModalQuestionSucess() {
-    setSucess(true);
-  }
-
-  function closeModalQuestionSucess() {
-    setSucess(false);
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -128,9 +112,7 @@ export const AppointmentArchived = (props) => {
                 typeof idadeEmAnos === "number" &&
                 Number.isInteger(idadeEmAnos)
               ) {
-                if (idadeEmAnos == -1) {
-                  idadeString = 0 + " anos";
-                } else idadeString = idadeEmAnos.toString() + " anos";
+                idadeString = idadeEmAnos.toString() + " anos";
               } else {
                 const idadeEmMeses = idadeEmAnos * 12;
                 idadeString = idadeEmMeses.toString() + " meses";
@@ -153,6 +135,7 @@ export const AppointmentArchived = (props) => {
                 horario: horario,
                 descricao: app.description,
                 duration: formattedDuration,
+                vetId: vet.id,
                 vetName: vet.personName,
                 vetPhone: vet.cellphoneNumber,
                 vetPhoto: vet.profilePhoto,
@@ -177,6 +160,19 @@ export const AppointmentArchived = (props) => {
     };
     fetchData();
   }, []);
+
+  const submitForm = async (data) => {
+    let allInfos;
+
+    allInfos = {
+      score: data.score,
+      description: data.description,
+      veterinaryId: data.vetId,
+    };
+    console.log(allInfos);
+
+    closeModal();
+  };
 
   function formatDuration(duration) {
     const hours = Math.floor(duration / 60);
@@ -449,23 +445,8 @@ export const AppointmentArchived = (props) => {
                   style={customStyles}
                   contentLabel="Example Modal"
                 >
-                  <form>
+                  <form onSubmit={handleSubmit(submitForm)}>
                     <div className="bg-white w-full ">
-                      <div className="mb-3">
-                        <label
-                          htmlFor="email"
-                          className="block text-gray-700 font-bold mb-2"
-                        >
-                          Título do comentário
-                        </label>
-                        <input
-                          id="email"
-                          type="email"
-                          placeholder=""
-                          autoFocus
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
-                      </div>
                       <div className="mb-3">
                         <label
                           htmlFor="comment"
@@ -560,7 +541,7 @@ export const AppointmentArchived = (props) => {
                         <button
                           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
                           type="submit"
-                          onClick={closeModal}
+                          onClick={submitForm}
                         >
                           Enviar
                         </button>

@@ -2,23 +2,20 @@ import React, { useState, useEffect } from "react";
 import { CardProfessionals } from "./resource/CardProfessionals";
 import { Footer } from "./resource/Footer";
 import { HeaderInfo } from "./resource/HeaderInfo";
+import search from "../../assets/svg/lupa.svg";
 import {
   getUsers,
   getAllVets,
   getVet,
 } from "../../services/integrations/filters";
 import { useForm } from "react-hook-form";
-import { BiSearch } from "react-icons/bi";
-import * as RadioGroup from "@radix-ui/react-radio-group";
 import "./radixSearch.css";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Notifications from "../../utils/Notifications";
 
 export const SearchProfessional = () => {
-  const { register, handleSubmit } = useForm();
-  const [vets, setVets] = useState([]);
+  const [vets, setVets] = useState(null);
+  const [vetSearch, setVetSearch] = useState([])
   const [inputSearch, setInputSearch] = useState(
     localStorage.getItem("__Vet_Search") || ""
   );
@@ -59,86 +56,25 @@ export const SearchProfessional = () => {
     }
   }
 
-  async function filterVets(data, filtro = "city") {
-    try {
-      let filteredVets = [];
+  async function getVets(event) {
+    const { value } = event.target;
+    setInputSearch(value);
 
-      if (filtro !== "city") {
-        const response = await getUsers(data.search, filtro);
-        if (
-          response.response ==
-            "Nenhum veterinário atende aos filtros de pesquisa" ||
-          response == undefined
-        ) {
-          filteredVets = shuffleArray([]);
-        } else {
-          filteredVets = response.response;
-        }
-      } else {
-        filteredVets = await getVetsByCity(data.search);
-      }
-      const vets = shuffleArray(filteredVets);
-      setVets(vets);
-    } catch (error) {
-      console.error("Erro ao filtrar veterinários:", error);
+    let result;
+    if (value === "") {
+      const response = await getAllVets();
+      result = response.response;
+    } else {
+      const response = await getUsers(filtro, inputSearch)
     }
+    
+    setVets(result);
   }
 
-  // useEffect(() => {
-  //   // Chamada inicial para carregar todos os veterinários
-  //   filterVets({ search: '', filtro: '' }, '');
-  // }, []);
+  useEffect(() => {
+    getVets();
+  }, []);
 
-  // function shuffleArray(array) {
-  // 	for (let i = array.length - 1; i > 0; i--) {
-  // 		const j = Math.floor(Math.random() * (i + 1));
-  // 		[array[i], array[j]] = [array[j], array[i]];
-  // 	}
-  // 	return array;
-  // }
-  //     if(1 == 1){
-  //       let json = Object.values(result);
-  //       let arrayEmbaralhado = shuffleArray(json);
-  //       setVets(arrayEmbaralhado);
-  //     } else {
-  //       if (filtro != "city") {
-  //         let response = await getUsers(data.search, ondeProcurar);
-  //         let result = response.response;
-  //         let json;
-  //         if (result === "Nenhum veterinário atende aos filtros de pesquisa") {
-  //           json = [];
-  //           showToastMessage();
-  //         }
-  //        }  else if (0 == 0) {
-  //           json = result.filter(
-  //             (item) =>
-  //               item.personName
-  //                 .toLowerCase()
-  //                 .includes(data.search.toLowerCase()) ||
-  //               item.userName.toLowerCase().includes(data.search.toLowerCase())
-  //           );
-  //         }
-  //         setUmCorteRapidao("");
-  //         let arrayEmbaralhado = shuffleArray(json);
-  //         setVets(arrayEmbaralhado);
-  //       } else {
-  //         let response = await getAllVets();
-  //         let procurarCidade = data.search;
-  //         let result = response.response;
-  //         let json = Object.values(result);
-  //         if (procurarCidade == "") {
-  //           setVets(response);
-  //         } else {
-  //           let jsonFinal = await Promise.all(
-  //             json.map(async (item) => {
-  //               let response = await axios.get(
-  //                 `https://viacep.com.br/ws/${item.Address.cep}/json/`
-  //               );
-  //               let pessoa = response.data.localidade;
-  //               return { item, pessoa };
-  //             })
-  //           );}
-  //         }
   return (
     <>
       <HeaderInfo
@@ -150,22 +86,21 @@ export const SearchProfessional = () => {
           <div className="flex flex-row gap-2 w-full border-2 border-black rounded-lg items-center align-middle content-center">
             <img className="pl-2 w-12 text-center" src={search} />
             <form
-              onChange={handleSubmit(onSearch)}
+              // onChange={handleSubmit(onSearch)}
               className="w-96 flex pt-3 items-center content-center align-middle"
             >
               <input
                 className="xl:w-full h-14 text-2xl flex items-center content-center"
                 placeholder="Pesquisar especialistas"
                 defaultValue={inputSearch}
-                onChange={(e) => setInputSearch(e.target.value)}
-                {...register("search")}
+                onChange={getVets}
               />
             </form>
           </div>
           <div className="flex justify-center">
             <div
               className="flex justify-between my-5 w-full items-center"
-              onClick={() => {}}
+              onClick={() => { }}
             >
               <div className="flex items-center cursor-pointer border-2 w-72 h-10 p-7 justify-center rounded-lg">
                 <label
@@ -227,20 +162,26 @@ export const SearchProfessional = () => {
           </div>
         </div>
         <div>
-          {vets.map((vet) => (
-            <CardProfessionals
-              key={vet.id}
-              id={vet.id}
-              userName={vet.userName}
-              nome={vet.personName}
-              cep={vet.Address.cep}
-              formacao={vet.formation}
-              instituicao={vet.institution}
-              image={vet.profilePhoto}
-              dateStart={vet.startActingDate}
-              umCorteRapido={umCorteRapidao}
-            />
-          ))}
+          {
+            vets !== "" && vets !== null ? (
+              vets.map((vet) => (
+                <CardProfessionals
+                  key={vet.id}
+                  id={vet.id}
+                  userName={vet.userName}
+                  nome={vet.personName}
+                  cep={vet.Address.cep}
+                  formacao={vet.formation}
+                  instituicao={vet.institution}
+                  image={vet.profilePhoto}
+                  dateStart={vet.startActingDate}
+                  umCorteRapido={umCorteRapidao}
+                />
+              ))
+            ) : (
+              <span>teste</span>
+            )
+          }
 
           <ToastContainer
             position="top-right"
