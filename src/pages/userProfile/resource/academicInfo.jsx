@@ -27,10 +27,10 @@ export const AcademicInfos = (props) => {
 
 	return (
 		<div className='flex flex-col items-center md:w-96 mt-4'>
-			<h2 className="text-3xl pt-5 mb-3 w-max">
+			<h2 className="text-3xl w-max">
 				Informações acadêmicas
 			</h2>
-			<div className='hidden md:flex flex-col p-4 w-full h-min gap-4 border rounded-lg border-zinc-700 mt-5'>
+			<div className='hidden md:flex flex-col p-4 w-full h-min gap-4 border rounded-lg border-zinc-700 mt-1'>
 				<div className='flex items-center justify-between gap-x-4 pl-4 border rounded-lg border-zinc-700'>
 					<span className='flex flex-col'>
 						<h3>Formação:</h3>

@@ -49,8 +49,8 @@ export const Cards = (props) => {
 
 	if (props.isVet == true) {
 		return (
-			<div className='flex flex-col gap-2 md:px-44'>
-				<h2 className='text-3xl md:pt-4 pb-3'>Avaliações</h2>
+			<div className='flex flex-col mt-4 md:px-44'>
+				<h2 className='text-3xl pb-2'>Avaliações</h2>
 				<div className='flex items-center pl-14 md:pl-0 justify-between'>
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
@@ -65,8 +65,8 @@ export const Cards = (props) => {
 		);
 	} else {
 		return (
-			<div className='flex flex-col gap-2 md:px-44'>
-				<h2 className='text-3xl md:pt-4 pb-3'>{localStorage.getItem("__user_isVet") == 'true' ? 'Avaliações' : 'Pets'}</h2>
+			<div className='flex flex-col mt-4 md:px-44'>
+				<h2 className='text-3xl pb-2'>{localStorage.getItem("__user_isVet") == 'true' ? 'Avaliações' : 'Pets'}</h2>
 				<div className='flex items-center pl-14 md:pl-0 justify-between'>
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>

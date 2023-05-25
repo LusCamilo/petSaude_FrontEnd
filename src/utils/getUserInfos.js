@@ -19,5 +19,6 @@ export default async function getUserInfos () {
 		email: response.user.email,
 		password: response.user.password,
 		isVet: response.user.isVet,
+		bio: response.user.biography
 	}
 }
