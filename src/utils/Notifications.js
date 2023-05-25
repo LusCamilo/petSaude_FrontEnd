@@ -1,16 +1,18 @@
 import Swal from 'sweetalert2'
 import withReactContent from "sweetalert2-react-content";
+import {Appointment} from "../pages/userProfile/resource/appointment/appointment";
 
 class Notifications {
 	constructor() {
 		this.swal = withReactContent(Swal)
 	}
 
-	async error(message) {
+	async error(message, subtitle = null) {
 		await this.swal.fire({
 			timer: 1500,
 			icon: "error",
 			title: <p>{message}</p>,
+			text: subtitle,
 			timerProgressBar: true,
 			showConfirmButton: false,
 			buttonsStyling: false,
@@ -57,6 +59,16 @@ class Notifications {
 			showConfirmButton: true,
 			showCancelButton: true,
 		}).then(callback)
+	}
+
+	async appointment(onCancel, onToast) {
+		await this.swal.fire({
+			showCancelButton: false,
+			showConfirmButton: false,
+			html: <Appointment onCancel={onCancel} onToast={onToast} />,
+			heightAuto: true,
+			width: '90%',
+		})
 	}
 }
 

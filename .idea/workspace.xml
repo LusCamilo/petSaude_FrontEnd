@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_08_14_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_08_14__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_11_25_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2023_11_25__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_23_07_32_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_23_07_32__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/searchProfessional.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/searchProfessional.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/infosProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editProfile/infosProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/infosProfissional.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/integrations/filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/filters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +114,7 @@
       <workItem from="1684406525216" duration="10849000" />
       <workItem from="1684492403158" duration="1596000" />
       <workItem from="1684499020860" duration="6580000" />
-      <workItem from="1685012518419" duration="1493000" />
+      <workItem from="1685012518419" duration="4908000" />
     </task>
     <servers />
   </component>
