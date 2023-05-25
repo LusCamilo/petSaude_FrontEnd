@@ -445,14 +445,8 @@ export const PetConfig = () => {
                 </label>
               </div>
             </div>
-<<<<<<< HEAD
-            <div className="w-full sm:w-1/3 flex justify-between content-center">
-              <button
-                className="w-full sm:w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg text-2xl"
-=======
             <div className="w-full sm:w-1/3 h-fit flex justify-end content-center">
               <button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' 
->>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
                 onClick={() => {
                   if (document.getElementById("petInfos").disabled === true) {
                     petInfosDisableState({
@@ -467,14 +461,8 @@ export const PetConfig = () => {
                   }
                 }}
               >
-<<<<<<< HEAD
                 <RiPencilFill className="text-3xl"/>
                 Editar
-=======
-                <img src={lapis} alt="Edit" className='h-7'/>
-                {/* <MdEdit className='text-4xl'/> */}
-                Editar	
->>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
               </button>
             </div>
           </div>
