@@ -1,21 +1,21 @@
 import React from "react";
+import { TbDotsVertical } from 'react-icons/fa' ;  
 
 
 export const Rating = (props) => {
 	return (
 		<div id={props.id} className='w-80 h-64 border border-solid border-[#CAC4D0] rounded-2xl flex flex-none flex-col'>
 			<div className='h-1/4 flex flex-row justify-between items-center px-5'>
+			{/* <TbDotsVertical /> */}
 				<label className='flex items-center'>
-					<img src={props.personImage} alt="Imagem ou icone do perfil" className='w-10 h-10 rounded-full' />
-					<p className='bg-transparent border-none font-sans font-medium text-base w-full px-5 '>
-						{props.animalName}
+					<img src={props.personImage} alt="Imagem ou icone do perfil" className='w-10 h-10 rounded-full text-xs break-normal' />
+					<p className='bg-transparent border-none font-sans font-medium text-base w-full px-5 bold'>
+					 	{props.userName}
 					</p>
 				</label>
-				<img id={props.id} alt="Icone editar" className='w-5 h-5 cursor-pointer' onClick={(e) => {
-					localStorage.setItem("__pet_id" ,e.target.id)
-					document.location.href = "/profile/pet/edit"
-
-				}} />
+				<button className="h-6">
+					<img src="https://static.thenounproject.com/png/1919184-200.png" alt="" className="h-6" />
+				</button>
 			</div>
 			<div className='w-full h-3/4 rounded-b-2xl'>
 				<img src={props.text} alt="Imagem do pet" className="w-full h-full rounded-b-2xl object-cover" />

@@ -54,10 +54,10 @@ export const Cards = (props) => {
 				<div className='flex items-center pl-14 md:pl-0 justify-between'>
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
-						{petOrRating.map((item) => {
-							return <Rating id={item.id} personImage={props.personImage}  score={item.score} text={item.text} />
-						})}
-						
+						{/* {petOrRating.map((item) => {
+							return <Rating id={item.id} personImage={props.personImage} userName={props.userName} score={item.score} text={item.text} />
+						})} */}
+						<Rating/>
 					</div>
 					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
 				</div>
