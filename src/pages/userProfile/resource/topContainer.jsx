@@ -8,25 +8,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
 import isValidImageUrl from "../../../utils/isValidImageUrl";
-
-const customStyles = {
-	content: {
-		top: '53%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		transform: 'translate(-50%, -50%)',
-		border: '3px solid #9ED1B7',
-		borderRadius: '32px',
-		width: '75vw',
-		height: '50vh',
-		zIndex: 99,
-	},
-	overlay : {
-		backgroundColor : '#0000',
-		position : 'fixed'
-	}
-};
+import Notifications from "../../../utils/Notifications";
+import {appointmentAdd} from "../../../services/integrations/appointment";
 
 export const TopContainer = (props) => {
 	const [biografia, setBiografia] = useState("truncate")
@@ -112,10 +95,17 @@ export const TopContainer = (props) => {
 	}
 
 	function isValidImageUrl(url) {
-		const imageUrlRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
+		const imageUrlRegex = /\.(jpe?g|tiff?|png|bmp)$/i;
 		return imageUrlRegex.test(url);
 	}
 
+	async function openAppointmentModal() {
+		await Notifications.appointment(handleCancelAppointment, showToastMessage, async result => {
+			if (result.isConfirmed) {
+				// TODO: IMPLEMENTAR CONFIRMAÇÃO DA CONSULTA
+			}
+		})
+	}
 
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>
@@ -157,7 +147,7 @@ export const TopContainer = (props) => {
 					<button
 					// botaoAppont bg-lime-500 rounded-md px-3 py-2 text-xl w-full md:text-3xl md:w-80 shadow-lg justify-center items-center self-center md:mt-6
 						className='bg-lime-500 rounded-lg p-3 h-fit text-xl md:text-3xl shadow-lg md:mt-10'
-						onClick={openModal}>
+						onClick={openAppointmentModal}>
 						Agendar uma consulta
 					</button> : null}
 				</div>
@@ -175,29 +165,29 @@ export const TopContainer = (props) => {
 					ler mais
 				</a>
 			</div>
-			<Modal
-				isOpen={modalIsOpen}
-				onAfterOpen={afterOpenModal}
-				onRequestClose={closeModal}
-				style={customStyles}
-				contentLabel="Example Modal"
-			>
-				<form className='w-full'>
-					<Appointment onCancel={handleCancelAppointment} onToast={showToastMessage}/>
-				</form>
-			</Modal>
-			<ToastContainer
-				position="top-center"
-				autoClose={2000}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-				theme="light"
-			/>
+			{/*<Modal*/}
+			{/*	isOpen={modalIsOpen}*/}
+			{/*	onAfterOpen={afterOpenModal}*/}
+			{/*	onRequestClose={closeModal}*/}
+			{/*	style={customStyles}*/}
+			{/*	contentLabel="Example Modal"*/}
+			{/*>*/}
+			{/*	<form className='w-full'>*/}
+			{/*		<Appointment onCancel={handleCancelAppointment} onToast={showToastMessage}/>*/}
+			{/*	</form>*/}
+			{/*</Modal>*/}
+			{/*<ToastContainer*/}
+			{/*	position="top-center"*/}
+			{/*	autoClose={2000}*/}
+			{/*	hideProgressBar={false}*/}
+			{/*	newestOnTop={false}*/}
+			{/*	closeOnClick*/}
+			{/*	rtl={false}*/}
+			{/*	pauseOnFocusLoss*/}
+			{/*	draggable*/}
+			{/*	pauseOnHover*/}
+			{/*	theme="light"*/}
+			{/*/>*/}
 		</div>
 	);
 }

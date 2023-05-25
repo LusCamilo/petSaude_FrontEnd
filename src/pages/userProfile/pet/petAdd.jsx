@@ -177,38 +177,19 @@ export const PetAdd = () => {
 			}
 
 			resultAPI = await petAdd(newPet, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
-			console.log(resultAPI);
-			if(resultAPI.response.statusCode == 400 || resultAPI.response.status == 400){
-			
-				showErrorMessage()
-				setTimeout(function() {
-					window.location.reload();
-				}, 2000);
 
-			} else {	
-				showSucessMessage()
-				setTimeout(() => {
-					Notifications.success('Pet Criado com sucesso')
-					setTimeout(() => {
-						document.location.href = "/profile/configuration";
-					}, 1600); 
-				}, 2300); 
-			}
 		} else {
 			resultAPI = await petAdd(petInfos, localStorage.getItem("__user_id"), localStorage.getItem("__user_JWT"))
 			console.log(resultAPI);
 		}
 
 		if (resultAPI.response.statusCode == 201) {
-			showSucessMessage()
+
+			Notifications.success('Pet Criado com sucesso')
 			setTimeout(() => {
-				Notifications.success('Pet Criado com sucesso')
-				setTimeout(() => {
-					document.location.href = "/profile/configuration";
-				}, 1600); 
-			}, 2300); 
-
-
+				document.location.href = "/profile/configuration";
+			}, 1600); 
+	
 		}
 	}
 

@@ -41,19 +41,6 @@ const customStyles = {
   },
 };
 
-const deletingPet = () => {
-  toast.warn("Deletando pet", {
-    position: "top-right",
-    autoClose: 2500,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-};
-
 const updatingPet = () => {
   toast.success("Editando pet", {
     position: "top-right",
@@ -452,9 +439,8 @@ export const PetConfig = () => {
                   }
                 }}
               >
-                <img src={lapis} alt="Edit" className='h-7'/>
-                {/* <MdEdit className='text-4xl'/> */}
-                Editar	
+                {/* <RiPencilFill className="text-3xl"/> */}
+                Editar
               </button>
             </div>
           </div>
@@ -468,12 +454,6 @@ export const PetConfig = () => {
               >
                 <IoMdTrash className='text-6xl'/>
               </button>
-              {/* <button 
-                className="mt-3" 
-                asChild
-              >
-                <img src={lixeira} alt="" />
-              </button> */}
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="DialogOverlay" />
