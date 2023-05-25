@@ -3,13 +3,8 @@ import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useForm } from "react-hook-form";
 import { PetHeader } from "./petHeader";
-<<<<<<< HEAD
 import { IoMdAdd } from "react-icons/io";
 import linha from "../../../assets/svg/linha.svg";
-=======
-import addMais from "../resource/img/AddMais.png";
-import cuidado from '../resource/img/Cuidado.png'
->>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
 import "../../reset.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { styled } from "@stitches/react";
