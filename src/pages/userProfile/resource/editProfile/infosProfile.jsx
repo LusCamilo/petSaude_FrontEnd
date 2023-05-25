@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { UserPhoto } from './userPhoto';
 import { RiPencilFill } from "react-icons/ri";
 
-
-
 export const InfosProfile = (props) => {
 
 
@@ -82,7 +80,7 @@ export const InfosProfile = (props) => {
 								})
 							}
 						}}>
-							<RiPencilFill className='text-3xl'/>
+							<RiPencilFill className='text-4xl'/>
 							Editar
 						</button>
 						<button

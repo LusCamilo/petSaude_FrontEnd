@@ -8,18 +8,14 @@ import linha from "../../../assets/svg/linha.svg";
 import "../../reset.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { styled } from "@stitches/react";
-import certo from "../resource/img/Certo.jpg";
-import lixeira from "../resource/img/Excluir.png";
 import { PetAddSucess } from "./cards/sucess";
 import * as Dialog from "@radix-ui/react-dialog";
 import "./css/pet.css";
-import { RiPencilFill } from "react-icons/ri";
 import lapis from "../../../assets/svg/pencil.svg";
 import { getSpecialtiesPet } from "../../../services/integrations/specialtiesPet";
 import { getPet, petUpdate } from "../../../services/integrations/pet";
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
-import { petDelete } from "../../../services/integrations/pet";
 import { AiOutlineCheck } from 'react-icons/ai';
 import { IoMdTrash } from "react-icons/io";
 
@@ -443,7 +439,7 @@ export const PetConfig = () => {
                   }
                 }}
               >
-                <RiPencilFill className="text-3xl"/>
+                {/* <RiPencilFill className="text-3xl"/> */}
                 Editar
               </button>
             </div>
@@ -458,12 +454,6 @@ export const PetConfig = () => {
               >
                 <IoMdTrash className='text-6xl'/>
               </button>
-              {/* <button 
-                className="mt-3" 
-                asChild
-              >
-                <img src={lixeira} alt="" />
-              </button> */}
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="DialogOverlay" />

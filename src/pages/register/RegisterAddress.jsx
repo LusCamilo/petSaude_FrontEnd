@@ -7,25 +7,6 @@ import backgroundImage from "../../assets/image/address-image.png";
 import "react-toastify/dist/ReactToastify.css";
 import Notifications from "../../utils/Notifications";
 
-const customStyles = {
-	content: {
-		top: "50%",
-		left: "50%",
-		right: "auto",
-		bottom: "auto",
-		marginRight: "-50%",
-		transform: "translate(-50%, -50%)",
-		border: "4px solid transparent",
-		borderRadius: "12px 12px",
-		backgroundColor: "#FFFFFFff",
-		display: "flex",
-		justifyContent: "center",
-	},
-	overlay: {
-		backgroundColor: "#00000000",
-	},
-};
-
 export function RegisterAddress() {
 	const {register, handleSubmit, formState: errors, setValue} = useForm();
 	const [city, setCity] = useState("");
@@ -66,17 +47,6 @@ export function RegisterAddress() {
 			},
 		};
 
-	
-
-		let hoje = new Date();
-		let ano = hoje.getFullYear();
-		let mes = hoje.getMonth() + 1;
-		let dia = hoje.getDate();
-		if (mes < 10) mes = '0' + mes
-		if (dia < 10) dia = '0' + dia
-		let dataFormatada = `${ano}-${mes}-${dia}`;
-
-		console.log(allInfos);
 
 		if (registerType == "professional") {
 			allInfos.isVet = "true";

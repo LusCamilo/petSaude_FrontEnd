@@ -1,10 +1,8 @@
 import { BASE_URL } from "../../lib/_base_url";
 
 export async function getUsers(search, searchIt) {
-  console.log(search);
-  console.log(searchIt);
-  if (search == null) {
-    search = "";
+  if (search === null) {
+    search = ''
   }
   const url = `${BASE_URL}veterinary?${searchIt}=${search}`;
   return await fetch(url, {

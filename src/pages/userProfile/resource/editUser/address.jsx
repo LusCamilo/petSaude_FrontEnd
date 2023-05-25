@@ -111,11 +111,11 @@ export const Address = (props) => {
 										 className={`bg-transparent border-none text-2xl opacity-50`}/>
 						</label>
 					</div>
-					<div className='flex justify-start md:ml-24'>
-						<label className='flex flex-col text-xl text-[#A9A9A9]'>
+					<div className='flex justify-start text-2xl md:ml-24'>
+						<label className='flex flex-col text-xl text-[#A9A9A9] w-full'>
 							Bairro
 							<input disabled="true" type="text" name="firstName" defaultValue={props.bairro}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+										 className={`bg-transparent border-none text-2xl opacity-50 w-full`}/>
 						</label>
 					</div>
 					<div className=''>
