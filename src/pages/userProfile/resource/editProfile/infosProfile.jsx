@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { UserPhoto } from './userPhoto';
-<<<<<<< HEAD
 import { RiPencilFill } from "react-icons/ri";
-=======
-import { MdEdit } from 'react-icons/md';
-
->>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
 
 
 
@@ -87,11 +82,7 @@ export const InfosProfile = (props) => {
 								})
 							}
 						}}>
-<<<<<<< HEAD
 							<RiPencilFill className='text-3xl'/>
-=======
-							<MdEdit className='text-4xl'/>	
->>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
 							Editar
 						</button>
 						<button

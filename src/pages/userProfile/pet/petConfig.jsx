@@ -45,19 +45,6 @@ const customStyles = {
   },
 };
 
-const deletingPet = () => {
-  toast.warn("Deletando pet", {
-    position: "top-right",
-    autoClose: 2500,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-};
-
 const updatingPet = () => {
   toast.success("Editando pet", {
     position: "top-right",

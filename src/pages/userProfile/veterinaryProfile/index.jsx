@@ -31,7 +31,7 @@ export const VeterinaryProfile = () => {
 	useEffect(() => {
 		onSearch();
 	}, []);
-
+ 
 
 
 
