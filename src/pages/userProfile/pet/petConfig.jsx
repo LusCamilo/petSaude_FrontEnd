@@ -4,6 +4,7 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useForm } from "react-hook-form";
 import { PetHeader } from "./petHeader";
 import { IoMdAdd } from "react-icons/io";
+import linha from "../../../assets/svg/linha.svg";
 import "../../reset.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { styled } from "@stitches/react";
