@@ -115,10 +115,10 @@ export const CardProfessionals = (props) => {
 						<ul className={`${showEspecialidade} text-2xl w-4/6`}>
 							{veterinariosEspecialdades.map(esp =>{
 								const name = esp.specialities.name
-								console.log({name, id: esp.specialities.id});
+								const id = esp.specialities.id
 								return(
-									<p key={esp.specialities.id}>
-										{name},
+									<p key={id}>
+										{name}, 
 									</p>
 								)
 							})}
