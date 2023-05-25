@@ -3,28 +3,18 @@ import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useForm } from "react-hook-form";
 import { PetHeader } from "./petHeader";
-<<<<<<< HEAD
 import { IoMdAdd } from "react-icons/io";
-import linha from "../../../assets/svg/linha.svg";
-=======
-import addMais from "../resource/img/AddMais.png";
-import cuidado from '../resource/img/Cuidado.png'
->>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
 import "../../reset.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { styled } from "@stitches/react";
-import certo from "../resource/img/Certo.jpg";
-import lixeira from "../resource/img/Excluir.png";
 import { PetAddSucess } from "./cards/sucess";
 import * as Dialog from "@radix-ui/react-dialog";
 import "./css/pet.css";
-import { RiPencilFill } from "react-icons/ri";
 import lapis from "../../../assets/svg/pencil.svg";
 import { getSpecialtiesPet } from "../../../services/integrations/specialtiesPet";
 import { getPet, petUpdate } from "../../../services/integrations/pet";
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
-import { petDelete } from "../../../services/integrations/pet";
 import { AiOutlineCheck } from 'react-icons/ai';
 import { IoMdTrash } from "react-icons/io";
 
@@ -445,14 +435,8 @@ export const PetConfig = () => {
                 </label>
               </div>
             </div>
-<<<<<<< HEAD
-            <div className="w-full sm:w-1/3 flex justify-between content-center">
-              <button
-                className="w-full sm:w-52 h-12 flex flex-row justify-center items-center gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg text-2xl"
-=======
             <div className="w-full sm:w-1/3 h-fit flex justify-end content-center">
               <button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' 
->>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
                 onClick={() => {
                   if (document.getElementById("petInfos").disabled === true) {
                     petInfosDisableState({
@@ -467,14 +451,9 @@ export const PetConfig = () => {
                   }
                 }}
               >
-<<<<<<< HEAD
-                <RiPencilFill className="text-3xl"/>
-                Editar
-=======
                 <img src={lapis} alt="Edit" className='h-7'/>
                 {/* <MdEdit className='text-4xl'/> */}
                 Editar	
->>>>>>> e899594aa9cd5aa440958be4f5221cc98de1133f
               </button>
             </div>
           </div>
