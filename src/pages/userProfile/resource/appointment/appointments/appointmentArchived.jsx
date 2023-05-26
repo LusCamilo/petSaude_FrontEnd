@@ -276,7 +276,7 @@ export const AppointmentArchived = (props) => {
   };
 
   return (
-    <section>
+    <section className="w-fit">
       <div className="flex flex-row gap-3 justify-between">
         <div className="flex flex-col items-center">
           <div className="flex flex-row gap-2">
