@@ -12,7 +12,7 @@ export async function getUsers(search, searchIt) {
     },
   })
     .then(response => response.json())
-    .catch(error => console.log('Error Procurar veterinários'));
+    .catch(() => console.log('Error Procurar veterinários'));
 }
 
 export async function getAllVets() {

@@ -7,51 +7,11 @@ import {IoMdAdd, IoMdTrash} from "react-icons/io";
 import "../../reset.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {styled} from "@stitches/react";
-import {PetAddSucess} from "./cards/sucess";
-import * as Dialog from "@radix-ui/react-dialog";
 import "./css/pet.css";
 import {getSpecialtiesPet} from "../../../services/integrations/specialtiesPet";
 import {getPet, petUpdate} from "../../../services/integrations/pet";
-import Modal from "react-modal";
-import {toast, ToastContainer} from "react-toastify";
 import {AiOutlineCheck} from 'react-icons/ai';
 import Notifications from "../../../utils/Notifications";
-
-const customStyles = {
-	content: {
-		top: "50%",
-		left: "50%",
-		right: "auto",
-		bottom: "auto",
-		marginRight: "-50%",
-		transform: "translate(-50%, -50%)",
-		border: "4px solid transparent",
-		borderRadius: "10px",
-		backgroundColor: "#E3EFF0",
-		width: "510px",
-		height: "360px",
-		padding: "0",
-		display: "flex",
-		justifyContent: "center",
-	},
-	overlay: {
-		backgroundColor: "#0000",
-	},
-};
-
-// const updatingPet = () => {
-//   toast.success("Editando pet", {
-//     position: "top-right",
-//     autoClose: 2000,
-//     hideProgressBar: false,
-//     closeOnClick: true,
-//     pauseOnHover: true,
-//     draggable: true,
-//     progress: undefined,
-//     theme: "light",
-//   });
-// };
-
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",

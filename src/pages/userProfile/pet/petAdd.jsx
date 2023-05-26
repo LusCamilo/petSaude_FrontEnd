@@ -6,13 +6,10 @@ import "../css/UpgradeUser.css"
 import addMais from "../resource/img/AddMais.png"
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { styled } from '@stitches/react';
-import certo from '../resource/img/Certo.jpg'
-import { PetAddSucess } from './cards/sucess';
 import { petAdd } from "../../../services/integrations/pet.js";
 import './css/pet.css'
-import Modal from 'react-modal'
 import { getSpecialtiesPet } from '../../../services/integrations/specialtiesPet';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Notifications from '../../../utils/Notifications';
 import { AiOutlineCheck } from 'react-icons/ai';
 import {IoMdAdd} from "react-icons/io";
@@ -28,28 +25,6 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
-
-const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-		border: '4px solid transparent',
-		borderRadius: '10px',
-		backgroundColor: '#E3EFF0',
-		width: '510px',
-		height: '360px',
-		padding: '0',
-		display: "flex",
-		justifyContent: "center"
-	},
-	overlay: {
-		backgroundColor: '#0000'
-	}
-};
 
 const checkboxSpecialitiesPet = async () => {
 	const response = await getSpecialtiesPet()
@@ -186,7 +161,7 @@ export const PetAdd = () => {
 
 		if (resultAPI.response.statusCode == 201) {
 
-			Notifications.success('Pet Criado com sucesso')
+			await Notifications.success('Pet Criado com sucesso')
 			setTimeout(() => {
 				document.location.href = "/profile/configuration";
 			}, 1600); 

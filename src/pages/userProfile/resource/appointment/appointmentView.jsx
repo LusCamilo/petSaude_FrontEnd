@@ -3,7 +3,6 @@ import {AppointmentAsk} from './appointments/appointmentAsk';
 import {PetHeader} from '../../pet/petHeader';
 import {AppointmentPeding} from './appointments/appointmentPending';
 import {AppointmentArchived} from './appointments/appointmentArchived';
-import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 

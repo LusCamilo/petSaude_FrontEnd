@@ -1,19 +1,10 @@
-.cardPet{
-    position: relative;
-    bottom: 500px; 
-}
-.cardConsulta{
-    position: relative;
-    bottom: 1150px;
-    display: flex;
-    justify-content: center;
-
-    @media only screen and (max-width: 600px) {
-        /* Estilos para telas menores que 600px */
+@media only screen and (max-width: 600px) {
+    /* Estilos para telas menores que 600px */
+    .cardConsulta {
         position: relative;
         bottom: 1760px;
         display: flex;
         justify-content: center;
+    }
 
-      }
 }

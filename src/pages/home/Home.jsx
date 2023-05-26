@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "../../components/headers/headerEdits";
 import { signup } from "../../services/integrations/authentication";
-import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
 
 const userId = async () => {
 	const apiResponse = await signup(localStorage.getItem("__user_JWT"));

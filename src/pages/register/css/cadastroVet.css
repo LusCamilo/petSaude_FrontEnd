@@ -1,33 +1,6 @@
-.mainVet{
-
-    height: 100vh;
-    background: linear-gradient(112.87deg, rgba(9, 43, 90, 0.7) 0%, rgba(158, 209, 183, 0.7) 100%);
-
-}
-
-.img-forms{
-
-    display: flex;
-    height: 100%;
-    justify-content: space-between;
-
-}
-.conteiner-img{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
 
 .bg-image{
     height:70%;
-}
-
-.arrow-img{
-
-    display: flex;
-
 }
 
 
@@ -45,13 +18,6 @@ form{
 }
 
 /** Header do Form **/
-.form-header{
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    width: 70%;
-}
 .form-header h1{
     font-size: 2.5rem;
     font-weight: 700;
@@ -65,38 +31,15 @@ form{
 }
 
 /*** Inputs das Caracteristicas do Profissional ***/
-.inputs-container{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    gap: 20px;
-}
-
-.checkbox-container{
-    display: flex;
-    flex-wrap: wrap;
-}
 
 
 /** Especialidades do profissional **/
 
-.specialties{
-    display: flex;
-    flex-direction: column;
-
-}
 .specialties span{
     font-size: 1.2rem;
     font-weight: 400;
 }
 
-.inputs-specialties{
-
-    display: flex;
-    flex-wrap: wrap;
-    /* justify-content: space-between; */
-
-}
 .inputs-specialties label{
 
     display: flex;
@@ -118,25 +61,11 @@ form{
 
 /*****************************/
 
-.animals{
-
-    display: flex;
-    flex-direction: column;
-
-
-}
-
 .animals span{
 
     font-size: 1.2rem;
     font-weight: 400;
     padding-top: 10px;
-}
-
-.inputs-animals{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center ;
 }
 
 .inputs-animals label{
@@ -168,19 +97,6 @@ label input{
 
 
 /* Alinhamento de duas label*/
-.atuacao-crmv{
-    display: flex;
-    align-items: center;
-    gap: 35px;
-}
-
-.area {
-    width: 100%;
-}
-
-.CRMV {
-    width: 100%;
-}
 
 /* ERROR */
 .form-group{
@@ -192,28 +108,8 @@ label input{
 
 /** Botão de Cadastro **/
 
-.register-button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    width: 100%;
-    background-color: #09738A;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 700;
-    border-radius: 10px;
-    margin-top: 10%;
-    transition: 0.5s;
-}
-
 .register-button a{
     width: 100%;
-}
-
-.register-button:hover{
-    background-color: #78A890;
-    transform: scale(1.03);
 }
 
 
@@ -253,10 +149,6 @@ label input{
 
     .form-header span{
         font-size: 1rem;
-    }
-
-    .inputs-container{
-        gap:25px
     }
 
     .inputs-specialties label{
@@ -301,10 +193,6 @@ label input{
         height: 60%;
     }
 
-    .register-button{
-
-        font-size: 1.1rem;
-    }
     /* FAZER LOGIN */
     .text-login{
         font-size: 1rem;
@@ -325,47 +213,9 @@ label input{
     
 }
 @media (max-width: 1130px){
-    
-    .mainVet{
-    
-        height: 100%;
-    
-    }
-    .inputs-container{
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-
-    }
 
     .form-header h1 {
         font-size: 1.9rem;
-    }
-
-    .img-forms{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .arrow-img{
-        display: none;
-    
-    }
-    .atuacao-container{
-        display: flex;
-        flex-direction: column;
-
-        gap: 30px;
-
-    }
-
-    .atuacao-crmv{
-        display: grid;
-        align-items: start;
-        flex-direction: column;
-        gap: 0;
     }
 
     .atuacao-crmv p{
@@ -396,11 +246,6 @@ label input{
     form{
         width: 100%;
         height: 100%;
-    }
-    .inputs-container{
-
-        width: 80%;
-
     }
 
 }
