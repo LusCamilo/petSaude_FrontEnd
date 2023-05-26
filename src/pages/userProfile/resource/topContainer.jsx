@@ -156,7 +156,7 @@ export const TopContainer = (props) => {
 			</div>
 			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
 			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
-			<div className='w-full h-auto text-justify bg-violet-400'>
+			<div className='w-full h-auto text-justify'>
 				<span className={`md:w-auto text-[#A9A9A9] text-xl`} id="biografia">
 					{bio + '...  '}
 					<a href="#" className={`text-[#09738A] truncate ${lerMenos} text-xl font-semibold`} onClick={textTruncate}>
