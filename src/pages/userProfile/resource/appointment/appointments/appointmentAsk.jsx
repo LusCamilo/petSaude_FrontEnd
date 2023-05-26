@@ -302,7 +302,7 @@ export const AppointmentAsk = () => {
   }, []);
 
   return (
-    <section className="">
+    <section className="w-fi">
       <div className=" w-2/5 flex flex-col gap-3 mr-2">
         <div className={`${divNothing}`}>Nenhuma consulta a ser aceita</div>
         {pedidos.map((pedido) => {

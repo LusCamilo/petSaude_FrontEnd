@@ -67,34 +67,42 @@ export const AppointmentView = (props) => {
 
 	return (
 		<>
+
 			<PetHeader/>
-			<section className={'w-screen flex flex-row gap-5'}>
-				<div className='w-fit'>
-					<div className='flex flex-col md:flex-row gap-2'>
-						<div className='flex flex-col w-5/6 md:w-96 bg-[#E3EFF0] rounded-lg pb-96 md:h-screen'>
-							<ul className="flex flex-col items-center w-full cursor-pointer pt-5 space-y-3 text-xl">
-								<button type="button"
-												className={`flex ${tela1.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left ${tela1.text} rounded-2xl`}
-												onClick={handleClickPedidos}
-								>
-									Pedidos de consultas
-								</button>
-								<button type="button"
-												className={`flex ${tela2.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
-												onClick={handleClickPendentes}
-								>
-									Consultas pendentes
-								</button>
-								<button type="button"
-												className={`flex ${tela3.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
-												onClick={handleClickArquivadas}
-								>
-									Consultas arquivadas
-								</button>
-							</ul>
-						</div>
-					</div>
+			<div className='flex bg-[#E3EFF0] h-full w-96 px-4 rounded-l-none rounded-br-none rounded-se-2xl fixed'>
+				<ul className="flex flex-col items-center w-full cursor-pointer pt-5 space-y-3 text-xl">
+					<button type="button"
+							className={`flex ${tela1.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left ${tela1.text} rounded-2xl`}
+							onClick={handleClickPedidos}
+					>
+						Pedidos de consultas
+					</button>
+					<button type="button"
+							className={`flex ${tela2.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
+							onClick={handleClickPendentes}
+					>
+						Consultas pendentes
+					</button>
+					<button type="button"
+							className={`flex ${tela3.cor} items-center border border-solid border-[#91B0B2] py-2 px-6 bg-[#E3EFF0] hover:bg-[#09738A] hover:text-white h-30 w-56 md:w-5/6 text-left rounded-2xl`}
+							onClick={handleClickArquivadas}
+					>
+						Consultas arquivadas
+					</button>
+				</ul>
+			</div>
+			<main className='flex overflow-y-scroll overflow-x-hidden p-0 ml-96'>
+				<div className={`${tela2.estado} w-fit`}>
+					<AppointmentPeding/>
 				</div>
+				<div className={`${tela1.estado} w-fit`}>
+					<AppointmentAsk/>
+				</div>
+				<div className={`${tela3.estado} w-fit`}>
+					<AppointmentArchived/>
+				</div>
+			</main>
+			{/* <section className={'w-full flex flex-row gap-5 fixed'}>
 				<section className='grow'>
 					<div className={`${tela2.estado} w-full`}>
 						<AppointmentPeding/>
@@ -105,8 +113,8 @@ export const AppointmentView = (props) => {
 					<div className={`${tela3.estado} w-full`}>
 						<AppointmentArchived/>
 					</div>
-				</section>
-			</section>
+				</section>		
+			</section> */}
 		</>
 	);
 }

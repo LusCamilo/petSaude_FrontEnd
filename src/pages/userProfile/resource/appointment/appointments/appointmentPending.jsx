@@ -230,7 +230,7 @@ export const AppointmentPeding = (props) => {
 	}, []);
 
 	return (
-		<section className={"w-full"}>
+		<section className={"w-fit"}>
 			<div className="w-full flex flex-col gap-3 mr-2">
 				<div className={`${divNothing}`}>Nenhuma consulta a ser aceita</div>
 				{pedidos.map((pedido) => {
