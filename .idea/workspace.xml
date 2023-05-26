@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/sucess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/sucess.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +112,9 @@
       <workItem from="1684406525216" duration="10849000" />
       <workItem from="1684492403158" duration="1596000" />
       <workItem from="1684499020860" duration="6580000" />
-      <workItem from="1685012518419" duration="4908000" />
+      <workItem from="1685012518419" duration="5021000" />
+      <workItem from="1685097456425" duration="331000" />
+      <workItem from="1685097969684" duration="2474000" />
     </task>
     <servers />
   </component>
