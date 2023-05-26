@@ -36,7 +36,7 @@ export const CardProfessionals = (props) => {
 	function specialtiesPetList() {
 		const specialtiesPet = props.animal.slice(0, 2).map(esp => esp.PetSpecie.name);
 		const specialtiesPetString = specialtiesPet.join(", ");
-		return <li>{specialtiesPetString}</li>
+		return <p className="font-normal">{specialtiesPetString}</p>
 	}
 
 	return (
@@ -72,17 +72,12 @@ export const CardProfessionals = (props) => {
 					</div>
 					<div className="flex flex-row text-xl md:text-2xl gap-2 w-80 md:w-full">
 						<p className="font-bold">Especialização: </p>
-						<ul className={` text-2xl w-4/6`}>
+						<ul className={`text-2xl w-4/6`}>
 							{specialtiesList()}
 						</ul>
 					</div>
 					<div className="flex flex-row text-xl md:text-2xl gap-2 w-80 md:w-full">
-						<p className="font-bold w-full">Especialização animal: </p>
-						<ul className={` text-2xl w-4/6`}>
-							{
-								specialtiesPetList()
-							}
-						</ul>
+						<p className="font-bold w-full flex gap-2">Especialização animal: {specialtiesPetList()}</p>
 					</div>
 				</div>
 				<div className="flex w-56 justify-end items-end ">
