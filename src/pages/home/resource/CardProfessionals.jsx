@@ -1,32 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { getVet } from "../../../services/integrations/filters";
-
 
 export const CardProfessionals = (props) => {
 	const [addressInfo, setAddressInfo] = useState("");
 	const [effects, setEffects] = useState("flex");
-	const [veterinariosEspecialdades, setVeterinariosEspecialdades] = useState([]);
-	const [showEspecialidade, setShowEspecialidade] = useState('flex');
-	const [firstName, setFirstName] = useState('');
-	useEffect(() => {
-		let pesquisa = props.umCorteRapido
-		let city = addressInfo ? addressInfo.cidade : "";
-		if (pesquisa === '' || pesquisa === null) {
-			setEffects('flex')
-		} else{
-			if (city.toLowerCase().includes(pesquisa.toLowerCase())) {
-				setEffects('flex')
-			} else {
-				setEffects('hidden')
-			}
-
-		}
-	}, [props.umCorteRapido, addressInfo.cidade]);
-
-	useEffect(() => {
-		let specialidades = getVet(props.id)
-	})
 
 	let year = props.dateStart
 
@@ -44,28 +21,6 @@ export const CardProfessionals = (props) => {
 		fetchAddressInfo();
 	}, [props.cep]);
 
-	useEffect(() => {
-		async function fetchData() {
-			const specialidades = await getVet(props.id)
-			setVeterinariosEspecialdades(specialidades.response.user.VeterinaryEspecialities)
-			if (veterinariosEspecialdades > 0) {
-				setShowEspecialidade('hidden')
-			}
-			setFirstName(veterinariosEspecialdades[0])
-		}
-		fetchData();
-	}, [props.id]);
-
-	// let especialista
-	const [especializacao, setEspecializacao] = useState('')
-	useEffect(() => {
-		if (props.especializacao === null || props.especializacao === "") {
-			setEspecializacao('')
-		} else {
-			setEspecializacao(props.especializacao)
-		}
-	}, [props.especializacao])
-
 	function handleClick(event, id) {
 
 		document.location.href = "/profile/veterinary";
@@ -73,16 +28,21 @@ export const CardProfessionals = (props) => {
 		localStorage.setItem("__Vet_correctId", id);
 	}
 
-	// function truncateSpecialities(specialities) {
-	// 	const parsedToStringArray = specialities.join(', ');
-	// 	// TODO: VALIDAR SE O TAMANHO DA STRING EXCEDE O TAMANHO PERMETIDO
-	// 	return parsedToStringArray.slice(0, 40) + '...'
-	// }
+	function specialtiesList() {
+		const specialties = props.specialties.slice(0, 2).map(esp => esp.specialities.name);
+		const specialtiesString = specialties.join(", ");
+		return <li>{specialtiesString}</li>
+	}
+	function specialtiesPetList() {
+		const specialtiesPet = props.animal.slice(0, 2).map(esp => esp.PetSpecie.name);
+		const specialtiesPetString = specialtiesPet.join(", ");
+		return <li>{specialtiesPetString}</li>
+	}
 
 	return (
 		<div className={`w-full h-3/6 md:h-96 ${effects} flex-col md:flex-row gap-5 p-10 drop-shadow-2xl bg-white mb-10 rounded-3xl`}>
 			<div className="w-72 md:w-1/4 h-full">
-				<img src={props.image} alt="Imagem do especialista" className="overflow-hidden h-full w-full rounded-md"/>
+				<img src={props.image} alt="Imagem do especialista" className="overflow-hidden h-full w-full rounded-md" />
 			</div>
 			<div className="w-3/4 h-full flex flex-row">
 				<div className="w-full h-full flex justify-center flex-col gap-2 ml-5">
@@ -112,21 +72,21 @@ export const CardProfessionals = (props) => {
 					</div>
 					<div className="flex flex-row text-xl md:text-2xl gap-2 w-80 md:w-full">
 						<p className="font-bold">Especialização: </p>
-						<ul className={`${showEspecialidade} text-2xl w-4/6`}>
-							{veterinariosEspecialdades.map(esp =>{
-								const name = esp.specialities.name
-								const id = esp.specialities.id
-								return(
-									<p key={id}>
-										{name}, 
-									</p>
-								)
-							})}
+						<ul className={` text-2xl w-4/6`}>
+							{specialtiesList()}
+						</ul>
+					</div>
+					<div className="flex flex-row text-xl md:text-2xl gap-2 w-80 md:w-full">
+						<p className="font-bold w-full">Especialização animal: </p>
+						<ul className={` text-2xl w-4/6`}>
+							{
+								specialtiesPetList()
+							}
 						</ul>
 					</div>
 				</div>
 				<div className="flex w-56 justify-end items-end ">
-					<button className="w-24 h-5 md:h-9 md:w-40 p-3 bg-[#9ED1B7] rounded-3xl text-center text-2xl"  onClick={() => handleClick(props.userName, props.id)}>
+					<button className="w-24 h-5 md:h-9 md:w-40 p-3 bg-[#9ED1B7] rounded-3xl text-center text-2xl" onClick={() => handleClick(props.userName, props.id)}>
 						Contate-nos
 					</button>
 				</div>

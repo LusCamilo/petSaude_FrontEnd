@@ -15,62 +15,39 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const SearchProfessional = () => {
   const [vets, setVets] = useState(null);
-  const [inputSearch, setInputSearch] = useState(
-    localStorage.getItem("__Vet_Search") || ""
-  );
-
-  const [ondeProcurar, setOndeProcurar] = useState(
-    localStorage.getItem("__Vet_WhenSearch") || " "
-  );
-  const [selectedOption, setSelectedOption] = useState("userName");
-  const [filtro, setFiltro] = useState("userName");
-
-  const [umCorteRapidao, setUmCorteRapidao] = useState("");
-
-  // Função para buscar veterinários com base no filtro de cidade
-  const axios = require("axios");
+  const [inputSearch, setInputSearch] = useState(localStorage.getItem("__Vet_Search") || "");
+  const [filter, setFilter] = useState(localStorage.getItem("__Vet_WhenSearch") || " ");
 
   async function getVetsByCity(city) {
     try {
-      const { response } = await getAllVets(); // Função que busca todos os veterinários
 
-      const vetsWithCity = await Promise.all(
-        response.map(async (vet) => {
-          const cepResponse = await axios.get(
-            `https://viacep.com.br/ws/${vet.Address.cep}/json/`
-          );
-          const vetCity = cepResponse.data.localidade;
-          return { ...vet, cidade: vetCity };
-        })
-      );
 
-      const filteredVets = vetsWithCity.filter((vet) =>
-        vet.cidade.includes(city)
-      );
 
-      return filteredVets;
     } catch (error) {
       console.error("Erro ao buscar veterinários por cidade:", error);
       return [];
     }
   }
 
-  function handleInputSearch(event) {
-    const { value } = event.target
-    setInputSearch(value)
-    console.log(inputSearch);
+  async function handleInputSearch(event) {
+    const { value } = event.target;
+    setInputSearch(value);
+    localStorage.setItem("__Vet_Search", value)
+    await getVets(value);
   }
 
-  async function getVets() {
-    const response = await getUsers(inputSearch, filtro);
+  async function getVets(searchValue) {
+    const response = await getUsers(searchValue, filter);
     setVets(response.response);
   }
-  
+
   useEffect(() => {
-    getVets();
-  }, [getVets()]);
-  
-  
+    const initialSearch = localStorage.getItem("__Vet_Search") || "";
+    setInputSearch(initialSearch);
+    getVets(initialSearch);
+  }, [filter]);
+
+
 
   return (
     <>
@@ -83,7 +60,6 @@ export const SearchProfessional = () => {
           <div className="flex flex-row gap-2 w-full border-2 border-black rounded-lg items-center align-middle content-center">
             <img className="pl-2 w-12 text-center" src={search} />
             <form
-              // onChange={handleSubmit(onSearch)}
               className="w-96 flex pt-3 items-center content-center align-middle"
             >
               <input
@@ -98,57 +74,49 @@ export const SearchProfessional = () => {
             <div
               className="flex justify-between my-5 w-full items-center"
             >
-              <div className="flex items-center cursor-pointer border-2 w-72 h-10 p-7 justify-center rounded-lg">
+              <div className="flex items-center cursor-pointer border-2 w-72 h-10 p-7 justify-center rounded-lg" onClick={() => {
+                setFilter("userName");
+                localStorage.setItem("__Vet_WhenSearch", "userName")
+              }}>
                 <label
                   className="w-full cursor-pointer flex items-center text-base justify-around"
                   htmlFor="r1"
-                  onClick={() => {
-                    console.log("teste");
-                    setFiltro("userName");
-                    console.log(filtro);
-                  }}
                 >
                   <div className="h-6 w-6 rounded-full border-gray-400 border-solid border hover:bg-black"></div>
                   Procurar por nome
                 </label>
               </div>
-              <div className="flex items-center cursor-pointer border-2 w-80 h-2 p-7 justify-center rounded-lg">
+              <div className="flex items-center cursor-pointer border-2 w-80 h-2 p-7 justify-center rounded-lg" onClick={() => {
+                setFilter("city");
+                localStorage.setItem("__Vet_WhenSearch", "city")
+              }}>
                 <label
                   className="w-full cursor-pointer flex items-center text-base justify-around"
                   htmlFor="r2"
-                  onClick={() => {
-                    console.log("teste2");
-                    setFiltro("city");
-                    console.log(filtro);
-                  }}
                 >
                   <div className="h-6 w-6 rounded-full border-gray-400 border-solid border hover:bg-black"></div>
                   Procurar por cidade
                 </label>
               </div>
-              <div className="flex items-center cursor-pointer border-2 w-80 h-2 p-7 justify-center rounded-lg">
+              <div className="flex items-center cursor-pointer border-2 w-80 h-2 p-7 justify-center rounded-lg" onClick={() => {
+                setFilter("speciality");
+                localStorage.setItem("__Vet_WhenSearch", "speciality")
+              }}>
                 <label
                   className="w-full cursor-pointer flex items-center text-base justify-around"
                   htmlFor="r3"
-                  onClick={() => {
-                    console.log("teste3");
-                    setFiltro("specialities");
-                    console.log(filtro);
-                  }}
                 >
                   <div className="h-6 w-6 rounded-full border-gray-400 border-solid border hover:bg-black"></div>
                   Procurar por Especialização
                 </label>
               </div>
-              <div className="flex items-center cursor-pointers border-2 w-80 h-2 p-7 justify-center rounded-lg">
+              <div className="flex items-center cursor-pointers border-2 w-80 h-2 p-7 justify-center rounded-lg" onClick={() => {
+                setFilter("animal");
+                localStorage.setItem("__Vet_WhenSearch", "animal")
+              }}>
                 <label
                   className="w-full cursor-pointer flex items-center text-base justify-around"
                   htmlFor="r4"
-                  onClick={() => {
-                    console.log("teste4");
-                    setFiltro("animal");
-                    console.log(filtro);
-                  }}
                 >
                   <div className="h-6 w-6 rounded-full border-gray-400 border-solid border hover:bg-black"></div>
                   Procurar por animais
@@ -158,26 +126,29 @@ export const SearchProfessional = () => {
           </div>
         </div>
         <div>
-          {vets !== null && vets.length > 0 ? (
-            vets.map((vet) => (
-              <CardProfessionals
-                key={vet.id}
-                id={vet.id}
-                userName={vet.userName}
-                nome={vet.personName}
-                cep={vet.Address.cep}
-                formacao={vet.formation}
-                instituicao={vet.institution}
-                image={vet.profilePhoto}
-                dateStart={vet.startActingDate}
-                umCorteRapido={umCorteRapidao}
-              />
-            ))
+          {vets !== null ? (
+            vets != 'Nenhum veterinário atende aos filtros de pesquisa' ? (
+              vets.map((vet) => (
+                <CardProfessionals
+                  key={vet.id}
+                  id={vet.id}
+                  userName={vet.userName}
+                  nome={vet.personName}
+                  cep={vet.Address.cep}
+                  formacao={vet.formation}
+                  instituicao={vet.institution}
+                  image={vet.profilePhoto}
+                  dateStart={vet.startActingDate}
+                  animal = {vet.PetSpecieVeterinary}
+                  specialties = {vet.VeterinaryEspecialities}
+                />
+              ))
+            ) : (
+              <span>Nenhum veterinário encontrado.</span>
+            )
           ) : (
             <span>Carregando...</span>
           )}
-
-
           <ToastContainer
             position="top-right"
             autoClose={2000}
