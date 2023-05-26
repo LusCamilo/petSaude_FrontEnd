@@ -6,11 +6,10 @@ import search from "../../assets/svg/lupa.svg";
 import {
   getUsers,
   getAllVets,
-  getVet,
+
 } from "../../services/integrations/filters";
-import { useForm } from "react-hook-form";
 import "./radixSearch.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const SearchProfessional = () => {
@@ -58,7 +57,7 @@ export const SearchProfessional = () => {
       <div className={`p-2 md:p-20 container mx-auto px-4 gap-10 min-h-screen`}>
         <div className="flex flex-col w-full pr-5">
           <div className="flex flex-row gap-2 w-full border-2 border-black rounded-lg items-center align-middle content-center">
-            <img className="pl-2 w-12 text-center" src={search} />
+            <img className="pl-2 w-12 text-center" src={search} alt={'Search'} />
             <form
               className="w-96 flex pt-3 items-center content-center align-middle"
             >

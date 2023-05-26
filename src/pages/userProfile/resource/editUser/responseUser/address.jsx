@@ -2,7 +2,7 @@ import React from 'react';
 import {UpgradeUser} from '../../../upgradeUser'
 import { Config } from '../headerConfig';
 
-export const AddressInfos = (props) => {
+export const AddressInfos = () => {
 	let largura = window.innerWidth
 	if(largura > 768){
 		return(

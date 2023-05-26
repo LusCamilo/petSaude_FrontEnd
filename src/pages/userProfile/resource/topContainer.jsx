@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import iconVet from './img/iconVet.png'
-import { Appointment } from './appointment/appointment';
 import '../pet/css/pet.css'
-import Modal from 'react-modal';
 import jwt_decode from "jwt-decode";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
-import isValidImageUrl from "../../../utils/isValidImageUrl";
 import Notifications from "../../../utils/Notifications";
-import {appointmentAdd} from "../../../services/integrations/appointment";
 
 export const TopContainer = (props) => {
 	const [biografia, setBiografia] = useState("truncate")
@@ -160,7 +156,7 @@ export const TopContainer = (props) => {
 			</div>
 			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
 			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
-			<div className='w-full h-auto text-justify bg-violet-400'>
+			<div className='w-full h-auto text-justify'>
 				<span className={`md:w-auto text-[#A9A9A9] text-xl`} id="biografia">
 					{bio + '...  '}
 					<a href="#" className={`text-[#09738A] truncate ${lerMenos} text-xl font-semibold`} onClick={textTruncate}>

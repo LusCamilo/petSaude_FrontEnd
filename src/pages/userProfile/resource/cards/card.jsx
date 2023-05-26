@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import icon from "../img/Iconbutton.png"
+import React from 'react';
 import img from "../img/Ellipse.png"
 import TextTruncate from 'react-text-truncate';
 

@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
 import FootHeader from "../../../assets/svg/FootHeader.svg";
 import jwt_decode from "jwt-decode";
-import {SideBarMenu} from "../../../components/sideBarMenu";
 import { PetHeader } from "../../userProfile/pet/petHeader";
 
 export const HeaderInfo = (props) => {
