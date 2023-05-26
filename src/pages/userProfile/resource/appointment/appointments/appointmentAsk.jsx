@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styleAppointment.css";
-import * as Dialog from "@radix-ui/react-dialog";
 import jwt_decode from "jwt-decode";
 import {
   getAppointments,
-  getAllAppointments,
 } from "../../../../../services/integrations/appointment";
 import {
   getUser,
@@ -14,8 +12,8 @@ import {
   recusarAppointments,
   aceitadoAppointments,
 } from "../../../../../services/integrations/appointment";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Notifications from "../../../../../utils/Notifications";
 
 export const AppointmentAsk = () => {
   const [pedidos, setPedido] = useState([]);
@@ -104,7 +102,7 @@ export const AppointmentAsk = () => {
           setDivNothing("flex");
           setPedido([]);
         }
-        if (decoded.isVet == false) {
+        if (!decoded.isVet) {
           setButtonAceitar("hidden");
         }
       } catch (error) {
@@ -119,108 +117,98 @@ export const AppointmentAsk = () => {
     return filteredPets[0];
   };
 
-  const showToastMessageSucess = (message) => {
-    toast.success(`${message}`, {
-      position: "top-right",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const showToastMessageFailed = (message) => {
-    toast.error(`${message}`, {
-      position: "top-right",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const showToastMessageFailedSistem = (message) => {
-    toast.error("Erro no sistema, tente mais tarde", {
-      position: "top-right",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
+  // const showToastMessageSucess = (message) => {
+  //   toast.success(`${message}`, {
+  //     position: "top-right",
+  //     autoClose: 1500,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "light",
+  //   });
+  // };
+  //
+  // const showToastMessageFailed = (message) => {
+  //   toast.error(`${message}`, {
+  //     position: "top-right",
+  //     autoClose: 1500,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "light",
+  //   });
+  // };
+  //
+  // const showToastMessageFailedSistem = (message) => {
+  //   toast.error("Erro no sistema, tente mais tarde", {
+  //     position: "top-right",
+  //     autoClose: 1500,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "light",
+  //   });
+  // };
 
   const recusarAppointment = async (idAppointment) => {
-    const jsonNothing = {
-      duration: 0,
-      price: 0.0,
-    };
+    await Notifications.confirmOrCancel('Deseja mesmo recusar a consulta?', async result => {
+      if (result.isConfirmed) {
+        const jsonNothing = {
+          duration: 0,
+          price: 0.0,
+        }
 
-    const recusar = await recusarAppointments(idAppointment, jsonNothing);
-    if (recusar.response.message == "Consulta recusada") {
-      showToastMessageSucess("Consulta recusada com sucesso!");
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000); // Refresh after 5 seconds
-    } else if (
-      recusar.response.error ==
-      "Você não tem permissão para fazer essa alteração"
-    ) {
-      showToastMessageFailed(
-        "Você não tem permissão para recusar uma consulta"
-      );
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000); // Refresh after 5 seconds
-    } else {
-      showToastMessageFailedSistem();
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000); // Refresh after 5 seconds
-    }
-    return recusar;
-  };
+        const {response} = await recusarAppointments(idAppointment, jsonNothing);
+        if (response.message === "Consulta recusada") {
+          await Notifications.success('Consulta recusada')
+        } else if (response.error === "Você não tem permissão para fazer essa alteração") {
+          await Notifications.error(response.error)
+        } else {
+          await Notifications.error('Não foi possível realizar a ação', 'Tente novamente')
+        }
+        window.location.reload()
+        return response
+      }
+    })
+  }
 
   const marcarAppointment = async (idAppointment) => {
-    const jsonAppointment = {
-      duration: parseFloat(duracao),
-      price: parseFloat(preco),
-    };
-    const aceitar = await aceitadoAppointments(idAppointment, jsonAppointment);
-    if (aceitar.response.message == "Consulta aceita") {
-      showToastMessageSucess("Consulta aceita com sucesso!");
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000); // Refresh after 5 seconds
-    } else {
-      showToastMessageFailedSistem();
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000); // Refresh after 5 second
-    }
-    return aceitar;
+    await Notifications.confirmOrCancel('Deseja marcar a consulta?', async result => {
+      if (result.isConfirmed) {
+        const jsonAppointment = {
+          duration: parseFloat(duracao),
+          price: parseFloat(preco),
+        };
+        const {response} = await aceitadoAppointments(idAppointment, jsonAppointment);
+        if (response.message == "Consulta aceita") {
+          await Notifications.success('Consulta aceita')
+        } else {
+          await Notifications.error('Não foi possível realizar a ação', 'Tente novamente')
+        }
+        window.location.reload()
+        return response;  
+      }
+    })
   };
 
   const getappo = async (idPerson) => {
     const token = localStorage.getItem("__user_JWT");
     const decoded = jwt_decode(token);
     let allAboutIt;
-    if (decoded.isVet == true) {
+    if (decoded.isVet) {
       allAboutIt = await getAppointments(idPerson);
     } else {
       let person = await getUser(idPerson);
       allAboutIt = person;
     }
     if (
-      allAboutIt.response == "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -231,7 +219,7 @@ export const AppointmentAsk = () => {
   const getclient = async (idPerson) => {
     let allAboutIt = await getUser(idPerson);
     if (
-      allAboutIt.response == "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -242,7 +230,7 @@ export const AppointmentAsk = () => {
   const getvet = async (idPerson) => {
     let allAboutIt = await getVeterinary(idPerson);
     if (
-      allAboutIt.response == "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -596,19 +584,6 @@ export const AppointmentAsk = () => {
                   </button>
                 </span>
               </div>
-
-              <ToastContainer
-                position="top-right"
-                autoClose={1500}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
             </div>
           );
         })}
