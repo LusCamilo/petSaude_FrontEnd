@@ -66,8 +66,11 @@ export const Rotas = () => {
 				/>
 				<Route path="/profile/appointment" element={<Appointment />} />
 				<Route path="/profile/appointment-view" element={<AppointmentView />} />
+<<<<<<< HEAD
+=======
 				<Route path="/profile/appointment/reviews" element={<Review />} />
 				{/*<Route path="/profile/appointment-menu" element={<AppointmentMenu />} />*/}
+>>>>>>> 1c7ca7486e97512daec4eecc4477c43f225fa33f
 				<Route
 					path="/home/search-professionals"
 					element={<SearchProfessional />}

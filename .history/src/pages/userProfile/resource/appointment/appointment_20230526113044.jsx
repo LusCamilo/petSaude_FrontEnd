@@ -24,7 +24,11 @@ export const Appointment = (props) => {
 	const [petsEspecie, setPetEspecie] = useState('Tamanho');
 
 	const [petImage, setPetImage] = useState(Monkey)
+<<<<<<< HEAD
 	const {register, handleSubmit, formState: errors, setValue} = useForm()
+=======
+	const {handleSubmit} = useForm()
+>>>>>>> 1c7ca7486e97512daec4eecc4477c43f225fa33f
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -32,7 +36,12 @@ export const Appointment = (props) => {
 			const decoded = jwt_decode(token);
 			if (decoded.id) {
 				const pets = await getAllPets(decoded.id);
+<<<<<<< HEAD
+				console.log(pets);
+				if (pets == 'Não foram encontrados registros no Banco de Dados') {
+=======
 				if (pets === 'Não foram encontrados registros no Banco de Dados') {
+>>>>>>> 1c7ca7486e97512daec4eecc4477c43f225fa33f
 					document.location.href = '/profile/pet/add'
 				} else {
 					if (pets === null || pets === undefined || pets === []) {
@@ -188,8 +197,8 @@ export const Appointment = (props) => {
 					<div className='pt-10'>
 						<h2 className='hidden md:flex md:text-4xl font-normal'>Informações</h2>
 						<h2 className='flex justify-center text-3xl md:hidden md:text-5xl font-semibold'>Data e hora</h2>
-						<div className='flex xl:flex-row flex-col justify-between w-1/2 pt-5 text-start gap-32'>
-							<label className='flex flex-col text-gray-400 '>
+						<div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full  pl-14 md:pl-10 pt-3 '>
+							<label className='w-full flex flex-col text-gray-400'>
 								Data
 								<input className='w-56' type='date' onChange={newDate} min={dataFormatada}/>
 							</label>

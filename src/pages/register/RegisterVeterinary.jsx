@@ -7,33 +7,8 @@ import { getSpecialtiesPet, updateSpecialitiesPet } from "../../services/integra
 import backgroundImage from "../../assets/svg/imgVetCadastro.svg";
 import { AuthHeader } from "../../components/headers/AuthHeader";
 import { registerVet } from "../../services/integrations/user";
-import { ServerError } from "../userProfile/pet/cards/erro500";
-import Modal from 'react-modal'
-import { WarnRequest } from "../userProfile/pet/cards/warnTwo";
-import { PetAddSucess } from "../userProfile/pet/cards/sucess";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Notifications from "../../utils/Notifications";
-import {all} from "axios";
-
-const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-		border: '4px solid transparent',
-		borderRadius: '12px 12px',
-		backgroundColor: '#FFFFFF00',
-		display: "flex",
-		justifyContent: "center"
-	},
-	overlay: {
-		backgroundColor: '#0000'
-	}
-};
 
 const checkboxSpecialities = async () => {
 	const response = await getSpecialties()
@@ -177,7 +152,7 @@ export const RegisterVeterinary = () => {
 				);
 
 
-				Notifications.success('Veterinário criado com sucesso')
+				await Notifications.success('Veterinário criado com sucesso')
 				setTimeout(function() {
 					document.location.href = '/login'
 				  }, 2000); 

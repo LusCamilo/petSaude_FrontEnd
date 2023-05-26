@@ -32,7 +32,12 @@ export const Appointment = (props) => {
 			const decoded = jwt_decode(token);
 			if (decoded.id) {
 				const pets = await getAllPets(decoded.id);
+<<<<<<< HEAD
+				console.log(pets);
+				if (pets == 'Não foram encontrados registros no Banco de Dados') {
+=======
 				if (pets === 'Não foram encontrados registros no Banco de Dados') {
+>>>>>>> 1c7ca7486e97512daec4eecc4477c43f225fa33f
 					document.location.href = '/profile/pet/add'
 				} else {
 					if (pets === null || pets === undefined || pets === []) {

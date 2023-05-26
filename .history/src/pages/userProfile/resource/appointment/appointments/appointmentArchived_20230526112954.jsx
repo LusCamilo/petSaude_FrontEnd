@@ -9,8 +9,11 @@ import {
 } from "../../../../../services/integrations/user";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
+<<<<<<< HEAD
 import { AppointmentArchivedCard } from "./appointmentArchivedCard";
 
+=======
+>>>>>>> 1c7ca7486e97512daec4eecc4477c43f225fa33f
 
 
 export const AppointmentArchived = (props) => {

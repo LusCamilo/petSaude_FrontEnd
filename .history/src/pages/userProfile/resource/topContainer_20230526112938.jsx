@@ -157,9 +157,14 @@ export const TopContainer = (props) => {
 			</div>
 			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
 			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
+<<<<<<< HEAD
 			<div className='w-full h-auto text-justify bg-violet-400'>
 				{/* //Foi mexido aqui */}
 				<p className={`md:w-auto text-[#A9A9A9] text-xl ${biograf} flex-col`} id="biografia">
+=======
+			<div className='w-full h-auto text-justify'>
+				<span className={`md:w-auto text-[#A9A9A9] text-xl`} id="biografia">
+>>>>>>> 1c7ca7486e97512daec4eecc4477c43f225fa33f
 					{bio + '...  '}
 					<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={()=>textTruncate(false)}>
 						Ler menos
