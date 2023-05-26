@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import "./styleAppointment.css";
-import * as Dialog from "@radix-ui/react-dialog";
 import jwt_decode from "jwt-decode";
 import { getAppointments } from "../../../../../services/integrations/appointment";
 import {
   getUser,
   getVeterinary,
 } from "../../../../../services/integrations/user";
-import {
-  canceladoAppointments,
-  finalizadoAppointments,
-} from "../../../../../services/integrations/appointment";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
-import { WarnRequest } from "../../../pet/cards/warnTwo";
-import { PetAddSucess } from "../../../pet/cards/sucess";
 
 const customStyles = {
   content: {
@@ -67,14 +59,14 @@ export const AppointmentArchived = (props) => {
         const token = localStorage.getItem("__user_JWT");
         const decoded = jwt_decode(token);
         let appoint = await getappo(decoded.id);
-        if (decoded.isVet == false) {
+        if (!decoded.isVet) {
           setisVet("flex");
         }
-        if (appoint != undefined && appoint != null) {
+        if (appoint !== undefined && appoint !== null) {
           let filteredAppointments = appoint.filter(
             (appointment) =>
-              appointment.status == "CANCELED" ||
-              appointment.status == "CONCLUDED"
+              appointment.status === "CANCELED" ||
+              appointment.status === "CONCLUDED"
           );
 
           let appoints = await Promise.all(
@@ -105,7 +97,7 @@ export const AppointmentArchived = (props) => {
               let idadeString;
 
               let statusTraduzido;
-              if (app.status == "CONCLUDED") statusTraduzido = "Finalizado";
+              if (app.status === "CONCLUDED") statusTraduzido = "Finalizado";
               else statusTraduzido = "Cancelado";
 
               if (
@@ -153,7 +145,7 @@ export const AppointmentArchived = (props) => {
           setPedido([]);
         }
 
-        if (decoded.isVet == false) {
+        if (!decoded.isVet) {
           setButtonAceitar("hidden");
         }
       } catch (error) {}
@@ -191,7 +183,7 @@ export const AppointmentArchived = (props) => {
     const token = localStorage.getItem("__user_JWT");
     const decoded = jwt_decode(token);
     let allAboutIt;
-    if (decoded.isVet == true) {
+    if (decoded.isVet === true) {
       allAboutIt = await getAppointments(idPerson);
     } else {
       let person = await getUser(idPerson);
@@ -199,7 +191,7 @@ export const AppointmentArchived = (props) => {
     }
 
     if (
-      allAboutIt.response == "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -210,7 +202,7 @@ export const AppointmentArchived = (props) => {
   const getclient = async (idPerson) => {
     let allAboutIt = await getUser(idPerson);
     if (
-      allAboutIt.response == "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -221,7 +213,7 @@ export const AppointmentArchived = (props) => {
   const getvet = async (idPerson) => {
     let allAboutIt = await getVeterinary(idPerson);
     if (
-      allAboutIt.response == "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -255,9 +247,9 @@ export const AppointmentArchived = (props) => {
     let finalizar = 0;
 
     pedidos.forEach((pedir) => {
-      if (pedir.estado == "CANCELED") {
+      if (pedir.estado === "CANCELED") {
         cancelada += 1;
-      } else if (pedir.estado == "CONCLUDED") {
+      } else if (pedir.estado === "CONCLUDED") {
         finalizar += 1;
       }
     });
@@ -281,7 +273,7 @@ export const AppointmentArchived = (props) => {
         <div className="flex flex-col items-center">
           <div className="flex flex-row gap-2">
             <h2>Consultas Finalizadas</h2>{" "}
-            <div class=" w-10 h-10 rounded-md bg-[#09738A]"></div>
+            <div className=" w-10 h-10 rounded-md bg-[#09738A]"></div>
           </div>
           <div className="flex flex-row gap-2">
             <div className="text-[#A9A9A9] text-base">Quantidade:</div>{" "}
@@ -291,7 +283,7 @@ export const AppointmentArchived = (props) => {
         <div className="flex flex-col">
           <div className="flex flex-row gap-2">
             <h2>Consultas Canceladas</h2>{" "}
-            <div class="w-10 h-10 rounded-md bg-[#F1EAC6]"></div>
+            <div className="w-10 h-10 rounded-md bg-[#F1EAC6]"></div>
           </div>
           <div className="flex flex-row gap-2">
             <div className="text-[#A9A9A9] text-base">Quantidade:</div>{" "}
@@ -302,7 +294,7 @@ export const AppointmentArchived = (props) => {
       <div className="w-full flex flex-col gap-3 mr-2">
         {pedidos.map((pedido) => {
           const cor =
-            pedido.estado == "CONCLUDED" ? "bg-[#09738A]" : "bg-[#F1EAC6]";
+            pedido.estado === "CONCLUDED" ? "bg-[#09738A]" : "bg-[#F1EAC6]";
           return (
             <div
               className={`${cor} border-none sm:border-solid border h-1/6 rounded-3xl border-black flex flex-col gap-0 p-14 `}
@@ -433,7 +425,7 @@ export const AppointmentArchived = (props) => {
               </div>
               <div className={`${isVet}`}>
                 <button
-                  class="bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded"
                   onClick={openModal}
                 >
                   Avaliar consulta

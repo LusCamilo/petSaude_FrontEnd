@@ -3,7 +3,6 @@ import { initializeApp } from 'firebase/app';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { TopContainer } from './resource/editProfile/topContainer';
 import { InfosProfile } from './resource/editProfile/infosProfile';
-import check from './resource/img/saveProfile.png'
 import { updateProfileInfosClient, updateProfileInfosVeterinary } from '../../services/integrations/user';
 import { PetHeader } from './pet/petHeader';
 import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";

@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import iconVet from './img/iconVet.png'
-import { Appointment } from './appointment/appointment';
 import '../pet/css/pet.css'
-import Modal from 'react-modal';
 import jwt_decode from "jwt-decode";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
-import isValidImageUrl from "../../../utils/isValidImageUrl";
 import Notifications from "../../../utils/Notifications";
-import {appointmentAdd} from "../../../services/integrations/appointment";
 
 export const TopContainer = (props) => {
 	const [biografia, setBiografia] = useState("truncate")

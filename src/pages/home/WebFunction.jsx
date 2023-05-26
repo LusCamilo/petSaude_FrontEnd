@@ -3,8 +3,6 @@ import { GoLocation } from "react-icons/go";
 import { ImCalendar } from "react-icons/im";
 import { FaUserNurse  } from "react-icons/fa";
 
-
-
 export const WebFunction = () => {
 	return (
 		<>

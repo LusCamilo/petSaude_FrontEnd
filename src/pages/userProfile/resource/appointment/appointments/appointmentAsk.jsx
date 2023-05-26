@@ -501,7 +501,7 @@ export const AppointmentAsk = () => {
                 </div>
                 <div className="flex flex-row sm:flex-col justify-start content-center w-full">
                   <div>
-                    <label class="flex flex-col text-2xl text-[#A9A9A9]">
+                    <label className="flex flex-col text-2xl text-[#A9A9A9]">
                       Descrição
                       <p className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-xl ">
                         {pedido.descricao}

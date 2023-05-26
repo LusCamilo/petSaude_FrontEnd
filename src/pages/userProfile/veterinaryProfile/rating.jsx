@@ -1,6 +1,4 @@
 import React from "react";
-import { TbDotsVertical } from 'react-icons/fa' ;  
-
 
 export const Rating = (props) => {
 	return (

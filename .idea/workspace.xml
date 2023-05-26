@@ -6,7 +6,39 @@
   <component name="ChangeListManager">
     <list default="true" id="d540ed0f-a197-44a1-b703-00dde3391e36" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/global.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/global.style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/WebFunction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/WebFunction.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/radixSearch.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/radixSearch.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/resource/HeaderInfo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/searchProfessional.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/searchProfessional.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/RegisterVeterinary.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/css/cadastroVet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register/css/cadastroVet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/editProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/editProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/erro500.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/cards/warn.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/css/pet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/css/pet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petAdd.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petAdd.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/pet/petConfig.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/profile/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/academicInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/academicInfo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentPets.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointmentView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/appointmentArchived.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/appointmentArchived.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/appointmentAsk.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/appointmentAsk.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/appointmentPedingCards.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/appointment/appointments/appointmentPedingCards.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/cards.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/cards/cards.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/allPets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/allPets.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/address.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/editUser/responseUser/address.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/resource/topContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/upgradeUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/rating.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/userProfile/veterinaryProfile/rating.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/integrations/filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/integrations/filters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +79,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/private/var/folders/hc/1stsw54n0cv18d19tqth_p181h77b7/T/AppTranslocation/2778AE67-4002-4D8B-BE73-1E9BC492FB89/d/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "/private/var/folders/hc/1stsw54n0cv18d19tqth_p181h77b7/T/AppTranslocation/3E6F0285-A8D0-4430-B6F7-C39CFC395947/d/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -83,8 +116,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -113,7 +146,8 @@
       <workItem from="1684499020860" duration="6580000" />
       <workItem from="1685012518419" duration="5021000" />
       <workItem from="1685097456425" duration="331000" />
-      <workItem from="1685097969684" duration="6218000" />
+      <workItem from="1685097969684" duration="6304000" />
+      <workItem from="1685108855362" duration="1399000" />
     </task>
     <servers />
   </component>

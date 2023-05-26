@@ -4,7 +4,6 @@ import { Cards } from "../resource/cards/cards.jsx";
 import { TopContainer } from "../resource/topContainer.jsx";
 import { AcademicInfos } from "../resource/academicInfo.jsx";
 import { Maps } from "../resource/maps.jsx";
-import jwt_decode from "jwt-decode";
 import getUserInfos from "../../../utils/getUserInfos";
 
 export const Profile = () => {

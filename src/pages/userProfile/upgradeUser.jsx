@@ -7,8 +7,6 @@ import './css/UpgradeUser.css';
 import { Pets } from './resource/editUser/allPets';
 import { Config } from "./resource/editUser/headerConfig.jsx";
 import { deleteClient, deleteVeterinary, getUser, getVeterinary } from '../../services/integrations/user';
-import Modal from 'react-modal';
-import { WarnRequest } from './pet/cards/warnTwo';
 import Notifications from "../../utils/Notifications";
 // import {BsFillPersonFill} from "react-icons/bs";
 import { IoMdTrash } from "react-icons/io";

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './styleAppointment.css'
-import jwt_decode from "jwt-decode";
 import {  canceladoAppointments, finalizadoAppointments } from '../../../../../services/integrations/appointment'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
