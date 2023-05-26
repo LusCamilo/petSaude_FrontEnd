@@ -35,8 +35,8 @@ export const AcademicInfos = (props) => {
 					<span className='flex flex-col'>
 						<h3>Formação:</h3>
 						<p>{props.formacao}</p>
-					</span>					
-					<img className='p-4 border rounded-lg' src={formacao} alt='Formation' />
+					</span>				
+					<img className='p-4 border rounded-lg' src={formacao} alt='Formation'/>
 				</div>
 				<div className='flex items-center justify-between border gap-x-4 pl-4 rounded-lg border-zinc-700'>
 					<span className='flex flex-col'>

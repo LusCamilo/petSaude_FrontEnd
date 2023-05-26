@@ -67,7 +67,8 @@ class Notifications {
 			showConfirmButton: false,
 			html: <Appointment onCancel={onCancel} onToast={onToast} />,
 			heightAuto: true,
-			width: '90%',
+			width: '60%',
+		
 		})
 	}
 }
