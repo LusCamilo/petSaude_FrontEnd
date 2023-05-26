@@ -155,7 +155,7 @@ export const AppointmentArchived = (props) => {
 		let allInfos;
 
 		allInfos = {
-            score: data.score,
+            score: rating,
             description: data.description,
             veterinaryId: data.vetId
 		};
@@ -373,6 +373,7 @@ export const AppointmentArchived = (props) => {
                                             id="comment"
                                             rows={3}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            {...register('description')}
                                             />
                                         </div>
                                         <div>
@@ -389,7 +390,7 @@ export const AppointmentArchived = (props) => {
                                                     onChange={handleRatingChange}
                                                     className="mr-2 w-2 h-2"
                                                     />
-                                                    <label htmlFor="rating1">1</label>
+                                                    <label htmlFor="rating1"  >1</label>
                                                 </div>
                                                 <div className="flex items-center mb-4">
                                                     <input
@@ -401,7 +402,7 @@ export const AppointmentArchived = (props) => {
                                                     onChange={handleRatingChange}
                                                     className="mr-2 w-2 h-2"
                                                     />
-                                                    <label htmlFor="rating2">2</label>
+                                                    <label htmlFor="rating2">  2</label>
                                                 </div>
                                                 <div className="flex items-center mb-4">
                                                     <input
@@ -413,7 +414,7 @@ export const AppointmentArchived = (props) => {
                                                     onChange={handleRatingChange}
                                                     className="mr-2 w-2 h-2"
                                                     />
-                                                    <label htmlFor="rating3">3</label>
+                                                    <label htmlFor="rating3">  3</label>
                                                 </div>
                                                 <div className="flex items-center mb-4">
                                                     <input
@@ -437,7 +438,7 @@ export const AppointmentArchived = (props) => {
                                                     onChange={handleRatingChange}
                                                     className="mr-2 w-2 h-2"
                                                     />
-                                                    <label htmlFor="rating5">5</label>
+                                                    <label htmlFor="rating5">  5</label>
                                                 </div>
                                             </div>
                                         </label>
