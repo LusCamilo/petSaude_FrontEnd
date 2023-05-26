@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import sucesso from '../../resource/img/Sucesso.png'
 import './cssPadraoCards.css'
 
