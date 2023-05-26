@@ -103,7 +103,7 @@ export const AppointmentView = (props) => {
 					<AppointmentArchived/>
 				</div>
 			</main>
-			{/* <section className={'w-full flex flex-row gap-5 fixed'}>
+			{/* <section className={'w-full flex flex-row gap-5'}>
 				<section className='grow'>
 					<div className={`${tela2.estado} w-full`}>
 						<AppointmentPeding/>

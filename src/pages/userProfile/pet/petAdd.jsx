@@ -15,6 +15,7 @@ import { getSpecialtiesPet } from '../../../services/integrations/specialtiesPet
 import { ToastContainer, toast } from 'react-toastify';
 import Notifications from '../../../utils/Notifications';
 import { AiOutlineCheck } from 'react-icons/ai';
+import {IoMdAdd} from "react-icons/io";
 
 
 const firebaseConfig = {
@@ -230,8 +231,8 @@ export const PetAdd = () => {
 						<div className="h-20 w-20 md:h-48 md:w-48 rounded-full ">
 							<input type="file" accept="image/*" name="photo" id="photoProfile" className="hidden" onChange={handleFileInputChange} />
 							<label htmlFor='photoProfile' style={{ backgroundImage: `url(${selectedFile})` }}
-								className='flex justify-center items-center rounded-full bg-slate-200 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken '>
-								<img className="rounded-full" src={addMais} alt='Add icon' />
+								className='flex justify-center items-center rounded-full bg-slate-900 w-full h-full bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer hover:bg-blend-darken'>
+								<IoMdAdd className="text-8xl text-white" alt="Add icon"/>
 							</label>
 						</div>
 						<div className='flex flex-col w-2/3 sm:w-fit p-3 sm:p-10'>
@@ -301,9 +302,10 @@ export const PetAdd = () => {
 					</div>
 				</div>
 				<div className='w-full flex justify-end mb-30'>
-					<button className='md:flex justify-center items-center h-20 w-20 self-end rounded-2xl bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={submitPet}>
-						<AiOutlineCheck className='text-5xl'/>
-					</button>
+					<AiOutlineCheck
+						className='text-5xl h-20 w-20 self-end rounded-2xl text-green-900 hover:text-green-600 border-solid border-green-900 hover:border-green-600 hover:scale-110 border-2 bg-green-200 mt-5 shadow-md mb-7 p-5 cursor-pointer transition-all'
+						onClick={submitPet}
+					/>
 				</div>
 			</main>
 		</section>
