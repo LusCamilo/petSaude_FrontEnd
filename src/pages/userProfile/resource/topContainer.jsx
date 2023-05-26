@@ -17,6 +17,7 @@ export const TopContainer = (props) => {
 	const [lerMenos, setLerMenos] = useState("hidden")
 	const [quantAppont, setQuantAppont] = useState(0)
 	const [Stringappoinment, setStringAppoinment] = useState('Consultas concluidas')
+	const [bio, setBio] = useState('')
 
 	const showToastMessage = (message) => {
 		toast(`${message}`, {
@@ -99,6 +100,12 @@ export const TopContainer = (props) => {
 		return imageUrlRegex.test(url);
 	}
 
+	useEffect(() => {
+
+		setBio(props.biografia)
+
+	}, [props.biografia])
+
 	async function openAppointmentModal() {
 		await Notifications.appointment(handleCancelAppointment, showToastMessage, async result => {
 			if (result.isConfirmed) {
@@ -145,24 +152,23 @@ export const TopContainer = (props) => {
 					</div>
 					{props.isVet && !props.myProfile && !thisUserIsVet ? 
 					<button
-					// botaoAppont bg-lime-500 rounded-md px-3 py-2 text-xl w-full md:text-3xl md:w-80 shadow-lg justify-center items-center self-center md:mt-6
 						className='bg-lime-500 rounded-lg p-3 h-fit text-xl md:text-3xl shadow-lg md:mt-10'
 						onClick={openAppointmentModal}>
 						Agendar uma consulta
 					</button> : null}
 				</div>
 			</div>
-			<div className='w-full h-[1px] bg-gray-400 mt-2 '></div>
-			<h2 className='self-start text-3xl pt-5 pb-2'>Sobre Mim</h2>
-			<div className='flex w-full p-5 text-justify'>
-				<span className={`md:w-11/12`} id="biografia">
-					{props.biografia}
-					<a href="#" className={`text-sky-600 ${lerMenos}`} onClick={textTruncate}>
-						ler menos
+			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
+			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
+			<div className='w-full h-auto text-justify bg-violet-400'>
+				<span className={`md:w-auto text-[#A9A9A9] text-xl`} id="biografia">
+					{bio + '...  '}
+					<a href="#" className={`text-[#09738A] truncate ${lerMenos} text-xl font-semibold`} onClick={textTruncate}>
+						Ler menos
 					</a>
 				</span>
-				<a href="#" className={`w-auto text-sky-600 ${lerMais}`} onClick={textTruncate}>
-					ler mais
+				<a href="#" className={`w-auto text-[#09738A] truncate ${lerMais} text-xl font-semibold`} onClick={textTruncate}>
+					Ler mais
 				</a>
 			</div>
 			{/*<Modal*/}

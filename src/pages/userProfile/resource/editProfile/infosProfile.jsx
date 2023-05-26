@@ -80,7 +80,7 @@ export const InfosProfile = (props) => {
 								})
 							}
 						}}>
-							<RiPencilFill className='text-4xl'/>
+							<RiPencilFill className='text-3xl'/>
 							Editar
 						</button>
 						<button

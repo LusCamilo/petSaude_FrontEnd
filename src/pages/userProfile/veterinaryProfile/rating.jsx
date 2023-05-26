@@ -4,7 +4,7 @@ import { TbDotsVertical } from 'react-icons/fa' ;
 
 export const Rating = (props) => {
 	return (
-		<div id={props.id} className='w-80 h-52 border border-solid border-[#CAC4D0] rounded-3xl flex flex-none flex-col'>
+		<div id={props.id} className='w-80 h-64 border border-solid border-[#CAC4D0] rounded-2xl flex flex-none flex-col'>
 			<div className='h-1/4 flex flex-row justify-between items-center px-5'>
 			{/* <TbDotsVertical /> */}
 				<label className='flex items-center'>
@@ -17,18 +17,8 @@ export const Rating = (props) => {
 					<img src="https://static.thenounproject.com/png/1919184-200.png" alt="" className="h-6" />
 				</button>
 			</div>
-			<div className="flex flex-col gap-4 pl-4">
-				<div className="flex flex-row gap-4">
-					Avaliação
-					<p>
-						{props.score}/10
-					</p>
-				</div>
-				<div className='w-full h-3/4 bg-white rounded-b-3xl'>
-					<p className="font-sans text-sm text-[#49454F]">
-						{props.text}
-					</p>
-				</div>
+			<div className='w-full h-3/4 rounded-b-2xl'>
+				<img src={props.text} alt="Imagem do pet" className="w-full h-full rounded-b-2xl object-cover" />
 			</div>
 		</div>
 	);
