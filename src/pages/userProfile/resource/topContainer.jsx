@@ -8,32 +8,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
 import isValidImageUrl from "../../../utils/isValidImageUrl";
-
-const customStyles = {
-	content: {
-		top: '53%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		transform: 'translate(-50%, -50%)',
-		border: '3px solid #9ED1B7',
-		borderRadius: '32px',
-		width: '75vw',
-		height: '50vh',
-		zIndex: 99,
-	},
-	overlay : {
-		backgroundColor : '#0000',
-		position : 'fixed'
-	}
-};
+import Notifications from "../../../utils/Notifications";
+import {appointmentAdd} from "../../../services/integrations/appointment";
 
 export const TopContainer = (props) => {
-	const [biografia, setBiografia] = useState("truncate")
+	const [biograf, setBiografia] = useState("truncate")
 	const [lerMais, setLerMais] = useState("")
 	const [lerMenos, setLerMenos] = useState("hidden")
 	const [quantAppont, setQuantAppont] = useState(0)
 	const [Stringappoinment, setStringAppoinment] = useState('Consultas concluidas')
+	const [bio, setBio] = useState('')
 
 	const showToastMessage = (message) => {
 		toast(`${message}`, {
@@ -59,7 +43,7 @@ export const TopContainer = (props) => {
 		}
 
 		setThisUserIsVet(decoded.isVet)
-
+		textTruncate(false)
 		async function fetchData() {
 			let allInfos = await getVeterinary(localStorage.getItem("__Vet_correctId"))
 			let allAppoinments = await allInfos.response.user.Appointments
@@ -77,16 +61,17 @@ export const TopContainer = (props) => {
 		  fetchData();
 	}, []);
 
-	const textTruncate = () => {
+	const textTruncate = (bool) => {
+		//Foi mexido aqui
 		const biografia = document.getElementById('biografia')
-		if (biografia.classList.contains("truncate")) {
-			setBiografia("")
+		if (bool == true) {
+			setBiografia("flex")
 			setLerMais("hidden")
-			setLerMenos("")
+			setLerMenos("flex")
 		}
 		else {
 			setBiografia("truncate")
-			setLerMais("")
+			setLerMais("flex")
 			setLerMenos("hidden")
 		}
 	}
@@ -112,21 +97,34 @@ export const TopContainer = (props) => {
 	}
 
 	function isValidImageUrl(url) {
-		const imageUrlRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
+		const imageUrlRegex = /\.(jpe?g|tiff?|png|bmp|webp)$/i;
 		return imageUrlRegex.test(url);
-	}
+	  }
 
+	useEffect(() => {
+
+		setBio(props.biografia)
+
+	}, [props.biografia])
+
+	async function openAppointmentModal() {
+		await Notifications.appointment(handleCancelAppointment, showToastMessage, async result => {
+			if (result.isConfirmed) {
+				// TODO: IMPLEMENTAR CONFIRMAÇÃO DA CONSULTA
+			}
+		})
+	}
 
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>
 			<div className='w-full md:h-[500px] rounded-b-xl bg-gray-300'>
-				<img src={props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl' + isValidImageUrl(props.profileBannerPhoto) ? ' hidden' : null
+				<img src={isValidImageUrl(props.profileBannerPhoto) || props.profileBannerPhoto == '' ? '' : props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl object-cover' 
 			}/>
 			</div>
 			<div className='self-start w-full mt-[-120px] md:mt-[-80px] md:flex ml-9 h-fit'>
 				<div className='flex relative md:border-4 h-28 w-28 md:h-48 md:border-white border-solid rounded-full md:w-48 items-center justify-center bg-white'>
 					<img
-						src={isValidImageUrl(props.profilePhoto) || props.profilePhoto === '' ? 'https://www.svgrepo.com/show/335455/profile-default.svg' : props.profilePhoto}
+						src={isValidImageUrl(props.profilePhoto) || props.profilePhoto == '' ? 'https://www.svgrepo.com/show/335455/profile-default.svg' : props.profilePhoto}
 						alt='Profile'
 						className="h-full w-full rounded-full"
 					/>
@@ -155,49 +153,27 @@ export const TopContainer = (props) => {
 					</div>
 					{props.isVet && !props.myProfile && !thisUserIsVet ? 
 					<button
-					// botaoAppont bg-lime-500 rounded-md px-3 py-2 text-xl w-full md:text-3xl md:w-80 shadow-lg justify-center items-center self-center md:mt-6
 						className='bg-lime-500 rounded-lg p-3 h-fit text-xl md:text-3xl shadow-lg md:mt-10'
-						onClick={openModal}>
+						onClick={openAppointmentModal}>
 						Agendar uma consulta
 					</button> : null}
 				</div>
 			</div>
-			<div className='w-full h-[1px] bg-gray-400 mt-2 '></div>
-			<h2 className='self-start text-3xl pt-5 pb-2'>Sobre Mim</h2>
-			<div className='flex w-full p-5 text-justify'>
-				<span className={`md:w-11/12`} id="biografia">
-					{props.biografia}
-					<a href="#" className={`text-sky-600 ${lerMenos}`} onClick={textTruncate}>
-						ler menos
+			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
+			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
+			<div className='w-full h-auto text-justify bg-violet-400'>
+				{/* //Foi mexido aqui */}
+				<p className={`md:w-auto text-[#A9A9A9] text-xl ${biograf} flex-col`} id="biografia">
+					{bio + '...  '}
+					<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={()=>textTruncate(false)}>
+						Ler menos
 					</a>
-				</span>
-				<a href="#" className={`w-auto text-sky-600 ${lerMais}`} onClick={textTruncate}>
-					ler mais
-				</a>
+					<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={()=>textTruncate(true)}>
+						Ler mais
+					</a>
+				</p>
+				
 			</div>
-			<Modal
-				isOpen={modalIsOpen}
-				onAfterOpen={afterOpenModal}
-				onRequestClose={closeModal}
-				style={customStyles}
-				contentLabel="Example Modal"
-			>
-				<form className='w-full'>
-					<Appointment onCancel={handleCancelAppointment} onToast={showToastMessage}/>
-				</form>
-			</Modal>
-			<ToastContainer
-				position="top-center"
-				autoClose={2000}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-				theme="light"
-			/>
 		</div>
 	);
 }

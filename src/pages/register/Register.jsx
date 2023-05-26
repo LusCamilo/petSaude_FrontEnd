@@ -87,7 +87,6 @@ export function Register() {
 			setConfirmPasswordVisibility(false)
 	}
 
-	const [modalIsOpenServer, setIsOpenSever] = React.useState(false);
 
 	return (
 		<section className='flex flex-row w-screen h-screen bg-gradient-to-br from-[#092b5a] to-[#9ed1b7] opacity-90 overflow-x-hidden'>

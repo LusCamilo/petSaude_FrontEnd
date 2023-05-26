@@ -18,6 +18,7 @@ import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
 import { AiOutlineCheck } from 'react-icons/ai';
 import { IoMdTrash } from "react-icons/io";
+import { RiPencilFill } from "react-icons/ri";
 
 const customStyles = {
   content: {
@@ -439,7 +440,7 @@ export const PetConfig = () => {
                   }
                 }}
               >
-                {/* <RiPencilFill className="text-3xl"/> */}
+                <RiPencilFill className="text-3xl"/>
                 Editar
               </button>
             </div>

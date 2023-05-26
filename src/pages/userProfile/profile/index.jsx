@@ -15,7 +15,7 @@ export const Profile = () => {
     async function loadUserInfos() {
       const userInfos = await getUserInfos();
       setUserInfos(userInfos);
-      // console.log(userInfos)
+      console.log(userInfos)
       SetIsVet(userInfos.isVet);
     }
     loadUserInfos();
@@ -29,7 +29,7 @@ export const Profile = () => {
           name={userInfos.userName}
           profilePhoto={userInfos.profilePhoto}
           profileBannerPhoto={userInfos.profileBannerPhoto}
-          biografia={userInfos.biography}
+          biografia={userInfos.bio}
           isVet={userInfos.isVet}
           myProfile={true}
         />

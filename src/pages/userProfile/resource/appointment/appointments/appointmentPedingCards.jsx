@@ -130,7 +130,7 @@ export const AppointmentPedingCards = (props) => {
 	}
 
     return(
-        <div className=' border-none sm:border-solid border w-2/4 rounded-3xl border-black flex flex-col gap-0 p-10'>
+        <div className=' border-none sm:border-solid border h-1/6 rounded-3xl border-black flex flex-col gap-0 p-10'>
             <div className='flex flex-row items-center md:content-center md:text-center text-5xl gap-4'>
                 <img className='PetImage' src={props.imagemPet} alt="Imagem do pet" />
                 <h2 className='font-normal flex md:justify-center sm:justify-start font-sans'>{props.nomePet}</h2>
