@@ -4,6 +4,9 @@ import Monkey from '../../../../assets/svg/monkey.svg';
 import Dog from '../../../../assets/svg/iconDog.svg';
 import {getAllPets} from '../../../../services/integrations/pet';
 import {appointmentAdd} from '../../../../services/integrations/appointment';
+import {PetSpawn} from './appointmentPets';
+// import Modal from 'react-modal'
+// import {propTypes} from 'react-bootstrap/esm/Image';
 import jwt_decode from "jwt-decode";
 import 'react-toastify/dist/ReactToastify.css';
 import Notifications from "../../../../utils/Notifications";
@@ -110,18 +113,18 @@ export const Appointment = (props) => {
 
 
 	return (
-		<section id='buttonCanceled' className=" w-full h-full bg-black">
+		<section id='buttonCanceled' className=" w-full h-full p-10">
 			<form onSubmit={handleSubmit(submitAppointment)} className=" flex justify-start w-full">
-				<div className='p-2 md:p-10  w-full'>
+				<div className=' w-full'>
 					<h1 className='flex justify-start text-3xl md:text-5xl font-normal'>Selecione o animal</h1>
-					<div className='flex justify-between md:pt-5 w-full h-56  '>
+					<div className='flex justify-between md:pt-5 w-full h-56 gap-20 '>
 						<div
-							className={`${ThereArePets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
+							className={`${ThereArePets} flex-col md:w-2/4  md:p-5 md:pt-3 overflow-x-auto max-h-64 border-2 rounded-xl shadow-lg  bg-slate-100 w-10`}>
 							{petsAll.map(pet => {
 								if (pet.photo === null || pet.photo === '') {
 									return (
 										<button
-											className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
+											className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row '
 											key={pet.id}
 											type='button'
 											id={pet.id}
@@ -129,7 +132,7 @@ export const Appointment = (props) => {
 										>
 											<img className='w-32' src={Dog} alt="Pet ainda não há foto"/>
 											<p
-												className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black'
+												className='text-2xl shadow-none  w-full flex text-center align-middle content-center items-center text-black'
 												disabled>{pet.name}</p>
 										</button>
 									)
@@ -138,13 +141,13 @@ export const Appointment = (props) => {
 										<button
 											key={pet.id}
 											type='button'
-											className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'
+											className='py-2 mt-2 shadow-lg gap-2 rounded-md flex-grow flex flex-row bg-white'
 											id={pet.id}
 											onClick={() => handlePetSelection(pet)}
 										>
-											<img className='w-32' src={pet.photo} alt={pet.name}/>
+											<img className='w-32 ml-3' src={pet.photo} alt={pet.name}/>
 											<p
-												className='text-3xl shadow-none w-full flex text-center align-middle content-center items-center text-black'
+												className='text-3xl shadow-none w-full flex text-center align-middle content-center items-center text-black '
 												disabled>{pet.name}</p>
 										</button>
 									)
@@ -168,46 +171,46 @@ export const Appointment = (props) => {
 							<div className='flex flex-col pl-10 md:pt-10'>
 								<label>
 									<input disabled type="text" name="firstName" value={petsName}
-												 className='bg-transparent border-none  md:text-5xl font-semibold '/>
+												 className='bg-transparent text-black border-none  md:text-5xl font-normal '/>
 								</label>
 								<label>
 									<input disabled type="text" name="firstName" value={petsEspecie}
-												 className='bg-transparent border-none text-1xl md:text-6xl text-[#A9A9A9]'/>
+												 className='bg-transparent border-none text-1xl md:text-5xl text-[#A9A9A9]'/>
 								</label>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className=' w-full'>
-					<div className=''>
-						<h2 className='hidden md:flex md:text-4xl font-normal pl-10'>Informações</h2>
+					<div className='pt-10'>
+						<h2 className='hidden md:flex md:text-4xl font-normal'>Informações</h2>
 						<h2 className='flex justify-center text-3xl md:hidden md:text-5xl font-semibold'>Data e hora</h2>
-						<div className='flex xl:flex-row flex-col justify-between lg:gap-8 gap-2 w-full  pl-14 md:pl-10 pt-3 '>
-							<label className='w-full flex flex-col text-gray-400 '>
+						<div className='flex xl:flex-row flex-col justify-between w-1/2 pt-5 text-start gap-32'>
+							<label className='flex flex-col text-gray-400 '>
 								Data
-								<input type='date' onChange={newDate} min={dataFormatada}/>
+								<input className='w-56' type='date' onChange={newDate} min={dataFormatada}/>
 							</label>
-							<label className='w-full flex flex-col text-gray-400'>
+							<label className='flex flex-col text-gray-400'>
 								Hora
-								<input type='time' onChange={newTime}/>
+								<input className='w-56' type='time' onChange={newTime}/>
 							</label>
 						</div>
-						<div className=' p-4 ml-2'>
-							<label htmlFor="descricao" className=" mb-2">Descrição:</label>
+						<div className='w-full mt-5'>
+							<label htmlFor="descricao" className=" mb-2 flex justify-start pt-5">Descrição:</label>
 							<textarea id="descricao" name="descricao"
-												className=" pl-2 border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+												className="flex justify-start p-2 mt-5 border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
 												rows="4" onChange={newDescription}></textarea>
 						</div>
 					</div>
-					<div className='p-3 md:pl-20 md:pr-20 mb-10'>
-						<div className='flex mt-2 md:mt-10 justify-between gap-5'>
+					<div className='pt-5  '>
+						<div className='flex mt-5 justify-between gap-5'>
 							<button
-								className={`p-2 md:w-40 md:text-center md:h-14 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-normal text-2xl origin-center `}
+								className={`p-2 md:w-40 md:text-center md:h-12 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-semibold text-2xl origin-center `}
 								type="button" onClick={() => props.onCancel()}>
 								Cancelar
 							</button>
 							<button type="submit"
-											className='md:ml-56 p-2 md:w-40 md:h-14 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-normal text-2xl'
+											className='p-2 md:w-40 md:h-12 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-semibold text-2xl'
 											onClick={(event) => {
 												submitAppointment(event);
 											}}
