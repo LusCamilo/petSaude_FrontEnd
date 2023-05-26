@@ -26,6 +26,7 @@ import { PetHeader } from "./pages/userProfile/pet/petHeader";
 import { PetConfig } from "./pages/userProfile/pet/petConfig";
 import { Config } from "./pages/userProfile/resource/editUser/headerConfig";
 import { HeaderProfile } from "./pages/userProfile/resource/header"
+import { Review } from "./pages/userProfile/resource/appointment/reviews/reviews";
 
 export const Rotas = () => {
 	return (
@@ -65,6 +66,7 @@ export const Rotas = () => {
 				/>
 				<Route path="/profile/appointment" element={<Appointment />} />
 				<Route path="/profile/appointment-view" element={<AppointmentView />} />
+				<Route path="/profile/appointment/reviews" element={<Review />} />
 				{/*<Route path="/profile/appointment-menu" element={<AppointmentMenu />} />*/}
 				<Route
 					path="/home/search-professionals"
