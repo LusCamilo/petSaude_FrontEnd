@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-// import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Monkey from '../../../../assets/svg/monkey.svg';
 import Dog from '../../../../assets/svg/iconDog.svg';
@@ -9,7 +8,6 @@ import {PetSpawn} from './appointmentPets';
 // import Modal from 'react-modal'
 // import {propTypes} from 'react-bootstrap/esm/Image';
 import jwt_decode from "jwt-decode";
-import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Notifications from "../../../../utils/Notifications";
 
@@ -26,20 +24,7 @@ export const Appointment = (props) => {
 	const [petsEspecie, setPetEspecie] = useState('Tamanho');
 
 	const [petImage, setPetImage] = useState(Monkey)
-	const {register, handleSubmit, formState: errors, setValue} = useForm()
-
-	const showToastMessage = (message) => {
-		toast(`${message}`, {
-			position: "top-right",
-			autoClose: 2000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "light",
-		});
-	};
+	const {handleSubmit} = useForm()
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -47,10 +32,10 @@ export const Appointment = (props) => {
 			const decoded = jwt_decode(token);
 			if (decoded.id) {
 				const pets = await getAllPets(decoded.id);
-				if (pets == 'Não foram encontrados registros no Banco de Dados') {
+				if (pets === 'Não foram encontrados registros no Banco de Dados') {
 					document.location.href = '/profile/pet/add'
 				} else {
-					if (pets == null || pets == undefined || pets == []) {
+					if (pets === null || pets === undefined || pets === []) {
 						setPetAll([{name: "Não foram encontrados pets"}]);
 						setThereArentPets('flex')
 						setThereArePets('hidden')
@@ -65,12 +50,9 @@ export const Appointment = (props) => {
 		fetchData();
 	}, []);
 
-	const [classButton, setClassButton] = useState("")
-
 	function newDate(event) {
 		let valor = event.target.value;
-		let data = valor;
-		let novaData = adicionarUmDia(data)
+		let novaData = adicionarUmDia(valor)
 		let dia = novaData.toLocaleDateString("pt-BR");
 		let diaMesAno = dia.split('/').join('-');
 		setDate(diaMesAno);
@@ -122,7 +104,6 @@ export const Appointment = (props) => {
 	function handlePetSelection(pet) {
 		let today = new Date();
 		setPetName(pet.name);
-		let idade = today - pet.birthDate
 		setPetEspecie(pet.petSize);
 		setPetId(pet.id);
 		if (pet.photo === null) {
@@ -185,9 +166,9 @@ export const Appointment = (props) => {
 									disabled>Você não possui pets</p>
 							</div>
 						</div>
-						<div className='hidden md:flex justify-end'>
-							<img className=' w-48 h-48 mt-2 rounded-full' src={petImage}></img>
-							<div className='flex flex-col md:pt-10 '>
+						<div className='hidden md:flex justify-end pl-20'>
+							<img className=' w-56 rounded-full' src={petImage} alt={'Pet'}></img>
+							<div className='flex flex-col pl-10 md:pt-10'>
 								<label>
 									<input disabled type="text" name="firstName" value={petsName}
 												 className='bg-transparent text-black border-none  md:text-5xl font-normal '/>

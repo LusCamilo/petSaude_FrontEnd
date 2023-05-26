@@ -27,7 +27,7 @@ export const TopContainer = (props) => {
 		<div className="w-full">
 			<input type="file" accept="image/*" name="photo" id="photoProfile" className="hidden" onChange={handleFileInputChange} />
 			<label htmlFor='photoProfile' style={{backgroundImage: `url(${selectedFile})`}}
-			       className='flex justify-center items-center bg-slate-200 w-full h-72 bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer rounded-lg hover:bg-blend-darken '>
+			       className='flex justify-center items-center bg-slate-200 w-full h-96 bg-center bg-origin-content bg-no-repeat bg-cover cursor-pointer rounded-lg hover:bg-blend-darken '>
 				<IoMdAdd className="text-8xl text-white" alt="Add icon" />
 			</label>
 		</div>

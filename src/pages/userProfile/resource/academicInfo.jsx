@@ -3,18 +3,16 @@ import formacao from './img/formacao.png'
 import formacaoDate from './img/formacaoDate.png'
 import instituicao from './img/instituicao.png'
 import carreira from './img/carreira.png'
-import { IoSchool } from 'react-icons/io5';
-import { FaSchool } from 'react-icons/fa';
 
 export const AcademicInfos = (props) => {
 
 	function formatarData(dataString) {
-		var data = new Date(dataString);
-		
-		var dia = data.getUTCDate();
-		var mes = data.getUTCMonth() + 1;
-		var ano = data.getUTCFullYear();
-		
+		const data = new Date(dataString);
+
+		let dia = data.getUTCDate();
+		let mes = data.getUTCMonth() + 1;
+		const ano = data.getUTCFullYear();
+
 		// Adicionando zeros à esquerda se necessário
 		dia = dia < 10 ? '0' + dia : dia;
 		mes = mes < 10 ? '0' + mes : mes;

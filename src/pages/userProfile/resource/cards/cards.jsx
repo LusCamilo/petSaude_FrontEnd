@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { getUser } from '../../../../services/integrations/user';
 import { CardPets } from '../editUser/cardPets.jsx';
-import { Card } from './card.jsx';
 import jwt_decode from "jwt-decode";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { getRatings } from '../../../../services/integrations/rating';

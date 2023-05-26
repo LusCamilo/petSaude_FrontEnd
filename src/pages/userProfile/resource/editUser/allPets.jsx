@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { getUser } from '../../../../services/integrations/user';
 import { CardPets } from './cardPets';
 import jwt_decode from "jwt-decode";
-// import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 const infosPet = async () => {
 	const token = localStorage.getItem('__user_JWT')
@@ -21,12 +20,6 @@ export const Pets = (props) => {
 	}, []);
 
 	const carrossel = useRef(null)
-	const handleLeftClick = (e) => {
-		carrossel.current.scrollLeft -= carrossel.current.offsetWidth
-	}
-	const handleRightClick = (e) => {
-		carrossel.current.scrollLeft += carrossel.current.offsetWidth
-	}
 
 	return (
 		<div className='flex flex-col gap-2 border-2 rounded-lg border-black py-8'>
