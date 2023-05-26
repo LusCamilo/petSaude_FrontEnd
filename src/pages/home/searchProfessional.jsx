@@ -15,7 +15,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const SearchProfessional = () => {
   const [vets, setVets] = useState(null);
-  const [vetSearch, setVetSearch] = useState([])
   const [inputSearch, setInputSearch] = useState(
     localStorage.getItem("__Vet_Search") || ""
   );
@@ -56,24 +55,22 @@ export const SearchProfessional = () => {
     }
   }
 
-  async function getVets(event) {
-    const { value } = event.target;
-    setInputSearch(value);
-
-    let result;
-    if (value === "") {
-      const response = await getAllVets();
-      result = response.response;
-    } else {
-      const response = await getUsers(filtro, inputSearch)
-    }
-    
-    setVets(result);
+  function handleInputSearch(event) {
+    const { value } = event.target
+    setInputSearch(value)
+    console.log(inputSearch);
   }
 
+  async function getVets() {
+    const response = await getUsers(inputSearch, filtro);
+    setVets(response.response);
+  }
+  
   useEffect(() => {
     getVets();
-  }, []);
+  }, [getVets()]);
+  
+  
 
   return (
     <>
@@ -93,14 +90,13 @@ export const SearchProfessional = () => {
                 className="xl:w-full h-14 text-2xl flex items-center content-center"
                 placeholder="Pesquisar especialistas"
                 defaultValue={inputSearch}
-                onChange={getVets}
+                onChange={handleInputSearch}
               />
             </form>
           </div>
           <div className="flex justify-center">
             <div
               className="flex justify-between my-5 w-full items-center"
-              onClick={() => { }}
             >
               <div className="flex items-center cursor-pointer border-2 w-72 h-10 p-7 justify-center rounded-lg">
                 <label
@@ -162,26 +158,25 @@ export const SearchProfessional = () => {
           </div>
         </div>
         <div>
-          {
-            vets !== "" && vets !== null ? (
-              vets.map((vet) => (
-                <CardProfessionals
-                  key={vet.id}
-                  id={vet.id}
-                  userName={vet.userName}
-                  nome={vet.personName}
-                  cep={vet.Address.cep}
-                  formacao={vet.formation}
-                  instituicao={vet.institution}
-                  image={vet.profilePhoto}
-                  dateStart={vet.startActingDate}
-                  umCorteRapido={umCorteRapidao}
-                />
-              ))
-            ) : (
-              <span>teste</span>
-            )
-          }
+          {vets !== null && vets.length > 0 ? (
+            vets.map((vet) => (
+              <CardProfessionals
+                key={vet.id}
+                id={vet.id}
+                userName={vet.userName}
+                nome={vet.personName}
+                cep={vet.Address.cep}
+                formacao={vet.formation}
+                instituicao={vet.institution}
+                image={vet.profilePhoto}
+                dateStart={vet.startActingDate}
+                umCorteRapido={umCorteRapidao}
+              />
+            ))
+          ) : (
+            <span>Carregando...</span>
+          )}
+
 
           <ToastContainer
             position="top-right"
