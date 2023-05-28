@@ -4,6 +4,7 @@ import axios from "axios";
 export const CardProfessionals = (props) => {
 	const [addressInfo, setAddressInfo] = useState("");
 	const [effects, setEffects] = useState("flex");
+	
 
 	let year = props.dateStart
 
@@ -77,7 +78,7 @@ export const CardProfessionals = (props) => {
 						</ul>
 					</div>
 					<div className="flex flex-row text-xl md:text-2xl gap-2 w-80 md:w-full">
-						<p className="font-bold w-full flex gap-2">Especialização animal: {specialtiesPetList()}</p>
+						<p className="font-bold w-full flex gap-2">Especialização animal: {specialtiesPetList()}...</p>
 					</div>
 				</div>
 				<div className="flex w-56 justify-end items-end ">
