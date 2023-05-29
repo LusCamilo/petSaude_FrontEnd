@@ -99,16 +99,6 @@ export const Pessoais = (props) => {
 
 	}
 
-	function resetInfos() {
-		console.log(props)
-		setName(props.name)
-		setLastName(props.lastName)
-		setRg(props.rg)
-		setCelular(props.celular)
-		setTelefone(props.telefone)
-		setBio(props.text)
-	}
-
 	const handleSubmit = async () => {
 		try {
 			let response
@@ -122,10 +112,10 @@ export const Pessoais = (props) => {
 					infos = {
 						personName: name + ' ' + lastName,
 						cpf,
-						rg: rg === null ? '' : rg,
+						rg: rg === '' ? null : rg,
 						cellphoneNumber: celular,
-						phoneNumber: telefone === null ? '' : telefone,
-						bio: bio === null ? '' : bio
+						phoneNumber: telefone === '' ? null : telefone,
+						bio: bio === '' ? null : bio
 					}
 
 					if (localStorage.getItem('__user_isVet') === "true") userType = 'veterinary'
