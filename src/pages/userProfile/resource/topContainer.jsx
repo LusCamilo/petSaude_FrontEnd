@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
 import Notifications from "../../../utils/Notifications";
+import Ellipsis  from 'react-lines-ellipsis';
 
 export const TopContainer = (props) => {
 	const [biography, setBiography] = useState("truncate")
@@ -58,7 +59,6 @@ export const TopContainer = (props) => {
 	}, []);
 
 	const textTruncate = (bool) => {
-		//Foi mexido aqui
 		const biografia = document.getElementById('biografia')
 		if (bool == true) {
 			setBiography("flex")
@@ -158,16 +158,21 @@ export const TopContainer = (props) => {
 			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
 			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
 			<div className='w-full h-auto text-justify'>
-				<p className={`md:w-auto text-[#A9A9A9] text-xl ${biography} flex-col`} id="biografia">
-					{bio + '...  '}
-					<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={()=>textTruncate(false)}>
-						Ler menos
-					</a>
-					<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={()=>textTruncate(true)}>
-						Ler mais
-					</a>
-				</p>
-				
+				<Ellipsis
+					id="biografia"
+					className={`md:w-auto text-[#A9A9A9] text-xl ${biography} flex-col`}
+					text={bio}
+					maxLine="10"
+					ellipsis="..."
+					trimRight
+					basedOn="letters"
+				/>
+				<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={()=>textTruncate(false)}>
+					Ler menos
+				</a>
+				<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={()=>textTruncate(true)}>
+					Ler mais
+				</a>			
 			</div>
 		</div>
 	);
