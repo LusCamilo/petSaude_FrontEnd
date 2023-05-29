@@ -4,7 +4,7 @@ const token = localStorage.getItem('__user_JWT')
 
 
 export async function getRatings(vetId) {
-	const url = `${BASE_URL}/rating/veterinary/:${vetId}`
+	const url = `${BASE_URL}rating/veterinary/${vetId}`
 	const response = await fetch(url, {
 		method: "GET",
 		headers: {

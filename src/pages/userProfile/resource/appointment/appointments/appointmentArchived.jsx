@@ -96,6 +96,7 @@ export const AppointmentArchived = (props) => {
                 imagemPet: arrayPet.photo,
                 donoImg: client.profilePhoto,
                 dono: client.personName,
+                donoId: client.id,
                 telefone: client.cellphoneNumber,
                 nomePet: arrayPet.name,
                 sexo: arrayPet.petGender,
@@ -257,6 +258,7 @@ export const AppointmentArchived = (props) => {
                 cor={cor}
                 imagemPet={pedido.imagemPet}
                 donoImg={pedido.donoImg}
+                donoId={pedido.donoId}
                 telefone={pedido.telefone}
                 nomePet={pedido.nomePet}
                 sexo={pedido.sexo}

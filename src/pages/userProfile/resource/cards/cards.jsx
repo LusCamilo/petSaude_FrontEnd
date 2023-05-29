@@ -7,31 +7,30 @@ import { getRatings } from '../../../../services/integrations/rating';
 import { Rating } from '../../veterinaryProfile/rating';
 
 
-const infosPet = async (props) => {
 
-	const token = localStorage.getItem('__user_JWT')
-	const decoded = jwt_decode(token);
-
-	if (props.isVet == true) {
-		const response = await getRatings(decoded.id)
-		return []
-	} else {
-		const response = await getUser(decoded.id)
-		return response.response.user.Pet
-	}
-	
-
-}
 
 export const Cards = (props) => {
 	const [petOrRating, setPetOrRating] = useState([]);
 	useEffect(() => {
+		console.log(props);
 		async function fetchData() {
-			const infos = await infosPet()
-			setPetOrRating(infos);
+			const token = localStorage.getItem('__user_JWT')
+			const decoded = jwt_decode(token);
+			if (props.isVet == true) {
+				const response = await getRatings(props.idVets);
+				console.log(response.response.ratings);
+				setPetOrRating(response.response.ratings)
+			} else if(props.isVet == false) {
+				const response = await getUser(decoded.id)
+				setPetOrRating(response.response.ratings)
+			} else {
+				setPetOrRating([])
+			}
+			console.log(petOrRating);
 		}
 		fetchData();
-	}, []);	
+		console.log(petOrRating);
+	}, [props.isVet])
  
 	const carrossel = useRef(null)
 
@@ -46,17 +45,32 @@ export const Cards = (props) => {
 		// carrossel.current.scrollLeft += carrossel.current.offsetWidth
 	}
 
+
 	if (props.isVet == true) {
+
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
 				<h2 className='text-3xl pb-2'>Avaliações</h2>
 				<div className='flex items-center pl-14 md:pl-0 justify-between'>
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
-					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
-						{/* {petOrRating.map((item) => {
-							return <Rating id={item.id} personImage={props.personImage} userName={props.userName} score={item.score} text={item.text} />
-						})} */}
-						<Rating/>
+					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' 
+					ref={carrossel}>
+						{petOrRating.map((item) => {
+							console.log(item);
+
+							return <Rating 
+								key={item.id} 
+								id={item.id} 
+								clientId={item.clientId} 
+								idVet={item.Veterinary.id} 
+								personImage={item.personImage} 
+								userName={item.userName} 
+								score={item.score} 
+								text={item.description} 
+								whenCreated={item.createdAt}
+							/>
+						})}
+						
 					</div>
 					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
 				</div>
@@ -70,7 +84,7 @@ export const Cards = (props) => {
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
 						{petOrRating.map((item) => {
-							return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
+						//	return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
 						})}
 						
 					</div>

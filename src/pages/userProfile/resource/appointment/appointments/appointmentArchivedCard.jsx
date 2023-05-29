@@ -30,33 +30,33 @@ export const AppointmentArchivedCard = (props) => {
 
     const { register, handleSubmit, formState: errors, setValue } = useForm();
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [rating, setRating] = useState(0);
+    const [ratingAvaliacao, setRating] = useState(0);
     const [description, setRDescription] = useState("");
 
     function openModal() {
     setIsOpen(true);
     }
+    
+    useEffect(() => {
+      setRating(0)
+    }, []);
 
     function closeModal() {
     setIsOpen(false);
     }
     
     const submitForm = async () => {
-        let allInfos;
-        allInfos = {
-          score: rating, 
+      console.log(props);
+        await ratingAdd({
+          score: ratingAvaliacao, 
           description: description.target.value,
-          veterinaryId: props.vetId
-        };
-
-        let rating = await ratingAdd(allInfos)
-        
+          veterinaryId: props.vetId,
+          userId: props.donoId
+        })
         closeModal();
-        
       };
 
       const handleRating = (rate) => {
-        console.log(rate);
         setRating(rate);
       }
 
@@ -214,10 +214,11 @@ export const AppointmentArchivedCard = (props) => {
                 <div className="flex flex-row">
                   <Rating 
                   onClick={handleRating} 
+                  className="flex flex-row"
                   transition 
                   size={25} />
                 </div>
-                  {rating}
+                  {ratingAvaliacao}
                 </label>
               </div>
               <div className="mb-3">
@@ -253,11 +254,9 @@ export const AppointmentArchivedCard = (props) => {
                 </button>
               </div>
               </div>
-	</form>
+	          </form>
           </Modal>
         </div>
       </div>
     )
-
-
 } 

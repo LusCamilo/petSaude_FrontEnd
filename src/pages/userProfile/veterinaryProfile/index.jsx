@@ -46,7 +46,7 @@ export const VeterinaryProfile = () => {
 					myProfile={false}
 					 />
 				<Cards 
-					id={vets.id}
+					idVets={vets.id}
 					isVet={vets.isVet}
 				/>
 				<div className='flex flex-col md:flex-row justify-between gap-[10%] px-10 md:px-44 mb-16'>
