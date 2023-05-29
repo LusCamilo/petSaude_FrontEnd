@@ -97,7 +97,7 @@ export const AppointmentAsk = () => {
             })
           );
           setDivNothing("hidden");
-          setPedido(appoints);
+          setPedido(appoints.reverse());
         } else {
           setDivNothing("flex");
           setPedido([]);
@@ -303,13 +303,14 @@ export const AppointmentAsk = () => {
 
   return (
     <section className="w-fi">
-      <div className=" w-2/5 flex flex-col gap-3 mr-2">
+      <div className=" w-3/4 flex flex-col gap-3 mr-2">
         <div className={`${divNothing}`}>Nenhuma consulta a ser aceita</div>
+
         {pedidos.map((pedido) => {
           return (
             <div
               key={pedido.id}
-              className="border-none sm:border-solid border w-2/4 rounded-3xl border-black flex flex-col gap-0 p-14"
+              className="border-none sm:border-solid border w-full rounded-3xl border-black flex flex-col gap-0 p-14"
             >
               <div className="flex flex-row items-center md:content-center md:text-center text-5xl gap-4">
                 <img

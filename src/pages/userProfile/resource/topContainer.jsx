@@ -157,7 +157,7 @@ export const TopContainer = (props) => {
 			</div>
 			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
 			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
-			<div className='w-full h-auto text-justify bg-violet-400'>
+			<div className='w-full h-auto text-justify'>
 				{/* //Foi mexido aqui */}
 				<p className={`md:w-auto text-[#A9A9A9] text-xl ${biograf} flex-col`} id="biografia">
 					{bio + '...  '}

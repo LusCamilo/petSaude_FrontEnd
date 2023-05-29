@@ -1,6 +1,8 @@
+import React, {useState} from 'react';
 import Swal from 'sweetalert2'
 import withReactContent from "sweetalert2-react-content";
-import {Appointment} from "../pages/userProfile/resource/appointment/appointment";
+import {Appointment} from "../pages/userProfile/resource/appointment/appointment"
+
 
 class Notifications {
 	constructor() {
@@ -63,12 +65,23 @@ class Notifications {
 
 	async appointment(onCancel, onToast) {
 		await this.swal.fire({
-			showCancelButton: false,
-			showConfirmButton: false,
+			showConfirmButton: true,
+			confirmButtonText: "Marcar",
+			confirmButtonColor: "#9ED1B7",
+			showCancelButton: true,
+			cancelButtonText: "Cancelar", 
+			cancelButtonColor: "#F9DEDC",
+			customClass: {
+				cancelButton:"p-2 md:w-40 md:text-center md:h-12 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-semibold text-2xl origin-center",
+				confirmButton: "p-2 md:w-40 md:h-12 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-semibold text-2xl",
+			},
 			html: <Appointment onCancel={onCancel} onToast={onToast} />,
 			heightAuto: true,
 			width: '60%',
-		
+		}).then(result => {
+			if (result.isConfirmed) {
+				console.log("teste");
+			}
 		})
 	}
 }
