@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import {SideBarMenu} from "../../../components/sideBarMenu";
 import getUserInfos from "../../../utils/getUserInfos";
+import verifyLoggedUser from "../../../utils/verifyLoggedUser";
 
 export const PetHeader = () => {
 	const [userName, setUserName] = useState("");
@@ -23,6 +24,11 @@ export const PetHeader = () => {
 			}
 		}
 
+		async function checkedLoggedUser() {
+			return await verifyLoggedUser()
+		}
+
+		checkedLoggedUser().catch(err => console.log(err))
 		loadUserInfos()
 	}, [decoded, token]);
 

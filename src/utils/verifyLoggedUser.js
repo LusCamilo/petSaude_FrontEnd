@@ -1,7 +1,9 @@
 import jwt_decode from "jwt-decode";
+import {signup} from "../services/integrations/authentication";
 
-export default function verifyLoggedUser() {
+export default async function verifyLoggedUser() {
 	const jwt = localStorage.getItem('__user_JWT')
-	if (!jwt || jwt === '' || !jwt_decode(jwt))
-		document.location.href = '/login'
+	const isSignedUser = await signup(jwt)
+
+	return !(!jwt || jwt === '' || !jwt_decode(jwt) || isSignedUser.statusCode === 401);
 }
