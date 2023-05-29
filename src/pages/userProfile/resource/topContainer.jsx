@@ -6,9 +6,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
 import Notifications from "../../../utils/Notifications";
+import Ellipsis  from 'react-lines-ellipsis';
 
 export const TopContainer = (props) => {
-	const [biograf, setBiografia] = useState("truncate")
+	const [biography, setBiography] = useState("truncate")
 	const [lerMais, setLerMais] = useState("")
 	const [lerMenos, setLerMenos] = useState("hidden")
 	const [quantAppont, setQuantAppont] = useState(0)
@@ -58,15 +59,14 @@ export const TopContainer = (props) => {
 	}, []);
 
 	const textTruncate = (bool) => {
-		//Foi mexido aqui
 		const biografia = document.getElementById('biografia')
 		if (bool == true) {
-			setBiografia("flex")
+			setBiography("flex")
 			setLerMais("hidden")
 			setLerMenos("flex")
 		}
 		else {
-			setBiografia("truncate")
+			setBiography("truncate")
 			setLerMais("flex")
 			setLerMenos("hidden")
 		}

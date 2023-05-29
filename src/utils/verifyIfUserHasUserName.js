@@ -1,11 +1,15 @@
 import jwt_decode from "jwt-decode";
+import {getUser, getVeterinary} from "../services/integrations/user";
 
-export default function verifyIfUserHasUserName() {
+export default async function verifyIfUserHasUserName() {
 	const jwt = localStorage.getItem('__user_JWT')
-	const {userName} = jwt_decode(jwt)
-	if (userName === '')
-		if(!document.location.href === '/profile/edit-profile') {
-			return {status: false, popUp: false}
-		} else return {status: false, popUp: true}
-	return {status: true, popUp: false}
+	const decodedJwt = jwt_decode(jwt)
+
+	let apiReponse
+	if (decodedJwt.isVet) apiReponse = await getVeterinary(decodedJwt.id)
+	else apiReponse = await getUser(decodedJwt.id)
+	const {user} = apiReponse.response
+
+	return user.userName !== '';
+
 }
