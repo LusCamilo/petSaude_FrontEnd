@@ -10,29 +10,13 @@ import './radixSearch.css'
 
 
 export const BlogProfile = () => {
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const { register, handleSubmit } = useForm();
 	const [vets, setVets] = useState([]);
-	const [cidadeProcurar, setCidadeProcurar] = useState("");
 	const [inputSearch, setInputSearch] = useState(
 		localStorage.getItem("__Vet_Search") || ""
 	);
 
 	const [ondeProcurar, setOndeProcurar] = useState(localStorage.getItem("__Vet_WhenSearch") || " ");
-	const [selectedOption, setSelectedOption] = useState("userName");
-	const [filtro, setFiltro] = useState("userName");
-
-	const setMudarFiltro = (value) => {
-		setOndeProcurar(value)
-
-		onSearchIt({ search:  inputSearch, searchIt: value})
-	};
-
-	function citySearch() {
-		setFiltro("city");
-		setVets([]);
-		// onSearchIt({ search:  inputSearch})
-	}
-
 	const [umCorteRapidao, setUmCorteRapidao] = useState('')
 
 //const [filtro, setFiltro] = useState("userName");
@@ -81,56 +65,10 @@ export const BlogProfile = () => {
 
 
 
-	const onSearchIt = async (data) => {
-		try {
-			if (data.search === "") {
-				let response = await getAllVets();
-				let result = response.response;
-				let json = Object.values(result);
-				setVets(json);
-			} else {
-				if (ondeProcurar !== "city") {
-					let response = await getUsers(data.search, ondeProcurar);
-					let result = response.response;
-					let json
-					if (result === "Nenhum veterinário atende aos filtros de pesquisa" ) {
-						json = []
-					} else {
-						json = result.filter(
-							(item) =>
-								item.personName.toLowerCase().includes(data.search.toLowerCase()) ||
-								item.userName.toLowerCase().includes(data.search.toLowerCase())
-						);
-					}
-					setUmCorteRapidao('')
-					setVets(json);
-				} else {
-					let response = await getAllVets();
-
-					let result = response.response;
-					let json = Object.values(result);
-					setUmCorteRapidao(inputSearch)
-					let jsonFinal = await Promise.all(json.filter(async (item) =>
-						item.city.toLowerCase().includes((await axios.get(
-							`https://viacep.com.br/ws/${data.search}/json/`
-						)).data.toLowerCase())
-					));
-					setVets(jsonFinal);
-				}
-			}
-		} catch (error) {
-			console.error(error);
-		}
-	};
 
 	useEffect(() => {
 		onSearch({ search: inputSearch });
 	}, []);
-
-	const handleRadioChange = (value) => {
-		setSelectedOption(value);
-		setFiltro(value)
-	};
 
 	return (
 		<>

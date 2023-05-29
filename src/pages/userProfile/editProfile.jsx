@@ -31,10 +31,8 @@ export const EditProfile = () => {
 
 	useEffect(() => {
 		async function verifyUserName() {
-			const userHasUserName = verifyIfUserHasUserName()
-			if (!userHasUserName.status && userHasUserName.popUp)
-				console.log('POPUP')
-			// await Notifications.warning('Crie um nome de usuário').then(test => console.log(test))
+			const userHasUserName = await verifyIfUserHasUserName()
+			if (!userHasUserName) await Notifications.warning('Crie um nome de usuário')
 		}
 		async function fetchData() {
 			const allInfosUser = (await getUserInfos())

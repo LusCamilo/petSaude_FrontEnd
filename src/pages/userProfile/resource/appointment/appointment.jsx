@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {useForm} from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Monkey from '../../../../assets/svg/monkey.svg';
 import Dog from '../../../../assets/svg/iconDog.svg';
-import {getAllPets} from '../../../../services/integrations/pet';
-import {appointmentAdd} from '../../../../services/integrations/appointment';
-import {PetSpawn} from './appointmentPets';
+import { getAllPets } from '../../../../services/integrations/pet';
+import { appointmentAdd } from '../../../../services/integrations/appointment';
+import { PetSpawn } from './appointmentPets';
 // import Modal from 'react-modal'
 // import {propTypes} from 'react-bootstrap/esm/Image';
 import jwt_decode from "jwt-decode";
@@ -24,7 +24,7 @@ export const Appointment = (props) => {
 	const [petsEspecie, setPetEspecie] = useState('Tamanho');
 
 	const [petImage, setPetImage] = useState(Monkey)
-	const {register, handleSubmit, formState: errors, setValue} = useForm()
+	const { register, handleSubmit, formState: errors, setValue } = useForm()
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -36,7 +36,7 @@ export const Appointment = (props) => {
 					document.location.href = '/profile/pet/add'
 				} else {
 					if (pets === null || pets === undefined || pets === []) {
-						setPetAll([{name: "Não foram encontrados pets"}]);
+						setPetAll([{ name: "Não foram encontrados pets" }]);
 						setThereArentPets('flex')
 						setThereArePets('hidden')
 					} else setPetAll(pets)
@@ -129,7 +129,7 @@ export const Appointment = (props) => {
 											id={pet.id}
 											onClick={() => handlePetSelection(pet)}
 										>
-											<img className='w-32' src={Dog} alt="Pet ainda não há foto"/>
+											<img className='w-32' src={Dog} alt="Pet ainda não há foto" />
 											<p
 												className='text-2xl shadow-none  w-full flex text-center align-middle content-center items-center text-black'
 												disabled>{pet.name}</p>
@@ -144,7 +144,7 @@ export const Appointment = (props) => {
 											id={pet.id}
 											onClick={() => handlePetSelection(pet)}
 										>
-											<img className='w-32 ml-3' src={pet.photo} alt={pet.name}/>
+											<img className='w-32 ml-3' src={pet.photo} alt={pet.name} />
 											<p
 												className='text-3xl shadow-none w-full flex text-center align-middle content-center items-center text-black '
 												disabled>{pet.name}</p>
@@ -159,7 +159,7 @@ export const Appointment = (props) => {
 
 
 							<div className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'>
-								<img className='w-32' src={Dog} alt="Pet ainda não há foto"/>
+								<img className='w-32' src={Dog} alt="Pet ainda não há foto" />
 								<p
 									className='text-2xl shadow-none w-full flex text-center align-middle content-center items-center text-black'
 									disabled>Você não possui pets</p>
@@ -170,11 +170,11 @@ export const Appointment = (props) => {
 							<div className='flex flex-col pl-10 md:pt-10'>
 								<label>
 									<input disabled type="text" name="firstName" value={petsName}
-												 className='bg-transparent text-black border-none  md:text-5xl font-normal '/>
+										className='bg-transparent text-black border-none  md:text-5xl font-normal ' />
 								</label>
 								<label>
 									<input disabled type="text" name="firstName" value={petsEspecie}
-												 className='bg-transparent border-none text-1xl md:text-5xl text-[#A9A9A9]'/>
+										className='bg-transparent border-none text-1xl md:text-5xl text-[#A9A9A9]' />
 								</label>
 							</div>
 						</div>
@@ -187,18 +187,18 @@ export const Appointment = (props) => {
 						<div className='flex xl:flex-row flex-col justify-between w-1/2 pt-5 text-start gap-32'>
 							<label className='flex flex-col text-gray-400 '>
 								Data
-								<input className='w-56' type='date' onChange={newDate} min={dataFormatada}/>
+								<input className='w-56' type='date' onChange={newDate} min={dataFormatada} />
 							</label>
 							<label className='flex flex-col text-gray-400'>
 								Hora
-								<input className='w-56' type='time' onChange={newTime}/>
+								<input className='w-56' type='time' onChange={newTime} />
 							</label>
 						</div>
 						<div className='w-full mt-5'>
 							<label htmlFor="descricao" className=" mb-2 flex justify-start pt-5">Descrição:</label>
 							<textarea id="descricao" name="descricao"
-												className="flex justify-start p-2 mt-5 border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-												rows="4" onChange={newDescription}></textarea>
+								className="flex justify-start p-2 mt-5 border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+								rows="4" onChange={newDescription}></textarea>
 						</div>
 					</div>
 					<div className='pt-5  '>
@@ -209,10 +209,10 @@ export const Appointment = (props) => {
 								Cancelar
 							</button>
 							<button type="submit"
-											className='p-2 md:w-40 md:h-12 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-semibold text-2xl'
-											onClick={(event) => {
-												submitAppointment(event);
-											}}
+								className='p-2 md:w-40 md:h-12 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-semibold text-2xl'
+								onClick={(event) => {
+									submitAppointment(event);
+								}}
 							>
 								Marcar
 							</button>
