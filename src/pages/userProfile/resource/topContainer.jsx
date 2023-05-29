@@ -6,9 +6,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
 import Notifications from "../../../utils/Notifications";
+import Ellipsis  from 'react-lines-ellipsis';
 
 export const TopContainer = (props) => {
-	const [biograf, setBiografia] = useState("truncate")
+	const [biography, setBiography] = useState("truncate")
 	const [lerMais, setLerMais] = useState("")
 	const [lerMenos, setLerMenos] = useState("hidden")
 	const [quantAppont, setQuantAppont] = useState(0)
@@ -58,15 +59,14 @@ export const TopContainer = (props) => {
 	}, []);
 
 	const textTruncate = (bool) => {
-		//Foi mexido aqui
 		const biografia = document.getElementById('biografia')
 		if (bool == true) {
-			setBiografia("flex")
+			setBiography("flex")
 			setLerMais("hidden")
 			setLerMenos("flex")
 		}
 		else {
-			setBiografia("truncate")
+			setBiography("truncate")
 			setLerMais("flex")
 			setLerMenos("hidden")
 		}
@@ -157,7 +157,7 @@ export const TopContainer = (props) => {
 			</div>
 			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
 			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
-			<div className='w-full h-auto text-justify bg-violet-400'>
+			<div className='w-full h-auto text-justify'>
 				{/* //Foi mexido aqui */}
 				<p className={`md:w-auto text-[#A9A9A9] text-xl ${biograf} flex-col`} id="biografia">
 					{bio + '...  '}

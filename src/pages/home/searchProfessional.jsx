@@ -65,6 +65,39 @@ export const SearchProfessional = () => {
 
   }, [filter]);
 
+  const renderVets = () => {
+    if (vets === null) {
+      return <span>Carregando...</span>;
+    } else if (vets === 'Nenhum veterinário atende aos filtros de pesquisa') {
+      return <span>Nenhum veterinário encontrado.</span>;
+    } else {
+      const vetIds = new Set();
+      const uniqueVets = vets.filter((vet) => {
+        if (vetIds.has(vet.id)) {
+          return false;
+        }
+        vetIds.add(vet.id);
+        return true;
+      });
+
+      return uniqueVets.map((vet) => (
+        <CardProfessionals
+          key={vet.id}
+          id={vet.id}
+          userName={vet.userName}
+          nome={vet.personName}
+          cep={vet.Address.cep}
+          formacao={vet.formation}
+          instituicao={vet.institution}
+          image={vet.profilePhoto}
+          dateStart={vet.startActingDate}
+          animal={vet.PetSpecieVeterinary}
+          specialties={vet.VeterinaryEspecialities}
+        />
+      ));
+    }
+  };
+
 
 
   return (
@@ -151,34 +184,10 @@ export const SearchProfessional = () => {
                 </label>
               </div>
             </div>
-
-
           </div>
         </div>
         <div>
-          {vets !== null ? (
-            vets !== 'Nenhum veterinário atende aos filtros de pesquisa' ? (
-              vets.map((vet) => (
-                <CardProfessionals
-                  key={vet.id}
-                  id={vet.id}
-                  userName={vet.userName}
-                  nome={vet.personName}
-                  cep={vet.Address.cep}
-                  formacao={vet.formation}
-                  instituicao={vet.institution}
-                  image={vet.profilePhoto}
-                  dateStart={vet.startActingDate}
-                  animal={vet.PetSpecieVeterinary}
-                  specialties={vet.VeterinaryEspecialities}
-                />
-              ))
-            ) : (
-              <span>Nenhum veterinário encontrado.</span>
-            )
-          ) : (
-            <span>Carregando...</span>
-          )}
+          {renderVets()}
           <ToastContainer
             position="top-right"
             autoClose={2000}

@@ -98,7 +98,7 @@ export const AppointmentPeding = (props) => {
 						})
 					);
 					setDivNothing("hidden");
-					setPedido(appoints);
+					setPedido(appoints.reverse());
 				} else {
 					setDivNothing("flex");
 					setPedido([]);
@@ -234,6 +234,7 @@ export const AppointmentPeding = (props) => {
 			<div className="w-full flex flex-col gap-3 mr-2">
 				<div className={`${divNothing}`}>Nenhuma consulta a ser aceita</div>
 				{pedidos.map((pedido) => {
+					console.log(pedidos);
 					return (
 						<div
 							key={pedido.id}
