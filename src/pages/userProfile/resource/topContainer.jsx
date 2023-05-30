@@ -97,8 +97,8 @@ export const TopContainer = (props) => {
 	}
 
 	useEffect(() => {
-
-		setBio(props.biografia)
+		if(props.biografia == null) setBio('Este veterinário ainda não possui biografia')
+		else setBio(props.biografia)
 
 	}, [props.biografia])
 
@@ -108,7 +108,7 @@ export const TopContainer = (props) => {
 				// TODO: IMPLEMENTAR CONFIRMAÇÃO DA CONSULTA
 			}
 		})
-	}
+	} 
 
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>

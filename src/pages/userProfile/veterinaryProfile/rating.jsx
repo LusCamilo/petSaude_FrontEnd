@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import jwt_decode from "jwt-decode";
 import { deleteRating } from "../../../services/integrations/rating";
+import Notifications from "../../../utils/Notifications";
 //import Dropdownfrom from "components/dropdown";
 
 export const Rating = (props) => {
@@ -20,6 +21,16 @@ export const Rating = (props) => {
 	}, []);
 
 	const deleteRateing = async () => {
+		await Notifications.warningConfirmOrCancel("Realmente deseja apagar este comentário", "Não irá muda a sua média", async (result) => {
+			if (result.isConfirmed) {
+				console.log(props.id);
+				let response = await deleteRating(props.id)
+				console.log(response);
+				setTimeout(() => {
+					window.location.reload()
+				}, 2000);
+			} else await Notifications.success('Nenhum dado alterado')
+		})
 		let response = await deleteRating(props.id)
 		console.log(response);
 	}
@@ -51,7 +62,7 @@ export const Rating = (props) => {
 					</p>
 				</label>
 					<button className={`h-6 ${props.clientId != idPerson || props.idVet == idPerson ? 'flex' : 'hidden'}`}
-						onClick={()=>deleteRateing}
+						onClick={()=>deleteRateing()}
 					>
 						<img src="https://static.thenounproject.com/png/1919184-200.png" alt="" className="h-6" />
 					</button>

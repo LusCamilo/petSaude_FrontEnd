@@ -238,7 +238,7 @@ export const AppointmentPeding = (props) => {
 					return (
 						<div
 							key={pedido.id}
-							className="border-none sm:border-solid border w-2/4 rounded-3xl border-black flex flex-col gap-0 p-14"
+							className="border-none sm:border-solid ml-10 border w-3/4 rounded-3xl border-black flex flex-col gap-0 p-14"
 						>
 							<div className="flex flex-col sm:flex-row justify-between pr-10 pt-5">
 								<div className="flex flex-col justify-start w-full sm:w-1/3 mr-5">
@@ -260,7 +260,7 @@ export const AppointmentPeding = (props) => {
 											<input
 												type="text"
 												disabled
-												placeholder={pedido.tamanho}
+												placeholder={(pedido.tamanho == "BIG") ? "Grande" : (pedido.tamanho == "SMALL") ? "Pequeno" : "Médio"}
 												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>

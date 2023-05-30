@@ -28,34 +28,34 @@ export const AcademicInfos = (props) => {
 			<h2 className="text-3xl w-max">
 				Informações acadêmicas
 			</h2>
-			<div className='hidden md:flex flex-col p-4 w-full h-min gap-4 border rounded-lg border-zinc-700 mt-1'>
-				<div className='flex items-center justify-between gap-x-4 pl-4 border rounded-lg border-zinc-700'>
+			<div className='hidden md:flex flex-col p-4 w-full h-min gap-4 border rounded-lg border-zinc-300 mt-1'>
+				<div className='flex items-center justify-between gap-x-4 pl-4 border rounded-lg border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Formação:</h3>
 						<p>{props.formacao}</p>
 					</span>				
-					<img className='p-4 border rounded-lg' src={formacao} alt='Formation'/>
+					<img className='p-4 border-l border-zinc-300 border-solid' src={formacao} alt='Formation'/>
 				</div>
-				<div className='flex items-center justify-between border gap-x-4 pl-4 rounded-lg border-zinc-700'>
+				<div className='flex items-center border justify-between rounded-lg gap-x-4 pl-4 border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Data de Formação:</h3>
 						<p>{dateFormation}</p>
 					</span>
-					<img className='p-4 border rounded-lg' src={formacaoDate} alt='Formation hat'  />
+					<img className='p-4 border-l border-zinc-300 border-solid' src={formacaoDate} alt='Formation hat'  />
 				</div>
-				<div className='flex items-center border justify-between gap-x-4 pl-4 rounded-lg border-zinc-700'>
+				<div className='flex items-center border justify-between gap-x-4 pl-4 rounded-lg border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Instituição:</h3>
 						<p>{props.instituicao}</p>
 					</span>
-					<img className='py-4 px-[22px] border rounded-lg' src={instituicao} alt='Institution' />
+					<img className='py-4 px-[22px] border-l border-zinc-300 border-solid' src={instituicao} alt='Institution' />
 				</div>
-				<div className='flex items-center border justify-between rounded-lg gap-x-4 pl-4 border-zinc-700'>
+				<div className='flex items-center border justify-between rounded-lg gap-x-4 pl-4 border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Inicio de Carreira:</h3>
 						<p>{dateInicioCarreira}</p>
 					</span>
-					<img className='p-4 border rounded-lg' src={carreira} alt='Briefing case' />
+					<img className='p-4 border-l border-zinc-300 border-solid' src={carreira} alt='Briefing case' />
 				</div>
 			</div>
 			<div className='flex flex-col md:hidden'>

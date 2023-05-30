@@ -33,7 +33,10 @@ export const Appointment = (props) => {
 			if (decoded.id) {
 				const pets = await getAllPets(decoded.id);
 				if (pets == 'Não foram encontrados registros no Banco de Dados') {
-					document.location.href = '/profile/pet/add'
+					await Notifications.error('Você não tem pets!', 'Crie um pet para fazer uma consulta!')
+					setTimeout(function() {
+						document.location.href = '/profile/pet/add'
+					  }, 3000); 
 				} else {
 					if (pets === null || pets === undefined || pets === []) {
 						setPetAll([{ name: "Não foram encontrados pets" }]);

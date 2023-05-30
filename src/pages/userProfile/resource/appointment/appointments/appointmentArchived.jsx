@@ -247,7 +247,7 @@ export const AppointmentArchived = (props) => {
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col gap-3 mr-2">
+      <div className="w-full flex flex-col gap-3 ml-12">
         {pedidos.map((pedido) => {
           const cor =
             pedido.estado === "CONCLUDED" ? "bg-[#09738A]" : "bg-[#F1EAC6]";

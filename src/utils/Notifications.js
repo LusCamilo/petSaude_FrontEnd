@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Appointment } from "../pages/userProfile/resource/appointment/appointment";
@@ -91,6 +90,9 @@ class Notifications {
 
 	async ratingAvaliation(onConfirm, onCancel, callback) {
 		await this.swal.fire({
+			html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
+			//showCancelButton: true,
+			//showConfirmButton: true,
 			// html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
 			showCancelButton: true,
 			showConfirmButton: true,

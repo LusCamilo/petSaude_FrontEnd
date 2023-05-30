@@ -1,36 +1,48 @@
 import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import Notifications from "../../../../../utils/Notifications";
 import { Review } from "../reviews/reviews";
+import { ratingAdd } from "../../../../../services/integrations/rating";
+import { toast } from "react-toastify";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    border: "3px solid #9ED1B7",
-    borderRadius: "40px",
-    width: "32vw",
-    height: "70vh",
-    display: "flex",
-    justifyContent: "center",
-  },
-  overlay: {
-    backgroundColor: "#0000",
-  },
+const showToastMessage = (message) => {
+  toast(`${message}`, {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 };
 
-async function openRatingAvaliation() {
-  await Notifications.ratingAvaliation(null, null, (result) => {
-    if (result.isConfirmed) {
-      // TODO: IMPLEMENTAR a logica...
-    }
-  });
-}
 
 export const AppointmentArchivedCard = (props) => {
+
+  const [ratingModal, setRatingModal] = useState("hidden");
+
+  async function openRatingAvaliation() {
+    await Notifications.ratingAvaliation(showToastMessage, handleClick, async result => {
+      if (result.isConfirmed) {
+        
+      }
+    });
+  }
+
+  
+
+	function handleClick() {
+    if (ratingModal == "hidden") {
+      setRatingModal("flex")
+      console.log(ratingModal);
+    } else {
+      setRatingModal("hidden")
+      console.log(ratingModal);
+    }
+
+	}
 
   return (
     <div
@@ -156,89 +168,14 @@ export const AppointmentArchivedCard = (props) => {
           {props.status}
         </div>
       </div>
-      <div className={`${props.isVet}`}>
+      <div className={`flex`}>
+      {/* ${props.isVet == "flex" && props.status == "Finalizado" ? "flex" : "hidden"} */}
         <button
           class="bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded mt-2"
           onClick={openRatingAvaliation}
         >
           Avaliar consulta
         </button>
-
-        {/* <button
-          class="bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded"
-          onClick={openModal}
-        >
-          Avaliar consulta
-        </button> */}
-
-        {/* <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <form
-            className="w-full"
-            onSubmit={() => {
-              handleSubmit(submitForm);
-            }}
-          >
-            <div className="flex justify-end text-5xl w-full">
-              <AiOutlineClose
-                className="cursor-pointer"
-                onClick={props.onClose}
-              />
-            </div>
-            <div className="bg-white w-full">
-              <div>
-                <label
-                  htmlFor="comment"
-                  className="text-gray-700 font-bold mb-2 flex flex-col justify-center w-full"
-                >
-                  <h2 className="flex justify-center text-3xl">
-                    {" "}
-                    Avaliação de Veterinário
-                  </h2>
-                  <p className="flex justify-center text-2xl text-[#A9A9A9]">
-                    Opinão referente a consulta
-                  </p>
-                  <div className="justify-center inline pt-5 ">
-                    <Rating onClick={handleRating} transition size={25} />
-                  </div>
-                  {rating}
-                </label>
-              </div>
-              <div className="mb-3">
-                <label
-                  htmlFor="comment"
-                  className="block text-gray-700 font-bold mb-2"
-                >
-                  Comentários adicionais
-                </label>
-                <textarea
-                  id="comment"
-                  rows={3}
-                  className="shadow appearance-none border border-black rounded w-full h-32 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pt-2"
-                  onBlurCapture={(e) => setRDescription(e)}
-                />
-                <p className="flex justify-end text-2xl p-2  text-[#A9A9A9]">
-                  Resposta opcional
-                </p>
-              </div>
-              <div className="flex justify-center pt-20 lg-40">
-                <button
-                  className=" bg-[#9ED1B7] hover:shadow-xl hover:scale-105 text-[#41564B] font-semibold py-2 px-4 ml-2 rounded-2xl focus:outline-none focus:shadow-outline w-56 h-8 text-center text-xl"
-                  type="button"
-                  onClick={() => {
-                    submitForm();
-                  }}
-                >
-                  Concluir avaliação
-                </button>
-              </div>
-            </div>
-          </form>
-        </Modal> */}
       </div>
     </div>
   );
