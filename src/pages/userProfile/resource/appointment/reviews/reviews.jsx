@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import { useForm } from "react-hook-form";
 import { ratingAdd } from "../../../../../services/integrations/rating";
-<<<<<<< HEAD
 import { AiOutlineClose } from "react-icons/ai";
 import Notifications from "../../../../../utils/Notifications";
-=======
->>>>>>> 52a4ff7c6a93202de2da88126748a4fbe97982f0
 
 export const Review = (props) => {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();

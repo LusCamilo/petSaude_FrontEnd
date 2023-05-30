@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-=======
 import React, {useState} from 'react';
->>>>>>> 52a4ff7c6a93202de2da88126748a4fbe97982f0
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Appointment } from "../pages/userProfile/resource/appointment/appointment";
-import { AppointmentArchivedCard } from "../pages/userProfile/resource/appointment/appointments/appointmentArchivedCard";
+import { AppointmentAsrchivedCard } from "../pages/userProfile/resource/appointment/appointments/appointmentArchivedCard";
 import { Review } from "../pages/userProfile/resource/appointment/reviews/reviews";
-<<<<<<< HEAD
-=======
-
->>>>>>> 52a4ff7c6a93202de2da88126748a4fbe97982f0
 
 class Notifications {
   constructor() {
