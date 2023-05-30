@@ -159,7 +159,7 @@ export const TopContainer = (props) => {
 			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
 			<div className='w-full h-auto text-justify'>
 				{/* //Foi mexido aqui */}
-				<p className={`md:w-auto text-[#A9A9A9] text-xl ${biograf} flex-col`} id="biografia">
+				<p className={`md:w-auto text-[#A9A9A9] text-xl ${biography} flex-col`} id="biografia">
 					{bio + '...  '}
 					<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={()=>textTruncate(false)}>
 						Ler menos

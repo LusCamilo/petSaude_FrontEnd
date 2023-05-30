@@ -53,7 +53,7 @@ export const Cards = (props) => {
 				<h2 className='text-3xl pb-2'>Avaliações</h2>
 				<div className='flex items-center pl-14 md:pl-0 justify-between'>
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
-					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' 
+					{/* <div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' 
 					ref={carrossel}>
 						{petOrRating.map((item) => {
 							console.log(item);
@@ -71,7 +71,7 @@ export const Cards = (props) => {
 							/>
 						})}
 						
-					</div>
+					</div> */}
 					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
 				</div>
 			</div>
