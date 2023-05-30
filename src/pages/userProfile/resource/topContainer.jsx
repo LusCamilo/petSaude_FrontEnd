@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
 import Notifications from "../../../utils/Notifications";
-import Ellipsis  from 'react-lines-ellipsis';
+import Ellipsis from 'react-lines-ellipsis';
 
 export const TopContainer = (props) => {
 	const [biography, setBiography] = useState("truncate")
@@ -49,13 +49,13 @@ export const TopContainer = (props) => {
 			setQuantAppont(quant)
 			if (quant === 1) {
 				setStringAppoinment('Consulta Concluida')
-			} else if(quant <= 0) {
+			} else if (quant <= 0) {
 				setStringAppoinment('Não há consultas concluidas')
-			} else  {
+			} else {
 				setStringAppoinment('Consultas concluidas')
 			}
-		  }
-		  fetchData();
+		}
+		fetchData();
 	}, []);
 
 	const textTruncate = (bool) => {
@@ -95,7 +95,7 @@ export const TopContainer = (props) => {
 	function isValidImageUrl(url) {
 		const imageUrlRegex = /\.(jpe?g|tiff?|png|bmp|webp)$/i;
 		return imageUrlRegex.test(url);
-	  }
+	}
 
 	useEffect(() => {
 
@@ -114,8 +114,8 @@ export const TopContainer = (props) => {
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>
 			<div className='w-full md:h-[500px] rounded-b-xl bg-gray-300'>
-				<img src={isValidImageUrl(props.profileBannerPhoto) || props.profileBannerPhoto == '' ? '' : props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl object-cover' 
-			}/>
+				<img src={isValidImageUrl(props.profileBannerPhoto) || props.profileBannerPhoto == '' ? '' : props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl object-cover'
+				} />
 			</div>
 			<div className='self-start w-full mt-[-120px] md:mt-[-80px] md:flex ml-9 h-fit'>
 				<div className='flex relative md:border-4 h-28 w-28 md:h-48 md:border-white border-solid rounded-full md:w-48 items-center justify-center bg-white'>
@@ -129,7 +129,7 @@ export const TopContainer = (props) => {
 					<div className='flex flex-col md:flex-row items-center gap-1 pt-4'>
 						<div className='flex ml-4'>
 							<p className='text-3xl md:text-4xl'>{props.name}</p>
-							{props.isVet ? <img className='pl-2' src={iconVet} alt='Veterinary badge'/> : null}
+							{props.isVet ? <img className='pl-2' src={iconVet} alt='Veterinary badge' /> : null}
 						</div>
 						<div className='flex md:hidden'>
 							<p className='flex justify-center text-xl'> 777
@@ -147,29 +147,38 @@ export const TopContainer = (props) => {
 							<p>9,8/10</p>
 						</div>
 					</div>
-					{props.isVet && !props.myProfile && !thisUserIsVet ? 
-					<button
-						className='bg-lime-500 rounded-lg p-3 h-fit text-xl md:text-3xl shadow-lg md:mt-10'
-						onClick={openAppointmentModal}>
-						Agendar uma consulta
+					{props.isVet && !props.myProfile && !thisUserIsVet ?
+						<button
+							className='bg-lime-500 rounded-lg p-3 h-fit text-xl md:text-3xl shadow-lg md:mt-10'
+							onClick={openAppointmentModal}>
+							Agendar uma consulta
 					</button> : null}
 				</div>
 			</div>
 			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
-			<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
-			<div className='w-full h-auto text-justify'>
-				{/* //Foi mexido aqui */}
-				<p className={`md:w-auto text-[#A9A9A9] text-xl ${biography} flex-col`} id="biografia">
-					{bio + '...  '}
-					<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={()=>textTruncate(false)}>
-						Ler menos
+			{bio !== null ? (
+				<>
+					<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
+					<div className='w-full h-auto text-justify'>
+						<Ellipsis
+							id="biografia"
+							className={`md:w-auto text-[#A9A9A9] text-xl ${biography} flex-col`}
+							text={bio}
+							maxLine="10"
+							ellipsis="..."
+							trimRight
+							basedOn="letters"
+						/>
+						<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={() => textTruncate(false)}>
+							Ler menos
 					</a>
-					<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={()=>textTruncate(true)}>
-						Ler mais
+						<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={() => textTruncate(true)}>
+							Ler mais
 					</a>
-				</p>
-				
-			</div>
+					</div>
+				</>
+			) : <span></span>}
+
 		</div>
 	);
 }
