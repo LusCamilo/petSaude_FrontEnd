@@ -85,7 +85,6 @@ export const TopContainer = (props) => {
 		// references are now sync'd and can be accessed.
 		//subtitle.style.color = '#f00';
 	}
-	const [estadoApp, setEstadoApp] = useState()
 	localStorage.setItem('OpenOrClose', false)
 
 	function handleCancelAppointment() {
@@ -160,20 +159,20 @@ export const TopContainer = (props) => {
 				<>
 					<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
 					<div className='w-full h-auto text-justify'>
-						<Ellipsis
-							id="biografia"
-							className={`md:w-auto text-[#A9A9A9] text-xl ${biography} flex-col`}
-							text={bio}
-							maxLine="10"
-							ellipsis="..."
-							trimRight
-							basedOn="letters"
-						/>
-						<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={() => textTruncate(false)}>
-							Ler menos
+					<Ellipsis
+						id="biografia"
+						className={`md:w-auto text-[#A9A9A9] text-xl ${biography} flex-col`}
+						text={bio}
+						maxLine="10"
+						ellipsis="..."
+						trimRight
+						basedOn="letters"
+					/>
+					<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={() => textTruncate(false)}>
+						Ler menos
 					</a>
-						<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={() => textTruncate(true)}>
-							Ler mais
+					<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={() => textTruncate(true)}>
+						Ler mais
 					</a>
 					</div>
 				</>

@@ -114,7 +114,8 @@ export const EditProfile = () => {
 			profilePhoto: profilePhoto
 		}
 
-		if (localStorage.getItem('__user_isVet') === 'true')
+		if (profileInfos.email.includes("@")) {	
+			if (localStorage.getItem('__user_isVet') === 'true')
 			updateProfileInfosVeterinary(profileInfos).then(async (response) => {
 				console.log(response);
 				if (response && typeof response === 'object') {
@@ -124,8 +125,8 @@ export const EditProfile = () => {
 					document.location.href = '/profile/configuration'
 				}
 			})
-		else
-
+			else
+			
 			updateProfileInfosClient(profileInfos).then(async (response) => {
 				if (response && typeof response === 'object') {
 					if (response.hasOwnProperty('message')) await Notifications.error('E-mail já está em uso')
@@ -134,6 +135,9 @@ export const EditProfile = () => {
 					document.location.href = '/profile/configuration'
 				}
 			})
+		}else 
+			await Notifications.error("Informe um E-mail válido")
+		
 	}
 
 	return (
