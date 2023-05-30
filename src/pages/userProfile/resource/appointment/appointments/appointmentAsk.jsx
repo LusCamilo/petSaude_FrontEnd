@@ -17,11 +17,14 @@ import Notifications from "../../../../../utils/Notifications";
 
 export const AppointmentAsk = () => {
   const [pedidos, setPedido] = useState([]);
+
   const [tutorStatus, setTutorStatus] = useState("hidden");
   const [buttonStatus, setButtonStatus] = useState("flex");
   const [buttonAceitar, setButtonAceitar] = useState("flex");
+
   const [showVet, setShowVet] = useState("hidden");
   const [showClient, setShowClient] = useState("flex");
+
   const [divNothing, setDivNothing] = useState("hidden");
   const [duracao, setDuracao] = useState(0);
   const [preco, setPreco] = useState(0.0);
@@ -116,45 +119,6 @@ export const AppointmentAsk = () => {
     const filteredPets = arrayPet.filter((pet) => pet.id === idPet);
     return filteredPets[0];
   };
-
-  // const showToastMessageSucess = (message) => {
-  //   toast.success(`${message}`, {
-  //     position: "top-right",
-  //     autoClose: 1500,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "light",
-  //   });
-  // };
-  //
-  // const showToastMessageFailed = (message) => {
-  //   toast.error(`${message}`, {
-  //     position: "top-right",
-  //     autoClose: 1500,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "light",
-  //   });
-  // };
-  //
-  // const showToastMessageFailedSistem = (message) => {
-  //   toast.error("Erro no sistema, tente mais tarde", {
-  //     position: "top-right",
-  //     autoClose: 1500,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "light",
-  //   });
-  // };
 
   const recusarAppointment = async (idAppointment) => {
     await Notifications.confirmOrCancel('Deseja mesmo recusar a consulta?', async result => {
@@ -342,7 +306,7 @@ export const AppointmentAsk = () => {
                       <input
                         type="text"
                         disabled
-                        placeholder={pedido.tamanho}
+                        placeholder={(pedido.tamanho == "BIG") ? "Grande" : (pedido.tamanho == "SMALL") ? "Pequeno" : "Médio"}
                         className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
                       />
                     </label>
@@ -507,17 +471,16 @@ export const AppointmentAsk = () => {
                       <p className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-xl ">
                         {pedido.descricao}
                       </p>
-                      {/* <input type="text" disabled placeholder={pedido.descricao} class='bg-transparent placeholder:text-gray-400 class='bg-transparent placeholder:text-gray-400 '/> */}
                     </label>
                   </div>
                 </div>
               </div>
               <span
-                className={`${buttonAceitar} flex justify-center w-5/6 pl-40`}
+                className={`${buttonAceitar} justify-start w-full pl-4`}
               >
                 <div className={`${tutorStatus} flex-col mb-2 text-3xl pt-5`}>
                   <h2>Confirmar consulta</h2>
-                  <div className="w-56 flex justify-center gap-5 flex-col pl-10">
+                  <div className="w-full flex justify-center gap-5 flex-col">
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full pt-5">
                       Duração
                       <input
@@ -539,7 +502,7 @@ export const AppointmentAsk = () => {
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full">
                       Valor
                       <div className="flex items-center justify-center gap-2">
-                        <span className="text-2xl align-bottom ">R$</span>
+                        <span className="text-2xl align-bottom pl-18">R$</span>
                         <input
                           type="text"
                           className="min-w-full text-2xl mr-8"
@@ -569,7 +532,7 @@ export const AppointmentAsk = () => {
                   </button>
                 </span>
 
-                <span className={`${buttonAceitar} flex justify-end`}>
+                <span className={`flex justify-end`}>
                   <button
                     className={`bg-[#9ED1B7] ${buttonStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-60 h-14 border rounded-full text-xl font-normal `}
                     onClick={handleClick}
@@ -577,12 +540,14 @@ export const AppointmentAsk = () => {
                     Ver mais informações
                   </button>
 
-                  <button
-                    className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal mr-20`}
-                    onClick={() => marcarAppointment(pedido.idAppoint)}
-                  >
-                    Marcar
-                  </button>
+                  <span className={`${buttonAceitar}`}>
+                    <button
+                      className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal mr-20`}
+                      onClick={() => marcarAppointment(pedido.idAppoint)}
+                    >
+                      Marcar
+                    </button>
+                  </span>
                 </span>
               </div>
             </div>

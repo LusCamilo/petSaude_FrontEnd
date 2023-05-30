@@ -16,10 +16,13 @@ export const Cards = (props) => {
 		async function fetchData() {
 			const token = localStorage.getItem('__user_JWT')
 			const decoded = jwt_decode(token);
+			console.log(props);
 			if (props.isVet == true) {
+				console.log('Deveria funcionar');
 				const response = await getRatings(props.idVets);
 				console.log(response.response.ratings);
-				setPetOrRating(response.response.ratings)
+				if(response.response.ratings.length == 0)setPetOrRating([])
+				else setPetOrRating(response.response.ratings)
 			} else if(props.isVet == false) {
 				const response = await getUser(decoded.id)
 				setPetOrRating(response.response.ratings)
