@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-import { Appointment } from "../pages/userProfile/resource/appointment/appointment";
-import { AppointmentArchivedCard } from "../pages/userProfile/resource/appointment/appointments/appointmentArchivedCard";
-import { Review } from "../pages/userProfile/resource/appointment/reviews/reviews";
-=======
 import React, {useState} from 'react';
 import Swal from 'sweetalert2'
 import withReactContent from "sweetalert2-react-content";
 import {Appointment} from "../pages/userProfile/resource/appointment/appointment"
 
->>>>>>> 0366725bd1f47cd0f1e85fcf7908677b679ebf71
 
 class Notifications {
   constructor() {
@@ -99,7 +91,7 @@ class Notifications {
 
 	async ratingAvaliation(onConfirm, onCancel, callback) {
 		await this.swal.fire({
-			html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
+			// html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
 			showCancelButton: true,
 			showConfirmButton: true,
 		  })
