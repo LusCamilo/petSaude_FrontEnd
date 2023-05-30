@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import { useForm } from "react-hook-form";
 import { ratingAdd } from "../../../../../services/integrations/rating";
-import { AiOutlineClose } from "react-icons/ai";
 
 export const Review = (props) => {
   const { register, handleSubmit, formState: errors, setValue } = useForm();
@@ -59,7 +58,7 @@ export const Review = (props) => {
                 </p>
             </label>
         </div>
-        <div class="inline w-full pt-5 mb-7">
+        {/* <div class="inline w-full pt-5 mb-7">
             <input type="radio" id="star5" name="rating" value="5" />
             <label for="star5" title="Excelente">&#9733;</label>
             <input type="radio" id="star4" name="rating" value="4" />
@@ -70,11 +69,11 @@ export const Review = (props) => {
             <label for="star2" title="Regular">&#9733;</label>
             <input type="radio" id="star1" name="rating" value="1" />
             <label for="star1" title="Ruim">&#9733;</label>
-        </div>
-        {/* <div className="inline pt-5 pb-5 ">
-            <Rating className="inline w-full" onClick={handleRating} transition size={25} />
-            {rating}
         </div> */}
+        <span>
+          <Rating className="inline w-full" onClick={handleRating} transition size={25} />
+            {rating}
+        </span>          
         <div className="mb-3 w-full">
           <label
             htmlFor="comment"

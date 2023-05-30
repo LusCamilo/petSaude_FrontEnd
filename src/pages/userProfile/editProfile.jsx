@@ -148,10 +148,10 @@ export const EditProfile = () => {
 					onProfilePhotoChange={handleChildProfilePhotoChange}
 					userName={infos.userName} completName={infos.personName} email={infos.email} password={infos.password} profilePhoto={infos.profilePhoto}
 				/>
-
-				<button className='md:flex justify-center items-center h-20 w-20 self-end rounded-2xl bg-[#9ED1B7] mt-5 shadow-md mb-7' onClick={editInformations}>
-					<AiOutlineCheck className='text-5xl'/>
-				</button>
+				<AiOutlineCheck
+					className='text-5xl h-20 w-20 self-end rounded-2xl text-green-900 hover:text-green-600 border-solid border-green-900 hover:border-green-600 hover:scale-110 border-2 bg-green-200 mt-5 shadow-md mb-7 p-5 cursor-pointer transition-all'
+					onClick={editInformations}
+				/>
 			</div>
 		</div>
 	);

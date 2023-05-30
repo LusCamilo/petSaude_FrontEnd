@@ -12,6 +12,7 @@ import {getSpecialtiesPet} from "../../../services/integrations/specialtiesPet";
 import {getPet, petUpdate} from "../../../services/integrations/pet";
 import {AiOutlineCheck} from 'react-icons/ai';
 import Notifications from "../../../utils/Notifications";
+import { RiPencilFill } from "react-icons/ri";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDidn9lOpRvO7YAkVjuRHvI88uLRPnpjak",
@@ -414,6 +415,7 @@ export const PetConfig = () => {
 									}
 								}}
 							>
+								<RiPencilFill className='text-4xl'/>
 								Editar
 							</button>
 						</div>
