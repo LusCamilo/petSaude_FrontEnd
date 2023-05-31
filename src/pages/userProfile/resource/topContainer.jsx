@@ -7,6 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
 import Notifications from "../../../utils/Notifications";
 import Ellipsis from 'react-lines-ellipsis';
+import teste, { Appointment } from './appointment/appointment';
+import { appointmentAdd } from '../../../services/integrations/appointment';
+
+
+console.log(localStorage.getItem("appointment"));
 
 export const TopContainer = (props) => {
 	const [biography, setBiography] = useState("truncate")
@@ -71,25 +76,24 @@ export const TopContainer = (props) => {
 			setLerMenos("hidden")
 		}
 	}
+
 	const [modalIsOpen, setIsOpen] = React.useState(false);
 
-	function openModal() {
-		setIsOpen(true);
-	}
+	// function openModal() {
+	// 	setIsOpen(true);
+	// }
 
 	function closeModal() {
 		setIsOpen(false);
 	}
 
-	function afterOpenModal() {
-		// references are now sync'd and can be accessed.
-		//subtitle.style.color = '#f00';
-	}
 	localStorage.setItem('OpenOrClose', false)
 
 	function handleCancelAppointment() {
 		closeModal();
 	}
+
+
 
 	function isValidImageUrl(url) {
 		const imageUrlRegex = /\.(jpe?g|tiff?|png|bmp|webp)$/i;
@@ -97,18 +101,31 @@ export const TopContainer = (props) => {
 	}
 
 	useEffect(() => {
-		if(props.biografia == null) setBio('Este veterinário ainda não possui biografia')
+		if (props.biografia == null) setBio('Este veterinário ainda não possui biografia')
 		else setBio(props.biografia)
 
 	}, [props.biografia])
 
 	async function openAppointmentModal() {
-		await Notifications.appointment(handleCancelAppointment, showToastMessage, async result => {
+
+		await Notifications.appointment(handleCancelAppointment, showToastMessage).then(async result => {
+			console.log(result);
 			if (result.isConfirmed) {
-				// TODO: IMPLEMENTAR CONFIRMAÇÃO DA CONSULTA
+				const addAppointment = await appointmentAdd(JSON.parse(localStorage.getItem("appointment")));
+				console.log(addAppointment);
+				if (addAppointment.response.message === 'Consulta criada com sucesso') {
+					console.log("teste1");
+					await Notifications.success(addAppointment.response.message)
+				} else if (addAppointment.response === "A data não pode ser anterior a atual" || addAppointment.response === "Já existe uma consulta agendada para o Veterinário nesse horário") {
+					console.log("teste2");
+					await Notifications.error('Data inválida', addAppointment.response)
+				} else {
+					console.log("teste3");
+					await Notifications.error('Erro ao marcar a consulta', addAppointment.response)
+				}
 			}
 		})
-	} 
+	}
 
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>
@@ -151,7 +168,7 @@ export const TopContainer = (props) => {
 							className='bg-lime-500 rounded-lg p-3 h-fit text-xl md:text-3xl shadow-lg md:mt-10'
 							onClick={openAppointmentModal}>
 							Agendar uma consulta
-					</button> : null}
+						</button> : null}
 				</div>
 			</div>
 			<div className='w-full h-[1px] bg-gray-400 mt-2'></div>
@@ -159,21 +176,21 @@ export const TopContainer = (props) => {
 				<>
 					<h2 className='self-start text-3xl mt-2'>Sobre mim</h2>
 					<div className='w-full h-auto text-justify'>
-					<Ellipsis
-						id="biografia"
-						className={`md:w-auto text-[#A9A9A9] text-xl ${biography} flex-col`}
-						text={bio}
-						maxLine="10"
-						ellipsis="..."
-						trimRight
-						basedOn="letters"
-					/>
-					<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={() => textTruncate(false)}>
-						Ler menos
-					</a>
-					<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={() => textTruncate(true)}>
-						Ler mais
-					</a>
+						<Ellipsis
+							id="biografia"
+							className={`md:w-auto text-[#A9A9A9] text-xl ${biography} flex-col`}
+							text={bio}
+							maxLine="10"
+							ellipsis="..."
+							trimRight
+							basedOn="letters"
+						/>
+						<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={() => textTruncate(false)}>
+							Ler menos
+						</a>
+						<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={() => textTruncate(true)}>
+							Ler mais
+						</a>
 					</div>
 				</>
 			) : <span></span>}

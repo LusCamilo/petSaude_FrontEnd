@@ -1,8 +1,8 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Appointment } from "../pages/userProfile/resource/appointment/appointment";
-import { AppointmentAsrchivedCard } from "../pages/userProfile/resource/appointment/appointments/appointmentArchivedCard";
 import { Review } from "../pages/userProfile/resource/appointment/reviews/reviews";
+import { appointmentAdd } from "../services/integrations/appointment";
 class Notifications {
   constructor() {
     this.swal = withReactContent(Swal);
@@ -19,6 +19,7 @@ class Notifications {
       buttonsStyling: false,
     });
   }
+
   async success(message) {
     await this.swal.fire({
       timer: 1500,
@@ -66,39 +67,43 @@ class Notifications {
       .then(callback);
   }
 
-	async appointment(infos) {
-		await this.swal.fire({
-			showConfirmButton: true,
-			confirmButtonText: "Marcar",
-			confirmButtonColor: "#9ED1B7",
-			showCancelButton: true,
-			cancelButtonText: "Cancelar", 
-			cancelButtonColor: "#F9DEDC",
-			customClass: {
-				cancelButton:"p-2 md:w-40 md:text-center md:h-12 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-semibold text-2xl origin-center",
-				confirmButton: "p-2 md:w-40 md:h-12 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-semibold text-2xl",
-			},
-			html: <Appointment/>,
-			heightAuto: true,
-			width: '60%',
-		}).then(result => {
-      if (result.isConfirmed) {
-        console.log(infos);
+  async appointment(onCancel, onToast) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await this.swal.fire({
+          showConfirmButton: true,
+          confirmButtonText: "Marcar",
+          confirmButtonColor: "#9ED1B7",
+          cancelButtonText: "Cancelar",
+          cancelButtonColor: "#F9DEDC",
+          customClass: {
+            cancelButton: "p-2 md:w-40 md:text-center md:h-12 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-semibold text-2xl origin-center",
+            confirmButton: "p-2 md:w-40 md:h-12 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-semibold text-2xl",
+          },
+          showCancelButton: true,
+          html: <Appointment onCancel={onCancel} onToast={onToast} />,
+          heightAuto: true,
+          width: '60%',
+        });
+  
+        resolve(result);
+      } catch (error) {
+        reject(error);
       }
-		})
-	}
+    });
+  }
 
-	async ratingAvaliation(onConfirm, onCancel, callback) {
-		await this.swal.fire({
-			html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
-			//showCancelButton: true,
-			//showConfirmButton: true,
-			// html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
-			showCancelButton: true,
-			showConfirmButton: true,
-		  })
-		  .then(callback);
-	}
+  async ratingAvaliation(onConfirm, onCancel, callback) {
+    await this.swal.fire({
+      html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
+      //showCancelButton: true,
+      //showConfirmButton: true,
+      // html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
+      showCancelButton: true,
+      showConfirmButton: true,
+    })
+      .then(callback);
+  }
 }
 
 export default new Notifications();

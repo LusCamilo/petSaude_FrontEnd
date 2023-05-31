@@ -4,15 +4,30 @@ import Monkey from '../../../../assets/svg/monkey.svg';
 import Dog from '../../../../assets/svg/iconDog.svg';
 import { getAllPets } from '../../../../services/integrations/pet';
 import { appointmentAdd } from '../../../../services/integrations/appointment';
-import { PetSpawn } from './appointmentPets';
-// import Modal from 'react-modal'
-// import {propTypes} from 'react-bootstrap/esm/Image';
 import jwt_decode from "jwt-decode";
 import 'react-toastify/dist/ReactToastify.css';
 import Notifications from "../../../../utils/Notifications";
 
+function submitAppointment(object) {
+	const vet = localStorage.getItem("__Vet_correctId");
+	const appointmentInfos = {
+		date: object.date,
+		startsAt: object.date + ' ' + object.startsAt,
+		description: object.description,
+		veterinaryId: parseInt(vet, 10),
+		petId: object.petId,
+	}
+	localStorage.setItem("appointment", JSON.stringify(appointmentInfos))
 
-export const Appointment = (props) => {
+	return appointmentInfos	
+}
+
+export default function teste(object) {
+	return submitAppointment(object)
+}
+
+export const Appointment = () => {
+	const [json, setJson] = useState({})
 	const [date, setDate] = useState('')
 	const [startsAt, setStartAt] = useState('')
 	const [description, setDescription] = useState('')
@@ -22,9 +37,7 @@ export const Appointment = (props) => {
 	const [ThereArentPets, setThereArentPets] = useState('hidden');
 	const [ThereArePets, setThereArePets] = useState('flex');
 	const [petsEspecie, setPetEspecie] = useState('Tamanho');
-
 	const [petImage, setPetImage] = useState(Monkey)
-	const { register, handleSubmit, formState: errors, setValue } = useForm()
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -34,9 +47,9 @@ export const Appointment = (props) => {
 				const pets = await getAllPets(decoded.id);
 				if (pets == 'Não foram encontrados registros no Banco de Dados') {
 					await Notifications.error('Você não tem pets!', 'Crie um pet para fazer uma consulta!')
-					setTimeout(function() {
+					setTimeout(function () {
 						document.location.href = '/profile/pet/add'
-					  }, 3000); 
+					}, 3000);
 				} else {
 					if (pets === null || pets === undefined || pets === []) {
 						setPetAll([{ name: "Não foram encontrados pets" }]);
@@ -51,7 +64,7 @@ export const Appointment = (props) => {
 			}
 		};
 		fetchData();
-	}, []);
+	}, [json]);
 
 	function newDate(event) {
 		let valor = event.target.value;
@@ -59,6 +72,12 @@ export const Appointment = (props) => {
 		let dia = novaData.toLocaleDateString("pt-BR");
 		let diaMesAno = dia.split('/').join('-');
 		setDate(diaMesAno);
+		setJson({
+			date: date,
+			startsAt: startsAt,
+			description: description,
+			petId: petId
+		})
 	}
 
 	function adicionarUmDia(data) {
@@ -69,10 +88,22 @@ export const Appointment = (props) => {
 
 	function newDescription(event) {
 		setDescription(event.target.value);
+		setJson({
+			date: date,
+			startsAt: startsAt,
+			description: description,
+			petId: petId
+		})
 	}
 
 	function newTime(event) {
 		setStartAt(event.target.value + ":00");
+		setJson({
+			date: date,
+			startsAt: startsAt,
+			description: description,
+			petId: petId
+		})
 	}
 
 	let hoje = new Date();
@@ -83,25 +114,18 @@ export const Appointment = (props) => {
 	if (dia < 10) dia = '0' + dia
 	let dataFormatada = `${ano}-${mes}-${dia}`;
 
-	async function submitAppointment(event) {
-		event.preventDefault();
-		const vet = localStorage.getItem("__Vet_correctId");
-		const appointmentInfos = {
-			date: date,
-			startsAt: date + ' ' + startsAt,
-			description: description,
-			veterinaryId: parseInt(vet, 10),
-			petId: petId,
-		}
-		const addAppointment = await appointmentAdd(appointmentInfos);
-		if (addAppointment.response.message === 'Consulta criada com sucesso') {
-			await Notifications.success(addAppointment.response.message).then(props.onCancel)
-		} else if (addAppointment.response === "A data não pode ser anterior a atual" || addAppointment.response === "Já existe uma consulta agendada para o Veterinário nesse horário") {
-			await Notifications.error('Data inválida', addAppointment.response).then(props.onCancel)
-		} else {
-			await Notifications.error('Erro ao marcar a consulta', addAppointment.response).then(props.onCancel)
-		}
-	}
+	// function submitAppointment() {
+	// 	const vet = localStorage.getItem("__Vet_correctId");
+	// 	const appointmentInfos = {
+	// 		date: date,
+	// 		startsAt: date + ' ' + startsAt,
+	// 		description: description,
+	// 		veterinaryId: parseInt(vet, 10),
+	// 		petId: petId,
+	// 	}
+
+	// 	localStorage.setItem(JSON.stringify(appointmentInfos))
+	// }
 
 
 	function handlePetSelection(pet) {
@@ -111,12 +135,20 @@ export const Appointment = (props) => {
 		if (pet.photo === null) {
 			setPetImage(Dog);
 		} else setPetImage(pet.photo);
+		setJson({
+			date: date,
+			startsAt: startsAt,
+			description: description,
+			petId: petId
+		})
 	}
+
+	submitAppointment(json)
 
 
 	return (
 		<section id='buttonCanceled' className=" w-full h-full p-10">
-			<form onSubmit={handleSubmit(submitAppointment)} className=" flex justify-start w-full">
+			<form className=" flex justify-start w-full">
 				<div className=' w-full'>
 					<h1 className='flex justify-start text-3xl md:text-5xl font-normal'>Selecione o animal</h1>
 					<div className='flex justify-between md:pt-5 w-full h-56 gap-20 '>
@@ -159,8 +191,6 @@ export const Appointment = (props) => {
 						</div>
 						<div
 							className={`${ThereArentPets} flex-col md:w-2/4  md:p-5 overflow-x-auto max-h-64 border-2 rounded-xl border-gray-400`}>
-
-
 							<div className='py-2 mt-2 bg-slate-500 gap-2 rounded-md flex-grow border-2 border-black flex flex-row'>
 								<img className='w-32' src={Dog} alt="Pet ainda não há foto" />
 								<p
@@ -206,7 +236,7 @@ export const Appointment = (props) => {
 					</div>
 					<div className='pt-5  '>
 						<div className='flex mt-5 justify-between gap-5'>
-							<button
+							{/* <button
 								className={`p-2 md:w-40 md:text-center md:h-12 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-semibold text-2xl origin-center `}
 								type="button" onClick={() => props.onCancel()}>
 								Cancelar
@@ -218,7 +248,7 @@ export const Appointment = (props) => {
 								}}
 							>
 								Marcar
-							</button>
+							</button> */}
 						</div>
 					</div>
 				</div>
