@@ -266,10 +266,9 @@ export const AppointmentAsk = () => {
   }, []);
 
   return (
-    <section className="w-fi">
-      <div className=" w-3/4 flex flex-col gap-3 mr-2">
+    <section className="">
+      <div className="w-full flex flex-col gap-3">
         <div className={`${divNothing}`}>Nenhuma consulta a ser aceita</div>
-
         {pedidos.map((pedido) => {
           return (
             <div

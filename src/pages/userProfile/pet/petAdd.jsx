@@ -200,7 +200,7 @@ export const PetAdd = () => {
 	return (
 		<section>
 			<PetHeader/>
-			<main className='static'>
+			<main className='static p-20'>
 				<div>
 					<div className='flex justify-start p-3 sm:p-10 flex-row items-center content-center align-middle h-30 sm:h-80'>
 						<div className="h-20 w-20 md:h-48 md:w-48 rounded-full ">
