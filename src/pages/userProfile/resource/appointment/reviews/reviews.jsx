@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Rating } from "react-simple-star-rating";
 import { useForm } from "react-hook-form";
 import { ratingAdd } from "../../../../../services/integrations/rating";
 import { AiOutlineClose } from "react-icons/ai";
@@ -16,7 +15,7 @@ export const Review = (props) => {
       description: description,
       veterinaryId: props.idVet,
     };
-  
+
     const result = await ratingAdd(allInfos);
     console.log(result);
   };
@@ -30,7 +29,7 @@ export const Review = (props) => {
     };
 
     console.log(allInfos);
-  
+
     const result = await ratingAdd(allInfos);
     console.log(result.response);
   };
@@ -60,17 +59,18 @@ export const Review = (props) => {
           </label>
         </div>
         <div className="inline w-full pt-5 mb-7">
-          <input type="radio" id="star5" name="rating" value="1" onClick={() => handleRating(1)} />
-          <label htmlFor="star5" title="Excelente">&#9733;</label>
-          <input type="radio" id="star4" name="rating" value="2" onClick={() => handleRating(2)} />
-          <label htmlFor="star4" title="Muito bom">&#9733;</label>
-          <input type="radio" id="star3" name="rating" value="3" onClick={() => handleRating(3)} />
-          <label htmlFor="star3" title="Bom">&#9733;</label>
-          <input type="radio" id="star2" name="rating" value="4" onClick={() => handleRating(4)} />
-          <label htmlFor="star2" title="Regular">&#9733;</label>
-          <input type="radio" id="star1" name="rating" value="5" onClick={() => handleRating(5)} />
-          <label htmlFor="star1" title="Ruim">&#9733;</label>
+          <input className="hidden" type="radio" id="star5" name="rating" value="1" onClick={() => handleRating(1)} />
+          <label  style={{color: 'red'}} className="cursor-pointer" htmlFor="star5" title="Excelente">&#9733;</label>
+          <input className="hidden" type="radio" id="star4" name="rating" value="2" onClick={() => handleRating(2)} />
+          <label className="cursor-pointer" htmlFor="star4" title="Muito bom">&#9733;</label>
+          <input className="hidden" type="radio" id="star3" name="rating" value="3" onClick={() => handleRating(3)} />
+          <label className="cursor-pointer" htmlFor="star3" title="Bom">&#9733;</label>
+          <input className="hidden" type="radio" id="star2" name="rating" value="4" onClick={() => handleRating(4)} />
+          <label className="cursor-pointer" htmlFor="star2" title="Regular">&#9733;</label>
+          <input className="hidden" type="radio" id="star1" name="rating" value="5" onClick={() => handleRating(5)} />
+          <label className="cursor-pointer" htmlFor="star1" title="Ruim">&#9733;</label>
         </div>
+
         <div className="mb-3 w-full">
           <label
             htmlFor="comment"
@@ -89,7 +89,7 @@ export const Review = (props) => {
             Resposta opcional
           </p>
         </div>
-        <button type="button" onClick={()=>saveComment()} className="bg-green-500">Salvar</button>
+        <button type="button" onClick={() => saveComment()} className="bg-green-500">Salvar</button>
         <button type="button">Fechar</button>
       </form>
     </>

@@ -7,9 +7,9 @@ import Notifications from "../../../../utils/Notifications";
 
 
 export const Pessoais = (props) => {
- 
+
 	const [personalInfos, setPersonalInfos] = useState({ disabled: true, textColor: 'opacity-50' })
-	const [button, setButton] = useState({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
+	const [button, setButton] = useState({ text: 'Editar', color: '#000', bgColor: 'bg-zinc-200', icon: lapis })
 	const [name, setName] = useState('')
 	const [lastName, setLastName] = useState('')
 	const [cpf, setCpf] = useState('')
@@ -42,8 +42,8 @@ export const Pessoais = (props) => {
 	function handleRgChange(event) {
 		let inputValue = event.target.value;
 		inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, '');
-		if (inputValue.length > 10) {
-			inputValue = inputValue.substr(0, 10);
+		if (inputValue.length > 9) {
+			inputValue = inputValue.substr(0, 9);
 		}
 		inputValue = inputValue.replace(/([a-zA-Z0-9]{2})([a-zA-Z0-9]{3})([a-zA-Z0-9]{3})([a-zA-Z0-9]{1})/, '$1.$2.$3-$4');
 		setRg(inputValue);
@@ -124,7 +124,7 @@ export const Pessoais = (props) => {
 					if (userType === 'client') response = await updatePersonalInfosClient(infos)
 					else response = await updatePersonalInfosVeterinary(infos)
 
-					if (typeof response.response === "string" ||typeof response.message === "string") await Notifications.success('Informações alteradas com sucesso')
+					if (typeof response.response === "string" || typeof response.message === "string") await Notifications.success('Informações alteradas com sucesso')
 					else if (response.response?.meta) {
 						if (response.response.meta.target === "tbl_client_cpf_key") await Notifications.error("CPF já está sendo utilizado");
 						if (response.response.meta.target === "tbl_client_rg_key") await Notifications.error("RG já está sendo utilizado");
@@ -205,13 +205,13 @@ export const Pessoais = (props) => {
 					</form>
 				</div>
 				<div className='hidden sm:flex flex-row w-1/5 justify-end pr-10 '>
-					<button className={`w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[${button.bgColor}] rounded-full drop-shadow-lg hidden md:flex text-2xl text-[${button.color}]`} onClick={() => {
+					<button className={`w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 ${button.bgColor} rounded-full drop-shadow-lg hidden md:flex text-2xl text-[${button.color}]`} onClick={() => {
 						if (personalInfos.disabled == true) {
 							setPersonalInfos({ disabled: false, textColor: '', text: 'Confirmar' })
-							setButton({ text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm })
+							setButton({ text: 'Confirmar', bgColor: 'bg-neutral-800', color: '#A9A9A9', icon: lapisConfirm })
 						} else {
 							setPersonalInfos({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
-							setButton({ text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis })
+							setButton({ text: 'Editar', color: '#000', bgColor: 'bg-zinc-200', icon: lapis })
 							handleSubmit()
 
 						}

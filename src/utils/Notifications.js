@@ -80,7 +80,7 @@ class Notifications {
           customClass: {
             cancelButton: "p-2 md:w-40 md:text-center md:h-12 border rounded-full bg-[#F9DEDC] text-red-950 font-semibold text-2xl origin-center",
             confirmButton: "p-2 md:w-40 md:h-12 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-semibold text-2xl",
-            actions: "flex flex-row-reverse w-full h-full mt-[-80px] justify-between px-14"
+            actions: "flex flex-row-reverse w-full h-full mt-[-70px] justify-between px-14"
           },
           html: <Appointment onCancel={onCancel} onToast={onToast} />,
           heightAuto: true,
