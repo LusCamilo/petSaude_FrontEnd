@@ -6,21 +6,14 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { getRatings } from '../../../../services/integrations/rating';
 import { Rating } from '../../veterinaryProfile/rating';
 
-
-
-
 export const Cards = (props) => {
 	const [petOrRating, setPetOrRating] = useState([]);
 	useEffect(() => {
-		console.log(props);
 		async function fetchData() {
 			const token = localStorage.getItem('__user_JWT')
 			const decoded = jwt_decode(token);
-			console.log(props);
 			if (props.isVet == true) {
-				console.log('Deveria funcionar');
 				const response = await getRatings(props.idVets);
-				console.log(response.response.ratings);
 				if(response.response.ratings.length == 0)setPetOrRating([])
 				else setPetOrRating(response.response.ratings)
 			} else if(props.isVet == false) {
@@ -29,10 +22,8 @@ export const Cards = (props) => {
 			} else {
 				setPetOrRating([])
 			}
-			console.log(petOrRating);
 		}
 		fetchData();
-		console.log(petOrRating);
 	}, [props.isVet])
  
 	const carrossel = useRef(null)

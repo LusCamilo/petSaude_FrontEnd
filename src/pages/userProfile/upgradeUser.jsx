@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-// import {Link} from 'react-router-dom';
 import { Address } from './resource/editUser/address';
 import { Pessoais } from './resource/editUser/infosPerson';
 import { Prossionais } from './resource/editUser/infosProfissional';
@@ -7,34 +6,14 @@ import './css/UpgradeUser.css';
 import { Pets } from './resource/editUser/allPets';
 import { Config } from "./resource/editUser/headerConfig.jsx";
 import { deleteClient, deleteVeterinary, getUser, getVeterinary } from '../../services/integrations/user';
-import Notifications from "../../utils/Notifications";
-// import {BsFillPersonFill} from "react-icons/bs";
+import Notifications from "../../utils/Notifications"
 import { IoMdTrash } from "react-icons/io";
-
-
-const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-		borderRadius: '10px',
-		width: '40vw',
-		height: '40vh',
-		display: "flex",
-		justifyContent: "center",
-		backgroundColor: "#F9DEDC"
-	}
-};
 
 const dataFormation = (date) => {
 	const dataFormation = date.split("T")
 	return dataFormation[0]
 }
 const InfosUser = async () => {
-	const token = localStorage.getItem('__user_JWT')
 	if (localStorage.getItem('__user_isVet') === 'false') {
 		const response = await getUser(localStorage.getItem('__user_id'))
 		const [nome, ...sobrenomes] = response.response.user.personName.split(' ');

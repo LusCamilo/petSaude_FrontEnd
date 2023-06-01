@@ -7,17 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getVeterinary } from '../../../services/integrations/user';
 import Notifications from "../../../utils/Notifications";
 import Ellipsis from 'react-lines-ellipsis';
-import teste, { Appointment } from './appointment/appointment';
 import { appointmentAdd } from '../../../services/integrations/appointment';
-
-
-console.log(localStorage.getItem("appointment"));
 
 export const TopContainer = (props) => {
 	const [biography, setBiography] = useState("truncate")
 	const [lerMais, setLerMais] = useState("")
 	const [lerMenos, setLerMenos] = useState("hidden")
-	const [quantAppont, setQuantAppont] = useState(0)
 	const [Stringappoinment, setStringAppoinment] = useState('Consultas concluidas')
 	const [bio, setBio] = useState('')
 
@@ -51,7 +46,6 @@ export const TopContainer = (props) => {
 			let allAppoinments = await allInfos.response.user.Appointments
 			let quantAppontments = allAppoinments.filter(appointment => appointment.status === "CONCLUDED");
 			let quant = quantAppontments.length
-			setQuantAppont(quant)
 			if (quant === 1) {
 				setStringAppoinment('Consulta Concluida')
 			} else if (quant <= 0) {
@@ -109,21 +103,17 @@ export const TopContainer = (props) => {
 	async function openAppointmentModal() {
 
 		await Notifications.appointment(handleCancelAppointment, showToastMessage).then(async result => {
-			console.log(result);
 			if (result.isConfirmed) {
 				const addAppointment = await appointmentAdd(JSON.parse(localStorage.getItem("appointment")));
-				console.log(addAppointment);
 				if (addAppointment.response.message === 'Consulta criada com sucesso') {
-					console.log("teste1");
 					await Notifications.success(addAppointment.response.message)
 				} else if (addAppointment.response === "A data não pode ser anterior a atual" || addAppointment.response === "Já existe uma consulta agendada para o Veterinário nesse horário") {
-					console.log("teste2");
 					await Notifications.error('Data inválida', addAppointment.response)
 				} else {
-					console.log("teste3");
-					await Notifications.error('Erro ao marcar a consulta', addAppointment.response)
+					await Notifications.error('Erro ao marcar a consulta', "Verifique se todos os dados foram inseridos")
 				}
 			}
+			localStorage.removeItem("appointment")
 		})
 	}
 

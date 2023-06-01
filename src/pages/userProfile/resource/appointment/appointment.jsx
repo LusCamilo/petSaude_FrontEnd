@@ -8,7 +8,7 @@ import jwt_decode from "jwt-decode";
 import 'react-toastify/dist/ReactToastify.css';
 import Notifications from "../../../../utils/Notifications";
 
-function submitAppointment(object) {
+export default function submitAppointment(object) {
 	const vet = localStorage.getItem("__Vet_correctId");
 	const appointmentInfos = {
 		date: object.date,
@@ -20,10 +20,6 @@ function submitAppointment(object) {
 	localStorage.setItem("appointment", JSON.stringify(appointmentInfos))
 
 	return appointmentInfos	
-}
-
-export default function teste(object) {
-	return submitAppointment(object)
 }
 
 export const Appointment = () => {
@@ -113,20 +109,6 @@ export const Appointment = () => {
 	if (mes < 10) mes = '0' + mes
 	if (dia < 10) dia = '0' + dia
 	let dataFormatada = `${ano}-${mes}-${dia}`;
-
-	// function submitAppointment() {
-	// 	const vet = localStorage.getItem("__Vet_correctId");
-	// 	const appointmentInfos = {
-	// 		date: date,
-	// 		startsAt: date + ' ' + startsAt,
-	// 		description: description,
-	// 		veterinaryId: parseInt(vet, 10),
-	// 		petId: petId,
-	// 	}
-
-	// 	localStorage.setItem(JSON.stringify(appointmentInfos))
-	// }
-
 
 	function handlePetSelection(pet) {
 		setPetName(pet.name);
