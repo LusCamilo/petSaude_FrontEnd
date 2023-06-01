@@ -2,7 +2,6 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Appointment } from "../pages/userProfile/resource/appointment/appointment";
 import { Review } from "../pages/userProfile/resource/appointment/reviews/reviews";
-import { appointmentAdd } from "../services/integrations/appointment";
 class Notifications {
   constructor() {
     this.swal = withReactContent(Swal);
@@ -72,15 +71,17 @@ class Notifications {
       try {
         const result = await this.swal.fire({
           showConfirmButton: true,
+          showCancelButton: true,
           confirmButtonText: "Marcar",
           confirmButtonColor: "#9ED1B7",
           cancelButtonText: "Cancelar",
           cancelButtonColor: "#F9DEDC",
+          buttonsStyling: false,
           customClass: {
-            cancelButton: "p-2 md:w-40 md:text-center md:h-12 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-semibold text-2xl origin-center",
+            cancelButton: "p-2 md:w-40 md:text-center md:h-12 border rounded-full bg-[#F9DEDC] text-red-950 font-semibold text-2xl origin-center",
             confirmButton: "p-2 md:w-40 md:h-12 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-semibold text-2xl",
+            actions: "flex flex-row-reverse w-full h-full mt-[-80px] justify-between px-14"
           },
-          showCancelButton: true,
           html: <Appointment onCancel={onCancel} onToast={onToast} />,
           heightAuto: true,
           width: '60%',
