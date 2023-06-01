@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import lapis from "../../../../assets/svg/pencil.svg"
 import lapisConfirm from "../../../../assets/svg/pencilConfirm.svg"
-import {updateAddress} from "../../../../services/integrations/address.js";
+import { updateAddress } from "../../../../services/integrations/address.js";
 import Notifications from "../../../../utils/Notifications";
 
 
 export const Address = (props) => {
-	const [address, setAddress] = useState({disabled: true, textColor: 'opacity-50'})
-	const [button, setButton] = useState({text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis})
+	const [address, setAddress] = useState({ disabled: true, textColor: 'opacity-50' })
+	const [button, setButton] = useState({ text: 'Editar', color: '#000', bgColor: 'bg-zinc-200', icon: lapis })
 
 	const [cep, setCep] = useState('')
 	const [complement, setComplement] = useState('')
@@ -30,6 +30,7 @@ export const Address = (props) => {
 	}
 
 	function handleNumberChange(event) {
+		console.log(event.target.value);
 		setNumber(event.target.value);
 	}
 
@@ -71,7 +72,8 @@ export const Address = (props) => {
 			await Notifications.confirmOrCancel('Deseja atualizar o endereço?', async (result) => {
 				if (result.isConfirmed) {
 					if (await validateForm()) {
-						updateAddress({zipCode: cep, number, complement}, props.id)
+
+						updateAddress({ zipCode: cep, number, complement }, props.id).then(response => console.log(response))
 							.catch(err => Notifications.error(err.message))
 						await Notifications.success('Endereço atualizado com sucesso')
 					}
@@ -92,64 +94,65 @@ export const Address = (props) => {
 						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							CEP
 							<input disabled={address.disabled} type="text" onBlurCapture={handleCepChange}
-										 onChange={handleCepChange}
-										 name="firstName" value={cep}
-										 className={`bg-transparent border-none text-2xl text-[#000] ${address.textColor}`}/>
+								onChange={handleCepChange}
+								name="firstName" value={cep}
+								className={`bg-transparent border-none text-2xl text-[#000] ${address.textColor}`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							Cidade
 							<input disabled="true" type="text" name="firstName" defaultValue={props.cidade}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className=''>
 						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							Rua
 							<input disabled="true" type="text" name="firstName" defaultValue={props.rua}
-										 className={`bg-transparent border-none text-2xl opacity-50`}/>
+								className={`bg-transparent border-none text-2xl opacity-50`} />
 						</label>
 					</div>
 					<div className='flex justify-start text-2xl md:ml-24'>
 						<label className='flex flex-col text-xl text-[#A9A9A9] w-full'>
 							Bairro
 							<input disabled="true" type="text" name="firstName" defaultValue={props.bairro}
-										 className={`bg-transparent border-none text-2xl opacity-50 w-full`}/>
+								className={`bg-transparent border-none text-2xl opacity-50 w-full`} />
 						</label>
 					</div>
 					<div className=''>
 						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							Número
-							<input disabled={address.disabled}onChange={handleNumberChange} type="text" name="número"
-								defaultValue={number}
-										 className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`}/>
+							<input disabled={address.disabled} onChange={handleNumberChange} onBlur={handleNumberChange} type="text" name="número"
+								defaultValue={number !== undefined && number !== "undefined" ? number : ""}
+								className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
 						</label>
 					</div>
 					<div className='flex justify-start md:ml-24'>
 						<label className='flex flex-col text-2xl text-[#A9A9A9]'>
 							Complemento
 							<input disabled={address.disabled} onChange={handleComplementChange} type="text" name="complemento"
-										 defaultValue={complement}
-										 className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`}/>
+								defaultValue={complement}
+								className={`bg-transparent border-none text-2xl text-[#000]${address.textColor}`} />
 						</label>
 					</div>
 				</div>
-				<div className='hidden sm:flex flex-col content-end aling-end pr-10 '>
+				<div className='hidden sm:flex flex-row w-1/5 justify-end pr-10'>
+				{/* <div className='hidden sm:flex flex-col content-end aling-end pr-10 '> */}
 					<button
-						className={`w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 rounded-full drop-shadow-lg hidden md:flex text-2xl bg-[${button.bgColor}] text-[${button.color}]`}
+						className={`w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 rounded-full drop-shadow-lg hidden md:flex text-2xl ${button.bgColor} text-[${button.color}]`}
 						onClick={() => {
 							if (address.disabled === true) {
-								setButton({text: 'Confirmar', bgColor: '#49454F', color: '#A9A9A9', icon: lapisConfirm})
-								setAddress({disabled: false, textColor: ''})
+								setButton({ text: 'Confirmar', bgColor: 'bg-neutral-800', color: '#A9A9A9', icon: lapisConfirm })
+								setAddress({ disabled: false, textColor: '' })
 							} else {
-								setAddress({disabled: true, textColor: 'opacity-50', text: 'Editar'})
-								setButton({text: 'Editar', color: '#000', bgColor: '#ECECEC', icon: lapis})
+								setAddress({ disabled: true, textColor: 'opacity-50', text: 'Editar' })
+								setButton({ text: 'Editar', color: '#000', bgColor: 'bg-zinc-200', icon: lapis })
 								handleSubmit()
 
 							}
 						}}>
-						<img src={button.icon} alt="" className='h-7'/>
+						<img src={button.icon} alt="" className='h-7' />
 						{button.text}
 					</button>
 				</div>
