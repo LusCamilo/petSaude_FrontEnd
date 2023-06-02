@@ -266,16 +266,16 @@ export const AppointmentAsk = () => {
   }, []);
 
   return (
-    <section className="">
+    <section>
       <div className="w-full flex flex-col gap-3">
         <div className={`${divNothing}`}>Nenhuma consulta a ser aceita</div>
         {pedidos.map((pedido) => {
           return (
             <div
               key={pedido.id}
-              className="border-none sm:border-solid border w-full rounded-3xl border-black flex flex-col gap-0 p-14"
+              className="border-none sm:border-solid border w-full rounded-3xl border-black flex flex-col p-10"
             >
-              <div className="flex flex-row items-center md:content-center md:text-center text-5xl gap-4">
+              <div className="flex flex-row items-center md:content-center md:text-center text-4xl gap-4">
                 <img
                   className="PetImage"
                   src={pedido.imagemPet}
@@ -285,8 +285,8 @@ export const AppointmentAsk = () => {
                   {pedido.nomePet}
                 </h2>
               </div>
-              <div className="flex md:justify-between pt-5">
-                <div className="flex flex-col justify-start w-full sm:w-1/3 ">
+              <div className="flex md:justify-between pt-3 mb-8">
+                <div className="flex flex-col justify-start w-full h-fit sm:w-1/3 gap-2">
                   <div>
                     <label className="flex flex-col text-2xl text-[#A9A9A9]">
                       Nome
@@ -294,7 +294,7 @@ export const AppointmentAsk = () => {
                         type="text"
                         disabled
                         placeholder={pedido.nomePet}
-                        className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                        className="bg-transparent placeholder:text-gray-400  h-fit placeholder:text-3xl border-none text-3xl "
                       />
                     </label>
                   </div>
@@ -306,12 +306,12 @@ export const AppointmentAsk = () => {
                         type="text"
                         disabled
                         placeholder={(pedido.tamanho == "BIG") ? "Grande" : (pedido.tamanho == "SMALL") ? "Pequeno" : "Médio"}
-                        className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                       />
                     </label>
                   </div>
                 </div>
-                <div className="flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3">
+                <div className="flex flex-col sm:flex-col justify-start content-center w-full gap-2 h-fit sm:w-1/3">
                   <div className="w-full">
                     <label className="flex flex-col text-2xl text-[#A9A9A9]">
                       Sexo
@@ -319,7 +319,7 @@ export const AppointmentAsk = () => {
                         type="text"
                         disabled
                         placeholder={pedido.sexo}
-                        className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                       />
                     </label>
                   </div>
@@ -330,7 +330,7 @@ export const AppointmentAsk = () => {
                         type="text"
                         disabled
                         placeholder={pedido.idade}
-                        className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                       />
                     </label>
                   </div>
@@ -343,7 +343,7 @@ export const AppointmentAsk = () => {
                         type="text"
                         disabled
                         placeholder={pedido.especie}
-                        className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                       />
                     </label>
                   </div>
@@ -394,7 +394,7 @@ export const AppointmentAsk = () => {
               </div>
               <div className={`${showVet} flex-col`}>
                 <div
-                  className={`${tutorStatus} flex-row items-center content-center text-center text-5xl gap-4`}
+                  className={`${tutorStatus} flex-row items-center content-center text-center text-4xl gap-4`}
                 >
                   <img
                     className="PetImage"
@@ -405,7 +405,7 @@ export const AppointmentAsk = () => {
                     {pedido.vetName}
                   </h2>
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between pr-20">
+                <div className="flex flex-col sm:flex-row justify-between pt-3 pb-8">
                   <div
                     className={`${tutorStatus} flex-row justify-start w-full`}
                   >
@@ -416,7 +416,7 @@ export const AppointmentAsk = () => {
                           type="text"
                           disabled
                           placeholder={pedido.vetName}
-                          className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                          className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                         />
                       </label>
                     </div>
@@ -428,26 +428,26 @@ export const AppointmentAsk = () => {
                           type="text"
                           disabled
                           placeholder={pedido.vetPhone}
-                          className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                          className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                         />
                       </label>
                     </div>
                   </div>
                 </div>
               </div>
-              <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl pb-5 ">
+              <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-3 ">
                 Informações de consulta{" "}
               </h2>
-              <div className="flex flex-col justify-between pr-20">
+              <div className="flex flex-col gap-2 justify-between">
                 <div className="flex flex-row justify-start w-full sm:w-full ">
-                  <div className="pr-20 ">
+                  <div className="">
                     <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
                       Data
                       <input
                         type="text"
                         disabled
                         placeholder={pedido.dataConsulta}
-                        className="bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl "
+                        className="bg-transparent placeholder:text-gray-400 w-full h-fit placeholder:text-3xl border-none text-3xl "
                       />
                     </label>
                   </div>
@@ -458,7 +458,7 @@ export const AppointmentAsk = () => {
                         type="text"
                         disabled
                         placeholder={pedido.horario}
-                        className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                       />
                     </label>
                   </div>
