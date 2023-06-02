@@ -140,6 +140,7 @@ export async function updatePersonalInfosClient(infosProfile) {
 
 export async function updateProfileInfosVeterinary(infosProfile) {
 	try {
+		console.log(infosProfile);
 		const url = `${BASE_URL}veterinary/profile-infos`
 		const response = await fetch(url, {
 			method: 'PUT',
@@ -150,6 +151,7 @@ export async function updateProfileInfosVeterinary(infosProfile) {
 			},
 			body: JSON.stringify(infosProfile)
 		})
+		console.log(response);
 		return await response.json()
 	} catch (err) {
 		console.log(err.message);

@@ -58,6 +58,7 @@ export const EditProfile = () => {
 	}, [infos.email, infos.personName])
 
 	function handleChildNameChange(value) {
+		console.log(value);
 		setName(value)
 	}
 
@@ -79,7 +80,7 @@ export const EditProfile = () => {
 				.then(() => getDownloadURL(storageRef))
 				.then((url) => {
 					if (url !== undefined) {
-						setProfilePhoto(url);
+						setProfilePhoto(`${url}`);
 					} else {
 						setProfilePhoto('');
 					}
@@ -89,16 +90,20 @@ export const EditProfile = () => {
 		}
 	}
 
-	function handleChildProfileBannerPhotoChange(value) {
+	async function handleChildProfileBannerPhotoChange (value) {
+		console.log(value);
 		let storageRef = ref(storage, `Client/${value.name}`);
 		if (Boolean(localStorage.getItem('__user_isVet'))) {
 			storageRef = ref(storage, `Veterinario/${value.name}`);
 		}
 		if (value) {
+			console.log("há valor");
 			uploadBytes(storageRef, value).then(() => {
 				return getDownloadURL(storageRef)
 			}).then((url) => {
-				setProfileBannerPhoto(url)
+				console.log(url);
+				setProfileBannerPhoto(`${url}`)
+				console.log(profileBannerPhoto);
 			});
 		} else {
 			setProfileBannerPhoto('')
@@ -109,22 +114,22 @@ export const EditProfile = () => {
 		let profileInfos = {
 			userName: name,
 			email: email,
-			password: password,
+			password: `${password}`,
 			profileBannerPhoto: profileBannerPhoto,
 			profilePhoto: profilePhoto
 		}
 
 		if (profileInfos.email.includes("@")) {	
-			if (localStorage.getItem('__user_isVet') === 'true')
+			console.log(profileInfos);
+			if (localStorage.getItem('__user_isVet') === 'true'){
 			updateProfileInfosVeterinary(profileInfos).then(async (response) => {
-				console.log(response);
 				if (response && typeof response === 'object') {
 					if (response.hasOwnProperty('message')) await Notifications.error('E-mail já está em uso')
 				} else {
 					await Notifications.success('Informações atualizadas com sucesso')
-					document.location.href = '/profile/configuration'
+					//document.location.href = '/profile/configuration'
 				}
-			})
+			})}
 			else
 			
 			updateProfileInfosClient(profileInfos).then(async (response) => {
