@@ -231,16 +231,26 @@ export const AppointmentPeding = (props) => {
 
 	return (
 		<section className="w-fit">
-			<div className="w-full flex flex-col gap-3 mr-2">
+			<div className="w-full flex flex-col gap-3">
 				<div className={`${divNothing}`}>Nenhuma consulta a ser aceita</div>
 				{pedidos.map((pedido) => {
 					console.log(pedidos);
 					return (
 						<div
 							key={pedido.id}
-							className="border-none sm:border-solid ml-10 border w-3/4 rounded-3xl border-black flex flex-col gap-0 p-14"
+							className="border-none sm:border-solid border w-full rounded-3xl border-black flex flex-col p-10"
 						>
-							<div className="flex flex-col sm:flex-row justify-between pr-10 pt-5">
+							<div className="flex flex-row items-center md:content-center md:text-center text-4xl gap-4">
+								<img
+								className="PetImage"
+								src={pedido.imagemPet}
+								alt="Imagem do pet"
+								/>
+								<h2 className="font-normal flex md:justify-center sm:justify-start font-sans">
+									{pedido.nomePet}
+								</h2>
+							</div>
+							<div className="flex flex-col sm:flex-row justify-between pt-3 mb-8">
 								<div className="flex flex-col justify-start w-full sm:w-1/3 mr-5">
 									<div>
 										<label className="flex flex-col text-2xl text-[#A9A9A9]">
@@ -249,7 +259,7 @@ export const AppointmentPeding = (props) => {
 												type="text"
 												disabled
 												placeholder={pedido.nomePet}
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>
 									</div>
@@ -261,7 +271,7 @@ export const AppointmentPeding = (props) => {
 												type="text"
 												disabled
 												placeholder={(pedido.tamanho == "BIG") ? "Grande" : (pedido.tamanho == "SMALL") ? "Pequeno" : "Médio"}
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>
 									</div>
@@ -274,7 +284,7 @@ export const AppointmentPeding = (props) => {
 												type="text"
 												disabled
 												placeholder={pedido.sexo}
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>
 									</div>
@@ -285,7 +295,7 @@ export const AppointmentPeding = (props) => {
 												type="text"
 												disabled
 												placeholder={pedido.idade}
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>
 									</div>
@@ -298,7 +308,7 @@ export const AppointmentPeding = (props) => {
 												type="text"
 												disabled
 												placeholder={pedido.especie}
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl"
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl"
 											/>
 										</label>
 									</div>
@@ -306,7 +316,7 @@ export const AppointmentPeding = (props) => {
 							</div>
 
 							<div
-								className={`${showVet} flex-row items-center content-center text-center text-6xl gap-4`}
+								className={`${showVet} flex-row items-center content-center text-center text-4xl gap-4`}
 							>
 								<img
 									className="PetImage"
@@ -317,8 +327,8 @@ export const AppointmentPeding = (props) => {
 									{pedido.vetName}
 								</h2>
 							</div>
-							<div className="flex flex-col sm:flex-row justify-between pr-20">
-								<div className={`${showVet} flex-row justify-start w-full`}>
+							<div className="flex flex-col sm:flex-row justify-between mb-8">
+								<div className={`${showVet} flex-row justify-start w-full pt-3`}>
 									<div>
 										<label className="flex flex-col text-2xl text-[#A9A9A9]">
 											Nome
@@ -326,7 +336,7 @@ export const AppointmentPeding = (props) => {
 												type="text"
 												disabled
 												placeholder={pedido.vetName}
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>
 									</div>
@@ -338,47 +348,47 @@ export const AppointmentPeding = (props) => {
 												type="text"
 												disabled
 												placeholder={pedido.vetPhone}
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>
 									</div>
 								</div>
 							</div>
-							<h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl pb-5 ">
-								Informações de consulta{" "}
+							<h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-5 ">
+								Informações da consulta{" "}
 							</h2>
-							<div className="flex flex-col justify-between pr-20">
+							<div className="flex flex-col justify-between gap-2">
 								<div className="flex flex-row justify-start w-full sm:w-full ">
-									<div className="w-1/3">
+									<div className="w-fit">
 										<label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
 											Data
 											<input
 												type="text"
 												disabled
 												placeholder={pedido.dataConsulta}
-												className="bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl "
+												className="bg-transparent placeholder:text-gray-400 h-fit w-full placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>
 									</div>
-									<div className="w-1/3">
+									<div className="w-fit">
 										<label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
 											Horário
 											<input
 												type="text"
 												disabled
 												placeholder={pedido.horario}
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>
 									</div>
-									<div className="w-1/3">
+									<div className="w-fit">
 										<label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
 											Duração
 											<input
 												type="text"
 												disabled
 												placeholder={pedido.duration}
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
 											/>
 										</label>
 									</div>
@@ -388,7 +398,7 @@ export const AppointmentPeding = (props) => {
 										<label className="flex flex-col text-2xl text-[#A9A9A9]">
 											Descrição
 											<p
-												className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-2xl ">
+												className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-2xl ">
 												{pedido.descricao}
 											</p>
 										</label>
