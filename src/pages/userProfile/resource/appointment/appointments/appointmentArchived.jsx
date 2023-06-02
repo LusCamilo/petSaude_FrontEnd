@@ -11,15 +11,12 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
 import { AppointmentArchivedCard } from "./appointmentArchivedCard";
 
-
-
 export const AppointmentArchived = (props) => {
   const [pedidos, setPedido] = useState([]);
   const [quant, setQuant] = useState({ Finalizado: 0, Cancelado: 0 });
   const [isVet, setisVet] = useState("hidden");
   const [buttonAceitar, setButtonAceitar] = useState("flex");
   const [divNothing, setDivNothing] = useState("hidden");
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +46,10 @@ export const AppointmentArchived = (props) => {
                 .reverse()
                 .join("/");
 
+              let statusTraduzido;
+              if (app.status === "CONCLUDED") statusTraduzido = "Finalizado";
+              else statusTraduzido = "Cancelado";
+
               const horarioSplit = app.startsAt.split("T");
               const horarioSegundaMetade = horarioSplit[1];
               const horarioSplit2 = horarioSegundaMetade.split(":00.000Z");
@@ -58,15 +59,12 @@ export const AppointmentArchived = (props) => {
               const dataAtual = new Date();
 
               const diferencaEmMilissegundos = dataAtual - dataDeNascimento;
+
               const idadeEmAnos = Math.floor(
                 diferencaEmMilissegundos / (1000 * 60 * 60 * 24 * 365)
               );
 
               let idadeString;
-
-              let statusTraduzido;
-              if (app.status === "CONCLUDED") statusTraduzido = "Finalizado";
-              else statusTraduzido = "Cancelado";
 
               if (
                 typeof idadeEmAnos === "number" &&
@@ -85,9 +83,8 @@ export const AppointmentArchived = (props) => {
               } else if (arrayPet.petSize == "SMALL") {
                 height = "Pequeno"
               } else {
-                height = "Médio"
+                height = "Médio";
               }
-
 
               const finalArray = {
                 idAppoint: app.id,
@@ -100,7 +97,7 @@ export const AppointmentArchived = (props) => {
                 sexo: arrayPet.petGender,
                 especie: arrayPet.petSpecie.name,
                 tamanho: height,
-                idade: idadeString,
+                idade: idadeString ? idadeString : "Não possui idade",
                 dataConsulta: consultaDataFormatada,
                 horario: horario,
                 descricao: app.description,
@@ -155,7 +152,8 @@ export const AppointmentArchived = (props) => {
     }
 
     if (
-      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response ===
+      "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -166,7 +164,8 @@ export const AppointmentArchived = (props) => {
   const getclient = async (idPerson) => {
     let allAboutIt = await getUser(idPerson);
     if (
-      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response ===
+      "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -177,7 +176,8 @@ export const AppointmentArchived = (props) => {
   const getvet = async (idPerson) => {
     let allAboutIt = await getVeterinary(idPerson);
     if (
-      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response ===
+      "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -217,12 +217,8 @@ export const AppointmentArchived = (props) => {
     }));
   }, [pedidos]);
 
-
-
-
-
   return (
-    <section className="w-fit">
+    <section className="w-full">
       <div className="flex flex-row gap-3 justify-between">
         <div className="flex flex-col items-center">
           <div className="flex flex-row gap-2">
@@ -245,7 +241,7 @@ export const AppointmentArchived = (props) => {
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col gap-3 ml-12">
+      <div className="w-full flex flex-col gap-3">
         {pedidos.map((pedido) => {
           const cor =
             pedido.estado === "CONCLUDED" ? "bg-[#09738A]" : "bg-[#F1EAC6]";

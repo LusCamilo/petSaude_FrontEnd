@@ -52,14 +52,14 @@ export const AppointmentArchivedCard = (props) => {
     <div
       className={`${props.cor} border-none sm:border-solid border h-1/6 rounded-3xl border-black flex flex-col gap-0 p-14`}
     >
-      <div className="flex flex-row items-center content-center text-center text-6xl gap-4">
+      <div className="flex flex-row items-center content-center text-center text-4xl gap-4">
         <img className="PetImage" src={props.imagemPet} alt="Imagem do pet" />
         <h2 className="font-normal flex justify-center sm:justify-start font-sans">
           {props.nomePet}
         </h2>
       </div>
-      <div className="flex flex-col sm:flex-row justify-between pr-10 pt-5">
-        <div className="flex flex-col justify-start w-full sm:w-1/3 mr-5">
+      <div className="flex md:justify-between pt-3 mb-8">
+            <div className="flex flex-col justify-start w-full h-fit sm:w-1/3 gap-2">
           <div>
             <label className="flex flex-col text-2xl text-[#A9A9A9]">
               Nome
@@ -108,7 +108,7 @@ export const AppointmentArchivedCard = (props) => {
             </label>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3 mr-20">
+        <div className="flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3 ">
           <div className="w-full">
             <label className="flex flex-col text-2xl text-[#A9A9A9]">
               Espécie
@@ -125,7 +125,7 @@ export const AppointmentArchivedCard = (props) => {
       <h2 className="font-normal flex justify-center sm:justify-start font-sans text-3xl pt-5">
         Informações de consulta{" "}
       </h2>
-      <div className="flex flex-col justify-between pr-5 pt-5">
+      <div className="flex flex-col justify-between pr-5 ">
         <div className="flex flex-row justify-start w-full sm:w-full pt-5">
           <div className="mr-24">
             <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">

@@ -38,7 +38,7 @@ export const Review = () => {
         <div className="w-full flex flex-col">
           <label
             htmlFor="comment"
-            className="text-gray-700 font-bold mb-2 flex flex-col justify-center w-full"
+            className="text-gray-700 font-bold mb-2 flex flex-col justify-center w-full pt-10"
           >
             <h2 className="flex justify-center text-4xl">
               Avaliação do Veterinário

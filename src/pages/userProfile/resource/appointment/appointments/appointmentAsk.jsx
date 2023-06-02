@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styleAppointment.css";
 import jwt_decode from "jwt-decode";
-import {
-  getAppointments,
-} from "../../../../../services/integrations/appointment";
+import { getAppointments } from "../../../../../services/integrations/appointment";
 import {
   getUser,
   getVeterinary,
@@ -87,7 +85,7 @@ export const AppointmentAsk = () => {
                 sexo: arrayPet.petGender,
                 especie: arrayPet.petSpecie.name,
                 tamanho: arrayPet.petSize,
-                idade: idadeString,
+                idade: idadeString ? idadeString : "Não possui idade",
                 dataConsulta: consultaDataFormatada,
                 horario: horario,
                 descricao: app.description,
@@ -121,44 +119,65 @@ export const AppointmentAsk = () => {
   };
 
   const recusarAppointment = async (idAppointment) => {
-    await Notifications.confirmOrCancel('Deseja mesmo recusar a consulta?', async result => {
-      if (result.isConfirmed) {
-        const jsonNothing = {
-          duration: 0,
-          price: 0.0,
-        }
+    await Notifications.confirmOrCancel(
+      "Deseja mesmo recusar a consulta?",
+      async (result) => {
+        if (result.isConfirmed) {
+          const jsonNothing = {
+            duration: 0,
+            price: 0.0,
+          };
 
-        const {response} = await recusarAppointments(idAppointment, jsonNothing);
-        if (response.message === "Consulta recusada") {
-          await Notifications.success('Consulta recusada')
-        } else if (response.error === "Você não tem permissão para fazer essa alteração") {
-          await Notifications.error(response.error)
-        } else {
-          await Notifications.error('Não foi possível realizar a ação', 'Tente novamente')
+          const { response } = await recusarAppointments(
+            idAppointment,
+            jsonNothing
+          );
+          if (response.message === "Consulta recusada") {
+            await Notifications.success("Consulta recusada");
+          } else if (
+            response.error ===
+            "Você não tem permissão para fazer essa alteração"
+          ) {
+            await Notifications.error(response.error);
+          } else {
+            await Notifications.error(
+              "Não foi possível realizar a ação",
+              "Tente novamente"
+            );
+          }
+          window.location.reload();
+          return response;
         }
-        window.location.reload()
-        return response
       }
-    })
-  }
+    );
+  };
 
   const marcarAppointment = async (idAppointment) => {
-    await Notifications.confirmOrCancel('Deseja marcar a consulta?', async result => {
-      if (result.isConfirmed) {
-        const jsonAppointment = {
-          duration: parseFloat(duracao),
-          price: parseFloat(preco),
-        };
-        const {response} = await aceitadoAppointments(idAppointment, jsonAppointment);
-        if (response.message == "Consulta aceita") {
-          await Notifications.success('Consulta aceita')
-        } else {
-          await Notifications.error('Não foi possível realizar a ação', 'Tente novamente')
+    await Notifications.confirmOrCancel(
+      "Deseja marcar a consulta?",
+      async (result) => {
+        if (result.isConfirmed) {
+          const jsonAppointment = {
+            duration: parseFloat(duracao),
+            price: parseFloat(preco),
+          };
+          const { response } = await aceitadoAppointments(
+            idAppointment,
+            jsonAppointment
+          );
+          if (response.message == "Consulta aceita") {
+            await Notifications.success("Consulta aceita");
+          } else {
+            await Notifications.error(
+              "Não foi possível realizar a ação",
+              "Tente novamente"
+            );
+          }
+          window.location.reload();
+          return response;
         }
-        window.location.reload()
-        return response;  
       }
-    })
+    );
   };
 
   const getappo = async (idPerson) => {
@@ -172,7 +191,8 @@ export const AppointmentAsk = () => {
       allAboutIt = person;
     }
     if (
-      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response ===
+      "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -183,7 +203,8 @@ export const AppointmentAsk = () => {
   const getclient = async (idPerson) => {
     let allAboutIt = await getUser(idPerson);
     if (
-      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response ===
+      "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -194,7 +215,8 @@ export const AppointmentAsk = () => {
   const getvet = async (idPerson) => {
     let allAboutIt = await getVeterinary(idPerson);
     if (
-      allAboutIt.response === "Não foram encontrados registros no Banco de Dados"
+      allAboutIt.response ===
+      "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
     } else {
@@ -305,7 +327,13 @@ export const AppointmentAsk = () => {
                       <input
                         type="text"
                         disabled
-                        placeholder={(pedido.tamanho == "BIG") ? "Grande" : (pedido.tamanho == "SMALL") ? "Pequeno" : "Médio"}
+                        placeholder={
+                          pedido.tamanho == "BIG"
+                            ? "Grande"
+                            : pedido.tamanho == "SMALL"
+                            ? "Pequeno"
+                            : "Médio"
+                        }
                         className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                       />
                     </label>
@@ -362,7 +390,7 @@ export const AppointmentAsk = () => {
                     {pedido.dono}
                   </h2>
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between pr-20">
+                <div className="flex flex-col sm:flex-row justify-between pr-20 ">
                   <div
                     className={`${tutorStatus} flex-row justify-start w-full`}
                   >
@@ -440,7 +468,7 @@ export const AppointmentAsk = () => {
               </h2>
               <div className="flex flex-col gap-2 justify-between">
                 <div className="flex flex-row justify-start w-full sm:w-full ">
-                  <div className="">
+                  <div className="w-1/2">
                     <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
                       Data
                       <input
@@ -467,16 +495,14 @@ export const AppointmentAsk = () => {
                   <div>
                     <label className="flex flex-col text-2xl text-[#A9A9A9]">
                       Descrição
-                      <p className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-xl ">
+                      <p className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-2xl ">
                         {pedido.descricao}
                       </p>
                     </label>
                   </div>
                 </div>
               </div>
-              <span
-                className={`${buttonAceitar} justify-start w-full pl-4`}
-              >
+              <span className={`${buttonAceitar} justify-center w-full pl-4`}>
                 <div className={`${tutorStatus} flex-col mb-2 text-3xl pt-5`}>
                   <h2>Confirmar consulta</h2>
                   <div className="w-full flex justify-center gap-5 flex-col">
@@ -501,10 +527,10 @@ export const AppointmentAsk = () => {
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full">
                       Valor
                       <div className="flex items-center justify-center gap-2">
-                        <span className="text-2xl align-bottom pl-18">R$</span>
+                        <span className="text-2xl align-bottom ">R$</span>
                         <input
                           type="text"
-                          className="min-w-full text-2xl mr-8"
+                          className="min-w-full text-2xl mr-8 "
                           id="preco"
                           value={preco}
                           onChange={formatarPreco}
