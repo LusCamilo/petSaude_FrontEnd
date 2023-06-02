@@ -17,7 +17,7 @@ export default function submitAppointment(object) {
 		veterinaryId: parseInt(vet, 10),
 		petId: object.petId,
 	}
-	localStorage.setItem("appointment", JSON.stringify(appointmentInfos))
+	sessionStorage.setItem("appointment", JSON.stringify(appointmentInfos))
 
 	return appointmentInfos	
 }

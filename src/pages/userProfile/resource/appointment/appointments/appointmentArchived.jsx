@@ -14,8 +14,6 @@ import { AppointmentArchivedCard } from "./appointmentArchivedCard";
 
 
 export const AppointmentArchived = (props) => {
-  const { register, handleSubmit, formState: errors, setValue } = useForm();
-  const [modalIsOpen, setIsOpen] = React.useState(false);
   const [pedidos, setPedido] = useState([]);
   const [quant, setQuant] = useState({ Finalizado: 0, Cancelado: 0 });
   const [isVet, setisVet] = useState("hidden");
@@ -82,9 +80,9 @@ export const AppointmentArchived = (props) => {
 
               const formattedDuration = formatDuration(app.duration);
               let height
-              if (arrayPet.petSize == "BIG"){
+              if (arrayPet.petSize == "BIG") {
                 height = "Grande"
-              } else if (arrayPet.petSize == "SMALL"){
+              } else if (arrayPet.petSize == "SMALL") {
                 height = "Pequeno"
               } else {
                 height = "Médio"
@@ -127,7 +125,7 @@ export const AppointmentArchived = (props) => {
         if (!decoded.isVet) {
           setButtonAceitar("hidden");
         }
-      } catch (error) {}
+      } catch (error) { }
     };
     fetchData();
   }, []);
@@ -252,30 +250,30 @@ export const AppointmentArchived = (props) => {
           const cor =
             pedido.estado === "CONCLUDED" ? "bg-[#09738A]" : "bg-[#F1EAC6]";
           return (
-            <AppointmentArchivedCard 
-                key={pedido.idAppoint}
-                idAppoint={pedido.idAppoint}
-                cor={cor}
-                imagemPet={pedido.imagemPet}
-                donoImg={pedido.donoImg}
-                donoId={pedido.donoId}
-                telefone={pedido.telefone}
-                nomePet={pedido.nomePet}
-                sexo={pedido.sexo}
-                especie={pedido.especie}
-                tamanho={pedido.tamanho}
-                idade={pedido.idade}
-                dataConsulta={pedido.dataConsulta}
-                horario={pedido.horario}
-                descricao={pedido.descricao}
-                durationor={pedido.duration}
-                vetId={pedido.vetId}
-                vetName={pedido.vetName}
-                vetPhone={pedido.vetPhone}
-                vetPhoto={pedido.vetPhoto}
-                estado={pedido.estado}
-                status={pedido.status}
-                isVet={isVet}
+            <AppointmentArchivedCard
+              key={pedido.idAppoint}
+              idAppoint={pedido.idAppoint}
+              cor={cor}
+              imagemPet={pedido.imagemPet}
+              donoImg={pedido.donoImg}
+              donoId={pedido.donoId}
+              telefone={pedido.telefone}
+              nomePet={pedido.nomePet}
+              sexo={pedido.sexo}
+              especie={pedido.especie}
+              tamanho={pedido.tamanho}
+              idade={pedido.idade}
+              dataConsulta={pedido.dataConsulta}
+              horario={pedido.horario}
+              descricao={pedido.descricao}
+              durationor={pedido.duration}
+              vetId={pedido.vetId}
+              vetName={pedido.vetName}
+              vetPhone={pedido.vetPhone}
+              vetPhoto={pedido.vetPhoto}
+              estado={pedido.estado}
+              status={pedido.status}
+              isVet={isVet}
             />
           );
         })}

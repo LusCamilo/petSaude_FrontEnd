@@ -113,7 +113,7 @@ export const TopContainer = (props) => {
 					await Notifications.error('Erro ao marcar a consulta', "Verifique se todos os dados foram inseridos")
 				}
 			}
-			localStorage.removeItem("appointment")
+			sessionStorage.removeItem("appointment")
 		})
 	}
 
