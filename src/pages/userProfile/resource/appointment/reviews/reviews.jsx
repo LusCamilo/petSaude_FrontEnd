@@ -57,7 +57,7 @@ export const Review = (props) => {
         <div className="w-full flex flex-col">
           <label
             htmlFor="comment"
-            className="text-gray-700 font-bold mb-2 flex flex-col justify-center w-full"
+            className="text-gray-700 font-bold mb-2 flex flex-col justify-center w-full pt-10"
           >
             <h2 className="flex justify-center text-4xl">
               Avaliação do Veterinário
@@ -71,7 +71,7 @@ export const Review = (props) => {
 
           <input className="hidden" type="radio" id="star5" name="rating" value="1" onClick={() => handleRating(1)} />
           <label className={
-            `cursor-pointer text-6xl ${rating >= 1 ? "text-amber-400" : ""}
+            `cursor-pointer text-5xl ${rating >= 1 ? "text-amber-400" : ""}
             ${hoveredRating >= 1 ? 'text-amber-400' : ''}`}
             htmlFor="star5" title="Ruim"
             onMouseOver={() => handleHover(1)}
@@ -82,7 +82,7 @@ export const Review = (props) => {
 
           <input className="hidden" type="radio" id="star4" name="rating" value="2" onClick={() => handleRating(2)} />
           <label className={
-            `cursor-pointer text-6xl ${rating >= 2 ? "text-amber-400" : ""}
+            `cursor-pointer text-5xl ${rating >= 2 ? "text-amber-400" : ""}
             ${hoveredRating >= 2 ? 'text-amber-400' : ''}`}
             htmlFor="star4" title="Regular"
             onMouseOver={() => handleHover(2)}
@@ -93,7 +93,7 @@ export const Review = (props) => {
 
           <input className="hidden" type="radio" id="star3" name="rating" value="3" onClick={() => handleRating(3)} />
           <label className={
-            `cursor-pointer text-6xl ${rating >= 3 ? "text-amber-400" : ""}
+            `cursor-pointer text-5xl ${rating >= 3 ? "text-amber-400" : ""}
             ${hoveredRating >= 3 ? 'text-amber-400' : ''}`}
             htmlFor="star3" title="Bom"
             onMouseOver={() => handleHover(3)}
@@ -104,7 +104,7 @@ export const Review = (props) => {
 
           <input className="hidden" type="radio" id="star2" name="rating" value="4" onClick={() => handleRating(4)} />
           <label className={
-            `cursor-pointer text-6xl ${rating >= 4 ? "text-amber-400" : ""}
+            `cursor-pointer text-5xl ${rating >= 4 ? "text-amber-400" : ""}
             ${hoveredRating >= 4 ? 'text-amber-400' : ''}`}
             htmlFor="star2" title="Muito Bom"
             onMouseOver={() => handleHover(4)}
@@ -115,7 +115,7 @@ export const Review = (props) => {
 
           <input className="hidden" type="radio" id="star1" name="rating" value="5" onClick={() => handleRating(5)} />
           <label className={
-            `cursor-pointer text-6xl ${rating >= 5 ? "text-amber-400" : ""}
+            `cursor-pointer text-5xl ${rating >= 5 ? "text-amber-400" : ""}
           ${hoveredRating >= 5 ? 'text-amber-400' : ''}`}
             htmlFor="star1" title="Excelente"
             onMouseOver={() => handleHover(5)}

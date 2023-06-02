@@ -1,8 +1,13 @@
 import React from 'react';
-import formacao from './img/formacao.png'
-import formacaoDate from './img/formacaoDate.png'
-import instituicao from './img/instituicao.png'
-import carreira from './img/carreira.png'
+// import formacao from './img/formacao.png'
+// import formacaoDate from './img/formacaoDate.png'
+// import instituicao from './img/instituicao.png'
+// import carreira from './img/carreira.png'
+import { FaUniversity} from "react-icons/fa";
+import { FaGraduationCap } from "react-icons/fa";
+import { BsFillBuildingFill } from "react-icons/bs";
+import { IoBagSharp } from "react-icons/io5";
+
 
 export const AcademicInfos = (props) => {
 
@@ -33,29 +38,30 @@ export const AcademicInfos = (props) => {
 					<span className='flex flex-col'>
 						<h3>Formação:</h3>
 						<p>{props.formacao}</p>
-					</span>				
-					<img className='p-4 border-l border-zinc-300 border-solid' src={formacao} alt='Formation'/>
+					</span>		
+					<FaUniversity className='text-7xl p-4 border-l border-zinc-300 border-solid' alt='Formation'/>
 				</div>
 				<div className='flex items-center border justify-between rounded-lg gap-x-4 pl-4 border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Data de Formação:</h3>
 						<p>{dateFormation}</p>
 					</span>
-					<img className='p-4 border-l border-zinc-300 border-solid' src={formacaoDate} alt='Formation hat'  />
+					<FaGraduationCap className='text-7xl p-4 border-l border-zinc-300 border-solid'  alt='Formation hat' />	
 				</div>
 				<div className='flex items-center border justify-between gap-x-4 pl-4 rounded-lg border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Instituição:</h3>
 						<p>{props.instituicao}</p>
 					</span>
-					<img className='py-4 px-[22px] border-l border-zinc-300 border-solid' src={instituicao} alt='Institution' />
+					<BsFillBuildingFill className='text-7xl p-4 border-l border-zinc-300 border-solid' alt='Institution' />	
 				</div>
 				<div className='flex items-center border justify-between rounded-lg gap-x-4 pl-4 border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Inicio de Carreira:</h3>
 						<p>{dateInicioCarreira}</p>
 					</span>
-					<img className='p-4 border-l border-zinc-300 border-solid' src={carreira} alt='Briefing case' />
+					<IoBagSharp className='text-7xl p-4 border-l border-zinc-300 border-solid' alt='Briefing case' />	
+					
 				</div>
 			</div>
 			<div className='flex flex-col md:hidden'>
@@ -75,7 +81,7 @@ export const AcademicInfos = (props) => {
 						<p>{props.instituicao}</p>
 					</div>
 					<div className='border shadow-lg rounded text-center w-44 p-2' >
-
+			
 						<h3>Inicio de Carreira:</h3>
 						<p>{dateInicioCarreira}</p>
 					</div>
