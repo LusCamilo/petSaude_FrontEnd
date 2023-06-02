@@ -218,19 +218,6 @@ export const Appointment = () => {
 					</div>
 					<div className='pt-5  '>
 						<div className='flex mt-5 justify-between gap-5'>
-							{/* <button
-								className={`p-2 md:w-40 md:text-center md:h-12 border rounded-full bg-[#F9DEDC] text-[#410E0B] font-semibold text-2xl origin-center `}
-								type="button" onClick={() => props.onCancel()}>
-								Cancelar
-							</button>
-							<button type="submit"
-								className='p-2 md:w-40 md:h-12 text-center border rounded-full bg-[#9ED1B7] text-[#41564B] font-semibold text-2xl'
-								onClick={(event) => {
-									submitAppointment(event);
-								}}
-							>
-								Marcar
-							</button> */}
 						</div>
 					</div>
 				</div>

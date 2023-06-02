@@ -19,8 +19,15 @@ export const PetHeader = () => {
 				setUserName(userInfos.userName)
 				if (userInfos.profilePhoto !== '') setUserPhoto(userInfos.profilePhoto)
 				else setUserPhoto('https://www.svgrepo.com/show/335455/profile-default.svg')
-				if (userInfos.userName === "") setLinkTo("/profile/edit-profile");
-				else setLinkTo('/profile')
+				if (userInfos.userName == "") 
+				{	
+					setLinkTo("/profile/edit-profile");
+					localStorage.setItem("__Type_User", "Client")
+				}
+				else {
+					setLinkTo('/profile')
+					localStorage.setItem("__Type_User", "Client")
+				}
 			}
 		}
 

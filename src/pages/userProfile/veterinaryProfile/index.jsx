@@ -13,13 +13,13 @@ export const VeterinaryProfile = () => {
 			let vetId = localStorage.getItem("__Vet_correctId");
 			let response = await getVet(vetId);
 			let result = response.response;
-			let json
+			let array
 			if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
-				json = []
+				array = []
 			} else {
-				json = result.user
+				array = result.user
 			} 
-			setVets(json)
+			setVets(array)
 			if (vets.isVet == true) { 
 				localStorage.setItem('__register_type', "professional")
 			}

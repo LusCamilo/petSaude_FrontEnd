@@ -13,8 +13,8 @@ export const Profile = () => {
   useEffect(() => {
     async function loadUserInfos() {
       const userInfos = await getUserInfos();
-      setUserInfos(userInfos);
-      console.log(userInfos)
+      setUserInfos(userInfos); 
+      console.log(userInfos.isVet)
       SetIsVet(userInfos.isVet);
     }
     loadUserInfos();
@@ -32,7 +32,7 @@ export const Profile = () => {
           isVet={userInfos.isVet}
           myProfile={true}
         />
-        <Cards personImage={userInfos.profilePhoto}/>
+        <Cards personImage={userInfos.profilePhoto} boolVet={isVet}/>
         <div className="flex flex-col md:flex-row justify-between gap-[10%] px-10 md:px-44 mb-16">
           {isVet ? (
             <AcademicInfos

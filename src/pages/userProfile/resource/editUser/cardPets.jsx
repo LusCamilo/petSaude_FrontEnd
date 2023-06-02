@@ -3,6 +3,9 @@ import lapis from "../../../../assets/svg/pencil.svg";
 
 
 export const CardPets = (props) => {
+
+	
+
 	return (
 		<div id={props.id} className='w-80 h-64 border border-solid border-[#CAC4D0] rounded-2xl flex flex-none flex-col'>
 			<div className='h-1/4 flex flex-row justify-between items-center px-5'>

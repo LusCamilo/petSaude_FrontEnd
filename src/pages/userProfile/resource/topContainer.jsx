@@ -46,7 +46,7 @@ export const TopContainer = (props) => {
 			let allAppoinments = await allInfos.response.user.Appointments
 			let quantAppontments = allAppoinments.filter(appointment => appointment.status === "CONCLUDED");
 			let quant = quantAppontments.length
-			if (quant === 1) {
+			if (quant == 1) {
 				setStringAppoinment('Consulta Concluida')
 			} else if (quant <= 0) {
 				setStringAppoinment('Não há consultas concluidas')
@@ -95,7 +95,7 @@ export const TopContainer = (props) => {
 	}
 
 	useEffect(() => {
-		if (props.biografia == null) setBio('Este veterinário ainda não possui biografia')
+		if (props.biografia == null) setBio('Ainda não existe uma biografia')
 		else setBio(props.biografia)
 
 	}, [props.biografia])
@@ -175,12 +175,14 @@ export const TopContainer = (props) => {
 							trimRight
 							basedOn="letters"
 						/>
-						<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={() => textTruncate(false)}>
-							Ler menos
-						</a>
-						<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={() => textTruncate(true)}>
-							Ler mais
-						</a>
+						<div className={`${bio == "Ainda não existe uma biografia" ? "hidden" : "flex"}`}>
+							<a href="#" className={`text-[#09738A] ${lerMenos} text-xl font-semibold`} onClick={() => textTruncate(false)}>
+								Ler menos
+							</a>
+							<a href="#" className={`w-auto text-[#09738A]  ${lerMais} text-xl font-semibold`} onClick={() => textTruncate(true)}>
+								Ler mais
+							</a>
+						</div>
 					</div>
 				</>
 			) : <span></span>}

@@ -12,13 +12,15 @@ export const Cards = (props) => {
 		async function fetchData() {
 			const token = localStorage.getItem('__user_JWT')
 			const decoded = jwt_decode(token);
-			if (props.isVet == true) {
+			console.log(props);
+			if (props.boolVet == true) {
 				const response = await getRatings(props.idVets);
 				if(response.response.ratings.length == 0)setPetOrRating([])
 				else setPetOrRating(response.response.ratings)
-			} else if(props.isVet == false) {
-				const response = await getUser(decoded.id)
-				setPetOrRating(response.response.ratings)
+			} else if(props.boolVet == false) {
+				const {response} = await getUser(decoded.id)
+				console.log(response);
+				setPetOrRating(response.user.Pet)
 			} else {
 				setPetOrRating([])
 			}
@@ -71,6 +73,7 @@ export const Cards = (props) => {
 			</div>
 		);
 	} else {
+		console.log("Não veterinário");
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
 				<h2 className='text-3xl pb-2'>{localStorage.getItem("__user_isVet") == 'true' ? 'Avaliações' : 'Pets'}</h2>
@@ -78,7 +81,7 @@ export const Cards = (props) => {
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
 						{petOrRating.map((item) => {
-						//	return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
+							return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
 						})}
 						
 					</div>
