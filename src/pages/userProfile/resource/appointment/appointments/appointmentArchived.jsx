@@ -12,8 +12,6 @@ import Modal from "react-modal";
 import { AppointmentArchivedCard } from "./appointmentArchivedCard";
 
 export const AppointmentArchived = (props) => {
-  const { register, handleSubmit, formState: errors, setValue } = useForm();
-  const [modalIsOpen, setIsOpen] = React.useState(false);
   const [pedidos, setPedido] = useState([]);
   const [quant, setQuant] = useState({ Finalizado: 0, Cancelado: 0 });
   const [isVet, setisVet] = useState("hidden");
@@ -79,11 +77,11 @@ export const AppointmentArchived = (props) => {
               }
 
               const formattedDuration = formatDuration(app.duration);
-              let height;
+              let height
               if (arrayPet.petSize == "BIG") {
-                height = "Grande";
+                height = "Grande"
               } else if (arrayPet.petSize == "SMALL") {
-                height = "Pequeno";
+                height = "Pequeno"
               } else {
                 height = "Médio";
               }
@@ -124,7 +122,7 @@ export const AppointmentArchived = (props) => {
         if (!decoded.isVet) {
           setButtonAceitar("hidden");
         }
-      } catch (error) {}
+      } catch (error) { }
     };
     fetchData();
   }, []);

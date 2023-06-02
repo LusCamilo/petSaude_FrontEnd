@@ -23,6 +23,7 @@
     "react-is": "^18.2.0",
     "react-lines-ellipsis": "^0.15.3",
     "react-modal": "^3.16.1",
+    "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.10.0",
     "react-scripts": "^5.0.1",
     "react-simple-star-rating": "^5.1.7",

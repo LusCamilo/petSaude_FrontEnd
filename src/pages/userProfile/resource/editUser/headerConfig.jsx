@@ -24,7 +24,9 @@ export const Config = (props) => {
 				</div>
 				<div className='flex items-center justify-center md:pt-10'>
 					<button className='w-fit px-14 h-14 flex-row justify-center items-center cursor-pointer gap-4 bg-[#ECECEC] rounded-full drop-shadow-lg hidden md:flex text-2xl' onClick={
-						() => { document.location.href = '/profile/edit-profile' }}>
+						() => { 
+							document.location.href = '/profile/edit-profile' 
+						}}>
 						<img src={lapis} alt="" className='h-7'/>
 						Editar	
 					</button>

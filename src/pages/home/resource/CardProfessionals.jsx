@@ -27,6 +27,7 @@ export const CardProfessionals = (props) => {
 		document.location.href = "/profile/veterinary";
 		localStorage.setItem("__Vet_Id", event)
 		localStorage.setItem("__Vet_correctId", id);
+		localStorage.setItem("__Type_User", "Professional")
 	}
 
 	function specialtiesList() {

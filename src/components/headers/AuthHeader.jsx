@@ -22,13 +22,13 @@ function firebaseFeature() {
 	return (
 		<>
 			<button onClick={handleGoogleButtonClick}>
-				<img src={googleLogo} alt='Google Button' className='lg:w-20 md:w-16 w-14'/>
+				{/* <img src={googleLogo} alt='Google Button' className='lg:w-20 md:w-16 w-14'/> */}
 			</button>
-			<span className='flex justify-center items-center gap-4 lg:text-xl text-base font-normal text-[#A9A9A9] w-full grow text-center
+			{/* <span className='flex justify-center items-center gap-4 lg:text-xl text-base font-normal text-[#A9A9A9] w-full grow text-center
                     before:grow before:h-0.5 before:block before:bg-gray-300
                     after:grow after:h-0.5 after:block after:bg-gray-300'>
 				Ou use o e-mail
-			</span>
+			</span> */}
 		</>
 	)
 }

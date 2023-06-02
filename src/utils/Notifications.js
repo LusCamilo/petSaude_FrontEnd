@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Appointment } from "../pages/userProfile/resource/appointment/appointment";
 import { Review } from "../pages/userProfile/resource/appointment/reviews/reviews";
+import { IoClose } from "react-icons/io5"
 class Notifications {
   constructor() {
     this.swal = withReactContent(Swal);
@@ -94,16 +95,19 @@ class Notifications {
     });
   }
 
-  async ratingAvaliation(onConfirm, onCancel, callback) {
+  async ratingAvaliation(onConfirm, onCancel, ) {
     await this.swal.fire({
       html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
-      //showCancelButton: true,
-      //showConfirmButton: true,
-      // html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
       showCancelButton: true,
       showConfirmButton: true,
+      confirmButtonText: "Concluir Avaliação",
+      cancelButtonText: <IoClose className="text-5xl" />,
+      buttonsStyling: false,
+      customClass: {
+        cancelButton: 'absolute top-0 right-0 m-2',
+        confirmButton: 'w-full mx-9 p-3 flex justify-center items-center bg-[#9ed1b7] rounded-full text-[#41564B]',
+      },
     })
-      .then(callback);
   }
 }
 
