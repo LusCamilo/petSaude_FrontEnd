@@ -5,6 +5,7 @@ const token = localStorage.getItem('__user_JWT')
 
 export async function getRatings(vetId) {
 	const url = `${BASE_URL}rating/veterinary/${vetId}`
+	console.log(url);
 	const response = await fetch(url, {
 		method: "GET",
 		headers: {
@@ -12,6 +13,7 @@ export async function getRatings(vetId) {
 			'Authorization': `Bearer ${token}`
 		}
 	})
+	console.log(response);
 	return await response.json()
 }
 

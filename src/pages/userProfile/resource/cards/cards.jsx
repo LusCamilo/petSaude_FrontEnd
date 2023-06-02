@@ -13,11 +13,13 @@ export const Cards = (props) => {
 			const token = localStorage.getItem('__user_JWT')
 			const decoded = jwt_decode(token);
 			console.log(props);
-			if (props.boolVet == true) {
+			if (props.boolVet == true || props.isVet == true) {
+				console.log("Paródia");
 				const response = await getRatings(props.idVets);
+				console.log(response);
 				if(response.response.ratings.length == 0)setPetOrRating([])
 				else setPetOrRating(response.response.ratings)
-			} else if(props.boolVet == false) {
+			} else if(props.boolVet == false || props.isVet == false) {
 				const {response} = await getUser(decoded.id)
 				console.log(response);
 				setPetOrRating(response.user.Pet)
@@ -42,14 +44,14 @@ export const Cards = (props) => {
 	}
 
 
-	if (props.isVet == true) {
-
+	if (props.isVet == true || props.boolVet == true) {
+		console.log("True");
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
 				<h2 className='text-3xl pb-2'>Avaliações</h2>
 				<div className='flex items-center pl-14 md:pl-0 justify-between'>
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
-					{/* <div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' 
+					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' 
 					ref={carrossel}>
 						{petOrRating.map((item) => {
 							console.log(item);
@@ -67,7 +69,7 @@ export const Cards = (props) => {
 							/>
 						})}
 						
-					</div> */}
+					</div>
 					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
 				</div>
 			</div>
