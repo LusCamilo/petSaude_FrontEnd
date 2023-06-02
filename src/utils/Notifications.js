@@ -105,7 +105,7 @@ class Notifications {
       buttonsStyling: false,
       customClass: {
         cancelButton: 'absolute top-0 right-0 m-2',
-        confirmButton: 'w-full mx-9 p-3 flex justify-center items-center bg-[#9ed1b7] rounded-full text-[#41564B]',
+        confirmButton: 'drop-shadow-lg w-full mx-9 px-20 p-3 flex justify-center items-center bg-[#9ed1b7] rounded-full text-[#41564B]',
       },
     })
   }
