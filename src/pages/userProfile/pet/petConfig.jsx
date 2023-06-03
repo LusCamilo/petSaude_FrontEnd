@@ -247,7 +247,7 @@ export const PetConfig = () => {
 	return (
 		<section>
 			<PetHeader/>
-			<main className="static w-full">
+			<main className="static p-20 w-full">
 				<div>
 					<div
 						className="flex justify-start p-3 sm:p-10 flex-row items-center content-center align-middle h-30 sm:h-80">
@@ -348,7 +348,7 @@ export const PetConfig = () => {
 							</div>
 						</div>
 						<div className="flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3">
-							<div className="w-2/4">
+							<div className="w-full">
 								<label className="flex flex-col text-xl text-[#A9A9A9]">
 									Data de Nascimento
 									<input
@@ -357,7 +357,7 @@ export const PetConfig = () => {
 										onChange={newDateBorn}
 										name="dateBorn"
 										defaultValue={infos.birthDate}
-										className={`h-fit bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`}
+										className={`bg-transparent border-none text-2xl text-[#000] w-full ${petInfosDisable.class}`}
 										max={dataFormatada}
 									/>
 								</label>

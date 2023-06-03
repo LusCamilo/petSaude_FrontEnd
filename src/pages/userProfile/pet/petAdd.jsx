@@ -3,7 +3,6 @@ import { initializeApp } from 'firebase/app';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { PetHeader } from './petHeader';
 import "../css/UpgradeUser.css"
-import addMais from "../resource/img/AddMais.png"
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { styled } from '@stitches/react';
 import { petAdd } from "../../../services/integrations/pet.js";
@@ -180,22 +179,6 @@ export const PetAdd = () => {
 	}
 
 	const [selectedFile, setSelectedFile] = useState();
-	const [modalIsOpen, setIsOpen] = React.useState(false);
-
-	function openModal() {
-		setIsOpen(true);
-	}
-
-	function closeModal() {
-		setIsOpen(false);
-	}
-
-	function afterOpenModal() {
-	}
-
-	function cancelClose() {
-		closeModal();
-	}
 
 	return (
 		<section>
@@ -254,9 +237,9 @@ export const PetAdd = () => {
 						</div>
 						<div className='flex flex-col sm:flex-col gap-3 mb-5 sm:gap-5 justify-start content-center w-full sm:w-1/3'>
 							<div className='w-3/4'>
-								<label className='flex flex-col text-2xl text-[#A9A9A9] w-3/4'>
+								<label className='flex flex-col text-2xl text-[#A9A9A9] w-full'>
 									Data de Nascimento
-									<input type="date" onBlurCapture={newBornDate} name="firstName" className='h-fit w-full border-none text-2xl text-[#000] ' max={dataFormatada} />
+									<input type="date" onBlurCapture={newBornDate} name="firstName" className='border-none text-2xl text-[#000] ' max={dataFormatada} />
 								</label>
 							</div>
 							<div>
