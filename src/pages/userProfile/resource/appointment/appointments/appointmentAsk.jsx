@@ -448,7 +448,7 @@ export const AppointmentAsk = () => {
                 </div>
               </div>
               <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-3 ">
-                Informações de consulta{" "}
+                Informações da consulta{" "}
               </h2>
               <div className="flex flex-col gap-2 justify-between">
                 <div className="flex flex-row justify-start w-full sm:w-full ">

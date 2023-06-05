@@ -50,7 +50,7 @@ export const AppointmentArchivedCard = (props) => {
 
   return (
     <div
-      className={`${props.cor} border-none sm:border-solid border h-1/6 rounded-3xl border-black flex flex-col gap-0 p-14`}
+      className={`${props.cor} border-none sm:border-solid border h-1/6 rounded-3xl border-black flex flex-col p-10`}
     >
       <div className="flex flex-row items-center content-center text-center text-4xl gap-4">
         <img className="PetImage" src={props.imagemPet} alt="Imagem do pet" />
@@ -59,7 +59,7 @@ export const AppointmentArchivedCard = (props) => {
         </h2>
       </div>
       <div className="flex md:justify-between pt-3 mb-8">
-            <div className="flex flex-col justify-start w-full h-fit sm:w-1/3 gap-2">
+        <div className="flex flex-col justify-start w-full h-fit sm:w-1/3 gap-2">
           <div>
             <label className="flex flex-col text-2xl text-[#A9A9A9]">
               Nome
@@ -67,7 +67,7 @@ export const AppointmentArchivedCard = (props) => {
                 type="text"
                 disabled
                 placeholder={props.nomePet}
-                className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
               />
             </label>
           </div>
@@ -79,12 +79,12 @@ export const AppointmentArchivedCard = (props) => {
                 type="text"
                 disabled
                 placeholder={props.tamanho}
-                className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
               />
             </label>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3 mr-5">
+        <div className="flex flex-col sm:flex-col justify-start content-center w-full sm:w-1/3 gap-2">
           <div className="w-full">
             <label className="flex flex-col text-2xl text-[#A9A9A9]">
               Sexo
@@ -92,7 +92,7 @@ export const AppointmentArchivedCard = (props) => {
                 type="text"
                 disabled
                 placeholder={props.sexo}
-                className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
               />
             </label>
           </div>
@@ -103,7 +103,7 @@ export const AppointmentArchivedCard = (props) => {
                 type="text"
                 disabled
                 placeholder={props.idade}
-                className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
               />
             </label>
           </div>
@@ -116,17 +116,17 @@ export const AppointmentArchivedCard = (props) => {
                 type="text"
                 disabled
                 placeholder={props.especie}
-                className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl"
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl"
               />
             </label>
           </div>
         </div>
       </div>
-      <h2 className="font-normal flex justify-center sm:justify-start font-sans text-3xl pt-5">
-        Informações de consulta{" "}
+      <h2 className="font-normal flex justify-center sm:justify-start font-sans text-3xl mt-10 mb-3">
+        Informações da consulta{" "}
       </h2>
-      <div className="flex flex-col justify-between pr-5 ">
-        <div className="flex flex-row justify-start w-full sm:w-full pt-5">
+      <div className="flex flex-col justify-between">
+        <div className="flex flex-row justify-start w-full sm:w-full mb-2">
           <div className="mr-24">
             <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
               Data
@@ -134,7 +134,7 @@ export const AppointmentArchivedCard = (props) => {
                 type="text"
                 disabled
                 placeholder={props.dataConsulta}
-                className="bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl "
+                className="bg-transparent placeholder:text-gray-400 h-fit w-full placeholder:text-3xl border-none text-3xl "
               />
             </label>
           </div>
@@ -145,7 +145,7 @@ export const AppointmentArchivedCard = (props) => {
                 type="text"
                 disabled
                 placeholder={props.horario}
-                className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
               />
             </label>
           </div>
@@ -158,17 +158,17 @@ export const AppointmentArchivedCard = (props) => {
                 type="text"
                 disabled
                 placeholder={props.descricao}
-                className="bg-transparent placeholder:text-gray-400 w-full placeholder:text-3xl border-none text-3xl "
+                className="bg-transparent placeholder:text-gray-400 h-fit w-full placeholder:text-3xl border-none text-3xl "
               />
             </label>
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center content-center text-bottom gap-3 pt-5 text-3xl">
-        <h2 className="font-normal flex justify-center sm:justify-start font-sans ">
+      <div className="flex flex-row items-center content-center text-bottom gap-3 pt-5">
+        <h2 className="font-normal flex justify-center sm:justify-start font-sans text-3xl">
           Status:
         </h2>
-        <div className="text-[#49454F] font-normal  font-sans">
+        <div className="text-[#49454F] font-normal text-3xl font-sans">
           {props.status}
         </div>
       </div>
