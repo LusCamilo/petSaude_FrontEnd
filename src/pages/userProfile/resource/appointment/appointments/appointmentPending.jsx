@@ -369,7 +369,7 @@ export const AppointmentPeding = (props) => {
                   </div>
                 </div>
               </div>
-              <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-5 ">
+              <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-3">
                 Informações da consulta{" "}
               </h2>
               <div className="flex flex-col justify-between gap-2">

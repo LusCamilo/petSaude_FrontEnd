@@ -13,7 +13,7 @@ import { AppointmentArchivedCard } from "./appointmentArchivedCard";
 
 export const AppointmentArchived = (props) => {
   const [pedidos, setPedido] = useState([]);
-  const [quant, setQuant] = useState({ Finalizado: 0, Cancelado: 0 });
+  const [quant, setQuant] = useState({ Finalizado: 0, Cancelado: 0, Recusadas: 0 });
   const [isVet, setisVet] = useState("hidden");
   const [buttonAceitar, setButtonAceitar] = useState("flex");
   const [divNothing, setDivNothing] = useState("hidden");
@@ -30,8 +30,9 @@ export const AppointmentArchived = (props) => {
         if (appoint !== undefined && appoint !== null) {
           let filteredAppointments = appoint.filter(
             (appointment) =>
-              appointment.status === "CANCELED" ||
-              appointment.status === "CONCLUDED"
+              appointment.status == "CANCELED" ||
+              appointment.status == "CONCLUDED" ||
+              appointment.status == "DECLINED"
           );
 
           let appoints = await Promise.all(
@@ -47,7 +48,8 @@ export const AppointmentArchived = (props) => {
                 .join("/");
 
               let statusTraduzido;
-              if (app.status === "CONCLUDED") statusTraduzido = "Finalizado";
+              if (app.status == "CONCLUDED") statusTraduzido = "Finalizado";
+              else if (app.status == "DECLINED") statusTraduzido = "Recusado"
               else statusTraduzido = "Cancelado";
 
               const horarioSplit = app.startsAt.split("T");
@@ -201,12 +203,15 @@ export const AppointmentArchived = (props) => {
   useEffect(() => {
     let cancelada = 0;
     let finalizar = 0;
+    let recusada = 0;
 
     pedidos.forEach((pedir) => {
-      if (pedir.estado === "CANCELED") {
+      if (pedir.estado == "CANCELED") {
         cancelada += 1;
-      } else if (pedir.estado === "CONCLUDED") {
+      } else if (pedir.estado == "CONCLUDED") {
         finalizar += 1;
+      } else if (pedir.estado == "DECLINED"){
+        recusada += 1;
       }
     });
 
@@ -214,6 +219,7 @@ export const AppointmentArchived = (props) => {
       ...prevQuant,
       Finalizado: finalizar,
       Cancelado: cancelada,
+      Recusadas: recusada
     }));
   }, [pedidos]);
 
@@ -222,28 +228,43 @@ export const AppointmentArchived = (props) => {
       <div className="flex flex-row gap-3 justify-between">
         <div className="flex flex-col items-center">
           <div className="flex flex-row gap-2">
+            <div className=" w-10 h-10 rounded-md bg-[#09738A66]"></div>
             <h2>Consultas Finalizadas</h2>{" "}
-            <div className=" w-10 h-10 rounded-md bg-[#09738A]"></div>
           </div>
           <div className="flex flex-row gap-2">
             <div className="text-[#A9A9A9] text-base">Quantidade:</div>{" "}
             <div>{quant.Finalizado}</div>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center">
           <div className="flex flex-row gap-2">
-            <h2>Consultas Canceladas</h2>{" "}
             <div className="w-10 h-10 rounded-md bg-[#F1EAC6]"></div>
+            <h2>Consultas Canceladas</h2>{" "}
+          </div>
+          <div className="flex flex-row gap-2">
+            <div className="text-[1#A9A9A9] text-base">Quantidade:</div>{" "}
+            <div>{quant.Cancelado}</div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center">
+          <div className="flex flex-row gap-2">
+            <h2>Consultas Recusadas</h2>{" "}
+            <div className="w-10 h-10 rounded-md bg-[#F9DEDC]"></div>
           </div>
           <div className="flex flex-row gap-2">
             <div className="text-[#A9A9A9] text-base">Quantidade:</div>{" "}
-            <div>{quant.Cancelado}</div>
+            <div>{quant.Recusadas}</div>
           </div>
         </div>
       </div>
       <div className="w-full flex flex-col gap-3">
+      {/* 09738A66 */}
         {pedidos.map((pedido) => {
-          const cor = pedido.estado === "CONCLUDED" ? "bg-[#09738A]" : "bg-[#F1EAC6]";
+          const cor =
+            pedido.estado == "CONCLUDED" ? "bg-[#09738A66]" : 
+            pedido.estado == "DECLINED" ? "bg-[#F9DEDC]" :
+            "bg-[#F1EAC6]";
+           // pedido.estado === "CONCLUDED" ? "bg-[#09738A66]" : "bg-[#F1EAC6]";
           return (
             <AppointmentArchivedCard
               key={pedido.idAppoint}

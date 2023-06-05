@@ -46,16 +46,15 @@ Maps = (props) => {
 				{ lat: coordinates.latitude, lng: coordinates.longitude }
 			);
           } else {
-            window.alert('CEP não encontrado. Por causa das coordenadas');
+            window.alert('Localização não encontrada.');
           }
         } else {
-          window.alert('CEP não encontrado. Por cause do número');
+          window.alert('CEP não encontrado.');
         }
       } catch (error) {
         console.error('Erro ao obter informações e coordenadas:', error);
       }
     };
-
     getInfoAndCoordinates();
   }, []);
 

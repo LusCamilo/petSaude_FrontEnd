@@ -94,6 +94,8 @@ export const AppointmentAsk = () => {
                 vetPhoto: vet.profilePhoto,
               };
 
+              console.log(app.description);
+
               return finalArray;
             })
           );
@@ -269,22 +271,6 @@ export const AppointmentAsk = () => {
       setShowVet("flex");
       setShowClient("hidden");
     }
-    // setPedido([
-    //     {
-    //       imagemPet: "https://i.pinimg.com/564x/d6/f8/50/d6f850459ccd0a00dd65ca3309cb3d7c.jpg",
-    //       donoImg: "https://www.portaldoanimal.org/wp-content/uploads/2019/02/gatinha-pastor-alemao2-6.jpg",
-    //       dono: "algebra",
-    //       telefone: "0114002-8922",
-    //       nomePet: "Rex",
-    //       sexo: "Masculino",
-    //       especie: "Cachorro",
-    //       tamanho: "Médio",
-    //       idade: "4 anos",
-    //       dataConsulta: "2023-05-10",
-    //       horario: "14:00",
-    //       descricao: "Exame de rotina",
-    //     }
-    //   ]);
   }, []);
 
   return (
@@ -379,7 +365,7 @@ export const AppointmentAsk = () => {
               </div>
               <div className={`${showClient} flex-col`}>
                 <div
-                  className={`${tutorStatus} flex-row items-center content-center text-center text-5xl gap-4`}
+                  className={`${tutorStatus} flex-row items-center content-center text-center text-4xl gap-4`}
                 >
                   <img
                     className="PetImage"
@@ -390,7 +376,7 @@ export const AppointmentAsk = () => {
                     {pedido.dono}
                   </h2>
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between pr-20 ">
+                <div className="flex flex-col sm:flex-row justify-between pt-3 mb-8">
                   <div
                     className={`${tutorStatus} flex-row justify-start w-full`}
                   >
@@ -401,7 +387,7 @@ export const AppointmentAsk = () => {
                           type="text"
                           disabled
                           placeholder={pedido.dono}
-                          className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                          className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                         />
                       </label>
                     </div>
@@ -413,7 +399,7 @@ export const AppointmentAsk = () => {
                           type="text"
                           disabled
                           placeholder={pedido.telefone}
-                          className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                          className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                         />
                       </label>
                     </div>
@@ -464,7 +450,7 @@ export const AppointmentAsk = () => {
                 </div>
               </div>
               <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-3 ">
-                Informações de consulta{" "}
+                Informações da consulta{" "}
               </h2>
               <div className="flex flex-col gap-2 justify-between">
                 <div className="flex flex-row justify-start w-full sm:w-full ">
@@ -495,15 +481,16 @@ export const AppointmentAsk = () => {
                   <div>
                     <label className="flex flex-col text-2xl text-[#A9A9A9]">
                       Descrição
-                      <p className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-2xl ">
+                      <p className="min-w-full bg-transparent placeholder:text-gray-400 bg-yellow-900 placeholder:text-3xl border-none text-2xl ">
                         {pedido.descricao}
+                        {console.log(pedido.descricao)}
                       </p>
                     </label>
                   </div>
                 </div>
               </div>
-              <span className={`${buttonAceitar} justify-center w-full pl-4`}>
-                <div className={`${tutorStatus} flex-col mb-2 text-3xl pt-5`}>
+              <span className={`${buttonAceitar} justify-center w-full`}>
+                <div className={`${tutorStatus} flex-col mb-2 text-3xl mt-8 items-center`}>
                   <h2>Confirmar consulta</h2>
                   <div className="w-full flex justify-center gap-5 flex-col">
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full pt-5">
@@ -526,11 +513,11 @@ export const AppointmentAsk = () => {
                     </label>
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full">
                       Valor
-                      <div className="flex items-center justify-center gap-2">
+                      <div className="flex items-center justify-center gap-2 border-solid border-b border-black">
                         <span className="text-2xl align-bottom ">R$</span>
                         <input
                           type="text"
-                          className="min-w-full text-2xl mr-8 "
+                          className="text-2xl border-none"
                           id="preco"
                           value={preco}
                           onChange={formatarPreco}
@@ -540,17 +527,19 @@ export const AppointmentAsk = () => {
                   </div>
                 </div>
               </span>
-              <div className="flex flex-row justify-between pt-5">
+              <div className={`flex flex-row ${buttonAceitar == "hidden" ? "justify-start" :  "justify-between"} mt-10`}>
                 <span className={`flex justify-start`}>
+                  <span className={`${buttonAceitar}`}>
+                    <button
+                      className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
+                      onClick={() => recusarAppointment(pedido.idAppoint)
+                      }
+                    >
+                      Recusar
+                    </button>
+                  </span>
                   <button
-                    className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
-                    onClick={() => recusarAppointment(pedido.idAppoint)}
-                  >
-                    Recusar
-                  </button>
-
-                  <button
-                    className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-56 h-14 mt-10 pl-3 pr-3 border rounded-full text-xl font-normal mr-20`}
+                    className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-56 h-14 pl-3 pr-3 border rounded-full text-xl font-normal mr-20`}
                     onClick={handleClickAgain}
                   >
                     Ver menos informações
@@ -567,7 +556,7 @@ export const AppointmentAsk = () => {
 
                   <span className={`${buttonAceitar}`}>
                     <button
-                      className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal mr-20`}
+                      className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 border rounded-full text-xl font-normal`}
                       onClick={() => marcarAppointment(pedido.idAppoint)}
                     >
                       Marcar
