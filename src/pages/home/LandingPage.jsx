@@ -10,15 +10,16 @@ import verifyIfUserHasUserName from "../../utils/verifyIfUserHasUserName";
 import jwt_decode from "jwt-decode";
 
 export const LandingPage = () => {
-	const jwt = localStorage.getItem('__user_JWT')
-	const {userName} = jwt_decode(jwt)
+
 	useEffect(() => {
 		async function validateUser() {
+			const jwt = localStorage.getItem('__user_JWT')
 			const userHasName = await verifyIfUserHasUserName()
-			if (!userHasName) document.location.href = '/profile/edit-profile'
+			if (!userHasName || jwt == "") document.location.href = '/profile/edit-profile'
+			const {userName} = jwt_decode(jwt)
 		}
 		validateUser()
-	}, [userName])
+	}, [])
 	// verifyLoggedUser()
 	// const userHasName = verifyIfUserHasUserName()
 	// if (!userHasName.status)

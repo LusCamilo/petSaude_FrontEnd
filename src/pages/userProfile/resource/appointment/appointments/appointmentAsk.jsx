@@ -94,6 +94,8 @@ export const AppointmentAsk = () => {
                 vetPhoto: vet.profilePhoto,
               };
 
+              console.log(app.description);
+
               return finalArray;
             })
           );
@@ -479,8 +481,9 @@ export const AppointmentAsk = () => {
                   <div>
                     <label className="flex flex-col text-2xl text-[#A9A9A9]">
                       Descrição
-                      <p className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-2xl ">
+                      <p className="min-w-full bg-transparent placeholder:text-gray-400 bg-yellow-900 placeholder:text-3xl border-none text-2xl ">
                         {pedido.descricao}
+                        {console.log(pedido.descricao)}
                       </p>
                     </label>
                   </div>

@@ -48,7 +48,8 @@ export const AppointmentArchived = (props) => {
                 .join("/");
 
               let statusTraduzido;
-              if (app.status === "CONCLUDED") statusTraduzido = "Finalizado";
+              if (app.status == "CONCLUDED") statusTraduzido = "Finalizado";
+              else if (app.status == "DECLINED") statusTraduzido = "Recusado"
               else statusTraduzido = "Cancelado";
 
               const horarioSplit = app.startsAt.split("T");
