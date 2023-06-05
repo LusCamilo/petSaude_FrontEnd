@@ -486,8 +486,8 @@ export const AppointmentAsk = () => {
                   </div>
                 </div>
               </div>
-              <span className={`${buttonAceitar} justify-center w-full pl-4`}>
-                <div className={`${tutorStatus} flex-col mb-2 text-3xl pt-5 items-center`}>
+              <span className={`${buttonAceitar} justify-center w-full`}>
+                <div className={`${tutorStatus} flex-col mb-2 text-3xl mt-8 items-center`}>
                   <h2>Confirmar consulta</h2>
                   <div className="w-full flex justify-center gap-5 flex-col">
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full pt-5">
@@ -524,7 +524,7 @@ export const AppointmentAsk = () => {
                   </div>
                 </div>
               </span>
-              <div className={`flex flex-row ${buttonAceitar == "hidden" ? "justify-start" :  "justify-between"} pt-5`}>
+              <div className={`flex flex-row ${buttonAceitar == "hidden" ? "justify-start" :  "justify-between"}`}>
                 <span className={`flex justify-start`}>
                   <span className={`${buttonAceitar}`}>
                     <button
