@@ -243,7 +243,7 @@ export const AppointmentArchived = (props) => {
             <h2>Consultas Canceladas</h2>{" "}
           </div>
           <div className="flex flex-row gap-2">
-            <div className="text-[#A9A9A9] text-base">Quantidade:</div>{" "}
+            <div className="text-[1#A9A9A9] text-base">Quantidade:</div>{" "}
             <div>{quant.Cancelado}</div>
           </div>
         </div>
