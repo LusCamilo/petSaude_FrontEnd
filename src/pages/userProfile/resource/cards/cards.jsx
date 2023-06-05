@@ -70,7 +70,6 @@ export const Cards = (props) => {
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' 
 					ref={carrossel}>
 						{petOrRating.map((item) => {
-							console.log(petOrRating);
 							return <Rating 
 								key={item.id} 
 								id={item.id} 
@@ -90,7 +89,6 @@ export const Cards = (props) => {
 			</div>
 		);
 	} else {
-		console.log("mexer");
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
 				<h2 className='text-3xl pb-2'>{localStorage.getItem("__user_isVet") == 'true' ? 'Avaliações' : 'Pets'}</h2>
