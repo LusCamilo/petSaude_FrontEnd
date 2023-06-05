@@ -43,9 +43,10 @@ export const TopContainer = (props) => {
 		textTruncate(false)
 		async function fetchData() {
 			let allInfos = await getVeterinary(localStorage.getItem("__Vet_correctId"))
-			let allAppoinments = await allInfos.response.user.Appointments
-			let quantAppontments = allAppoinments.filter(appointment => appointment.status === "CONCLUDED");
-			let quant = quantAppontments.length
+			let allAppoinments = await allInfos.response
+			//let quantAppontments = allAppoinments.filter(appointment => appointment.status === "CONCLUDED");
+			//let quant = quantAppontments.length
+			let quant = 3
 			if (quant == 1) {
 				setStringAppoinment('Consulta Concluida')
 			} else if (quant <= 0) {
@@ -72,10 +73,6 @@ export const TopContainer = (props) => {
 	}
 
 	const [modalIsOpen, setIsOpen] = React.useState(false);
-
-	// function openModal() {
-	// 	setIsOpen(true);
-	// }
 
 	function closeModal() {
 		setIsOpen(false);

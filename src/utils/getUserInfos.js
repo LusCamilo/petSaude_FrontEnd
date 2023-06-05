@@ -9,16 +9,21 @@ export default async function getUserInfos () {
 	else apiResponse = await getVeterinary(decoded.id)
 
 	const {response} = apiResponse
-
 	return {
 		id: response.user.id,
-		userName: response.user.userName,
+		userName: response.user.userName, 
 		personName: response.user.personName,
+		cep: response.user.Address.cep,
 		profilePhoto: response.user.profilePhoto,
 		profileBannerPhoto: response.user.profileBannerPhoto,
 		email: response.user.email,
 		password: response.user.password,
 		isVet: response.user.isVet,
-		bio: response.user.biography
+		bio: response.user.biography, 
+		appointments: response?.Appointments,
+		formacao: response.user?.formation,
+		dataFormacao: response.user?.formationDate,
+		instituicao: response.user?.institution,
+		carreiraInicio: response.user?.startActingDate,
 	}
 }

@@ -1,30 +1,35 @@
-import React from 'react';
-// import formacao from './img/formacao.png'
-// import formacaoDate from './img/formacaoDate.png'
-// import instituicao from './img/instituicao.png'
-// import carreira from './img/carreira.png'
+import React, { useEffect, useState } from 'react';
 import { FaUniversity} from "react-icons/fa";
 import { FaGraduationCap } from "react-icons/fa";
 import { BsFillBuildingFill } from "react-icons/bs";
 import { IoBagSharp } from "react-icons/io5";
+import getUserInfos from '../../../utils/getUserInfos';
 
 
 export const AcademicInfos = (props) => {
 
+	const [academicHelpInfos, setAcademicHelpInfos] = useState({})
+
 	function formatarData(dataString) {
 		const data = new Date(dataString);
-
 		let dia = data.getUTCDate();
 		let mes = data.getUTCMonth() + 1;
 		const ano = data.getUTCFullYear();
-
-		// Adicionando zeros à esquerda se necessário
 		dia = dia < 10 ? '0' + dia : dia;
 		mes = mes < 10 ? '0' + mes : mes;
-		
 		return dia + '/' + mes + '/' + ano;
-	}
+	  }
 	  
+	  
+	useEffect(() => {
+		async function loadUserInfos() {
+		  const userInfos = await getUserInfos();
+		  setAcademicHelpInfos(userInfos); 
+		}
+		loadUserInfos();
+	  }, []);
+
+
 	const dateFormation = formatarData(props.dataFormacao)
 	const dateInicioCarreira = formatarData(props.carreiraInicio)
 
@@ -37,28 +42,28 @@ export const AcademicInfos = (props) => {
 				<div className='flex items-center justify-between gap-x-4 pl-4 border rounded-lg border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Formação:</h3>
-						<p>{props.formacao}</p>
+						<p>{props.formacao == undefined ? academicHelpInfos.formacao : props.formacao }</p>
 					</span>		
 					<FaUniversity className='text-7xl p-4 border-l border-zinc-300 border-solid' alt='Formation'/>
 				</div>
 				<div className='flex items-center border justify-between rounded-lg gap-x-4 pl-4 border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Data de Formação:</h3>
-						<p>{dateFormation}</p>
+						<p>{dateFormation  == undefined ? formatarData(academicHelpInfos.dataFormacao) : dateFormation}</p>
 					</span>
 					<FaGraduationCap className='text-7xl p-4 border-l border-zinc-300 border-solid'  alt='Formation hat' />	
 				</div>
 				<div className='flex items-center border justify-between gap-x-4 pl-4 rounded-lg border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Instituição:</h3>
-						<p>{props.instituicao}</p>
+						<p>{props.instituicao  == undefined ? academicHelpInfos.instituicao : props.instituicao}</p>
 					</span>
 					<BsFillBuildingFill className='text-7xl p-4 border-l border-zinc-300 border-solid' alt='Institution' />	
 				</div>
 				<div className='flex items-center border justify-between rounded-lg gap-x-4 pl-4 border-zinc-300'>
 					<span className='flex flex-col'>
 						<h3>Inicio de Carreira:</h3>
-						<p>{dateInicioCarreira}</p>
+						<p>{dateInicioCarreira  == undefined ? formatarData(academicHelpInfos.carreiraInicio) : dateInicioCarreira}</p>
 					</span>
 					<IoBagSharp className='text-7xl p-4 border-l border-zinc-300 border-solid' alt='Briefing case' />	
 					
