@@ -17,6 +17,8 @@ export default function submitAppointment(object) {
 		veterinaryId: parseInt(vet, 10),
 		petId: object.petId,
 	}
+
+	console.log(appointmentInfos);
 	sessionStorage.setItem("appointment", JSON.stringify(appointmentInfos))
 
 	return appointmentInfos	
@@ -211,7 +213,7 @@ export const Appointment = () => {
 						</div>
 						<div className='w-full mt-5'>
 							<label htmlFor="descricao" className=" mb-2 flex justify-start pt-5">Descrição:</label>
-							<textarea id="descricao" name="descricao"
+							<textarea id="descricao" name="descricao" onBlur={newDescription}
 								className="flex justify-start p-2 mt-5 border-2 border-black w-full rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
 								rows="4" onChange={newDescription}></textarea>
 						</div>

@@ -95,7 +95,7 @@ class Notifications {
     });
   }
 
-  async ratingAvaliation(onConfirm, onCancel, ) {
+  async ratingAvaliation(onConfirm, onCancel, callback) {
     await this.swal.fire({
       html: <Review onConfirm={onConfirm} onCancel={onCancel} />,
       showCancelButton: true,
@@ -107,7 +107,7 @@ class Notifications {
         cancelButton: 'absolute top-0 right-0 m-2',
         confirmButton: 'drop-shadow-lg w-full mx-9 px-20 p-3 flex justify-center items-center bg-[#9ed1b7] rounded-full text-[#41564B]',
       },
-    })
+    }).then(callback)
   }
 }
 
