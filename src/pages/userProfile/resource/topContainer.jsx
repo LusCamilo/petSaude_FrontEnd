@@ -104,7 +104,8 @@ export const TopContainer = (props) => {
 
 		await Notifications.appointment(handleCancelAppointment, showToastMessage).then(async result => {
 			if (result.isConfirmed) {
-				const addAppointment = await appointmentAdd(JSON.parse(localStorage.getItem("appointment")));
+				const addAppointment = await appointmentAdd(JSON.parse(sessionStorage.getItem("appointment")));
+				console.log(addAppointment);
 				if (addAppointment.response.message === 'Consulta criada com sucesso') {
 					await Notifications.success(addAppointment.response.message)
 				} else if (addAppointment.response === "A data não pode ser anterior a atual" || addAppointment.response === "Já existe uma consulta agendada para o Veterinário nesse horário") {

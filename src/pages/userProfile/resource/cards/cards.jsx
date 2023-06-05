@@ -17,8 +17,8 @@ export const Cards = (props) => {
 				console.log("Paródia");
 				const response = await getRatings(props.idVets);
 				console.log(response);
-				if(response.response.ratings.length == 0)setPetOrRating([])
-				else setPetOrRating(response.response.ratings)
+				// if(response.response.ratings.length == 0)setPetOrRating([])
+				// else setPetOrRating(response.response.ratings)
 			} else if(props.boolVet == false || props.isVet == false) {
 				const {response} = await getUser(decoded.id)
 				console.log(response);
