@@ -524,7 +524,7 @@ export const AppointmentAsk = () => {
                   </div>
                 </div>
               </span>
-              <div className={`flex flex-row ${buttonAceitar == "hidden" ? "justify-start" :  "justify-between"}`}>
+              <div className={`flex flex-row ${buttonAceitar == "hidden" ? "justify-start" :  "justify-between"} mt-10`}>
                 <span className={`flex justify-start`}>
                   <span className={`${buttonAceitar}`}>
                     <button
@@ -536,7 +536,7 @@ export const AppointmentAsk = () => {
                     </button>
                   </span>
                   <button
-                    className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-56 h-14 mt-10 pl-3 pr-3 border rounded-full text-xl font-normal mr-20`}
+                    className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-56 h-14 pl-3 pr-3 border rounded-full text-xl font-normal mr-20`}
                     onClick={handleClickAgain}
                   >
                     Ver menos informações
@@ -553,7 +553,7 @@ export const AppointmentAsk = () => {
 
                   <span className={`${buttonAceitar}`}>
                     <button
-                      className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal`}
+                      className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 border rounded-full text-xl font-normal`}
                       onClick={() => marcarAppointment(pedido.idAppoint)}
                     >
                       Marcar
