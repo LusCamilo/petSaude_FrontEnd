@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import Notifications from "../../../../../utils/Notifications";
-import { Review } from "../reviews/reviews";
 import { ratingAdd } from "../../../../../services/integrations/rating";
 import { toast } from "react-toastify";
 
@@ -27,9 +25,11 @@ export const AppointmentArchivedCard = (props) => {
   async function openRatingAvaliation() {
     await Notifications.ratingAvaliation(showToastMessage, handleClick, async result => {
       if (result.isConfirmed) {
-        const json = JSON.parse(sessionStorage.getItem("ratingUser"))
+        let json = JSON.parse(sessionStorage.getItem("ratingUser"))
         json.veterinaryId = props.vetId
-        await ratingAdd(json).then(response => console.log(response))
+        await ratingAdd(json)
+        .then(() => Notifications.success("Avaliação concluida"))
+        .catch(() => Notifications.error("Erro ao realizar a consulta"))
       }
       sessionStorage.removeItem("ratingUser")
     });

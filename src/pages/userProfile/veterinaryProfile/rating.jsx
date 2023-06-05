@@ -62,8 +62,8 @@ export const Rating = (props) => {
 					</p>
 				</label>
 					<button className={`h-6 ${props.clientId != idPerson || props.idVet == idPerson ? 'flex' : 'hidden'}`}
-						onClick={()=>deleteRateing()}
-					>
+						onClick={()=>deleteRateing()
+					}>
 						<img src="https://static.thenounproject.com/png/1919184-200.png" alt="" className="h-6" />
 					</button>
 			</div>
