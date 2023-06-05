@@ -8,7 +8,7 @@ export const Rating = (props) => {
 
 	const [idPerson, setIdPerson] = useState(0)
 	const [date, setDate] = useState('01/01/1901')
-
+	console.log(props);
 	useEffect(() => {
 		const token = localStorage.getItem('__user_JWT')
 		const decoded = jwt_decode(token)

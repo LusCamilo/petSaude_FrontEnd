@@ -269,22 +269,6 @@ export const AppointmentAsk = () => {
       setShowVet("flex");
       setShowClient("hidden");
     }
-    // setPedido([
-    //     {
-    //       imagemPet: "https://i.pinimg.com/564x/d6/f8/50/d6f850459ccd0a00dd65ca3309cb3d7c.jpg",
-    //       donoImg: "https://www.portaldoanimal.org/wp-content/uploads/2019/02/gatinha-pastor-alemao2-6.jpg",
-    //       dono: "algebra",
-    //       telefone: "0114002-8922",
-    //       nomePet: "Rex",
-    //       sexo: "Masculino",
-    //       especie: "Cachorro",
-    //       tamanho: "Médio",
-    //       idade: "4 anos",
-    //       dataConsulta: "2023-05-10",
-    //       horario: "14:00",
-    //       descricao: "Exame de rotina",
-    //     }
-    //   ]);
   }, []);
 
   return (
@@ -540,15 +524,17 @@ export const AppointmentAsk = () => {
                   </div>
                 </div>
               </span>
-              <div className="flex flex-row justify-between pt-5">
+              <div className={`flex flex-row ${buttonAceitar == "hidden" ? "justify-start" :  "justify-between"} pt-5`}>
                 <span className={`flex justify-start`}>
+                  <span className={`${buttonAceitar}`}>
                   <button
                     className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
-                    onClick={() => recusarAppointment(pedido.idAppoint)}
+                    onClick={() => recusarAppointment(pedido.idAppoint)
+                    }
                   >
                     Recusar
                   </button>
-
+                    </span>
                   <button
                     className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-56 h-14 mt-10 pl-3 pr-3 border rounded-full text-xl font-normal mr-20`}
                     onClick={handleClickAgain}
