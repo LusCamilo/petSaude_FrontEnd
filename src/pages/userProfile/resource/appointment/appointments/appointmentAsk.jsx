@@ -487,7 +487,7 @@ export const AppointmentAsk = () => {
                 </div>
               </div>
               <span className={`${buttonAceitar} justify-center w-full pl-4`}>
-                <div className={`${tutorStatus} flex-col mb-2 text-3xl pt-5`}>
+                <div className={`${tutorStatus} flex-col mb-2 text-3xl pt-5 items-center`}>
                   <h2>Confirmar consulta</h2>
                   <div className="w-full flex justify-center gap-5 flex-col">
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full pt-5">
@@ -510,11 +510,11 @@ export const AppointmentAsk = () => {
                     </label>
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full">
                       Valor
-                      <div className="flex items-center justify-center gap-2">
+                      <div className="flex items-center justify-center gap-2 border-solid border-b border-black">
                         <span className="text-2xl align-bottom ">R$</span>
                         <input
                           type="text"
-                          className="min-w-full text-2xl mr-8 "
+                          className="text-2xl border-none"
                           id="preco"
                           value={preco}
                           onChange={formatarPreco}
