@@ -365,7 +365,7 @@ export const AppointmentAsk = () => {
               </div>
               <div className={`${showClient} flex-col`}>
                 <div
-                  className={`${tutorStatus} flex-row items-center content-center text-center text-5xl gap-4`}
+                  className={`${tutorStatus} flex-row items-center content-center text-center text-4xl gap-4`}
                 >
                   <img
                     className="PetImage"
@@ -376,7 +376,7 @@ export const AppointmentAsk = () => {
                     {pedido.dono}
                   </h2>
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between pr-20 ">
+                <div className="flex flex-col sm:flex-row justify-between pt-3 mb-8">
                   <div
                     className={`${tutorStatus} flex-row justify-start w-full`}
                   >
@@ -387,7 +387,7 @@ export const AppointmentAsk = () => {
                           type="text"
                           disabled
                           placeholder={pedido.dono}
-                          className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                          className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                         />
                       </label>
                     </div>
@@ -399,7 +399,7 @@ export const AppointmentAsk = () => {
                           type="text"
                           disabled
                           placeholder={pedido.telefone}
-                          className="bg-transparent placeholder:text-gray-400  placeholder:text-3xl border-none text-3xl "
+                          className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                         />
                       </label>
                     </div>
@@ -489,8 +489,8 @@ export const AppointmentAsk = () => {
                   </div>
                 </div>
               </div>
-              <span className={`${buttonAceitar} justify-center w-full pl-4`}>
-                <div className={`${tutorStatus} flex-col mb-2 text-3xl pt-5`}>
+              <span className={`${buttonAceitar} justify-center w-full`}>
+                <div className={`${tutorStatus} flex-col mb-2 text-3xl mt-8 items-center`}>
                   <h2>Confirmar consulta</h2>
                   <div className="w-full flex justify-center gap-5 flex-col">
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full pt-5">
@@ -513,11 +513,11 @@ export const AppointmentAsk = () => {
                     </label>
                     <label className="flex flex-col justify-center text-xl text-[#A9A9A9] w-full">
                       Valor
-                      <div className="flex items-center justify-center gap-2">
+                      <div className="flex items-center justify-center gap-2 border-solid border-b border-black">
                         <span className="text-2xl align-bottom ">R$</span>
                         <input
                           type="text"
-                          className="min-w-full text-2xl mr-8 "
+                          className="text-2xl border-none"
                           id="preco"
                           value={preco}
                           onChange={formatarPreco}
@@ -527,19 +527,19 @@ export const AppointmentAsk = () => {
                   </div>
                 </div>
               </span>
-              <div className={`flex flex-row ${buttonAceitar == "hidden" ? "justify-start" :  "justify-between"} pt-5`}>
+              <div className={`flex flex-row ${buttonAceitar == "hidden" ? "justify-start" :  "justify-between"} mt-10`}>
                 <span className={`flex justify-start`}>
                   <span className={`${buttonAceitar}`}>
+                    <button
+                      className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
+                      onClick={() => recusarAppointment(pedido.idAppoint)
+                      }
+                    >
+                      Recusar
+                    </button>
+                  </span>
                   <button
-                    className={`bg-[#F9DEDC] ${buttonStatus} justify-center items-center content-center text-[#410E0B] text-center first-letter w-40 md:w-56 h-14 border rounded-full text-xl font-normal mr-20`}
-                    onClick={() => recusarAppointment(pedido.idAppoint)
-                    }
-                  >
-                    Recusar
-                  </button>
-                    </span>
-                  <button
-                    className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-56 h-14 mt-10 pl-3 pr-3 border rounded-full text-xl font-normal mr-20`}
+                    className={`bg-[#F9DEDC] ${tutorStatus} justify-center items-center content-center text-[#410E0B] text-center w-40 md:w-56 h-14 pl-3 pr-3 border rounded-full text-xl font-normal mr-20`}
                     onClick={handleClickAgain}
                   >
                     Ver menos informações
@@ -556,7 +556,7 @@ export const AppointmentAsk = () => {
 
                   <span className={`${buttonAceitar}`}>
                     <button
-                      className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 mt-10 border rounded-full text-xl font-normal mr-20`}
+                      className={`bg-[#9ED1B7] ${tutorStatus} justify-center items-center content-center text-[#41564B] text-center w-40 md:w-56 h-14 border rounded-full text-xl font-normal`}
                       onClick={() => marcarAppointment(pedido.idAppoint)}
                     >
                       Marcar

@@ -236,17 +236,17 @@ export const AppointmentArchived = (props) => {
             <div>{quant.Finalizado}</div>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center">
           <div className="flex flex-row gap-2">
-            <h2>Consultas Canceladas</h2>{" "}
             <div className="w-10 h-10 rounded-md bg-[#F1EAC6]"></div>
+            <h2>Consultas Canceladas</h2>{" "}
           </div>
           <div className="flex flex-row gap-2">
             <div className="text-[#A9A9A9] text-base">Quantidade:</div>{" "}
             <div>{quant.Cancelado}</div>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center">
           <div className="flex flex-row gap-2">
             <h2>Consultas Recusadas</h2>{" "}
             <div className="w-10 h-10 rounded-md bg-[#F9DEDC]"></div>
@@ -258,6 +258,7 @@ export const AppointmentArchived = (props) => {
         </div>
       </div>
       <div className="w-full flex flex-col gap-3">
+      {/* 09738A66 */}
         {pedidos.map((pedido) => {
           const cor =
             pedido.estado == "CONCLUDED" ? "bg-[#09738A66]" : 
