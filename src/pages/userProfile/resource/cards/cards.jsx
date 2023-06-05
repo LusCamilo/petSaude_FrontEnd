@@ -12,23 +12,21 @@ export const Cards = (props) => {
 		async function fetchData() {
 			const token = localStorage.getItem('__user_JWT')
 			const decoded = jwt_decode(token);
-			console.log(props);
 			if (props.boolVet == true || props.isVet == true) {
-				console.log("Paródia");
 				const response = await getRatings(props.idVets);
-				console.log(response);
 				if(response.response.ratings.length == 0)setPetOrRating([])
 				else setPetOrRating(response.response.ratings)
 			} else if(props.boolVet == false || props.isVet == false) {
 				const {response} = await getUser(decoded.id)
-				console.log(response);
 				setPetOrRating(response.user.Pet)
 			} else {
 				setPetOrRating([])
 			}
 		}
 		fetchData();
-	}, [props.isVet])
+	}, [])
+
+	console.log(props);
  
 	const carrossel = useRef(null)
 
@@ -45,7 +43,6 @@ export const Cards = (props) => {
 
 
 	if (props.isVet == true || props.boolVet == true) {
-		console.log("True");
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
 				<h2 className='text-3xl pb-2'>Avaliações</h2>
@@ -53,8 +50,7 @@ export const Cards = (props) => {
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' 
 					ref={carrossel}>
-						{petOrRating.map((item) => {
-							console.log(item);
+						{/* {petOrRating.map((item) => {
 
 							return <Rating 
 								key={item.id} 
@@ -67,7 +63,7 @@ export const Cards = (props) => {
 								text={item.description} 
 								whenCreated={item.createdAt}
 							/>
-						})}
+						})} */}
 						
 					</div>
 					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
@@ -75,16 +71,15 @@ export const Cards = (props) => {
 			</div>
 		);
 	} else {
-		console.log("Não veterinário");
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
 				<h2 className='text-3xl pb-2'>{localStorage.getItem("__user_isVet") == 'true' ? 'Avaliações' : 'Pets'}</h2>
 				<div className='flex items-center pl-14 md:pl-0 justify-between'>
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
-						{petOrRating.map((item) => {
+						{/* {petOrRating.map((item) => {
 							return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
-						})}
+						})} */}
 						
 					</div>
 					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>

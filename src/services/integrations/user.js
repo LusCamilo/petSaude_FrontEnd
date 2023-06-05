@@ -63,7 +63,7 @@ export async function getUser(id) {
 }
 
 export async function getVeterinary(id) {
-	const url = `${BASE_URL}id/veterinary?userID=${id}`
+	const url = `${BASE_URL}id/veterinary?userID=${id}`;
 	const response = await fetch(url, {
 		method: "GET",
 		headers: {
@@ -72,6 +72,7 @@ export async function getVeterinary(id) {
 		}
 	})
 	return await response.json()
+
 }
 
 export async function deleteClient(token) {

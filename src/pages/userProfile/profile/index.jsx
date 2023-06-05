@@ -8,17 +8,20 @@ import getUserInfos from "../../../utils/getUserInfos";
 
 export const Profile = () => {
   const [isVet, SetIsVet] = useState(false);
+  const [cep, SetCEP] = useState("");
   const [userInfos, setUserInfos] = useState({});
 
   useEffect(() => {
-    async function loadUserInfos() {
-      const userInfos = await getUserInfos();
-      setUserInfos(userInfos); 
-      console.log(userInfos.isVet)
-      SetIsVet(userInfos.isVet);
-    }
     loadUserInfos();
   }, []);
+
+  async function loadUserInfos() {
+    const userInfos = await getUserInfos();
+    setUserInfos(userInfos); 
+    SetIsVet(userInfos.isVet);
+    SetCEP(userInfos.cep);
+    localStorage.setItem("__basic_Infos", `${userInfos.isVet}, ${userInfos.id}`)
+  }
 
   return (
     <div>
@@ -31,18 +34,16 @@ export const Profile = () => {
           biografia={userInfos.bio}
           isVet={userInfos.isVet}
           myProfile={true}
-        />
-        <Cards personImage={userInfos.profilePhoto} boolVet={isVet}/>
+        /> 
+        <Cards personImage={userInfos.profilePhoto} boolVet={isVet} idVets={userInfos.id}/>
         <div className="flex flex-col md:flex-row justify-between gap-[10%] px-10 md:px-44 mb-16">
-          {isVet ? (
-            <AcademicInfos
-              formacao={userInfos.formation}
-              dataFormacao={userInfos.formationDate}
-              instituicao={userInfos.institution}
-              carreiraInicio={userInfos.startActingDate}
-            />
-          ) : null}
-          <Maps />
+          <AcademicInfos
+            formacao={userInfos.formacao}
+            dataFormacao={userInfos.dataFormacao}
+            instituicao={userInfos.instituicao}
+            carreiraInicio={userInfos.carreiraInicio}
+          />
+          <Maps cep={cep}/>
         </div>
       </div>
     </div>

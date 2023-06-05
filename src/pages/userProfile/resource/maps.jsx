@@ -18,7 +18,8 @@ async function getCoordinatesFromCEP(cep) {
   }
 }
 
-export const Maps = () => {
+export const 
+Maps = (props) => {
   const containerStyle = {
     width: '100%',
     height: '400px',
@@ -29,8 +30,15 @@ export const Maps = () => {
   useEffect(() => {
     const getInfoAndCoordinates = async () => {
       try {
-        const response = await getVeterinary(localStorage.getItem('__Vet_correctId'));
-        const cep = response?.response?.user?.Address?.cep;
+         let cep
+        if(localStorage.getItem('__Vet_correctId') != null) {
+          let response = await getVeterinary(localStorage.getItem('__Vet_correctId'))
+          cep = response?.response?.user?.Address?.cep;
+        }
+        else {
+          cep = props.cep
+        }
+        if(cep == undefined || cep == null || !cep) cep = localStorage.getItem("__cep")
         if (cep) {
           const coordinates = await getCoordinatesFromCEP(cep);
           if (coordinates) {
@@ -38,10 +46,10 @@ export const Maps = () => {
 				{ lat: coordinates.latitude, lng: coordinates.longitude }
 			);
           } else {
-            window.alert('CEP não encontrado.');
+            window.alert('CEP não encontrado. Por causa das coordenadas');
           }
         } else {
-          window.alert('CEP não encontrado.');
+          window.alert('CEP não encontrado. Por cause do número');
         }
       } catch (error) {
         console.error('Erro ao obter informações e coordenadas:', error);
