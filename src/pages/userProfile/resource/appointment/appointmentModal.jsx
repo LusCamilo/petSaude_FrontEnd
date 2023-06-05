@@ -12,9 +12,6 @@ const customStyles = {
 	},
 };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-//Modal.setAppElement('#TopContainer');
-
 export const AppointmentModal = () => {
 	let subtitle;
 	const [modalIsOpen, setIsOpen] = React.useState(false);

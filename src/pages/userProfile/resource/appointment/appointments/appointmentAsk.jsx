@@ -63,13 +63,13 @@ export const AppointmentAsk = () => {
               );
 
               let idadeString;
-
               if (
-                typeof idadeEmAnos === "number" &&
+                typeof idadeEmAnos == "number" &&
                 Number.isInteger(idadeEmAnos)
               ) {
-                let anosIdade = idadeEmAnos.toString();
+                let anosIdade = idadeEmAnos.toString() + " anos";
                 if (anosIdade == -1) idadeString = 0 + " anos";
+                idadeString = anosIdade
               } else {
                 const idadeEmMeses = idadeEmAnos * 12;
                 idadeString = idadeEmMeses.toString() + " meses";
@@ -85,7 +85,7 @@ export const AppointmentAsk = () => {
                 sexo: arrayPet.petGender,
                 especie: arrayPet.petSpecie.name,
                 tamanho: arrayPet.petSize,
-                idade: idadeString ? idadeString : "Não possui idade",
+                idade: idadeString,
                 dataConsulta: consultaDataFormatada,
                 horario: horario,
                 descricao: app.description,
@@ -93,8 +93,6 @@ export const AppointmentAsk = () => {
                 vetPhone: vet.cellphoneNumber,
                 vetPhoto: vet.profilePhoto,
               };
-
-              console.log(app.description);
 
               return finalArray;
             })
@@ -481,9 +479,8 @@ export const AppointmentAsk = () => {
                   <div>
                     <label className="flex flex-col text-2xl text-[#A9A9A9]">
                       Descrição
-                      <p className="min-w-full bg-transparent placeholder:text-gray-400 bg-yellow-900 placeholder:text-3xl border-none text-2xl ">
+                      <p className="min-w-full bg-transparent placeholder:text-gray-400 placeholder:text-3xl border-none text-2xl ">
                         {pedido.descricao}
-                        {console.log(pedido.descricao)}
                       </p>
                     </label>
                   </div>
