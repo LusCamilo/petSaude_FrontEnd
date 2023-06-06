@@ -21,7 +21,7 @@ export const InfosProfile = (props) => {
 
 	useEffect(() => {
 		setName(props.userName)
-		props.onNameChange(props.userName);
+		props.onNameChange(props.userName); 
 		props.onPasswordChange(props.password);
 		props.onEmailChange(props.email);
 	}, [props.userName, props.profilePhoto])

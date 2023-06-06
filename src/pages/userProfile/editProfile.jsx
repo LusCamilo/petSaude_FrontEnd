@@ -55,14 +55,16 @@ export const EditProfile = () => {
 		}
 		verifyUserName()
 		fetchData()
-	}, [infos.email, infos.personName])
+	}, [])
 
 	function handleChildNameChange(value) {
 		setName(value)
 	}
 
-	function handleChildEmailChange(value) {
-		setEmail(value)
+	 function handleChildEmailChange(value) {
+		console.log(value);
+		setEmail(value);
+		console.log(email);
 	}
 
 	function handleChildPasswordChange(value) {
@@ -107,13 +109,14 @@ export const EditProfile = () => {
 
 	async function editInformations() {
 		let profileInfos = {
-			userName: name,
-			email: email,
-			password: `${password}`,
-			profileBannerPhoto: profileBannerPhoto,
-			profilePhoto: profilePhoto
-		}
-
+		userName: name ? name : infos.name,
+		email: email ? email : infos.email,
+		password: password ? `${password}` : infos.password,
+		profileBannerPhoto: profileBannerPhoto ? profileBannerPhoto : infos.profileBannerPhoto,
+		profilePhoto: profilePhoto ? profilePhoto : infos.profilePhoto
+	}
+		
+		console.log(profileInfos);
 		if (profileInfos.email.includes("@")) {
 			if (localStorage.getItem('__user_isVet') === 'true'){
 			updateProfileInfosVeterinary(profileInfos).then(async (response) => {

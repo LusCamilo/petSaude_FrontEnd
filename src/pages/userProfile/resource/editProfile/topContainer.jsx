@@ -14,19 +14,13 @@ export const TopContainer = (props) => {
 	const handleFileInputChange = (event) => {
 		const file = event.target.files[0]
 
-		console.log("Mudado");
-
 		if (file) {
-			console.log("Deu");
 			props.onProfileBannerPhotoChange(file);
 			setSelectedFile(URL.createObjectURL(file));
 		} else {
-			console.log("não deu");
 			props.onProfileBannerPhotoChange(props.profileBannerPhoto);
 			setSelectedFile(props.profileBannerPhoto);
 		}
-
-		console.log("Sim");
 	}
 
 	return (

@@ -86,7 +86,7 @@ export const AppointmentPeding = (props) => {
                 sexo: arrayPet.petGender,
                 especie: arrayPet.petSpecie.name,
                 tamanho: arrayPet.petSize,
-                idade: idadeString ? idadeString : "Não possui idade",
+                idade: idadeString ? idadeString : "Meses",
                 dataConsulta: consultaDataFormatada,
                 horario: horario,
                 descricao: app.description,

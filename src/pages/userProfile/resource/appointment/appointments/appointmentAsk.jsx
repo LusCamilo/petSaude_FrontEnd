@@ -11,7 +11,7 @@ import {
   aceitadoAppointments,
 } from "../../../../../services/integrations/appointment";
 import "react-toastify/dist/ReactToastify.css";
-import Notifications from "../../../../../utils/Notifications";
+import Notifications from "../../../../../utils/Notifications"; 
 
 export const AppointmentAsk = () => {
   const [pedidos, setPedido] = useState([]);
