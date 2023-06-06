@@ -10,8 +10,8 @@ export const CardPets = (props) => {
 		<div id={props.id} className='w-80 h-64 border border-solid border-[#CAC4D0] rounded-2xl flex flex-none flex-col'>
 			<div className='h-1/4 flex flex-row justify-between items-center px-5'>
 				<label className='flex items-center'>
-					<img src={props.personImage} alt="Imagem ou icone do perfil" className='w-10 h-10 rounded-full' />
-					<p className='bg-transparent border-none font-sans font-medium text-base w-full px-5 '>
+					<img src={props.personImage} alt="Imagem ou icone do perfil" className='w-10 h-10 rounded-full mr-5' />
+					<p className='bg-transparent border-none font-sans font-medium text-base w-fit'>
 						{props.animalName}
 					</p>
 				</label>
