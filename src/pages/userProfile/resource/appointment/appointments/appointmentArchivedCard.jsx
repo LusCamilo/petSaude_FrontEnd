@@ -27,17 +27,23 @@ export const AppointmentArchivedCard = (props) => {
       if (result.isConfirmed) {
         let json = JSON.parse(sessionStorage.getItem("ratingUser"))
         json.veterinaryId = props.vetId
-        await ratingAdd(json)
-        .then(() => Notifications.success("Avaliação concluida"))
-        .catch(() => Notifications.error("Erro ao realizar a consulta"))
+        console.log(json.veterinaryId);      
+        await ratingAdd(json).then((response) => {
+          console.log(response);
+          
+          // Notifications.success("Avaliação concluida")
+        })
+        .catch(() => {
+          Notifications.error("Erro ao realizar a consulta")
+        })
       }
       sessionStorage.removeItem("ratingUser")
     });
   }
 
-  
 
-	function handleClick() {
+
+  function handleClick() {
     if (ratingModal == "hidden") {
       setRatingModal("flex")
       console.log(ratingModal);
@@ -46,7 +52,7 @@ export const AppointmentArchivedCard = (props) => {
       console.log(ratingModal);
     }
 
-	}
+  }
 
   return (
     <div
@@ -173,13 +179,15 @@ export const AppointmentArchivedCard = (props) => {
         </div>
       </div>
       <div className={`flex`}>
-      {/* ${props.isVet == "flex" && props.status == "Finalizado" ? "flex" : "hidden"} */}
-        <button
-          class={`bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded mt-2 ${props.isVet == "flex" && props.estado == "bg-[#09738A]" ? "hidden" : "flex"}`}
-          onClick={openRatingAvaliation}
-        >
-          Avaliar consulta
+        {/* ${props.isVet == "flex" && props.status == "Finalizado" ? "flex" : "hidden"} */}
+        {localStorage.getItem("__user_isVet") == "false" ?
+          <button
+            class={`bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded mt-2 ${props.isVet == "flex" && props.estado == "bg-[#09738A]" ? "hidden" : "flex"}`}
+            onClick={openRatingAvaliation}
+          >
+            Avaliar consulta
         </button>
+          : <p></p>}
       </div>
     </div>
   );

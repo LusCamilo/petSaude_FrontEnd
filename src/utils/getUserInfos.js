@@ -9,6 +9,7 @@ export default async function getUserInfos () {
 	else apiResponse = await getVeterinary(decoded.id)
 
 	const {response} = apiResponse
+	
 	return {
 		id: response.user.id,
 		userName: response.user.userName, 

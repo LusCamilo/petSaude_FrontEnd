@@ -118,6 +118,8 @@ export const EditProfile = () => {
 			if (localStorage.getItem('__user_isVet') === 'true'){
 			updateProfileInfosVeterinary(profileInfos).then(async (response) => {
 				if (response && typeof response === 'object') {
+					console.log(response);
+					
 					if (response.hasOwnProperty('message')) await Notifications.error('E-mail já está em uso')
 				} else {
 					await Notifications.success('Informações atualizadas com sucesso')

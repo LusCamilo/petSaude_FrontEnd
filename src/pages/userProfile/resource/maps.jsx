@@ -18,62 +18,61 @@ async function getCoordinatesFromCEP(cep) {
   }
 }
 
-export const 
-Maps = (props) => {
-  const containerStyle = {
-    width: '100%',
-    height: '400px',
-  };
-
-  const [center, setCenter] = useState({ lat: 0, lng: 0 });
-
-  useEffect(() => {
-    const getInfoAndCoordinates = async () => {
-      try {
-         let cep
-        if(localStorage.getItem('__Vet_correctId') != null) {
-          let response = await getVeterinary(localStorage.getItem('__Vet_correctId'))
-          cep = response?.response?.user?.Address?.cep;
-        }
-        else {
-          cep = props.cep
-        }
-        if(cep == undefined || cep == null || !cep) cep = localStorage.getItem("__cep")
-        if (cep) {
-          const coordinates = await getCoordinatesFromCEP(cep);
-          if (coordinates) {
-            setCenter(
-				{ lat: coordinates.latitude, lng: coordinates.longitude }
-			);
-          } else {
-            window.alert('Localização não encontrada.');
-          }
-        } else {
-          window.alert('CEP não encontrado.');
-        }
-      } catch (error) {
-        console.error('Erro ao obter informações e coordenadas:', error);
-      }
+export const Maps = (props) => {
+    const containerStyle = {
+      width: '100%',
+      height: '400px',
     };
-    getInfoAndCoordinates();
-  }, []);
 
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyBzRylN1FkbAGucyALKimZtXNgB-XRw_UE',
-  });
+    const [center, setCenter] = useState({ lat: 0, lng: 0 });
 
-  return isLoaded ? (
-    <div className="flex flex-col mt-4 w-full">
-      <h2 className="pt-30 text-3xl">Localização</h2>
-      <GoogleMap
-        mapContainerClassName="drop-shadow-xl rounded-lg mt-1"
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={19}
-      >
-        <Marker position={center} />
-      </GoogleMap>
-    </div>
-  ) : <></>;
-};
+    useEffect(() => {
+      const getInfoAndCoordinates = async () => {
+        try {
+          let cep
+          if (localStorage.getItem('__Vet_correctId') != null) {
+            let response = await getVeterinary(localStorage.getItem('__Vet_correctId'))
+            cep = response?.response?.user?.Address?.cep;
+          }
+          else {
+            cep = props.cep
+          }
+          if (cep == undefined || cep == null || !cep) cep = localStorage.getItem("__cep")
+          if (cep) {
+            const coordinates = await getCoordinatesFromCEP(cep);
+            if (coordinates) {
+              setCenter(
+                { lat: coordinates.latitude, lng: coordinates.longitude }
+              );
+            } else {
+              window.alert('Localização não encontrada.');
+            }
+          } else {
+            window.alert('CEP não encontrado.');
+          }
+        } catch (error) {
+          console.error('Erro ao obter informações e coordenadas:', error);
+        }
+      };
+      getInfoAndCoordinates();
+    }, []);
+
+    const { isLoaded } = useJsApiLoader({
+      id: 'google-map-script',
+      googleMapsApiKey: 'AIzaSyBzRylN1FkbAGucyALKimZtXNgB-XRw_UE',
+    });
+
+    return isLoaded ? (
+      <div className="flex flex-col mt-4 w-full">
+        <h2 className="pt-30 text-3xl">Localização</h2>
+        <GoogleMap
+          mapContainerClassName="drop-shadow-xl rounded-lg mt-1"
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={19}
+        >
+          <Marker position={center} />
+        </GoogleMap>
+      </div>
+    ) : <></>;
+  };

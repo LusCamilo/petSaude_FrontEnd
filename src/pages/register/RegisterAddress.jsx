@@ -1,14 +1,14 @@
-import React, {useState} from "react";
-import {AuthHeader} from "../../components/headers/AuthHeader";
-import {useForm} from "react-hook-form";
-import {registerUser} from "../../services/integrations/user";
-import {Link} from "react-router-dom";
+import React, { useState } from "react";
+import { AuthHeader } from "../../components/headers/AuthHeader";
+import { useForm } from "react-hook-form";
+import { registerUser } from "../../services/integrations/user";
+import { Link } from "react-router-dom";
 import backgroundImage from "../../assets/image/address-image.png";
 import "react-toastify/dist/ReactToastify.css";
 import Notifications from "../../utils/Notifications";
 
 export function RegisterAddress() {
-	const {register, handleSubmit, formState: errors, setValue} = useForm();
+	const { register, handleSubmit, formState: errors, setValue } = useForm();
 	const [city, setCity] = useState("");
 	const [neight, setNeight] = useState("");
 	const [street, setStreet] = useState("");
@@ -71,12 +71,16 @@ export function RegisterAddress() {
 	};
 
 	const getAddressFromZipCode = async (event) => {
-		await fetch(`https://viacep.com.br/ws/${event}/json/`)
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.erro) Notifications.error('CEP inválido ou não encontrado')
-				else setFormValues(data)
-			})
+		if (event == null || event == "")
+			Notifications.error("Insira um CEP para continuar")
+		else {
+			await fetch(`https://viacep.com.br/ws/${event}/json/`)
+				.then((response) => response.json())
+				.then((data) => {
+					if (data.erro) Notifications.error('CEP inválido ou não encontrado')
+					else setFormValues(data)
+				})
+		}
 	};
 
 	const setFormValues = (data) => {
@@ -94,7 +98,7 @@ export function RegisterAddress() {
 		<section
 			className="flex flex-row-reverse w-screen h-screen bg-gradient-to-br from-[#092b5a] to-[#9ed1b7] opacity-90 overflow-x-hidden">
 			<div className="absolute w-full h-full overflow-hidden flex items-center justify-start">
-				<img src={backgroundImage} alt="" className="w-2/4 h-fit"/>
+				<img src={backgroundImage} alt="" className="w-2/4 h-fit" />
 			</div>
 			<div
 				className="lg:w-1/2 md:w-full w-full min-h-screen h-fit bg-white flex flex-col md:justify-center justify-between items-center lg:gap-6 md:gap-4 sm:gap-2 z-10 p-4">
@@ -120,7 +124,7 @@ export function RegisterAddress() {
 							}
 							type="text"
 							name="zipCode"
-							{...register("zipCode", {required: true})}
+							{...register("zipCode", { required: true })}
 							onChange={handleCepChange}
 						/>
 					</label>
@@ -189,7 +193,7 @@ export function RegisterAddress() {
 								}
 								type="text"
 								name="number"
-								{...register("number", {required: true})}
+								{...register("number", { required: true })}
 							/>
 						</label>
 						<label className="w-full flex flex-col md:text-xl text-lg">
@@ -202,7 +206,7 @@ export function RegisterAddress() {
 								}
 								type="text"
 								name="complement"
-								{...register("complement", {required: false})}
+								{...register("complement", { required: false })}
 							/>
 						</label>
 					</div>

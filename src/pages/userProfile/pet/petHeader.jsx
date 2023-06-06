@@ -26,6 +26,7 @@ export const PetHeader = () => {
 				}
 				else {
 					setLinkTo('/profile')
+					localStorage.setItem("__Vet_correctId", localStorage.getItem("__user_id"))
 					localStorage.setItem("__Type_User", "Client")
 				}
 			}

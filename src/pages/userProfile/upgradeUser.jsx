@@ -123,8 +123,16 @@ export const UpgradeUser = () => {
 	async function handleDeleteUser() {
 		await Notifications.warningConfirmOrCancel('Tem certeza que deseja excluir o seu perfil?', 'Essa ação é irreversível', async (result) => {
 			if (result.isConfirmed) {
-				document.location.href = '/login'
 				await deleteClient(localStorage.getItem('__user_JWT'))
+				document.location.href = '/login'
+			}
+		})
+	}
+	async function handleVeterinary() {
+		await Notifications.warningConfirmOrCancel('Tem certeza que deseja excluir o seu perfil?', 'Essa ação é irreversível', async (result) => {
+			if (result.isConfirmed) {
+				await deleteVeterinary(localStorage.getItem('__user_id'), localStorage.getItem('__user_JWT'))
+				// document.location.href = '/login'
 			}
 		})
 	}
@@ -148,10 +156,7 @@ export const UpgradeUser = () => {
 						<div className='w-full sm:flex justify-end'>
 							<button
 								className='p-3 flex flex-row content-center items-center gap-3 text-[#410E0B] bg-[#F9DEDC] text-3xl h-16 rounded-xl w-64'
-								onClick={() => {
-									deleteVeterinary(localStorage.getItem('__user_id'), localStorage.getItem('__user_JWT'))
-									document.location.href = '/login'
-								}}>
+								onClick={handleVeterinary}>
 								<IoMdTrash className='text-7xl'/>
 								Excluir perfil
 							</button>

@@ -70,6 +70,8 @@ export const Cards = (props) => {
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' 
 					ref={carrossel}>
 						{petOrRating.map((item) => {
+							console.log(item);
+							
 							return <Rating 
 								key={item.id} 
 								id={item.id} 

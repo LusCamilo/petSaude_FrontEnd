@@ -9,7 +9,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {styled} from "@stitches/react";
 import "./css/pet.css";
 import {getSpecialtiesPet} from "../../../services/integrations/specialtiesPet";
-import {getPet, petUpdate} from "../../../services/integrations/pet";
+import {getPet, petUpdate, petDelete} from "../../../services/integrations/pet";
 import {AiOutlineCheck} from 'react-icons/ai';
 import Notifications from "../../../utils/Notifications";
 import { RiPencilFill } from "react-icons/ri";
@@ -424,7 +424,12 @@ export const PetConfig = () => {
 				<div className="w-full flex justify-between mb-30">
 					<IoMdTrash
 						className='text-5xl h-20 w-20 self-start rounded-2xl text-red-900 border-solid border-red-900 border-2 hover:bg-[#F9DEDC] mt-5 shadow-md mb-7 p-5 cursor-pointer transition-all'
-						onClick={_ => Notifications.confirmOrCancel('Deseja apagar o pet?', async result => Notifications.success('teste'))}/>
+						onClick={_ => Notifications.confirmOrCancel('Deseja apagar o pet?', async result => {
+							if (result.isConfirmed) {
+								await petDelete(localStorage.getItem('__pet_id'))
+								Notifications.success('Pet Excluido com sucesso').then(window.location.href="/profile/configuration")
+							}
+						})}/>
 					<AiOutlineCheck
 						className='text-5xl h-20 w-20 self-end rounded-2xl text-green-900 hover:text-green-600 border-solid border-green-900 hover:border-green-600 hover:scale-110 border-2 bg-green-200 mt-5 shadow-md mb-7 p-5 cursor-pointer transition-all'
 						onClick={handleSaveChangesButton}
