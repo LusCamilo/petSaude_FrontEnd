@@ -130,22 +130,26 @@ export const RegisterVeterinary = () => {
 			startActingDate: data.startActingDate
 		}
 
-		console.log(allInfos);
-
 		if (validateForm(data)) {
-			const { response } = await registerVet(allInfos)
+			const { response } = await registerVet(allInfos);
+
 			if (response.id) {
+
 				const specialities = checkedBoxesEspecialidades.map(item => {
-					return { ...item, veterinaryId: response.id }
-				})
+					return { ...item, veterinaryId: response.id };
+				});
 				const attendedAnimals = checkedBoxes.map(item => {
-					return { ...item, veterinaryId: response.id }
-				})
+					return { ...item, veterinaryId: response.id };
+				});
 				console.log(specialities);
 				console.log(attendedAnimals);
-				await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: attendedAnimals }))
-					.then(async (response) => { await updateSpecialities(JSON.stringify({ specialties: specialities })); console.log(response.json()) })
-					.then(await Notifications.success('Veterinário criado com sucesso'), setTimeout(function () { document.location.href = '/login' }, 3500))
+
+				await updateSpecialitiesPet(JSON.stringify({ AnimalTypesVetInfos: attendedAnimals }));
+				await updateSpecialities(JSON.stringify({ specialties: specialities }));
+
+				await Notifications.success('Veterinário criado com sucesso');
+				setTimeout(function () { document.location.href = '/login'; }, 3500);
+
 			} else {
 				if (response.error)
 					if (response.error.toLowerCase().includes('crmv')) await Notifications.error('O CRMV já está em uso')
