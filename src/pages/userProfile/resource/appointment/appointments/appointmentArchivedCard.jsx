@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Notifications from "../../../../../utils/Notifications";
 import { ratingAdd } from "../../../../../services/integrations/rating";
 import { toast } from "react-toastify";
+import { set } from "react-hook-form";
+import jwt_decode from "jwt-decode";
 
 const showToastMessage = (message) => {
   toast(`${message}`, {
@@ -20,7 +22,8 @@ const showToastMessage = (message) => {
 export const AppointmentArchivedCard = (props) => {
 
   const [ratingModal, setRatingModal] = useState("hidden");
-  const [idVet, setIdVet] = useState()
+  const [vetView, setVetView] = useState("")
+  const [clientView, setClientView] = useState("")
 
   async function openRatingAvaliation() {
     await Notifications.ratingAvaliation(showToastMessage, handleClick, async result => {
@@ -35,6 +38,17 @@ export const AppointmentArchivedCard = (props) => {
     });
   }
 
+  useEffect(() => {
+    const token = localStorage.getItem('__user_JWT')
+    const decoded = jwt_decode(token);
+    if(decoded.isVet == true){
+      setVetView("flex")
+      setClientView("hidden")
+    } else {
+      setVetView("hidden")
+      setClientView("flex")
+    }
+	}, [])
   
 
 	function handleClick() {

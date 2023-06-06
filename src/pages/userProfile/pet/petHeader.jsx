@@ -17,7 +17,7 @@ export const PetHeader = () => {
 			const userInfos = await getUserInfos()
 			if (userInfos) {
 				setUserName(userInfos.userName)
-				if (userInfos.profilePhoto !== '') setUserPhoto(userInfos.profilePhoto)
+				if (userInfos.profilePhoto != '') setUserPhoto(userInfos.profilePhoto)
 				else setUserPhoto('https://www.svgrepo.com/show/335455/profile-default.svg')
 				if (userInfos.userName == "") 
 				{	
