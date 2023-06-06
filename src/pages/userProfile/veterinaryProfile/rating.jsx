@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import jwt_decode from "jwt-decode";
 import { deleteRating } from "../../../services/integrations/rating";
 import Notifications from "../../../utils/Notifications";
+import { BiTrash } from "react-icons/bi";
+import Ellipsis from 'react-lines-ellipsis';
 //import Dropdownfrom from "components/dropdown";
 
 export const Rating = (props) => {
@@ -46,32 +48,41 @@ export const Rating = (props) => {
 	  
 	  function adicionarUmDia(data) {
 		let novaData = new Date(data);
-		novaData.setDate(novaData.getDate() + 1);
+		novaData.setDate(novaData.getDate());
 		return novaData;
 	  }
 
 	  console.log(props);
 
 	return (
-		<div id={props.id} className='w-80 h-48 border border-solid border-[#CAC4D0] rounded-2xl flex flex-none flex-col'>
-			<div className='h-1/4 flex flex-row justify-between items-center px-5'>
+		<div id={props.id} className='w-80 h-auto border border-solid border-[#CAC4D0] rounded-2xl flex flex-none flex-col justify-between gap-2 p-4'>
+			<div className='h-fit flex flex-row justify-between items-center rounded-t-2xl'>
 				<label className='flex items-center'>
-					<img src={props.personImage} className='w-10 h-10 rounded-full text-xs break-normal' />
-					<p className='bg-transparent border-none font-sans font-medium text-base w-full px-5 bold'>
+					<img src={props.personImage} alt="Imagem ou icone do perfil" className='w-10 h-10 rounded-full mr-5' />
+					<p className='bg-transparent border-none font-sans font-medium text-base w-fit'>
 					 	{props.userName}
 					</p>
 				</label>
-					<button className={`h-6 ${props.clientId != idPerson || props.idVet == idPerson ? 'flex' : 'hidden'}`}
-						onClick={()=>deleteRateing()
-					}>
-						<img src="https://static.thenounproject.com/png/1919184-200.png" alt="" className="h-6" />
-					</button>
+				<button className={`h-6 ${props.clientId != idPerson || props.idVet == idPerson ? 'flex' : 'hidden'}`}
+					onClick={()=>deleteRateing()
+				}>
+					<BiTrash className="text-2xl"/>
+				</button>
 			</div>
-			<p className="ml-4"> Avaliação {props.score}/5</p>
-			<div className='w-full h-3/4 rounded-b-2xl'>
+			<p className="font-semibold"> Avaliação {props.score}/5</p>
+			<Ellipsis
+				id="descricao"
+				className={`w-full h-auto text-[#49454F]`}
+				text={props.text}
+				maxLine="4"
+				ellipsis="..."
+				trimRight
+				basedOn="letters"
+			/>
+			{/* <div className='w-full h-auto p-4 text-[#49454F]'>
 				{props.text}
-			</div>
-			<p className="text-gray-500 txt-sm flex justify-end mr-2">{date}</p>
+			</div> */}
+			<p className="text-gray-500 txt-sm flex justify-end">{date}</p>
 		</div>
 	);
 }
