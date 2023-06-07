@@ -38,7 +38,9 @@ export const SearchProfessional = () => {
           vets.map(async (vet) => {
             const address = await fetch(`https://viacep.com.br/ws/${vet.Address.cep}/json/`);
             const localidade = await address.json();
-            if (localidade.localidade && localidade.localidade.indexOf(searchValue) > -1) {
+            const lowercaseSearchValue = searchValue.toLowerCase();
+            const lowercaseLocalidade = localidade.localidade.toLowerCase();
+            if (lowercaseLocalidade && lowercaseLocalidade.indexOf(lowercaseSearchValue) > -1) {
               return vet;
             }
             return null;
@@ -97,8 +99,6 @@ export const SearchProfessional = () => {
       ));
     }
   };
-
-
 
   return (
     <>

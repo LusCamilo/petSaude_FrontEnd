@@ -31,10 +31,8 @@ export const AppointmentArchivedCard = (props) => {
         let json = JSON.parse(sessionStorage.getItem("ratingUser"))
         json.veterinaryId = props.vetId
         console.log(json.veterinaryId);      
-        await ratingAdd(json).then((response) => {
-          console.log(response);
-          
-          // Notifications.success("Avaliação concluida")
+        await ratingAdd(json).then(() => {
+          Notifications.success("Avaliação concluida")
         })
         .catch(() => {
           Notifications.error("Erro ao realizar a consulta")
@@ -44,8 +42,6 @@ export const AppointmentArchivedCard = (props) => {
     });
   }
 
-<<<<<<< HEAD
-=======
   useEffect(() => {
     const token = localStorage.getItem('__user_JWT')
     const decoded = jwt_decode(token);
@@ -58,7 +54,6 @@ export const AppointmentArchivedCard = (props) => {
     }
 	}, [])
   
->>>>>>> 9e810047e15c6c42a970b08cf874d445a964e545
 
 
   function handleClick() {

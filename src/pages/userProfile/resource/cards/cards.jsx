@@ -13,7 +13,7 @@ export const Cards = (props) => {
 		async function fetchData() {
 
 
-			if(props.idVets == undefined){
+			if (props.idVets == undefined) {
 				const infos = localStorage.getItem('__basic_infos')
 
 			} else {
@@ -21,31 +21,27 @@ export const Cards = (props) => {
 				const decoded = jwt_decode(token);
 				if (props.boolVet == true || props.isVet == true) {
 					const response = await getRatings(props.idVets);
-		
-					console.log(response.response.ratings);
 
-					if (response.status == 404)setPetOrRating([])
-					else if(response.response.ratings == undefined || response.response.ratings.length == 0) setPetOrRating([])
+					if (response.status == 404) setPetOrRating([])
+					else if (response.response.ratings == undefined || response.response.ratings.length == 0) setPetOrRating([])
 					else setPetOrRating(response.response.ratings)
-		
-				  } else if (props.boolVet == false || props.isVet == false) {
-		
+
+				} else if (props.boolVet == false || props.isVet == false) {
+
 					const { response } = await getUser(decoded.id)
 					setPetOrRating(response.user.Pet)
-		
-				  } else {
-		
+
+				} else {
+
 					setPetOrRating([])
-		
-				  }
+
+				}
 			}
 		}
-	  
-		fetchData();
-	  }, [props, props]);
 
-	console.log(props);
- 
+		fetchData();
+	}, [props, props]);
+
 	const carrossel = useRef(null)
 
 	const handleLeftClick = () => {
@@ -61,33 +57,32 @@ export const Cards = (props) => {
 
 
 	if (props.isVet == true || props.boolVet == true) {
-		console.log("Is vet");
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
 				<h2 className='text-3xl pb-2'>Avaliações</h2>
-				<div className='flex items-center pl-14 md:pl-0 justify-between'>
-					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
-					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' 
-					ref={carrossel}>
-						{petOrRating.map((item) => {
-							console.log(item);
-							
-							return <Rating 
-								key={item.id} 
-								id={item.id} 
-								clientId={item.clientId} 
-								idVet={item.Veterinary.id} 
-								personImage={item.personImage} 
-								userName={item.userName} 
-								score={item.score} 
-								text={item.description} 
-								whenCreated={item.createdAt}
-							/>
-						})}
-						
+				{petOrRating.length !== 0 ? <>
+					<div className='flex items-center pl-14 md:pl-0 justify-between'>
+						<IoIosArrowBack className='text-5xl' onClick={handleLeftClick} />
+						<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full '
+							ref={carrossel}>
+							{petOrRating.map((item) => {
+								return <Rating
+									key={item.id}
+									id={item.id}
+									clientId={item.clientId}
+									idVet={item.Veterinary.id}
+									personImage={item.personImage}
+									userName={item.userName}
+									score={item.score}
+									text={item.description}
+									whenCreated={item.createdAt}
+								/>
+							})}
+
+						</div>
+						<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick} />
 					</div>
-					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
-				</div>
+				</>: <p className='text-[#A9A9A9] text-xl'>Esse veterinário não tem Avaliações</p>}
 			</div>
 		);
 	} else {
@@ -95,14 +90,14 @@ export const Cards = (props) => {
 			<div className='flex flex-col mt-4 md:px-44'>
 				<h2 className='text-3xl pb-2'>{localStorage.getItem("__user_isVet") == 'true' ? 'Avaliações' : 'Pets'}</h2>
 				<div className='flex items-center pl-14 md:pl-0 justify-between'>
-					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick}/>
+					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick} />
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
 						{petOrRating.map((item) => {
 							return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
 						})}
-						
+
 					</div>
-					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick}/>
+					<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick} />
 				</div>
 			</div>
 		);

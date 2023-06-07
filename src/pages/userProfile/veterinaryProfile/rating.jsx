@@ -1,40 +1,42 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { deleteRating } from "../../../services/integrations/rating";
 import Notifications from "../../../utils/Notifications";
 import { BiTrash } from "react-icons/bi";
 import Ellipsis from 'react-lines-ellipsis';
+import { getUser } from "../../../services/integrations/user";
 //import Dropdownfrom from "components/dropdown";
 
 export const Rating = (props) => {
 
 	const [idPerson, setIdPerson] = useState(0)
 	const [date, setDate] = useState('01/01/1901')
-	console.log(props);
+	const [userRating, setUserRating] = useState({})
+
 	useEffect(() => {
 		const token = localStorage.getItem('__user_JWT')
 		const decoded = jwt_decode(token)
-		setIdPerson(decoded.id)	
+		setIdPerson(decoded.id)
 		async function fetchData() {
+			const userRating = await getUser(props.clientId)
+			setUserRating(userRating.response.user)
 			newDate(props.whenCreated)
 		}
-		console.log(props);
+
 		fetchData();
 	}, []);
 
 	const deleteRateing = async () => {
 		await Notifications.warningConfirmOrCancel("Realmente deseja apagar este comentário", "Não irá muda a sua média", async (result) => {
 			if (result.isConfirmed) {
-				console.log(props.id);
 				let response = await deleteRating(props.id)
-				console.log(response);
 				setTimeout(() => {
 					window.location.reload()
 				}, 2000);
 			} else await Notifications.success('Nenhum dado alterado')
 		})
 		let response = await deleteRating(props.id)
-		console.log(response);
+
 	}
 
 	async function newDate(event) {
@@ -44,30 +46,32 @@ export const Rating = (props) => {
 		let diaMesAno = dia.split('/').join('-');
 		let diaMesAnoFormatado = diaMesAno.split('-').join('/');
 		setDate(diaMesAnoFormatado);
-	  }
-	  
-	  function adicionarUmDia(data) {
+	}
+
+	function adicionarUmDia(data) {
 		let novaData = new Date(data);
 		novaData.setDate(novaData.getDate());
 		return novaData;
-	  }
+	}
 
-	  console.log(props);
 
 	return (
 		<div id={props.id} className='w-80 h-auto border border-solid border-[#CAC4D0] rounded-2xl flex flex-none flex-col justify-between gap-2 p-4'>
 			<div className='h-fit flex flex-row justify-between items-center rounded-t-2xl'>
 				<label className='flex items-center'>
-					<img src={props.personImage} alt="Imagem ou icone do perfil" className='w-10 h-10 rounded-full mr-5' />
+					<img src={userRating.profilePhoto} alt="Imagem ou icone do perfil" className='w-10 h-10 rounded-full mr-5' />
 					<p className='bg-transparent border-none font-sans font-medium text-base w-fit'>
-					 	{props.userName}
+						{props.userName}
 					</p>
 				</label>
-				<button className={`h-6 ${props.clientId != idPerson || props.idVet == idPerson ? 'flex' : 'hidden'}`}
-					onClick={()=>deleteRateing()
-				}>
-					<BiTrash className="text-2xl"/>
-				</button>
+				{localStorage.getItem("__user_id") === localStorage.getItem("__Vet_correctId") ?
+					<button className={`h-6 ${props.clientId != idPerson || props.idVet == idPerson ? 'flex' : 'hidden'}`}
+						onClick={() => deleteRateing()
+						}>
+						<BiTrash className="text-2xl" />
+					</button>
+				: <p></p>}
+
 			</div>
 			<p className="font-semibold"> Avaliação {props.score}/5</p>
 			<Ellipsis
