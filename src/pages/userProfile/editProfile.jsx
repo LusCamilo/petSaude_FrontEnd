@@ -62,9 +62,7 @@ export const EditProfile = () => {
 	}
 
 	 function handleChildEmailChange(value) {
-		console.log(value);
 		setEmail(value);
-		console.log(email);
 	}
 
 	function handleChildPasswordChange(value) {
@@ -109,7 +107,7 @@ export const EditProfile = () => {
 
 	async function editInformations() {
 		let profileInfos = {
-		userName: name ? name : infos.name,
+		userName: name ? name : infos.userName,
 		email: email ? email : infos.email,
 		password: password ? `${password}` : infos.password,
 		profileBannerPhoto: profileBannerPhoto ? profileBannerPhoto : infos.profileBannerPhoto,
