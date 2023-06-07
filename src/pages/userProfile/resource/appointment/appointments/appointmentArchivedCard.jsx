@@ -30,9 +30,9 @@ export const AppointmentArchivedCard = (props) => {
       if (result.isConfirmed) {
         let json = JSON.parse(sessionStorage.getItem("ratingUser"))
         json.veterinaryId = props.vetId
-        await ratingAdd(json).then((response) => {
-          
-          // Notifications.success("Avaliação concluida")
+        console.log(json.veterinaryId);      
+        await ratingAdd(json).then(() => {
+          Notifications.success("Avaliação concluida")
         })
         .catch(() => {
           Notifications.error("Erro ao realizar a consulta")
@@ -54,6 +54,8 @@ export const AppointmentArchivedCard = (props) => {
     }
 	}, [])
   
+
+
   function handleClick() {
     if (ratingModal == "hidden") {
       setRatingModal("flex")

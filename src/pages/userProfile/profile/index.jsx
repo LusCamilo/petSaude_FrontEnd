@@ -18,7 +18,6 @@ export const  Profile = () => {
   async function loadUserInfos() {
     const userInfos = await getUserInfos();
     setUserInfos(userInfos); 
-    console.log(userInfos);
     SetIsVet(userInfos.isVet);
     SetCEP(userInfos.cep);
     localStorage.setItem("__basic_Infos", `${userInfos.isVet}, ${userInfos.id}`)
@@ -44,7 +43,6 @@ export const  Profile = () => {
               instituicao={userInfos.instituicao}
               carreiraInicio={userInfos.carreiraInicio}
             />}
-            {console.log(cep)}
           <Maps cep={cep}/>
         </div>
       </div>
