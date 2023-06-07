@@ -67,10 +67,9 @@ export const AppointmentArchived = (props) => {
               );
 
               let idadeString;
-                
-              console.log(idadeEmAnos);
+
               if (
-                typeof idadeEmAnos == "number" &&
+                typeof idadeEmAnos === "number" &&
                 Number.isInteger(idadeEmAnos)
               ) {
                 idadeString = idadeEmAnos.toString() + " anos";
@@ -100,7 +99,7 @@ export const AppointmentArchived = (props) => {
                 sexo: arrayPet.petGender,
                 especie: arrayPet.petSpecie.name,
                 tamanho: height,
-                idade: idadeString ? idadeString : "Meses",
+                idade: idadeString ? idadeString : "Não possui idade",
                 dataConsulta: consultaDataFormatada,
                 horario: horario,
                 descricao: app.description,

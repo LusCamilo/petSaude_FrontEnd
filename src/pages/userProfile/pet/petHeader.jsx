@@ -10,7 +10,10 @@ export const PetHeader = () => {
 	const [userPhoto, setUserPhoto] = useState("");
 	const [linkTo, setLinkTo] = useState("/login");
 	const token = localStorage.getItem("__user_JWT");
-	const decoded = jwt_decode(token);
+	let decoded
+	if (token !== null) {
+		decoded = jwt_decode(token);
+	}
 
 	useEffect(() => {
 		async function loadUserInfos() {
