@@ -15,18 +15,19 @@ import Notifications from "../../../../../utils/Notifications";
 
 export const AppointmentPeding = (props) => {
   const [pedidos, setPedido] = useState([]);
-  const [buttonAceitar, setButtonAceitar] = useState("flex");
   const [showVet, setShowVet] = useState("hidden");
-  const [showClient, setShowClient] = useState("flex");
+  const [isVet, setIsVet] = useState(false);
   const [divNothing, setDivNothing] = useState("hidden");
   const [duracao, setDuracao] = useState(0);
   const [preco, setPreco] = useState(0.0);
+  const [buttonAceitar, setButtonAceitar] = useState("flex");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("__user_JWT");
         const decoded = jwt_decode(token);
+        setIsVet(true)
         let appoint = await getappo(decoded.id);
 
         if (appoint !== undefined && appoint !== null) {
@@ -46,8 +47,6 @@ export const AppointmentPeding = (props) => {
                 .reverse()
                 .join("/");
 
-              console.log(arrayPet);
-
               const horarioSplit = app.startsAt.split("T");
               const horarioSegundaMetade = horarioSplit[1];
               const horarioSplit2 = horarioSegundaMetade.split(":00.000Z");
@@ -60,6 +59,8 @@ export const AppointmentPeding = (props) => {
               const idadeEmAnos = Math.floor(
                 diferencaEmMilissegundos / (1000 * 60 * 60 * 24 * 365)
               );
+
+                const price = formatPrice(app.price)
 
               let idadeString;
 
@@ -74,6 +75,14 @@ export const AppointmentPeding = (props) => {
                 idadeString = idadeEmMeses.toString() + " meses";
               }
 
+              const addressVet = await fetch(`https://viacep.com.br/ws/${vet.Address.cep}/json/`)
+              const addressClient = await fetch(`https://viacep.com.br/ws/${client.Address.cep}/json/`)
+
+              let ruaVet = await addressVet.json()
+              let bairroVet = await addressVet.json()
+              let ruaClient = await addressClient.json()
+              let bairroClient = await addressClient.json()
+
               const formattedDuration = formatDuration(app.duration);
 
               const finalArray = {
@@ -81,6 +90,8 @@ export const AppointmentPeding = (props) => {
                 imagemPet: arrayPet.photo,
                 donoImg: client.profilePhoto,
                 dono: client.personName,
+                donoRua: ruaClient,
+                donoBairro: bairroClient,
                 telefone: client.cellphoneNumber,
                 nomePet: arrayPet.name,
                 sexo: arrayPet.petGender,
@@ -94,6 +105,8 @@ export const AppointmentPeding = (props) => {
                 vetName: vet.personName,
                 vetPhone: vet.cellphoneNumber,
                 vetPhoto: vet.profilePhoto,
+                vetRua: ruaVet,
+                vetBairro: bairroVet
               };
 
               return finalArray;
@@ -151,9 +164,7 @@ export const AppointmentPeding = (props) => {
       "Deseja concluir a consulta?",
       async (result) => {
         if (result.isConfirmed) {
-          console.log(idAppointment);
           const { response } = await finalizadoAppointments(idAppointment);
-          console.log(response);
           if (response.message === "Consulta concluída") {
             await Notifications.success("Consulta concluída com sucesso");
             window.location.reload();
@@ -223,25 +234,24 @@ export const AppointmentPeding = (props) => {
     });
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem("__user_JWT");
-    const decoded = jwt_decode(token);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("__user_JWT");
+  //   const decoded = jwt_decode(token);
 
-    if (decoded.isVet) {
-      setShowVet("hidden");
-      setShowClient("flex");
-    } else {
-      setShowVet("flex");
-      setShowClient("hidden");
-    }
-  }, []);
+  //   if (decoded.isVet) {
+  //     setShowVet("hidden");
+  //     setShowClient("flex");
+  //   } else {
+  //     setShowVet("flex");
+  //     setShowClient("hidden");
+  //   }
+  // }, []);
 
   return (
     <section className="w-fit">
       <div className="w-full flex flex-col gap-3">
         <div className={`${divNothing}`}>Nenhuma consulta a ser aceita</div>
         {pedidos.map((pedido) => {
-          console.log(pedidos);
           return (
             <div
               key={pedido.id}
@@ -370,7 +380,59 @@ export const AppointmentPeding = (props) => {
                 </div>
               </div>
               <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-3">
-                Informações da consulta{" "}
+                Informações adicionais
+              </h2>
+              <div className="flex flex-col justify-between gap-2">
+                <div className="flex flex-row justify-start w-full sm:w-full">
+                  <div className="w-fit">
+                    <label className="flex flex-col text-2xl text-[#A9A9A9]">
+                      Nome do {" "}
+                      {isVet == true ? "cliente" : "veterinário"} {console.log(pedido)}
+                      <input
+                        type="text"
+                        disabled
+                        placeholder={ isVet == true ? pedido.dono : pedido.vetName }
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl"
+                      />
+                    </label>
+                  </div>
+                  <div className="w-fit">
+                    <label className="flex flex-col text-2xl text-[#A9A9A9]">
+                      Telefone
+                      <input
+                        type="text"
+                        disabled
+                        placeholder={isVet == true ? pedido.telefone : pedido.vetPhone}
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl"
+                      />
+                    </label>
+                  </div>
+                  <div className="w-fit">
+                    <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
+                      Rua
+                      <input
+                        type="text"
+                        disabled
+                        placeholder={isVet == true ? pedido.donoRua : pedido.donoBairro}
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
+                      />
+                    </label>
+                  </div>
+                  <div className="w-fit">
+                    <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
+                      Bairro
+                      <input
+                        type="text"
+                        disabled
+                        placeholder={isVet == true ? pedido.donoBairro : pedido.donoRua}
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-3">
+                Informações da consulta
               </h2>
               <div className="flex flex-col justify-between gap-2">
                 <div className="flex flex-row justify-start w-full sm:w-full">
@@ -405,6 +467,20 @@ export const AppointmentPeding = (props) => {
                         placeholder={pedido.duration}
                         className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                       />
+                    </label>
+                  </div>
+                  <div className="w-fit">
+                    <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
+                      Duração
+                      <div className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl ">
+                        R$
+                      <input
+                        type="text"
+                        disabled
+                        placeholder={pedido.price}
+                        className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
+                      />
+                      </div>
                     </label>
                   </div>
                 </div>
