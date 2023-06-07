@@ -52,13 +52,13 @@ export const CardProfessionals = (props) => {
 						<p className="font-bold">Nome: </p>
 						<p className="text-2xl w-5/6">{props.nome}</p>
 					</div>
-					{/* <div className="flex flex-row text-xl md:text-2xl gap-2">
-						<p className="font-bold">Apelido: </p>
-						<p className="text-2xl w-5/6">{props.userName}</p>
-					</div> */}
+					<div className="flex flex-row text-xl md:text-2xl gap-2">
+						<p className="font-bold w-fit">Nome de Usuário: </p>
+						<p className="text-2xl">{props.userName}</p>
+					</div>
 					<div className="flex flex-row text-xl md:text-2xl">
-						<p className="font-bold w-72">Início de atuação: </p>
-						<p className="text-2xl w-11/12">{year.split("-")[0]}</p>
+						<p className="font-bold w-fit mr-2">Início de atuação: </p>
+						<p className="text-2xl">{year.split("-")[0]}</p>
 					</div>
 					<div className="flex flex-row text-xl md:text-2xl gap-2 ">
 						<p className="font-bold">Estado: </p>
