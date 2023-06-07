@@ -68,7 +68,6 @@ export const AppointmentArchived = (props) => {
 
               let idadeString;
                 
-              console.log(idadeEmAnos);
               if (
                 typeof idadeEmAnos == "number" &&
                 Number.isInteger(idadeEmAnos)
@@ -111,6 +110,8 @@ export const AppointmentArchived = (props) => {
                 vetPhoto: vet.profilePhoto,
                 estado: app.status,
                 status: statusTraduzido,
+                price: app.price,
+                duration: app.duration
               };
               return finalArray;
             })
@@ -272,6 +273,7 @@ export const AppointmentArchived = (props) => {
               idAppoint={pedido.idAppoint}
               cor={cor}
               imagemPet={pedido.imagemPet}
+              dono={pedido.dono}
               donoImg={pedido.donoImg}
               donoId={pedido.donoId}
               telefone={pedido.telefone}
@@ -291,6 +293,8 @@ export const AppointmentArchived = (props) => {
               estado={pedido.estado}
               status={pedido.status}
               isVet={isVet}
+              price={pedido.price}
+              duration={pedido.duration}
             />
           );
         })}

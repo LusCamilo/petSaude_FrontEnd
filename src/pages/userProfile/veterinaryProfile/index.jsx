@@ -16,7 +16,7 @@ export const VeterinaryProfile = () => {
 			let array
 			if (result == "Nenhum veterinário atende aos filtros de pesquisa" ) {
 				array = []
-			} else {
+			} else { 
 				array = result.user
 			} 
 			setVets(array)

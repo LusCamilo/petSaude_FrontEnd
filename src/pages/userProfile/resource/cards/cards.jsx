@@ -5,7 +5,6 @@ import jwt_decode from "jwt-decode";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { getRatings } from '../../../../services/integrations/rating';
 import { Rating } from '../../veterinaryProfile/rating';
-import { log } from 'react-modal/lib/helpers/ariaAppHider';
 
 export const Cards = (props) => {
 	const [petOrRating, setPetOrRating] = useState([]);
@@ -21,14 +20,12 @@ export const Cards = (props) => {
 				const decoded = jwt_decode(token);
 				if (props.boolVet == true || props.isVet == true) {
 					const response = await getRatings(props.idVets);
-
 					if (response.status == 404) setPetOrRating([])
 					else if (response.response.ratings == undefined || response.response.ratings.length == 0) setPetOrRating([])
 					else setPetOrRating(response.response.ratings)
-
 				} else if (props.boolVet == false || props.isVet == false) {
 
-					const { response } = await getUser(decoded.id)
+					const { response } = await getUser(props.idVets)
 					setPetOrRating(response.user.Pet)
 
 				} else {
@@ -40,7 +37,7 @@ export const Cards = (props) => {
 		}
 
 		fetchData();
-	}, [props, props]);
+	}, [props]);
 
 	const carrossel = useRef(null)
 
@@ -55,7 +52,6 @@ export const Cards = (props) => {
 		// carrossel.current.scrollLeft += carrossel.current.offsetWidth
 	}
 
-
 	if (props.isVet == true || props.boolVet == true) {
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
@@ -65,7 +61,7 @@ export const Cards = (props) => {
 						<IoIosArrowBack className='text-5xl' onClick={handleLeftClick} />
 						<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full '
 							ref={carrossel}>
-							{petOrRating.map((item) => {
+							{ petOrRating && Array.isArray(petOrRating) &&  petOrRating.map((item) => {
 								return <Rating
 									key={item.id}
 									id={item.id}
@@ -88,11 +84,11 @@ export const Cards = (props) => {
 	} else {
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
-				<h2 className='text-3xl pb-2'>{localStorage.getItem("__user_isVet") == 'true' ? 'Avaliações' : 'Pets'}</h2>
+				<h2 className='text-3xl pb-2'>Pets</h2>
 				<div className='flex items-center pl-14 md:pl-0 justify-between'>
 					<IoIosArrowBack className='text-5xl' onClick={handleLeftClick} />
 					<div className='md:flex overflow-x-auto scroll-smooth md:gap-2 md:pr-[45%] w-full ' ref={carrossel}>
-						{petOrRating.map((item) => {
+						{petOrRating && Array.isArray(petOrRating) &&  petOrRating.map((item) => {
 							return <CardPets id={item.id} personImage={props.personImage} animalName={item.name} animalImage={item.photo} />
 						})}
 

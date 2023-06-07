@@ -60,7 +60,7 @@ export const AppointmentPeding = (props) => {
                 diferencaEmMilissegundos / (1000 * 60 * 60 * 24 * 365)
               );
 
-                const price = formatPrice(app.price)
+              //const price = formatPrice(app.price)
 
               let idadeString;
 
@@ -75,13 +75,12 @@ export const AppointmentPeding = (props) => {
                 idadeString = idadeEmMeses.toString() + " meses";
               }
 
-              const addressVet = await fetch(`https://viacep.com.br/ws/${vet.Address.cep}/json/`)
-              const addressClient = await fetch(`https://viacep.com.br/ws/${client.Address.cep}/json/`)
+              let addressVet = await fetch(`https://viacep.com.br/ws/${vet.Address.cep}/json/`)
+              let addressClient = await fetch(`https://viacep.com.br/ws/${client.Address.cep}/json/`)
 
-              let ruaVet = await addressVet.json()
-              let bairroVet = await addressVet.json()
-              let ruaClient = await addressClient.json()
-              let bairroClient = await addressClient.json()
+              let vetAddress = await addressVet.json()
+              let clientAddress = await addressClient.json()
+
 
               const formattedDuration = formatDuration(app.duration);
 
@@ -90,8 +89,6 @@ export const AppointmentPeding = (props) => {
                 imagemPet: arrayPet.photo,
                 donoImg: client.profilePhoto,
                 dono: client.personName,
-                donoRua: ruaClient,
-                donoBairro: bairroClient,
                 telefone: client.cellphoneNumber,
                 nomePet: arrayPet.name,
                 sexo: arrayPet.petGender,
@@ -105,8 +102,11 @@ export const AppointmentPeding = (props) => {
                 vetName: vet.personName,
                 vetPhone: vet.cellphoneNumber,
                 vetPhoto: vet.profilePhoto,
-                vetRua: ruaVet,
-                vetBairro: bairroVet
+                vetRua: vetAddress.logradouro,
+                vetBairro: vetAddress.localidade,
+                donoRua: clientAddress.logradouro,
+                donoBairro: clientAddress.localidade,
+                preco: app.price
               };
 
               return finalArray;
@@ -387,7 +387,7 @@ export const AppointmentPeding = (props) => {
                   <div className="w-fit">
                     <label className="flex flex-col text-2xl text-[#A9A9A9]">
                       Nome do {" "}
-                      {isVet == true ? "cliente" : "veterinário"} {console.log(pedido)}
+                      {isVet == true ? "cliente" : "veterinário"} 
                       <input
                         type="text"
                         disabled
@@ -431,7 +431,7 @@ export const AppointmentPeding = (props) => {
                   </div>
                 </div>
               </div>
-              <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-3">
+              <h2 className="font-normal mt-4 flex justify-center sm:justify-start font-sans text-3xl mb-3">
                 Informações da consulta
               </h2>
               <div className="flex flex-col justify-between gap-2">
@@ -471,13 +471,13 @@ export const AppointmentPeding = (props) => {
                   </div>
                   <div className="w-fit">
                     <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
-                      Duração
+                      Preço
                       <div className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl ">
                         R$
                       <input
                         type="text"
                         disabled
-                        placeholder={pedido.price}
+                        placeholder={pedido.preco}
                         className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
                       />
                       </div>

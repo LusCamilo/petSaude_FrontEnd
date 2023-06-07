@@ -80,15 +80,17 @@ export const AppointmentAsk = () => {
                 imagemPet: arrayPet.photo,
                 donoImg: client.profilePhoto,
                 dono: client.personName,
+                clientId: client.id,
                 telefone: client.cellphoneNumber,
                 nomePet: arrayPet.name,
                 sexo: arrayPet.petGender,
                 especie: arrayPet.petSpecie.name,
                 tamanho: arrayPet.petSize,
-                idade: idadeString,
+                idade: idadeString ? idadeString : "Menos de um ano",
                 dataConsulta: consultaDataFormatada,
                 horario: horario,
                 descricao: app.description,
+                veterinaryId: vet.id,
                 vetName: vet.personName,
                 vetPhone: vet.cellphoneNumber,
                 vetPhoto: vet.profilePhoto,
@@ -191,7 +193,7 @@ export const AppointmentAsk = () => {
       allAboutIt = person;
     }
     if (
-      allAboutIt.response ===
+      allAboutIt.response ==
       "Não foram encontrados registros no Banco de Dados"
     ) {
       return [];
@@ -371,7 +373,12 @@ export const AppointmentAsk = () => {
                     alt="Imagem do pet"
                   />
                   <h2 className="font-norma flex justify-center sm:justify-start font-sans">
-                    {pedido.dono}
+                    <a onClick={()=>{
+                      localStorage.setItem("profileUser", `Client/${pedido.clientId}-true`)
+                      document.location.href = '/profile' 
+                    }
+                  }
+                    >{pedido.dono}</a>
                   </h2>
                 </div>
                 <div className="flex flex-col sm:flex-row justify-between pt-3 mb-8">
@@ -414,7 +421,12 @@ export const AppointmentAsk = () => {
                     alt="Imagem do pet"
                   />
                   <h2 className="font-normal flex justify-center sm:justify-start font-sans ">
-                    {pedido.vetName}
+                  <a onClick={()=>{
+                      localStorage.setItem("profileUser", `Professional/${pedido.veterinaryId}-true`)
+                      document.location.href = '/profile' 
+                    }
+                  }
+                    >{pedido.vetName}</a>
                   </h2>
                 </div>
                 <div className="flex flex-col sm:flex-row justify-between pt-3 pb-8">

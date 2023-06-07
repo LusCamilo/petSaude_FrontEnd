@@ -24,13 +24,13 @@ export const AppointmentArchivedCard = (props) => {
   const [ratingModal, setRatingModal] = useState("hidden");
   const [vetView, setVetView] = useState("")
   const [clientView, setClientView] = useState("")
+  const [isVet, setIsVet] = useState(false)
 
   async function openRatingAvaliation() {
     await Notifications.ratingAvaliation(showToastMessage, handleClick, async result => {
       if (result.isConfirmed) {
         let json = JSON.parse(sessionStorage.getItem("ratingUser"))
-        json.veterinaryId = props.vetId
-        console.log(json.veterinaryId);      
+        json.veterinaryId = props.vetId 
         await ratingAdd(json).then(() => {
           Notifications.success("Avaliação concluida")
         })
@@ -43,8 +43,10 @@ export const AppointmentArchivedCard = (props) => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('__user_JWT')
+    const token = localStorage.getItem("__user_JWT");
     const decoded = jwt_decode(token);
+    setIsVet(true)
+    
     if(decoded.isVet == true){
       setVetView("flex")
       setClientView("hidden")
@@ -59,10 +61,8 @@ export const AppointmentArchivedCard = (props) => {
   function handleClick() {
     if (ratingModal == "hidden") {
       setRatingModal("flex")
-      console.log(ratingModal);
     } else {
       setRatingModal("hidden")
-      console.log(ratingModal);
     }
 
   }
@@ -141,6 +141,58 @@ export const AppointmentArchivedCard = (props) => {
           </div>
         </div>
       </div>
+      <h2 className="font-normal  flex justify-center sm:justify-start font-sans text-3xl mb-3">
+        Informações adicionais
+      </h2>
+      <div className="flex flex-col justify-between gap-2">
+        <div className="flex flex-row justify-start w-full sm:w-full">
+          <div className="w-fit">
+            <label className="flex flex-col text-2xl text-[#A9A9A9]">
+              Nome do {" "}
+              {isVet == true ? "cliente" : "veterinário"} 
+              <input
+                type="text"
+                disabled
+                placeholder={ isVet == true ? props.dono : props.vetName }
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl"
+              /> {console.log(props)}
+            </label>
+          </div>
+          <div className="w-fit">
+            <label className="flex flex-col text-2xl text-[#A9A9A9]">
+              Telefone
+              <input
+                type="text"
+                disabled
+                placeholder={isVet == true ? props.telefone : props.vetPhone}
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl"
+              />
+            </label>
+          </div>
+          {/* <div className="w-fit">
+            <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
+              Rua
+              <input
+                type="text"
+                disabled
+                placeholder={isVet == true ? props.donoRua : props.donoBairro}
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
+              />
+            </label>
+          </div>
+          <div className="w-fit">
+            <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
+              Bairro
+              <input
+                type="text"
+                disabled
+                placeholder={isVet == true ? props.donoBairro : props.donoRua}
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
+              />
+            </label>
+          </div> */}
+        </div>
+      </div>
       <h2 className="font-normal flex justify-center sm:justify-start font-sans text-3xl mt-10 mb-3">
         Informações da consulta{" "}
       </h2>
@@ -157,7 +209,7 @@ export const AppointmentArchivedCard = (props) => {
               />
             </label>
           </div>
-          <div className="w-full">
+          <div className="">
             <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
               Horário
               <input
@@ -166,6 +218,31 @@ export const AppointmentArchivedCard = (props) => {
                 placeholder={props.horario}
                 className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
               />
+            </label>
+          </div>
+          <div className="mr-24">
+            <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
+              Duração
+              <input
+                type="text"
+                disabled
+                placeholder={props.duration}
+                className="bg-transparent placeholder:text-gray-400 h-fit w-full placeholder:text-3xl border-none text-3xl "
+              />
+            </label>
+          </div>
+          <div className="">
+            <label className="flex flex-col text-2xl text-[#A9A9A9] gap-0">
+              Preço
+              <div className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl ">
+                R$
+              <input
+                type="text"
+                disabled
+                placeholder={props.price}
+                className="bg-transparent placeholder:text-gray-400 h-fit placeholder:text-3xl border-none text-3xl "
+              />
+              </div>
             </label>
           </div>
         </div>
