@@ -15,7 +15,7 @@ export const LandingPage = () => {
 		async function validateUser() {
 			const jwt = localStorage.getItem('__user_JWT')
 			const userHasName = await verifyIfUserHasUserName()
-			if (!userHasName || jwt == "") document.location.href = '/profile/edit-profile'
+			//if (!userHasName || jwt == "") document.location.href = '/profile/edit-profile'
 			const {userName} = jwt_decode(jwt)
 		}
 		validateUser()
