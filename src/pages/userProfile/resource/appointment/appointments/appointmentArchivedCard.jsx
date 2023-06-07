@@ -193,7 +193,7 @@ export const AppointmentArchivedCard = (props) => {
       </div>
       <div className={`flex`}>
         {/* ${props.isVet == "flex" && props.status == "Finalizado" ? "flex" : "hidden"} */}
-        {localStorage.getItem("__user_isVet") == "false" ?
+        {localStorage.getItem("__user_isVet") == "false" && props.estado == "CONCLUDED" ?
           <button
             class={`bg-yellow-500 hover:bg-yellow-600 text-white w-1/6 font-bold py-2 px-4 rounded mt-2 ${props.isVet == "flex" && props.estado == "bg-[#09738A]" ? "hidden" : "flex"}`}
             onClick={openRatingAvaliation}

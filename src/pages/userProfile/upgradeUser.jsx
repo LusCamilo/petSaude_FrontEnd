@@ -132,7 +132,7 @@ export const UpgradeUser = () => {
 		await Notifications.warningConfirmOrCancel('Tem certeza que deseja excluir o seu perfil?', 'Essa ação é irreversível', async (result) => {
 			if (result.isConfirmed) {
 				await deleteVeterinary(localStorage.getItem('__user_id'), localStorage.getItem('__user_JWT'))
-				// document.location.href = '/login'
+				document.location.href = '/login'
 			}
 		})
 	}
