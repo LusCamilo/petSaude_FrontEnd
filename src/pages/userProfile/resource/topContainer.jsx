@@ -118,13 +118,13 @@ export const TopContainer = (props) => {
 	return (
 		<div id='topHeader' className='flex flex-col items-center md:px-44'>
 			<div className='w-full md:h-[500px] rounded-b-xl bg-gray-300'>
-				<img src={isValidImageUrl(props.profileBannerPhoto) || props.profileBannerPhoto == '' ? '' : props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl object-cover'
+				<img src={props.profileBannerPhoto == '' ? '' : props.profileBannerPhoto} alt='Profile banner' className={'w-full md:h-[500px] rounded-b-xl object-cover'
 				} />
 			</div>
 			<div className='self-start w-full mt-[-120px] md:mt-[-80px] md:flex ml-9 h-fit'>
 				<div className='flex relative md:border-4 h-28 w-28 md:h-48 md:border-white border-solid rounded-full md:w-48 items-center justify-center bg-white'>
 					<img
-						src={isValidImageUrl(props.profilePhoto) || props.profilePhoto == '' ? 'https://www.svgrepo.com/show/335455/profile-default.svg' : props.profilePhoto}
+						src={props.profilePhoto == '' ? 'https://www.svgrepo.com/show/335455/profile-default.svg' : props.profilePhoto}
 						alt='Profile'
 						className="h-full w-full rounded-full"
 					/>

@@ -15,19 +15,18 @@ import Notifications from "../../../../../utils/Notifications";
 
 export const AppointmentPeding = (props) => {
   const [pedidos, setPedido] = useState([]);
+  const [buttonAceitar, setButtonAceitar] = useState("flex");
   const [showVet, setShowVet] = useState("hidden");
-  const [isVet, setIsVet] = useState(false);
+  const [showClient, setShowClient] = useState("flex");
   const [divNothing, setDivNothing] = useState("hidden");
   const [duracao, setDuracao] = useState(0);
   const [preco, setPreco] = useState(0.0);
-  const [buttonAceitar, setButtonAceitar] = useState("flex");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("__user_JWT");
         const decoded = jwt_decode(token);
-        setIsVet(true)
         let appoint = await getappo(decoded.id);
 
         if (appoint !== undefined && appoint !== null) {
@@ -46,6 +45,8 @@ export const AppointmentPeding = (props) => {
                 .split("-")
                 .reverse()
                 .join("/");
+
+              console.log(arrayPet);
 
               const horarioSplit = app.startsAt.split("T");
               const horarioSegundaMetade = horarioSplit[1];
@@ -164,7 +165,9 @@ export const AppointmentPeding = (props) => {
       "Deseja concluir a consulta?",
       async (result) => {
         if (result.isConfirmed) {
+          console.log(idAppointment);
           const { response } = await finalizadoAppointments(idAppointment);
+          console.log(response);
           if (response.message === "Consulta concluída") {
             await Notifications.success("Consulta concluída com sucesso");
             window.location.reload();
@@ -234,24 +237,25 @@ export const AppointmentPeding = (props) => {
     });
   }
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("__user_JWT");
-  //   const decoded = jwt_decode(token);
+  useEffect(() => {
+    const token = localStorage.getItem("__user_JWT");
+    const decoded = jwt_decode(token);
 
-  //   if (decoded.isVet) {
-  //     setShowVet("hidden");
-  //     setShowClient("flex");
-  //   } else {
-  //     setShowVet("flex");
-  //     setShowClient("hidden");
-  //   }
-  // }, []);
+    if (decoded.isVet) {
+      setShowVet("hidden");
+      setShowClient("flex");
+    } else {
+      setShowVet("flex");
+      setShowClient("hidden");
+    }
+  }, []);
 
   return (
     <section className="w-fit">
       <div className="w-full flex flex-col gap-3">
         <div className={`${divNothing}`}>Nenhuma consulta a ser aceita</div>
         {pedidos.map((pedido) => {
+          console.log(pedidos);
           return (
             <div
               key={pedido.id}

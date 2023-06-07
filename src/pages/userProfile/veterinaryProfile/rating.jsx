@@ -58,10 +58,10 @@ export const Rating = (props) => {
 				<label className='flex items-center'>
 					<img src={userRating.profilePhoto} alt="Imagem ou icone do perfil" className='w-10 h-10 rounded-full mr-5' />
 					<p className='bg-transparent border-none font-sans font-medium text-base w-fit'>
-						{props.userName}
+						{userRating.userName}
 					</p>
 				</label>
-				{localStorage.getItem("__user_id") === localStorage.getItem("__Vet_correctId") ?
+				{localStorage.getItem("__user_isVet") !== "false" && localStorage.getItem("__user_id") === localStorage.getItem("__Vet_correctId")  ?
 					<button className={`h-6 ${props.clientId != idPerson || props.idVet == idPerson ? 'flex' : 'hidden'}`}
 						onClick={() => deleteRateing()
 						}>

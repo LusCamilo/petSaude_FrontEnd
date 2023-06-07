@@ -242,7 +242,7 @@ export const Prossionais = (props) => {
 							</label>
 						</div>
 						<div>
-							<label className='flex flex-col text-2xl text-[#A9A9A9] w-full bg-yellow-500'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9] w-full'>
 								Instituição
 								<input type="text" id='cep' name="area" defaultValue={instituicao} onChange={handleInstituicaoChange}
 											 disabled={professionalInfos.disabled}
@@ -267,7 +267,7 @@ export const Prossionais = (props) => {
 							</label>
 						</div>
 						<div className='flex justify-start md:ml-24'>
-							<label className='flex flex-col text-2xl text-[#A9A9A9] w-full bg-blue-600'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9] w-full '>
 								Início de atuação
 								<input type="date" id='cep' name="area" defaultValue={dataInicioAtuacao}
 											 onChange={handleDataAtuacaoChange} disabled={professionalInfos.disabled}

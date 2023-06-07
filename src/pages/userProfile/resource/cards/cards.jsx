@@ -11,7 +11,6 @@ export const Cards = (props) => {
 	useEffect(() => {
 		async function fetchData() {
 
-
 			if (props.idVets == undefined) {
 				const infos = localStorage.getItem('__basic_infos')
 
@@ -78,7 +77,7 @@ export const Cards = (props) => {
 						</div>
 						<IoIosArrowForward className='text-5xl cursor-pointer' onClick={handleRightClick} />
 					</div>
-				</>: <p className='text-[#A9A9A9] text-xl'>Esse veterinário não tem Avaliações</p>}
+				</> : <p className='text-[#A9A9A9] text-xl'>Esse veterinário ainda não foi avaliado.</p>}
 			</div>
 		);
 	} else {
