@@ -43,8 +43,6 @@ export const Cards = (props) => {
 	  
 		fetchData();
 	  }, [props, props]);
-
-	console.log(props);
  
 	const carrossel = useRef(null)
 
@@ -61,7 +59,6 @@ export const Cards = (props) => {
 
 
 	if (props.isVet == true || props.boolVet == true) {
-		console.log("Is vet");
 		return (
 			<div className='flex flex-col mt-4 md:px-44'>
 				<h2 className='text-3xl pb-2'>Avaliações</h2>
@@ -77,8 +74,8 @@ export const Cards = (props) => {
 								id={item.id} 
 								clientId={item.clientId} 
 								idVet={item.Veterinary.id} 
-								personImage={item.personImage} 
-								userName={item.userName} 
+								personImage={item.Client.profilePhoto} 
+								userName={item.Client.userName} 
 								score={item.score} 
 								text={item.description} 
 								whenCreated={item.createdAt}

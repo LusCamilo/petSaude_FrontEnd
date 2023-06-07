@@ -18,7 +18,6 @@ export const Rating = (props) => {
 		async function fetchData() {
 			newDate(props.whenCreated)
 		}
-		console.log(props);
 		fetchData();
 	}, []);
 
@@ -34,7 +33,6 @@ export const Rating = (props) => {
 			} else await Notifications.success('Nenhum dado alterado')
 		})
 		let response = await deleteRating(props.id)
-		console.log(response);
 	}
 
 	async function newDate(event) {
@@ -51,8 +49,6 @@ export const Rating = (props) => {
 		novaData.setDate(novaData.getDate());
 		return novaData;
 	  }
-
-	  console.log(props);
 
 	return (
 		<div id={props.id} className='w-80 h-auto border border-solid border-[#CAC4D0] rounded-2xl flex flex-none flex-col justify-between gap-2 p-4'>

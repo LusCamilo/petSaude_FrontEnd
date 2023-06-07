@@ -242,11 +242,11 @@ export const Prossionais = (props) => {
 							</label>
 						</div>
 						<div>
-							<label className='flex flex-col text-2xl text-[#A9A9A9]'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9] w-full bg-yellow-500'>
 								Instituição
 								<input type="text" id='cep' name="area" defaultValue={instituicao} onChange={handleInstituicaoChange}
 											 disabled={professionalInfos.disabled}
-											 className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`}/>
+											 className={`bg-transparent border-none text-3xl w-full text-[#000] ${professionalInfos.textColor}`}/>
 							</label>
 						</div>
 						<div className='flex justify-start md:ml-24'>
@@ -267,11 +267,11 @@ export const Prossionais = (props) => {
 							</label>
 						</div>
 						<div className='flex justify-start md:ml-24'>
-							<label className='flex flex-col text-2xl text-[#A9A9A9] w-full'>
+							<label className='flex flex-col text-2xl text-[#A9A9A9] w-full bg-blue-600'>
 								Início de atuação
 								<input type="date" id='cep' name="area" defaultValue={dataInicioAtuacao}
 											 onChange={handleDataAtuacaoChange} disabled={professionalInfos.disabled}
-											 className={`bg-transparent border-none text-3xl text-[#000] ${professionalInfos.textColor}`}
+											 className={`bg-transparent border-none text-3xl w-full text-[#000] ${professionalInfos.textColor}`}
 											 max={dataFormatada} min={formation}/>
 							</label>
 						</div>
