@@ -21,12 +21,14 @@ export const AppointmentPeding = (props) => {
   const [divNothing, setDivNothing] = useState("hidden");
   const [duracao, setDuracao] = useState(0);
   const [preco, setPreco] = useState(0.0);
+  const [isVet, setIsVet] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("__user_JWT");
         const decoded = jwt_decode(token);
+        if(decoded.isVet == true)setIsVet(true)
         let appoint = await getappo(decoded.id);
 
         if (appoint !== undefined && appoint !== null) {
